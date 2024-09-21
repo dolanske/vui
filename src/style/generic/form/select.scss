@@ -1,0 +1,55 @@
+.form-select {
+  .select-button {
+    @include flex(10px, space-between);
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+    line-height: 30px;
+    color: var(--color-text);
+    border-radius: var(--radius-tn);
+    background-color: var(--color-bg-light);
+    outline: 0 solid var(--color-border-light);
+
+    &:focus {
+      outline-width: 1px;
+    }
+
+    &:hover {
+      background-color: var(--color-bg-light);
+    }
+
+    &.is-empty {
+      color: var(--color-text-light);
+    }
+  }
+
+  .dropdown {
+    @include noscrollbar();
+    overflow-y: auto;
+
+    .button {
+      position: relative;
+
+      &:before {
+        @include t();
+        content: '';
+        width: 4px;
+        position: absolute;
+        inset: 0;
+        right: unset;
+        background-color: var(--color-accent);
+        opacity: 0;
+      }
+
+      &.is-selected {
+        background-color: var(--color-bg-light-hover);
+
+        color: var(--color-text);
+
+        &:before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

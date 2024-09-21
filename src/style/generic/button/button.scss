@@ -1,0 +1,31 @@
+@import './button-colors';
+@import './button-sizes';
+
+.button {
+  @include font(500);
+  @include t();
+  @include flex(5px, center);
+  border-radius: var(--radius-tn);
+  height: 36px;
+  line-height: 36px;
+  padding: 0 15px;
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  text-decoration: none;
+  text-transform: uppercase;
+
+  svg {
+    @include t();
+    font-size: 1.4rem;
+    color: var(--color-text-light);
+  }
+
+  &:disabled {
+    pointer-events: none !important;
+  }
+
+  &:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-light);
+  }
+}

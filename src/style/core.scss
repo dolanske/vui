@@ -1,0 +1,15 @@
+// Core of the UI library, it should only contain styles which are relevant to
+// the library and each component should import it
+:root {
+}
+
+:root.dark-theme {
+}
+
+.vui {
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}

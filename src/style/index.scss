@@ -1,0 +1,41 @@
+/*
+The folder structure for styles is divided into 4 types.
+
+#1 Setup
+  Prepare the stylesheet. Reset CSS, register mixins and fonts etc.
+
+#2 Generic
+  Import generic component styles. Such as text sizes, buttons, form elements (inputs, selects) or anything
+  generic which can be used anywhere across the application.
+
+#3 App
+  As mentioned in the index.scss of that folder, app styles are less generic and more page oriented. Specifics styles
+
+#4 Overrides
+  These styles override any of the previous imports.
+  We for instance define dark-theme or media queries here
+
+*/
+
+@import './setup/';
+
+@import './generic/';
+
+html {
+  @include font(400);
+  font-size: 63.5%;
+  position: relative;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+@import './app/';
+
+@import './overrides/';

@@ -1,0 +1,127 @@
+/*
+This is a trick in which you can add simply tooltips to an element without any additional html.
+Simple add data-title-_position_="Hello world" and hover the element.
+
+Available tooltip positions:
+*/
+
+[data-title-left],
+[data-title-right],
+[data-title-bottom],
+[data-title-bottom-left],
+[data-title-bottom-right],
+[data-title-top],
+[data-title-top-left],
+[data-title-top-right] {
+  position: relative;
+
+  &:before {
+    @include t();
+    @include font(400);
+    background-color: var(--color-bg-light-hover);
+    color: var(--color-text);
+
+    font-size: 1.3rem;
+    position: absolute;
+    padding: 2px 10px;
+    height: 22px;
+    line-height: 22px;
+
+    white-space: nowrap;
+    opacity: 0;
+    z-index: 99999;
+    cursor: default;
+
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &:hover {
+    &:before {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+[data-title-left]:before {
+  content: attr(data-title-left);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99999;
+  right: calc(100% + 4px);
+}
+
+[data-title-right]:before {
+  content: attr(data-title-right);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99999;
+  left: calc(100% + 4px);
+}
+
+[data-title-bottom]:before,
+[data-title-bottom-left]:before,
+[data-title-bottom-right]:before {
+  content: attr(data-title-bottom);
+  top: calc(100% + 4px);
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+[data-title-bottom-left]:before {
+  content: attr(data-title-bottom-left);
+  transform: unset;
+  left: 0;
+}
+
+[data-title-bottom-right]:before {
+  content: attr(data-title-bottom-right);
+  transform: unset;
+  left: unset;
+  right: 0;
+}
+
+[data-title-top]:before,
+[data-title-top-left]:before,
+[data-title-top-right]:before {
+  content: attr(data-title-top);
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+[data-title-top-left]:before {
+  content: attr(data-title-top-left);
+  transform: unset;
+  left: 0;
+}
+
+[data-title-top-right]:before {
+  content: attr(data-title-top-right);
+  transform: unset;
+  left: unset;
+  right: 0;
+}
+
+// Hover
+
+[data-title-left]:hover:before {
+  right: calc(100% + 10px);
+}
+
+[data-title-right]:hover:before {
+  left: calc(100% + 10px);
+}
+
+[data-title-top]:hover:before,
+[data-title-top-left]:hover:before,
+[data-title-top-right]:hover:before {
+  bottom: calc(100% + 10px);
+}
+
+[data-title-bottom]:hover:before,
+[data-title-bottom-left]:hover:before,
+[data-title-bottom-right]:hover:before {
+  top: calc(100% + 10px);
+}

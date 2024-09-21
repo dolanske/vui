@@ -1,0 +1,40 @@
+/*
+Generic dropdown styling, allowing you to al
+*/
+
+.dropdown {
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  padding: 10px 0;
+  z-index: 1000;
+  width: 176px;
+  box-shadow: var(--shadow2);
+  position: absolute;
+  border: 1px solid var(--color-border-light);
+
+  a {
+    @extend .button;
+  }
+
+  a,
+  .button {
+    border-radius: 0 !important;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 16px;
+
+    &:hover {
+      background-color: var(--color-bg-light-hover);
+    }
+
+    svg {
+      // width: 16px;
+      text-align: center;
+      color: var(--color-accent);
+    }
+  }
+}
+
+.dropdown-wrap {
+  position: relative;
+}

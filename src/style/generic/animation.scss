@@ -1,0 +1,12 @@
+// Style classes used by the vue <Transition> component
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.1s all linear;
+  opacity: 1;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
