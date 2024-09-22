@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useSlots } from 'vue'
-import "./divider.scss"
+import './divider.scss'
 
 interface Props {
   thickness: number
