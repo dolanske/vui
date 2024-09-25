@@ -5,7 +5,6 @@ import { ref } from 'vue'
 interface ToastOptions {
   persistent?: boolean
   timeout?: number
-  
 }
 
 interface Toast {

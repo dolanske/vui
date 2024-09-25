@@ -1,9 +1,56 @@
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
 :root {
+  --border-radius-s: 4px;
+  --border-radius-m: 8px;
+  --border-radius-l: 12px;
+
+  --font-size-xs: 1.15rem;
+  --font-size-s: 1.25rem;
+  --font-size-m: 1.4rem;
+  --font-size-l: 1.6rem;
+
+  --color-bg: rgb(22, 22, 22);
+  --color-bg-raised: rgb(32, 32, 32);
+  --color-bg-lowered: rgb(14, 14, 14);
+
+  --color-text: rgb(231, 231, 231);
+  --color-text-light: rgb(170, 170, 170);
+  --color-text-lighter: rgb(100, 100, 100);
+  --color-text-invert: rgb(17, 17, 17);
+
+  --color-button-gray: rgb(28, 28, 28);
+  --color-button-gray-hover: rgb(38, 38, 38);
+
+  --color-text-red: rgb(243, 78, 70);
+
+  --color-border: rgb(38, 38, 38);
+  --color-border-strong: rgb(54, 54, 54);
+  --color-border-weak: rgb(36, 36, 36);
+
+  --transition-quick: transform: 0.08s all ease-in-out;
+  --transition: transform: 0.15s all ease-in-out;
+  --transition-slow: transform: 0.3s all ease-in-out;
 }
 
-:root.dark-theme {
+:root.light-theme {
+}
+
+html {
+  font-size: 63.5%;
+
+  // TODO remove
+  position: relative;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  // TODO end remove
+
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 }
 
 .vui {

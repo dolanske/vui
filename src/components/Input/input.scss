@@ -1,0 +1,79 @@
+@import '../../style/core.scss';
+
+.vui-input-container {
+  // Each component should have its own specification as it allows more granual
+  // modification via CSS variables if needed
+  --input-color-text-red: var(--color-text-red);
+  --input-color-text-light: var(--color-text-light);
+  --input-color-text-lighter: var(--color-text-lighter);
+  --input-color-border: var(--color-border);
+  --input-color-border-strong: var(--color-border-strong);
+  --input-color-border-weak: var(--color-border-weak);
+
+  --input-height: 34px;
+  --input-padding: 8px;
+
+  //
+
+  width: 224px;
+
+  &.expand {
+    width: 100%;
+  }
+
+  &.required .vui-input label:after {
+    content: '*';
+    color: var(--input-color-text-red);
+  }
+
+  &.readonly .vui-input input {
+    pointer-events: none;
+    color: var(--input-color-text-light);
+    border-color: var(--input-color-border-weak);
+  }
+
+  .vui-input {
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 3px;
+      font-size: var(--font-size-s);
+      color: var(--input-color-text-light);
+    }
+
+    .vui-input-hint {
+      margin-bottom: 8px;
+      margin-top: -4px;
+      color: var(--input-color-text-lighter);
+      font-size: var(--font-size-xs);
+      display: block;
+      text-align: left;
+    }
+
+    input {
+      display: block;
+      border-radius: var(--border-radius-s);
+      border: 1px solid var(--input-color-border);
+      background: transparent;
+      height: var(--input-height);
+      line-height: var(--input-height);
+      color: var(--color-text);
+      outline: none !important;
+      padding-inline: var(--input-padding);
+      font-size: var(--font-size-m);
+      width: 100%;
+
+      &:focus-visible {
+        border-color: var(--input-color-border-strong);
+      }
+    }
+  }
+
+  .vui-input-limit {
+    display: block;
+    margin-top: 3px;
+    text-align: left;
+    font-size: var(--font-size-xs);
+    color: var(--input-color-text-lighter);
+  }
+}
