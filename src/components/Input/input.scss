@@ -62,6 +62,7 @@
       padding-inline: var(--input-padding);
       font-size: var(--font-size-m);
       width: 100%;
+      transition: var(--transition);
 
       &:focus-visible {
         border-color: var(--input-color-border-strong);

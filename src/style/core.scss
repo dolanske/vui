@@ -23,14 +23,19 @@
   --color-button-gray-hover: rgb(38, 38, 38);
 
   --color-text-red: rgb(243, 78, 70);
+  --color-bg-red-lowered: rgb(66, 22, 20);
+  --color-bg-red-raised: rgb(119, 31, 26);
+  --color-border-red: rgb(87, 25, 22);
 
   --color-border: rgb(38, 38, 38);
   --color-border-strong: rgb(54, 54, 54);
   --color-border-weak: rgb(36, 36, 36);
 
-  --transition-quick: transform: 0.08s all ease-in-out;
-  --transition: transform: 0.15s all ease-in-out;
-  --transition-slow: transform: 0.3s all ease-in-out;
+  --transition-quick: 0.08s all ease;
+  --transition: 0.1s all ease;
+  --transition-slow: 0.3s all ease;
+
+  --color-accent: rgb(75, 219, 56);
 }
 
 :root.light-theme {

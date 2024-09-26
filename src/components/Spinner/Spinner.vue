@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { Sizes } from '../../shared/types'
 import { computed } from 'vue'
+import { Size } from '../../shared/types'
 import './spinner.scss'
 
 interface Props {
-  size?: 's' | 'm' | 'l'
+  size?: Sizes
 }
 
 const {
@@ -11,19 +13,21 @@ const {
 } = defineProps<Props>()
 
 const actualSize = computed(() => {
-  if (size === 's')
-    return '16px'
-  else if (size === 'm')
-    return '26px'
-  else return '38px'
+  switch (size) {
+    case Size.s: return '16px'
+    case Size.l: return '38px'
+    case Size.m:
+    default: return '26px'
+  }
 })
 
 const actualBorderWidth = computed(() => {
-  if (size === 's')
-    return '3px'
-  else if (size === 'm')
-    return '4px'
-  else return '5px'
+  switch (size) {
+    case Size.s: return '3px'
+    case Size.l: return '5px'
+    case Size.m:
+    default: return '4px'
+  }
 })
 </script>
 

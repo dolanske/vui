@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
 import Input from './components/Input/Input.vue'
-import Spinner from './components/Spinner/Spinner.vue'
 
 const val = ref('Holla')
 const loading = ref(false)
@@ -10,10 +9,10 @@ const loading = ref(false)
 
 <template>
   <div>
-    <Input v-model="val" label="Name" />
-    <Button :loading disabled @click="loading = !loading">
+    <Input v-model="val" placeholder="Your name bro" />
+    <br>
+    <Button :disabled="val.length === 0" :loading @click="loading = !loading" variant="danger">
       Submit
     </Button>
-    <br><br>
   </div>
 </template>

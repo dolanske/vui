@@ -2,12 +2,16 @@
 
 .vui-button {
   --button-height: 32px;
-  --button-padding: 10px;
+  --button-padding: 8px;
 
   &.disabled {
     pointer-events: none;
     color: var(--color-text-lighter);
     cursor: not-allowed;
+  }
+
+  &.expand {
+    width: 100%;
   }
 
   &.loading {
@@ -26,27 +30,60 @@
   justify-content: center;
   border-radius: var(--border-radius-s);
   background: transparent;
-  border: 1px solid var(--color-border);
   padding-inline: var(--button-padding);
-  color: var(--color-text);
   font-size: var(--font-size-m);
-  cursor: pointer;
   position: relative;
+  transition: var(--transition);
 
   // Default gray
-  background-color: var(--color-button-gray);
-
-  &:hover {
-    background-color: var(--color-button-gray-hover);
-  }
 
   .vui-button-slot {
-    transform: var(--transition);
+    display: flex;
+    place-items: center;
+    transition: var(--transition);
+    opacity: 1;
+  }
+
+  .vui-button-slot-start,
+  .vui-button-slot-end {
+    display: flex;
+    place-items: center;
+  }
+
+  .vui-button-slot-start {
+    margin-right: 6px;
+  }
+
+  .vui-button-slot-end {
+    margin-left: 6px;
   }
 
   .vui-spinner {
+    transition: var(--transition);
     opacity: 0;
     position: absolute;
     pointer-events: none;
   }
+
+  // Variations
+  &.vui-button-variation-default {
+    color: var(--color-text);
+    background-color: var(--color-button-gray);
+    border: 1px solid var(--color-border);
+
+    &:hover {
+      background-color: var(--color-button-gray-hover);
+    }
+  } 
+
+  &.vui-button-variation-danger {
+    color: var(--color-text);
+    background-color: var(--color-bg-red-lowered);
+    border: 1px solid var(--color-border-red);
+
+    &:hover {
+      border: 1px solid var(--color-bg-red-raised);
+      background-color: var(--color-bg-red-raised);
+    }
+  } 
 }
