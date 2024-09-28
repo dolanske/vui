@@ -11,14 +11,9 @@ Vue ui bro
 ## TODO
 
 - [ ] Button
-  - [ ] Separate remaining CSS variables
   - [ ] Add `accent` button variant
-- [] Checkbox
-  - [ ] Separate CSS variables
-- [ ] Toast
-  - [x] Factory function
-  - [x] Implement & style components
-  - [ ] Reverse render order (newest on top)
+- [x] Checkbox
+- [x] Toast
 - [x] Grid
 - [x] Flex
 - [ ] Input
@@ -51,3 +46,7 @@ Vue ui bro
 
 - [ ] Internal components
   - [ ] Backdrop (darkens bg and goes over all content, on click event)
+
+## Final todo
+
+- [ ] Make sure all components have their variables localized so that they can be changed on a component level
