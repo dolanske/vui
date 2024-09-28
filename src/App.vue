@@ -5,9 +5,8 @@ import Checkbox from './components/Checkbox/Checkbox.vue'
 import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
-import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
-import { toastInfo } from './components/Toast/toast'
+import { pushToast, removeToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 
 const checked1 = ref(false)
@@ -40,13 +39,23 @@ const input1 = ref('')
     <Divider />
     <Input v-model="input1" expand label="Your name" hint="Like what did your mommy call you?" limit="50" />
     <Divider />
-    <Flex>
+    <!-- <Flex>
       <Spinner size="s" />
       <Spinner size="m" />
       <Spinner size="l" />
-    </Flex>
-    <Divider />
-    <Button @click="toastInfo('I am a test BRO')">
+    </Flex> -->
+    <Button
+      @click="pushToast('Created new event', {
+        description: `Event will happen at ${new Date().toISOString()}`,
+        persist: true,
+        action: {
+          label: 'Ok',
+          onClick(toastId) {
+            removeToast(toastId)
+          },
+        },
+      })"
+    >
       Push Toast
     </Button>
     <Toasts />

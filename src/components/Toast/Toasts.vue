@@ -1,17 +1,48 @@
 <script setup lang="ts">
-import { Teleport, Transition } from 'vue'
+import { Teleport, TransitionGroup } from 'vue'
+import Button from '../Button/Button.vue'
 import { toasts } from './toast'
-// TODO: the idea is that toast should be automatically available (or rendered on demand)
-// Using a composable
-// const toast = useToast()
-// toast.add("stuff")
+import './toast.scss'
 </script>
 
 <template>
   <Teleport to="body">
-    <!-- <Transition> -->
-    <div>TODO</div>
-    <pre>{{ toasts }}</pre>
-    <!-- </Transition> -->
+    <div class="vui-toast-wrapper">
+      <TransitionGroup name="toast" tag="ul" class="vui-toast-list">
+        <li v-for="[toastId, toast] in toasts" :key="toastId" class="vui-toast-item">
+          <div class="vui-toast-item-content">
+            <strong>{{ toast.title }}</strong>
+            <p v-if="toast.description">
+              {{ toast.description }}
+            </p>
+          </div>
+          <Button v-if="toast.action" @click="toast.action.onClick(toast.id)">
+            {{ toast.action.label }}
+          </Button>
+        </li>
+      </TransitionGroup>
+    </div>
   </Teleport>
 </template>
+
+<style scoped>
+.toast-move,
+.toast-enter-active,
+.toast-leave-active {
+  transition: var(--transition-slow);
+}
+
+.toast-enter-from {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.toast-leave-to {
+  opacity: 0;
+  transform: translateY(-24px);
+}
+
+.toast-leave-active {
+  position: absolute;
+}
+</style>

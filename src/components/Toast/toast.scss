@@ -1,0 +1,39 @@
+.vui-toast-wrapper {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 100%;
+  max-width: 392px;
+
+  .vui-toast-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    .vui-toast-item {
+      display: flex;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-m);
+      padding: var(--space-m) var(--space-s);
+      width: 100%;
+      align-items: center;
+      gap: var(--space-m);
+
+      .vui-toast-item-content {
+        flex: 1;
+
+        strong {
+          color: var(--color-text);
+          margin-bottom: var(--space-xs);
+          display: block;
+          font-size: var(--font-size-m);
+        }
+
+        p {
+          color: var(--color-text-lighter);
+          font-size: var(--font-size-s);
+        }
+      }
+    }
+  }
+}

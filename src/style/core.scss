@@ -12,7 +12,17 @@
   --font-size-m: 1.4rem;
   --font-size-l: 1.6rem;
 
-  --color-bg: rgb(22, 22, 22);
+  --space-xs: 8px;
+  --space-s: 12px;
+  --space-m: 18px;
+  --space-l: 26px;
+  --space-xl: 40px;
+
+  --transition-quick: 0.08s all ease;
+  --transition: 0.1s all ease;
+  --transition-slow: 0.3s all ease;
+
+  --color-bg: rgb(12, 12, 15);
   --color-bg-raised: rgb(42, 42, 42);
   --color-bg-lowered: rgb(14, 14, 14);
 
@@ -34,13 +44,21 @@
   --color-bg-green-raised: rgb(37, 100, 14);
   --color-border-green: rgb(27, 70, 12);
 
+  // TODO: yellow
+  // --color-text-yellow: rgb(119, 243, 70);
+  // --color-bg-yellow-lowered: rgb(19, 46, 9);
+  // --color-bg-yellow-raised: rgb(37, 100, 14);
+  --color-border-yellow: rgb(99, 97, 16);
+
+  // TODO: blue
+  // --color-text-blue: rgb(119, 243, 70);
+  // --color-bg-blue-lowered: rgb(19, 46, 9);
+  // --color-bg-blue-raised: rgb(37, 100, 14);
+  --color-border-blue: rgb(17, 35, 85);
+
   --color-border: rgb(38, 38, 38);
   --color-border-strong: rgb(54, 54, 54);
   --color-border-weak: rgb(36, 36, 36);
-
-  --transition-quick: 0.08s all ease;
-  --transition: 0.1s all ease;
-  --transition-slow: 0.3s all ease;
 
   --color-accent: rgb(75, 219, 56);
 }

@@ -6,7 +6,7 @@ Vue ui bro
 
 ## Bugs
 
-- [ ] Remove importing of CSS core in every module, import that in root of the project (should be in readme)
+- [x] Remove importing of CSS core in every module, import that in root of the project (should be in readme)
 
 ## TODO
 
@@ -16,8 +16,9 @@ Vue ui bro
 - [] Checkbox
   - [ ] Separate CSS variables
 - [ ] Toast
-  - [ ] Create composable
-  - [ ] Implement & style components
+  - [x] Factory function
+  - [x] Implement & style components
+  - [ ] Reverse render order (newest on top)
 - [x] Grid
 - [x] Flex
 - [ ] Input
@@ -47,3 +48,6 @@ Vue ui bro
 - [ ] Skeleton
 - [ ] Content
   - [ ] Renderless component which will basically simulate an article styling. Will contain all the text styles, images, blockquotes and so on
+
+- [ ] Internal components
+  - [ ] Backdrop (darkens bg and goes over all content, on click event)
