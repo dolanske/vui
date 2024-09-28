@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
+import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-type Variants = 'default' | 'danger' | 'success'
+type Variants = 'default' | 'danger' | 'success' | 'link'
 
 interface Props {
   // Provide URL to turn button into anchor
@@ -25,6 +26,10 @@ interface Props {
    */
   plain?: boolean
   variant?: Variants
+  /**
+   * The children will be set to an icon and the icon will become a square
+   */
+  icon?: string
 }
 
 const {
@@ -33,6 +38,7 @@ const {
   expand,
   size = 'm',
   variant = 'default',
+  icon,
 } = defineProps<Props>()
 
 const actualHeight = computed(() => {
@@ -55,13 +61,9 @@ const actualPadding = computed(() => {
 </script>
 
 <template>
-  <!-- <a v-if="href" :href :target v-bind="sharedBind">
-    <slot />
-  </a> -->
-
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled, plain, active }, `vui-button-variant-${variant}`]"
+    :class="[{ loading, expand, disabled, plain, active, icon }, `vui-button-variant-${variant}`]"
     :disabled
   >
     <Spinner size="s" />
@@ -69,7 +71,8 @@ const actualPadding = computed(() => {
       <div class="vui-button-slot-start">
         <slot name="start" />
       </div>
-      <slot />
+      <Icon v-if="icon" :icon />
+      <slot v-else />
       <div class="vui-button-slot-end">
         <slot name="end" />
       </div>

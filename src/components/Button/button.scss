@@ -25,6 +25,18 @@
     }
   }
 
+  &.icon {
+    width: var(--button-height);
+    padding: 0;
+
+    .vui-button-slot {
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
   height: var(--button-height);
   display: flex;
   align-items: center;
@@ -107,6 +119,18 @@
     &:hover {
       border: 1px solid var(--color-bg-green-raised);
       background-color: var(--color-bg-green-raised);
+    }
+  }
+
+  &.vui-button-variant-link {
+    color: var(--color-text);
+    background: transparent;
+    text-underline-offset: 4px;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
