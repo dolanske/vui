@@ -6,8 +6,9 @@
 
   &.disabled {
     pointer-events: none;
-    color: var(--color-text-lighter);
+    color: var(--color-text-light) !important;
     cursor: not-allowed;
+    filter: saturate(50%);
   }
 
   &.expand {
@@ -34,6 +35,8 @@
   font-size: var(--font-size-m);
   position: relative;
   transition: var(--transition);
+  border: 1px solid transparent;
+  background-color: transparent;
 
   // Default gray
 
@@ -65,25 +68,45 @@
     pointer-events: none;
   }
 
-  // Variations
-  &.vui-button-variation-default {
-    color: var(--color-text);
-    background-color: var(--color-button-gray);
-    border: 1px solid var(--color-border);
+  // Variants
+  &.vui-button-variant-default {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-button-gray);
+      border: 1px solid var(--color-border);
+    }
 
+    &.active,
     &:hover {
       background-color: var(--color-button-gray-hover);
     }
-  } 
+  }
 
-  &.vui-button-variation-danger {
-    color: var(--color-text);
-    background-color: var(--color-bg-red-lowered);
-    border: 1px solid var(--color-border-red);
+  &.vui-button-variant-danger {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-bg-red-lowered);
+      border: 1px solid var(--color-border-red);
+    }
 
+    &.active,
     &:hover {
       border: 1px solid var(--color-bg-red-raised);
       background-color: var(--color-bg-red-raised);
     }
-  } 
+  }
+
+  &.vui-button-variant-success {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-bg-green-lowered);
+      border: 1px solid var(--color-border-green);
+    }
+
+    &.active,
+    &:hover {
+      border: 1px solid var(--color-bg-green-raised);
+      background-color: var(--color-bg-green-raised);
+    }
+  }
 }

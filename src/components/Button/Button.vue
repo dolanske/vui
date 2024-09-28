@@ -5,7 +5,7 @@ import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-type Variants = 'default' | 'danger'
+type Variants = 'default' | 'danger' | 'success'
 
 interface Props {
   // Provide URL to turn button into anchor
@@ -16,7 +16,14 @@ interface Props {
   square?: boolean
   disabled?: boolean
   size?: Sizes
-  // textAlign?: 'left' | 'right' | 'center'
+  /**
+   * Sets the hover styling property
+   */
+  active?: boolean
+  /**
+   * No styling applied to the button unless hovered
+   */
+  plain?: boolean
   variant?: Variants
 }
 
@@ -25,7 +32,7 @@ const {
   disabled,
   expand,
   size = 'm',
-  variant = 'default'
+  variant = 'default',
 } = defineProps<Props>()
 
 const actualHeight = computed(() => {
@@ -54,7 +61,7 @@ const actualPadding = computed(() => {
 
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled }, `vui-button-variation-${variant}`]"
+    :class="[{ loading, expand, disabled, plain, active }, `vui-button-variant-${variant}`]"
     :disabled
   >
     <Spinner size="s" />
