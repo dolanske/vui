@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-
 import { useId } from 'vue'
 import './checkbox.scss'
 
@@ -10,6 +9,7 @@ interface Props {
   iconOff?: string
   disabled?: boolean
 }
+
 const {
   label,
   iconOn = 'ph:check-square-fill',

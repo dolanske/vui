@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Teleport, Transition } from 'vue'
+import { toasts } from './toast'
 // TODO: the idea is that toast should be automatically available (or rendered on demand)
 // Using a composable
 // const toast = useToast()
@@ -6,5 +8,10 @@
 </script>
 
 <template>
-  <div>TODO</div>
+  <Teleport to="body">
+    <!-- <Transition> -->
+    <div>TODO</div>
+    <pre>{{ toasts }}</pre>
+    <!-- </Transition> -->
+  </Teleport>
 </template>

@@ -7,6 +7,8 @@ import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
 import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
+import { toastInfo } from './components/Toast/toast'
+import Toasts from './components/Toast/Toasts.vue'
 
 const checked1 = ref(false)
 const checked2 = ref(false)
@@ -43,5 +45,10 @@ const input1 = ref('')
       <Spinner size="m" />
       <Spinner size="l" />
     </Flex>
+    <Divider />
+    <Button @click="toastInfo('I am a test BRO')">
+      Push Toast
+    </Button>
+    <Toasts />
   </div>
 </template>
