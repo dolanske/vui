@@ -1,0 +1,41 @@
+@import '../../style/core.scss';
+
+.vui-checkbox {
+  &.checked {
+    .vui-checkbox-icon svg {
+      color: var(--color-text);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    .vui-checkbox-icon svg {
+      color: var(--color-text-lighter);
+    }
+
+    input + label {
+      color: var(--color-text-lighter);
+    }
+  }
+
+  .vui-checkbox-icon {
+    svg {
+      width: 21px;
+      height: 21px;
+      color: var(--color-text);
+    }
+  }
+
+  input {
+    display: none;
+
+    & + label {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 8px;
+      font-size: var(--font-size-m);
+      color: var(--color-text);
+    }
+  }
+}
