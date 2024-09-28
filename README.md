@@ -21,6 +21,9 @@ Vue ui bro
 - [ ] Switch (like iOS)
 - [ ] Radio button group
 - [ ] Tabs
+  - [ ] Through v-model
+  - [ ] Full width, where tabs fill the space
+  - [ ] With icons
 - [ ] Card
 - [ ] Modal
   - [ ] Add confirm dialog (title, canClose, content slot, ok slot, cancel slot)
