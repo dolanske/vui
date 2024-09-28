@@ -1,6 +1,8 @@
 @import '../../style/core.scss';
 
 .vui-checkbox {
+  --checkbox-size: 24px;
+
   &.checked {
     .vui-checkbox-icon svg {
       color: var(--color-text);
@@ -20,9 +22,13 @@
   }
 
   .vui-checkbox-icon {
+    cursor: pointer;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+
     svg {
-      width: 22px;
-      height: 22px;
+      width: 100%;
+      height: 100%;
       color: var(--color-text);
     }
   }
@@ -33,10 +39,19 @@
     & + label {
       display: grid;
       grid-template-columns: 20px 1fr;
-      gap: 8px;
+      gap: 10px;
       font-size: var(--font-size-m);
       color: var(--color-text);
       user-select: none;
+
+      .vui-checkbox-content {
+        display: block;
+
+        &:is(p) {
+          height: var(--checkbox-size);
+          line-height: var(--checkbox-size);
+        }
+      }
     }
   }
 }

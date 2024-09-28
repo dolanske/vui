@@ -4,6 +4,10 @@ Vue ui bro
 
 ---
 
+## Bugs
+
+- [ ] Remove importing of CSS core in every module, import that in root of the project (should be in readme)
+
 ## TODO
 
 - [ ] Button
@@ -18,7 +22,7 @@ Vue ui bro
 - [x] Flex
 - [ ] Input
   - [ ] File
-- [ ] Switch (like iOS)
+- [x] Switch (like iOS)
 - [ ] Radio button group
 - [ ] Tabs
   - [ ] Through v-model
@@ -35,7 +39,11 @@ Vue ui bro
 - [ ] Drawer
 - [ ] Accordion
 - [ ] Alert
+- [ ] Divider
+  - [ ] Divider slot
 - [ ] Badge
 - [ ] Breadcrumbs
 - [ ] Avatar
 - [ ] Skeleton
+- [ ] Content
+  - [ ] Renderless component which will basically simulate an article styling. Will contain all the text styles, images, blockquotes and so on

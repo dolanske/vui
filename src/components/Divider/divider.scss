@@ -5,13 +5,14 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  height: 32px;
 
   &:before {
     content: '';
-    top: 50%;
+    display: block;
     transform: translateY(-50%);
-    left: 0;
     width: 100%;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .vui-divider-slot {

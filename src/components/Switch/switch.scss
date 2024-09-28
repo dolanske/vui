@@ -1,0 +1,53 @@
+@import '../../style/core.scss';
+
+.vui-switch {
+  --switch-size: 24px;
+
+  &.checked .vui-switch-icon .vui-switch-indicator {
+    left: calc(100% - 24px);
+    background-color: var(--color-text);
+  }
+
+  .vui-switch-icon {
+    width: 44px;
+    height: var(--switch-size);
+    border-radius: 22px;
+    background-color: var(--color-bg-raised);
+    position: relative;
+    cursor: pointer;
+
+    .vui-switch-indicator {
+      display: block;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      background-color: var(--color-bg);
+      transition: var(--transition);
+    }
+  }
+
+  input {
+    display: none;
+
+    & + label {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 10px;
+      font-size: var(--font-size-m);
+      color: var(--color-text);
+      user-select: none;
+
+      .vui-switch-content {
+        display: block;
+
+        &:is(p) {
+          height: var(--switch-size);
+          line-height: var(--switch-size);
+        }
+      }
+    }
+  }
+}

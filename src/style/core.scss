@@ -1,5 +1,7 @@
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
+@import './reset.scss';
+
 :root {
   --border-radius-s: 4px;
   --border-radius-m: 8px;
@@ -11,7 +13,7 @@
   --font-size-l: 1.6rem;
 
   --color-bg: rgb(22, 22, 22);
-  --color-bg-raised: rgb(32, 32, 32);
+  --color-bg-raised: rgb(42, 42, 42);
   --color-bg-lowered: rgb(14, 14, 14);
 
   --color-text: rgb(231, 231, 231);
