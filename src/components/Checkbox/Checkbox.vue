@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-import { useId, useSlots } from 'vue'
+import { useId } from 'vue'
 import './checkbox.scss'
 
 interface Props {
@@ -9,9 +9,6 @@ interface Props {
   iconOn?: string
   iconOff?: string
   disabled?: boolean
-
-  // TODO: add option to reverse the label & checkbox
-  // reverse?: boolean
 }
 const {
   label,

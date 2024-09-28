@@ -2,13 +2,12 @@
 
 .vui-spinner {
   --spinner-color: var(--color-text);
-
   aspect-ratio: 1;
   border-radius: 50%;
   border: 3px solid var(--spinner-color);
   animation:
-    l20-1 1s infinite linear alternate,
-    l20-2 2s infinite linear;
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
 }
 @keyframes l20-1 {
   0% {

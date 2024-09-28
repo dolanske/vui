@@ -5,6 +5,7 @@ import Checkbox from './components/Checkbox/Checkbox.vue'
 import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
+import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
 
 const checked1 = ref(false)
@@ -37,5 +38,10 @@ const input1 = ref('')
     <Divider />
     <Input v-model="input1" expand label="Your name" hint="Like what did your mommy call you?" limit="50" />
     <Divider />
+    <Flex>
+      <Spinner size="s" />
+      <Spinner size="m" />
+      <Spinner size="l" />
+    </Flex>
   </div>
 </template>
