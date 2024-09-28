@@ -1,5 +1,38 @@
-# Vue 3 + TypeScript + Vite
+# VUI
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Vue ui bro
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+---
+
+## TODO
+
+- [ ] Button
+  - [ ] Separate remaining CSS variables
+  - [ ] Add `accent` button variant
+- [] Checkbox
+  - [ ] Separate CSS variables
+- [ ] Toast
+  - [ ] Create composable
+  - [ ] Implement & style components
+- [x] Grid
+- [x] Flex
+- [ ] Input
+  - [ ] File
+- [ ] Switch (like iOS)
+- [ ] Radio button group
+- [ ] Tabs
+- [ ] Card
+- [ ] Modal
+  - [ ] Add confirm dialog (title, canClose, content slot, ok slot, cancel slot)
+- [ ] Select
+  - [ ] Single select
+  - [ ] Multiselect
+  - [ ] Group options by title
+  - [ ] Option can have start icon
+- [ ] Drawer
+- [ ] Accordion
+- [ ] Alert
+- [ ] Badge
+- [ ] Breadcrumbs
+- [ ] Avatar
+- [ ] Skeleton

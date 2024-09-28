@@ -23,7 +23,7 @@ export const toasts = ref(new Map<number, Toast>())
 // Simple incremental id system
 let id = 0
 
-function pushToast(type: ToastType, message: string, options?: ToastOptions) {
+function pushToast(type: ToastType, message: string, options?: ToastOptions): Toast {
   const parsedOptions = Object.assign({
     persist: false,
     timeout: 7000,
