@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Alert from './components/Alert/Alert.vue'
+import Avatar from './components/Avatar/Avatar.vue'
 import Badge from './components/Badge/Badge.vue'
 import Button from './components/Button/Button.vue'
 import Card from './components/Card/Card.vue'
@@ -23,6 +24,12 @@ const tab = ref('home')
 <template>
   <div>
     <Tabs v-model="tab">
+      <Tab id="home" label="Home" icon="ph:house" />
+      <Tab id="components" label="Components" />
+      <Tab id="about" label="About" />
+    </Tabs>
+    <br>
+    <Tabs v-model="tab" expand>
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
       <Tab id="about" label="About" />
@@ -61,7 +68,6 @@ const tab = ref('home')
         Danger
       </Badge>
     </Flex>
-
     <br>
     <Alert title="We chilling" description="This just kinda looks like card with an icon bro we smokin">
       <template #end>
@@ -77,7 +83,6 @@ const tab = ref('home')
     <br>
     <Alert variant="danger" title="Are you sure?" description="This will delete all your saved data" />
     <br>
-
     <Card>
       <template #header>
         <h1 style="font-size: 32px">
@@ -93,9 +98,6 @@ const tab = ref('home')
         <Button>Save</Button>
       </template>
     </Card>
-
-    <br>
-    <br>
     <br>
     <Flex>
       <Button>Hello</Button>
@@ -120,11 +122,6 @@ const tab = ref('home')
     <Divider />
     <Input v-model="input1" expand label="Your name" hint="Like what did your mommy call you?" limit="50" />
     <Divider />
-    <!-- <Flex>
-      <Spinner size="s" />
-      <Spinner size="m" />
-      <Spinner size="l" />
-      </Flex> -->
     <Button
       @click="pushToast('Created new event', {
         description: `Event will happen at ${new Date().toISOString()}`,
@@ -140,5 +137,25 @@ const tab = ref('home')
       Push Toast
     </Button>
     <Toasts />
+    <Divider />
+    <Flex>
+      <Avatar url="https://i.imgur.com/xTbZ8nd.png" size="s" />
+      <Avatar url="https://i.imgur.com/xTbZ8nd.png" size="m" />
+      <Avatar url="https://i.imgur.com/xTbZ8nd.png" size="l" />
+      <Divider :size="48" vertical />
+      <Avatar url="https://i.imgur.com/xTbZ8nd____.png" size="s" fallback="HD" />
+      <Avatar url="https://i.imgur.com/xTbZ8nd____.png" size="m" fallback="HD" />
+      <Avatar url="https://i.imgur.com/xTbZ8nd____.png" size="l" fallback="HD" />
+      <Divider :size="48" vertical />
+      <Avatar size="s" />
+      <Avatar size="m" />
+      <Avatar size="l" />
+    </Flex>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </template>

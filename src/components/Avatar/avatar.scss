@@ -1,0 +1,46 @@
+.vui-avatar {
+  --button-size: 36px;
+
+  &.vui-avatar-size-s {
+    --button-size: 24px;
+
+    strong {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  &.vui-avatar-size-l {
+    --button-size: 48px;
+
+    strong {
+      font-size: var(--font-size-l);
+    }
+  }
+
+  width: var(--button-size);
+  height: var(--button-size);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-bg-raised);
+  font-weight: 500;
+
+  strong {
+    display: block;
+    font-size: var(--font-size-s);
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+  }
+
+  img[src=''] {
+    display: none;
+  }
+}

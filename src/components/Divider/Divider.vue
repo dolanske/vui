@@ -4,20 +4,23 @@ import './divider.scss'
 
 interface Props {
   thickness?: number
-  height?: number
+  size?: number
+  vertical?: boolean
 }
 
 const {
   thickness = 1,
-  height = 32,
+  size = 32,
+  vertical,
 } = defineProps<Props>()
 const hasSlot = useSlots()
 </script>
 
 <template>
   <div
-    class="vui-divider" :style="{
-      height: `${height}px`,
+    class="vui-divider" :class="{ vertical }" :style="{
+      ...(vertical && { width: `${size}px` }),
+      height: `${size}px`,
       borderWidth: `${thickness}px`,
     }"
   >
