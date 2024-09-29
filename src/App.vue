@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
+import Card from './components/Card/Card.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
 import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
@@ -19,7 +20,7 @@ const tab = ref('home')
 
 <template>
   <div>
-    <Tabs v-model="tab" expand>
+    <Tabs v-model="tab">
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
       <Tab id="about" label="About" />
@@ -28,6 +29,25 @@ const tab = ref('home')
     <br>
     <br>
 
+    <Card>
+      <template #header>
+        <h1 style="font-size: 32px">
+          Hello world
+        </h1>
+        <p>I bring some good stuff</p>
+      </template>
+      <template #header-end>
+        <Button square icon="ph:x" />
+      </template>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores vero, eius molestiae voluptate veniam nesciunt cupiditate? Impedit tempora quae, asperiores assumenda modi qui in aliquam tenetur? Minus assumenda quam vel.</p>
+      <template #footer>
+        <Button>Save</Button>
+      </template>
+    </Card>
+
+    <br>
+    <br>
+    <br>
     <Flex>
       <Button>Hello</Button>
       <Button variant="danger">

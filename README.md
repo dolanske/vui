@@ -8,6 +8,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 - [ ] Button
   - [ ] Add `accent` button variant
+- [ ] ButtonGroup
+  - [ ] Merges buttons together vertically or horizontally (merged border radius etc)
 - [x] Checkbox
 - [x] Toast
 - [x] Grid
@@ -16,7 +18,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Switch (like iOS)
 - [ ] Radio button group
 - [x] Tabs
-- [ ] Card
+- [x] Card
 - [ ] Modal
   - [ ] Add confirm dialog (title, canClose, content slot, ok slot, cancel slot)
 - [ ] Select
@@ -44,3 +46,4 @@ Opinionated vue UI library for building personal applications. Completely from s
 ## Final todo
 
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
+- [ ] Easily change up fonts

@@ -1,0 +1,47 @@
+.vui-card {
+  background-color: var(--color-bg);
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--color-border);
+
+  &.no-padding {
+    .vui-card-header,
+    .vui-card-content,
+    .vui-card-footer {
+      padding: 0;
+    }
+  }
+
+  &:not(.separators) {
+    .vui-card-content {
+      padding-block: var(--space-xs);
+    }
+
+    &.header-separator {
+      .vui-card-content {
+        padding-top: var(--space-m);
+        // padding-block: var(--space-m);
+      }
+    }
+
+    &.footer-separator {
+      .vui-card-content {
+        padding-bottom: var(--space-m);
+      }
+    }
+  }
+
+  .vui-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--space-s) var(--space-m);
+  }
+
+  .vui-card-content {
+    padding: var(--space-m);
+  }
+
+  .vui-card-footer {
+    padding: var(--space-s) var(--space-m);
+  }
+}

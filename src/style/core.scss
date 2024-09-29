@@ -23,7 +23,7 @@
   --transition: 0.1s all ease;
   --transition-slow: 0.3s all ease;
 
-  --color-bg: rgb(12, 12, 15);
+  --color-bg: rgb(18, 18, 18);
   --color-bg-raised: rgb(42, 42, 42);
   --color-bg-lowered: rgb(14, 14, 14);
 
@@ -73,15 +73,18 @@ html {
   // TODO remove
   position: relative;
   background-color: var(--color-bg);
-  color: var(--color-text);
   min-height: 100vh;
   // TODO end remove
 
   * {
+    // Defaults for testing
+    font-size: var(--font-size-m);
+    color: var(--color-text);
+    font-family: Geist, sans-serif;
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: Geist, sans-serif;
   }
 }
 
