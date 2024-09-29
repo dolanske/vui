@@ -30,18 +30,34 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Accordion
 - [x] Alert
 - [ ] Divider
+  - [x] Vertical
   - [ ] Divider slot
 - [x] Badge
 - [ ] Breadcrumbs
-- [ ] Avatar
+- [x] Avatar
 - [ ] Skeleton
 - [ ] Content
   - [ ] Renderless component which will basically simulate an article styling. Will contain all the text styles, images, blockquotes and so on
 - [ ] File input
   - [ ] Dropzone
 
+---
+
 - [ ] Internal components
   - [ ] Backdrop (darkens bg and goes over all content, on click event)
+- [ ] Use popover API or https://floating-ui.com/
+  - [ ] Dropdowns
+  - [ ] Tooltips
+  - [ ] Hover cards
+
+---
+
+- [ ] Typography (https://ui.shadcn.com/docs/components/typography#list)
+  - [ ] Headings h1, h2, h3, h4, h5, h6
+  - [ ] Text, links, u, i, b, s
+  - [ ] Blockquote
+  - [ ] Lists (ordered, unordered, sublists)
+  - [ ] Table
 
 ## Final todo
 

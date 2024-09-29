@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useSlots } from 'vue'
 import './divider.scss'
 
 interface Props {
@@ -13,7 +12,6 @@ const {
   size = 32,
   vertical,
 } = defineProps<Props>()
-const hasSlot = useSlots()
 </script>
 
 <template>
@@ -24,7 +22,7 @@ const hasSlot = useSlots()
       borderWidth: `${thickness}px`,
     }"
   >
-    <div v-if="hasSlot" class="vui-divider-slot">
+    <div v-if="$slots.default" class="vui-divider-slot">
       <slot />
     </div>
   </div>

@@ -23,8 +23,13 @@
   }
 
   .vui-divider-slot {
-    // TODO:
-    // It needs to check current background and use that to mask out the line below whatever component is passed in
-    // padding-inline: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    & > *:first-child {
+      outline: 3px solid var(--color-bg);
+    }
   }
 }

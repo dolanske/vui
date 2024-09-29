@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Alert from './components/Alert/Alert.vue'
 import Avatar from './components/Avatar/Avatar.vue'
@@ -142,11 +143,15 @@ const tab = ref('home')
       <Avatar url="https://i.imgur.com/xTbZ8nd.png" size="s" />
       <Avatar url="https://i.imgur.com/xTbZ8nd.png" size="m" />
       <Avatar url="https://i.imgur.com/xTbZ8nd.png" size="l" />
-      <Divider :size="48" vertical />
+      <Divider :size="48" vertical>
+        <Avatar size="s" icon="ph:arrow-right" />
+      </Divider>
       <Avatar url="https://i.imgur.com/xTbZ8nd____.png" size="s" fallback="HD" />
       <Avatar url="https://i.imgur.com/xTbZ8nd____.png" size="m" fallback="HD" />
       <Avatar url="https://i.imgur.com/xTbZ8nd____.png" size="l" fallback="HD" />
-      <Divider :size="48" vertical />
+      <Divider :size="48" vertical>
+        <Avatar size="s" icon="ph:arrow-right" />
+      </Divider>
       <Avatar size="s" />
       <Avatar size="m" />
       <Avatar size="l" />

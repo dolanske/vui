@@ -8,6 +8,7 @@ interface Props {
   size: Sizes
   url?: string
   fallback?: string
+  icon?: string
 }
 
 const {
@@ -29,7 +30,7 @@ const showFallback = ref(false)
       <template v-if="showFallback">
         {{ fallback }}
       </template>
-      <Icon v-else icon="ph:user" />
+      <Icon v-else :icon="icon ?? 'ph:user'" />
     </strong>
   </div>
 </template>
