@@ -1,6 +1,7 @@
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
 @import './reset.scss';
+@import './fonts.scss';
 
 :root {
   --border-radius-s: 4px;
@@ -9,7 +10,7 @@
 
   --font-size-xs: 1.15rem;
   --font-size-s: 1.25rem;
-  --font-size-m: 1.4rem;
+  --font-size-m: 1.3rem;
   --font-size-l: 1.6rem;
 
   --space-xs: 8px;
@@ -63,8 +64,8 @@
   --color-accent: rgb(75, 219, 56);
 }
 
-:root.light-theme {
-}
+// :root.light-theme {
+// }
 
 html {
   font-size: 63.5%;
@@ -80,6 +81,7 @@ html {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    font-family: Geist, sans-serif;
   }
 }
 

@@ -6,16 +6,28 @@ import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
 import Switch from './components/Switch/Switch.vue'
+import Tab from './components/Tabs/Tab.vue'
+import Tabs from './components/Tabs/Tabs.vue'
 import { pushToast, removeToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 
 const checked1 = ref(false)
 const checked2 = ref(false)
 const input1 = ref('')
+const tab = ref('home')
 </script>
 
 <template>
   <div>
+    <Tabs v-model="tab" expand>
+      <Tab id="home" label="Home" icon="ph:house" />
+      <Tab id="components" label="Components" />
+      <Tab id="about" label="About" />
+    </Tabs>
+    <br>
+    <br>
+    <br>
+
     <Flex>
       <Button>Hello</Button>
       <Button variant="danger">
@@ -43,7 +55,7 @@ const input1 = ref('')
       <Spinner size="s" />
       <Spinner size="m" />
       <Spinner size="l" />
-    </Flex> -->
+      </Flex> -->
     <Button
       @click="pushToast('Created new event', {
         description: `Event will happen at ${new Date().toISOString()}`,

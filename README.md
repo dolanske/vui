@@ -1,12 +1,8 @@
 # VUI
 
-Vue ui bro
-
----
+Opinionated vue UI library for building personal applications. Completely from scratch (besides some libraries later on ig xd).
 
 ## Bugs
-
-- [x] Remove importing of CSS core in every module, import that in root of the project (should be in readme)
 
 ## TODO
 
@@ -16,14 +12,10 @@ Vue ui bro
 - [x] Toast
 - [x] Grid
 - [x] Flex
-- [ ] Input
-  - [ ] File
+- [x] Input
 - [x] Switch (like iOS)
 - [ ] Radio button group
-- [ ] Tabs
-  - [ ] Through v-model
-  - [ ] Full width, where tabs fill the space
-  - [ ] With icons
+- [x] Tabs
 - [ ] Card
 - [ ] Modal
   - [ ] Add confirm dialog (title, canClose, content slot, ok slot, cancel slot)
@@ -43,6 +35,8 @@ Vue ui bro
 - [ ] Skeleton
 - [ ] Content
   - [ ] Renderless component which will basically simulate an article styling. Will contain all the text styles, images, blockquotes and so on
+- [ ] File input
+  - [ ] Dropzone
 
 - [ ] Internal components
   - [ ] Backdrop (darkens bg and goes over all content, on click event)
