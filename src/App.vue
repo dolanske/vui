@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Badge from './components/Badge/Badge.vue'
 import Button from './components/Button/Button.vue'
 import Card from './components/Card/Card.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
@@ -25,6 +26,44 @@ const tab = ref('home')
       <Tab id="components" label="Components" />
       <Tab id="about" label="About" />
     </Tabs>
+    <br>
+    <br>
+    <br>
+
+    <Flex>
+      <Badge>Neutral</Badge>
+      <Badge variant="info">
+        Info
+      </Badge>
+      <Badge variant="success">
+        Success
+      </Badge>
+      <Badge variant="warning">
+        Warning
+      </Badge>
+      <Badge variant="danger">
+        Danger
+      </Badge>
+      <Badge outline>
+        Neutral
+      </Badge>
+      <Badge filled>
+        Neutral
+      </Badge>
+      <Badge filled variant="info">
+        Info
+      </Badge>
+      <Badge filled variant="success">
+        Success
+      </Badge>
+      <Badge filled variant="warning">
+        Warning
+      </Badge>
+      <Badge filled variant="danger">
+        Danger
+      </Badge>
+    </Flex>
+
     <br>
     <br>
     <br>

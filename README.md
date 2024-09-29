@@ -31,7 +31,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Alert
 - [ ] Divider
   - [ ] Divider slot
-- [ ] Badge
+- [x] Badge
 - [ ] Breadcrumbs
 - [ ] Avatar
 - [ ] Skeleton
