@@ -10,7 +10,7 @@
 
   --font-size-xs: 1.15rem;
   --font-size-s: 1.25rem;
-  --font-size-m: 1.3rem;
+  --font-size-m: 1.4rem;
   --font-size-l: 1.6rem;
 
   --space-xs: 8px;
@@ -40,7 +40,7 @@
   --color-bg-red-raised: rgb(119, 31, 26);
   --color-border-red: rgb(94, 23, 19);
 
-  --color-text-green: rgb(139, 243, 70);
+  --color-text-green: rgb(44, 214, 52);
   --color-bg-green-lowered: rgb(19, 46, 9);
   --color-bg-green-raised: rgb(37, 100, 14);
   --color-border-green: rgb(27, 70, 12);
@@ -81,6 +81,7 @@ html {
     font-size: var(--font-size-m);
     color: var(--color-text);
     font-family: Geist, sans-serif;
+    font-weight: 400;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

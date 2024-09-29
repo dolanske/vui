@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Alert from './components/Alert/Alert.vue'
 import Badge from './components/Badge/Badge.vue'
 import Button from './components/Button/Button.vue'
 import Card from './components/Card/Card.vue'
@@ -27,9 +28,6 @@ const tab = ref('home')
       <Tab id="about" label="About" />
     </Tabs>
     <br>
-    <br>
-    <br>
-
     <Flex>
       <Badge>Neutral</Badge>
       <Badge variant="info">
@@ -65,7 +63,19 @@ const tab = ref('home')
     </Flex>
 
     <br>
+    <Alert title="We chilling" description="This just kinda looks like card with an icon bro we smokin">
+      <template #end>
+        <Button square plain icon="ph:x" />
+      </template>
+    </Alert>
     <br>
+    <Alert variant="info" title="Hello world" description="This is your new profile page" />
+    <br>
+    <Alert variant="success" title="Sucess!!" description="Update your profile to the latest data or something" />
+    <br>
+    <Alert variant="warning" title="This action has consequences" description="Your account will be affected by this action." />
+    <br>
+    <Alert variant="danger" title="Are you sure?" description="This will delete all your saved data" />
     <br>
 
     <Card>

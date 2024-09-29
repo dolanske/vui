@@ -1,0 +1,80 @@
+.vui-alert {
+  display: flex;
+  gap: var(--space-s);
+  border-radius: var(--border-radius-m);
+  padding: var(--space-s);
+  font-size: var(--font-size-m);
+  flex-wrap: nowrap;
+  align-items: flex-start;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .vui-alert-content,
+  .vui-alert-default-content {
+    flex: 1;
+  }
+
+  .vui-alert-default-content {
+    padding-top: 3px;
+
+    strong {
+      display: block;
+      font-size: var(--font-size-l);
+      font-weight: 550;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: var(--font-size-m);
+      color: var(--color-text-light);
+      font-weight: 350;
+    }
+  }
+
+  .vui-alert-content {
+    font-size: var(--font-size-m);
+  }
+
+  &.vui-alert-variant-neutral {
+    border: 1px solid var(--color-border);
+
+    svg path {
+      color: var(--color-text);
+    }
+  }
+
+  &.vui-alert-variant-info {
+    border: 1px solid var(--color-border-blue);
+
+    svg path {
+      color: var(--color-text-blue);
+    }
+  }
+
+  &.vui-alert-variant-success {
+    border: 1px solid var(--color-border-green);
+
+    svg path {
+      color: var(--color-text-green);
+    }
+  }
+
+  &.vui-alert-variant-warning {
+    border: 1px solid var(--color-border-yellow);
+
+    svg path {
+      color: var(--color-text-yellow);
+    }
+  }
+
+  &.vui-alert-variant-danger {
+    border: 1px solid var(--color-border-red);
+
+    svg path {
+      color: var(--color-text-red);
+    }
+  }
+}
