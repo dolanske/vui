@@ -29,9 +29,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Drawer
 - [ ] Accordion
 - [x] Alert
-- [ ] Divider
-  - [x] Vertical
-  - [ ] Divider slot
+- [x] Divider
 - [x] Badge
 - [ ] Breadcrumbs
 - [x] Avatar
@@ -63,3 +61,4 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts
+- [ ] Create documentation site
