@@ -15,10 +15,23 @@
     max-width: 728px;
   }
 
+  &.scrollable {
+    // max-height: calc(100dvh - calc(var(--backdrop-offset) * 2));
+    & > .vui-card {
+      display: flex;
+      flex-direction: column;
+      inline-size: 100%;
+      max-height: 100%;
+
+      .vui-card-content {
+        flex: 1 1 0%;
+        overflow-y: auto;
+      }
+    }
+  }
+
   & > .vui-card {
     width: 100%;
     margin-bottom: var(--backdrop-offset);
   }
-
-  // &.vui-modal-size-full {}
 }

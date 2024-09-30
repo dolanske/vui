@@ -20,9 +20,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Tabs
 - [x] Card
 - [ ] Textarea
-- [ ] Modal
-  - [ ] Add confirm dialog (title, canClose, content slot, ok slot, cancel slot)
-  - [ ] Scrollable
+- [x] Modal
 - [ ] Select
   - [ ] Single select
   - [ ] Multiselect
@@ -45,6 +43,9 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Should work within card
 - [ ] Kbd
   - [ ] Option to highlight if key is pressed
+
+- [ ] Confirm dialog
+  - [ ] 4 props (title, description, onCancel, onOk)
 
 ---
 

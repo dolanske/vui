@@ -14,12 +14,9 @@ interface Props {
    * into the <Cadr /> component.
    */
   card?: CardProps
-
-  // TODO: this should make header & footer sticky and scrollable through
-  // content only Header & footer shouldn't actually be sticky, rather content
-  // should be "suspended" in a vertical wrapper with flex: 1 and then
-  // absolutely positioned over the wrapper. And use <Scrollable></Scrollable>
-  // component
+  /**
+   * Modal will not overflow the screen, but its card's content will be scrollable instead.
+   */
   scrollable?: boolean
 }
 
@@ -48,7 +45,9 @@ function close() {
             <Button square icon="ph:x" @click="open = false" />
           </template>
           <template v-if="$slots.default" #default>
-            <slot name="default" :close />
+            <div>
+              <slot name="default" :close />
+            </div>
           </template>
           <template v-if="$slots.footer" #footer>
             <slot name="footer" :close />
