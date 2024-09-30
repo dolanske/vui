@@ -1,0 +1,24 @@
+.vui-modal {
+  width: 100%;
+  margin-inline: auto;
+  height: 100%;
+
+  &.vui-modal-size-s {
+    max-width: 440px;
+  }
+
+  &.vui-modal-size-m {
+    max-width: 620px;
+  }
+
+  &.vui-modal-size-l {
+    max-width: 728px;
+  }
+
+  & > .vui-card {
+    width: 100%;
+    margin-bottom: var(--backdrop-offset);
+  }
+
+  // &.vui-modal-size-full {}
+}

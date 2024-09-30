@@ -19,8 +19,10 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Radio button group
 - [x] Tabs
 - [x] Card
+- [ ] Textarea
 - [ ] Modal
   - [ ] Add confirm dialog (title, canClose, content slot, ok slot, cancel slot)
+  - [ ] Scrollable
 - [ ] Select
   - [ ] Single select
   - [ ] Multiselect
@@ -38,6 +40,11 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Renderless component which will basically simulate an article styling. Will contain all the text styles, images, blockquotes and so on
 - [ ] File input
   - [ ] Dropzone
+- [ ] Scrollable
+  - [ ] Set max width or height (or size of the parent)
+  - [ ] Should work within card
+- [ ] Kbd
+  - [ ] Option to highlight if key is pressed
 
 ---
 
@@ -47,6 +54,7 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Dropdowns
   - [ ] Tooltips
   - [ ] Hover cards
+- [ ] Tweak all colors
 
 ---
 

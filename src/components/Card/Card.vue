@@ -2,7 +2,7 @@
 import Divider from '../Divider/Divider.vue'
 import './card.scss'
 
-interface Props {
+export interface Props {
   separators?: boolean
   headerSeparator?: boolean
   footerSeparator?: boolean
@@ -33,13 +33,13 @@ const {
       <slot name="header-end" />
     </div>
 
-    <Divider v-if="(separators || headerSeparator) && ($slots.header || $slots['header-end'])" :height="1" />
+    <Divider v-if="(separators || headerSeparator) && ($slots.header || $slots['header-end'])" :size="1" />
 
-    <div class="vui-card-content">
+    <div v-if="$slots.default" class="vui-card-content">
       <slot />
     </div>
 
-    <Divider v-if="(separators || footerSeparator) && $slots.footer" :height="1" />
+    <Divider v-if="(separators || footerSeparator) && $slots.footer" :size="1" />
 
     <div v-if="$slots.footer" class="vui-card-footer">
       <slot name="footer" />

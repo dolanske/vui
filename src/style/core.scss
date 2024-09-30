@@ -19,9 +19,9 @@
   --space-l: 26px;
   --space-xl: 40px;
 
-  --transition-quick: 0.08s all ease;
-  --transition: 0.1s all ease;
-  --transition-slow: 0.3s all ease;
+  --transition-quick: 0.08s all ease-in-out;
+  --transition: 0.1s all ease-in-out;
+  --transition-slow: 0.3s all ease-in-out;
 
   --color-bg: rgb(18, 18, 18);
   --color-bg-raised: rgb(42, 42, 42);
@@ -45,13 +45,11 @@
   --color-bg-green-raised: rgb(37, 100, 14);
   --color-border-green: rgb(27, 70, 12);
 
-  // TODO: yellow
   --color-text-yellow: rgb(243, 231, 70);
   --color-bg-yellow-lowered: rgb(59, 46, 10);
   --color-bg-yellow-raised: rgb(119, 82, 26);
   --color-border-yellow: rgb(99, 97, 16);
 
-  // TODO: blue
   --color-text-blue: rgb(70, 131, 243);
   --color-bg-blue-lowered: rgb(10, 25, 59);
   --color-bg-blue-raised: rgb(26, 59, 119);

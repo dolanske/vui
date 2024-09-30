@@ -1,0 +1,28 @@
+:root {
+  --backdrop-offset: 64px;
+}
+
+.vui-backdrop {
+  z-index: 1000;
+  position: fixed;
+  display: block;
+  width: 100dvw;
+  height: 100dvh;
+  top: 0;
+  left: 0;
+  padding: var(--backdrop-offset);
+  overflow-y: auto;
+
+  &:after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    background-color: var(--color-bg-lowered);
+    opacity: 0.75;
+  }
+}
+
+html:has(.vui-backdrop) {
+  overflow: hidden;
+}
