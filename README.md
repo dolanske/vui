@@ -53,7 +53,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 ---
 
 - [ ] Internal components
-  - [ ] Backdrop (darkens bg and goes over all content, on click event)
+  - [x] Backdrop (darkens bg and goes over all content, on click event)
+  - [ ] Popout - Some kind of generic dropdown wrapper which can be anchored to certain components vvv
 - [ ] Use popover API or https://floating-ui.com/
   - [ ] Dropdowns
   - [ ] Tooltips
