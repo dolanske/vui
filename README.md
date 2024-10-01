@@ -16,7 +16,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Flex
 - [x] Input
 - [x] Switch (like iOS)
-- [ ] Radio button group
+- [x] Radio button group
 - [x] Tabs
 - [x] Card
 - [ ] Textarea
