@@ -1,7 +1,7 @@
 <script setup lang='ts'>
+import type { VNode } from 'vue'
 import type { FlexProps } from '../Flex/Flex.vue'
 import type { RadioProps } from './Radio.vue'
-import { useId, type VNode } from 'vue'
 import Flex from '../Flex/Flex.vue'
 
 interface Props extends FlexProps {
