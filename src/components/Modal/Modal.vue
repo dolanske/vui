@@ -36,36 +36,40 @@ const attrs = useAttrs()
 </script>
 
 <template>
-  <Backdrop v-if="open" @close="open = false">
-    <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable }]" v-bind="attrs">
-      <Card v-bind="card">
-        <template v-if="$slots.header" #header>
-          <slot name="header" :close />
-        </template>
-        <template #header-end>
-          <Button square icon="ph:x" @click="open = false" />
-        </template>
-        <template v-if="$slots.default" #default>
-          <div>
-            <slot name="default" :close />
-          </div>
-        </template>
-        <template v-if="$slots.footer" #footer>
-          <slot name="footer" :close />
-        </template>
-      </Card>
-    </div>
-  </Backdrop>
+  <Teleport to="body">
+    <Transition appear name="modal">
+      <Backdrop v-if="open" @close="open = false">
+        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable }]" v-bind="attrs">
+          <Card v-bind="card">
+            <template v-if="$slots.header" #header>
+              <slot name="header" :close />
+            </template>
+            <template #header-end>
+              <Button square icon="ph:x" @click="open = false" />
+            </template>
+            <template v-if="$slots.default" #default>
+              <div>
+                <slot name="default" :close />
+              </div>
+            </template>
+            <template v-if="$slots.footer" #footer>
+              <slot name="footer" :close />
+            </template>
+          </Card>
+        </div>
+      </Backdrop>
+    </Transition>
+  </Teleport>
 </template>
 
-<!-- <style scoped>
+<style scoped>
 .modal-enter-active,
 .modal-leave-active {
-  transition: var(--transition-slow);
+  transition: var(--transition);
 }
 
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
 }
-</style> -->
+</style>

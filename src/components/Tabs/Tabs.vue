@@ -21,7 +21,7 @@ const underline = useTemplateRef('underline')
 const tabs = useTemplateRef('tabs')
 
 onMounted(() => {
-  watch([active, expand], () => {
+  watch([active, () => expand], () => {
     if (tabs.value && underline.value) {
       const activeBounds = tabs.value.querySelector('.vui-tab.active')?.getBoundingClientRect()
       const parentBounds = tabs.value.getBoundingClientRect()

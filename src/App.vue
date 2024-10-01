@@ -166,7 +166,7 @@ const sheet = ref(false)
     <Button @click="modal = true">
       Open modal
     </Button>
-    <Modal v-model="modal" :card-props="{ headerSeparator: true }" scrollable>
+    <Modal v-model="modal" :card="{ headerSeparator: true }" scrollable>
       <template #header>
         <h1 style="font-size: 3rem; font-weight: 600;">
           Confirm
