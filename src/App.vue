@@ -191,15 +191,15 @@ const sheet = ref(false)
     <Button @click="sheet = true">
       Open sheet
     </Button>
-    <Sheet v-model="sheet" separator position="bottom">
+    <Sheet v-model="sheet" separator position="right" size="512px">
       <template #header>
         <h1 style="font-size: 3rem; font-weight: 600;">
           Edit user
         </h1>
       </template>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolorum debitis beatae, accusantium natus provident ullam fugiat magnam delectus illum reprehenderit error reiciendis similique tenetur minima incidunt at iste exercitationem?</p>
-      <div style="height: 80vh;" />
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolorum debitis beatae, accusantium natus provident ullam fugiat magnam delectus illum reprehenderit error reiciendis similique tenetur minima incidunt at iste exercitationem?</p>
+      <!-- <div style="height: 80vh;" /> -->
+      <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolorum debitis beatae, accusantium natus provident ullam fugiat magnam delectus illum reprehenderit error reiciendis similique tenetur minima incidunt at iste exercitationem?</p> -->
     </Sheet>
   </div>
   <br>

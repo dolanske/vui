@@ -38,44 +38,54 @@ const style = computed(() => {
 })
 
 // Used to compute base location so that sheet appears to animate form the edge of the screen
-// const baseTransform = computed(() => {
-//   switch (position) {
-//     case 'left': return `translate(16px, 0)`
-//     case 'top': return `translate(0, -16px)`
-//     case 'bottom': return `translate(0, 16px)`
-//     case 'right':
-//     default: return `translate(-16px, 0)`
-//   }
-// })
+const baseTransform = computed(() => {
+  switch (position) {
+    case 'left': return `translate(-16px, 0)`
+    case 'top': return `translate(0, -16px)`
+    case 'bottom': return `translate(0, 16px)`
+    case 'right':
+    default: return `translate(16px, 0)`
+  }
+})
 </script>
 
 <template>
-  <Backdrop v-if="open" :style="{ padding: 0 }" @close="open = false">
-    <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
-      <div class="vui-sheet-header">
-        <div :style="{ flex: 1 }">
-          <slot name="header" :close />
+  <Teleport to="body">
+    <Transition appear name="sheet">
+      <Backdrop v-if="open" :style="{ padding: 0 }" @close="open = false">
+        <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
+          <div class="vui-sheet-header">
+            <div :style="{ flex: 1 }">
+              <slot name="header" :close />
+            </div>
+            <Button square icon="ph:x" @click="open = false" />
+          </div>
+
+          <Divider v-if="separator && $slots.header" :size="1" />
+
+          <div v-if="$slots.default" class="vui-sheet-content">
+            <slot :close />
+          </div>
         </div>
-        <Button square icon="ph:x" @click="open = false" />
-      </div>
-
-      <Divider v-if="separator && $slots.header" :size="1" />
-
-      <div v-if="$slots.default" class="vui-sheet-content">
-        <slot :close />
-      </div>
-    </div>
-  </Backdrop>
+      </Backdrop>
+    </Transition>
+  </Teleport>
 </template>
 
-<!-- <style scoped lang="scss">
+<style scoped lang="scss">
 .sheet-enter-active,
 .sheet-leave-active {
-  transition: 1s all ease-in-out;
+  transition: var(--transition);
+}
+
+.sheet-enter-to,
+.sheet-leave-from {
+  transform: translate(0, 0);
 }
 
 .sheet-enter-from,
 .sheet-leave-to {
   opacity: 0;
+  transform: v-bind(baseTransform);
 }
-</style> -->
+</style>

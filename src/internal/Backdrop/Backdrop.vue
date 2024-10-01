@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import { Teleport, useAttrs } from 'vue'
+import { onMounted } from 'vue'
 import './backdrop.scss'
 
 const emits = defineEmits<{
   (e: 'close'): void
 }>()
+
+onMounted(() => {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      emits('close')
+    }
+  })
+})
 </script>
 
 <template>
