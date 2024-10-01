@@ -11,6 +11,7 @@ import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
 import Modal from './components/Modal/Modal.vue'
+import Sheet from './components/Sheet/Sheet.vue'
 import Switch from './components/Switch/Switch.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
@@ -22,6 +23,7 @@ const checked2 = ref(false)
 const input1 = ref('')
 const tab = ref('home')
 const modal = ref(false)
+const sheet = ref(false)
 </script>
 
 <template>
@@ -184,6 +186,21 @@ const modal = ref(false)
         </Flex>
       </template>
     </Modal>
+    <Divider />
+
+    <Button @click="sheet = true">
+      Open sheet
+    </Button>
+    <Sheet v-model="sheet" separator position="bottom">
+      <template #header>
+        <h1 style="font-size: 3rem; font-weight: 600;">
+          Edit user
+        </h1>
+      </template>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolorum debitis beatae, accusantium natus provident ullam fugiat magnam delectus illum reprehenderit error reiciendis similique tenetur minima incidunt at iste exercitationem?</p>
+      <div style="height: 80vh;" />
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolorum debitis beatae, accusantium natus provident ullam fugiat magnam delectus illum reprehenderit error reiciendis similique tenetur minima incidunt at iste exercitationem?</p>
+    </Sheet>
   </div>
   <br>
   <br>

@@ -4,6 +4,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## Bugs
 
+- [ ] Animate Modal & Sheet
+
 ## TODO
 
 - [ ] Button
@@ -43,6 +45,9 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Should work within card
 - [ ] Kbd
   - [ ] Option to highlight if key is pressed
+- [ ] Sheet
+  - [ ] Size
+  - [ ] Location
 
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)

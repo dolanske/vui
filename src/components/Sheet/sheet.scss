@@ -1,0 +1,55 @@
+.vui-sheet {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+  height: 100dvh;
+
+  &.vui-sheet-position-top {
+    top: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &.vui-sheet-position-bottom {
+    bottom: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  &.vui-sheet-position-right {
+    right: 0;
+    border-left: 1px solid var(--color-border);
+  }
+
+  &.vui-sheet-position-left {
+    left: 0;
+    border-right: 1px solid var(--color-border);
+  }
+
+  &.vui-sheet-position-top,
+  &.vui-sheet-position-bottom {
+    max-height: 35dvh;
+  }
+
+  .vui-sheet-header,
+  .vui-sheet-content {
+    width: 100%;
+    padding: var(--space-m);
+  }
+
+  .vui-sheet-content {
+    flex: 1 1 0%;
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .vui-sheet-header {
+    display: flex;
+    gap: var(--space-m);
+    align-self: flex-start;
+
+    & + .vui-sheet-content {
+      padding-top: var(--space-s);
+    }
+  }
+}
