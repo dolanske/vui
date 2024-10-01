@@ -3,7 +3,7 @@ import type { Sizes } from '../../shared/types'
 import { computed } from 'vue'
 import { useActualGap } from '../../shared/properties'
 
-interface Props {
+export interface FlexProps {
   inline?: boolean
   wrap?: boolean
   wrapReverse?: boolean
@@ -29,7 +29,7 @@ interface Props {
   alignEnd?: boolean
 }
 
-const props = defineProps<Props>()
+const props = defineProps<FlexProps>()
 
 const actualGap = useActualGap(props.gap)
 

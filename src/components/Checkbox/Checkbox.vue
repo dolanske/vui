@@ -22,7 +22,7 @@ const id = useId()
 </script>
 
 <template>
-  <div class="vui-checkbox" :class="{ disabled, checked }">
+  <div class="vui-checkbox" :class="{ disabled: !!disabled, checked }">
     <input :id v-model="checked" type="checkbox" :disabled>
     <label :for="id">
       <span class="vui-checkbox-icon">

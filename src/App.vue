@@ -11,6 +11,8 @@ import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
 import Modal from './components/Modal/Modal.vue'
+import Radio from './components/Radio/Radio.vue'
+import RadioGroup from './components/Radio/RadioGroup.vue'
 import Sheet from './components/Sheet/Sheet.vue'
 import Switch from './components/Switch/Switch.vue'
 import Tab from './components/Tabs/Tab.vue'
@@ -24,6 +26,8 @@ const input1 = ref('')
 const tab = ref('home')
 const modal = ref(false)
 const sheet = ref(false)
+const radioModel = ref('Andrew')
+const radioOptions = ['Kasper', 'Andrew', 'Jan', 'Felix']
 </script>
 
 <template>
@@ -73,6 +77,15 @@ const sheet = ref(false)
         Danger
       </Badge>
     </Flex>
+    <Divider />
+
+    <RadioGroup v-model="radioModel" :gap="32">
+      <Radio v-for="item of radioOptions" :key="item" :disabled="item === 'Jan'" :value="item" />
+    </RadioGroup>
+
+    <br>
+    {{ radioModel }}
+
     <br>
     <Alert title="We chilling" description="This just kinda looks like card with an icon bro we smokin">
       <template #end>
@@ -121,7 +134,7 @@ const sheet = ref(false)
       <Button icon="solar:alt-arrow-right-linear" />
     </Flex>
     <Divider />
-    <Checkbox v-model="checked1" label="I hereby surrender my human rights" />
+    <Checkbox v-model="checked1" label="I hereby surrender my human rights" disabled />
     <Divider />
     <Switch v-model="checked2" label="I hereby turn my airplane mode on." />
     <Divider />

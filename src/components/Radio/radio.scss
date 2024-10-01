@@ -1,8 +1,8 @@
-.vui-checkbox {
-  --checkbox-size: 24px;
+.vui-radio {
+  --radio-size: 24px;
 
   &.checked {
-    .vui-checkbox-icon svg {
+    .vui-radio-icon svg {
       color: var(--color-text);
     }
   }
@@ -11,8 +11,8 @@
     cursor: not-allowed;
     pointer-events: none;
 
-    .vui-checkbox-icon svg path {
-      color: var(--color-text-lighter);
+    .vui-radio-icon svg path {
+      color: var(--color-text-lighter) !important;
     }
 
     input + label p {
@@ -20,10 +20,10 @@
     }
   }
 
-  .vui-checkbox-icon {
+  .vui-radio-icon {
     cursor: pointer;
-    width: var(--checkbox-size);
-    height: var(--checkbox-size);
+    width: var(--radio-size);
+    height: var(--radio-size);
 
     svg {
       width: 100%;
@@ -43,14 +43,14 @@
       color: var(--color-text);
       user-select: none;
 
-      .vui-checkbox-content {
+      .vui-radio-content {
         display: block;
 
         &:is(p) {
           display: flex;
           align-items: center;
-          min-height: var(--checkbox-size);
-          // line-height: var(--checkbox-size);
+          min-height: var(--radio-size);
+          // line-height: var(--radio-size);
         }
       }
     }
