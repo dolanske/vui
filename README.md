@@ -26,7 +26,6 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Multiselect
   - [ ] Group options by title
   - [ ] Option can have start icon
-- [ ] Drawer
 - [ ] Accordion
 - [x] Alert
 - [x] Divider
@@ -44,8 +43,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Kbd
   - [ ] Option to highlight if key is pressed
 - [x] Sheet
-  - [ ] Size
-  - [ ] Location
+  - [x] Size
+  - [x] Location
 
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
@@ -63,12 +62,12 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ---
 
-- [ ] Typography (https://ui.shadcn.com/docs/components/typography#list)
-  - [ ] Headings h1, h2, h3, h4, h5, h6
-  - [ ] Text, links, u, i, b, s
-  - [ ] Blockquote
-  - [ ] Lists (ordered, unordered, sublists)
-  - [ ] Table
+- [x] Typography (https://ui.shadcn.com/docs/components/typography#list)
+  - [x] Headings h1, h2, h3, h4, h5, h6
+  - [x] Text, links, u, i, b, s
+  - [x] Blockquote
+  - [x] Lists (ordered, unordered, sublists)
+  - [x] Table
 
 ## Final todo
 
