@@ -18,12 +18,17 @@ interface Props {
    * Modal will not overflow the screen, but its card's content will be scrollable instead.
    */
   scrollable?: boolean
+  /**
+   * Modal appears in the center of the screen
+   */
+  centered?: boolean
 }
 
 const {
   size = 'm',
   card = {},
   scrollable,
+  centered,
 } = defineProps<Props>()
 
 const open = defineModel<boolean>()
@@ -39,7 +44,7 @@ const attrs = useAttrs()
   <Teleport to="body">
     <Transition appear name="modal">
       <Backdrop v-if="open" @close="open = false">
-        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable }]" v-bind="attrs">
+        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable, centered }]" v-bind="attrs">
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
               <slot name="header" :close />
@@ -71,5 +76,6 @@ const attrs = useAttrs()
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
+  transform: scale(0.95);
 }
 </style>

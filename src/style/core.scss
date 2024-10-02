@@ -9,15 +9,17 @@
   --border-radius-l: 12px;
 
   --font-size-xs: 1.15rem;
-  --font-size-s: 1.25rem;
-  --font-size-m: 1.4rem;
-  --font-size-l: 1.6rem;
+  --font-size-s: 1.3rem;
+  --font-size-ms: 1.45rem;
+  --font-size-m: 1.6rem;
+  --font-size-l: 1.65rem;
 
   --space-xs: 8px;
   --space-s: 12px;
   --space-m: 18px;
   --space-l: 26px;
   --space-xl: 40px;
+  --space-xxl: 52px;
 
   --transition-quick: 0.08s all ease-in-out;
   --transition: 0.1s all ease-in-out;
@@ -50,7 +52,7 @@
   --color-bg-yellow-raised: rgb(119, 82, 26);
   --color-border-yellow: rgb(99, 97, 16);
 
-  --color-text-blue: rgb(70, 131, 243);
+  --color-text-blue: rgb(85, 141, 245);
   --color-bg-blue-lowered: rgb(10, 25, 59);
   --color-bg-blue-raised: rgb(26, 59, 119);
   --color-border-blue: rgb(20, 45, 112);
@@ -60,10 +62,10 @@
   --color-border-weak: rgb(36, 36, 36);
 
   --color-accent: rgb(75, 219, 56);
-}
 
-// :root.light-theme {
-// }
+  --box-shadow: 0 4px 15px rgba(8, 8, 8, 0.25);
+  --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
+}
 
 html {
   font-size: 63.5%;
@@ -72,25 +74,20 @@ html {
   position: relative;
   background-color: var(--color-bg);
   min-height: 100vh;
+
+  font-feature-settings: normal;
+  font-variation-settings: normal;
   // TODO end remove
 
   * {
-    // Defaults for testing
-    font-size: var(--font-size-m);
-    color: var(--color-text);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
     font-family: Geist, sans-serif;
-    font-weight: 400;
-
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    color: var(--color-text);
+    // font-size: var(--font-size-m);
   }
 }
 
-.vui {
-  * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-}
+@import './typography.scss';

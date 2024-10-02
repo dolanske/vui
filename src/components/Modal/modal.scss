@@ -3,6 +3,11 @@
   margin-inline: auto;
   height: 100%;
 
+  &.centered {
+    display: flex;
+    align-items: center;
+  }
+
   &.vui-modal-size-s {
     max-width: 440px;
   }
@@ -16,7 +21,6 @@
   }
 
   &.scrollable {
-    // max-height: calc(100dvh - calc(var(--backdrop-offset) * 2));
     & > .vui-card {
       display: flex;
       flex-direction: column;
@@ -33,5 +37,6 @@
   & > .vui-card {
     width: 100%;
     margin-bottom: var(--backdrop-offset);
+    box-shadow: var(--box-shadow-strong);
   }
 }

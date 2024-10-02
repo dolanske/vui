@@ -1,0 +1,267 @@
+// Base style definitions
+
+// Definitions should be self contained. No element should ever expect there
+// will be more. Anything like margins and actual article spacings should be
+// defined within the <article> element
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 2.6rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 1.6rem;
+}
+
+figcaption,
+table th,
+table td,
+blockquote,
+p {
+  font-size: var(--font-size-m);
+  line-height: 1.4em;
+  font-weight: 400;
+
+  & > * {
+    line-height: inherit;
+    font-size: inherit;
+  }
+
+  a {
+    color: var(--color-text-blue);
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  code {
+    border-radius: 2px;
+    background-color: var(--color-bg-raised);
+    padding: 1px 4px;
+  }
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  i {
+    font-style: italic;
+  }
+
+  u {
+    text-decoration: line-through;
+  }
+}
+
+hr {
+  border-bottom: 1px solid var(--color-border);
+}
+
+span,
+strong,
+p {
+  font-size: var(--font-size-ms);
+}
+
+blockquote {
+  display: block;
+  padding-block: var(--space-s);
+  padding-left: 24px;
+  border-left: 3px solid var(--color-border);
+}
+
+table {
+  text-indent: 0;
+  border-collapse: separate;
+  width: 100%;
+  // border: 1px solid var(--color-border);
+  // border-radius: var(--border-radius-s);
+  overflow-x: auto;
+
+  th,
+  td {
+    text-align: left;
+    padding-inline: var(--space-m);
+    padding-block: var(--space-s);
+    min-width: 80px;
+    font-size: var(--font-size-m);
+    line-height: 1.4em;
+
+    &:first-child {
+      border-left: 1px solid var(--color-border);
+    }
+
+    border-right: 1px solid var(--color-border);
+  }
+
+  th {
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
+    font-weight: 600;
+    white-space: nowrap;
+
+    &:first-child {
+      border-top-left-radius: var(--border-radius-s);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--border-radius-s);
+    }
+  }
+
+  tr {
+    td {
+      border-bottom: 1px solid var(--color-border);
+      font-weight: 400;
+    }
+
+    &:last-child {
+      td {
+        &:first-child {
+          border-bottom-left-radius: var(--border-radius-s);
+        }
+
+        &:last-child {
+          border-bottom-right-radius: var(--border-radius-s);
+        }
+      }
+    }
+  }
+}
+
+article,
+.article {
+  ol,
+  ul {
+    ol,
+    ul {
+      margin-block: var(--space-l) !important;
+    }
+
+    li {
+      margin-bottom: var(--space-m);
+      font-size: var(--font-size-m);
+      position: relative;
+      padding-left: 32px;
+
+      & > ul {
+        margin-top: 0;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 12px;
+      }
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+
+  ul {
+    li {
+      &:before {
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        background-color: var(--color-text-light);
+      }
+    }
+  }
+
+  ol {
+    counter-reset: ol;
+    li {
+      counter-increment: ol;
+
+      &:before {
+        content: counter(ol) '.';
+        top: 0;
+        left: 8px;
+        text-align: left;
+        color: var(--color-text-light);
+      }
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:not(:first-child) {
+      margin-top: var(--space-xxl);
+    }
+
+    margin-bottom: var(--space-xs);
+  }
+
+  span,
+  strong,
+  p {
+    font-size: var(--font-size-m);
+  }
+
+  img,
+  table,
+  ol,
+  ul,
+  blockquote,
+  p {
+    margin-top: var(--space-l);
+  }
+
+  hr {
+    margin-block: var(--space-l);
+  }
+
+  img {
+    border-radius: var(--border-radius-m);
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  figure {
+    img {
+      margin-bottom: 8px;
+    }
+
+    figcaption {
+      text-align: center;
+      font-size: var(--font-size-s);
+      color: var(--color-text-lighter);
+    }
+  }
+}

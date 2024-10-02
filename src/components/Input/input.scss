@@ -36,7 +36,7 @@
       display: block;
       text-align: left;
       margin-bottom: 8px;
-      font-size: var(--font-size-s);
+      font-size: var(--font-size-ms);
       color: var(--input-color-text);
     }
 
@@ -44,7 +44,7 @@
       margin-bottom: 8px;
       margin-top: -4px;
       color: var(--input-color-text-lighter);
-      font-size: var(--font-size-xs);
+      font-size: var(--font-size-s);
       display: block;
       text-align: left;
     }
@@ -59,7 +59,7 @@
       color: var(--color-text);
       outline: none !important;
       padding-inline: var(--input-padding);
-      font-size: var(--font-size-m);
+      font-size: var(--font-size-ms);
       width: 100%;
       transition: var(--transition);
 

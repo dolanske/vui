@@ -6,7 +6,11 @@
   padding-inline: var(--space-s);
   border-radius: 999px;
   font-weight: 300;
-  font-weight: 500;
+  font-size: var(--font-size-s);
+
+  &.filled {
+    font-weight: 500;
+  }
 
   &.vui-badge-variant-neutral {
     &:not(.outline) {

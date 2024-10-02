@@ -29,17 +29,17 @@ import './toast.scss'
 .toast-move,
 .toast-enter-active,
 .toast-leave-active {
-  transition: var(--transition-slow);
+  transition: var(--transition);
 }
 
 .toast-enter-from {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(24px) scale(0.95);
 }
 
 .toast-leave-to {
   opacity: 0;
-  transform: translateY(-24px);
+  transform: translateY(-24px) scale(0.95);
 }
 
 .toast-leave-active {

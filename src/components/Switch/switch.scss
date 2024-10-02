@@ -44,6 +44,7 @@
         &:is(p) {
           height: var(--switch-size);
           line-height: var(--switch-size);
+          font-size: var(--font-size-ms);
         }
       }
     }
