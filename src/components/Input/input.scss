@@ -11,6 +11,7 @@
 
   --input-height: 34px;
   --input-padding: 8px;
+  --textarea-padding: 8px;
 
   //
 
@@ -49,6 +50,12 @@
       text-align: left;
     }
 
+    ::placeholder {
+      font-weight: 300;
+      color: var(--color-text-lighter);
+    }
+
+    textarea,
     input {
       display: block;
       border-radius: var(--border-radius-s);
@@ -66,6 +73,14 @@
       &:focus-visible {
         border-color: var(--input-color-border-strong);
       }
+    }
+
+    textarea {
+      line-height: 1.3em;
+      height: unset;
+      min-height: 80px;
+      padding: var(--textarea-padding);
+      transition: none;
     }
   }
 

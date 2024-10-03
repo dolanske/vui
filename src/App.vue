@@ -10,6 +10,7 @@ import Checkbox from './components/Checkbox/Checkbox.vue'
 import Divider from './components/Divider/Divider.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
+import Textarea from './components/Input/Textarea.vue'
 import Modal from './components/Modal/Modal.vue'
 import Radio from './components/Radio/Radio.vue'
 import RadioGroup from './components/Radio/RadioGroup.vue'
@@ -23,6 +24,7 @@ import Toasts from './components/Toast/Toasts.vue'
 const checked1 = ref(false)
 const checked2 = ref(false)
 const input1 = ref('')
+const textarea = ref('')
 const tab = ref('home')
 const modal = ref(false)
 const sheet = ref(false)
@@ -144,7 +146,11 @@ const radioOptions = ['Kasper', 'Andrew', 'Jan', 'Felix']
       <Divider />
       <Switch v-model="checked2" label="I hereby turn my airplane mode on." />
       <Divider />
-      <Input v-model="input1" expand label="Your name" hint="Like what did your mommy call you?" limit="50" />
+      <Flex :gap="24">
+        <Input v-model="input1" expand label="Your name" hint="Like what did your mommy call you?" limit="50" />
+        <Textarea v-model="textarea" resize="vertical" expand label="Your name" placeholder="Please tell us why you're here" />
+      </Flex>
+
       <Divider />
       <Button
         @click="pushToast('Created new event', {

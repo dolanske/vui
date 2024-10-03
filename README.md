@@ -4,7 +4,16 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## Bugs
 
+- [ ] Tweak sizing spaces
+  - xs: 4px
+  - s: 8px
+  - m: 16
+  - l: 24
+  - xl: 40
+
 ## TODO
+
+#### Components
 
 - [ ] Button
   - [ ] Add `accent` button variant
@@ -19,9 +28,10 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Radio button group
 - [x] Tabs
 - [x] Card
-- [ ] Textarea
+- [x] Textarea
 - [x] Modal
 - [ ] Select
+  - [ ] Depends on <Popup />
   - [ ] Single select
   - [ ] Multiselect
   - [ ] Group options by title
@@ -31,10 +41,11 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Divider
 - [x] Badge
 - [ ] Breadcrumbs
+  - [ ] Basic version
+  - [ ] Depends on <Popup /> for consolidated path sections
 - [x] Avatar
 - [ ] Skeleton
-- [ ] Content
-  - [ ] Renderless component which will basically simulate an article styling. Will contain all the text styles, images, blockquotes and so on
+- [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
 - [ ] File input
   - [ ] Dropzone
 - [ ] Scrollable
@@ -45,22 +56,24 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Sheet
   - [x] Size
   - [x] Location
+- [ ] Tooltip
+  - [ ] Depends on <Popup />
+  - [ ] Figure out how to attach it to other components / elements
+  - [ ] Show up delay
+
+- [ ] Popup (https://floating-ui.com/)
+  - [ ] Anchoring to a Component or element
 
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
 
----
+#### Internal
 
 - [ ] Internal components
   - [x] Backdrop (darkens bg and goes over all content, on click event)
-  - [ ] Popout - Some kind of generic dropdown wrapper which can be anchored to certain components vvv
-- [ ] Use popover API or https://floating-ui.com/
-  - [ ] Dropdowns
-  - [ ] Tooltips
-  - [ ] Hover cards
 - [ ] Tweak all colors
 
----
+#### Non-components
 
 - [x] Typography (https://ui.shadcn.com/docs/components/typography#list)
   - [x] Headings h1, h2, h3, h4, h5, h6
@@ -68,6 +81,8 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Blockquote
   - [x] Lists (ordered, unordered, sublists)
   - [x] Table
+
+- [ ] Figure out how to set up any font
 
 ## Final todo
 
