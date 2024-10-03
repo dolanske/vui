@@ -17,11 +17,12 @@ const slots = defineSlots<{
   default: () => Array<VNode & { props: AccordionProps }>
 }>()
 
-const activeIndex = ref(
-  slots.default().findIndex(vnode => !!vnode.props.open),
-)
+const activeIndex = ref<number>()
 
-console.log(slots.default())
+const defaultIndex = slots.default().findIndex(vnode => !!vnode.props.open)
+if (defaultIndex > -1) {
+  activeIndex.value = defaultIndex
+}
 
 function handleAccordionOpen(newIndex: number) {
   if (props.single) {
@@ -35,7 +36,9 @@ function handleAccordionOpen(newIndex: number) {
     :is="item"
     v-for="(item, index) of slots.default()"
     :key="item"
-    :open="index === activeIndex"
+    v-bind="{
+      ...(activeIndex && { open: index === activeIndex }),
+    }"
     @open="handleAccordionOpen(index)"
   />
 </template>

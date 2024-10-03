@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, useTemplateRef, watch } from 'vue'
+import { onMounted, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import './accordion.scss'
 
 export interface AccordionProps {
@@ -9,14 +9,20 @@ export interface AccordionProps {
 }
 
 const props = defineProps<AccordionProps>()
-
 const emits = defineEmits<{
   open: []
   close: []
 }>()
-const isOpen = ref(!!props.open)
+
+const isOpen = ref(false)
 const content = useTemplateRef('content')
 const contentMaxHeight = ref(0)
+
+watchEffect(() => {
+  isOpen.value = props.open
+}, {
+  flush: 'post',
+})
 
 watch(isOpen, (value) => {
   if (value) {
@@ -28,6 +34,7 @@ watch(isOpen, (value) => {
   }
 }, {
   flush: 'post',
+  immediate: true,
 })
 
 function open() {
@@ -54,7 +61,7 @@ function toggle() {
       <Icon icon="ph:caret-down" />
     </button>
 
-    <div ref="content" class="vui-accordion-content" :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : 0 }">
+    <div ref="content" class="vui-accordion-content" :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : '0px' }">
       <slot />
     </div>
   </div>
