@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
+import Accordion from './components/Accordion/Accordion.vue'
+import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import Badge from './components/Badge/Badge.vue'
@@ -49,6 +51,23 @@ const radioOptions = ['Kasper', 'Andrew', 'Jan', 'Felix']
         <Tab id="components" label="Components" />
         <Tab id="typography" label="Typography" />
       </Tabs>
+
+      <br><br><br>
+
+      <AccordionGroup single>
+        <Accordion label="See more" open>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
+        </Accordion>
+        <Accordion label="See more">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
+        </Accordion>
+        <Accordion label="See more">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
+        </Accordion>
+      </AccordionGroup>
+
+      <br>
+      <br>
       <br>
       <Flex>
         <Badge>Neutral</Badge>
