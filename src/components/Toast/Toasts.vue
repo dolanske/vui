@@ -16,7 +16,7 @@ import './toast.scss'
               {{ toast.description }}
             </p>
           </div>
-          <Button v-if="toast.action" @click="toast.action.onClick(toast.id)">
+          <Button v-if="toast.action" @click="toast.action.handler(toast.id)">
             {{ toast.action.label }}
           </Button>
         </li>

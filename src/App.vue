@@ -158,7 +158,7 @@ const radioOptions = ['Kasper', 'Andrew', 'Jan', 'Felix']
           persist: true,
           action: {
             label: 'Ok',
-            onClick(toastId) {
+            handler(toastId) {
               removeToast(toastId)
             },
           },

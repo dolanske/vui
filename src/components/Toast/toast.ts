@@ -4,7 +4,7 @@ import { ref } from 'vue'
 
 interface ToastAction {
   label: string
-  onClick: (toastId: number) => void
+  handler: (toastId: number) => void
 }
 
 interface ToastOptions {
