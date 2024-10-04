@@ -19,7 +19,11 @@ const tab = ref('home')
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
-      <Tooltip>
+      <Tooltip
+        :options="{
+          placement: 'left-start',
+        }"
+      >
         <h1>I am what is being tooltiped</h1>
         <template #tooltip>
           <p>lmao hello world</p>

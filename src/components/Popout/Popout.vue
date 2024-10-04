@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { MaybeElement, UseFloatingOptions } from '@floating-ui/vue'
-import { autoPlacement, autoUpdate, offset, useFloating } from '@floating-ui/vue'
-import { useTemplateRef } from 'vue'
+import { autoPlacement, offset, useFloating } from '@floating-ui/vue'
+import { toRef, useTemplateRef } from 'vue'
 
 interface Props {
   anchor: MaybeElement<any>
@@ -11,12 +11,15 @@ interface Props {
 const props = defineProps<Props>()
 const popoutRef = useTemplateRef('popoutRef')
 
-const { floatingStyles } = useFloating(props.anchor, popoutRef, Object.assign({
+const anchor = toRef(props.anchor)
+const options = toRef(Object.assign({
   middleware: [
     autoPlacement(),
     offset(8),
   ],
 }, props.options))
+
+const { floatingStyles } = useFloating(anchor, popoutRef, options)
 </script>
 
 <template>

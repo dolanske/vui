@@ -1,6 +1,13 @@
 <script setup lang='ts'>
+import type { UseFloatingOptions } from '@floating-ui/vue'
 import { ref, useTemplateRef } from 'vue'
 import Popout from '../Popout/Popout.vue'
+
+interface Props {
+  options?: UseFloatingOptions
+}
+
+const props = defineProps<Props>()
 
 const popoutAnchor = useTemplateRef('popoutAnchor')
 const showTooltip = ref(false)
@@ -14,14 +21,14 @@ const showTooltip = ref(false)
   >
     <slot />
   </div>
-  <!-- <Transition appear name="tooltip"> -->
-  <Popout v-if="showTooltip" :anchor="popoutAnchor">
-    <slot name="tooltip" />
-  </Popout>
-  <!-- </Transition> -->
+  <Transition appear name="tooltip">
+    <Popout v-if="showTooltip" :anchor="popoutAnchor" :options="props.options">
+      <slot name="tooltip" />
+    </Popout>
+  </Transition>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 .tooltip-enter-active,
 .tooltip-leave-active {
   transition: var(--transition);
@@ -30,6 +37,5 @@ const showTooltip = ref(false)
 .tooltip-enter-from,
 .tooltip-leave-to {
   opacity: 0;
-  /* transform: scale(0.95); */
 }
-</style>
+</style> -->
