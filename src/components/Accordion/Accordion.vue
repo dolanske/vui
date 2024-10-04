@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { onMounted, ref, useTemplateRef, watch, watchEffect } from 'vue'
+import { ref, useTemplateRef, watch, watchEffect } from 'vue'
 import './accordion.scss'
 
 export interface AccordionProps {
@@ -48,6 +48,13 @@ function close() {
 function toggle() {
   isOpen.value = !isOpen.value
 }
+
+defineExpose({
+  open,
+  close,
+  toggle,
+  isOpen,
+})
 </script>
 
 <template>

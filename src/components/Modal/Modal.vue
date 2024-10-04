@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
-import { Transition, useAttrs } from 'vue'
+import { useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'

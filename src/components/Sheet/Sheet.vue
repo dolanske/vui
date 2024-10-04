@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { computed, Transition } from 'vue'
+import { computed } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import Button from '../Button/Button.vue'
 import Divider from '../Divider/Divider.vue'

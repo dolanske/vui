@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Teleport, TransitionGroup } from 'vue'
 import Button from '../Button/Button.vue'
 import { toasts } from './toast'
 import './toast.scss'

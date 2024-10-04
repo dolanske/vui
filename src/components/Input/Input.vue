@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type InputTypeHTMLAttribute, useAttrs, useId } from 'vue'
+import { type InputTypeHTMLAttribute, useId } from 'vue'
 import '../../style/core.scss'
 import './input.scss'
 

@@ -20,15 +20,17 @@ const tab = ref('home')
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
-      <Accordion label="See more">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
-      </Accordion>
-      <Accordion label="See Less">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
-      </Accordion>
-      <Accordion label="See Idk What you want Bro">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
-      </Accordion>
+      <AccordionGroup>
+        <Accordion label="See more">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
+        </Accordion>
+        <Accordion label="See Less">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
+        </Accordion>
+        <Accordion label="See Idk What you want Bro">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
+        </Accordion>
+      </AccordionGroup>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
