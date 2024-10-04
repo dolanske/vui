@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Accordion from './components/Accordion/Accordion.vue'
-import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
+import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const tab = ref('home')
 </script>
@@ -20,17 +19,12 @@ const tab = ref('home')
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
-      <AccordionGroup>
-        <Accordion label="See more">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
-        </Accordion>
-        <Accordion label="See Less">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
-        </Accordion>
-        <Accordion label="See Idk What you want Bro">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora obcaecati excepturi sed enim architecto. Natus iste enim a porro, expedita minima debitis nobis, magni impedit repellendus odit dignissimos blanditiis modi!</p>
-        </Accordion>
-      </AccordionGroup>
+      <Tooltip>
+        <h1>I am what is being tooltiped</h1>
+        <template #tooltip>
+          <p>lmao hello world</p>
+        </template>
+      </Tooltip>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
