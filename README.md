@@ -36,7 +36,10 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Multiselect
   - [ ] Group options by title
   - [ ] Option can have start icon
-- [ ] Accordion
+- [x] Accordion
+- [ ] InputOTP
+  - [ ] Wrapper
+  - [ ] Slot
 - [x] Alert
 - [x] Divider
 - [x] Badge
