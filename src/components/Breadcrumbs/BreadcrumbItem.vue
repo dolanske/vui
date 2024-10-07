@@ -2,7 +2,7 @@
 import '../Button/button.scss'
 
 export interface BreadcrumbItemProps {
-  label: string
+  label?: string
   path?: string
 }
 

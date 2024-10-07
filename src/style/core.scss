@@ -30,7 +30,7 @@
   --color-bg-lowered: rgb(14, 14, 14);
 
   --color-text: rgb(231, 231, 231);
-  --color-text-light: rgb(150, 150, 150);
+  --color-text-light: rgb(158, 158, 158);
   --color-text-lighter: rgb(100, 100, 100);
   --color-text-invert: rgb(17, 17, 17);
 
@@ -65,11 +65,13 @@
 
   --box-shadow: 0 4px 15px rgba(8, 8, 8, 0.25);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
+
+  --global-font: Geist, sans-serif;
+  --global-font-mono: 'Courier New', Courier, monospace;
 }
 
 html {
   font-size: 63.5%;
-
   // TODO remove
   position: relative;
   background-color: var(--color-bg);
@@ -84,9 +86,8 @@ html {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    font-family: Geist, sans-serif;
+    font-family: var(--global-font);
     color: var(--color-text);
-    // font-size: var(--font-size-m);
   }
 }
 
