@@ -98,6 +98,49 @@ const tab = ref('home')
       </div>
       <p>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.</p>
       <p>The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.</p>
+
+      <pre>
+        {
+        "type": "Feature",
+        "properties": {
+          "mag": 1.5,
+          "place": "77kmNWofSkwentna,Alaska",
+          "time": 1668256022741,
+          "updated": 1668256203692,
+          "tz": null,
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ak022eit4nup",
+          "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ak022eit4nup.geojson",
+          "felt": null,
+          "cdi": null,
+          "mmi": null,
+          "alert": null,
+          "status": "automatic",
+          "tsunami": 0,
+          "sig": 35,
+          "net": "ak",
+          "code": "022eit4nup",
+          "ids": ",ak022eit4nup,",
+          "sources": ",ak,",
+          "types": ",origin,phase-data,",
+          "nst": null,
+          "dmin": null,
+          "rms": 0.55,
+          "gap": null,
+          "magType": "ml",
+          "type": "earthquake",
+          "title": "M1.5-77kmNWofSkwentna,Alaska"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -152.2722,
+            62.5489,
+            4.5
+          ]
+        },
+        "id": "ak022eit4nup"
+      },
+      </pre>
     </div>
   </div>
 </template>

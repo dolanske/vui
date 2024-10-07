@@ -31,7 +31,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Textarea
 - [x] Modal
 - [ ] Select
-  - [ ] Depends on <Popup />
+  - [x] Depends on <Popout />
+  - [ ] Depends on <DropdownItem />
   - [ ] Single select
   - [ ] Multiselect
   - [ ] Group options by title
@@ -45,7 +46,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Badge
 - [ ] Breadcrumbs
   - [ ] Basic version
-  - [ ] Depends on <Popup /> for consolidated path sections
+  - [ ] Depends on <Popout /> for consolidated path sections
+  - [ ] Depends on <DropdownItem />
 - [x] Avatar
 - [ ] Skeleton
 - [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
@@ -59,13 +61,12 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Sheet
   - [x] Size
   - [x] Location
-- [ ] Tooltip
-  - [ ] Depends on <Popup />
-  - [ ] Figure out how to attach it to other components / elements
-  - [ ] Show up delay
+- [x] Tooltip
+  - [x] Custom placement
+  - [x] Show up delay
 
-- [ ] Popup (https://floating-ui.com/)
-  - [ ] Anchoring to a Component or element
+- [x] Popout (https://floating-ui.com/)
+  - [x] Anchoring to a Component or element
 
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
