@@ -5,7 +5,7 @@ import { ref } from 'vue'
 import './avatar.scss'
 
 interface Props {
-  size: Sizes
+  size?: Sizes
   url?: string
   fallback?: string
   icon?: string

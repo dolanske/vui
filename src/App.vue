@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import Avatar from './components/Avatar/Avatar.vue'
+import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem.vue'
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.vue'
+import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
-const tab = ref('home')
+const tab = ref('components')
 </script>
 
 <template>
@@ -19,6 +23,17 @@ const tab = ref('home')
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
+      <Breadcrumbs separator="/">
+        <BreadcrumbItem label="App" />
+        <BreadcrumbItem label="Stuff" path="/uhhh">
+          <Flex align-center>
+            <Avatar size="s" fallback="HD" />
+            Dolanske
+          </Flex>
+        </BreadcrumbItem>
+        <BreadcrumbItem label="Item" path="/bebi" />
+      </Breadcrumbs>
+
       <Tooltip
         :delay="500"
       >

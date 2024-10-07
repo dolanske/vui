@@ -1,2 +1,30 @@
 .vui-breadcrumbs {
+  display: flex;
+  gap: var(--space-m);
+  align-items: center;
+
+  .vui-breadcrumb-custom-separator {
+    color: var(--color-text-lighter);
+  }
+
+  li {
+    font-size: var(--font-size-s);
+    color: var(--color-text-lighter);
+
+    .vui-breadcrumb-text-simple {
+      color: var(--color-text-lighter);
+    }
+
+    .vui-breadcrumb-link {
+      color: var(--color-text);
+      background: transparent;
+      text-underline-offset: 4px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+      // cursor: pointer;
+    }
+  }
 }
