@@ -1,29 +1,39 @@
 <script setup lang='ts'>
-import type { MaybeElement, UseFloatingOptions } from '@floating-ui/vue'
+import type { MaybeElement, Placement } from '@floating-ui/vue'
 import { autoPlacement, offset, useFloating } from '@floating-ui/vue'
 import { toRef, useTemplateRef } from 'vue'
+import './popout.scss'
 
 interface Props {
-  anchor: MaybeElement<any>
-  options?: UseFloatingOptions
+  anchor: MaybeElement<HTMLElement>
+  /**
+   * Override the autoPlacement option
+   */
+  placement?: Placement
+  /**
+   * Distance between the anchor and the rendered tooltip
+   */
+  offset?: number
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  offset: 8,
+})
+
 const popoutRef = useTemplateRef('popoutRef')
+const anchorRef = toRef(props.anchor)
 
-const anchor = toRef(props.anchor)
-const options = toRef(Object.assign({
+const { floatingStyles } = useFloating(anchorRef, popoutRef, {
+  placement: props.placement,
   middleware: [
-    autoPlacement(),
-    offset(8),
+    ...(props.placement ? [] : [autoPlacement()]),
+    offset(props.offset),
   ],
-}, props.options))
-
-const { floatingStyles } = useFloating(anchor, popoutRef, options)
+})
 </script>
 
 <template>
-  <div ref="popoutRef" :style="floatingStyles">
+  <div ref="popoutRef" :style="floatingStyles" class="vui-popout">
     <slot />
   </div>
 </template>

@@ -20,9 +20,7 @@ const tab = ref('home')
     </div>
     <div v-if="tab === 'components'">
       <Tooltip
-        :options="{
-          placement: 'left-start',
-        }"
+        :delay="500"
       >
         <h1>I am what is being tooltiped</h1>
         <template #tooltip>
