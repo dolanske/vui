@@ -63,8 +63,10 @@ p {
 
   code {
     border-radius: 2px;
-    background-color: var(--color-bg-raised);
-    padding: 1px 4px;
+    background-color: var(--color-button-gray);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-border);
+    padding: 1px 3px;
   }
 
   strong,
@@ -98,12 +100,40 @@ blockquote {
   border-left: 3px solid var(--color-border);
 }
 
+pre {
+  font-family: var(--global-font-mono);
+  font-size: var(--font-size-ms);
+  font-weight: 600;
+  line-height: 1.1em;
+  padding: var(--space-m);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-m);
+  white-space: pre-wrap;
+  background-color: var(--color-bg-raised);
+  z-index: 1;
+  position: relative;
+
+  &:after {
+    content: attr(data-lang);
+    font-family: var(--global-font);
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: var(--border-radius-s);
+    font-size: var(--font-size-s);
+    color: var(--color-text-lighter);
+    background-color: var(--color-bg-lowered);
+  }
+}
+
 table {
   text-indent: 0;
   border-collapse: separate;
   width: 100%;
-  // border: 1px solid var(--color-border);
-  // border-radius: var(--border-radius-s);
   overflow-x: auto;
 
   th,
@@ -234,6 +264,7 @@ article,
     font-size: var(--font-size-m);
   }
 
+  pre,
   img,
   table,
   ol,
