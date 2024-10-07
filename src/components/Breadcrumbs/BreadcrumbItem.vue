@@ -7,10 +7,6 @@ export interface BreadcrumbItemProps {
 }
 
 const props = defineProps<BreadcrumbItemProps>()
-
-// const slots = defineSlots<{
-//   default: () => any
-// }>()
 </script>
 
 <template>
