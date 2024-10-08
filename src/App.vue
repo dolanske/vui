@@ -4,6 +4,8 @@ import { ref } from 'vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem.vue'
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.vue'
+import Button from './components/Button/Button.vue'
+import Dropdown from './components/Dropdown/Dropdown.vue'
 import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
@@ -23,7 +25,7 @@ const tab = ref('components')
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
-      <Breadcrumbs separator="/">
+      <!-- <Breadcrumbs separator="/">
         <BreadcrumbItem label="App" />
         <BreadcrumbItem path="/uhhh">
           <Flex align-center>
@@ -32,7 +34,15 @@ const tab = ref('components')
           </Flex>
         </BreadcrumbItem>
         <BreadcrumbItem label="Item" path="/bebi" />
-      </Breadcrumbs>
+      </Breadcrumbs> -->
+
+      <Dropdown>
+        <template #trigger="{ toggle }">
+          <Button @click="toggle">
+            Open
+          </Button>
+        </template>
+      </Dropdown>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

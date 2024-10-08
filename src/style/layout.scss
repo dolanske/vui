@@ -1,0 +1,9 @@
+// Contains basic layout definitions and classes to compose basic layouts
+
+.container {
+  display: block;
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: var(--space-m);
+  max-width: calc(());
+}
