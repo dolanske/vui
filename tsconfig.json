@@ -3,5 +3,8 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-  "files": []
+  "files": [],
+  "exclude": [
+    "./dist/"
+  ]
 }

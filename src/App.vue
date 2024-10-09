@@ -1,16 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Avatar from './components/Avatar/Avatar.vue'
-import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem.vue'
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.vue'
 import Button from './components/Button/Button.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
-import Flex from './components/Flex/Flex.vue'
+import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
-import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const tab = ref('components')
 </script>
@@ -43,7 +39,32 @@ const tab = ref('components')
             Open
           </Button>
         </template>
-        <DropdownItem>Hello</DropdownItem>
+        <DropdownTitle>
+          Veggies
+          <template #end>
+            3 items
+          </template>
+        </DropdownTitle>
+
+        <DropdownItem icon="ph:plant">
+          Potaotes and other
+          <template #hint>
+            CTRL + K
+          </template>
+        </DropdownItem>
+        <DropdownItem disabled icon="ph:paper-plane-tilt">
+          Cucumber
+          <template #hint>
+            CTRL + K
+          </template>
+        </DropdownItem>
+        <DropdownItem>Onions</DropdownItem>
+        <DropdownItem>Bread</DropdownItem>
+        <DropdownTitle>
+          Poop
+        </DropdownTitle>
+        <DropdownItem>Pebbles</DropdownItem>
+        <DropdownItem>Bread</DropdownItem>
       </Dropdown>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">

@@ -11,6 +11,11 @@ interface Props {
    * Tooltip placement related to the anchor
    */
   placement?: Placement
+
+  /**
+   *
+   */
+  minWidth?: number
 }
 
 const {
