@@ -6,6 +6,7 @@ import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem.vue'
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.vue'
 import Button from './components/Button/Button.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
+import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
@@ -42,6 +43,7 @@ const tab = ref('components')
             Open
           </Button>
         </template>
+        <DropdownItem>Hello</DropdownItem>
       </Dropdown>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">

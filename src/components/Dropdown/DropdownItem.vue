@@ -11,7 +11,6 @@ const props = defineProps<Props>()
   <button class="vui-dropdown-item">
     <!-- This should always be here to offset items which dont have icons -->
     <div class="vui-dropdown-item-icon" />
-
-    {{ $slots.default }}
+    <slot />
   </button>
 </template>

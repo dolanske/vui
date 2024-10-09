@@ -7,3 +7,22 @@
   border-radius: var(--border-radius-m);
   border: 1px solid var(--color-border);
 }
+
+.vui-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-xs);
+  width: 100%;
+  height: 36px;
+  border-radius: var(--border-radius-m);
+
+  .vui-dropdown-item-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background-color: var(--color-button-gray-hover);
+  }
+}
