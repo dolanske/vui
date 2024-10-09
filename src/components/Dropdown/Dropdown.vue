@@ -15,7 +15,7 @@ interface Props {
   /**
    *
    */
-  minWidth?: number
+  minWidth?: number | string
 }
 
 const {
@@ -53,7 +53,11 @@ onClickOutside(dropdownRef, (event) => {
   </div>
 
   <Transition appear name="dropdown">
-    <Popout v-if="showMenu" ref="dropdownRef" :anchor="anchorRef" class="vui-dropdown" :placement>
+    <Popout
+      v-if="showMenu" ref="dropdownRef" :anchor="anchorRef" class="vui-dropdown" :placement :style="{
+        minWidth: `${minWidth ?? 156}px`,
+      }"
+    >
       <slot />
     </Popout>
   </Transition>
