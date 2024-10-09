@@ -31,12 +31,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Textarea
 - [x] Modal
 - [ ] Select
-  - [x] Depends on <Popout />
-  - [ ] Depends on <DropdownItem />
+  - [ ] Depends on <Dropdown />
   - [ ] Single select
   - [ ] Multiselect
-  - [ ] Group options by title
-  - [ ] Option can have start icon
 - [x] Accordion
 - [ ] InputOTP
   - [ ] Wrapper
@@ -45,7 +42,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Divider
 - [x] Badge
 - [ ] Breadcrumbs
-  - [ ] Basic version
+  - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
 - [x] Avatar
@@ -64,6 +61,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Tooltip
   - [x] Custom placement
   - [x] Show up delay
+- [x] Dropdown
+  - [x] Dropdown itme
+  - [x] Dropdown title
 
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
@@ -73,8 +73,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Internal
 
-- [ ] Internal components
-  - [x] Backdrop (darkens bg and goes over all content, on click event)
+- [x] Backdrop (darkens bg and goes over all content, on click event)
 - [ ] Tweak all colors
 
 #### Non-components
