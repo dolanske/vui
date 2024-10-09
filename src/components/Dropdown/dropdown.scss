@@ -1,0 +1,106 @@
+.vui-dropdown-trigger-wrap {
+  display: inline-block;
+}
+
+.vui-dropdown {
+  min-width: 156px;
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--color-border);
+  padding: 4px;
+}
+
+.vui-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  gap: var(--space-xs);
+  width: 100%;
+  height: 34px;
+  border-radius: var(--border-radius-m);
+  font-size: var(--font-size-s);
+  cursor: default;
+  transition: var(--transition);
+  padding-inline: var(--space-s);
+  white-space: nowrap;
+
+  &.disabled {
+    pointer-events: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .vui-dropdown-item-slot,
+    .vui-dropdown-item-icon svg path {
+      color: var(--color-text-lighter);
+    }
+
+    .vui-dropdown-item-hint {
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+
+  .vui-dropdown-item-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .vui-dropdown-item-hint {
+    margin-left: 8px;
+    font-size: 0.9rem;
+    // white-space: nowrap;
+    color: var(--color-text-lighter);
+  }
+
+  .vui-dropdown-item-slot {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--color-text);
+    flex-wrap: nowrap;
+  }
+
+  &:hover {
+    background-color: var(--color-button-gray-hover);
+  }
+}
+
+.vui-dropdown-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-block: var(--space-s);
+  padding-inline: calc(var(--space-s) + 4px);
+  font-size: var(--font-size-ms);
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 500;
+  // margin-block: 4px;
+  margin-inline: -4px;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  gap: var(--space-m);
+  justify-content: space-between;
+
+  &:not(:first-child) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .vui-dropdown-title-end {
+    font-size: var(--font-size-s);
+    font-weight: 400;
+    color: var(--color-text-lighter);
+  }
+}
