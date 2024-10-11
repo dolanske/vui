@@ -72,6 +72,7 @@
     flex-wrap: nowrap;
   }
 
+  &.selected,
   &:hover {
     background-color: var(--color-button-gray-hover);
   }

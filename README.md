@@ -34,10 +34,13 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Depends on <Dropdown />
   - [ ] Single select
   - [ ] Multiselect
+  - [ ] With search
 - [x] Accordion
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
+- [ ] Inline tabs
+  - [ ] Basically like this https://ui.shadcn.com/docs/components/tabs
 - [x] Alert
 - [x] Divider
 - [x] Badge

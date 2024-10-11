@@ -58,7 +58,7 @@ onClickOutside(dropdownRef, (event) => {
         minWidth: `${minWidth ?? 156}px`,
       }"
     >
-      <slot />
+      <slot :open :close :toggle :is-open="showMenu" />
     </Popout>
   </Transition>
 </template>

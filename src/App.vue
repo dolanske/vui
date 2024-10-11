@@ -1,14 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 
-import Button from './components/Button/Button.vue'
-import Dropdown from './components/Dropdown/Dropdown.vue'
-import DropdownItem from './components/Dropdown/DropdownItem.vue'
-import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
+import Select from './components/Select/Select.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
+
+// Select
+const options = [
+  {
+    value: 'potatoes',
+    label: 'Potatoes',
+  },
+  {
+    value: 69,
+    label: 'Onions',
+  },
+]
+const selected = ref()
+watchEffect(() => {
+  console.log(selected.value)
+})
 </script>
 
 <template>
@@ -33,39 +46,18 @@ const tab = ref('components')
         <BreadcrumbItem label="Item" path="/bebi" />
       </Breadcrumbs> -->
 
-      <Dropdown>
-        <template #trigger="{ toggle }">
-          <Button @click="toggle">
-            Open
-          </Button>
-        </template>
-        <DropdownTitle>
-          Veggies
-          <template #end>
-            3 items
-          </template>
-        </DropdownTitle>
+      <Select
+        v-model="selected"
+        hint="What are you eating for lunch?"
+        label="Lunch"
+        expand
+        placeholder="Select lunch"
+        :options="options"
+        single
+      />
 
-        <DropdownItem icon="ph:plant">
-          Potaotes and other
-          <template #hint>
-            CTRL + K
-          </template>
-        </DropdownItem>
-        <DropdownItem disabled icon="ph:paper-plane-tilt">
-          Cucumber
-          <template #hint>
-            CTRL + K
-          </template>
-        </DropdownItem>
-        <DropdownItem>Onions</DropdownItem>
-        <DropdownItem>Bread</DropdownItem>
-        <DropdownTitle>
-          Poop
-        </DropdownTitle>
-        <DropdownItem>Pebbles</DropdownItem>
-        <DropdownItem>Bread</DropdownItem>
-      </Dropdown>
+      <br><br><br>
+      {{ selected }}
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

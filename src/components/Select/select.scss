@@ -1,0 +1,20 @@
+.vui-input-container {
+  &.vui-select {
+    &.expand {
+      .vui-dropdown-trigger-wrap,
+      .vui-dropdown-trigger-content {
+        width: 100%;
+      }
+    }
+
+    .vui-input-style {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:hover {
+        border-color: var(--color-border-strong);
+      }
+    }
+  }
+}
