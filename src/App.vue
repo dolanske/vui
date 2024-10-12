@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { ref } from 'vue'
 
 import Select from './components/Select/Select.vue'
 import Tab from './components/Tabs/Tab.vue'
@@ -16,6 +16,14 @@ const options = [
   {
     value: 69,
     label: 'Onions',
+  },
+  {
+    value: 'carrots',
+    label: 'Carrots',
+  },
+  {
+    value: 'peh',
+    label: 'Pereshky',
   },
 ]
 const selected = ref()
@@ -46,8 +54,7 @@ const selected = ref()
       <Select
         v-model="selected"
         :options="options"
-        placeholder="Lunch"
-        single
+        :single="false"
       />
 
       <br><br><br>

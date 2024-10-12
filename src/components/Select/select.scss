@@ -7,6 +7,14 @@
       }
     }
 
+    .vui-select-trigger-container {
+      span {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+      }
+    }
+
     .vue-select-no-results {
       text-align: center;
       padding-block: var(--space-xs);

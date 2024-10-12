@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { searchInStr } from '../../shared/helpers'
@@ -25,6 +25,7 @@ interface Props {
   hint?: string
   canClear?: boolean
   search?: boolean
+  maxActiveOptions?: number
 }
 
 const {
@@ -36,10 +37,10 @@ const {
   options,
   single = true,
   search,
+  maxActiveOptions = 3,
 } = defineProps<Props>()
 
-// TODO: type single options (use GENERICS)
-const selected = defineModel<Option[]>()
+const selected = defineModel<Option[] | undefined>()
 
 //
 function setValue(option: Option) {
@@ -53,8 +54,18 @@ function setValue(option: Option) {
     }
   }
   else {
-    // TOOD: multie
-    // TODO: multie toggle
+    if (selected.value && selected.value?.some(o => o.value === option.value)) {
+      const values = selected.value.filter(o => o.value !== option.value)
+      selected.value = values.length > 0 ? values : undefined
+    }
+    else {
+      if (!selected.value) {
+        selected.value = [option]
+      }
+      else {
+        selected.value?.push(option)
+      }
+    }
   }
 }
 
@@ -67,6 +78,25 @@ const filteredOptions = computed(() => {
   return options.filter((option) => {
     return searchInStr(option.label, searchStr.value)
   })
+})
+
+// Render text inside the button
+const renderPlaceholder = computed(() => {
+  // Render placeholder or a default select option
+  if (!selected.value || selected.value.length === 0)
+    return placeholder ?? 'Select an option'
+
+  // Selected values
+  if (single)
+    return selected.value[0].label
+
+  // If amount of selected exceeds the active capacity
+  if (selected.value.length > maxActiveOptions) {
+    return `${selected.value.length} selected`
+  }
+
+  // Just list ALL selected optionsx
+  return selected.value.map(o => o.label).join(', ')
 })
 </script>
 
@@ -81,7 +111,9 @@ const filteredOptions = computed(() => {
           </p>
 
           <button class="vui-input-style vui-select-trigger-container" @click="toggle">
-            {{ placeholder }}
+            <span>
+              {{ renderPlaceholder }}
+            </span>
             <!-- TODO: add canclear button -->
 
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />

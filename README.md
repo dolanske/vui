@@ -31,10 +31,10 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Textarea
 - [x] Modal
 - [ ] Select
-  - [ ] Depends on <Dropdown />
-  - [ ] Single select
-  - [ ] Multiselect
-  - [ ] With search
+  - [x] Depends on <Dropdown />
+  - [x] Single select
+  - [x] Multiselect
+  - [x] With search
 - [x] Accordion
 - [ ] InputOTP
   - [ ] Wrapper
@@ -67,6 +67,10 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Dropdown
   - [x] Dropdown itme
   - [x] Dropdown title
+- [ ] Table
+  - [ ] Pagination helper fn
+  - [ ] Create data format
+  - [ ] All props
 
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
