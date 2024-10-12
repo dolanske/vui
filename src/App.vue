@@ -19,9 +19,6 @@ const options = [
   },
 ]
 const selected = ref()
-watchEffect(() => {
-  console.log(selected.value)
-})
 </script>
 
 <template>
@@ -48,11 +45,8 @@ watchEffect(() => {
 
       <Select
         v-model="selected"
-        hint="What are you eating for lunch?"
-        label="Lunch"
-        expand
-        placeholder="Select lunch"
         :options="options"
+        placeholder="Lunch"
         single
       />
 

@@ -7,10 +7,16 @@
       }
     }
 
+    .vue-select-no-results {
+      text-align: center;
+      padding-block: var(--space-xs);
+    }
+
     .vui-input-style {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-s);
 
       &:hover {
         border-color: var(--color-border-strong);

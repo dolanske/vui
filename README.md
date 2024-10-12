@@ -92,6 +92,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## Final todo
 
+- [ ] Add generc outline
+
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts
 - [ ] Create documentation site
