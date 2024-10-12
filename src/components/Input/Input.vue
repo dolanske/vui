@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type InputTypeHTMLAttribute, useId } from 'vue'
+import { type InputTypeHTMLAttribute, useId, useTemplateRef, watchEffect } from 'vue'
 import '../../style/core.scss'
 import './input.scss'
 
@@ -15,6 +15,7 @@ export interface InputProps {
   required?: boolean
   modelValue: string
   readonly?: boolean
+  focus?: boolean
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   required,
   modelValue = '',
   readonly,
+  focus,
 } = defineProps<InputProps>()
 
 const model = defineModel<string>({
@@ -43,6 +45,19 @@ const model = defineModel<string>({
   },
 })
 const id = useId()
+
+const inputRef = useTemplateRef('inputRef')
+
+watchEffect(() => {
+  if (focus)
+    inputRef.value?.focus()
+})
+
+defineExpose({
+  focus: () => {
+    inputRef.value?.focus()
+  },
+})
 </script>
 
 <template>
@@ -55,6 +70,7 @@ const id = useId()
       </p>
       <input
         :id
+        ref="inputRef"
         v-model="model"
         :readonly
         :type

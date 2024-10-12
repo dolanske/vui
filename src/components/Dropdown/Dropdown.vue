@@ -2,7 +2,7 @@
 import type { Placement } from '@floating-ui/vue'
 import type { MaybeElement } from '@vueuse/core'
 import { onClickOutside } from '@vueuse/core'
-import { ref, useTemplateRef } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
 
@@ -11,15 +11,20 @@ interface Props {
    * Tooltip placement related to the anchor
    */
   placement?: Placement
-
   /**
-   *
+   * Set the minimum width of the dropdown element
    */
   minWidth?: number | string
+  /**
+   * Sets the width of the dropdown to the width of its anchor
+   */
+  expand?: boolean
 }
 
 const {
   placement = 'bottom-start',
+  expand,
+  minWidth,
 } = defineProps<Props>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchorRef')
@@ -45,6 +50,19 @@ onClickOutside(dropdownRef, (event) => {
   if (!anchorRef.value?.contains(event.target as Node | null))
     showMenu.value = false
 })
+
+const anchorWidth = computed(() => {
+  if (!expand)
+    return 0
+  return anchorRef.value?.getBoundingClientRect().width
+})
+
+defineExpose({
+  open,
+  close,
+  toggle,
+  isOpen: showMenu,
+})
 </script>
 
 <template>
@@ -54,11 +72,17 @@ onClickOutside(dropdownRef, (event) => {
 
   <Transition appear name="dropdown">
     <Popout
-      v-if="showMenu" ref="dropdownRef" :anchor="anchorRef" class="vui-dropdown" :placement :style="{
+      v-if="showMenu"
+      ref="dropdownRef"
+      :anchor="anchorRef"
+      class="vui-dropdown"
+      :placement
+      :style="{
         minWidth: `${minWidth ?? 156}px`,
+        ...(expand && { width: `${anchorWidth}px` }),
       }"
     >
-      <slot />
+      <slot :open :close :toggle :is-open="showMenu" />
     </Popout>
   </Transition>
 </template>

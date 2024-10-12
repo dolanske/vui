@@ -31,13 +31,17 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Textarea
 - [x] Modal
 - [ ] Select
-  - [ ] Depends on <Dropdown />
-  - [ ] Single select
-  - [ ] Multiselect
+  - [x] Depends on <Dropdown />
+  - [x] Single select
+  - [x] Multiselect
+  - [x] With search
+  - [ ] Clearing
 - [x] Accordion
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
+- [ ] Inline tabs
+  - [ ] Basically like this https://ui.shadcn.com/docs/components/tabs
 - [x] Alert
 - [x] Divider
 - [x] Badge
@@ -64,6 +68,10 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Dropdown
   - [x] Dropdown itme
   - [x] Dropdown title
+- [ ] Table
+  - [ ] Pagination helper fn
+  - [ ] Create data format
+  - [ ] All props
 
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
@@ -88,6 +96,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Figure out how to set up any font
 
 ## Final todo
+
+- [ ] Add generc outline
 
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts
