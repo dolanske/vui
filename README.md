@@ -35,6 +35,7 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Single select
   - [x] Multiselect
   - [x] With search
+  - [ ] Clearing
 - [x] Accordion
 - [ ] InputOTP
   - [ ] Wrapper

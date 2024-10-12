@@ -1,6 +1,6 @@
 <script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, ref } from 'vue'
 import { searchInStr } from '../../shared/helpers'
 import Dropdown from '../Dropdown/Dropdown.vue'
 import DropdownItem from '../Dropdown/DropdownItem.vue'
@@ -9,7 +9,12 @@ import Input from '../Input/Input.vue'
 import '../Input/input.scss'
 import './select.scss'
 
-interface Option {
+// TODO
+// Figure out a way to add clearing & required options
+// Maybe through clearable?
+// Deafult = true
+
+export interface SelectOption {
   value: any
   label: string
 }
@@ -17,7 +22,7 @@ interface Option {
 interface Props {
   single?: boolean
   readonly?: boolean
-  options: Option[]
+  options: SelectOption[]
   label?: string
   placeholder?: string
   required?: boolean
@@ -40,10 +45,10 @@ const {
   maxActiveOptions = 3,
 } = defineProps<Props>()
 
-const selected = defineModel<Option[] | undefined>()
+const selected = defineModel<SelectOption[] | undefined>()
 
 //
-function setValue(option: Option) {
+function setValue(option: SelectOption) {
   if (single) {
     // Single
     if (selected.value?.some(o => o.value === option.value)) {
@@ -114,8 +119,6 @@ const renderPlaceholder = computed(() => {
             <span>
               {{ renderPlaceholder }}
             </span>
-            <!-- TODO: add canclear button -->
-
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </button>
         </div>
