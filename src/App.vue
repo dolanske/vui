@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Flex from './components/Flex/Flex.vue'
-import Kbd from './components/Kbd/Kbd.vue'
-import KbdGroup from './components/Kbd/KbdGroup.vue'
+import Textarea from './components/Input/Textarea.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
+
+const content = ref('')
 </script>
 
 <template>
@@ -20,12 +20,7 @@ const tab = ref('components')
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
-      <Flex>
-        <KbdGroup>
-          <Kbd keys="Control" highlight />
-          <Kbd keys="A" highlight />
-        </KbdGroup>
-      </Flex>
+      <Textarea v-model="content" />
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

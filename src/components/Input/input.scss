@@ -78,8 +78,9 @@
 
     textarea {
       line-height: 1.3em;
-      height: unset;
-      min-height: 80px;
+      height: auto;
+      min-height: 4lh;
+      field-sizing: content;
       padding: var(--textarea-padding);
       transition: none;
     }

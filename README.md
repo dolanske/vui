@@ -58,8 +58,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Scrollable
   - [ ] Set max width or height (or size of the parent)
   - [ ] Should work within card
-- [ ] Kbd
-  - [ ] Option to highlight if key is pressed
+- [x] Kbd
+  - [x] Option to highlight if key is pressed
 - [x] Sheet
   - [x] Size
   - [x] Location

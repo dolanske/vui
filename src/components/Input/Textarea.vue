@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { InputProps } from './Input.vue'
 import { useId } from 'vue'
+import '../Input/input.scss'
 
 type Props = Omit<InputProps, 'type'> & {
   resize?: boolean | 'vertical' | 'horizontal'
+  autoResize?: boolean
 }
 
 const {
@@ -15,7 +17,8 @@ const {
   required,
   modelValue = '',
   readonly,
-  resize,
+  resize = 'vertical',
+  autoResize,
 } = defineProps<Props>()
 
 const model = defineModel<string>({
@@ -50,7 +53,9 @@ const id = useId()
         :required
         :max="limit"
         :style="{
-          resize: resize === true ? 'both' : (resize || 'initial'),
+          'resize': resize === true ? 'both' : (resize || 'initial'),
+          // @ts-expect-error This is only supported in chrome for now
+          'field-sizing': autoResize ? 'content' : 'auto',
         }"
       />
     </div>
