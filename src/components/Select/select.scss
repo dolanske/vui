@@ -26,6 +26,15 @@
       justify-content: space-between;
       gap: var(--space-s);
 
+      & > button {
+        margin-right: -6px;
+
+        .vui-button-slot svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+
       &:hover {
         border-color: var(--color-border-strong);
       }

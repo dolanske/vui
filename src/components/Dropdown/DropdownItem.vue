@@ -13,7 +13,9 @@ const props = defineProps<Props>()
   <button class="vui-dropdown-item" :class="{ disabled }">
     <!-- This should always be here to offset items which dont have icons -->
     <div class="vui-dropdown-item-icon">
-      <Icon v-if="props.icon" :icon="props.icon" />
+      <Transition name="fade" appear>
+        <Icon v-if="props.icon" :icon="props.icon" />
+      </Transition>
     </div>
 
     <div class="vui-dropdown-item-slot">

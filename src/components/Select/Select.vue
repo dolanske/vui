@@ -1,18 +1,14 @@
 <script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { searchInStr } from '../../shared/helpers'
+import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
 import DropdownItem from '../Dropdown/DropdownItem.vue'
 import DropdownTitle from '../Dropdown/DropdownTitle.vue'
 import Input from '../Input/Input.vue'
 import '../Input/input.scss'
 import './select.scss'
-
-// TODO
-// Figure out a way to add clearing & required options
-// Maybe through clearable?
-// Deafult = true
 
 export interface SelectOption {
   value: any
@@ -28,9 +24,9 @@ interface Props {
   required?: boolean
   expand?: boolean
   hint?: string
-  canClear?: boolean
   search?: boolean
   maxActiveOptions?: number
+  showClear?: boolean
 }
 
 const {
@@ -43,6 +39,7 @@ const {
   single = true,
   search,
   maxActiveOptions = 3,
+  showClear,
 } = defineProps<Props>()
 
 const selected = defineModel<SelectOption[] | undefined>()
@@ -51,7 +48,7 @@ const selected = defineModel<SelectOption[] | undefined>()
 function setValue(option: SelectOption) {
   if (single) {
     // Single
-    if (selected.value?.some(o => o.value === option.value)) {
+    if (selected.value?.some(o => o.value === option.value) && !required) {
       selected.value = undefined
     }
     else {
@@ -61,7 +58,10 @@ function setValue(option: SelectOption) {
   else {
     if (selected.value && selected.value?.some(o => o.value === option.value)) {
       const values = selected.value.filter(o => o.value !== option.value)
-      selected.value = values.length > 0 ? values : undefined
+      // Cant remove the last value if it's required
+      if ((required && values.length > 0) || !required) {
+        selected.value = values.length > 0 ? values : undefined
+      }
     }
     else {
       if (!selected.value) {
@@ -103,11 +103,24 @@ const renderPlaceholder = computed(() => {
   // Just list ALL selected optionsx
   return selected.value.map(o => o.label).join(', ')
 })
+
+onMounted(() => {
+  if (readonly && showClear) {
+    console.warn('[Select] readonly and showClear are mutually exclusive props. The clear button will not show up if required is present.')
+  }
+})
+
+const dropdownRef = useTemplateRef('dropdownRef')
+
+function clearValue() {
+  selected.value = undefined
+  dropdownRef.value?.close()
+}
 </script>
 
 <template>
   <div class="vui-input-container vui-select" :class="{ expand, required, readonly }">
-    <Dropdown :expand>
+    <Dropdown ref="dropdownRef" :expand>
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" for="id">{{ label }}</label>
@@ -119,6 +132,14 @@ const renderPlaceholder = computed(() => {
             <span>
               {{ renderPlaceholder }}
             </span>
+            <Button
+              v-if="showClear && !required && selected"
+              plain
+              icon="ph:x"
+              square
+              size="s"
+              @click.stop="clearValue"
+            />
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </button>
         </div>
@@ -145,8 +166,9 @@ const renderPlaceholder = computed(() => {
           @click="() => {
             setValue(option)
             // In single mode, close modal after clicking
-            if (single)
+            if (single && !(required && selected && selected[0].value === option.value)) {
               close()
+            }
           }"
         >
           {{ option.label }}

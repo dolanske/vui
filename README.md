@@ -30,12 +30,12 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Card
 - [x] Textarea
 - [x] Modal
-- [ ] Select
+- [x] Select
   - [x] Depends on <Dropdown />
   - [x] Single select
   - [x] Multiselect
   - [x] With search
-  - [ ] Clearing
+  - [x] Clearing
 - [x] Accordion
 - [ ] InputOTP
   - [ ] Wrapper

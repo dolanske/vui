@@ -55,6 +55,7 @@ const selected = ref()
         v-model="selected"
         :options="options"
         :single="false"
+        show-clear
       />
 
       <br><br><br>
