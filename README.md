@@ -29,6 +29,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Tabs
 - [x] Card
 - [x] Textarea
+  - [ ] Autoexpand
 - [x] Modal
 - [x] Select
   - [x] Depends on <Dropdown />

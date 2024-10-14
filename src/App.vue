@@ -1,32 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import Select from './components/Select/Select.vue'
+import Flex from './components/Flex/Flex.vue'
+import Kbd from './components/Kbd/Kbd.vue'
+import KbdGroup from './components/Kbd/KbdGroup.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-
-// Select
-const options = [
-  {
-    value: 'potatoes',
-    label: 'Potatoes',
-  },
-  {
-    value: 69,
-    label: 'Onions',
-  },
-  {
-    value: 'carrots',
-    label: 'Carrots',
-  },
-  {
-    value: 'peh',
-    label: 'Pereshky',
-  },
-]
-const selected = ref()
 </script>
 
 <template>
@@ -40,26 +20,12 @@ const selected = ref()
       Welcome to VUI
     </div>
     <div v-if="tab === 'components'">
-      <!-- <Breadcrumbs separator="/">
-        <BreadcrumbItem label="App" />
-        <BreadcrumbItem path="/uhhh">
-          <Flex align-center>
-            <Avatar size="s" fallback="HD" />
-            Dolanske
-          </Flex>
-        </BreadcrumbItem>
-        <BreadcrumbItem label="Item" path="/bebi" />
-      </Breadcrumbs> -->
-
-      <Select
-        v-model="selected"
-        :options="options"
-        :single="false"
-        show-clear
-      />
-
-      <br><br><br>
-      {{ selected }}
+      <Flex>
+        <KbdGroup>
+          <Kbd keys="Control" highlight />
+          <Kbd keys="A" highlight />
+        </KbdGroup>
+      </Flex>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
