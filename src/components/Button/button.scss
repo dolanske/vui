@@ -6,7 +6,7 @@
     pointer-events: none;
     color: var(--color-text-light) !important;
     cursor: not-allowed;
-    filter: saturate(50%);
+    filter: saturate(50%) opacity(0.65);
   }
 
   &.expand {

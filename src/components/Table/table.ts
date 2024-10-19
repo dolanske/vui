@@ -1,0 +1,183 @@
+import type { Component, ComputedGetter, MaybeRefOrGetter, Ref } from 'vue'
+import { computed, ref, toValue } from 'vue'
+import { paginate, searchInStr } from '../../shared/helpers'
+
+// Vue class binding
+// type ClassDeclaration = string | Record<string, boolean> | Array<Record<string, boolean>>
+
+// // String & numbeare primitives
+// // Component will bind row data with rowKey and rowData
+// type Cell = string | number | Component
+
+// export interface TableData<Headers extends readonly any[]> {
+//   rows: Array<Record<Headers[number], Cell> & {
+//     $options?: {
+//       class?: ClassDeclaration
+//     }
+//     $child?: {
+//       component: Component
+//       props?: Record<PropertyKey, any>
+//     } | Component
+//   }>
+// }
+
+// // TODO: properly type out table definition return
+// export interface TableDataDefinition {
+//   data: any[]
+//   headers: string[]
+// }
+
+// export function defineTableData<const H extends readonly any[]>(
+//   headers: H,
+//   data: TableData<H>,
+// ): TableDataDefinition {
+//   // TODO: actually format
+//   return {
+//     headers: headers as unknown as string[],
+//     data: data as any,
+//   }
+// }
+
+////////
+
+// New implementation
+
+interface Sorting<K> {
+  key?: K
+  type: 'asc' | 'desc'
+}
+
+interface TableOptions<Data extends Array<Record<string, any>>> {
+  sort?: boolean
+  headers?: Record<keyof Data[number], {
+    sorting?: boolean
+  }>
+  perPage?: number
+  maxPages?: number
+}
+
+// eslint-disable-next-line ts/explicit-function-return-type
+export function useTableData<const Dataset extends Array<Record<string, string | number>>>(computedDataset: MaybeRefOrGetter<Dataset>, options?: TableOptions<Dataset>) {
+  const $data = computed(() => toValue(computedDataset))
+
+  //
+  // Pagination
+  const page = ref(1)
+
+  const pagination = computed(() => paginate(
+    $data.value.length,
+    page.value,
+    options?.perPage,
+    options?.maxPages,
+  ))
+
+  const canNextPage = computed(() => pagination.value.currentPage < pagination.value.endPage)
+  const canPrevPage = computed(() => pagination.value.currentPage > pagination.value.startPage)
+
+  const setNextPage = (): void => {
+    if (canNextPage.value)
+      page.value++
+  }
+
+  const setPrevPage = (): void => {
+    if (canPrevPage.value)
+      page.value--
+  }
+
+  const setPageIndex = (index: number): void => {
+    if (index >= pagination.value.startIndex && index <= pagination.value.endIndex) {
+      page.value = index + 1
+    }
+  }
+
+  //
+  // Sorting
+
+  const sorting = ref<Sorting<Ref<keyof Dataset[number]>>>({
+    key: undefined,
+    type: 'asc',
+  })
+
+  const setSort = (key: keyof Dataset[number], type: 'asc' | 'desc' | 'toggle' = 'asc'): void => {
+    sorting.value.key = key
+    sorting.value.type = type === 'toggle'
+      // Toggle between descending & ascending whenever the set sort fn is called
+      ? sorting.value.type === 'asc' ? 'desc' : 'asc'
+      : type
+  }
+
+  const clearSort = (): void => {
+    sorting.value.key = undefined
+    sorting.value.type = 'asc'
+  }
+
+  //
+  // Searching
+  const search = ref<string>()
+
+  const setSearch = (match?: string): void => {
+    search.value = match
+  }
+
+  //
+  // Dataset formatting
+  const filteredRows = computed(() => {
+    let final = $data.value
+
+    const searchValue = search.value
+
+    if (searchValue) {
+      final = final.filter((row: Dataset[number]) => {
+        const matches = Object
+          .values(row)
+          .map(row => `${row}`)
+        return searchInStr(matches, searchValue)
+      }) as Dataset
+    }
+
+    const key = sorting.value.key
+
+    if (key) {
+      final = final.toSorted((a: Dataset[number], b: Dataset[number]) => {
+        const aValue = a[key]
+        const bValue = b[key]
+        return sorting.value.type === 'asc'
+          ? aValue > bValue ? -1 : 1
+          : aValue > bValue ? 1 : -1
+      }) as Dataset
+    }
+
+    return final
+  })
+
+  const headers = computed(() => Object
+    .keys($data.value[0])
+    .filter(header => !header.startsWith('$')),
+  )
+
+  const rows = computed(() => {
+    return filteredRows.value.slice(
+      pagination.value.startIndex,
+      pagination.value.endIndex + 1,
+    )
+  })
+
+  // REVIEW:
+  // Cant nest computed?
+  // Does table composable need a toRefs return?
+
+  return {
+    setSort,
+    clearSort,
+    setSearch,
+    allRows: filteredRows,
+    rows,
+    headers,
+    pagination,
+    canPrevPage,
+    canNextPage,
+    setPrevPage,
+    setNextPage,
+    setPageIndex,
+  }
+}

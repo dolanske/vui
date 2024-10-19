@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
 import { Icon } from '@iconify/vue'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'

@@ -21,7 +21,7 @@ export function searchInStr(match: string | string[], input: string): boolean {
 interface Pagination {
   totalItems: number
   currentPage: number
-  pageSize: number
+  perPage: number
   totalPages: number
   startPage: number
   endPage: number
@@ -33,11 +33,11 @@ interface Pagination {
 export function paginate(
   totalItems: number,
   currentPage: number = 1,
-  pageSize: number = 10,
-  maxPages: number = 10,
+  perPage: number = 15,
+  maxPages: number = 5,
 ): Pagination {
   // calculate total pages
-  const totalPages = Math.ceil(totalItems / pageSize)
+  const totalPages = Math.ceil(totalItems / perPage)
 
   // ensure current page isn't out of range
   if (currentPage < 1) {
@@ -75,8 +75,8 @@ export function paginate(
   }
 
   // calculate start and end item indexes
-  const startIndex = (currentPage - 1) * pageSize
-  const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1)
+  const startIndex = (currentPage - 1) * perPage
+  const endIndex = Math.min(startIndex + perPage - 1, totalItems - 1)
 
   // create an array of pages to ng-repeat in the pager control
   const pages = createArray((endPage + 1) - startPage).map(i => startPage + i)
@@ -85,7 +85,7 @@ export function paginate(
   return {
     totalItems,
     currentPage,
-    pageSize,
+    perPage,
     totalPages,
     startPage,
     endPage,

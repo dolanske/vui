@@ -11,6 +11,9 @@ Opinionated vue UI library for building personal applications. Completely from s
   - l: 24
   - xl: 40
 
+- [ ] Fix code block having language highlight even if not set
+- [ ]
+
 ## TODO
 
 #### Components
@@ -29,7 +32,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Tabs
 - [x] Card
 - [x] Textarea
-  - [ ] Autoexpand
+  - [x] Autoexpand
 - [x] Modal
 - [x] Select
   - [x] Depends on <Dropdown />
@@ -70,9 +73,14 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Dropdown itme
   - [x] Dropdown title
 - [ ] Table
-  - [ ] Pagination helper fn
-  - [ ] Create data format
-  - [ ] All props
+  - [ ] Design composable
+  - [ ] Design components which can easily consume the return of table composable
+    - [ ] Each base component should only take one prop (prefix with "$"" ?)
+  - [ ] Compute the entire
+- [ ] Slider
+- [ ] Drawer
+  - [ ] https://ui.shadcn.com/docs/components/drawer
+  - [ ] Built on top of bottom sheet
 
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
