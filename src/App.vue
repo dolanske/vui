@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import Button from './components/Button/Button.vue'
-import { defineTableData, useTableData } from './components/Table/table'
+import { defineTable } from './components/Table/table'
 import { testData } from './components/Table/table_test_data'
 import TablePagination from './components/Table/TablePagination.vue'
 import Tab from './components/Tabs/Tab.vue'
@@ -17,12 +16,13 @@ const data = computed(() => {
 })
 
 const {
+  rows,
   canNextPage,
   canPrevPage,
-  setPrevPage,
-  setNextPage,
-  rows,
-} = useTableData(data, { perPage: 3 })
+  setPage,
+  pagination,
+  // headers,
+} = defineTable(data, { perPage: 3 })
 </script>
 
 <template>
@@ -33,20 +33,13 @@ const {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <!-- <Button :disabled="!canPrevPage" @click="setPrevPage">
-        Prev
-      </Button>
-      <Button :disabled="!canNextPage" @click="setNextPage">
-        Next
-      </Button> -->
-      <pre>{{ rows }}</pre>
-
       <TablePagination />
+      <pre>{{ rows }}</pre>
     </div>
     <div v-if="tab === 'components'">
-      <!-- <Table>
+    <!--   <Table>
         <template #header>
-          <Header v-for="head in table.headers" :key="head" />
+          <Header v-for="head in headers" :key="head" />
         </template>
         <template #rows>
           <Row v-for="item in testData" :key="item.resourceId">
@@ -56,7 +49,9 @@ const {
             <Cell>{{ item.title }}</Cell>
           </Row>
         </template>
-        <template #pagination="{ }" />
+        <template #pagination>
+          <Pagination />
+        </template>
       </Table> -->
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">

@@ -18,7 +18,7 @@ export function searchInStr(match: string | string[], input: string): boolean {
 }
 
 // Calculate pagination
-interface Pagination {
+export interface Pagination {
   totalItems: number
   currentPage: number
   perPage: number

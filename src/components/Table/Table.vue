@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import type { TableDataDefinition } from './table'
-import { paginate } from '../../shared/helpers'
 
 interface Props {
   // Pagination settings

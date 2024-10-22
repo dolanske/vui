@@ -120,6 +120,20 @@
     }
   }
 
+  &.vui-button-variant-blue {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-bg-blue-lowered);
+      border: 1px solid var(--color-border-blue);
+    }
+
+    &.active,
+    &:hover {
+      border: 1px solid var(--color-bg-blue-raised);
+      background-color: var(--color-bg-blue-raised);
+    }
+  }
+
   &.vui-button-variant-link {
     color: var(--color-text);
     background: transparent;

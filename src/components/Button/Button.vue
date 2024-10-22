@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
 import { Icon } from '@iconify/vue'
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-type Variants = 'default' | 'danger' | 'success' | 'link'
+type Variants = 'default' | 'danger' | 'success' | 'link' | 'blue'
 
 interface Props {
   // Provide URL to turn button into anchor

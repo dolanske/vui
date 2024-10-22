@@ -44,6 +44,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
+- [ ] Input Password
+  - [ ] Wrapper around input with an eye icon which changes type to text
 - [ ] Inline tabs
   - [ ] Basically like this https://ui.shadcn.com/docs/components/tabs
 - [x] Alert
@@ -58,6 +60,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
 - [ ] File input
   - [ ] Dropzone
+- [ ] Copy clipboard button
+  - [ ] Renderless component consuming button props + copy prop
+  - [ ] Copied text ()
 - [ ] Scrollable
   - [ ] Set max width or height (or size of the parent)
   - [ ] Should work within card

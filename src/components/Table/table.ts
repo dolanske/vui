@@ -1,5 +1,6 @@
-import type { Component, ComputedGetter, MaybeRefOrGetter, Ref } from 'vue'
-import { computed, ref, toValue } from 'vue'
+import type { MaybeRefOrGetter, Ref } from 'vue'
+import type { PaginationContext } from './TablePagination.vue'
+import { computed, provide, readonly, ref, toValue } from 'vue'
 import { paginate, searchInStr } from '../../shared/helpers'
 
 // Vue class binding
@@ -42,6 +43,10 @@ import { paginate, searchInStr } from '../../shared/helpers'
 
 // New implementation
 
+// const AsyncTablePagination = defineAsyncComponent(() => import('./TablePagination.vue'))
+
+export const PaginationSymbol = Symbol('pagination')
+
 interface Sorting<K> {
   key?: K
   type: 'asc' | 'desc'
@@ -57,16 +62,16 @@ interface TableOptions<Data extends Array<Record<string, any>>> {
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
-export function useTableData<const Dataset extends Array<Record<string, string | number>>>(computedDataset: MaybeRefOrGetter<Dataset>, options?: TableOptions<Dataset>) {
+export function defineTable<const Dataset extends Array<Record<string, string | number>>>(computedDataset: MaybeRefOrGetter<Dataset>, options?: TableOptions<Dataset>) {
   const $data = computed(() => toValue(computedDataset))
 
   //
   // Pagination
-  const page = ref(1)
+  const currentPage = ref(1)
 
   const pagination = computed(() => paginate(
     $data.value.length,
-    page.value,
+    currentPage.value,
     options?.perPage,
     options?.maxPages,
   ))
@@ -74,19 +79,16 @@ export function useTableData<const Dataset extends Array<Record<string, string |
   const canNextPage = computed(() => pagination.value.currentPage < pagination.value.endPage)
   const canPrevPage = computed(() => pagination.value.currentPage > pagination.value.startPage)
 
-  const setNextPage = (): void => {
-    if (canNextPage.value)
-      page.value++
-  }
-
-  const setPrevPage = (): void => {
-    if (canPrevPage.value)
-      page.value--
-  }
-
-  const setPageIndex = (index: number): void => {
-    if (index >= pagination.value.startIndex && index <= pagination.value.endIndex) {
-      page.value = index + 1
+  /**
+   * Sets the currently active data page. Please note that you provide the page
+   * number, no its index. So this is 1-indexed input
+   *
+   * @param page Page number
+   */
+  const setPage = (page: number): void => {
+    if ((page > currentPage.value && canNextPage.value)
+      || (page < currentPage.value && canPrevPage.value)) {
+      currentPage.value = page
     }
   }
 
@@ -162,22 +164,27 @@ export function useTableData<const Dataset extends Array<Record<string, string |
     )
   })
 
-  // REVIEW:
-  // Cant nest computed?
-  // Does table composable need a toRefs return?
+  // Object to be consumed by the pagination component
+  provide<PaginationContext>(
+    PaginationSymbol,
+    {
+      pagination,
+      canPrevPage,
+      canNextPage,
+      setPage,
+    },
+  )
 
   return {
     setSort,
     clearSort,
     setSearch,
-    allRows: filteredRows,
-    rows,
-    headers,
+    allRows: readonly(filteredRows),
+    rows: readonly(rows),
+    headers: readonly(headers),
     pagination,
     canPrevPage,
     canNextPage,
-    setPrevPage,
-    setNextPage,
-    setPageIndex,
+    setPage,
   }
 }
