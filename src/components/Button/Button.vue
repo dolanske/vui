@@ -63,7 +63,7 @@ const actualPadding = computed(() => {
 <template>
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled, plain, active, icon }, `vui-button-variant-${variant}`]"
+    :class="[{ loading, expand, disabled, plain, active, icon, square }, `vui-button-variant-${variant}`]"
     :disabled
   >
     <Spinner size="s" />

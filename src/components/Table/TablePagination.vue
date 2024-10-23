@@ -20,6 +20,8 @@ const props = withDefaults(defineProps<Props>(), {
   numbers: true,
 })
 
+// TODO: add option to replace context with full props
+
 const {
   pagination,
   canNextPage,

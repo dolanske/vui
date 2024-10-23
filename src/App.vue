@@ -17,12 +17,11 @@ const data = computed(() => {
 
 const {
   rows,
-  canNextPage,
-  canPrevPage,
-  setPage,
   pagination,
-  // headers,
-} = defineTable(data, { perPage: 3 })
+} = defineTable(data, {
+  perPage: 1,
+  maxPages: 3,
+})
 </script>
 
 <template>
@@ -34,6 +33,8 @@ const {
     </Tabs>
     <div v-if="tab === 'home'">
       <TablePagination />
+      <br>
+      <br>
       <pre>{{ rows }}</pre>
     </div>
     <div v-if="tab === 'components'">

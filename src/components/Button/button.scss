@@ -35,6 +35,11 @@
     }
   }
 
+  &.square {
+    width: var(--button-height);
+    padding: 0;
+  }
+
   height: var(--button-height);
   display: flex;
   align-items: center;
