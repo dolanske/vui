@@ -30,31 +30,27 @@ function setPrev() {
 </script>
 
 <template>
-  <Flex inline>
+  <Flex inline class="vui-pagination">
     <slot name="prev" :disabled="canPrevPage" :set-page="setPrev">
       <Button plain :disabled="!canPrevPage" square icon="ph:caret-left" @click="setPrev" />
     </slot>
 
     <template v-if="props.numbers">
-      <Button
-        v-for="page in props.pagination.pages"
-        :key="page"
-        square
-        :plain="props.pagination.currentPage !== page"
-        :variant="props.pagination.currentPage === page ? 'blue' : 'default'"
-        @click="emit('change', page)"
-      >
-        {{ page }}
-      </Button>
+      <Flex gap="s">
+        <Button
+          v-for="page in props.pagination.pages"
+          :key="page"
+          square
+          :plain="props.pagination.currentPage !== page"
+          :variant="props.pagination.currentPage === page ? 'blue' : 'default'"
+          @click="emit('change', page)"
+        >
+          {{ page }}
+        </Button>
+      </Flex>
     </template>
     <slot name="next" :disabled="canNextPage" :set-page="setNext">
       <Button plain :disabled="!canNextPage" square icon="ph:caret-right" @click="setNext" />
     </slot>
   </Flex>
 </template>
-
-<style scoped>
-.vui-button * {
-  transition-duration: 0;
-}
-</style>

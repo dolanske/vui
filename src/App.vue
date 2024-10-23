@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import Flex from './components/Flex/Flex.vue'
 import Pagination from './components/Pagination/Pagination.vue'
+import Cell from './components/Table/Cell.vue'
+import Header from './components/Table/Header.vue'
+import Row from './components/Table/Row.vue'
 import { defineTable } from './components/Table/table'
+import Table from './components/Table/Table.vue'
 import { testData } from './components/Table/table_test_data'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
@@ -12,17 +17,22 @@ const tab = ref('home')
 const data = computed(() => {
   return testData.map(row => ({
     Id: row.resourceId,
+    Account: row.account,
+    Title: row.title,
+    RuleId: row.ruleId,
   }))
 })
 
 const {
   rows,
+  allRows,
   pagination,
   setPage,
+  headers,
 } = defineTable(data, {
   pagination: {
-    perPage: 1,
-    maxPages: 3,
+    enable: true,
+    perPage: 3,
   },
 })
 </script>
@@ -35,25 +45,33 @@ const {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Pagination :pagination @change="setPage" />
+      <Table>
+        <template #header>
+          <Header v-for="header in headers" :key="header">
+            {{ header }}
+          </Header>
+        </template>
+        <template #body>
+          <Row v-for="item in rows" :key="item.Id">
+            <Cell>{{ item.Id }}</Cell>
+            <Cell>{{ item.Account }}</Cell>
+            <Cell>{{ item.Title }}</Cell>
+            <Cell>{{ item.RuleId }}</Cell>
+          </Row>
+        </template>
+        <template #pagination>
+          <Flex align-center space-between>
+            <p>Showing {{ pagination.totalItems }} out of {{ allRows.length }}</p>
+            <Pagination :pagination @change="setPage" />
+          </Flex>
+        </template>
+      </Table>
       <br>
       <br>
       <pre>{{ rows }}</pre>
     </div>
     <div v-if="tab === 'components'">
-      <!-- <Table>
-        <template #header>
-          <Header v-for="head in headers" :key="head" />
-        </template>
-        <template #rows>
-          <Row v-for="item in rows" :key="item.Id">
-            <Cell>{{ item.Id }}</Cell>
-          </Row>
-        </template>
-        <template #pagination>
-          <Pagination />
-        </template>
-      </Table> -->
+      idk
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

@@ -144,6 +144,7 @@ table {
     min-width: 80px;
     font-size: var(--font-size-m);
     line-height: 1.4em;
+    font-variant-numeric: tabular-nums;
 
     &:first-child {
       border-left: 1px solid var(--color-border);

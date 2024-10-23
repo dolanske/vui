@@ -58,14 +58,18 @@ interface TableOptions<Data extends Array<Record<string, any>>> {
     sorting?: boolean
   }>
   pagination?: {
+    enable?: boolean
     perPage?: number
     maxPages?: number
   }
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
-export function defineTable<const Dataset extends Array<Record<string, string | number>>>(computedDataset: MaybeRefOrGetter<Dataset>, options?: TableOptions<Dataset>) {
+export function defineTable<const Dataset extends Array<Record<string, string | number>>>(computedDataset: MaybeRefOrGetter<Dataset>, tableOptions?: TableOptions<Dataset>) {
   const $data = computed(() => toValue(computedDataset))
+
+  // TODO: defaults
+  const options = Object.assign({}, tableOptions)
 
   //
   // Pagination
@@ -160,7 +164,7 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   )
 
   const rows = computed(() => {
-    if (options?.pagination) {
+    if (options?.pagination?.enable === true) {
       return filteredRows.value.slice(
         pagination.value.startIndex,
         pagination.value.endIndex + 1,
