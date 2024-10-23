@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import Pagination from './components/Pagination/Pagination.vue'
 import { defineTable } from './components/Table/table'
 import { testData } from './components/Table/table_test_data'
-import TablePagination from './components/Table/TablePagination.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -18,9 +18,12 @@ const data = computed(() => {
 const {
   rows,
   pagination,
+  setPage,
 } = defineTable(data, {
-  perPage: 1,
-  maxPages: 3,
+  pagination: {
+    perPage: 1,
+    maxPages: 3,
+  },
 })
 </script>
 
@@ -32,22 +35,19 @@ const {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <TablePagination />
+      <Pagination :pagination @change="setPage" />
       <br>
       <br>
       <pre>{{ rows }}</pre>
     </div>
     <div v-if="tab === 'components'">
-    <!--   <Table>
+      <!-- <Table>
         <template #header>
           <Header v-for="head in headers" :key="head" />
         </template>
         <template #rows>
-          <Row v-for="item in testData" :key="item.resourceId">
-            <Cell>{{ item.account }}</Cell>
-            <Cell>{{ item.provider }}</Cell>
-            <Cell>{{ item.region }}</Cell>
-            <Cell>{{ item.title }}</Cell>
+          <Row v-for="item in rows" :key="item.Id">
+            <Cell>{{ item.Id }}</Cell>
           </Row>
         </template>
         <template #pagination>

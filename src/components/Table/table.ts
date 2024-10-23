@@ -1,7 +1,7 @@
 import type { MaybeRefOrGetter, Ref } from 'vue'
-import type { PaginationContext } from './TablePagination.vue'
-import { computed, provide, readonly, ref, toValue } from 'vue'
-import { paginate, searchInStr } from '../../shared/helpers'
+import { computed, readonly, ref, toValue } from 'vue'
+import { searchInStr } from '../../shared/helpers'
+import { paginate } from '../Pagination/pagination'
 
 // Vue class binding
 // type ClassDeclaration = string | Record<string, boolean> | Array<Record<string, boolean>>
@@ -45,7 +45,7 @@ import { paginate, searchInStr } from '../../shared/helpers'
 
 // const AsyncTablePagination = defineAsyncComponent(() => import('./TablePagination.vue'))
 
-export const PaginationSymbol = Symbol('pagination')
+// export const PaginationSymbol = Symbol('pagination')
 
 interface Sorting<K> {
   key?: K
@@ -57,8 +57,10 @@ interface TableOptions<Data extends Array<Record<string, any>>> {
   headers?: Record<keyof Data[number], {
     sorting?: boolean
   }>
-  perPage?: number
-  maxPages?: number
+  pagination?: {
+    perPage?: number
+    maxPages?: number
+  }
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
@@ -72,8 +74,8 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   const pagination = computed(() => paginate(
     $data.value.length,
     currentPage.value,
-    options?.perPage,
-    options?.maxPages,
+    options?.pagination?.perPage,
+    options?.pagination?.maxPages,
   ))
 
   const canNextPage = computed(() => pagination.value.currentPage < pagination.value.endPage)
@@ -158,22 +160,14 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   )
 
   const rows = computed(() => {
-    return filteredRows.value.slice(
-      pagination.value.startIndex,
-      pagination.value.endIndex + 1,
-    )
+    if (options?.pagination) {
+      return filteredRows.value.slice(
+        pagination.value.startIndex,
+        pagination.value.endIndex + 1,
+      ) as Dataset
+    }
+    return filteredRows.value as Dataset
   })
-
-  // Object to be consumed by the pagination component
-  provide<PaginationContext>(
-    PaginationSymbol,
-    {
-      pagination,
-      canPrevPage,
-      canNextPage,
-      setPage,
-    },
-  )
 
   return {
     setSort,
