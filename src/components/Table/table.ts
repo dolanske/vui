@@ -52,6 +52,13 @@ interface Sorting<K> {
   type: 'asc' | 'desc'
 }
 
+export interface Header {
+  label: string
+  sortToggle: () => void
+  sortKey?: 'asc' | 'desc'
+
+}
+
 interface TableOptions<Data extends Array<Record<string, any>>> {
   sort?: boolean
   headers?: Record<keyof Data[number], {
@@ -160,7 +167,36 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
 
   const headers = computed(() => Object
     .keys($data.value[0])
-    .filter(header => !header.startsWith('$')),
+    .map((key) => {
+      return {
+        label: key,
+        sortKey: sorting.value.key === key && sorting.value.type,
+        sortToggle: () => {
+          if (sorting.value.key === key) {
+            // 3-way toggle asc -> desc -> turn off (reset to undefined)
+            switch (sorting.value.type) {
+              case 'asc': {
+                sorting.value.type = 'desc'
+                break
+              }
+              case 'desc': {
+                sorting.value.key = undefined
+                sorting.value.key = 'asc'
+                break
+              }
+              default: {
+                sorting.value.key = key
+                sorting.value.type = 'asc'
+                break
+              }
+            }
+          }
+          else {
+            setSort(key)
+          }
+        },
+      } as Header
+    }),
   )
 
   const rows = computed(() => {

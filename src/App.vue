@@ -47,9 +47,7 @@ const {
     <div v-if="tab === 'home'">
       <Table>
         <template #header>
-          <Header v-for="header in headers" :key="header">
-            {{ header }}
-          </Header>
+          <Header v-for="header in headers" :key="header.label" :header="header" />
         </template>
         <template #body>
           <Row v-for="item in rows" :key="item.Id">

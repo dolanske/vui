@@ -4,13 +4,10 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
 
-  // & + .vui-pagination {
-  //   margin-top: var(--space-m);
-  // }
-
   table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
     text-indent: 0;
     border: none;
 
@@ -28,6 +25,18 @@
 
     th {
       color: var(--color-text-light);
+      font-size: var(--font-size-s);
+
+      .vui-table-th-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-s);
+
+        .vui-table-sort-button svg path {
+          color: var(--color-text-light);
+        }
+      }
     }
   }
 
