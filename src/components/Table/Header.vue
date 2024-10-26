@@ -22,19 +22,19 @@ const icon = computed(() => {
 <template>
   <th>
     <div class="vui-table-th-content">
-      <slot>
-        {{ props.header.label }}
-      </slot>
-
       <Button
         v-if="props.disableSort !== true"
         class="vui-table-sort-button"
+        :class="{ active: !!props.header.sortKey }"
         size="s"
         plain
         square
         :icon="icon"
         @click="props.header.sortToggle"
       />
+      <slot>
+        {{ props.header.label }}
+      </slot>
     </div>
   </th>
 </template>

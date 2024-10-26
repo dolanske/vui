@@ -11,9 +11,18 @@ interface Props {
 
   // Used to add checkboxs to each row
   select?: boolean
+  fixed?: boolean
+  /**
+   * Table cells with content overflowing on new line will be cropped
+   */
+  nowrap?: boolean
 }
 
-const props = defineProps<Props>()
+const {
+  select,
+  fixed,
+  nowrap,
+} = defineProps<Props>()
 
 const slots = defineSlots<{
   header: (props: {}) => any
@@ -23,7 +32,7 @@ const slots = defineSlots<{
 </script>
 
 <template>
-  <div class="vui-table-container">
+  <div class="vui-table-container" :class="{ fixed, nowrap }">
     <table>
       <thead>
         <tr>

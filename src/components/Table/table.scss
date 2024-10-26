@@ -4,10 +4,23 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
 
+  &.fixed table {
+    table-layout: fixed;
+  }
+
+  &.nowrap table tr {
+    th,
+    td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
+    // table-layout: fixed;
     text-indent: 0;
     border: none;
 
@@ -29,12 +42,12 @@
 
       .vui-table-th-content {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         gap: var(--space-s);
 
-        .vui-table-sort-button svg path {
-          color: var(--color-text-light);
+        .vui-table-sort-button:not(.active) svg path {
+          color: var(--color-text-lighter);
         }
       }
     }

@@ -45,7 +45,7 @@ const {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table>
+      <Table fixed nowrap>
         <template #header>
           <Header v-for="header in headers" :key="header.label" :header="header" />
         </template>
