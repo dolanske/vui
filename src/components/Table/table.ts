@@ -1,4 +1,4 @@
-import type { MaybeRefOrGetter, Ref } from 'vue'
+import type { InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
 import { computed, provide, readonly, ref, toValue } from 'vue'
 import { searchInStr } from '../../shared/helpers'
@@ -42,11 +42,13 @@ import { paginate } from '../Pagination/pagination'
 
 ////////
 
-export const SelectProvideSymbol = Symbol('select-row-provide')
-
 export interface SelectProvide {
-
+  selectedIndexes: Ref<Set<number>>
+  selectRow: (row: number | Record<string, string | number>) => void
+  selectAllRows: () => void
 }
+
+export const SelectProvideSymbol = Symbol('select-row-provide') as InjectionKey<SelectProvide>
 
 interface Sorting<K> {
   key?: K
@@ -251,9 +253,23 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
     }
   }
 
+  function selectAllRows(): void {
+    const length = $data.value.length
+    if (selectedIndexes.value.size === length) {
+      // If the selected indexes have the same length as the data array, we can
+      // assume all of them are selected. Therefore we toggle it by deselecting
+      // all of them
+      selectedIndexes.value = new Set()
+    }
+    else {
+      selectedIndexes.value = new Set(Array.from({ length }).map((_, index) => index))
+    }
+  }
+
   provide(SelectProvideSymbol, {
     selectedIndexes,
     selectRow,
+    selectAllRows,
   })
 
   return {

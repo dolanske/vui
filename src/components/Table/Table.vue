@@ -1,5 +1,8 @@
 <script setup lang='ts'>
+import type { SelectProvide } from './table'
+import { inject } from 'vue'
 import Checkbox from '../Checkbox/Checkbox.vue'
+import { SelectProvideSymbol } from './table'
 import './table.scss'
 
 interface Props {
@@ -28,12 +31,13 @@ const {
 
 // TODO: type slots
 
-const slots = defineSlots<{
-  header: (props: {}) => any
-  body: (props: {}) => any
-  pagination: () => any
-}>()
+// const slots = defineSlots<{
+//   header: (props: {}) => any
+//   body: (props: {}) => any
+//   pagination: () => any
+// }>()
 
+const selected = inject(SelectProvideSymbol)
 // TODO: use provide and implement selecting
 </script>
 
@@ -43,7 +47,7 @@ const slots = defineSlots<{
       <thead>
         <tr>
           <th v-if="select" class="vui-table-checkbox-cell">
-            <Checkbox />
+            <Checkbox @change="selected?.selectAllRows()" />
           </th>
           <slot name="header" />
         </tr>
