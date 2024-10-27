@@ -76,7 +76,7 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   const $data = computed(() => toValue(computedDataset))
 
   // TODO: defaults
-  const options = Object.assign({}, tableOptions)
+  const options = ref(Object.assign({}, tableOptions))
 
   //
   // Pagination
@@ -85,8 +85,8 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   const pagination = computed(() => paginate(
     $data.value.length,
     currentPage.value,
-    options?.pagination?.perPage,
-    options?.pagination?.maxPages,
+    options.value.pagination?.perPage,
+    options.value.pagination?.maxPages,
   ))
 
   const canNextPage = computed(() => pagination.value.currentPage < pagination.value.endPage)
@@ -172,8 +172,8 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
         label: key,
         sortKey: sorting.value.key === key && sorting.value.type,
         sortToggle: () => {
+          // 3-way toggle asc -> desc -> turn off (reset to undefined)
           if (sorting.value.key === key) {
-            // 3-way toggle asc -> desc -> turn off (reset to undefined)
             switch (sorting.value.type) {
               case 'asc': {
                 sorting.value.type = 'desc'
@@ -200,7 +200,7 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   )
 
   const rows = computed(() => {
-    if (options?.pagination?.enable === true) {
+    if (options.value.pagination?.enable === true) {
       return filteredRows.value.slice(
         pagination.value.startIndex,
         pagination.value.endIndex + 1,

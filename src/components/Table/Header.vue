@@ -4,36 +4,54 @@ import { computed } from 'vue'
 import Button from '../Button/Button.vue'
 
 interface Props {
-  header: Header
-  disableSort?: boolean
+  /**
+   * Main header data. This can be empty in case we are just adding an empty
+   * padder. It is recommended to just use <th> instead, but this shouldn't fail
+   * anyway
+   */
+  header?: Header
+  /**
+   * Enable sorting on this column
+   */
+  sort?: boolean
 }
 
 const props = defineProps<Props>()
 
-const icon = computed(() => {
+const sortStateBind = computed(() => {
+  if (!props.header)
+    return
   switch (props.header.sortKey) {
-    case 'asc': return 'ph:sort-ascending'
-    case 'desc': return 'ph:sort-descending'
-    default: return 'ph:arrows-down-up'
+    case 'asc': return {
+      'icon': 'ph:sort-ascending',
+      'data-title-top': 'Ascending',
+    }
+    case 'desc': return {
+      'icon': 'ph:sort-descending',
+      'data-title-top': 'Descending',
+    }
+    default: return {
+      'icon': 'ph:arrows-down-up',
+      'data-title-top': 'Sort column',
+    }
   }
 })
 </script>
 
 <template>
   <th>
-    <div class="vui-table-th-content">
+    <div v-if="props.header" class="vui-table-th-content">
       <slot>
         {{ props.header.label }}
       </slot>
       <Button
-        v-if="props.disableSort !== true"
+        v-if="props.sort"
         class="vui-table-sort-button"
-        data-title-top="Sort"
+        v-bind="sortStateBind"
         :class="{ active: !!props.header.sortKey }"
         size="s"
         plain
         square
-        :icon="icon"
         @click="props.header.sortToggle"
       />
     </div>

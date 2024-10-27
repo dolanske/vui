@@ -19,7 +19,7 @@ interface Props {
 }
 
 const {
-  select,
+  // select,
   fixed,
   nowrap,
 } = defineProps<Props>()

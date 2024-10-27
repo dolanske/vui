@@ -25,14 +25,13 @@ const data = computed(() => {
 
 const {
   rows,
-  allRows,
   pagination,
   setPage,
   headers,
 } = defineTable(data, {
   pagination: {
     enable: true,
-    perPage: 3,
+    perPage: 5,
   },
 })
 </script>
@@ -45,9 +44,9 @@ const {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table fixed nowrap>
+      <Table nowrap>
         <template #header>
-          <Header v-for="header in headers" :key="header.label" :header="header" />
+          <Header v-for="header in headers" :key="header.label" :header="header" sort />
         </template>
         <template #body>
           <Row v-for="item in rows" :key="item.Id">
@@ -58,8 +57,7 @@ const {
           </Row>
         </template>
         <template #pagination>
-          <Flex align-center space-between>
-            <p>Showing {{ pagination.totalItems }} out of {{ allRows.length }}</p>
+          <Flex justify-end>
             <Pagination :pagination :numbers="false" @change="setPage" />
           </Flex>
         </template>
