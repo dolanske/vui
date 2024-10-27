@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
-import { computed, readonly, ref, toValue } from 'vue'
+import { computed, provide, readonly, ref, toValue } from 'vue'
 import { searchInStr } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
@@ -42,11 +42,11 @@ import { paginate } from '../Pagination/pagination'
 
 ////////
 
-// New implementation
+export const SelectProvideSymbol = Symbol('select-row-provide')
 
-// const AsyncTablePagination = defineAsyncComponent(() => import('./TablePagination.vue'))
+export interface SelectProvide {
 
-// export const PaginationSymbol = Symbol('pagination')
+}
 
 interface Sorting<K> {
   key?: K
@@ -61,19 +61,12 @@ export interface Header {
 }
 
 interface TableOptionsInput {
-  // headers?: Record<keyof Data[number], {
-  //   sorting?: boolean
-  // }>
   pagination?: {
     enabled?: boolean
     perPage?: number
     maxPages?: number
   }
 }
-
-// interface TableOptions<Data extends Array<Record<string, any>>> {
-
-// }
 
 // eslint-disable-next-line ts/explicit-function-return-type
 export function defineTable<const Dataset extends Array<Record<string, string | number>>>(
@@ -82,7 +75,8 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
 ) {
   const $data = computed(() => toValue(computedDataset))
 
-  // TODO: defaultsƒ
+  //
+  //
   const options = ref(Object.assign({
     pagination: {
       enabled: false,
@@ -168,11 +162,12 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
         const aValue = a[key]
         const bValue = b[key]
         return sorting.value.type === 'asc'
-          ? aValue > bValue ? -1 : 1
-          : aValue > bValue ? 1 : -1
+          ? aValue > bValue ? 1 : -1
+          : aValue > bValue ? -1 : 1
       }) as Dataset
     }
 
+    // TODO: add a $property if the row is selected
     return final
   })
 
@@ -220,17 +215,60 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
     return filteredRows.value as Dataset
   })
 
+  //
+  // Row selecting
+  const selectedIndexes = ref<Set<number>>(new Set())
+  const selectedRows = computed<Dataset[number][]>(() => {
+    return $data.value.filter((_, index) => selectedIndexes.value.has(index))
+  })
+
+  /**
+   * Accepts either an existing index of a row within the dataset or the dataset
+   * row itself. If the item is already selected, it will be deselected.
+   *
+   * @param row {Number | RowObject}
+   */
+  function selectRow(row: number | Dataset[number]): void {
+    const toggleIndex = (i: number): void => {
+      if (selectedIndexes.value.has(i)) {
+        selectedIndexes.value.delete(i)
+      }
+      else {
+        selectedIndexes.value.add(i)
+      }
+    }
+
+    if (typeof row === 'number') {
+      if ($data.value[row]) {
+        toggleIndex(row)
+      }
+    }
+    else {
+      const newIndex = $data.value.findIndex(r => r === row)
+      if (newIndex > -1) {
+        toggleIndex(newIndex)
+      }
+    }
+  }
+
+  provide(SelectProvideSymbol, {
+    selectedIndexes,
+    selectRow,
+  })
+
   return {
     setSort,
     clearSort,
     setSearch,
-    allRows: readonly(filteredRows),
     rows: readonly(rows),
+    allRows: readonly(filteredRows),
+    selectedRows: readonly(selectedRows),
     headers: readonly(headers),
     pagination,
     canPrevPage,
     canNextPage,
     setPage,
     options,
+    selectRow,
   }
 }

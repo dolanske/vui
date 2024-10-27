@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import Checkbox from './components/Checkbox/Checkbox.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
 import Pagination from './components/Pagination/Pagination.vue'
@@ -24,12 +25,7 @@ const data = computed(() => {
   }))
 })
 
-const {
-  rows,
-  pagination,
-  setPage,
-  headers,
-} = defineTable(data, {
+const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
   pagination: {
     enabled: true,
     perPage: 5,
@@ -45,12 +41,12 @@ const {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table nowrap>
+      <Table fixed select>
         <template #header>
           <Header v-for="header in headers" :key="header.label" :header="header" sort />
         </template>
         <template #body>
-          <Row v-for="item in rows" :key="item.Id">
+          <Row v-for="(item, index) in rows" :key="index">
             <Cell>{{ item.Id }}</Cell>
             <Cell>{{ item.Account }}</Cell>
             <Cell>{{ item.Title }}</Cell>

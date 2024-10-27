@@ -16,6 +16,9 @@ const {
   iconOff = 'ph:square-bold',
   disabled,
 } = defineProps<Props>()
+const emit = defineEmits<{
+  change: [checked: boolean]
+}>()
 const slots = defineSlots()
 const checked = defineModel<boolean>()
 const id = useId()
@@ -23,13 +26,19 @@ const id = useId()
 
 <template>
   <div class="vui-checkbox" :class="{ disabled: !!disabled, checked }">
-    <input :id v-model="checked" type="checkbox" :disabled>
+    <input
+      :id
+      v-model="checked"
+      type="checkbox"
+      :disabled
+      @change="emit('change', ($event.target as HTMLInputElement).checked)"
+    >
     <label :for="id">
       <span class="vui-checkbox-icon">
         <Icon :icon="checked ? iconOn : iconOff" />
       </span>
-      <p v-if="!slots.default" class="vui-checkbox-content">{{ label }}</p>
-      <div v-else class="vui-checkbox-content">
+      <p v-if="label" class="vui-checkbox-content">{{ label }}</p>
+      <div v-else-if="slots.default" class="vui-checkbox-content">
         <slot />
       </div>
     </label>
