@@ -66,3 +66,9 @@ function setPrev() {
     </slot>
   </Flex>
 </template>
+
+<style scoped>
+[data-title-top]:before {
+  white-space: nowrap;
+}
+</style>

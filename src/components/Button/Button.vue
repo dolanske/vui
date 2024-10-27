@@ -15,6 +15,7 @@ interface Props {
   loading?: boolean
   expand?: boolean
   square?: boolean
+  dashed?: boolean
   disabled?: boolean
   size?: Sizes
   /**
@@ -39,6 +40,7 @@ const {
   size = 'm',
   variant = 'default',
   icon,
+  dashed,
 } = defineProps<Props>()
 
 const actualHeight = computed(() => {
@@ -63,7 +65,7 @@ const actualPadding = computed(() => {
 <template>
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled, plain, active, icon, square }, `vui-button-variant-${variant}`]"
+    :class="[{ loading, expand, disabled, plain, active, icon, square, dashed }, `vui-button-variant-${variant}`]"
     :disabled
   >
     <Spinner size="s" />

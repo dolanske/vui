@@ -64,7 +64,7 @@ const {
       </Table>
       <br>
       <br>
-      <pre>{{ rows }}</pre>
+      <pre data-lang="JSON">{{ rows }}</pre>
     </div>
     <div v-if="tab === 'components'">
       idk

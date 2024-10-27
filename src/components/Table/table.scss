@@ -38,10 +38,11 @@
     }
 
     th {
-      color: var(--color-text-light);
-      font-size: var(--font-size-s);
-
       .vui-table-th-content {
+        color: var(--color-text-light);
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        font-weight: 500;
         display: flex;
         justify-content: flex-start;
         align-items: center;

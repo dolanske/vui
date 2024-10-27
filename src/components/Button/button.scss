@@ -44,6 +44,10 @@
     padding: 0;
   }
 
+  &.dashed {
+    border-style: dashed;
+  }
+
   height: var(--button-height);
   display: flex;
   align-items: center;

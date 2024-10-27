@@ -16,7 +16,6 @@ Available tooltip positions:
   position: relative;
 
   &:before {
-    display: block;
     font-family: var(--global-font);
     font-weight: 400;
     background-color: var(--color-bg-raised);
@@ -25,12 +24,10 @@ Available tooltip positions:
     font-size: var(--font-size-ms);
     position: absolute;
     padding: 4px 8px;
-    // height: 22px;
     line-height: 1.3em;
     border-radius: var(--border-radius-m);
     transition: var(--transition);
 
-    // white-space: nowrap;
     max-width: 512px;
     opacity: 0;
     cursor: default;
