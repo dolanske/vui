@@ -1,54 +1,36 @@
 import type { InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
-import { computed, provide, readonly, ref, toValue } from 'vue'
+import { computed, onBeforeUnmount, provide, readonly, ref, toValue } from 'vue'
 import { searchInStr } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
-// Vue class binding
-// type ClassDeclaration = string | Record<string, boolean> | Array<Record<string, boolean>>
-
-// // String & numbeare primitives
-// // Component will bind row data with rowKey and rowData
-// type Cell = string | number | Component
-
-// export interface TableData<Headers extends readonly any[]> {
-//   rows: Array<Record<Headers[number], Cell> & {
-//     $options?: {
-//       class?: ClassDeclaration
-//     }
-//     $child?: {
-//       component: Component
-//       props?: Record<PropertyKey, any>
-//     } | Component
-//   }>
-// }
-
-// // TODO: properly type out table definition return
-// export interface TableDataDefinition {
-//   data: any[]
-//   headers: string[]
-// }
-
-// export function defineTableData<const H extends readonly any[]>(
-//   headers: H,
-//   data: TableData<H>,
-// ): TableDataDefinition {
-//   // TODO: actually format
-//   return {
-//     headers: headers as unknown as string[],
-//     data: data as any,
-//   }
-// }
-
-////////
+type BaseRow = Record<string, string | number>
 
 export interface SelectProvide {
-  selectedIndexes: Ref<Set<number>>
-  selectRow: (row: number | Record<string, string | number>) => void
+  selectedIds: Ref<Set<string>>
+  selectRow: (row: BaseRow) => void
   selectAllRows: () => void
 }
 
 export const SelectProvideSymbol = Symbol('select-row-provide') as InjectionKey<SelectProvide>
+
+// Store the keys which reference a data row. In order to reduce the setup, we
+// serialize the shallow object into an id. This way we can recognize the data
+// without having to store it in the original data object.
+const RowIdCache = new Map<BaseRow, string>()
+
+function generateRowId(row: BaseRow): string {
+  // Check wether the row key already exists
+  const existing = RowIdCache.get(row)
+  if (existing)
+    return existing
+
+  const entries = Object.entries(row)
+  entries.sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+  const id = entries.map(([key, value]) => `${key}:${value}`).join('|')
+  RowIdCache.set(row, id)
+  return id
+}
 
 interface Sorting<K> {
   key?: K
@@ -71,7 +53,7 @@ interface TableOptionsInput {
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
-export function defineTable<const Dataset extends Array<Record<string, string | number>>>(
+export function defineTable<const Dataset extends Array<BaseRow>>(
   computedDataset: MaybeRefOrGetter<Dataset>,
   tableOptions?: TableOptionsInput,
 ) {
@@ -219,9 +201,9 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
 
   //
   // Row selecting
-  const selectedIndexes = ref<Set<number>>(new Set())
+  const selectedIds = ref<Set<string>>(new Set())
   const selectedRows = computed<Dataset[number][]>(() => {
-    return $data.value.filter((_, index) => selectedIndexes.value.has(index))
+    return $data.value.filter(row => selectedIds.value.has(generateRowId(row)))
   })
 
   /**
@@ -230,46 +212,41 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
    *
    * @param row {Number | RowObject}
    */
-  function selectRow(row: number | Dataset[number]): void {
-    const toggleIndex = (i: number): void => {
-      if (selectedIndexes.value.has(i)) {
-        selectedIndexes.value.delete(i)
-      }
-      else {
-        selectedIndexes.value.add(i)
-      }
-    }
+  function selectRow(row: Dataset[number]): void {
+    const rowId = generateRowId(row)
 
-    if (typeof row === 'number') {
-      if ($data.value[row]) {
-        toggleIndex(row)
-      }
+    // Toggle wether row is selected or not
+    if (selectedIds.value.has(rowId)) {
+      selectedIds.value.delete(rowId)
     }
     else {
-      const newIndex = $data.value.findIndex(r => r === row)
-      if (newIndex > -1) {
-        toggleIndex(newIndex)
-      }
+      selectedIds.value.add(rowId)
     }
   }
 
+  const allRowsSelected = computed(() => $data.value.length === selectedIds.value.size)
+
   function selectAllRows(): void {
-    const length = $data.value.length
-    if (selectedIndexes.value.size === length) {
+    if (allRowsSelected.value) {
       // If the selected indexes have the same length as the data array, we can
       // assume all of them are selected. Therefore we toggle it by deselecting
       // all of them
-      selectedIndexes.value = new Set()
+      selectedIds.value = new Set()
     }
     else {
-      selectedIndexes.value = new Set(Array.from({ length }).map((_, index) => index))
+      selectedIds.value = new Set($data.value.map(row => generateRowId(row)))
     }
   }
 
   provide(SelectProvideSymbol, {
-    selectedIndexes,
+    selectedIds,
     selectRow,
     selectAllRows,
+  })
+
+  // Make sure to clear all cached Ids when component is unmounted
+  onBeforeUnmount(() => {
+    RowIdCache.clear()
   })
 
   return {
