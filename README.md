@@ -78,10 +78,10 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Dropdown itme
   - [x] Dropdown title
 - [ ] Table
-  - [ ] Design composable
-  - [ ] Design components which can easily consume the return of table composable
-    - [ ] Each base component should only take one prop (prefix with "$"" ?)
-  - [ ] Compute the entire
+  - [x] Header & sorting
+  - [X] Pagination
+  - [ ] Row select
+  - [ ] Reactive options (ability to alter functionality without having to re-render whole table)
 - [ ] Slider
 - [ ] Drawer
   - [ ] https://ui.shadcn.com/docs/components/drawer

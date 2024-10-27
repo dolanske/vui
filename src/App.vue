@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import Flex from './components/Flex/Flex.vue'
+import Input from './components/Input/Input.vue'
 import Pagination from './components/Pagination/Pagination.vue'
 import Cell from './components/Table/Cell.vue'
 import Header from './components/Table/Header.vue'
@@ -30,7 +31,7 @@ const {
   headers,
 } = defineTable(data, {
   pagination: {
-    enable: true,
+    enabled: true,
     perPage: 5,
   },
 })

@@ -34,7 +34,7 @@ function setPrev() {
 </script>
 
 <template>
-  <Flex inline class="vui-pagination">
+  <Flex inline class="vui-pagination" gap="s">
     <slot name="start">
       <Button v-if="props.firstLast" data-title-top="First page" plain :disabled="props.pagination.startPage === props.pagination.currentPage" square icon="ph:caret-double-left" @click="emit('change', props.pagination.startPage)" />
     </slot>

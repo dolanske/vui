@@ -1,4 +1,5 @@
 import type { MaybeRefOrGetter, Ref } from 'vue'
+import type { DeepRequired } from '../../shared/types'
 import { computed, readonly, ref, toValue } from 'vue'
 import { searchInStr } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
@@ -59,24 +60,36 @@ export interface Header {
 
 }
 
-interface TableOptions<Data extends Array<Record<string, any>>> {
-  sort?: boolean
-  headers?: Record<keyof Data[number], {
-    sorting?: boolean
-  }>
+interface TableOptionsInput {
+  // headers?: Record<keyof Data[number], {
+  //   sorting?: boolean
+  // }>
   pagination?: {
-    enable?: boolean
+    enabled?: boolean
     perPage?: number
     maxPages?: number
   }
 }
 
+// interface TableOptions<Data extends Array<Record<string, any>>> {
+
+// }
+
 // eslint-disable-next-line ts/explicit-function-return-type
-export function defineTable<const Dataset extends Array<Record<string, string | number>>>(computedDataset: MaybeRefOrGetter<Dataset>, tableOptions?: TableOptions<Dataset>) {
+export function defineTable<const Dataset extends Array<Record<string, string | number>>>(
+  computedDataset: MaybeRefOrGetter<Dataset>,
+  tableOptions?: TableOptionsInput,
+) {
   const $data = computed(() => toValue(computedDataset))
 
-  // TODO: defaults
-  const options = ref(Object.assign({}, tableOptions))
+  // TODO: defaultsƒ
+  const options = ref(Object.assign({
+    pagination: {
+      enabled: false,
+      perPage: 10,
+      maxPages: 3,
+    },
+  }, tableOptions) as DeepRequired<TableOptionsInput>)
 
   //
   // Pagination
@@ -129,7 +142,6 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   //
   // Searching
   const search = ref<string>()
-
   const setSearch = (match?: string): void => {
     search.value = match
   }
@@ -137,9 +149,8 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   //
   // Dataset formatting
   const filteredRows = computed(() => {
-    let final = $data.value
-
     const searchValue = search.value
+    let final = $data.value
 
     if (searchValue) {
       final = final.filter((row: Dataset[number]) => {
@@ -200,7 +211,7 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
   )
 
   const rows = computed(() => {
-    if (options.value.pagination?.enable === true) {
+    if (options.value.pagination?.enabled === true) {
       return filteredRows.value.slice(
         pagination.value.startIndex,
         pagination.value.endIndex + 1,
@@ -220,5 +231,6 @@ export function defineTable<const Dataset extends Array<Record<string, string | 
     canPrevPage,
     canNextPage,
     setPage,
+    options,
   }
 }

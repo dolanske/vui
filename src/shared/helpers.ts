@@ -17,4 +17,6 @@ export function searchInStr(match: string | string[], input: string): boolean {
   return split.every(s => joint.toLowerCase().includes(s.toLowerCase()))
 }
 
-// Calculate pagination
+export function getMaybeRefLength(value: string | number): number {
+  return typeof value === 'number' ? value : value.length
+}
