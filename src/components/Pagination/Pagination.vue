@@ -7,10 +7,14 @@ import Flex from '../Flex/Flex.vue'
 interface Props {
   numbers?: boolean
   pagination: Pagination
+  prevNext?: boolean
+  firstLast?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   numbers: true,
+  prevNext: true,
+  firstLast: true,
 })
 
 const emit = defineEmits<{
@@ -31,8 +35,12 @@ function setPrev() {
 
 <template>
   <Flex inline class="vui-pagination">
+    <slot name="start">
+      <Button v-if="props.firstLast" data-title-top="First page" plain :disabled="props.pagination.startPage === props.pagination.currentPage" square icon="ph:caret-double-left" @click="emit('change', props.pagination.startPage)" />
+    </slot>
+
     <slot name="prev" :disabled="canPrevPage" :set-page="setPrev">
-      <Button plain :disabled="!canPrevPage" square icon="ph:caret-left" @click="setPrev" />
+      <Button v-if="props.prevNext" data-title-top="Previous page" plain :disabled="!canPrevPage" square icon="ph:caret-left" @click="setPrev" />
     </slot>
 
     <template v-if="props.numbers">
@@ -50,7 +58,11 @@ function setPrev() {
       </Flex>
     </template>
     <slot name="next" :disabled="canNextPage" :set-page="setNext">
-      <Button plain :disabled="!canNextPage" square icon="ph:caret-right" @click="setNext" />
+      <Button v-if="props.prevNext" data-title-top="Next page" plain :disabled="!canNextPage" square icon="ph:caret-right" @click="setNext" />
+    </slot>
+
+    <slot name="end">
+      <Button v-if="props.firstLast" data-title-top="Last page" plain :disabled="props.pagination.endPage === props.pagination.currentPage" square icon="ph:caret-double-right" @click="emit('change', props.pagination.endPage)" />
     </slot>
   </Flex>
 </template>

@@ -60,7 +60,7 @@ const {
         <template #pagination>
           <Flex align-center space-between>
             <p>Showing {{ pagination.totalItems }} out of {{ allRows.length }}</p>
-            <Pagination :pagination @change="setPage" />
+            <Pagination :pagination :numbers="false" @change="setPage" />
           </Flex>
         </template>
       </Table>

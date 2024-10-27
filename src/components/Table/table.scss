@@ -1,6 +1,7 @@
 .vui-table-container {
   display: block;
   width: 100%;
+
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
 
@@ -9,7 +10,6 @@
   }
 
   &.nowrap table tr {
-    th,
     td {
       white-space: nowrap;
       overflow: hidden;
@@ -23,6 +23,7 @@
     // table-layout: fixed;
     text-indent: 0;
     border: none;
+    overflow: unset;
 
     tr {
       border: none;
@@ -44,7 +45,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: var(--space-s);
+        gap: var(--space-xs);
 
         .vui-table-sort-button:not(.active) svg path {
           color: var(--color-text-lighter);
