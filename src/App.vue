@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import Button from './components/Button/Button.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
@@ -27,7 +28,7 @@ const data = computed(() => {
   }))
 })
 
-const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
+const { rows, pagination, setPage, headers } = defineTable(data, {
   pagination: {
     enabled: true,
     perPage: 5,
@@ -44,7 +45,7 @@ const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table fixed nowrap>
+      <Table fixed nowrap separate-cells>
         <template #header>
           <SelectAll />
           <Header v-for="header in headers" :key="header.label" :header="header" sort />
@@ -55,7 +56,12 @@ const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
             <Cell>{{ item.Id }}</Cell>
             <Cell>{{ item.Account }}</Cell>
             <Cell>{{ item.Title }}</Cell>
-            <Cell>{{ item.RuleId }}</Cell>
+            <Cell>
+              {{ item.RuleId }}
+              <template #context>
+                <Button size="s" square icon="ph:dots-three-vertical-bold" plain />
+              </template>
+            </Cell>
           </Row>
         </template>
         <template #pagination>
@@ -66,7 +72,7 @@ const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
       </Table>
       <br>
       <br>
-      <pre data-lang="JSON">{{ selectedRows }}</pre>
+      <!-- <pre data-lang="JSON">{{ selectedRows }}</pre> -->
     </div>
     <div v-if="tab === 'components'">
       idk

@@ -12,7 +12,7 @@ const {
 </script>
 
 <template>
-  <th v-if="enabled" class="vui-table-checkbox-cell" :class="{ selected: isSelectedAll }">
+  <th v-if="enabled" class="vui-table-interactive-cell" :class="{ selected: isSelectedAll }">
     <Button
       square
       plain

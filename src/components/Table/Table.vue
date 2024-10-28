@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import type { TableSelectionProvide } from './table'
-import { inject, onMounted } from 'vue'
-import Checkbox from '../Checkbox/Checkbox.vue'
+import { inject } from 'vue'
 import { TableSelectionProvideSymbol } from './table'
 import './table.scss'
 
@@ -14,18 +13,36 @@ interface Props {
    * Table cells with content overflowing on new line will be cropped
    */
   nowrap?: boolean
+  /**
+   * Add a visual separator between each row
+   */
+  separateRows?: boolean
+  /**
+   * Add a visual separator between each cell
+   */
+  separateCells?: boolean
 }
 
 const {
   fixed,
   nowrap,
+  separateRows = true,
+  separateCells = false,
 } = defineProps<Props>()
-
 const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
 </script>
 
 <template>
-  <div class="vui-table-container" :class="{ fixed, nowrap, selecting: selecting.enabled }">
+  <div
+    class="vui-table-container"
+    :class="{
+      fixed,
+      nowrap,
+      'selecting': selecting.enabled,
+      'separated-rows': separateRows,
+      'separated-cells': separateCells,
+    }"
+  >
     <table>
       <thead>
         <tr>
@@ -36,7 +53,6 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
         <slot name="body" />
       </tbody>
     </table>
-
     <div class="vui-table-pagination-wrap">
       <slot name="pagination" />
     </div>

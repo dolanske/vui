@@ -155,7 +155,6 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
       }) as Dataset
     }
 
-    // TODO: add a $property if the row is selected
     return final
   })
 

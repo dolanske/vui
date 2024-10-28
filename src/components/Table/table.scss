@@ -17,10 +17,27 @@
     }
   }
 
+  &.separated-rows table {
+    th,
+    td {
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  &.separated-cells table {
+    th,
+    td {
+      border-right: 1px solid var(--color-border);
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
-    // table-layout: fixed;
     text-indent: 0;
     border: none;
     overflow: unset;
@@ -28,7 +45,7 @@
     tr {
       border: none;
 
-      &:has(.vui-table-checkbox-cell.selected) {
+      &:has(.vui-table-interactive-cell.selected) {
         td {
           background-color: var(--color-bg-raised);
         }
@@ -40,11 +57,12 @@
       font-size: var(--font-size-ms);
       border: none;
       border-left: none !important;
-      border-bottom: 1px solid var(--color-border);
       transition: var(--transition-quick);
+      position: relative;
+      z-index: 1;
 
       // Fixed width, only houses a checkbox component
-      &.vui-table-checkbox-cell {
+      &.vui-table-interactive-cell {
         --checkbox-cell-width: calc(calc(var(--space-xs) * 2) + 32px);
         width: var(--checkbox-cell-width);
         min-width: var(--checkbox-cell-width);
@@ -52,11 +70,6 @@
         height: auto;
         padding-inline: var(--space-xs);
         padding-block: 0;
-
-        // & + th,
-        // & + td {
-        //   padding-left: 4px !important;
-        // }
 
         &.selected .vui-button.icon .vui-button-slot svg path {
           color: var(--color-text) !important;
@@ -75,6 +88,18 @@
             }
           }
         }
+      }
+
+      .vui-cell-context {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        position: absolute;
+        inset: 0;
+        padding: var(--space-xs);
+        background-color: var(--color-bg);
+        left: unset;
       }
     }
 

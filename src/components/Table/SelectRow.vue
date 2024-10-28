@@ -9,18 +9,16 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
 const {
   enabled,
   selectRow,
   selectedRows,
 } = inject(TableSelectionProvideSymbol) as TableSelectionProvide
-
 const isSelected = computed(() => selectedRows.value.has(props.row))
 </script>
 
 <template>
-  <td v-if="enabled" class="vui-table-checkbox-cell" :class="{ selected: isSelected }">
+  <td v-if="enabled" class="vui-table-interactive-cell" :class="{ selected: isSelected }">
     <Button
       square
       plain
