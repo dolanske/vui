@@ -21,6 +21,10 @@ interface Props {
    * Add a visual separator between each cell
    */
   separateCells?: boolean
+  /**
+   * Wrap table with a border
+   */
+  outerBorder?: boolean
 }
 
 const {
@@ -28,6 +32,7 @@ const {
   nowrap,
   separateRows = true,
   separateCells = false,
+  outerBorder = true,
 } = defineProps<Props>()
 const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
 </script>
@@ -41,6 +46,7 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
       'selecting': selecting.enabled,
       'separated-rows': separateRows,
       'separated-cells': separateCells,
+      'outer-border': outerBorder,
     }"
   >
     <table>
