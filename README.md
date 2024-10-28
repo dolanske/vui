@@ -80,8 +80,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Table
   - [x] Header & sorting
   - [X] Pagination
-  - [ ] Row select
-  - [ ] Reactive options (ability to alter functionality without having to re-render whole table)
+  - [x] Row select
+  - [x] Reactive options (ability to alter functionality without having to re-render whole table)
 - [ ] Slider
 - [ ] Drawer
   - [ ] https://ui.shadcn.com/docs/components/drawer

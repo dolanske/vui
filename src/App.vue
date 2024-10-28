@@ -44,7 +44,7 @@ const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table fixed>
+      <Table fixed nowrap>
         <template #header>
           <SelectAll />
           <Header v-for="header in headers" :key="header.label" :header="header" sort />

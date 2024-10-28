@@ -24,7 +24,7 @@ const isSelected = computed(() => selectedRows.value.has(props.row))
     <Button
       square
       plain
-      :icon="isSelected ? 'ph:check-square-fill' : 'ph:square-bold'"
+      :icon="isSelected ? 'ph:check-square-fill' : 'ph:square'"
       @click="selectRow(props.row)"
     />
   </td>

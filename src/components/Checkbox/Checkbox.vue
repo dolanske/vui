@@ -14,7 +14,7 @@ interface Props {
 const {
   label,
   iconOn = 'ph:check-square-fill',
-  iconOff = 'ph:square-bold',
+  iconOff = 'ph:square',
   disabled,
   checked: checkedProp,
 } = defineProps<Props>()

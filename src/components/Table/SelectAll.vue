@@ -12,11 +12,11 @@ const {
 </script>
 
 <template>
-  <th v-if="enabled" class="vui-table-checkbox-cell">
+  <th v-if="enabled" class="vui-table-checkbox-cell" :class="{ selected: isSelectedAll }">
     <Button
       square
       plain
-      :icon="isSelectedAll ? 'ph:check-square-fill' : 'ph:square-bold'"
+      :icon="isSelectedAll ? 'ph:check-square-fill' : 'ph:square'"
       @click="selectAllRows()"
     />
   </th>
