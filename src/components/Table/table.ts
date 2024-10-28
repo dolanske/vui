@@ -1,6 +1,6 @@
 import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
-import { computed, onBeforeUnmount, provide, readonly, ref, toValue } from 'vue'
+import { computed, provide, readonly, ref, toValue } from 'vue'
 import { searchInStr } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
@@ -15,24 +15,6 @@ export interface TableSelectionProvide {
 }
 
 export const TableSelectionProvideSymbol = Symbol('select-row-provide') as InjectionKey<TableSelectionProvide>
-
-// Store the keys which reference a data row. In order to reduce the setup, we
-// serialize the shallow object into an id. This way we can recognize the data
-// without having to store it in the original data object.
-const RowIdCache = new Map<BaseRow, string>()
-
-export function generateRowId(row: BaseRow): string {
-  // Check wether the row key already exists
-  const existing = RowIdCache.get(row)
-  if (existing)
-    return existing
-
-  const entries = Object.entries(row)
-  entries.sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-  const id = entries.map(([key, value]) => `${key}:${value}`).join('|')
-  RowIdCache.set(row, id)
-  return id
-}
 
 interface Sorting<K> {
   key?: K
@@ -63,7 +45,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
   const $data = computed(() => toValue(computedDataset))
 
   //
-  //
+  // Reactive options + defaults
   const options = ref(Object.assign({
     pagination: {
       enabled: false,
@@ -242,11 +224,6 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
     selectAllRows,
     enabled: selectingEnabled,
     isSelectedAll,
-  })
-
-  // Make sure to clear all cached Ids when component is unmounted
-  onBeforeUnmount(() => {
-    RowIdCache.clear()
   })
 
   return {
