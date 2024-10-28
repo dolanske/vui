@@ -39,6 +39,22 @@
       // TODO:
       // Fixed width, only houses a checkbox component
       &.vui-table-checkbox-cell {
+        --checkbox-cell-width: calc(calc(var(--space-m) * 2) + 24px);
+        width: var(--checkbox-cell-width);
+        min-width: var(--checkbox-cell-width);
+        max-width: var(--checkbox-cell-width);
+        height: auto;
+        padding-block: 0;
+
+        .vui-checkbox {
+          vertical-align: middle;
+          display: inline-block;
+
+          input + label {
+            display: block;
+            gap: 0;
+          }
+        }
       }
     }
 

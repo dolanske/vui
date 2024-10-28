@@ -1,18 +1,11 @@
 <script setup lang='ts'>
-import type { SelectProvide } from './table'
-import { inject } from 'vue'
+import type { TableSelectionProvide } from './table'
+import { inject, onMounted } from 'vue'
 import Checkbox from '../Checkbox/Checkbox.vue'
-import { SelectProvideSymbol } from './table'
+import { TableSelectionProvideSymbol } from './table'
 import './table.scss'
 
 interface Props {
-  // Pagination settings
-  // data: TableDataDefinition
-
-  // search?: string
-
-  // Used to add checkboxs to each row
-  select?: boolean
   /**
    * Sets the `table-layout` property
    */
@@ -24,21 +17,9 @@ interface Props {
 }
 
 const {
-  select,
   fixed,
   nowrap,
 } = defineProps<Props>()
-
-// TODO: type slots
-
-// const slots = defineSlots<{
-//   header: (props: {}) => any
-//   body: (props: {}) => any
-//   pagination: () => any
-// }>()
-
-const selected = inject(SelectProvideSymbol)
-// TODO: use provide and implement selecting
 </script>
 
 <template>
@@ -46,9 +27,6 @@ const selected = inject(SelectProvideSymbol)
     <table>
       <thead>
         <tr>
-          <th v-if="select" class="vui-table-checkbox-cell">
-            <Checkbox @change="selected?.selectAllRows()" />
-          </th>
           <slot name="header" />
         </tr>
       </thead>

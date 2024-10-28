@@ -1,25 +1,27 @@
-import type { InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
+import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
 import { computed, onBeforeUnmount, provide, readonly, ref, toValue } from 'vue'
 import { searchInStr } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
-type BaseRow = Record<string, string | number>
+export type BaseRow = Record<string, string | number>
 
-export interface SelectProvide {
+export interface TableSelectionProvide {
   selectedIds: Ref<Set<string>>
   selectRow: (row: BaseRow) => void
   selectAllRows: () => void
+  enabled: ComputedRef<boolean>
+  allRowsSelected: ComputedRef<boolean>
 }
 
-export const SelectProvideSymbol = Symbol('select-row-provide') as InjectionKey<SelectProvide>
+export const TableSelectionProvideSymbol = Symbol('select-row-provide') as InjectionKey<TableSelectionProvide>
 
 // Store the keys which reference a data row. In order to reduce the setup, we
 // serialize the shallow object into an id. This way we can recognize the data
 // without having to store it in the original data object.
 const RowIdCache = new Map<BaseRow, string>()
 
-function generateRowId(row: BaseRow): string {
+export function generateRowId(row: BaseRow): string {
   // Check wether the row key already exists
   const existing = RowIdCache.get(row)
   if (existing)
@@ -50,6 +52,7 @@ interface TableOptionsInput {
     perPage?: number
     maxPages?: number
   }
+  select?: boolean
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
@@ -67,6 +70,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
       perPage: 10,
       maxPages: 3,
     },
+    select: false,
   }, tableOptions) as DeepRequired<TableOptionsInput>)
 
   //
@@ -205,6 +209,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
   const selectedRows = computed<Dataset[number][]>(() => {
     return $data.value.filter(row => selectedIds.value.has(generateRowId(row)))
   })
+  const selectingEnabled = computed(() => options.value.select)
 
   /**
    * Accepts either an existing index of a row within the dataset or the dataset
@@ -238,10 +243,12 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
     }
   }
 
-  provide(SelectProvideSymbol, {
+  provide(TableSelectionProvideSymbol, {
     selectedIds,
     selectRow,
     selectAllRows,
+    enabled: selectingEnabled,
+    allRowsSelected: readonly(allRowsSelected),
   })
 
   // Make sure to clear all cached Ids when component is unmounted

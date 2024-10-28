@@ -8,6 +8,7 @@ interface Props {
   iconOn?: string
   iconOff?: string
   disabled?: boolean
+  checked?: boolean
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   iconOn = 'ph:check-square-fill',
   iconOff = 'ph:square-bold',
   disabled,
+  checked: checkedProp,
 } = defineProps<Props>()
 const emit = defineEmits<{
   change: [checked: boolean]
@@ -31,6 +33,7 @@ const id = useId()
       v-model="checked"
       type="checkbox"
       :disabled
+      :checked="checkedProp"
       @change="emit('change', ($event.target as HTMLInputElement).checked)"
     >
     <label :for="id">

@@ -7,6 +7,8 @@ import Pagination from './components/Pagination/Pagination.vue'
 import Cell from './components/Table/Cell.vue'
 import Header from './components/Table/Header.vue'
 import Row from './components/Table/Row.vue'
+import SelectAll from './components/Table/SelectAll.vue'
+import SelectRow from './components/Table/SelectRow.vue'
 import { defineTable } from './components/Table/table'
 import Table from './components/Table/Table.vue'
 import { testData } from './components/Table/table_test_data'
@@ -25,11 +27,12 @@ const data = computed(() => {
   }))
 })
 
-const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
+const { rows, pagination, setPage, headers } = defineTable(data, {
   pagination: {
     enabled: true,
     perPage: 5,
   },
+  select: true,
 })
 </script>
 
@@ -41,12 +44,14 @@ const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table fixed select>
+      <Table fixed>
         <template #header>
+          <SelectAll />
           <Header v-for="header in headers" :key="header.label" :header="header" sort />
         </template>
         <template #body>
           <Row v-for="(item, index) in rows" :key="index">
+            <SelectRow :row="item" />
             <Cell>{{ item.Id }}</Cell>
             <Cell>{{ item.Account }}</Cell>
             <Cell>{{ item.Title }}</Cell>
