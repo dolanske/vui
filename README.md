@@ -11,6 +11,9 @@ Opinionated vue UI library for building personal applications. Completely from s
   - l: 24
   - xl: 40
 
+- [ ] Fix code block having language highlight even if not set
+- [ ]
+
 ## TODO
 
 #### Components
@@ -29,7 +32,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Tabs
 - [x] Card
 - [x] Textarea
-  - [ ] Autoexpand
+  - [x] Autoexpand
 - [x] Modal
 - [x] Select
   - [x] Depends on <Dropdown />
@@ -41,6 +44,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
+- [ ] Input Password
+  - [ ] Wrapper around input with an eye icon which changes type to text
 - [ ] Inline tabs
   - [ ] Basically like this https://ui.shadcn.com/docs/components/tabs
 - [x] Alert
@@ -55,6 +60,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
 - [ ] File input
   - [ ] Dropzone
+- [ ] Copy clipboard button
+  - [ ] Renderless component consuming button props + copy prop
+  - [ ] Copied text ()
 - [ ] Scrollable
   - [ ] Set max width or height (or size of the parent)
   - [ ] Should work within card
@@ -70,9 +78,15 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Dropdown itme
   - [x] Dropdown title
 - [ ] Table
-  - [ ] Pagination helper fn
-  - [ ] Create data format
-  - [ ] All props
+  - [x] Header & sorting
+  - [X] Pagination
+  - [x] Row select
+  - [x] Reactive options (ability to alter functionality without having to re-render whole table)
+  - [x] Interactivity
+- [ ] Slider
+- [ ] Drawer
+  - [ ] https://ui.shadcn.com/docs/components/drawer
+  - [ ] Built on top of bottom sheet
 
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element

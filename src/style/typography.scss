@@ -113,19 +113,21 @@ pre {
   z-index: 1;
   position: relative;
 
-  &:after {
+  &[data-lang]::after {
     content: attr(data-lang);
     font-family: var(--global-font);
     display: block;
     position: absolute;
+    font-weight: 500;
     top: 6px;
     right: 6px;
     padding: 5px;
     text-align: center;
     text-transform: uppercase;
     border-radius: var(--border-radius-s);
-    font-size: var(--font-size-s);
-    color: var(--color-text-lighter);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-border);
     background-color: var(--color-bg-lowered);
   }
 }
@@ -144,6 +146,7 @@ table {
     min-width: 80px;
     font-size: var(--font-size-m);
     line-height: 1.4em;
+    font-variant-numeric: tabular-nums;
 
     &:first-child {
       border-left: 1px solid var(--color-border);

@@ -1,7 +1,6 @@
 <script setup lang='ts'>
-import type { UseMagicKeysReturn } from '@vueuse/core'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, ComputedRef, onBeforeMount, onMounted, ref, useAttrs } from 'vue'
+import { computed } from 'vue'
 import './kbd.scss'
 
 interface Props {

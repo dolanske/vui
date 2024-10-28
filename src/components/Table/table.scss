@@ -1,0 +1,132 @@
+.vui-table-container {
+  display: block;
+  width: 100%;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-m);
+
+  &.fixed table {
+    table-layout: fixed;
+  }
+
+  &.nowrap table tr {
+    td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &.separated-rows table {
+    th,
+    td {
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  &.separated-cells table {
+    th,
+    td {
+      border-right: 1px solid var(--color-border);
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-indent: 0;
+    border: none;
+    overflow: unset;
+
+    tr {
+      border: none;
+
+      &:has(.vui-table-interactive-cell.selected) {
+        td {
+          background-color: var(--color-bg-raised);
+        }
+      }
+    }
+
+    th,
+    td {
+      font-size: var(--font-size-ms);
+      border: none;
+      border-left: none !important;
+      transition: var(--transition-quick);
+      position: relative;
+      z-index: 1;
+
+      // Fixed width, only houses a checkbox component
+      &.vui-table-interactive-cell {
+        --checkbox-cell-width: calc(calc(var(--space-xs) * 2) + 32px);
+        width: var(--checkbox-cell-width);
+        min-width: var(--checkbox-cell-width);
+        max-width: var(--checkbox-cell-width);
+        height: auto;
+        padding-inline: var(--space-xs);
+        padding-block: 0;
+
+        &.selected .vui-button.icon .vui-button-slot svg path {
+          color: var(--color-text) !important;
+        }
+
+        .vui-button {
+          vertical-align: middle;
+          display: inline-flex;
+
+          &.icon .vui-button-slot svg {
+            width: 22px !important;
+            height: 22px !important;
+
+            path {
+              color: var(--color-text-light);
+            }
+          }
+        }
+      }
+
+      .vui-cell-context {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        position: absolute;
+        inset: 0;
+        padding: var(--space-xs);
+        background-color: var(--color-bg);
+        left: unset;
+      }
+    }
+
+    th {
+      .vui-table-th-content {
+        color: var(--color-text-light);
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        font-weight: 500;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--space-xs);
+
+        .vui-table-sort-button:not(.active) svg path {
+          color: var(--color-text-lighter);
+        }
+      }
+    }
+  }
+
+  .vui-table-pagination-wrap {
+    padding: var(--space-s) var(--space-m);
+
+    p {
+      font-size: var(--font-size-s);
+      color: var(--color-text-lighter);
+    }
+  }
+}

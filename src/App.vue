@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Textarea from './components/Input/Textarea.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
-const tab = ref('components')
-
-const content = ref('')
+const tab = ref('home')
 </script>
 
 <template>
@@ -17,10 +14,10 @@ const content = ref('')
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      Welcome to VUI
+      home
     </div>
     <div v-if="tab === 'components'">
-      <Textarea v-model="content" />
+      idk
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

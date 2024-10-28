@@ -4,9 +4,13 @@
 
   &.disabled {
     pointer-events: none;
-    color: var(--color-text-light) !important;
+    color: var(--color-text-lighter) !important;
     cursor: not-allowed;
-    filter: saturate(50%);
+    filter: saturate(50%) opacity(0.65);
+
+    svg path {
+      color: var(--color-text-lighter) !important;
+    }
   }
 
   &.expand {
@@ -33,6 +37,15 @@
         height: 18px;
       }
     }
+  }
+
+  &.square {
+    width: var(--button-height);
+    padding: 0;
+  }
+
+  &.dashed {
+    border-style: dashed;
   }
 
   height: var(--button-height);
@@ -117,6 +130,20 @@
     &:hover {
       border: 1px solid var(--color-bg-green-raised);
       background-color: var(--color-bg-green-raised);
+    }
+  }
+
+  &.vui-button-variant-blue {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-bg-blue-lowered);
+      border: 1px solid var(--color-border-blue);
+    }
+
+    &.active,
+    &:hover {
+      border: 1px solid var(--color-bg-blue-raised);
+      background-color: var(--color-bg-blue-raised);
     }
   }
 

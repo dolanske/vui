@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type InputTypeHTMLAttribute, useId, useTemplateRef, watchEffect } from 'vue'
+import { computed, type InputTypeHTMLAttribute, useId, useTemplateRef, watchEffect } from 'vue'
+import { getMaybeRefLength } from '../../shared/helpers'
 import '../../style/core.scss'
 import './input.scss'
 
@@ -13,7 +14,7 @@ export interface InputProps {
   expand?: boolean
   placeholder?: string
   required?: boolean
-  modelValue: string
+  modelValue: string | number
   readonly?: boolean
   focus?: boolean
 }
@@ -31,14 +32,14 @@ const {
   focus,
 } = defineProps<InputProps>()
 
-const model = defineModel<string>({
+const model = defineModel<string | number>({
   default: '',
   set(newValue) {
     // Completely ignore inputs
     if (readonly)
       return modelValue
 
-    if (newValue.length > Number(limit)) {
+    if (getMaybeRefLength(newValue) > Number(limit)) {
       return modelValue
     }
     return newValue
@@ -57,6 +58,10 @@ defineExpose({
   focus: () => {
     inputRef.value?.focus()
   },
+})
+
+const renderLimit = computed(() => {
+  return `${getMaybeRefLength(model.value)}/${limit}`
 })
 </script>
 
@@ -81,7 +86,7 @@ defineExpose({
       >
     </div>
     <p v-if="limit" class="vui-input-limit">
-      {{ `${model.length}/${limit}` }}
+      {{ renderLimit }}
     </p>
     <slot name="after" />
   </div>
