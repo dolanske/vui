@@ -106,9 +106,6 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
   //
   // Searching
   const search = ref<string>()
-  const setSearch = (match?: string): void => {
-    search.value = match
-  }
 
   //
   // Dataset formatting
@@ -229,7 +226,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
   return {
     setSort,
     clearSort,
-    setSearch,
+    search,
     rows: readonly(rows),
     allRows: readonly(filteredRows),
     selectedRows: readonly(selectedRows),
