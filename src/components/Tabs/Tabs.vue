@@ -4,11 +4,16 @@ import { onMounted, useTemplateRef, type VNode, watch } from 'vue'
 import './tabs.scss'
 
 interface Props {
+  variant?: 'default' | 'filled'
   expand?: boolean
   disabled?: boolean
 }
 
-const { expand, disabled } = defineProps<Props>()
+const {
+  expand,
+  disabled,
+  variant = 'default',
+} = defineProps<Props>()
 
 const slots = defineSlots<{
   default: () => Array<VNode & { props: TabProps }>
@@ -39,7 +44,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="tabs" class="vui-tabs" :class="{ expand, disabled }">
+  <div
+    ref="tabs"
+    class="vui-tabs"
+    :class="[
+      { expand, disabled },
+      variant === 'default'
+        ? ''
+        : `vui-tabs-variant-${variant}`,
+    ]"
+  >
     <Component
       :is="vnode"
       v-for="vnode of slots.default()"

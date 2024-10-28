@@ -5,6 +5,23 @@
   border-bottom: 1px solid var(--color-border);
   position: relative;
 
+  &.vui-tabs-variant-filled {
+    background-color: var(--color-bg-raised);
+    border-bottom: none;
+    z-index: 1;
+    border-radius: var(--border-radius-m);
+    padding-inline: 4px;
+
+    .vui-tab-underline {
+      border-bottom: none;
+      background-color: var(--color-bg-lowered);
+      top: 4px;
+      bottom: 4px;
+      z-index: -1;
+      border-radius: var(--border-radius-m);
+    }
+  }
+
   &.disabled .vui-tab,
   .vui-tab.disabled {
     pointer-events: none;

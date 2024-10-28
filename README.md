@@ -30,6 +30,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Switch (like iOS)
 - [x] Radio button group
 - [x] Tabs
+  - [x] Filled
 - [x] Card
 - [x] Textarea
   - [x] Autoexpand
@@ -46,8 +47,6 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Slot
 - [ ] Input Password
   - [ ] Wrapper around input with an eye icon which changes type to text
-- [ ] Inline tabs
-  - [ ] Basically like this https://ui.shadcn.com/docs/components/tabs
 - [x] Alert
 - [x] Divider
 - [x] Badge
@@ -77,7 +76,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Dropdown
   - [x] Dropdown itme
   - [x] Dropdown title
-- [ ] Table
+- [x] Table
   - [x] Header & sorting
   - [X] Pagination
   - [x] Row select
@@ -87,6 +86,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Drawer
   - [ ] https://ui.shadcn.com/docs/components/drawer
   - [ ] Built on top of bottom sheet
+- [x] Pagination
 
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element

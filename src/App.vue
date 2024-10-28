@@ -8,11 +8,12 @@ const tab = ref('home')
 
 <template>
   <div>
-    <Tabs v-model="tab" expand style="margin-bottom: 64px;">
+    <Tabs v-model="tab" expand variant="filled">
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
       <Tab id="typography" label="Typography" />
     </Tabs>
+    <div style="margin-bottom: 64px;" />
     <div v-if="tab === 'home'">
       home
     </div>
