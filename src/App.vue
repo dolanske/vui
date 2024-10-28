@@ -1,40 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import Button from './components/Button/Button.vue'
-import Checkbox from './components/Checkbox/Checkbox.vue'
-import Flex from './components/Flex/Flex.vue'
-import Input from './components/Input/Input.vue'
-import Pagination from './components/Pagination/Pagination.vue'
-import Cell from './components/Table/Cell.vue'
-import Header from './components/Table/Header.vue'
-import Row from './components/Table/Row.vue'
-import SelectAll from './components/Table/SelectAll.vue'
-import SelectRow from './components/Table/SelectRow.vue'
-import { defineTable } from './components/Table/table'
-import Table from './components/Table/Table.vue'
-import { testData } from './components/Table/table_test_data'
+import { ref } from 'vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('home')
-
-// Define table data in a computed / ref
-const data = computed(() => {
-  return testData.map(row => ({
-    Id: row.resourceId,
-    Account: row.account,
-    Title: row.title,
-    RuleId: row.ruleId,
-  }))
-})
-
-const { rows, pagination, setPage, headers } = defineTable(data, {
-  pagination: {
-    enabled: true,
-    perPage: 5,
-  },
-  select: true,
-})
 </script>
 
 <template>
@@ -45,34 +14,7 @@ const { rows, pagination, setPage, headers } = defineTable(data, {
       <Tab id="typography" label="Typography" />
     </Tabs>
     <div v-if="tab === 'home'">
-      <Table fixed nowrap separate-cells>
-        <template #header>
-          <SelectAll />
-          <Header v-for="header in headers" :key="header.label" :header="header" sort />
-        </template>
-        <template #body>
-          <Row v-for="(item, index) in rows" :key="index">
-            <SelectRow :row="item" />
-            <Cell>{{ item.Id }}</Cell>
-            <Cell>{{ item.Account }}</Cell>
-            <Cell>{{ item.Title }}</Cell>
-            <Cell>
-              {{ item.RuleId }}
-              <template #context>
-                <Button size="s" square icon="ph:dots-three-vertical-bold" plain />
-              </template>
-            </Cell>
-          </Row>
-        </template>
-        <template #pagination>
-          <Flex justify-end>
-            <Pagination :pagination :numbers="false" @change="setPage" />
-          </Flex>
-        </template>
-      </Table>
-      <br>
-      <br>
-      <!-- <pre data-lang="JSON">{{ selectedRows }}</pre> -->
+      home
     </div>
     <div v-if="tab === 'components'">
       idk
