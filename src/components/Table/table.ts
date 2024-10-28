@@ -7,11 +7,11 @@ import { paginate } from '../Pagination/pagination'
 export type BaseRow = Record<string, string | number>
 
 export interface TableSelectionProvide {
-  selectedIds: Ref<Set<string>>
+  selectedRows: Ref<Set<BaseRow>>
   selectRow: (row: BaseRow) => void
   selectAllRows: () => void
   enabled: ComputedRef<boolean>
-  selectedAll: ComputedRef<boolean>
+  isSelectedAll: ComputedRef<boolean>
 }
 
 export const TableSelectionProvideSymbol = Symbol('select-row-provide') as InjectionKey<TableSelectionProvide>
@@ -205,10 +205,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
 
   //
   // Row selecting
-  const selectedIds = ref<Set<string>>(new Set())
-  const selectedRows = computed<Dataset[number][]>(() => {
-    return $data.value.filter(row => selectedIds.value.has(generateRowId(row)))
-  })
+  const selectedRows = ref<Set<BaseRow>>(new Set() as Set<BaseRow>)
   const selectingEnabled = computed(() => options.value.select)
 
   /**
@@ -218,37 +215,34 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
    * @param row {Number | RowObject}
    */
   function selectRow(row: Dataset[number]): void {
-    const rowId = generateRowId(row)
-
-    // Toggle wether row is selected or not
-    if (selectedIds.value.has(rowId)) {
-      selectedIds.value.delete(rowId)
+    if (selectedRows.value.has(row)) {
+      selectedRows.value.delete(row)
     }
     else {
-      selectedIds.value.add(rowId)
+      selectedRows.value.add(row)
     }
   }
 
-  const selectedAll = computed(() => $data.value.length === selectedIds.value.size)
+  const isSelectedAll = computed(() => $data.value.length === selectedRows.value.size)
 
   function selectAllRows(): void {
-    if (selectedAll.value) {
+    if (isSelectedAll.value) {
       // If the selected indexes have the same length as the data array, we can
       // assume all of them are selected. Therefore we toggle it by deselecting
       // all of them
-      selectedIds.value = new Set()
+      selectedRows.value = new Set()
     }
     else {
-      selectedIds.value = new Set($data.value.map(row => generateRowId(row)))
+      selectedRows.value = new Set($data.value.map(row => row))
     }
   }
 
   provide(TableSelectionProvideSymbol, {
-    selectedIds,
+    selectedRows,
     selectRow,
     selectAllRows,
     enabled: selectingEnabled,
-    selectedAll,
+    isSelectedAll,
   })
 
   // Make sure to clear all cached Ids when component is unmounted
@@ -270,5 +264,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
     setPage,
     options,
     selectRow,
+    selectAllRows,
+    isSelectedAll,
   }
 }

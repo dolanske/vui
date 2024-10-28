@@ -20,10 +20,12 @@ const {
   fixed,
   nowrap,
 } = defineProps<Props>()
+
+const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
 </script>
 
 <template>
-  <div class="vui-table-container" :class="{ fixed, nowrap }">
+  <div class="vui-table-container" :class="{ fixed, nowrap, selecting: selecting.enabled }">
     <table>
       <thead>
         <tr>

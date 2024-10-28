@@ -73,7 +73,7 @@ const actualPadding = computed(() => {
       <div class="vui-button-slot-start">
         <slot name="start" />
       </div>
-      <Icon v-if="icon" :icon />
+      <Icon v-if="icon" :icon="icon" />
       <slot v-else />
       <div class="vui-button-slot-end">
         <slot name="end" />

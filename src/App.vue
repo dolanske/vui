@@ -27,7 +27,7 @@ const data = computed(() => {
   }))
 })
 
-const { rows, pagination, setPage, headers } = defineTable(data, {
+const { rows, pagination, setPage, headers, selectedRows } = defineTable(data, {
   pagination: {
     enabled: true,
     perPage: 5,
@@ -66,7 +66,7 @@ const { rows, pagination, setPage, headers } = defineTable(data, {
       </Table>
       <br>
       <br>
-      <pre data-lang="JSON">{{ rows }}</pre>
+      <pre data-lang="JSON">{{ selectedRows }}</pre>
     </div>
     <div v-if="tab === 'components'">
       idk
