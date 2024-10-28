@@ -5,7 +5,7 @@ import Checkbox from '../Checkbox/Checkbox.vue'
 import { TableSelectionProvideSymbol } from './table'
 
 const {
-  allRowsSelected,
+  selectedAll,
   enabled,
   selectAllRows,
 } = inject(TableSelectionProvideSymbol) as TableSelectionProvide
@@ -14,7 +14,7 @@ const {
 <template>
   <th v-if="enabled" class="vui-table-checkbox-cell">
     <Checkbox
-      :checked="allRowsSelected"
+      :checked="selectedAll"
       @change="selectAllRows()"
     />
   </th>

@@ -11,7 +11,7 @@ export interface TableSelectionProvide {
   selectRow: (row: BaseRow) => void
   selectAllRows: () => void
   enabled: ComputedRef<boolean>
-  allRowsSelected: ComputedRef<boolean>
+  selectedAll: ComputedRef<boolean>
 }
 
 export const TableSelectionProvideSymbol = Symbol('select-row-provide') as InjectionKey<TableSelectionProvide>
@@ -229,10 +229,10 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
     }
   }
 
-  const allRowsSelected = computed(() => $data.value.length === selectedIds.value.size)
+  const selectedAll = computed(() => $data.value.length === selectedIds.value.size)
 
   function selectAllRows(): void {
-    if (allRowsSelected.value) {
+    if (selectedAll.value) {
       // If the selected indexes have the same length as the data array, we can
       // assume all of them are selected. Therefore we toggle it by deselecting
       // all of them
@@ -248,7 +248,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
     selectRow,
     selectAllRows,
     enabled: selectingEnabled,
-    allRowsSelected: readonly(allRowsSelected),
+    selectedAll,
   })
 
   // Make sure to clear all cached Ids when component is unmounted
