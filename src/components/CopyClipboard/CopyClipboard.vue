@@ -1,7 +1,9 @@
 <script setup lang='ts'>
 import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
+import { Icon } from '@iconify/vue'
 import { useClipboard } from '@vueuse/core'
 import { onBeforeMount, useTemplateRef } from 'vue'
+import Flex from '../Flex/Flex.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import './copy-clipboard.scss'
 
@@ -22,7 +24,7 @@ interface Props {
 
 const {
   text,
-  label = 'Copied to clipboard',
+  label,
   labelDuration,
 } = defineProps<Props>()
 
@@ -45,14 +47,14 @@ const tooltipRef = useTemplateRef('tooltipRef')
 // const arrowRef = useTemplateRef('arrowRef')
 
 const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
-  placement: 'left',
   whileElementsMounted: autoUpdate,
+  transform: false,
   middleware: [
+    offset(8),
     autoPlacement({
-      alignment: 'start',
       autoAlignment: true,
+      crossAxis: true,
     }),
-    offset(16),
   ],
 })
 </script>
@@ -62,7 +64,17 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
     <slot :copy :copied />
   </div>
 
-  <div v-show="copied" ref="tooltipRef" class="vui-clipboard-tooltip" :style="floatingStyles">
-    {{ label }}
-  </div>
+  <Transition name="fade-up" mode="in-out">
+    <div v-if="copied" ref="tooltipRef" class="vui-clipboard-tooltip" :style="floatingStyles">
+      <slot name="label">
+        <template v-if="label">
+          {{ label }}
+        </template>
+        <Flex v-else align-center justify-center>
+          <Icon width="16" height="16" icon="ph:check-bold" />
+          Copied to clipboard
+        </Flex>
+      </slot>
+    </div>
+  </Transition>
 </template>

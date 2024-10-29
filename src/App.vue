@@ -3,6 +3,7 @@ import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
+import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -21,14 +22,16 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <CopyClipboard text="Hello World">
-        <Button>
-          <template #start>
-            <Icon icon="ph:copy" />
-          </template>
-          Copy me
-        </Button>
-      </CopyClipboard>
+      <Flex justify-center style="padding:32px">
+        <CopyClipboard text="Hello World">
+          <Button>
+            <template #start>
+              <Icon icon="ph:copy" />
+            </template>
+            Copy me
+          </Button>
+        </CopyClipboard>
+      </Flex>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
