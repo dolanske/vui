@@ -1,10 +1,9 @@
 <script setup lang='ts'>
-import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { Icon } from '@iconify/vue'
 import { useClipboard } from '@vueuse/core'
-import { onBeforeMount, onMounted, useSlots, useTemplateRef } from 'vue'
+import { onBeforeMount, useSlots, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
-import Tooltip from '../Tooltip/Tooltip.vue'
 import './copy-clipboard.scss'
 
 interface Props {
@@ -49,7 +48,6 @@ onBeforeMount(() => {
 
 const anchorRef = useTemplateRef('anchorRef')
 const tooltipRef = useTemplateRef('tooltipRef')
-// const arrowRef = useTemplateRef('arrowRef')
 
 const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   whileElementsMounted: autoUpdate,

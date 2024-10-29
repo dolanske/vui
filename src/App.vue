@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
-import Button from './components/Button/Button.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
-import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
