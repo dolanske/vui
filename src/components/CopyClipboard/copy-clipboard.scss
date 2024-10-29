@@ -4,11 +4,12 @@
 }
 
 .vui-clipboard-tooltip {
-  padding: var(--space-xs);
+  padding: 6px 8px;
   border-radius: var(--border-radius-s);
   background-color: var(--color-bg-raised);
   font-size: var(--font-size-s);
   color: var(--color-text-light);
+  box-shadow: var(--box-shadow);
 
   svg path {
     color: var(--color-text);

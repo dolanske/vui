@@ -15,17 +15,17 @@ interface Props {
   /**
    * Wether to show a tooltip after successful copy
    */
-  label?: string | boolean
+  confirm?: string | boolean
   /**
-   * Tooltip to display above the anchor
+   * How long will the copy confirmation tooltip be visible in milliseconds.
    */
-  labelDuration?: number
+  confirmTime?: number
 }
 
 const {
   text,
-  label,
-  labelDuration,
+  confirm,
+  confirmTime,
 } = defineProps<Props>()
 
 const {
@@ -33,7 +33,7 @@ const {
   copied,
   isSupported,
 } = useClipboard({
-  copiedDuring: labelDuration,
+  copiedDuring: confirmTime,
 })
 
 onBeforeMount(() => {
@@ -49,12 +49,11 @@ const tooltipRef = useTemplateRef('tooltipRef')
 const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   whileElementsMounted: autoUpdate,
   transform: false,
+  placement: 'top',
   middleware: [
     offset(8),
-    autoPlacement({
-      autoAlignment: true,
-      crossAxis: true,
-    }),
+    shift(),
+    flip(),
   ],
 })
 </script>
@@ -67,8 +66,8 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   <Transition name="fade-up" mode="in-out">
     <div v-if="copied" ref="tooltipRef" class="vui-clipboard-tooltip" :style="floatingStyles">
       <slot name="label">
-        <template v-if="label">
-          {{ label }}
+        <template v-if="confirm">
+          {{ confirm }}
         </template>
         <Flex v-else align-center justify-center>
           <Icon width="16" height="16" icon="ph:check-bold" />

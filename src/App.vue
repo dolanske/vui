@@ -22,16 +22,14 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <Flex justify-center style="padding:32px">
+      <p>
+        Hello world please
         <CopyClipboard text="Hello World">
-          <Button>
-            <template #start>
-              <Icon icon="ph:copy" />
-            </template>
-            Copy me
-          </Button>
-        </CopyClipboard>
-      </Flex>
+          <a>
+            copy me
+          </a>
+        </CopyClipboard> and paste me somewhere tbh.
+      </p>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

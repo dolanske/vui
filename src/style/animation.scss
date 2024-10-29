@@ -10,9 +10,8 @@
 
 .fade-up-enter-active,
 .fade-up-leave-active {
-  transition:
-    opacity,
-    transform 0.1s ease-in-out;
+  transition: var(--transition);
+  transition-property: transform, opacity;
 }
 
 .fade-up-enter-from,
