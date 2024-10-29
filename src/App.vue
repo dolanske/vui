@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Button from './components/Button/Button.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
+import Drawer from './components/Drawer/Drawer.vue'
+import Sheet from './components/Sheet/Sheet.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
+const open = ref(false)
 </script>
 
 <template>
@@ -19,14 +23,10 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <p>
-        Hello world please
-        <CopyClipboard text="Hello World">
-          <a>
-            copy me
-          </a>
-        </CopyClipboard> and paste me somewhere tbh.
-      </p>
+      <Button @click="open = !open">
+        Open
+      </Button>
+      <Drawer v-model="open" />
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

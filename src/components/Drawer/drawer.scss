@@ -1,0 +1,16 @@
+.vui-drawer-content {
+  background-color: var(--color-bg-raised);
+  // z-index: 1001;
+  max-height: 50%;
+  height: 100%;
+  border-top: 1px solid var(--color-border);
+}
+
+.vui-drawer-overlay {
+  // background-color: var(--color-bg-lowered);
+  opacity: 0.4;
+  inset: 0;
+  position: fixed;
+  // inset: 0;
+  // z-index: 1000;
+}

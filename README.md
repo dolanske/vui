@@ -59,9 +59,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
 - [ ] File input
   - [ ] Dropzone
-- [ ] Copy clipboard button
-  - [ ] Renderless component consuming button props + copy prop
-  - [ ] Copied text ()
+- [x] Copy clipboard button
+  - [x] Renderless component consuming button props + copy prop
+  - [x] Copied text ()
 - [ ] Scrollable
   - [ ] Set max width or height (or size of the parent)
   - [ ] Should work within card
