@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
-const tab = ref('home')
+const tab = ref('components')
 </script>
 
 <template>
@@ -18,7 +19,14 @@ const tab = ref('home')
       home
     </div>
     <div v-if="tab === 'components'">
-      idk
+      <p>
+        Hello world please
+        <CopyClipboard text="Hello World">
+          <a>
+            copy me
+          </a>
+        </CopyClipboard> and paste me somewhere tbh.
+      </p>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
