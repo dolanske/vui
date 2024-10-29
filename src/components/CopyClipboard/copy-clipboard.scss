@@ -1,5 +1,19 @@
 .vui-clipboard-copy-wrap {
+  display: inline-block;
+  position: relative;
 }
 
 .vui-clipboard-tooltip {
+  // display: block;
+  padding: var(--space-xs);
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-bg-raised);
+  font-size: var(--font-size-s);
+
+  .vui-clipboard-arrow {
+    // background-color: var(--color-bg-raised);
+    background-color: red;
+    width: 16px;
+    height: 16px;
+  }
 }

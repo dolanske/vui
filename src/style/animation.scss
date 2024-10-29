@@ -11,6 +11,7 @@
 .fade-up-enter-active,
 .fade-up-leave-active {
   transition: var(--transition);
+  transform: translateY(0);
 }
 
 .fade-up-enter-from,

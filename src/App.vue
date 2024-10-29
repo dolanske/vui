@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
@@ -20,9 +21,13 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      idk
       <CopyClipboard text="Hello World">
-        <Button square icon="ph:copy" />
+        <Button>
+          <template #start>
+            <Icon icon="ph:copy" />
+          </template>
+          Copy me
+        </Button>
       </CopyClipboard>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
