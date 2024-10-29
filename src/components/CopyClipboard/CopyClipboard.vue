@@ -2,7 +2,7 @@
 import { arrow, autoPlacement, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { Icon } from '@iconify/vue'
 import { useClipboard } from '@vueuse/core'
-import { onBeforeMount, useTemplateRef } from 'vue'
+import { onBeforeMount, onMounted, useSlots, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import './copy-clipboard.scss'
@@ -35,10 +35,15 @@ const {
 } = useClipboard({
   copiedDuring: confirmTime,
 })
+const slots = useSlots()
 
 onBeforeMount(() => {
   if (!isSupported.value) {
-    throw new Error('Clipboard API is not supported')
+    console.error('Clipboard API is not supported. This component will not work')
+  }
+
+  if (confirm && slots.confirm) {
+    console.warn('You are using the \'confirm\' prop and slot. The slot will take precedence.')
   }
 })
 
@@ -64,8 +69,8 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   </div>
 
   <Transition name="fade-up" mode="in-out">
-    <div v-if="copied" ref="tooltipRef" class="vui-clipboard-tooltip" :style="floatingStyles">
-      <slot name="label">
+    <div v-if="copied && (confirm || $slots.confirm)" ref="tooltipRef" class="vui-clipboard-tooltip" :style="floatingStyles">
+      <slot name="confirm">
         <template v-if="confirm">
           {{ confirm }}
         </template>
