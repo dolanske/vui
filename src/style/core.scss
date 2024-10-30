@@ -76,14 +76,35 @@
   --global-font-mono: 'Courier New', Courier, monospace;
 }
 
-html {
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  outline: transparent;
+  outline-offset: 0;
+}
+
+:root {
   font-size: 63.5%;
   // TODO remove
-  position: relative;
+  // position: relative;
   background-color: var(--color-bg);
 
   font-feature-settings: normal;
   font-variation-settings: normal;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   // TODO end remove
 
   * {
@@ -94,6 +115,13 @@ html {
     font-family: var(--global-font);
     color: var(--color-text);
   }
+}
+
+#app {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 @import './typography.scss';

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
-import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
 import Drawer from './components/Drawer/Drawer.vue'
-import Sheet from './components/Sheet/Sheet.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -12,7 +10,7 @@ const open = ref(false)
 </script>
 
 <template>
-  <main>
+  <main vaul-drawer-wrapper>
     <Tabs v-model="tab" expand variant="filled">
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />

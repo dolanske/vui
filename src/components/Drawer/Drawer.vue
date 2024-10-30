@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot } from 'vaul-vue'
-import { onBeforeMount, onBeforeUnmount } from 'vue'
-import Backdrop from '../../internal/Backdrop/Backdrop.vue'
+import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
 import './drawer.scss'
 
+interface Props {
+  title?: string
+}
+
+const props = defineProps<Props>()
 const open = defineModel<boolean>()
-
-const app = document.querySelector('#app')!
-
-onBeforeMount(() => {
-  app.setAttribute('vaul-drawer-wrapper', '')
-})
-
-onBeforeUnmount(() => {
-  if (app.hasAttribute('vaul-drawer-wrapper'))
-    app.removeAttribute('vaul-drawer-wrapper')
-})
 </script>
 
 <template>
-  <DrawerRoot :open should-scale-background fixed @close="open = false">
-    <!-- <DrawerTrigger> Open </DrawerTrigger> -->
+  <DrawerRoot
+    :open
+    should-scale-background
+    @close="open = false"
+    @release="open = false"
+  >
     <DrawerPortal>
       <DrawerOverlay class="vui-drawer-overlay" />
       <DrawerContent class="vui-drawer-content">
-        <DrawerHandle />
-        <p>Content</p>
+        <div class="vui-drawer-container">
+          <DrawerTitle class="visually-hidden">
+            {{ props.title }}
+          </DrawerTitle>
+          <p>Content</p>
+        </div>
       </DrawerContent>
     </DrawerPortal>
   </DrawerRoot>
