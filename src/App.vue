@@ -12,7 +12,7 @@ const open = ref(false)
 </script>
 
 <template>
-  <div>
+  <main>
     <Tabs v-model="tab" expand variant="filled">
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
@@ -142,5 +142,5 @@ const open = ref(false)
 },
       </pre>
     </div>
-  </div>
+  </main>
 </template>
