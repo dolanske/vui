@@ -83,9 +83,7 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Reactive options (ability to alter functionality without having to re-render whole table)
   - [x] Interactivity
 - [ ] Slider
-- [ ] Drawer
-  - [ ] https://ui.shadcn.com/docs/components/drawer
-  - [ ] Built on top of bottom sheet
+- [x] Drawer
 - [x] Pagination
 
 - [x] Popout (https://floating-ui.com/)

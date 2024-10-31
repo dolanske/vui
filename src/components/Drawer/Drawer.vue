@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DrawerRootProps } from 'vaul-vue'
+import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
 import { computed } from 'vue'
@@ -19,7 +19,6 @@ interface Props {
    *
    */
   containerSize?: Sizes | 'xl' | 'full' | number
-
   /**
    * Wether to display the handle symbol. It doesn't actually do anything, it's
    * just for the visuals.
@@ -29,6 +28,7 @@ interface Props {
    * Control the underlying Vaul root component
    */
   rootProps?: DrawerRootProps
+  portalProps?: DrawerPortalProps
 }
 
 const {
@@ -36,6 +36,7 @@ const {
   containerClass,
   containerSize = 'm',
   rootProps,
+  portalProps,
   handle = true,
 } = defineProps<Props>()
 const open = defineModel<boolean>()
@@ -63,7 +64,7 @@ const containerMaxWidth = computed(() => {
     @close="open = false"
     @update:open="(state) => open = state"
   >
-    <DrawerPortal>
+    <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
       <DrawerContent class="vui-drawer-content" :class="{ 'hide-handlk': handle === false }">
         <div
