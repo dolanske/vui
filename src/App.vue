@@ -24,7 +24,11 @@ const open = ref(false)
       <Button @click="open = !open">
         Open
       </Button>
-      <Drawer v-model="open" />
+      {{ open }}
+      <Drawer v-model="open" container-class="typography">
+        <h1>Yass queen hello</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit beatae veniam illum laboriosam pariatur possimus aliquam minus autem, laudantium assumenda fugit quaerat, magnam ipsum porro aperiam ipsam, dolores blanditiis quod.</p>
+      </Drawer>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

@@ -109,10 +109,14 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Table
 
 - [ ] Figure out how to set up any font
+  - Assign font to variable in fact
+
+- [ ]
 
 ## Final todo
 
-- [ ] Add generc outline
+- [ ] Add generic outline
+- [ ] Accessibility test
 
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts

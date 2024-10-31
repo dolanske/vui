@@ -102,9 +102,9 @@ blockquote {
 
 pre {
   font-family: var(--global-font-mono);
-  font-size: var(--font-size-ms);
-  font-weight: 600;
-  line-height: 1.1em;
+  font-size: var(--font-size-s);
+  font-weight: 300;
+  line-height: 1.2em;
   padding: var(--space-m);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
@@ -191,7 +191,8 @@ table {
 }
 
 article,
-.article {
+.article,
+.typography {
   ol,
   ul {
     ol,

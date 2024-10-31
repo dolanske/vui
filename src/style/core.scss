@@ -73,30 +73,14 @@
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
 
   --global-font: Geist, sans-serif;
-  --global-font-mono: 'Courier New', Courier, monospace;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-  outline: transparent;
-  outline-offset: 0;
+  --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
 }
 
 :root {
+  font-family: var(--global-font);
   font-size: 63.5%;
   // TODO remove
-  // position: relative;
-  background-color: var(--color-bg);
+  position: relative;
 
   font-feature-settings: normal;
   font-variation-settings: normal;
@@ -112,7 +96,6 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    font-family: var(--global-font);
     color: var(--color-text);
   }
 }
@@ -128,3 +111,4 @@
 @import './layout.scss';
 @import './animation.scss';
 @import './tooltip.scss';
+@import './utils.scss';
