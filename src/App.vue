@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from './components/Button/Button.vue'
-import ButtonGroup from './components/ButtonGroup/ButtonGroup.vue'
+import Flex from './components/Flex/Flex.vue'
+import Skeleton from './components/Skeleton/Skeleton.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -21,16 +21,13 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <ButtonGroup vertical>
-        <Button icon="ph:text-a-underline" />
-        <Button icon="ph:text-indent" />
-        <Button variant="danger">
-          Delete
-        </Button>
-        <Button variant="success">
-          Save
-        </Button>
-      </ButtonGroup>
+      <Flex>
+        <Skeleton width="40" circle radius="12" />
+        <Flex column>
+          <Skeleton height="16" width="125" radius="4px" />
+          <Skeleton height="24" width="89" />
+        </Flex>
+      </Flex>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

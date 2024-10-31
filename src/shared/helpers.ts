@@ -20,3 +20,7 @@ export function searchInStr(match: string | string[], input: string): boolean {
 export function getMaybeRefLength(value: string | number): number {
   return typeof value === 'number' ? value : value.length
 }
+
+export function isNil(value: any): value is undefined {
+  return value === undefined || value === null
+}

@@ -27,6 +27,8 @@ export interface FlexProps {
   alignCenter?: boolean
   alignStart?: boolean
   alignEnd?: boolean
+
+  expand?: boolean
 }
 
 const props = defineProps<FlexProps>()
@@ -85,6 +87,7 @@ const actualAlign = computed(() => {
       gap: actualGap,
       justifyContent: actualJustify,
       alignItems: actualAlign,
+      ...(props.expand && { width: '100%' }),
     }"
   >
     <slot />

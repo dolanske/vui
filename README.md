@@ -18,7 +18,6 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Components
 
-- [ ] Skeleton
 - [ ] Progress Bar
 - [ ] Date picker
 - [ ] Command dropdown
@@ -36,6 +35,7 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
+- [x] Skeleton
 - [x] Button
   - [x] Add `accent` button variant
 - [x] ButtonGroup
