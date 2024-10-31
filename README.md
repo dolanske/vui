@@ -18,8 +18,6 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Components
 
-- [x] ButtonGroup
-  - [x] Merges buttons together vertically or horizontally (merged border radius etc)
 - [ ] Skeleton
 - [ ] Progress Bar
 - [ ] Date picker
@@ -40,6 +38,8 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Depends on <DropdownItem />
 - [x] Button
   - [x] Add `accent` button variant
+- [x] ButtonGroup
+  - [x] Merges buttons together vertically or horizontally (merged border radius etc)
 - [x] Toast
 - [x] Grid
 - [x] Flex
