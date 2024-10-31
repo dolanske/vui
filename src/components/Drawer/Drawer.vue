@@ -16,7 +16,8 @@ interface Props {
    */
   containerClass?: VueClass
   /**
-   *
+   * Size of the container. Either use a preset size or number to specify
+   * max-width of the container.
    */
   containerSize?: Sizes | 'xl' | 'full' | number
   /**
