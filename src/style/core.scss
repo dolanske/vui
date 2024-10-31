@@ -73,18 +73,22 @@
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
 
   --global-font: Geist, sans-serif;
-  --global-font-mono: 'Courier New', Courier, monospace;
+  --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
 }
 
-html {
+:root {
+  font-family: var(--global-font);
   font-size: 63.5%;
   // TODO remove
   position: relative;
-  background-color: var(--color-bg);
-  min-height: 100vh;
 
   font-feature-settings: normal;
   font-variation-settings: normal;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   // TODO end remove
 
   * {
@@ -92,12 +96,19 @@ html {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    font-family: var(--global-font);
     color: var(--color-text);
   }
+}
+
+#app {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 @import './typography.scss';
 @import './layout.scss';
 @import './animation.scss';
 @import './tooltip.scss';
+@import './utils.scss';

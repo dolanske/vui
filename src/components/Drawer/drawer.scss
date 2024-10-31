@@ -1,0 +1,49 @@
+.vui-drawer-content {
+  background-color: var(--color-bg-raised);
+  padding-inline: var(--space-l);
+  border-top: 1px solid var(--color-border);
+  border-top-left-radius: var(--border-radius-l);
+  border-top-right-radius: var(--border-radius-l);
+  padding-top: 30px;
+  padding-bottom: 64px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &.hide-handle:before {
+    display: none;
+  }
+
+  &.vaul-dragging {
+    &:before {
+      background-color: var(--color-text-lighter);
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 6px;
+    top: 12px;
+    border-radius: 3px;
+    background-color: var(--color-border-strong);
+    transition: var(--transition-quick);
+  }
+
+  // .vui-drawer-container {
+  //   width: 100%;
+  //   max-width: 756px;
+  //   margin-inline: auto;
+  // }
+}
+
+.vui-drawer-overlay {
+  // opacity: 0.4;
+  // position: fixed;
+  // inset: 0;
+  // background-color: var(--color-bg-lowered);
+}

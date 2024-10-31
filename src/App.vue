@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
+import Button from './components/Button/Button.vue'
+import Drawer from './components/Drawer/Drawer.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
+const open = ref(false)
 </script>
 
 <template>
-  <div>
+  <main vaul-drawer-wrapper>
     <Tabs v-model="tab" expand variant="filled">
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
@@ -19,14 +21,14 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <p>
-        Hello world please
-        <CopyClipboard text="Hello World">
-          <a>
-            copy me
-          </a>
-        </CopyClipboard> and paste me somewhere tbh.
-      </p>
+      <Button @click="open = !open">
+        Open
+      </Button>
+      {{ open }}
+      <Drawer v-model="open" container-class="typography">
+        <h1>Yass queen hello</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit beatae veniam illum laboriosam pariatur possimus aliquam minus autem, laudantium assumenda fugit quaerat, magnam ipsum porro aperiam ipsam, dolores blanditiis quod.</p>
+      </Drawer>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
@@ -142,5 +144,5 @@ const tab = ref('components')
 },
       </pre>
     </div>
-  </div>
+  </main>
 </template>

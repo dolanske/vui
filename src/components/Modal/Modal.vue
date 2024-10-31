@@ -43,7 +43,7 @@ const attrs = useAttrs()
 <template>
   <Teleport to="body">
     <Transition appear name="modal">
-      <Backdrop v-if="open" @close="open = false">
+      <Backdrop v-if="open" @close="close">
         <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable, centered }]" v-bind="attrs">
           <Card v-bind="card">
             <template v-if="$slots.header" #header>

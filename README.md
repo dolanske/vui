@@ -59,9 +59,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
 - [ ] File input
   - [ ] Dropzone
-- [ ] Copy clipboard button
-  - [ ] Renderless component consuming button props + copy prop
-  - [ ] Copied text ()
+- [x] Copy clipboard button
+  - [x] Renderless component consuming button props + copy prop
+  - [x] Copied text ()
 - [ ] Scrollable
   - [ ] Set max width or height (or size of the parent)
   - [ ] Should work within card
@@ -83,9 +83,7 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Reactive options (ability to alter functionality without having to re-render whole table)
   - [x] Interactivity
 - [ ] Slider
-- [ ] Drawer
-  - [ ] https://ui.shadcn.com/docs/components/drawer
-  - [ ] Built on top of bottom sheet
+- [x] Drawer
 - [x] Pagination
 
 - [x] Popout (https://floating-ui.com/)
@@ -109,10 +107,14 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Table
 
 - [ ] Figure out how to set up any font
+  - Assign font to variable in fact
+
+- [ ]
 
 ## Final todo
 
-- [ ] Add generc outline
+- [ ] Add generic outline
+- [ ] Accessibility test
 
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts
