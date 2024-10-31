@@ -2,12 +2,12 @@
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 import './drawer.scss'
 
 interface Props {
   /**
-   * Title for accessibility
+   * Title for accessibility.
    */
   title?: string
   /**
@@ -54,6 +54,8 @@ const containerMaxWidth = computed(() => {
     return `${containerSize}px`
   }
 })
+
+const id = useId()
 </script>
 
 <template>
@@ -66,13 +68,13 @@ const containerMaxWidth = computed(() => {
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
-      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handlk': handle === false }">
+      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handlk': handle === false }" :aria-describedby="id">
         <div
           class="vui-drawer-container container" :class="containerClass" :style="{
             maxWidth: containerMaxWidth,
           }"
         >
-          <DrawerTitle class="visually-hidden">
+          <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}
           </DrawerTitle>
           <slot />
