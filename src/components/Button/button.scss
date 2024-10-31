@@ -147,6 +147,20 @@
     }
   }
 
+  &.vui-button-variant-accent {
+    &:not(.plain) {
+      color: var(--color-accent);
+      background-color: var(--color-bg-accent-lowered);
+      border: 1px solid var(--color-border-accent);
+    }
+
+    &.active,
+    &:hover {
+      border: 1px solid var(--color-bg-accent-raised);
+      background-color: var(--color-bg-accent-raised);
+    }
+  }
+
   &.vui-button-variant-link {
     color: var(--color-text);
     background: transparent;

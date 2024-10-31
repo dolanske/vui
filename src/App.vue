@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
-import Drawer from './components/Drawer/Drawer.vue'
+import ButtonGroup from './components/ButtonGroup/ButtonGroup.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const open = ref(false)
+// const open = ref(false)
 </script>
 
 <template>
@@ -21,14 +21,16 @@ const open = ref(false)
       home
     </div>
     <div v-if="tab === 'components'">
-      <Button @click="open = !open">
-        Open
-      </Button>
-      {{ open }}
-      <Drawer v-model="open" container-class="typography">
-        <h1>Yass queen hello</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit beatae veniam illum laboriosam pariatur possimus aliquam minus autem, laudantium assumenda fugit quaerat, magnam ipsum porro aperiam ipsam, dolores blanditiis quod.</p>
-      </Drawer>
+      <ButtonGroup vertical>
+        <Button icon="ph:text-a-underline" />
+        <Button icon="ph:text-indent" />
+        <Button variant="danger">
+          Delete
+        </Button>
+        <Button variant="success">
+          Save
+        </Button>
+      </ButtonGroup>
     </div>
     <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

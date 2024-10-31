@@ -68,6 +68,9 @@
   --color-border-weak: rgb(36, 36, 36);
 
   --color-accent: rgb(75, 219, 56);
+  --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.3));
+  --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.6));
+  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.8));
 
   --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
@@ -81,6 +84,7 @@
   font-size: 63.5%;
   // TODO remove
   position: relative;
+  background-color: var(--color-bg);
 
   font-feature-settings: normal;
   font-variation-settings: normal;

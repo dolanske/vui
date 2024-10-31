@@ -18,11 +18,28 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Components
 
-- [ ] Button
-  - [ ] Add `accent` button variant
-- [ ] ButtonGroup
-  - [ ] Merges buttons together vertically or horizontally (merged border radius etc)
-- [x] Checkbox
+- [x] ButtonGroup
+  - [x] Merges buttons together vertically or horizontally (merged border radius etc)
+- [ ] Skeleton
+- [ ] Progress Bar
+- [ ] Date picker
+- [ ] Command dropdown
+- [ ] Carousel (slider)
+- [ ] Input Slider
+- [ ] InputOTP
+  - [ ] Wrapper
+  - [ ] Slot
+- [ ] File input
+  - [ ] Dropzone
+- [ ] Scrollable (idk)
+  - [ ] Set max width or height (or size of the parent)
+  - [ ] Should work within card
+- [ ] Breadcrumbs
+  - [x] Basic version
+  - [ ] Depends on <Popout /> for consolidated path sections
+  - [ ] Depends on <DropdownItem />
+- [x] Button
+  - [x] Add `accent` button variant
 - [x] Toast
 - [x] Grid
 - [x] Flex
@@ -35,6 +52,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Textarea
   - [x] Autoexpand
 - [x] Modal
+- [x] Checkbox
 - [x] Select
   - [x] Depends on <Dropdown />
   - [x] Single select
@@ -42,29 +60,14 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] With search
   - [x] Clearing
 - [x] Accordion
-- [ ] InputOTP
-  - [ ] Wrapper
-  - [ ] Slot
-- [ ] Input Password
-  - [ ] Wrapper around input with an eye icon which changes type to text
 - [x] Alert
 - [x] Divider
 - [x] Badge
-- [ ] Breadcrumbs
-  - [x] Basic version
-  - [ ] Depends on <Popout /> for consolidated path sections
-  - [ ] Depends on <DropdownItem />
 - [x] Avatar
-- [ ] Skeleton
 - [x] Content - It's a class called `.article` (can also use the <article /> HTML element)
-- [ ] File input
-  - [ ] Dropzone
 - [x] Copy clipboard button
   - [x] Renderless component consuming button props + copy prop
   - [x] Copied text ()
-- [ ] Scrollable
-  - [ ] Set max width or height (or size of the parent)
-  - [ ] Should work within card
 - [x] Kbd
   - [x] Option to highlight if key is pressed
 - [x] Sheet
@@ -82,15 +85,17 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Row select
   - [x] Reactive options (ability to alter functionality without having to re-render whole table)
   - [x] Interactivity
-- [ ] Slider
 - [x] Drawer
 - [x] Pagination
-
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
 
+#### Pre-built components
+
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
+- [ ] Input Password
+  - [ ] Wrapper around input with an eye icon which changes type to text
 
 #### Internal
 
@@ -115,6 +120,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 - [ ] Add generic outline
 - [ ] Accessibility test
+- [ ] Document how to
+  - [ ] Set up fonts for the library (global and global mono)
+  - [ ] Document how to set up --color-accent
 
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts
