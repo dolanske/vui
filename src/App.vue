@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Button from './components/Button/Button.vue'
 import Flex from './components/Flex/Flex.vue'
-import Skeleton from './components/Skeleton/Skeleton.vue'
+import Progress from './components/Progress/Progress.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
 // const open = ref(false)
+
+const progressValue = ref(0)
 </script>
 
 <template>
@@ -21,15 +24,17 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
+      <Progress v-model="progressValue" />
       <Flex>
-        <Skeleton width="40" circle radius="12" />
-        <Flex column>
-          <Skeleton height="16" width="125" radius="4px" />
-          <Skeleton height="24" width="89" />
-        </Flex>
+        <Button @click="progressValue -= 5">
+          -5
+        </Button>
+        <Button @click="progressValue += 5">
+          +5
+        </Button>
       </Flex>
     </div>
-    <div v-else-if="tab === 'typography'" class="article" :style="{ maxWidth: '688px', margin: 'auto' }">
+    <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
       <p>Once upon a time, in a far-off land, there <code>was a very lazy</code> king who spent all day lounging on his throne. One day, his advisors came to him with a problem: the kingdom was running out of money</p>
       <h2>The King's Plan</h2>

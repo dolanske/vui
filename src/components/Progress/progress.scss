@@ -1,0 +1,29 @@
+.vui-progress {
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background-color: var(--color-bg-lowered);
+  overflow: hidden;
+  padding-left: var(--space-s);
+  min-height: 4px;
+
+  &.fixed {
+  }
+
+  span {
+    z-index: 5;
+    position: relative;
+    padding: 2px;
+  }
+
+  .vui-progress-indicator {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    right: unset;
+    width: 0;
+    border-radius: 999px;
+    background-color: var(--color-text-lighter);
+  }
+}

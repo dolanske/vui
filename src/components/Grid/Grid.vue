@@ -2,7 +2,7 @@
 import type { Sizes } from '../../shared/types'
 import { computed } from 'vue'
 import { createArray } from '../../shared/helpers'
-import { useActualGap } from '../../shared/properties'
+import { useActualGap } from '../../shared/composables'
 
 /**
  * This component is not meant for complex grids

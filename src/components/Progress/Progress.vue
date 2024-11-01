@@ -1,5 +1,8 @@
 <script setup lang='ts'>
-import { onBeforeUnmount, onMounted } from 'vue'
+import { TransitionPresets, useTransition } from '@vueuse/core'
+import { ref, useTemplateRef, watchEffect } from 'vue'
+import { calculateColorLightness, stringRgbToValues } from '../../shared/helpers'
+import './progress.scss'
 
 interface Props {
   /**
@@ -15,32 +18,68 @@ interface Props {
    *
    */
   labelPosition?: 'left' | 'right' | 'center'
+  /**
+   * Indicator color. Use CSS color values or variables
+   */
+  color?: string
+  /**
+   * Displays loader at the top of the page. It is only displayed when the
+   * progress is between 0 and 100 (exclusive).
+   */
+  fixed?: boolean
 }
 
 const {
   fake,
+  color = 'var(--color-accent)',
   label,
-  labelPosition = 'center',
+  fixed,
 } = defineProps<Props>()
-const progress = defineModel<number>()
 
-let interval
+const progressAmount = defineModel<number>({
+  default: 0,
+  set(value) {
+    return Math.min(value, 100)
+  },
+})
 
-onMounted(() => {
-  if (fake) {
-    interval = setInterval(() => {
-      if (Math.random() > 0.5) {}
-    }, 1000)
+// Text color based on the background
+const textColor = ref('var(--color-text)')
+const indicator = useTemplateRef('indicator')
+
+watchEffect(() => {
+  if (indicator.value) {
+    const bg = window.getComputedStyle(indicator.value).backgroundColor
+    const lightness = calculateColorLightness(...stringRgbToValues(bg))
+    textColor.value = `var(--color-text${lightness === 'light' ? '-invert' : ''})`
   }
+}, {
+  flush: 'post',
 })
 
-onBeforeUnmount(() => {
-  clearInterval(interval)
+// Animate actual value
+const actualProgressValue = useTransition(progressAmount, {
+  transition: TransitionPresets.easeInOutCubic,
+  duration: 400,
 })
+
+// TODO: Fake loader
+
+// TODO: fixed
 </script>
 
 <template>
-  <div class="vui-progress-bar">
-    <div class="vui-progress-indicator" />
+  <div class="vui-progress">
+    <div
+      ref="indicator"
+      class="vui-progress-indicator" :style="{
+        width: `${actualProgressValue}%`,
+        backgroundColor: color,
+      }"
+    />
+    <span
+      v-if="label"
+      :style="{ color: textColor }"
+    >{{ `${Math.round(actualProgressValue)}%` }}</span>
   </div>
 </template>
