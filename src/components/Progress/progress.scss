@@ -1,0 +1,41 @@
+.vui-progress {
+  --vui-progress-height: 3px;
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 999px;
+  background-color: var(--color-bg-lowered);
+  overflow: hidden;
+  height: var(--vui-progress-height);
+
+  &.fixed {
+    transition: var(--transition-slow);
+    transition-property: height;
+    position: fixed;
+    inset: 0;
+    bottom: unset;
+    height: 0;
+    border-radius: none !important;
+
+    &.fixed-active {
+      // Some arbitrary value which should never happen to people with
+      height: var(--vui-progress-height);
+    }
+
+    .vui-progress-indicator {
+      border-top-left-radius: unset !important;
+      border-bottom-left-radius: unset !important;
+    }
+  }
+
+  .vui-progress-indicator {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    right: unset;
+    width: 0;
+    border-radius: 999px;
+    background-color: var(--color-text-lighter);
+    transition: var(--transition-slow);
+  }
+}

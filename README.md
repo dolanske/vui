@@ -11,14 +11,10 @@ Opinionated vue UI library for building personal applications. Completely from s
   - l: 24
   - xl: 40
 
-- [ ] Fix code block having language highlight even if not set
-- [ ]
-
 ## TODO
 
 #### Components
 
-- [ ] Progress Bar
 - [ ] Date picker
 - [ ] Command dropdown
 - [ ] Carousel (slider)
@@ -35,6 +31,7 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
+- [x] Progress Bar
 - [x] Skeleton
 - [x] Button
   - [x] Add `accent` button variant

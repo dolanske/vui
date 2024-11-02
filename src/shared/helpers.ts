@@ -24,3 +24,30 @@ export function getMaybeRefLength(value: string | number): number {
 export function isNil(value: any): value is undefined {
   return value === undefined || value === null
 }
+
+/**
+ * Checks wether a color is light or dark, depending on
+ */
+export function calculateColorLightness(r: number, g: number, b: number): 'dark' | 'light' {
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000
+  return yiq >= 128 ? 'light' : 'dark'
+}
+
+/**
+ * Convert a CSS rgb string to a tuple of actual r,g,b values
+ *
+ * 'rgb(12,16,24)' --> [12, 16, 24]
+ */
+export function stringRgbToValues(rgbString: string): [number, number, number] {
+  return rgbString.match(/\d+/g)!.map(Number) as any as [number, number, number]
+}
+
+export function randomMinMax(min: number, max: number): number {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+export function delay(amount: number): Promise<any> {
+  return new Promise(r => setTimeout(r, amount))
+}

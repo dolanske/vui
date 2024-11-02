@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
 import { computed } from 'vue'
-import { useActualGap } from '../../shared/properties'
+import { useActualGap } from '../../shared/composables'
 
 export interface FlexProps {
   inline?: boolean
