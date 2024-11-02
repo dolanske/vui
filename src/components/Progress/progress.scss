@@ -1,4 +1,6 @@
 .vui-progress {
+  --vui-progress-height: 4px;
+
   display: block;
   width: 100%;
   position: relative;
@@ -6,9 +8,25 @@
   background-color: var(--color-bg-lowered);
   overflow: hidden;
   padding-left: var(--space-s);
-  min-height: 4px;
+  height: var(--vui-progress-height);
 
   &.fixed {
+    transition: var(--transition-slow);
+    transition-property: height;
+    position: fixed;
+    inset: 0;
+    bottom: unset;
+    height: 0;
+
+    &.fixed-active {
+      // Some arbitrary value which should never happen to people with
+      height: 32px;
+    }
+  }
+
+  // If it contains text, we ignore height setting
+  &:has(span) {
+    height: auto;
   }
 
   span {

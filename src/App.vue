@@ -24,7 +24,7 @@ const progressValue = ref(0)
       home
     </div>
     <div v-if="tab === 'components'">
-      <Progress v-model="progressValue" />
+      <Progress v-model="progressValue" fixed />
       <Flex>
         <Button @click="progressValue -= 5">
           -5
