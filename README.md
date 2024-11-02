@@ -18,15 +18,19 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Date picker
 - [ ] Command dropdown
 - [ ] Carousel (slider)
+- [ ] CodeBlock
+  - [ ] Code highlighting
+  - [ ] Copy code
+  - [ ] Type, padding, etc
 - [ ] Input Slider
+- [ ] Input improvements
+  - [ ] Errors slot (border is red (maybe) and render red text before "after" slot). Prop is string[]
+  - [ ] Prefix / suffix. Allow non-editable text "within" the input component. This will require some styling changes as the input element itself cant use the border anymore
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
 - [ ] File input
   - [ ] Dropzone
-- [ ] Scrollable (idk)
-  - [ ] Set max width or height (or size of the parent)
-  - [ ] Should work within card
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
@@ -115,6 +119,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## Final todo
 
+- [ ] Move style attribute assignments to scoped style element instead (flex, grid etc)
 - [ ] Add generic outline
 - [ ] Accessibility test
 - [ ] Document how to

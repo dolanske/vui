@@ -24,15 +24,7 @@ const progressValue = ref(0)
       home
     </div>
     <div v-if="tab === 'components'">
-      <Progress v-model="progressValue" fake />
-      <Flex>
-        <Button @click="progressValue -= 5">
-          -5
-        </Button>
-        <Button @click="progressValue += 5">
-          +5
-        </Button>
-      </Flex>
+      abc
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
