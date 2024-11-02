@@ -1,13 +1,11 @@
 .vui-progress {
-  --vui-progress-height: 4px;
-
+  --vui-progress-height: 3px;
   display: block;
   width: 100%;
   position: relative;
   border-radius: 999px;
   background-color: var(--color-bg-lowered);
   overflow: hidden;
-  padding-left: var(--space-s);
   height: var(--vui-progress-height);
 
   &.fixed {
@@ -17,22 +15,17 @@
     inset: 0;
     bottom: unset;
     height: 0;
+    border-radius: none !important;
 
     &.fixed-active {
       // Some arbitrary value which should never happen to people with
-      height: 32px;
+      height: var(--vui-progress-height);
     }
-  }
 
-  // If it contains text, we ignore height setting
-  &:has(span) {
-    height: auto;
-  }
-
-  span {
-    z-index: 5;
-    position: relative;
-    padding: 2px;
+    .vui-progress-indicator {
+      border-top-left-radius: unset !important;
+      border-bottom-left-radius: unset !important;
+    }
   }
 
   .vui-progress-indicator {
@@ -43,5 +36,6 @@
     width: 0;
     border-radius: 999px;
     background-color: var(--color-text-lighter);
+    transition: var(--transition-slow);
   }
 }

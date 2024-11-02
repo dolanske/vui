@@ -41,3 +41,13 @@ export function calculateColorLightness(r: number, g: number, b: number): 'dark'
 export function stringRgbToValues(rgbString: string): [number, number, number] {
   return rgbString.match(/\d+/g)!.map(Number) as any as [number, number, number]
 }
+
+export function randomMinMax(min: number, max: number): number {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+export function delay(amount: number): Promise<any> {
+  return new Promise(r => setTimeout(r, amount))
+}
