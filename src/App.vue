@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Input from './components/Input/Input.vue'
-import Textarea from './components/Input/Textarea.vue'
+import Counter from './components/Input/Counter.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const name = ref('')
+const count = ref(5)
 </script>
 
 <template>
@@ -21,7 +20,7 @@ const name = ref('')
       home
     </div>
     <div v-if="tab === 'components'">
-      <Textarea v-model="name" label="Your name" placeholder="Jogn doe" />
+      <Counter v-model="count" />
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
