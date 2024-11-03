@@ -25,12 +25,13 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Input Slider
 - [ ] Number field (+ and -)
   - [ ] This could be implemented once Input improvements are in
-- [ ] Input improvements
-  - [ ] Errors slot (border is red (maybe) and render red text before "after" slot). Prop is string[]
-  - [ ] Prefix / suffix slots. Allow non-editable text/slots "within" the input component. This will require some styling changes as the input element itself cant use the border anymore
+- [x] Input improvements
+  - [x] Errors slot (border is red (maybe) and render red text before "after" slot). Prop is string[]
+  - [x] Prefix / suffix slots. Allow non-editable text/slots "within" the input component. This will require some styling changes as the input element itself cant use the border anymore
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
+
 - [ ] File input
   - [ ] Dropzone
 - [ ] Breadcrumbs

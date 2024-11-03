@@ -19,6 +19,7 @@ const {
   readonly,
   resize = 'vertical',
   autoResize,
+  errors = [] as string[],
 } = defineProps<Props>()
 
 const model = defineModel<string>({
@@ -37,7 +38,7 @@ const id = useId()
 </script>
 
 <template>
-  <div class="vui-input-container" :class="{ expand, required, readonly }">
+  <div class="vui-input-container" :class="{ expand, required, readonly, 'has-errors': errors.length > 0 }">
     <slot name="before" />
     <div class="vui-input">
       <label v-if="label" for="id">{{ label }}</label>
@@ -62,6 +63,11 @@ const id = useId()
     <p v-if="limit" class="vui-input-limit">
       {{ `${model.length}/${limit}` }}
     </p>
+    <ul v-if="errors.length > 0" class="vui-input-errors">
+      <li v-for="err in errors" :key="err">
+        {{ err }}
+      </li>
+    </ul>
     <slot name="after" />
   </div>
 </template>

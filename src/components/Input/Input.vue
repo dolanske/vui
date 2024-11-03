@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, type InputTypeHTMLAttribute, useId, useTemplateRef, watchEffect } from 'vue'
 import { getMaybeRefLength } from '../../shared/helpers'
+import Flex from '../Flex/Flex.vue'
 import '../../style/core.scss'
 import './input.scss'
 
@@ -17,6 +18,7 @@ export interface InputProps {
   modelValue: string | number
   readonly?: boolean
   focus?: boolean
+  errors?: string[]
 }
 
 const {
@@ -30,6 +32,7 @@ const {
   modelValue = '',
   readonly,
   focus,
+  errors = [] as string[],
 } = defineProps<InputProps>()
 
 const model = defineModel<string | number>({
@@ -66,28 +69,38 @@ const renderLimit = computed(() => {
 </script>
 
 <template>
-  <div class="vui-input-container" :class="{ expand, required, readonly }">
+  <div class="vui-input-container" :class="{ expand, required, readonly, 'has-errors': errors.length > 0 }">
     <slot name="before" />
     <div class="vui-input">
       <label v-if="label" for="id">{{ label }}</label>
       <p v-if="hint" class="vui-input-hint">
         {{ hint }}
       </p>
-      <input
-        :id
-        ref="inputRef"
-        v-model="model"
-        :readonly
-        :type
-        name="id"
-        :placeholder
-        :required
-        :max="limit"
-      >
+      <Flex class="vui-input-style" :gap="3">
+        <slot name="start" />
+        <input
+          :id
+          ref="inputRef"
+          v-model="model"
+          :readonly
+          :type
+          name="id"
+          :placeholder
+          :required
+          :max="limit"
+        >
+        <slot name="end" />
+      </Flex>
     </div>
     <p v-if="limit" class="vui-input-limit">
       {{ renderLimit }}
     </p>
+    <ul v-if="errors.length > 0" class="vui-input-errors">
+      <li v-for="err in errors" :key="err">
+        {{ err }}
+      </li>
+    </ul>
+
     <slot name="after" />
   </div>
 </template>

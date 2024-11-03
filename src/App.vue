@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from './components/Button/Button.vue'
-import Flex from './components/Flex/Flex.vue'
-import Progress from './components/Progress/Progress.vue'
+import Input from './components/Input/Input.vue'
+import Textarea from './components/Input/Textarea.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-// const open = ref(false)
-
-const progressValue = ref(0)
+const name = ref('')
 </script>
 
 <template>
@@ -24,7 +21,7 @@ const progressValue = ref(0)
       home
     </div>
     <div v-if="tab === 'components'">
-      abc
+      <Textarea v-model="name" label="Your name" placeholder="Jogn doe" />
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
