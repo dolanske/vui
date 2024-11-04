@@ -16,27 +16,22 @@ Opinionated vue UI library for building personal applications. Completely from s
 #### Components
 
 - [ ] Date picker
-- [ ] Command dropdown
-- [ ] Carousel (slider)
-- [ ] CodeBlock
-  - [ ] Code highlighting
-  - [ ] Copy code
-  - [ ] Type, padding, etc
 - [ ] Input Slider
+- [ ] File input
+  - [ ] Dropzone
+- [ ] Confirm dialog
+  - [ ] 4 props (title, description, onCancel, onOk)
+- [x] Input Password
+  - [x] Wrapper around input with an eye icon which changes type to text
+- [ ] Breadcrumbs
+  - [x] Basic version
+  - [ ] Depends on <Popout /> for consolidated path sections
+  - [ ] Depends on <DropdownItem />
 - [x] Number field (+ and -)
   - [x] This could be implemented once Input improvements are in
 - [x] Input improvements
   - [x] Errors slot (border is red (maybe) and render red text before "after" slot). Prop is string[]
   - [x] Prefix / suffix slots. Allow non-editable text/slots "within" the input component. This will require some styling changes as the input element itself cant use the border anymore
-- [ ] InputOTP
-  - [ ] Wrapper
-  - [ ] Slot
-- [ ] File input
-  - [ ] Dropzone
-- [ ] Breadcrumbs
-  - [x] Basic version
-  - [ ] Depends on <Popout /> for consolidated path sections
-  - [ ] Depends on <DropdownItem />
 - [x] Progress Bar
 - [x] Skeleton
 - [x] Button
@@ -93,12 +88,17 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
 
-#### Pre-built components
+### Post 1.0 components
 
-- [ ] Confirm dialog
-  - [ ] 4 props (title, description, onCancel, onOk)
-- [x] Input Password
-  - [x] Wrapper around input with an eye icon which changes type to text
+- [ ] Carousel (slider)
+- [ ] InputOTP
+  - [ ] Wrapper
+  - [ ] Slot
+- [ ] CodeBlock
+  - [ ] Code highlighting
+  - [ ] Copy code
+  - [ ] Type, padding, etc
+- [ ] Command dropdown
 
 #### Internal
 
