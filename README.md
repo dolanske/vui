@@ -31,7 +31,6 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] InputOTP
   - [ ] Wrapper
   - [ ] Slot
-
 - [ ] File input
   - [ ] Dropzone
 - [ ] Breadcrumbs
@@ -98,8 +97,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
-- [ ] Input Password
-  - [ ] Wrapper around input with an eye icon which changes type to text
+- [x] Input Password
+  - [x] Wrapper around input with an eye icon which changes type to text
 
 #### Internal
 

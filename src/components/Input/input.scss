@@ -100,6 +100,12 @@
       background: transparent;
       outline: none;
       font-size: var(--font-size-ms);
+      color: var(--color-text);
+
+      &:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px var(--color-bg) inset;
+        -webkit-text-fill-color: var(--color-text);
+      }
     }
 
     textarea {

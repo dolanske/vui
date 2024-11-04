@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Counter from './components/Input/Counter.vue'
+import Password from './components/Input/Password.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const count = ref(5)
+const password = ref()
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const count = ref(5)
       home
     </div>
     <div v-if="tab === 'components'">
-      <Counter v-model="count" />
+      <Password v-model="password" />
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
