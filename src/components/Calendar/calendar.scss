@@ -1,2 +1,56 @@
+.dp__theme_dark {
+  --dp-background-color: var(--color-bg);
+  --dp-text-color: var(--color-text);
+  --dp-hover-color: var(--color-button-gray-hover);
+  --dp-hover-text-color: var(--color-text);
+  --dp-hover-icon-color: var(--color-text-lighter);
+  --dp-primary-color: var(--color-accent);
+  --dp-primary-disabled-color: var(--color-accent-disabled);
+  --dp-primary-text-color: var(--color-text-invert);
+  --dp-secondary-color: var(--color-border);
+  --dp-border-color: var(--color-border);
+  --dp-menu-border-color: var(--color-border);
+  --dp-border-color-hover: var(--color-border-strong);
+  --dp-border-color-focus: var(--color-border-strong);
+  --dp-disabled-color: var(--color-bg-raised);
+  --dp-disabled-color-text: var(--color-text-light);
+  --dp-scroll-bar-background: var(--color-bg-lowered);
+  --dp-scroll-bar-color: var(--color-border);
+  --dp-success-color: var(--color-green);
+  --dp-success-color-disabled: var(--color-green-disabled);
+  --dp-icon-color: var(--color-text-light);
+  --dp-danger-color: var(--color-red);
+  --dp-marker-color: var(--color-red);
+  --dp-tooltip-color: var(--color-bg-raised);
+  --dp-highlight-color: var(--color-bg-raised);
+  --dp-range-between-dates-background-color: var(--dp-hover-color, #484848);
+  --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
+  --dp-range-between-border-color: var(--dp-hover-color, #fff);
+}
+
 :root {
+  --dp-font-family: var(--global-font);
+  --dp-border-radius: var(--border-radius-s);
+  --dp-cell-border-radius: var(--border-radius-s);
+  --dp-common-transition: var(--transition);
+
+  --dp-font-size: var(--font-size-ms);
+  --dp-preview-font-size: var(--font-size-s);
+  --dp-time-font-size: var(--font-size-s);
+}
+
+.dp__main {
+  font-size: var(--n-font-size-m);
+}
+
+.dp__outer_menu_wrap {
+  box-shadow: var(--box-shadow-strong);
+}
+
+.dp__input_icon {
+  inset-inline-start: 8px;
+}
+
+.dp--clear-btn {
+  inset-inline-end: 8px;
 }
