@@ -15,18 +15,18 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Components
 
-- [ ] Date picker
+- [x] Date picker
 - [ ] Input Slider
 - [ ] File input
   - [ ] Dropzone
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
-- [x] Input Password
-  - [x] Wrapper around input with an eye icon which changes type to text
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
+- [x] Input Password
+  - [x] Wrapper around input with an eye icon which changes type to text
 - [x] Number field (+ and -)
   - [x] This could be implemented once Input improvements are in
 - [x] Input improvements

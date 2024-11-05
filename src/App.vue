@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Button from './components/Button/Button.vue'
+import Calendar from './components/Calendar/Calendar.vue'
 import Counter from './components/Input/Counter.vue'
 import Password from './components/Input/Password.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const password = ref()
+const date = ref(new Date())
 </script>
 
 <template>
@@ -21,7 +23,12 @@ const password = ref()
       home
     </div>
     <div v-if="tab === 'components'">
-      <Password v-model="password" />
+      <!-- <Password v-model="password" /> -->
+      <Calendar v-model="date">
+        <template #trigger>
+          <Button>Open time</Button>
+        </template>
+      </Calendar>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

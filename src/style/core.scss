@@ -49,6 +49,7 @@
   --color-border-red: rgb(94, 23, 19);
 
   --color-text-green: rgb(44, 214, 52);
+  --color-text-green-disabled: rgb(109, 193, 113);
   --color-bg-green-lowered: rgb(19, 46, 9);
   --color-bg-green-raised: rgb(37, 100, 14);
   --color-border-green: rgb(27, 70, 12);
@@ -68,6 +69,7 @@
   --color-border-weak: rgb(36, 36, 36);
 
   --color-accent: rgb(56, 214, 219);
+  --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.5) calc(l));
   --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.3));
   --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.6));
   --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.8));
@@ -99,9 +101,11 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
-    color: var(--color-text);
   }
+}
+
+body {
+  color: var(--color-text);
 }
 
 #app {
