@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.5",
+    "@vuepic/vue-datepicker": "^10.0.0",
     "@vueuse/core": "^11.1.0",
     "sass": "^1.79.5",
     "vaul-vue": "^0.2.0",
