@@ -15,7 +15,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Components
 
-- [ ] Date picker
+- [x] Date picker
 - [ ] Input Slider
 - [ ] File input
   - [ ] Dropzone
