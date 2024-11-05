@@ -7,7 +7,7 @@ import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import './modal.scss'
 
-interface Props {
+export interface ModalProps {
   size?: Sizes | 'full'
   /**
    * Modal wraps a floating card. You can optinally pass in any props you'd pass
@@ -29,7 +29,7 @@ const {
   card = {},
   scrollable,
   centered,
-} = defineProps<Props>()
+} = defineProps<ModalProps>()
 
 const open = defineModel<boolean>()
 
@@ -50,7 +50,7 @@ const attrs = useAttrs()
               <slot name="header" :close />
             </template>
             <template #header-end>
-              <Button square icon="ph:x" @click="open = false" />
+              <Button plain square icon="ph:x" @click="open = false" />
             </template>
             <template v-if="$slots.default" #default>
               <div>

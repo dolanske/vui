@@ -13,18 +13,21 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## TODO
 
+- [ ] Before confirm dialog, remove header-end from modal and make close button absolute to pright, completely not-use header-end for modal
+
 #### Components
 
-- [x] Date picker
 - [ ] Input Slider
 - [ ] File input
   - [ ] Dropzone
 - [ ] Confirm dialog
   - [ ] 4 props (title, description, onCancel, onOk)
+  - [ ] description is a slot
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
+- [x] Date picker
 - [x] Input Password
   - [x] Wrapper around input with an eye icon which changes type to text
 - [x] Number field (+ and -)
