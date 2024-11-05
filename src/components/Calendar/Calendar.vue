@@ -2,8 +2,6 @@
 import type { VueDatePickerProps } from '@vuepic/vue-datepicker'
 import { Icon } from '@iconify/vue'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { PropType, useAttrs } from 'vue'
-import Button from '../Button/Button.vue'
 import '@vuepic/vue-datepicker/dist/main.css'
 import './calendar.scss'
 
