@@ -12,12 +12,12 @@
   }
 
   &:not(.separators) {
-    .vui-card-content {
+    .vui-card-content:not(:first-child) {
       padding-block: var(--space-xs);
     }
 
     &.header-separator {
-      .vui-card-content {
+      .vui-card-content:not(:first-child) {
         padding-top: var(--space-m);
         // padding-block: var(--space-m);
       }

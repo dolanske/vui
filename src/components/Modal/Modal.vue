@@ -22,6 +22,10 @@ export interface ModalProps {
    * Modal appears in the center of the screen
    */
   centered?: boolean
+  /**
+   * Wether modal can be closed by clicking the X button
+   */
+  canDismiss?: boolean
 }
 
 const {
@@ -29,6 +33,7 @@ const {
   card = {},
   scrollable,
   centered,
+  canDismiss = true,
 } = defineProps<ModalProps>()
 
 const open = defineModel<boolean>()
@@ -45,12 +50,17 @@ const attrs = useAttrs()
     <Transition appear name="modal">
       <Backdrop v-if="open" @close="close">
         <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable, centered }]" v-bind="attrs">
+          <Button
+            v-if="canDismiss"
+            class="vui-modal-close"
+            plain
+            square
+            icon="ph:x"
+            @click="open = false"
+          />
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
               <slot name="header" :close />
-            </template>
-            <template #header-end>
-              <Button plain square icon="ph:x" @click="open = false" />
             </template>
             <template v-if="$slots.default" #default>
               <div>

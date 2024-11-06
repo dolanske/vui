@@ -30,7 +30,7 @@ const open = ref(false)
       </Button>
       <Confirm v-model="open">
         <h3>Confirm your</h3>
-        <p>Can you please confirm that you are like old enough to use this website? Ty</p>
+        <p>Can you please confirm that you are like old enough to use this website and interact with it please?</p>
       </Confirm>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
