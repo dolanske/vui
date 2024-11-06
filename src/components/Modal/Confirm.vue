@@ -9,7 +9,7 @@ type Props = {
   title?: string
   content?: string
   confirmText?: string
-  confirmVariant: Variants
+  confirmVariant?: Variants
   cancelText?: string
   showCancel?: boolean
 } & Partial<ModalProps>
