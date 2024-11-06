@@ -20,13 +20,13 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Input Slider
 - [ ] File input
   - [ ] Dropzone
-- [ ] Confirm dialog
-  - [ ] 4 props (title, description, onCancel, onOk)
-  - [ ] description is a slot
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
+- [x] Confirm dialog
+  - [x] 4 props (title, description, onCancel, onOk)
+  - [x] description is a slot
 - [x] Date picker
 - [x] Input Password
   - [x] Wrapper around input with an eye icon which changes type to text
