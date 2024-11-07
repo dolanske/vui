@@ -4,22 +4,15 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## Bugs
 
-- [ ] Tweak sizing spaces
-  - xs: 4px
-  - s: 8px
-  - m: 16
-  - l: 24
-  - xl: 40
-
-## TODO
-
-- [ ] Before confirm dialog, remove header-end from modal and make close button absolute to pright, completely not-use header-end for modal
+- [x] Before confirm dialog, remove header-end from modal and make close button absolute to pright, completely not-use header-end for modal
 
 #### Components
 
 - [ ] Input Slider
+  - [ ] Just style normal input slider
 - [ ] File input
-  - [ ] Dropzone
+  - [x] Style normal input
+  - [ ] Dropzone (its own component)
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
@@ -91,6 +84,27 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
 
+## 1.0 Checklist
+- [ ] Figure out how to set up any font
+  - Assign font to variable in fact
+
+- [ ] Tweak all colors
+- [ ] Tweak all spacing
+
+- [ ] Move style attribute assignments to scoped style element instead (flex, grid etc)
+- [ ] Add generic outline
+- [ ] Accessibility test
+- [ ] Document how to
+  - [ ] Set up fonts for the library (global and global mono)
+  - [ ] Document how to set up --color-accent
+- [ ] If something interactive is disabled, add disabled cursor
+
+- [ ] Make sure all components have their variables localized so that they can be changed on a component level
+- [ ] Easily change up fonts
+- [ ] Create documentation site
+
+---
+
 ### Post 1.0 components
 
 - [ ] Carousel (slider)
@@ -102,35 +116,3 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Copy code
   - [ ] Type, padding, etc
 - [ ] Command dropdown
-
-#### Internal
-
-- [x] Backdrop (darkens bg and goes over all content, on click event)
-- [ ] Tweak all colors
-
-#### Non-components
-
-- [x] Typography (https://ui.shadcn.com/docs/components/typography#list)
-  - [x] Headings h1, h2, h3, h4, h5, h6
-  - [x] Text, links, u, i, b, s
-  - [x] Blockquote
-  - [x] Lists (ordered, unordered, sublists)
-  - [x] Table
-
-- [ ] Figure out how to set up any font
-  - Assign font to variable in fact
-
-- [ ]
-
-## Final todo
-
-- [ ] Move style attribute assignments to scoped style element instead (flex, grid etc)
-- [ ] Add generic outline
-- [ ] Accessibility test
-- [ ] Document how to
-  - [ ] Set up fonts for the library (global and global mono)
-  - [ ] Document how to set up --color-accent
-
-- [ ] Make sure all components have their variables localized so that they can be changed on a component level
-- [ ] Easily change up fonts
-- [ ] Create documentation site

@@ -3,13 +3,14 @@ import { ref } from 'vue'
 import Button from './components/Button/Button.vue'
 import Calendar from './components/Calendar/Calendar.vue'
 import Counter from './components/Input/Counter.vue'
+import Dropzone from './components/Input/Dropzone.vue'
+import File from './components/Input/File.vue'
 import Password from './components/Input/Password.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const open = ref(false)
 </script>
 
 <template>
@@ -24,14 +25,7 @@ const open = ref(false)
       home
     </div>
     <div v-if="tab === 'components'">
-      <!-- <Password v-model="password" /> -->
-      <Button @click="open = true">
-        open
-      </Button>
-      <Confirm v-model="open">
-        <h3>Confirm your</h3>
-        <p>Can you please confirm that you are like old enough to use this website and interact with it please?</p>
-      </Confirm>
+      <Dropzone expand label="Profile picture" @input="console.log" />
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

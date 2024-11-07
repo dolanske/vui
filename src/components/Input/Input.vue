@@ -15,10 +15,12 @@ export interface InputProps {
   expand?: boolean
   placeholder?: string
   required?: boolean
-  modelValue: string | number
+  modelValue?: string | number
   readonly?: boolean
   focus?: boolean
   errors?: string[]
+  accept?: string
+  multiple?: boolean
 }
 
 const {
@@ -32,6 +34,7 @@ const {
   modelValue = '',
   readonly,
   focus,
+  accept,
   errors = [] as string[],
 } = defineProps<InputProps>()
 
@@ -78,7 +81,9 @@ const renderLimit = computed(() => {
       </p>
       <Flex class="vui-input-style" :gap="3" align-center>
         <slot name="start" />
+        <slot name="__internal_replace_input" :input-id="id" />
         <input
+          v-if="!$slots.__internal_replace_input"
           :id
           ref="inputRef"
           v-model="model"
@@ -88,6 +93,8 @@ const renderLimit = computed(() => {
           :placeholder
           :required
           :max="limit"
+          :accept
+          :multiple
         >
         <slot name="end" />
       </Flex>
