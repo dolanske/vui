@@ -27,6 +27,7 @@ export interface FlexProps {
   alignCenter?: boolean
   alignStart?: boolean
   alignEnd?: boolean
+  alignBaseline?: boolean
 
   expand?: boolean
 }
@@ -70,6 +71,8 @@ const actualAlign = computed(() => {
     return 'flex-end'
   else if (props.alignCenter)
     return 'center'
+  else if (props.alignBaseline)
+    return 'baseline'
   return 'flex-start'
 })
 </script>
