@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -18,25 +19,10 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <dl>
-        <dt>Status</dt>
-        <dd><mark>Success</mark></dd>
-        <dt>Date</dt>
-        <dd>Value 2</dd>
-        <dt>Amount</dt>
-        <dd>50,00&thinsp;€</dd>
-        <dt>Payment fee</dt>
-        <dd>1,75&thinsp;</dd>
-        <dt>Method</dt>
-        <dd>Card</dd>
-        <dt>Identifier</dt>
-        <dd><code>PAY38DL19710O</code></dd>
-        <dt>Description</dt>
-        <dd>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum adipisci cupiditate deleniti sed perferendis placeat
-          nesciunt soluta impedit, animi nisi atque sit at aliquid rem quaerat voluptas excepturi quo qui.
-        </dd>
-      </dl>
+      <Flex space-between>
+        <h1>Hiii</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+      </Flex>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

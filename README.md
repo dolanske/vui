@@ -2,16 +2,9 @@
 
 Opinionated vue UI library for building personal applications. Completely from scratch (besides some libraries later on ig xd).
 
-## Bugs
-
-- [x] Before confirm dialog, remove header-end from modal and make close button absolute to pright, completely not-use header-end for modal
-
 #### Components
 
-- [ ] Breadcrumbs
-  - [x] Basic version
-  - [ ] Depends on <Popout /> for consolidated path sections
-  - [ ] Depends on <DropdownItem />
+- [x] Breadcrumbs
 - [x] File input
   - [x] Style normal input
   - [x] Dropzone (its own component)
@@ -85,8 +78,6 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Just style normal input slider
 
 ## 1.0 Checklist
-- [ ] Figure out how to set up any font
-  - Assign font to variable in fact
 - [ ] Add condensed typescale (reduce space between elements)
 - [ ] Tweak all colors
 - [ ] Tweak all spacing
@@ -98,8 +89,9 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Document how to set up --color-accent
 - [ ] If something interactive is disabled, add disabled cursor
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
-- [ ] Easily change up fonts
 - [ ] Create documentation site
+- [ ] Check how everything looks on mobile
+  - [ ] Fix everything down to 300px
 
 ---
 

@@ -34,9 +34,11 @@ export interface FlexProps {
 
 const props = defineProps<FlexProps>()
 
-const actualGap = useActualGap(props.gap)
+// Flex gap
+const ag = useActualGap(props.gap)
 
-const actualDirection = computed(() => {
+// Flex direction
+const ad = computed(() => {
   if (props.row)
     return 'row'
   else if (props.column)
@@ -48,7 +50,8 @@ const actualDirection = computed(() => {
   else return 'row'
 })
 
-const actualJustify = computed(() => {
+// Justify content
+const aj = computed(() => {
   if (props.justifyStart)
     return 'flex-start'
   else if (props.justifyEnd)
@@ -64,7 +67,8 @@ const actualJustify = computed(() => {
   else return 'flex-start'
 })
 
-const actualAlign = computed(() => {
+// Align items
+const aA = computed(() => {
   if (props.alignStart)
     return 'flex-start'
   else if (props.alignEnd)
@@ -75,24 +79,31 @@ const actualAlign = computed(() => {
     return 'baseline'
   return 'flex-start'
 })
+
+const aY = computed(() => props.inline ? 'inline-flex' : 'flex')
+const aW = computed(() => props.wrap
+  ? 'wrap'
+  : props.wrapReverse
+    ? 'wrap-reverse'
+    : 'nowrap')
+
+const aH = computed(() => props.expand ? '100%' : 'auto')
 </script>
 
 <template>
-  <div
-    :style="{
-      display: props.inline ? 'inline-flex' : 'flex',
-      flexWrap: props.wrap
-        ? 'wrap'
-        : props.wrapReverse
-          ? 'wrap-reverse'
-          : 'nowrap',
-      flexDirection: actualDirection,
-      gap: actualGap,
-      justifyContent: actualJustify,
-      alignItems: actualAlign,
-      ...(props.expand && { width: '100%' }),
-    }"
-  >
+  <div class="vui-flex">
     <slot />
   </div>
 </template>
+
+<style scoped lang="scss">
+.vui-flex {
+  display: v-bind(aY);
+  flex-wrap: v-bind(aW);
+  flex-direction: v-bind(ad);
+  justify-content: v-bind(aj);
+  gap: v-bind(ag);
+  align-items: v-bind(aA);
+  width: v-bind(aH);
+}
+</style>
