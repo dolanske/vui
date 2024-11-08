@@ -21,6 +21,8 @@ export interface InputProps {
   errors?: string[]
   accept?: string
   multiple?: boolean
+  min?: number
+  max?: number
 }
 
 const {
@@ -35,6 +37,8 @@ const {
   readonly,
   focus,
   accept,
+  min,
+  max,
   errors = [] as string[],
 } = defineProps<InputProps>()
 
@@ -92,9 +96,10 @@ const renderLimit = computed(() => {
           name="id"
           :placeholder
           :required
-          :max="limit"
+          :max="max ?? limit"
           :accept
           :multiple
+          :min
         >
         <slot name="end" />
       </Flex>

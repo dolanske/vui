@@ -97,6 +97,22 @@
       border: none;
     }
 
+    input[type='range'] {
+      -webkit-appearance: none; /* Override default CSS styles */
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background-color: var(--color-border);
+    }
+
+    ::-moz-range-thumb,
+    ::-webkit-slider-thumb {
+      width: 16px;
+      height: 16px;
+      background-color: var(--color-text-light);
+      border: none;
+    }
+
     input {
       display: block;
       width: 100%;

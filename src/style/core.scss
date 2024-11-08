@@ -1,5 +1,8 @@
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
+
+// To overwrite any of these styles, simply create a style file and import it
+// after this one
 @import './reset.scss';
 @import './fonts.scss';
 

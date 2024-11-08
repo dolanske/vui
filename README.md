@@ -8,8 +8,6 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 #### Components
 
-- [ ] Input Slider
-  - [ ] Just style normal input slider
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
@@ -83,6 +81,8 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [x] Pagination
 - [x] Popout (https://floating-ui.com/)
   - [x] Anchoring to a Component or element
+- [x] Input Slider
+  - [x] Just style normal input slider
 
 ## 1.0 Checklist
 - [ ] Figure out how to set up any font

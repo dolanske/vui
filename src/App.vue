@@ -5,12 +5,14 @@ import Calendar from './components/Calendar/Calendar.vue'
 import Counter from './components/Input/Counter.vue'
 import Dropzone from './components/Input/Dropzone.vue'
 import File from './components/Input/File.vue'
+import Input from './components/Input/Input.vue'
 import Password from './components/Input/Password.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
+const value = ref(30)
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <Dropzone label="Profile picture" hint="Allowed file types: PNG & JPEG" required />
+      {{ value }}
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
