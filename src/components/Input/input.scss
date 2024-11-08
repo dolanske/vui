@@ -21,7 +21,7 @@
     width: 100%;
   }
 
-  &.required .vui-input label:after {
+  &.required .vui-input > label:after {
     content: '*';
     color: var(--input-color-text-red);
   }
@@ -159,6 +159,7 @@
         border-width: 2px;
         border-style: dashed;
         border-radius: var(--border-radius-m);
+        line-height: 1.2em;
 
         &:hover {
           border-color: var(--color-border-strong);

@@ -1,7 +1,8 @@
 <script setup lang='ts'>
 import type { InputProps } from './Input.vue'
 import { Icon } from '@iconify/vue'
-import { ref } from 'vue'
+import { useEventListener } from '@vueuse/core'
+import { ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
 import Input from './Input.vue'
 
@@ -12,36 +13,47 @@ const emits = defineEmits<{ files: [FileList] }>()
 
 const dragging = ref(false)
 
-// TODO: prevent default doesnt work
-function handleDrop(e: InputEvent) {
+function onSubmitHandler(e: any, isFromField?: boolean) {
   e.preventDefault()
-  if (e.dataTransfer && e.dataTransfer.files)
+  e.stopPropagation()
+
+  const files = isFromField ? e.target.files : e.dataTransfer.files
+
+  if (files.length > 0)
     emits('files', e.dataTransfer?.files)
 }
+
+const dropzoneRef = useTemplateRef<HTMLDivElement>('dropzoneRef')
+
+useEventListener(dropzoneRef, 'dragenter', onSubmitHandler, false)
+useEventListener(dropzoneRef, 'dragleave', onSubmitHandler, false)
+useEventListener(dropzoneRef, 'dragover', onSubmitHandler, false)
+useEventListener(dropzoneRef, 'drop', onSubmitHandler, false)
+useEventListener(dropzoneRef, 'input', e => onSubmitHandler(e, true), false)
 </script>
 
 <template>
   <Input
-    type="file"
     v-bind="props"
+    ref="dropzoneRef"
+    type="file"
     class="vui-dropzone"
     :class="{ dragging }"
     @dragenter="dragging = true"
-    @dragleave="dragging = false"
-    @drop="handleDrop"
+    @mouseleave="dragging = false"
   >
     <template #__internal_replace_input="{ inputId }">
       <input :id="inputId" type="file">
       <label :for="inputId">
         <slot :dragging>
-          <Flex justify-center gap="s" align-center>
+          <Flex justify-center gap="s" align-baseline>
             <template v-if="dragging">
               <Icon icon="ph:target" />
-              Drop them here
+              Drop it
             </template>
             <template v-else>
               <Icon icon="ph:file" />
-              Click me or drag files here
+              Click or drag files over here
             </template>
           </Flex>
         </slot>

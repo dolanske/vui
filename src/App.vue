@@ -25,7 +25,7 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <Dropzone expand label="Profile picture" @input="console.log" />
+      <Dropzone label="Profile picture" hint="Allowed file types: PNG & JPEG" required />
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

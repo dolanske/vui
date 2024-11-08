@@ -10,13 +10,13 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 - [ ] Input Slider
   - [ ] Just style normal input slider
-- [ ] File input
-  - [x] Style normal input
-  - [ ] Dropzone (its own component)
 - [ ] Breadcrumbs
   - [x] Basic version
   - [ ] Depends on <Popout /> for consolidated path sections
   - [ ] Depends on <DropdownItem />
+- [x] File input
+  - [x] Style normal input
+  - [x] Dropzone (its own component)
 - [x] Confirm dialog
   - [x] 4 props (title, description, onCancel, onOk)
   - [x] description is a slot
@@ -87,10 +87,9 @@ Opinionated vue UI library for building personal applications. Completely from s
 ## 1.0 Checklist
 - [ ] Figure out how to set up any font
   - Assign font to variable in fact
-
+- [ ] Add condensed typescale (reduce space between elements)
 - [ ] Tweak all colors
 - [ ] Tweak all spacing
-
 - [ ] Move style attribute assignments to scoped style element instead (flex, grid etc)
 - [ ] Add generic outline
 - [ ] Accessibility test
@@ -98,7 +97,6 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [ ] Set up fonts for the library (global and global mono)
   - [ ] Document how to set up --color-accent
 - [ ] If something interactive is disabled, add disabled cursor
-
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level
 - [ ] Easily change up fonts
 - [ ] Create documentation site
