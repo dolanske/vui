@@ -1,0 +1,35 @@
+dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9ch, max-content));
+  column-gap: var(--space-l);
+
+  dt,
+  dd {
+    padding-inline: var(--space-m);
+    margin-bottom: var(--space-l);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  dt {
+    padding-left: 0;
+    color: var(--color-text-lighter);
+    font-weight: 500;
+    font-size: var(--font-size-ms);
+    grid-column-start: 1;
+  }
+
+  dd {
+    color: var(--color-text);
+    font-size: var(--font-size-m);
+  }
+}
+
+mark {
+  background-color: var(--color-text-yellow);
+  color: var(--color-text-invert);
+  padding: 1px;
+  border-radius: 2px;
+}

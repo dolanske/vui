@@ -1,18 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from './components/Button/Button.vue'
-import Calendar from './components/Calendar/Calendar.vue'
-import Counter from './components/Input/Counter.vue'
-import Dropzone from './components/Input/Dropzone.vue'
-import File from './components/Input/File.vue'
-import Input from './components/Input/Input.vue'
-import Password from './components/Input/Password.vue'
-import Confirm from './components/Modal/Confirm.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const value = ref(30)
 </script>
 
 <template>
@@ -27,7 +18,25 @@ const value = ref(30)
       home
     </div>
     <div v-if="tab === 'components'">
-      {{ value }}
+      <dl>
+        <dt>Status</dt>
+        <dd><mark>Success</mark></dd>
+        <dt>Date</dt>
+        <dd>Value 2</dd>
+        <dt>Amount</dt>
+        <dd>50,00&thinsp;€</dd>
+        <dt>Payment fee</dt>
+        <dd>1,75&thinsp;</dd>
+        <dt>Method</dt>
+        <dd>Card</dd>
+        <dt>Identifier</dt>
+        <dd><code>PAY38DL19710O</code></dd>
+        <dt>Description</dt>
+        <dd>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum adipisci cupiditate deleniti sed perferendis placeat
+          nesciunt soluta impedit, animi nisi atque sit at aliquid rem quaerat voluptas excepturi quo qui.
+        </dd>
+      </dl>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
