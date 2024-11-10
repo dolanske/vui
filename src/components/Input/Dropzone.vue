@@ -20,7 +20,7 @@ function onSubmitHandler(e: any, isFromField?: boolean) {
   const files = isFromField ? e.target.files : e.dataTransfer.files
 
   if (files.length > 0)
-    emits('files', e.dataTransfer?.files)
+    emits('files', files)
 }
 
 const dropzoneRef = useTemplateRef<HTMLDivElement>('dropzoneRef')
