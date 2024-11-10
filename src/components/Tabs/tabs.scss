@@ -55,6 +55,7 @@
     transition: var(--transition);
     cursor: default;
     gap: var(--space-xs);
+    border-radius: var(--border-radius-m);
 
     svg {
       width: 20px;

@@ -1,0 +1,29 @@
+// Mobile phones
+@media screen and (max-width: 572px) {
+  :root {
+    --space-xs: 5px;
+    --space-s: 8px;
+    --space-m: 12px;
+    --space-l: 20px;
+    --space-xl: 32px;
+    --space-xxl: 44px;
+  }
+
+  // Typography changes
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+  }
+
+  .vui-tabs .vui-tab {
+    font-size: var(--font-size-s);
+    padding: 0 var(--space-xs);
+  }
+}

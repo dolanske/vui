@@ -78,11 +78,10 @@ Opinionated vue UI library for building personal applications. Completely from s
   - [x] Just style normal input slider
 
 ## 1.0 Checklist
-- [ ] Add condensed typescale (reduce space between elements)
-- [ ] Tweak all colors
+- [x] Tweak all colors
 - [ ] Tweak all spacing
 - [ ] Move style attribute assignments to scoped style element instead (flex, grid etc)
-- [ ] Add generic outline
+- [x] Add generic outline
 - [ ] Accessibility test
 - [ ] Document how to
   - [ ] Set up fonts for the library (global and global mono)
@@ -92,6 +91,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 - [ ] Create documentation site
 - [ ] Check how everything looks on mobile
   - [ ] Fix everything down to 300px
+  - [ ] Make some tweaks for typography sizing
 
 ---
 

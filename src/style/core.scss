@@ -54,7 +54,7 @@
   --color-text-green: rgb(44, 214, 52);
   --color-text-green-disabled: rgb(109, 193, 113);
   --color-bg-green-lowered: rgb(19, 46, 9);
-  --color-bg-green-raised: rgb(37, 100, 14);
+  --color-bg-green-raised: rgb(48, 122, 22);
   --color-border-green: rgb(27, 70, 12);
 
   --color-text-yellow: rgb(243, 231, 70);
@@ -73,9 +73,9 @@
 
   --color-accent: rgb(56, 214, 219);
   --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.5) calc(l));
-  --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.3));
+  --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.2));
   --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.6));
-  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.8));
+  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.5));
 
   --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
@@ -91,6 +91,9 @@
   position: relative;
   background-color: var(--color-bg);
 
+  overflow-x: hidden;
+  width: 100%;
+
   font-feature-settings: normal;
   font-variation-settings: normal;
 
@@ -104,6 +107,11 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    outline: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-text);
+    }
   }
 }
 
@@ -111,15 +119,10 @@ body {
   color: var(--color-text);
 }
 
-#app {
-  display: block;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
 @import './typography.scss';
 @import './layout.scss';
 @import './animation.scss';
 @import './tooltip.scss';
 @import './utils.scss';
+
+@import './media-query.scss';

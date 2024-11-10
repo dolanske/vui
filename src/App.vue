@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Button from './components/Button/Button.vue'
 import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
@@ -19,9 +20,20 @@ const tab = ref('components')
       home
     </div>
     <div v-if="tab === 'components'">
-      <Flex space-between>
-        <h1>Hiii</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+      <Flex>
+        <Button variant="success">
+          Hello
+        </Button>
+        <Button variant="success" plain>
+          Hello
+        </Button>
+        <Button variant="success" active>
+          Hello
+        </Button>
+
+        <Button variant="success" disabled>
+          Hello
+        </Button>
       </Flex>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
@@ -68,30 +80,29 @@ const tab = ref('components')
       </ol>
       <h3>The People's Rebellion</h3>
       <p>The people of the kingdom, feeling uplifted by the laughter, started to tell jokes and puns again, and soon the entire kingdom was in on the joke.</p>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>King's Treasury</th>
-              <th>People's happiness</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Empty</td>
-              <td>And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.</td>
-            </tr>
-            <tr>
-              <td>Modest</td>
-              <td>Satisfied</td>
-            </tr>
-            <tr>
-              <td>Full</td>
-              <td>Ecstatic</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>King's Treasury</th>
+            <th>People's happiness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Empty</td>
+            <td>And then, one day, the people of the kingdom discovered that the jokes left by Jokester were so funny that they couldn't help but laugh. And once they started laughing, they couldn't stop.</td>
+          </tr>
+          <tr>
+            <td>Modest</td>
+            <td>Satisfied</td>
+          </tr>
+          <tr>
+            <td>Full</td>
+            <td>Ecstatic</td>
+          </tr>
+        </tbody>
+      </table>
       <p>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.</p>
       <p>The moral of the story is: never <code>underestimate</code> the power of a good laugh and always be careful of bad ideas.</p>
 

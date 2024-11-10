@@ -135,8 +135,9 @@ pre {
 table {
   text-indent: 0;
   border-collapse: separate;
-  width: 100%;
+  // width: 100%;
   overflow-x: auto;
+  max-width: 100%;
 
   th,
   td {
@@ -221,6 +222,9 @@ dl {
 
 article,
 .typeset {
+  width: 100%;
+  // overflow: hidden;
+
   ol,
   ul {
     ol,
@@ -306,9 +310,9 @@ article,
   p {
     margin-top: var(--space-l);
 
-    &:first-child {
-      margin-top: 0;
-    }
+    // &:first-child {
+    //   margin-top: 0;
+    // }
   }
 
   hr {
