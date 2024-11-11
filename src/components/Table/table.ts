@@ -1,7 +1,7 @@
 import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
 import { computed, provide, readonly, ref, toValue } from 'vue'
-import { searchInStr } from '../../shared/helpers'
+import { searchString } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
 export type BaseRow = Record<string, string | number>
@@ -118,7 +118,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
         const matches = Object
           .values(row)
           .map(row => `${row}`)
-        return searchInStr(matches, searchValue)
+        return searchString(matches, searchValue)
       }) as Dataset
     }
 

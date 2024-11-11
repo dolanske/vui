@@ -1,7 +1,7 @@
 <script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
-import { searchInStr } from '../../shared/helpers'
+import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
 import DropdownItem from '../Dropdown/DropdownItem.vue'
@@ -81,7 +81,7 @@ const filteredOptions = computed(() => {
     return options
 
   return options.filter((option) => {
-    return searchInStr(option.label, searchStr.value)
+    return searchString(option.label, searchStr.value)
   })
 })
 

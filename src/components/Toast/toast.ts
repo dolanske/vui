@@ -24,10 +24,6 @@ interface Toast {
   description?: string
 }
 
-// type ToastType = 'error' | 'info' | 'success' | 'neutral' | 'warning'
-
-// type NewToastFn = (title: string, options?: ToastOptions) => Toast
-
 // Store in a ref so the toast component can import it
 export const toasts = ref(new Map<number, Toast>())
 

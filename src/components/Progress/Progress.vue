@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { onMounted, useTemplateRef, watch, watchEffect } from 'vue'
+import { onMounted, useTemplateRef, watchEffect } from 'vue'
 import { delay, isNil, randomMinMax } from '../../shared/helpers'
 import './progress.scss'
 

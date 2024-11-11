@@ -7,7 +7,7 @@ export function createArray(length: number, startOffset: number = 0): number[] {
 // Searches through the input and checkes wether it contains match
 // It searches the input by splitting it by whitespace and matching each
 // word against the string
-export function searchInStr(match: string | string[], input: string): boolean {
+export function searchString(match: string | string[], input: string): boolean {
   if (!match)
     return false
 
