@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Accordion from './components/Accordion/Accordion.vue'
 import Button from './components/Button/Button.vue'
 import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
@@ -35,6 +36,10 @@ const tab = ref('components')
           Hello
         </Button>
       </Flex>
+
+      <Accordion label="Hi">
+        Bro whats up
+      </Accordion>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
