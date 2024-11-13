@@ -1,8 +1,39 @@
 {
-  "name": "vui",
+  "name": "@dolanske/vui",
   "type": "module",
-  "version": ".1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
+  "description": "Brother in Christ there's a new UI library ",
+  "author": "dolanske",
+  "license": "GPL-3.0",
+  "sass": "src/index.scss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolanske/vui.git"
+  },
+  "keywords": ["vue", "vue3", "component"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vui.js"
+    },
+    "./style": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css",
+      "default": "./dist/style.css"
+    }
+  },
+  "main": "./dist/vuicjs",
+  "module": "./dist/vui.js",
+  "browser": "./dist/vui.js",
+  "unpkg": "./dist/vui.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/*",
+    "./src/*",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
@@ -12,6 +43,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.5",
+    "@types/node": "^22.9.0",
     "@vuepic/vue-datepicker": "^10.0.0",
     "@vueuse/core": "^11.2.0",
     "sass": "^1.80.6",

@@ -1,3 +1,4 @@
+<!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
@@ -10,12 +11,12 @@ import Input from '../Input/Input.vue'
 import '../Input/input.scss'
 import './select.scss'
 
-export interface SelectOption {
+export type SelectOption = {
   value: any
   label: string
 }
 
-interface Props {
+type Props = {
   single?: boolean
   readonly?: boolean
   options: SelectOption[]

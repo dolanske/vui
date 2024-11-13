@@ -3,8 +3,8 @@
 
 // To overwrite any of these styles, simply create a style file and import it
 // after this one
-@import './reset.scss';
-@import './fonts.scss';
+@use './reset.scss';
+@use './fonts.scss';
 
 :root {
   --container-s: 498px;
