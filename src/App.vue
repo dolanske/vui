@@ -4,7 +4,9 @@ import Accordion from './components/Accordion/Accordion.vue'
 import Button from './components/Button/Button.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
+import OTP from './components/OTP/OTP.vue'
 import Tab from './components/Tabs/Tab.vue'
+
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
@@ -23,27 +25,9 @@ const value = ref('')
       home
     </div>
     <div v-if="tab === 'components'">
-      <Flex>
-        <Button variant="success">
-          Hello
-        </Button>
-        <Button variant="success" plain>
-          Hello
-        </Button>
-        <Button variant="success" active>
-          Hello
-        </Button>
-
-        {{ value }}
-
-        <Button variant="success" disabled>
-          Hello
-        </Button>
-      </Flex>
-
-      <Accordion label="Hi">
-        <Input v-model="value" />
-      </Accordion>
+      <OTP>
+        <OTPItem />
+      </OTP>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

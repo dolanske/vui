@@ -1,0 +1,9 @@
+<script setup lang='ts'>
+
+</script>
+
+<template>
+  <div class="vui-otp-group">
+    <slot />
+  </div>
+</template>
