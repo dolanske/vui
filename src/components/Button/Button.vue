@@ -48,7 +48,7 @@ const actualHeight = computed(() => {
     case Size.s: return '24px'
     case Size.l: return '40px'
     case Size.m:
-    default: return '32px'
+    default: return '34px'
   }
 })
 
