@@ -23,18 +23,18 @@ const slots = defineSlots<{
 const active = defineModel()
 
 // Underline calculation
-const underline = useTemplateRef('underline')
-const tabs = useTemplateRef('tabs')
+const underlineRef = useTemplateRef('underline')
+const tabsRef = useTemplateRef('tabs')
 
 function computeUnderlinePosition() {
-  if (tabs.value && underline.value) {
-    const activeBounds = tabs.value.querySelector('.vui-tab.active')?.getBoundingClientRect()
-    const parentBounds = tabs.value.getBoundingClientRect()
+  if (tabsRef.value && underlineRef.value) {
+    const activeBounds = tabsRef.value.querySelector('.vui-tab.active')?.getBoundingClientRect()
+    const parentBounds = tabsRef.value.getBoundingClientRect()
     if (!activeBounds || !parentBounds)
       return
 
-    underline.value.style.width = `${activeBounds.width}px`
-    underline.value.style.left = `${activeBounds.left - parentBounds.left}px`
+    underlineRef.value.style.width = `${activeBounds.width}px`
+    underlineRef.value.style.left = `${activeBounds.left - parentBounds.left}px`
   }
 }
 

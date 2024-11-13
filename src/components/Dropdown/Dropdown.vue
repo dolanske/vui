@@ -27,8 +27,8 @@ const {
   minWidth,
 } = defineProps<Props>()
 
-const anchorRef = useTemplateRef<HTMLDivElement>('anchorRef')
-const dropdownRef = useTemplateRef<MaybeElement>('dropdownRef')
+const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
+const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
 
 const showMenu = ref(false)
 
@@ -66,14 +66,14 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="anchorRef" class="vui-dropdown-trigger-wrap">
+  <div ref="anchor" class="vui-dropdown-trigger-wrap">
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
   <Transition appear name="dropdown">
     <Popout
       v-if="showMenu"
-      ref="dropdownRef"
+      ref="dropdown"
       :anchor="anchorRef"
       class="vui-dropdown"
       :placement

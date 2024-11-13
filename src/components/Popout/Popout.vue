@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   offset: 8,
 })
 
-const popoutRef = useTemplateRef('popoutRef')
+const popoutRef = useTemplateRef('popout')
 const anchorRef = toRef(props.anchor)
 
 const { floatingStyles } = useFloating(anchorRef, popoutRef, {
@@ -33,7 +33,7 @@ const { floatingStyles } = useFloating(anchorRef, popoutRef, {
 </script>
 
 <template>
-  <div ref="popoutRef" :style="floatingStyles" class="vui-popout">
+  <div ref="popout" :style="floatingStyles" class="vui-popout">
     <slot />
   </div>
 </template>

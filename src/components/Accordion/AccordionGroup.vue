@@ -18,7 +18,7 @@ const slots = defineSlots<{
   default: () => Array<VNode & { props: AccordionProps }>
 }>()
 
-const accordionRefs = useTemplateRef<InstanceType<typeof Accordion>[]>('accordionRefs')
+const accordionRefs = useTemplateRef<InstanceType<typeof Accordion>[]>('accordion')
 
 function handleAccordionOpen(newIndex: number) {
   if (!accordionRefs.value || !props.single)
@@ -36,7 +36,7 @@ function handleAccordionOpen(newIndex: number) {
   <component
     :is="item"
     v-for="(item, index) of slots.default()"
-    ref="accordionRefs"
+    ref="accordion"
     :key="item"
     @open="handleAccordionOpen(index)"
   />

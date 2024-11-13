@@ -20,7 +20,7 @@ const {
   delay = 0,
 } = defineProps<Props>()
 
-const popoutAnchor = useTemplateRef('popoutAnchor')
+const popoutAnchorRef = useTemplateRef('popoutAnchor')
 // Track if user is hovering the anchor
 const hoverAnchor = ref(false)
 
@@ -61,7 +61,7 @@ watch(hoverAnchor, (isHovering) => {
     <slot />
   </div>
   <Transition appear name="tooltip">
-    <Popout v-if="showTooltip" :anchor="popoutAnchor" class="vui-tooltip" :placement>
+    <Popout v-if="showTooltip" :anchor="popoutAnchorRef" class="vui-tooltip" :placement>
       <slot name="tooltip" />
     </Popout>
   </Transition>

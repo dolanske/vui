@@ -46,8 +46,8 @@ onBeforeMount(() => {
   }
 })
 
-const anchorRef = useTemplateRef('anchorRef')
-const tooltipRef = useTemplateRef('tooltipRef')
+const anchorRef = useTemplateRef('anchor')
+const tooltipRef = useTemplateRef('tooltip')
 
 const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   whileElementsMounted: autoUpdate,
@@ -62,12 +62,12 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
 </script>
 
 <template>
-  <div ref="anchorRef" class="vui-clipboard-copy-wrap" role="button" @click="copy(text)">
+  <div ref="anchor" class="vui-clipboard-copy-wrap" role="button" @click="copy(text)">
     <slot :copy :copied />
   </div>
 
   <Transition name="fade-up" mode="in-out">
-    <div v-if="copied && (confirm || $slots.confirm)" ref="tooltipRef" class="vui-clipboard-tooltip" :style="floatingStyles">
+    <div v-if="copied && (confirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
       <slot name="confirm">
         <template v-if="confirm">
           {{ confirm }}

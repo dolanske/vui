@@ -23,7 +23,7 @@ function onSubmitHandler(e: any, isFromField?: boolean) {
     emits('files', files)
 }
 
-const dropzoneRef = useTemplateRef<HTMLDivElement>('dropzoneRef')
+const dropzoneRef = useTemplateRef<HTMLDivElement>('dropzone')
 
 useEventListener(dropzoneRef, 'dragenter', onSubmitHandler, false)
 useEventListener(dropzoneRef, 'dragleave', onSubmitHandler, false)
@@ -35,7 +35,7 @@ useEventListener(dropzoneRef, 'input', e => onSubmitHandler(e, true), false)
 <template>
   <Input
     v-bind="props"
-    ref="dropzoneRef"
+    ref="dropzone"
     type="file"
     class="vui-dropzone"
     :class="{ dragging }"

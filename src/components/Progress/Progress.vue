@@ -38,7 +38,7 @@ const progressAmount = defineModel<number>({
 })
 
 // Set height programatically
-const progressRef = useTemplateRef('progressRef')
+const progressRef = useTemplateRef('progress')
 
 watchEffect(() => {
   if (progressRef.value && !isNil(height)) {
@@ -67,7 +67,7 @@ onMounted(fakeIncrement)
 
 <template>
   <div
-    ref="progressRef"
+    ref="progress"
     class="vui-progress"
     :class="{
       fixed,

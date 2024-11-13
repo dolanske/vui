@@ -57,7 +57,7 @@ const model = defineModel<string | number>({
 })
 const id = useId()
 
-const inputRef = useTemplateRef('inputRef')
+const inputRef = useTemplateRef('input')
 
 watchEffect(() => {
   if (focus)
@@ -89,7 +89,7 @@ const renderLimit = computed(() => {
         <input
           v-if="!$slots.__internal_replace_input"
           :id
-          ref="inputRef"
+          ref="input"
           v-model="model"
           :readonly
           :type

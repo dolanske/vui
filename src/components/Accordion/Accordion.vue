@@ -15,7 +15,7 @@ const emits = defineEmits<{
 }>()
 
 const isOpen = ref(false)
-const content = useTemplateRef('content')
+const contentRef = useTemplateRef('content')
 const contentMaxHeight = ref(0)
 
 watchEffect(() => {
@@ -27,7 +27,7 @@ watchEffect(() => {
 watch(isOpen, (value) => {
   if (value) {
     emits('open')
-    contentMaxHeight.value = content.value?.scrollHeight || 0
+    contentMaxHeight.value = contentRef.value?.scrollHeight || 0
   }
   else {
     emits('close')

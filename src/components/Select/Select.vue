@@ -111,7 +111,7 @@ onMounted(() => {
   }
 })
 
-const dropdownRef = useTemplateRef('dropdownRef')
+const dropdownRef = useTemplateRef('dropdown')
 
 function clearValue() {
   selected.value = undefined
@@ -121,7 +121,7 @@ function clearValue() {
 
 <template>
   <div class="vui-input-container vui-select" :class="{ expand, required, readonly }">
-    <Dropdown ref="dropdownRef" :expand>
+    <Dropdown ref="dropdown" :expand>
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" for="id">{{ label }}</label>

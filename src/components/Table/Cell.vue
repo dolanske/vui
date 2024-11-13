@@ -2,11 +2,11 @@
 import { computed, useSlots, useTemplateRef } from 'vue'
 
 const slots = useSlots()
-const context = useTemplateRef<HTMLTableCellElement>('context')
+const contextRef = useTemplateRef<HTMLTableCellElement>('context')
 const computedStyle = computed(() => {
   if (!slots.context)
     return {}
-  const width = context.value?.getBoundingClientRect().width ?? 0
+  const width = contextRef.value?.getBoundingClientRect().width ?? 0
   return {
     paddingRight: `${width}px`,
   }
