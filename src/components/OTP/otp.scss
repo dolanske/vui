@@ -1,15 +1,53 @@
-.vui-input-otp {
+.vui-otp {
+  display: inline-block;
   position: relative;
 
-  .vui-otp-item {
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
-    border: 1px solid var(--color-border);
-    text-align: center;
+  .vui-otp-items {
+    display: inline-flex;
+    gap: 0;
+
+    .vui-otp-item {
+      width: 42px;
+      height: 42px;
+      line-height: 40px;
+      border: 1px solid var(--color-border-strong);
+      text-align: center;
+      color: var(--color-text);
+      z-index: 1;
+      font-size: var(--font-size-l);
+
+      &.has-value {
+        background-color: var(--color-bg-raised);
+      }
+
+      &.active {
+        border-color: var(--color-text-lighter);
+        z-index: 2;
+      }
+
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+
+      &:first-child {
+        border-top-left-radius: var(--border-radius-m);
+        border-bottom-left-radius: var(--border-radius-m);
+      }
+
+      &:last-child {
+        border-top-right-radius: var(--border-radius-m);
+        border-bottom-right-radius: var(--border-radius-m);
+      }
+    }
   }
 
   .vui-otp-input {
     position: absolute;
+    inset: 0;
+    // visibility: ;
+    opacity: 0;
+    outline-width: 0px;
+    background: transparent;
+    z-index: 5;
   }
 }

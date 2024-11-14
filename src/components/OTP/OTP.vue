@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-import { computed, provide, watch } from 'vue'
+import { computed, provide, ref, watch } from 'vue'
+import { isNil } from '../../shared/helpers'
 import './otp.scss'
 
 interface Props {
@@ -15,29 +16,61 @@ const emits = defineEmits<{
   complete: [value: string]
 }>()
 
+const slots = defineSlots()
+const cursorIndex = ref<number>(0)
 const regexNumbers = '^\\d+$'
-const regexChars = '^[a-zA-Z]+$'
-const regexBoth = '^[a-zA-Z0-9]+$'
+const regexChars = '^[a-z]+$'
+const regexBoth = '^[a-z0-9]+$'
 
 const pattern = computed(() => {
   if (mode === 'num')
-    return regexNumbers
+    return new RegExp(regexNumbers)
   else if (mode === 'char')
-    return regexChars
-  else return regexBoth
+    return new RegExp(regexChars, 'i')
+  else return new RegExp(regexBoth, 'i')
 })
 
-const value = defineModel<string>()
+const maxLen = computed(() => {
+  return slots.default().length
+})
 
-provide('otp-value', value)
+const otpModel = defineModel<string>({
+  default: '',
+  set(v) {
+    if (!v)
+      return ''
+    if (pattern.value.test(v) && v.length <= maxLen.value) {
+      return v
+    }
+    return otpModel.value
+  },
+})
 
-watch(value, value => emits('change', value))
+provide('otp-value', otpModel)
+
+watch(otpModel, value => emits('change', value))
+
+function updateIndex(e: Event) {
+  const selection = (e.target as HTMLInputElement).selectionStart
+  if (!isNil(selection))
+    cursorIndex.value = selection
+}
 </script>
 
 <template>
   <div class="vui-otp">
-    <slot />
+    <div class="vui-otp-items">
+      <slot />
+    </div>
 
-    <input v-model-value :pattern type="text" class="vui-input-hidden">
+    <input
+      v-model="otpModel"
+      type="text"
+      class="vui-otp-input"
+      @keyup="updateIndex"
+      @focus="setFirstEmptyIndex"
+    >
   </div>
+
+  {{ cursorIndex }}
 </template>

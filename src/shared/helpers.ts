@@ -21,7 +21,7 @@ export function getMaybeRefLength(value: string | number): number {
   return typeof value === 'number' ? value : value.length
 }
 
-export function isNil(value: any): value is undefined {
+export function isNil(value: any): value is undefined | null {
   return value === undefined || value === null
 }
 

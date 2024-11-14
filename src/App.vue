@@ -5,6 +5,8 @@ import Button from './components/Button/Button.vue'
 import Flex from './components/Flex/Flex.vue'
 import Input from './components/Input/Input.vue'
 import OTP from './components/OTP/OTP.vue'
+import OTPItem from './components/OTP/OTPItem.vue'
+
 import Tab from './components/Tabs/Tab.vue'
 
 import Tabs from './components/Tabs/Tabs.vue'
@@ -25,9 +27,18 @@ const value = ref('')
       home
     </div>
     <div v-if="tab === 'components'">
-      <OTP>
-        <OTPItem />
+      <OTP v-model="value" mode="num">
+        <OTPItem :i="0" />
+        <OTPItem :i="1" />
+        <OTPItem :i="2" />
+        <OTPItem :i="3" />
+        <OTPItem :i="4" />
+        <OTPItem :i="5" />
       </OTP>
+
+      <br>
+
+      {{ value }}
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
