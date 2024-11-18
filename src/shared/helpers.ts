@@ -51,3 +51,12 @@ export function randomMinMax(min: number, max: number): number {
 export function delay(amount: number): Promise<any> {
   return new Promise(r => setTimeout(r, amount))
 }
+
+export function setCharAt(str: string, char: string | number, index: number): string {
+  if (str.length === 0)
+    return char.toString()
+
+  // if (index > str.length - 1)
+  //   return str
+  return str.substring(0, index) + char + str.substring(index + 1)
+}

@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-import type { Ref } from 'vue'
+import type { OtpContext } from './OTP.vue'
 import { inject } from 'vue'
+import { isNil } from '../../shared/helpers'
 
 interface Props {
   i: number
@@ -8,16 +9,20 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const value = inject('otp-value') as Ref<string>
+const {
+  otpValue,
+  cursorIndex,
+} = inject('otp-context') as OtpContext
 </script>
 
 <template>
   <div
     class="vui-otp-item" :class="{
-      'active': props.i === value.length - 1,
-      'has-value': !!value.at(props.i),
+      'active': props.i === cursorIndex,
+      // FIXME: has value shows all positive
+      'has-value': !isNil(otpValue.at(props.i)),
     }"
   >
-    {{ value.at(props.i) }}
+    {{ otpValue.at(props.i) }}
   </div>
 </template>
