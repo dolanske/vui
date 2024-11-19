@@ -30,6 +30,8 @@ const value = ref('')
         <OTPItem :i="0" />
         <OTPItem :i="1" />
         <OTPItem :i="2" />
+        <OTPItem :i="3" />
+
         <!-- <Flex align-center gap="l">
           <OTPGroup>
             <OTPItem :i="0" />
