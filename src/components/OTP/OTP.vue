@@ -1,20 +1,23 @@
 <script setup lang='ts'>
 import type { ModelRef, Ref } from 'vue'
-import { computed, provide, ref, watch } from 'vue'
-import { isNil, setCharAt } from '../../shared/helpers'
+import { computed, provide, ref, toRef, watch } from 'vue'
+import { setCharAt } from '../../shared/helpers'
 import './otp.scss'
 
 export interface OtpContext {
   otpValue: ModelRef<string>
   cursorIndex: Ref<number>
+  redacted: Ref<boolean>
 }
 
 interface Props {
   mode?: 'num' | 'char' | 'both'
+  redacted?: boolean
 }
 
 const {
   mode = 'both',
+  redacted = false,
 } = defineProps<Props>()
 
 const emits = defineEmits<{
@@ -28,7 +31,7 @@ const otpValue = defineModel<string>({
   default: '',
 })
 
-const cursorIndex = ref<number>(0)
+const cursorIndex = ref<number>(-1)
 const regexNumbers = '^\\d+$'
 const regexChars = '^[a-z]+$'
 const regexBoth = '^[a-z0-9]+$'
@@ -45,30 +48,10 @@ const maxLen = computed(() => {
   return slots.default().length
 })
 
-// const otpValue = defineModel<string>({
-//   default: '',
-//   set(v) {
-//     if (!v)
-//       return ''
-//     if (pattern.value.test(v) && v.length <= maxLen.value) {
-//       if (v.length - 1 === cursorIndex) {
-//         const replaced = setCharAt(v, )
-//         return v
-//       } else {
-//         // Replace value at current index and increment it
-//         v[]
-
-//         return v
-//       }
-
-//     }
-//     return otpValue.value
-//   },
-// })
-
 provide('otp-context', {
   otpValue,
   cursorIndex,
+  redacted: toRef(() => redacted),
 })
 
 watch(otpValue, value => emits('change', value))
@@ -89,15 +72,16 @@ function updateValue(e: KeyboardEvent) {
   else if (key === 'ArrowLeft' && cursorIndex.value > 0) {
     cursorIndex.value--
   }
-  else if (key === 'ArrowRight' && cursorIndex.value < maxLen.value - 1) {
+  else if (key === 'ArrowRight' && cursorIndex.value < otpValue.value.length) {
     cursorIndex.value++
   }
   else if (key === 'Backspace') {
-    // If we press backspace multiple times
-    if (otpValue.value.charAt(cursorIndex.value) === ' ') {
+    // If we press backspace multiple times make sure to traverse back by 1
+    if (otpValue.value.charAt(cursorIndex.value) === '' && cursorIndex.value > 0) {
       cursorIndex.value--
     }
-    otpValue.value = setCharAt(otpValue.value, ' ', cursorIndex.value)
+
+    otpValue.value = setCharAt(otpValue.value, '', cursorIndex.value)
   }
 }
 </script>
@@ -112,6 +96,8 @@ function updateValue(e: KeyboardEvent) {
       type="text"
       class="vui-otp-input"
       @keydown="updateValue"
+      @blur="cursorIndex = -1"
+      @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"
     >
   </div>
 

@@ -7,25 +7,54 @@
     gap: 0;
 
     .vui-otp-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 42px;
       height: 42px;
-      line-height: 40px;
       border: 1px solid var(--color-border-strong);
-      text-align: center;
       color: var(--color-text);
       z-index: 1;
       font-size: var(--font-size-l);
       outline: 0 solid var(--color-text-light);
       transition: var(--transition);
 
+      .blinker {
+        display: none;
+        height: 16px;
+        width: 1px;
+        background-color: var(--color-text);
+        animation: blink 1.25s ease-out infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        70%,
+        100% {
+          opacity: 1;
+        }
+        20%,
+        50% {
+          opacity: 0;
+        }
+      }
+
       &.has-value {
         background-color: var(--color-bg-raised);
+
+        .blinker {
+          display: none !important;
+        }
       }
 
       // TODO: animate blinking cursor
       &.active {
         z-index: 2;
         outline-width: 2px;
+
+        .blinker {
+          display: block;
+        }
       }
 
       &:not(:first-child) {
@@ -52,5 +81,9 @@
     outline-width: 0px;
     background: transparent;
     z-index: 5;
+  }
+
+  .vui-otp-group {
+    display: flex;
   }
 }

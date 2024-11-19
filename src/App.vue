@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Accordion from './components/Accordion/Accordion.vue'
-import Button from './components/Button/Button.vue'
 import Flex from './components/Flex/Flex.vue'
-import Input from './components/Input/Input.vue'
 import OTP from './components/OTP/OTP.vue'
+
+import OTPGroup from './components/OTP/OTPGroup.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
 
 import Tab from './components/Tabs/Tab.vue'
@@ -27,13 +26,20 @@ const value = ref('')
       home
     </div>
     <div v-if="tab === 'components'">
-      <OTP v-model="value" mode="num">
-        <OTPItem :i="0" />
-        <OTPItem :i="1" />
-        <OTPItem :i="2" />
-        <OTPItem :i="3" />
-        <OTPItem :i="4" />
-        <OTPItem :i="5" />
+      <OTP v-model="value" mode="num" redacted>
+        <Flex align-center gap="l">
+          <OTPGroup>
+            <OTPItem :i="0" />
+            <OTPItem :i="1" />
+            <OTPItem :i="2" />
+          </OTPGroup>
+          -
+          <OTPGroup>
+            <OTPItem :i="3" />
+            <OTPItem :i="4" />
+            <OTPItem :i="5" />
+          </OTPGroup>
+        </Flex>
       </OTP>
 
       <br>
