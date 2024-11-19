@@ -1,8 +1,7 @@
 <script setup lang='ts'>
 import type { OtpContext } from './OTP.vue'
 import { Icon } from '@iconify/vue'
-import { inject, watchEffect } from 'vue'
-import { isNil } from '../../shared/helpers'
+import { inject } from 'vue'
 
 interface Props {
   i: number

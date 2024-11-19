@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { ModelRef, Ref } from 'vue'
-import { computed, provide, ref, toRef, watch } from 'vue'
+import { computed, provide, ref, toRef, watch, watchEffect } from 'vue'
 import { setCharAt } from '../../shared/helpers'
 import './otp.scss'
 
@@ -61,7 +61,7 @@ function updateValue(e: KeyboardEvent) {
   if (pattern.value.test(key)) {
     const newValue = setCharAt(otpValue.value, key, cursorIndex.value)
 
-    if (newValue.length <= maxLen.value) {
+    if (newValue.length < maxLen.value) {
       otpValue.value = newValue
       ;(e.target as HTMLInputElement).value = otpValue.value
 
@@ -82,23 +82,24 @@ function updateValue(e: KeyboardEvent) {
     }
 
     otpValue.value = setCharAt(otpValue.value, '', cursorIndex.value)
+    ;(e.target as HTMLInputElement).value = otpValue.value
   }
 }
 </script>
 
 <template>
   <div class="vui-otp">
-    <div class="vui-otp-items">
-      <slot />
-    </div>
-
     <input
       type="text"
       class="vui-otp-input"
-      @keydown="updateValue"
+      @keydown.prevent="updateValue"
       @blur="cursorIndex = -1"
       @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"
     >
+
+    <div class="vui-otp-items">
+      <slot />
+    </div>
   </div>
 
   {{ cursorIndex }}
