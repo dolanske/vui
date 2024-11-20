@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { ref, useTemplateRef, watch, watchEffect } from 'vue'
+import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
+import { onMounted, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import './accordion.scss'
 
 export interface AccordionProps {
@@ -16,6 +17,7 @@ const emits = defineEmits<{
 
 const isOpen = ref(false)
 const contentRef = useTemplateRef('content')
+// const contentChild = useTemplateRef('content-child')
 const contentMaxHeight = ref(0)
 
 watchEffect(() => {
@@ -55,6 +57,12 @@ defineExpose({
   toggle,
   isOpen,
 })
+
+useResizeObserver(contentRef, ([entry]) => {
+  if (isOpen.value && contentMaxHeight.value !== entry.contentRect.height) {
+    contentMaxHeight.value = entry.contentRect.height || 0
+  }
+})
 </script>
 
 <template>
@@ -68,8 +76,10 @@ defineExpose({
       <Icon icon="ph:caret-down" />
     </button>
 
-    <div ref="content" class="vui-accordion-content" :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : '0px' }">
-      <slot />
+    <div class="vui-accordion-content" :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : '0px' }">
+      <div ref="content">
+        <slot />
+      </div>
     </div>
   </div>
 </template>

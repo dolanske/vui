@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Flex from './components/Flex/Flex.vue'
-import OTP from './components/OTP/OTP.vue'
-
-import OTPItem from './components/OTP/OTPItem.vue'
+import Accordion from './components/Accordion/Accordion.vue'
+import Button from './components/Button/Button.vue'
 
 import Tab from './components/Tabs/Tab.vue'
 
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const value = ref('')
+
+const count = ref(10)
 </script>
 
 <template>
@@ -25,25 +24,20 @@ const value = ref('')
       home
     </div>
     <div v-if="tab === 'components'">
-      <OTP v-model="value" mode="both">
-        <Flex align-center gap="l">
-          <Flex :gap="0">
-            <OTPItem :i="0" />
-            <OTPItem :i="1" />
-            <OTPItem :i="2" />
-          </Flex>
-          -
-          <Flex :gap="0">
-            <OTPItem :i="3" />
-            <OTPItem :i="4" />
-            <OTPItem :i="5" />
-          </Flex>
-        </Flex>
-      </OTP>
+      <Button @click="count += 10">
+        Increase!!!
+      </Button>
+
+      <Accordion>
+        <template #header>
+          Hiiii
+        </template>
+        <p v-for="item in count" :key="item">
+          I am a bro
+        </p>
+      </Accordion>
 
       <br>
-
-      {{ value }}
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
