@@ -25,7 +25,7 @@ const value = ref('')
       home
     </div>
     <div v-if="tab === 'components'">
-      <OTP v-model="value" mode="num">
+      <OTP v-model="value" mode="both">
         <Flex align-center gap="l">
           <Flex :gap="0">
             <OTPItem :i="0" />

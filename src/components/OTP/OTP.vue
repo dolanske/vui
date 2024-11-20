@@ -66,13 +66,15 @@ function setOtpValue(value: string) {
 
 function updateValue(e: KeyboardEvent) {
   const key = e.key
-  if (pattern.value.test(key)) {
+
+  // Capping at length 0 prevents all non-character keyboard inputs
+  if (pattern.value.test(key) && key.length === 1) {
     const newValue = setCharAt(otpValue.value, key, cursorIndex.value)
 
     if (newValue.length <= maxLen.value) {
       setOtpValue(newValue)
 
-      if (cursorIndex.value < maxLen.value)
+      if (cursorIndex.value < maxLen.value - 1)
         cursorIndex.value++
     }
   }
