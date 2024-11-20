@@ -21,7 +21,7 @@ export function getMaybeRefLength(value: string | number): number {
   return typeof value === 'number' ? value : value.length
 }
 
-export function isNil(value: any): value is undefined {
+export function isNil(value: any): value is undefined | null {
   return value === undefined || value === null
 }
 
@@ -50,4 +50,10 @@ export function randomMinMax(min: number, max: number): number {
 
 export function delay(amount: number): Promise<any> {
   return new Promise(r => setTimeout(r, amount))
+}
+
+export function setCharAt(str: string, char: string | number, index: number): string {
+  if (str.length === 0)
+    return char.toString()
+  return str.substring(0, index) + char + str.substring(index + 1)
 }
