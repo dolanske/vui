@@ -65,7 +65,7 @@ function updateValue(e: KeyboardEvent) {
       otpValue.value = newValue
       ;(e.target as HTMLInputElement).value = otpValue.value
 
-      if (cursorIndex.value < maxLen.value - 1)
+      if (cursorIndex.value < maxLen.value - 2)
         cursorIndex.value++
     }
   }
