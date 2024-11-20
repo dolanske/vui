@@ -4,6 +4,39 @@
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0;
 
+  &.is-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-m);
+
+    &.open {
+      padding-bottom: 0;
+
+      .vui-accordion-header {
+        border-block-width: 1px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    .vui-accordion-header {
+      padding-inline: var(--space-m);
+      border-bottom: 0px solid var(--color-border);
+      text-decoration: inherit;
+      border-radius: var(--border-radius-m);
+
+      &:hover {
+        text-decoration: inherit;
+        text-underline-offset: inherit;
+
+        background-color: var(--color-button-gray);
+      }
+    }
+
+    .vui-accordtion-content-inner {
+      padding: var(--space-m);
+    }
+  }
+
   &.open {
     padding-bottom: var(--space-m);
 

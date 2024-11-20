@@ -2,13 +2,11 @@
 import { ref } from 'vue'
 import Accordion from './components/Accordion/Accordion.vue'
 import Button from './components/Button/Button.vue'
-
+import Divider from './components/Divider/Divider.vue'
 import Tab from './components/Tabs/Tab.vue'
-
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-
 const count = ref(10)
 </script>
 
@@ -28,7 +26,9 @@ const count = ref(10)
         Increase!!!
       </Button>
 
-      <Accordion>
+      <Divider />
+
+      <Accordion card>
         <template #header>
           Hiiii
         </template>

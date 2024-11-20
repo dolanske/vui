@@ -7,6 +7,7 @@ import './accordion.scss'
 export interface AccordionProps {
   open?: boolean
   label?: string
+  card?: boolean
 }
 
 const props = defineProps<AccordionProps>()
@@ -17,7 +18,6 @@ const emits = defineEmits<{
 
 const isOpen = ref(false)
 const contentRef = useTemplateRef('content')
-// const contentChild = useTemplateRef('content-child')
 const contentMaxHeight = ref(0)
 
 watchEffect(() => {
@@ -66,7 +66,7 @@ useResizeObserver(contentRef, ([entry]) => {
 </script>
 
 <template>
-  <div class="vui-accordion" :class="{ open: isOpen }">
+  <div class="vui-accordion" :class="{ 'open': isOpen, 'is-card': !!props.card }">
     <!-- Completely custom header which needs to be styled and implemented by the developer -->
     <slot v-if="$slots.trigger" name="trigger" :open :close :toggle :is-open />
     <button v-else class="vui-accordion-header" @click="isOpen = !isOpen">
@@ -77,7 +77,7 @@ useResizeObserver(contentRef, ([entry]) => {
     </button>
 
     <div class="vui-accordion-content" :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : '0px' }">
-      <div ref="content">
+      <div ref="content" class="vui-accordtion-content-inner">
         <slot />
       </div>
     </div>

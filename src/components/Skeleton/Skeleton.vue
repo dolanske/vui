@@ -1,5 +1,6 @@
 <!-- eslint-disable ts/no-use-before-define -->
 <script setup lang='ts'>
+import { computed } from 'vue'
 import './skeleton.scss'
 
 interface Props {
@@ -29,18 +30,25 @@ function valueToPixels(value: string | number) {
       ? value
       : `${value}px`
 }
+
+// Give priority to radius, if it is NOT set to default
+const bR = computed(() => valueToPixels(circle && radius === DEFAULT_RADIUS ? 9999 : radius))
+
+// When using `circle` prop, we want to use the same
+// value for both height and width, but we can't
+// know which one will be defined
+const w = computed(() => valueToPixels(circle ? (width || height) : width))
+const h = computed(() => valueToPixels(circle ? (width || height) : height))
 </script>
 
 <template>
-  <div
-    class="vui-skeleton" :style="{
-      // Give priority to radius, if it is NOT set to default
-      borderRadius: valueToPixels(circle && radius === DEFAULT_RADIUS ? 9999 : radius),
-      // When using `circle` prop, we want to use the same
-      // value for both height and width, but we can't
-      // know which one will be defined
-      width: valueToPixels(circle ? (width || height) : width),
-      height: valueToPixels(circle ? (width || height) : height),
-    }"
-  />
+  <div class="vui-skeleton" />
 </template>
+
+<style lang="scss" scoped>
+.vui-skeleton {
+  border-radius: v-bind(bR);
+  width: v-bind(w);
+  height: v-bind(h);
+}
+</style>

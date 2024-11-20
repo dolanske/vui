@@ -52,10 +52,10 @@ const baseTransform = computed(() => {
 <template>
   <Teleport to="body">
     <Transition appear name="sheet">
-      <Backdrop v-if="open" :style="{ padding: 0 }" @close="open = false">
+      <Backdrop v-if="open" @close="open = false">
         <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
           <div class="vui-sheet-header">
-            <div :style="{ flex: 1 }">
+            <div class="flex-1">
               <slot name="header" :close />
             </div>
             <Button square icon="ph:x" @click="open = false" />
@@ -73,6 +73,11 @@ const baseTransform = computed(() => {
 </template>
 
 <style scoped lang="scss">
+// TODO: test
+:deep(.vui-backdrop) {
+  padding: 0;
+}
+
 .sheet-enter-active,
 .sheet-leave-active {
   transition: var(--transition);

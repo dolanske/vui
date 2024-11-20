@@ -86,8 +86,15 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ## 1.0 Checklist
 - [x] Tweak all colors
-- [ ] Tweak all spacing
-- [ ] Move style attribute assignments to scoped style element instead (flex, grid etc)
+- [x] Tweak all spacing
+- [x] Move style attribute assignments to scoped style element instead (flex, grid etc)
+  - [ ] >>test<<
+  - [ ] Button
+  - [ ] Divider
+  - [ ] Drawer
+  - [ ] Dropdown
+  - [ ] Textarea
+  - [ ] Progress
 - [x] Add generic outline
 - [ ] Accessibility test
 - [ ] Document how to

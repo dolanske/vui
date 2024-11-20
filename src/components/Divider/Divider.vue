@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import './divider.scss'
 
 interface Props {
@@ -16,19 +17,25 @@ const {
   vertical,
   margin = '0',
 } = defineProps<Props>()
+
+const w = computed(() => vertical ? `${size}px` : 'initial')
+const bW = computed(() => `${thickness}px`)
+const h = computed(() => `${size}px`)
 </script>
 
 <template>
-  <div
-    class="vui-divider" :class="{ vertical }" :style="{
-      ...(vertical && { width: `${size}px` }),
-      height: `${size}px`,
-      borderWidth: `${thickness}px`,
-      margin,
-    }"
-  >
+  <div class="vui-divider" :class="{ vertical }">
     <div v-if="$slots.default" class="vui-divider-slot">
       <slot />
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.vui-divider {
+  margin: v-bind(margin);
+  width: v-bind(w);
+  border-width: v-bind(bW);
+  height: v-bind(h);
+}
+</style>

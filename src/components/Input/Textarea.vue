@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InputProps } from './Input.vue'
-import { useId } from 'vue'
+import { computed, useId } from 'vue'
 import '../Input/input.scss'
 
 type Props = Omit<InputProps, 'type'> & {
@@ -35,6 +35,9 @@ const model = defineModel<string>({
   },
 })
 const id = useId()
+
+const r = computed(() => resize === true ? 'both' : (resize || 'initial'))
+const fS = computed(() => autoResize ? 'content' : 'auto')
 </script>
 
 <template>
@@ -53,11 +56,6 @@ const id = useId()
         :placeholder
         :required
         :max="limit"
-        :style="{
-          'resize': resize === true ? 'both' : (resize || 'initial'),
-          // @ts-expect-error This is only supported in chrome for now
-          'field-sizing': autoResize ? 'content' : 'auto',
-        }"
       />
     </div>
     <p v-if="limit" class="vui-input-limit">
@@ -71,3 +69,10 @@ const id = useId()
     <slot name="after" />
   </div>
 </template>
+
+<style scoped lang="scss">
+.vui-input-container .vui-input textarea {
+  resize: v-bind(r);
+  field-sizing: v-bind(fS);
+}
+</style>

@@ -63,6 +63,9 @@ defineExpose({
   toggle,
   isOpen: showMenu,
 })
+
+const mW = computed(() => `${minWidth ?? 156}px`)
+const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 </script>
 
 <template>
@@ -77,17 +80,18 @@ defineExpose({
       :anchor="anchorRef"
       class="vui-dropdown"
       :placement
-      :style="{
-        minWidth: `${minWidth ?? 156}px`,
-        ...(expand && { width: `${anchorWidth}px` }),
-      }"
     >
       <slot :open :close :toggle :is-open="showMenu" />
     </Popout>
   </Transition>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.vui-dropdown {
+  min-width: v-bind(mW);
+  width: v-bind(w);
+}
+
 .dropdown-enter-active,
 .dropdown-leave-active {
   transition: 0.1s opacity ease-in-out;

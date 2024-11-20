@@ -12,7 +12,7 @@ const {
   size = 's',
 } = defineProps<Props>()
 
-const actualSize = computed(() => {
+const w = computed(() => {
   switch (size) {
     case Size.s: return '16px'
     case Size.l: return '38px'
@@ -21,7 +21,7 @@ const actualSize = computed(() => {
   }
 })
 
-const actualBorderWidth = computed(() => {
+const bW = computed(() => {
   switch (size) {
     case Size.s: return '3px'
     case Size.l: return '5px'
@@ -37,8 +37,8 @@ const actualBorderWidth = computed(() => {
 
 <style lang="scss">
 .vui-spinner {
-  width: v-bind(actualSize);
-  height: v-bind(actualSize);
-  border-width: v-bind(actualBorderWidth);
+  width: v-bind(w);
+  height: v-bind(w);
+  border-width: v-bind(bW);
 }
 </style>
