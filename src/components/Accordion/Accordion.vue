@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { useIntersectionObserver, useResizeObserver } from '@vueuse/core'
-import { onMounted, ref, useTemplateRef, watch, watchEffect } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
+import { ref, useTemplateRef, watch, watchEffect } from 'vue'
 import './accordion.scss'
 
 export interface AccordionProps {

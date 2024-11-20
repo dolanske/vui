@@ -28,6 +28,8 @@ import Kbd from './components/Kbd/Kbd.vue'
 import KbdGroup from './components/Kbd/KbdGroup.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Modal from './components/Modal/Modal.vue'
+import OTP from './components/OTP/OTP.vue'
+import OTPItem from './components/OTP/OTPItem.vue'
 import Pagination from './components/Pagination/Pagination.vue'
 import Popout from './components/Popout/Popout.vue'
 import Progress from './components/Progress/Progress.vue'
@@ -85,6 +87,8 @@ export {
   Kbd,
   KbdGroup,
   Modal,
+  OTP,
+  OTPItem,
   Pagination,
   Password,
   Popout,
