@@ -24,6 +24,7 @@
 - [x] Add generic outline
 - [ ] If something interactive is disabled, add disabled cursor
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level (ugh what a bother)
+- [ ] Make one more test if inline styles vs CSS variables are better
 - [ ] Real life test
   - [ ] Might be useful to build this in the hivecom project
   - [ ] Build an example page with 100% of the components
@@ -31,7 +32,7 @@
   - [ ] Run color contrast test
   - [ ] Make sure it works on mobile down to 340px
     - [ ] Components
-    - [ ] Typography
+    - [ ] Scale down Typography
 ---
 
 ### Post 1.0 components
@@ -55,3 +56,4 @@
     - [ ] CSS variable setup, accent, fonts
     - [ ] CSS helpers
     - [ ] Components
+    - [ ] Typography page
