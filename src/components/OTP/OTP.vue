@@ -85,6 +85,10 @@ function updateValue(e: KeyboardEvent) {
     ;(e.target as HTMLInputElement).value = otpValue.value
   }
 }
+
+functio handlePaste(e: ClipboardEvent) {
+  // Make sure pasting at index also works and clamps the value to max len
+}
 </script>
 
 <template>
@@ -95,6 +99,7 @@ function updateValue(e: KeyboardEvent) {
       @keydown.prevent="updateValue"
       @blur="cursorIndex = -1"
       @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"
+      @paste="handlePaste"
     >
 
     <div class="vui-otp-items">
