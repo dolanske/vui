@@ -104,6 +104,7 @@ Opinionated vue UI library for building personal applications. Completely from s
 
 ### Post 1.0 components
 
+- [ ] Add Accordion style "card" to match styling of card (hoverable header + border under header with border around the whole thing)
 - [ ] Carousel (slider)
 - [x] InputOTP
   - [x] Wrapper
