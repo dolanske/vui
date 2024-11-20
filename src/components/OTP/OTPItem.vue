@@ -13,7 +13,10 @@ const {
   otpValue,
   cursorIndex,
   redacted,
+  register,
 } = inject('otp-context') as OtpContext
+
+register()
 </script>
 
 <template>

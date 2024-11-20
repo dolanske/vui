@@ -76,13 +76,9 @@
   .vui-otp-input {
     position: absolute;
     inset: 0;
-    opacity: 0;
     outline-width: 0px;
+    opacity: 0;
     background: transparent;
     z-index: 5;
-  }
-
-  .vui-otp-group {
-    display: flex;
   }
 }

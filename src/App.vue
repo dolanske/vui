@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import Flex from './components/Flex/Flex.vue'
 import OTP from './components/OTP/OTP.vue'
 
-import OTPGroup from './components/OTP/OTPGroup.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
 
 import Tab from './components/Tabs/Tab.vue'
@@ -28,17 +27,17 @@ const value = ref('')
     <div v-if="tab === 'components'">
       <OTP v-model="value" mode="num">
         <Flex align-center gap="l">
-          <OTPGroup>
+          <Flex :gap="0">
             <OTPItem :i="0" />
             <OTPItem :i="1" />
             <OTPItem :i="2" />
-          </OTPGroup>
+          </Flex>
           -
-          <OTPGroup>
+          <Flex :gap="0">
             <OTPItem :i="3" />
             <OTPItem :i="4" />
             <OTPItem :i="5" />
-          </OTPGroup>
+          </Flex>
         </Flex>
       </OTP>
 

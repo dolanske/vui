@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { ModelRef, Ref } from 'vue'
-import { computed, provide, ref, toRef, watch, watchEffect } from 'vue'
+import { computed, provide, ref, toRef, useTemplateRef, watch } from 'vue'
 import { setCharAt } from '../../shared/helpers'
 import './otp.scss'
 
@@ -8,6 +8,7 @@ export interface OtpContext {
   otpValue: ModelRef<string>
   cursorIndex: Ref<number>
   redacted: Ref<boolean>
+  register: () => void
 }
 
 interface Props {
@@ -24,8 +25,6 @@ const emits = defineEmits<{
   change: [value?: string]
   complete: [value: string]
 }>()
-
-const slots = defineSlots()
 
 const otpValue = defineModel<string>({
   default: '',
@@ -44,28 +43,36 @@ const pattern = computed(() => {
   else return new RegExp(regexBoth, 'i')
 })
 
-const maxLen = computed(() => {
-  return slots.default().length
-})
+const maxLen = ref(0)
+
+const input = useTemplateRef('inputRef')
 
 provide('otp-context', {
   otpValue,
   cursorIndex,
   redacted: toRef(() => redacted),
+  // Called by all OTPItem child components to properly set max length of the input.
+  register: () => maxLen.value++,
 })
 
 watch(otpValue, value => emits('change', value))
+
+function setOtpValue(value: string) {
+  otpValue.value = value
+  if (input.value) {
+    input.value.value = value
+  }
+}
 
 function updateValue(e: KeyboardEvent) {
   const key = e.key
   if (pattern.value.test(key)) {
     const newValue = setCharAt(otpValue.value, key, cursorIndex.value)
 
-    if (newValue.length < maxLen.value) {
-      otpValue.value = newValue
-      ;(e.target as HTMLInputElement).value = otpValue.value
+    if (newValue.length <= maxLen.value) {
+      setOtpValue(newValue)
 
-      if (cursorIndex.value < maxLen.value - 2)
+      if (cursorIndex.value < maxLen.value)
         cursorIndex.value++
     }
   }
@@ -81,22 +88,37 @@ function updateValue(e: KeyboardEvent) {
       cursorIndex.value--
     }
 
-    otpValue.value = setCharAt(otpValue.value, '', cursorIndex.value)
-    ;(e.target as HTMLInputElement).value = otpValue.value
+    const newValue = setCharAt(otpValue.value, '', cursorIndex.value)
+    setOtpValue(newValue)
   }
 }
 
-functio handlePaste(e: ClipboardEvent) {
-  // Make sure pasting at index also works and clamps the value to max len
+function handlePaste(e: any) {
+  const clipboard = e.clipboardData?.getData('text/plain')
+  if (clipboard) {
+    const clipboardTrim = clipboard.trim().slice(0, maxLen.value - cursorIndex.value)
+
+    if (!pattern.value.test(clipboardTrim)) {
+      return
+    }
+
+    const currentTrimStart = otpValue.value.slice(0, cursorIndex.value)
+    const currentTrimEnd = otpValue.value.slice(cursorIndex.value + clipboardTrim.length)
+    const newValue = (currentTrimStart + clipboardTrim + currentTrimEnd).trim()
+    setOtpValue(newValue)
+    cursorIndex.value = Math.min(newValue.length, maxLen.value - 1)
+  }
 }
 </script>
 
 <template>
   <div class="vui-otp">
     <input
+      ref="inputRef"
       type="text"
       class="vui-otp-input"
-      @keydown.prevent="updateValue"
+      contenteditable="true"
+      @keydown="updateValue"
       @blur="cursorIndex = -1"
       @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"
       @paste="handlePaste"
@@ -106,6 +128,4 @@ functio handlePaste(e: ClipboardEvent) {
       <slot />
     </div>
   </div>
-
-  {{ cursorIndex }}
 </template>

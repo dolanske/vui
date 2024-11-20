@@ -105,11 +105,11 @@ Opinionated vue UI library for building personal applications. Completely from s
 ### Post 1.0 components
 
 - [ ] Carousel (slider)
-- [ ] InputOTP
+- [x] InputOTP
   - [x] Wrapper
   - [x] Slot
-  - [ ] Fix not working with components inbetween??
-  - [ ] Paste
+  - [x] Fix not working with components inbetween??
+  - [x] Paste
 - [ ] CodeBlock
   - [ ] Code highlighting
   - [ ] Copy code
