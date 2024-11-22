@@ -8,8 +8,6 @@
 
 ## 1.0 Checklist
 
-- [x] Tweak all colors
-- [x] Tweak all spacing
 - [x] Move style attribute assignments to scoped style element instead (flex, grid etc)
   - [ ] >>test<<
   - [ ] Button
@@ -19,10 +17,8 @@
   - [ ] Textarea
   - [ ] Progress
   - [ ] Sheet
-  - [ ] Skeleton
-  - [ ] Spinner
-- [x] Add generic outline
-- [ ] If something interactive is disabled, add disabled cursor
+  - [x] Skeleton
+  - [x] Spinner
 - [ ] Make sure all components have their variables localized so that they can be changed on a component level (ugh what a bother)
 - [ ] Make one more test if inline styles vs CSS variables are better
 - [ ] Real life test

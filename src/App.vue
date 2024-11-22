@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Badge from './components/Badge/Badge.vue'
-import Radio from './components/Radio/Radio.vue'
-import RadioGroup from './components/Radio/RadioGroup.vue'
+import Spinner from './components/Spinner/Spinner.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const val = ref()
 </script>
 
 <template>
@@ -23,10 +20,6 @@ const val = ref()
     </div>
 
     <div v-if="tab === 'components'">
-      <RadioGroup v-model="val" column>
-        <Radio value="1" label="Hiii" />
-        <Radio value="2" label="Bro" />
-      </RadioGroup>
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
