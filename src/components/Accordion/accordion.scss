@@ -43,6 +43,10 @@
     .vui-accordion-header svg {
       transform: rotate(180deg);
     }
+
+    .vui-accordion-content {
+      visibility: visible;
+    }
   }
 
   .vui-accordion-header {
@@ -64,8 +68,6 @@
     svg {
       transition: var(--transition);
     }
-
-    // padding-bottom: var(--w);
   }
 
   .vui-accordion-content {
@@ -73,5 +75,6 @@
     width: 100%;
     max-height: 0;
     overflow: hidden;
+    visibility: hidden;
   }
 }

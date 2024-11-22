@@ -9,19 +9,24 @@
 
   &.disabled {
     cursor: not-allowed;
-    pointer-events: none;
 
-    .vui-checkbox-icon svg path {
-      color: var(--color-text-lighter);
+    .vui-checkbox-icon {
+      pointer-events: none;
+      svg path {
+        color: var(--color-text-lighter);
+      }
     }
 
-    input + label p {
-      color: var(--color-text-lighter);
+    input + label {
+      cursor: not-allowed;
+
+      p {
+        color: var(--color-text-lighter);
+      }
     }
   }
 
   .vui-checkbox-icon {
-    cursor: pointer;
     width: var(--checkbox-size);
     height: var(--checkbox-size);
 
@@ -52,6 +57,7 @@
           align-items: center;
           min-height: var(--checkbox-size);
           font-size: var(--font-size-ms);
+          align-self: flex-start;
           // line-height: var(--checkbox-size);
         }
       }

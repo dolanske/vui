@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Accordion from './components/Accordion/Accordion.vue'
-import Button from './components/Button/Button.vue'
-import Divider from './components/Divider/Divider.vue'
+import Badge from './components/Badge/Badge.vue'
+import Radio from './components/Radio/Radio.vue'
+import RadioGroup from './components/Radio/RadioGroup.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const count = ref(10)
+const val = ref()
 </script>
 
 <template>
   <main vaul-drawer-wrapper>
-    <Tabs v-model="tab" expand variant="filled">
+    <Tabs v-model="tab" expand>
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
       <Tab id="typography" label="Typography" />
@@ -21,22 +21,12 @@ const count = ref(10)
     <div v-if="tab === 'home'">
       home
     </div>
+
     <div v-if="tab === 'components'">
-      <Button @click="count += 10">
-        Increase!!!
-      </Button>
-
-      <Divider />
-
-      <Accordion card>
-        <template #header>
-          Hiiii
-        </template>
-        <p v-for="item in count" :key="item">
-          I am a bro
-        </p>
-      </Accordion>
-
+      <RadioGroup v-model="val" column>
+        <Radio value="1" label="Hiii" />
+        <Radio value="2" label="Bro" />
+      </RadioGroup>
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
