@@ -76,7 +76,11 @@ useResizeObserver(contentRef, ([entry]) => {
       <Icon icon="ph:caret-down" />
     </button>
 
-    <div class="vui-accordion-content" :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : '0px' }">
+    <div
+      class="vui-accordion-content"
+      :aria-hidden="!isOpen"
+      :style="{ 'max-height': isOpen ? `${contentMaxHeight}px` : '0px' }"
+    >
       <div ref="content" class="vui-accordtion-content-inner">
         <slot />
       </div>
