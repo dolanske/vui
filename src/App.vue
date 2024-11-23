@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Spinner from './components/Spinner/Spinner.vue'
+import Divider from './components/Divider/Divider.vue'
+import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -20,6 +21,11 @@ const tab = ref('components')
     </div>
 
     <div v-if="tab === 'components'">
+      <Flex>
+        <h1>Hi</h1>
+        <Divider vertical margin="128px" :space="64" />
+        <h2>Bye</h2>
+      </Flex>
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">

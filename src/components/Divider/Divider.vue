@@ -4,23 +4,22 @@ import './divider.scss'
 
 interface Props {
   thickness?: number
-  size?: number
+  space?: number
   vertical?: boolean
-  width?: number
-  height?: number
   margin?: string
 }
 
 const {
   thickness = 1,
-  size = 32,
+  space = 32,
   vertical,
   margin = '0',
 } = defineProps<Props>()
 
-const w = computed(() => vertical ? `${size}px` : 'initial')
+const w = computed(() => vertical ? `${space}px` : 'initial')
 const bW = computed(() => `${thickness}px`)
-const h = computed(() => `${size}px`)
+const h = computed(() => `${space}px`)
+const m = computed(() => typeof margin === 'number' ? `${margin}px` : margin)
 </script>
 
 <template>
@@ -33,9 +32,12 @@ const h = computed(() => `${size}px`)
 
 <style lang="scss" scoped>
 .vui-divider {
-  margin: v-bind(margin);
+  margin: v-bind(m);
   width: v-bind(w);
-  border-width: v-bind(bW);
   height: v-bind(h);
+
+  &:before {
+    border-width: v-bind(bW);
+  }
 }
 </style>

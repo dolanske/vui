@@ -61,7 +61,7 @@ const baseTransform = computed(() => {
             <Button square icon="ph:x" @click="open = false" />
           </div>
 
-          <Divider v-if="separator && $slots.header" :size="1" />
+          <Divider v-if="separator && $slots.header" :space="1" />
 
           <div v-if="$slots.default" class="vui-sheet-content">
             <slot :close />
