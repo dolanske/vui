@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
-import { useCssVar } from '@vueuse/core'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
-import { computed, useId, useTemplateRef } from 'vue'
+import { computed, useId } from 'vue'
 import './drawer.scss'
 
 interface Props {

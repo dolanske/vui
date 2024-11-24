@@ -8,7 +8,6 @@
 
 ## 1.0 Checklist
 
-- [ ] Make sure all components have their variables localized so that they can be changed on a component level (ugh what a bother)
 - [ ] Real life test
   - [ ] Might be useful to build this in the hivecom project
   - [ ] Build an example page with 100% of the components
@@ -19,7 +18,14 @@
     - [ ] Scale down Typography
 ---
 
-### Post 1.0 components
+## 1.1
+
+- [ ] Improve customization
+  - [ ] Test how easy it is to modify values
+  - [ ] Explore option to provide styling using CSS modules?
+  - [ ] Make sure all components have their variables localized so that they can be changed on a component level (ugh what a bother)
+
+### Post 1.2 components
 
 - [ ] Carousel (slider)
 - [ ] CodeBlock
@@ -34,3 +40,7 @@
     - [ ] CSS helpers
     - [ ] Components
     - [ ] Typography page
+
+### Whenever
+
+- [ ] Bump target from ES2022 whenever vite-plugin-dts is fixed

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { Placement } from '@floating-ui/vue'
+import type { Placement } from '../../shared/types'
 import { ref, useTemplateRef, watch } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
