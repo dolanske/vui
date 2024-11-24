@@ -73,7 +73,7 @@ const id = useId()
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
       <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }" :aria-describedby="id">
-        <div :key="mW" class="vui-drawer-container container" :class="containerClass">
+        <div :key="mW" class="vui-drawer-container container" :class="containerClass" :style="{ 'max-width': mW }">
           <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}
           </DrawerTitle>
@@ -88,9 +88,5 @@ const id = useId()
 :global(body) {
   transition: var(--transition-quick);
   background-color: var(--color-bg);
-}
-
-.vui-drawer-container.container {
-  max-width: v-bind(mW);
 }
 </style>

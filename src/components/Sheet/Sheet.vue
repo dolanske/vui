@@ -17,6 +17,8 @@ const {
   separator,
 } = defineProps<Props>()
 
+const TRANSITION_OFFSET = 16
+
 const open = defineModel<boolean>()
 
 function close() {
@@ -30,9 +32,9 @@ const style = computed(() => {
   if (position === 'left' || position === 'right') {
     style = { width: formattedSizeValue }
   }
-  else {
-    style = { minHeight: formattedSizeValue }
-  }
+  // else {
+  //   style = { minHeight: formattedSizeValue }
+  // }
 
   return style
 })
@@ -40,11 +42,11 @@ const style = computed(() => {
 // Used to compute base location so that sheet appears to animate form the edge of the screen
 const baseTransform = computed(() => {
   switch (position) {
-    case 'left': return `translate(-16px, 0)`
-    case 'top': return `translate(0, -16px)`
-    case 'bottom': return `translate(0, 16px)`
+    case 'left': return `translate(-${TRANSITION_OFFSET}px, 0)`
+    case 'top': return `translate(0, -${TRANSITION_OFFSET}px)`
+    case 'bottom': return `translate(0, ${TRANSITION_OFFSET}px)`
     case 'right':
-    default: return `translate(16px, 0)`
+    default: return `translate(${TRANSITION_OFFSET}px, 0)`
   }
 })
 </script>
@@ -73,8 +75,7 @@ const baseTransform = computed(() => {
 </template>
 
 <style scoped lang="scss">
-// TODO: test
-:deep(.vui-backdrop) {
+.vui-backdrop {
   padding: 0;
 }
 

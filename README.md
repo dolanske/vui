@@ -12,11 +12,11 @@
   - [ ] >>test<<
   - [ ] Button
   - [x] Divider
-  - [ ] Drawer
+  - [x] Drawer
   - [ ] Dropdown
   - [x] Textarea
   - [x] Progress
-  - [ ] Sheet
+  - [x] Sheet
   - [x] Skeleton
   - [x] Spinner
 - [ ] Normalize all props that expect pixels/size to expect number + string

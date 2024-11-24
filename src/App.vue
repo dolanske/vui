@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Drawer from './components/Drawer/Drawer.vue'
+import Sheet from './components/Sheet/Sheet.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -24,9 +24,9 @@ const open = ref(false)
       <button @click="open = true">
         Open
       </button>
-      <Drawer v-model="open" container-size="s">
+      <Sheet v-model="open">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus eius aliquid sunt voluptas quis est nesciunt cum dolores sapiente ducimus reprehenderit officiis unde, accusamus dolor voluptate facilis neque sequi iusto.</p>
-      </Drawer>
+      </Sheet>
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
