@@ -14,8 +14,8 @@
   - [x] Divider
   - [ ] Drawer
   - [ ] Dropdown
-  - [ ] Textarea
-  - [ ] Progress
+  - [x] Textarea
+  - [x] Progress
   - [ ] Sheet
   - [x] Skeleton
   - [x] Spinner

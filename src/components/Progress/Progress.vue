@@ -42,16 +42,19 @@ const progressRef = useTemplateRef('progress')
 
 watchEffect(() => {
   if (progressRef.value && !isNil(height)) {
-    progressRef.value.style.setProperty('--vui-progress-height', `${height}px`)
+    progressRef.value.style.setProperty(
+      '--vui-progress-height',
+      typeof height === 'number' ? `${height}px` : height,
+    )
   }
 })
 
 // Automatically / randomly increment but never reach 100% until
 async function fakeIncrement() {
   if (fake && progressAmount.value < 100) {
-    if (progressAmount.value > 95) {
+    if (progressAmount.value > 90) {
       // Only in crement by the fraction of the remaining amount
-      progressAmount.value += (100 - progressAmount.value) * 0.075
+      progressAmount.value += (100 - progressAmount.value) * 0.05
       await delay(randomMinMax(500, 3000))
     }
     else {

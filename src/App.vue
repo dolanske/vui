@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Divider from './components/Divider/Divider.vue'
-import Flex from './components/Flex/Flex.vue'
+import Drawer from './components/Drawer/Drawer.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
+const open = ref(false)
 </script>
 
 <template>
@@ -21,11 +21,12 @@ const tab = ref('components')
     </div>
 
     <div v-if="tab === 'components'">
-      <Flex>
-        <h1>Hi</h1>
-        <Divider vertical margin="128px" :space="64" />
-        <h2>Bye</h2>
-      </Flex>
+      <button @click="open = true">
+        Open
+      </button>
+      <Drawer v-model="open" container-size="s">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus eius aliquid sunt voluptas quis est nesciunt cum dolores sapiente ducimus reprehenderit officiis unde, accusamus dolor voluptate facilis neque sequi iusto.</p>
+      </Drawer>
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">

@@ -119,6 +119,7 @@
 
 body {
   color: var(--color-text);
+  min-height: 100dvh;
 }
 
 @import './typography.scss';

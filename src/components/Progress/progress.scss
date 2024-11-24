@@ -1,5 +1,6 @@
 .vui-progress {
   --vui-progress-height: 3px;
+
   display: block;
   width: 100%;
   position: relative;
@@ -18,7 +19,6 @@
     border-radius: none !important;
 
     &.fixed-active {
-      // Some arbitrary value which should never happen to people with
       height: var(--vui-progress-height);
     }
 

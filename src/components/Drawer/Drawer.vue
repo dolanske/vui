@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
+import { useCssVar } from '@vueuse/core'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
-import { computed, useId } from 'vue'
+import { computed, useId, useTemplateRef } from 'vue'
 import './drawer.scss'
 
 interface Props {
@@ -40,6 +41,7 @@ const {
   portalProps,
   handle = true,
 } = defineProps<Props>()
+
 const open = defineModel<boolean>()
 
 const mW = computed(() => {
@@ -48,7 +50,8 @@ const mW = computed(() => {
       return '100%'
     }
     else {
-      return `var(--container-${containerSize})`
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(`--container-${containerSize}`)
     }
   }
   else {
@@ -69,8 +72,8 @@ const id = useId()
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
-      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handlk': handle === false }" :aria-describedby="id">
-        <div class="vui-drawer-container container" :class="containerClass">
+      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }" :aria-describedby="id">
+        <div :key="mW" class="vui-drawer-container container" :class="containerClass">
           <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}
           </DrawerTitle>
