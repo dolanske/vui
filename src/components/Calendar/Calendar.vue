@@ -14,6 +14,8 @@ const props = withDefaults(defineProps<VueDatePickerProps & {
   format: 'dd/MM/yyyy HH:mm',
   expand: false,
 })
+
+const ICON_SIZE = 18
 </script>
 
 <template>
@@ -26,28 +28,28 @@ const props = withDefaults(defineProps<VueDatePickerProps & {
   >
     <!-- Icon slots -->
     <template #input-icon>
-      <Icon :width="18" :height="18" icon="ph:calendar-blank" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:calendar-blank" />
     </template>
     <template #calendar-icon>
-      <Icon :width="18" :height="18" icon="ph:calendar-blank" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:calendar-blank" />
     </template>
     <template #clear-icon>
-      <Icon :width="18" :height="18" icon="ph:x" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:x" />
     </template>
     <template #clock-icon>
-      <Icon :width="18" :height="18" icon="ph:clock" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:clock" />
     </template>
     <template #arrow-left>
-      <Icon :width="18" :height="18" icon="ph:caret-left" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-left" />
     </template>
     <template #arrow-right>
-      <Icon :width="18" :height="18" icon="ph:caret-right" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-right" />
     </template>
     <template #arrow-up>
-      <Icon :width="18" :height="18" icon="ph:caret-up" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-up" />
     </template>
     <template #arrow-down>
-      <Icon :width="18" :height="18" icon="ph:caret-down" />
+      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-down" />
     </template>
 
     <!-- Content slots -->

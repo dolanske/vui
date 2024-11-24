@@ -33,13 +33,13 @@ const {
       <slot name="header-end" />
     </div>
 
-    <Divider v-if="(separators || headerSeparator) && ($slots.header || $slots['header-end'])" :size="1" />
+    <Divider v-if="(separators || headerSeparator) && ($slots.header || $slots['header-end'])" :space="1" />
 
     <div v-if="$slots.default" class="vui-card-content">
       <slot />
     </div>
 
-    <Divider v-if="(separators || footerSeparator) && $slots.footer" :size="1" />
+    <Divider v-if="(separators || footerSeparator) && $slots.footer" :space="1" />
 
     <div v-if="$slots.footer" class="vui-card-footer">
       <slot name="footer" />

@@ -17,6 +17,11 @@
 
   width: 224px;
 
+  &.disabled input,
+  &.disabled textarea {
+    cursor: not-allowed;
+  }
+
   &.expand {
     width: 100%;
   }
@@ -26,10 +31,14 @@
     color: var(--input-color-text-red);
   }
 
-  &.readonly .vui-input input {
-    pointer-events: none;
-    color: var(--input-color-text-light);
-    border-color: var(--input-color-border-weak);
+  &.readonly .vui-input {
+    input,
+    textarea,
+    .vui-input-style {
+      pointer-events: none;
+      color: var(--input-color-text-light);
+      border-color: var(--input-color-border-weak);
+    }
   }
 
   &.has-errors {

@@ -125,7 +125,8 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
     const key = sorting.value.key
 
     if (key) {
-      final = final.toSorted((a: Dataset[number], b: Dataset[number]) => {
+      // FIXME: change to `toSorted` when typescript is ok
+      final = [...final].sort((a: Dataset[number], b: Dataset[number]) => {
         const aValue = a[key]
         const bValue = b[key]
         return sorting.value.type === 'asc'

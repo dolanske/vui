@@ -1,12 +1,13 @@
 <script setup lang='ts'>
-import type { Placement } from '@floating-ui/vue'
 import type { MaybeElement } from '@vueuse/core'
+import type { Placement } from '../../shared/types'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useTemplateRef } from 'vue'
+import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
 
-interface Props {
+export interface Props {
   /**
    * Tooltip placement related to the anchor
    */
@@ -24,7 +25,7 @@ interface Props {
 const {
   placement = 'bottom-start',
   expand,
-  minWidth,
+  minWidth = 156,
 } = defineProps<Props>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
@@ -63,6 +64,9 @@ defineExpose({
   toggle,
   isOpen: showMenu,
 })
+
+const mW = computed(() => formatUnitValue(minWidth))
+const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 </script>
 
 <template>
@@ -77,17 +81,18 @@ defineExpose({
       :anchor="anchorRef"
       class="vui-dropdown"
       :placement
-      :style="{
-        minWidth: `${minWidth ?? 156}px`,
-        ...(expand && { width: `${anchorWidth}px` }),
-      }"
     >
       <slot :open :close :toggle :is-open="showMenu" />
     </Popout>
   </Transition>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.vui-dropdown {
+  min-width: v-bind(mW);
+  width: v-bind(w);
+}
+
 .dropdown-enter-active,
 .dropdown-leave-active {
   transition: 0.1s opacity ease-in-out;

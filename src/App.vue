@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Accordion from './components/Accordion/Accordion.vue'
-import Button from './components/Button/Button.vue'
-
+import Avatar from './components/Avatar/Avatar.vue'
+import Divider from './components/Divider/Divider.vue'
 import Tab from './components/Tabs/Tab.vue'
-
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-
-const count = ref(10)
 </script>
 
 <template>
   <main vaul-drawer-wrapper>
-    <Tabs v-model="tab" expand variant="filled">
+    <Tabs v-model="tab" expand>
       <Tab id="home" label="Home" icon="ph:house" />
       <Tab id="components" label="Components" />
       <Tab id="typography" label="Typography" />
@@ -23,19 +19,11 @@ const count = ref(10)
     <div v-if="tab === 'home'">
       home
     </div>
-    <div v-if="tab === 'components'">
-      <Button @click="count += 10">
-        Increase!!!
-      </Button>
 
-      <Accordion>
-        <template #header>
-          Hiiii
-        </template>
-        <p v-for="item in count" :key="item">
-          I am a bro
-        </p>
-      </Accordion>
+    <div v-if="tab === 'components'">
+      <Divider size="65px" :margin="32">
+        <Avatar />
+      </Divider>
 
       <br>
     </div>

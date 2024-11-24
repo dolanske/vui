@@ -57,3 +57,18 @@ export function setCharAt(str: string, char: string | number, index: number): st
     return char.toString()
   return str.substring(0, index) + char + str.substring(index + 1)
 }
+
+/**
+ * Takes in a value and if it is a number, appends "px" to it, otherwise returns
+ * the original value.
+ *
+ */
+export function formatUnitValue(value: string | number, unit: string = 'px'): string {
+  return typeof value === 'number'
+    ? `${value}${unit}`
+  // If last value of string is NOT a number, do not add "px" at the end
+  // eslint-disable-next-line unicorn/prefer-number-properties
+    : isNaN(Number(value[value.length - 1]))
+      ? value
+      : `${value}${unit}`
+}

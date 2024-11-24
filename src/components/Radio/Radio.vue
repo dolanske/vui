@@ -6,7 +6,7 @@ import './radio.scss'
 export interface RadioProps {
   label?: string
   disabled?: boolean
-  value: string
+  value: any
 }
 
 const {

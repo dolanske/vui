@@ -23,6 +23,7 @@ export interface InputProps {
   multiple?: boolean
   min?: number
   max?: number
+  disabled?: boolean
 }
 
 const {
@@ -40,6 +41,7 @@ const {
   min,
   max,
   errors = [] as string[],
+  disabled,
 } = defineProps<InputProps>()
 
 const model = defineModel<string | number>({
@@ -76,7 +78,7 @@ const renderLimit = computed(() => {
 </script>
 
 <template>
-  <div class="vui-input-container" :class="{ expand, required, readonly, 'has-errors': errors.length > 0 }">
+  <div class="vui-input-container" :class="{ expand, disabled, required, readonly, 'has-errors': errors.length > 0 }">
     <slot name="before" />
     <div class="vui-input">
       <label v-if="label" for="id">{{ label }}</label>
@@ -100,6 +102,7 @@ const renderLimit = computed(() => {
           :accept
           :multiple
           :min
+          :disabled
         >
         <slot name="end" />
       </Flex>

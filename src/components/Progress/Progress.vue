@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { onMounted, useTemplateRef, watchEffect } from 'vue'
-import { delay, isNil, randomMinMax } from '../../shared/helpers'
+import { computed, onMounted, useTemplateRef, watchEffect } from 'vue'
+import { delay, formatUnitValue, isNil, randomMinMax } from '../../shared/helpers'
 import './progress.scss'
 
 interface Props {
@@ -42,16 +42,19 @@ const progressRef = useTemplateRef('progress')
 
 watchEffect(() => {
   if (progressRef.value && !isNil(height)) {
-    progressRef.value.style.setProperty('--vui-progress-height', `${height}px`)
+    progressRef.value.style.setProperty(
+      '--vui-progress-height',
+      formatUnitValue(height),
+    )
   }
 })
 
 // Automatically / randomly increment but never reach 100% until
 async function fakeIncrement() {
   if (fake && progressAmount.value < 100) {
-    if (progressAmount.value > 95) {
+    if (progressAmount.value > 90) {
       // Only in crement by the fraction of the remaining amount
-      progressAmount.value += (100 - progressAmount.value) * 0.075
+      progressAmount.value += (100 - progressAmount.value) * 0.05
       await delay(randomMinMax(500, 3000))
     }
     else {
@@ -63,6 +66,9 @@ async function fakeIncrement() {
 }
 
 onMounted(fakeIncrement)
+
+const w = computed(() => `${progressAmount.value}%`)
+const bC = computed(() => color)
 </script>
 
 <template>
@@ -74,11 +80,13 @@ onMounted(fakeIncrement)
       'fixed-active': progressAmount > 0 && progressAmount < 100,
     }"
   >
-    <div
-      class="vui-progress-indicator" :style="{
-        width: `${progressAmount}%`,
-        backgroundColor: color,
-      }"
-    />
+    <div class="vui-progress-indicator" />
   </div>
 </template>
+
+<style scoped lang="scss">
+.vui-progress-indicator {
+  width: v-bind(w);
+  background-color: v-bind(bC);
+}
+</style>

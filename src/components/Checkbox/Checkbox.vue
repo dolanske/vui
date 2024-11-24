@@ -34,7 +34,10 @@ const id = useId()
       type="checkbox"
       :disabled
       :checked="checkedProp"
-      @change="emit('change', ($event.target as HTMLInputElement).checked)"
+      @change="(e) => {
+        if (disabled) return
+        emit('change', (e.target as HTMLInputElement).checked)
+      }"
     >
     <label :for="id">
       <span class="vui-checkbox-icon">

@@ -1,11 +1,11 @@
 <script setup lang='ts'>
-import type { MaybeElement, Placement } from '@floating-ui/vue'
+import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoPlacement, offset, useFloating } from '@floating-ui/vue'
 import { toRef, useTemplateRef } from 'vue'
 import './popout.scss'
 
-interface Props {
-  anchor: MaybeElement<HTMLElement>
+export interface Props {
+  anchor: PopoutMaybeElement<HTMLElement>
   /**
    * Override the autoPlacement option
    */

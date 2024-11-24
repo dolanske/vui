@@ -43,7 +43,7 @@ const {
   dashed,
 } = defineProps<Props>()
 
-const actualHeight = computed(() => {
+const h = computed(() => {
   switch (size) {
     case Size.s: return '24px'
     case Size.l: return '40px'
@@ -52,7 +52,7 @@ const actualHeight = computed(() => {
   }
 })
 
-const actualPadding = computed(() => {
+const p = computed(() => {
   switch (size) {
     case Size.s: return '5px'
     case Size.l: return '16px'
@@ -84,7 +84,7 @@ const actualPadding = computed(() => {
 
 <style scoped>
 .vui-button {
-  --button-height: v-bind(actualHeight);
-  --button-padding: v-bind(actualPadding);
+  --button-height: v-bind(h);
+  --button-padding: v-bind(p);
 }
 </style>

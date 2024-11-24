@@ -9,20 +9,24 @@
   &.vui-sheet-position-top {
     top: 0;
     border-bottom: 1px solid var(--color-border);
+    height: auto;
   }
 
   &.vui-sheet-position-bottom {
     bottom: 0;
     border-top: 1px solid var(--color-border);
+    height: auto;
   }
 
   &.vui-sheet-position-right {
     right: 0;
+    top: 0;
     border-left: 1px solid var(--color-border);
   }
 
   &.vui-sheet-position-left {
     left: 0;
+    top: 0;
     border-right: 1px solid var(--color-border);
   }
 

@@ -1,8 +1,8 @@
 .vui-avatar {
-  --button-size: 36px;
+  --avatar-size: 36px;
 
   &.vui-avatar-size-s {
-    --button-size: 28px;
+    // --avatar-size: 28px;
 
     strong {
       font-size: var(--font-size-xs);
@@ -10,15 +10,15 @@
   }
 
   &.vui-avatar-size-l {
-    --button-size: 48px;
+    // --avatar-size: 48px;
 
     strong {
       font-size: var(--font-size-m);
     }
   }
 
-  width: var(--button-size);
-  height: var(--button-size);
+  width: var(--avatar-size);
+  height: var(--avatar-size);
   border-radius: 100%;
   display: flex;
   align-items: center;

@@ -40,15 +40,17 @@ const {
   portalProps,
   handle = true,
 } = defineProps<Props>()
+
 const open = defineModel<boolean>()
 
-const containerMaxWidth = computed(() => {
+const mW = computed(() => {
   if (typeof containerSize === 'string') {
     if (containerClass === 'full') {
       return '100%'
     }
     else {
-      return `var(--container-${containerSize})`
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(`--container-${containerSize}`)
     }
   }
   else {
@@ -69,12 +71,8 @@ const id = useId()
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
-      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handlk': handle === false }" :aria-describedby="id">
-        <div
-          class="vui-drawer-container container" :class="containerClass" :style="{
-            maxWidth: containerMaxWidth,
-          }"
-        >
+      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }" :aria-describedby="id">
+        <div :key="mW" class="vui-drawer-container container" :class="containerClass" :style="{ 'max-width': mW }">
           <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}
           </DrawerTitle>
