@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { computed } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
+import { formatUnitValue } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Divider from '../Divider/Divider.vue'
 import './sheet.scss'
@@ -26,17 +27,11 @@ function close() {
 }
 
 const style = computed(() => {
-  const formattedSizeValue = typeof size === 'number' ? `${size}px` : size
-  let style
-
   if (position === 'left' || position === 'right') {
-    style = { width: formattedSizeValue }
+    return { width: formatUnitValue(size) }
   }
-  // else {
-  //   style = { minHeight: formattedSizeValue }
-  // }
 
-  return style
+  return undefined
 })
 
 // Used to compute base location so that sheet appears to animate form the edge of the screen

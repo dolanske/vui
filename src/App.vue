@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from './components/Button/Button.vue'
-import Dropdown from './components/Dropdown/Dropdown.vue'
-import DropdownItem from './components/Dropdown/DropdownItem.vue'
-import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
+import Avatar from './components/Avatar/Avatar.vue'
+import Divider from './components/Divider/Divider.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -23,9 +21,9 @@ const tab = ref('components')
     </div>
 
     <div v-if="tab === 'components'">
-      <Button size="l" @click="toggle">
-        Hello
-      </Button>
+      <Divider size="65px" :margin="32">
+        <Avatar />
+      </Divider>
 
       <br>
     </div>

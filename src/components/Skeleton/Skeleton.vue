@@ -1,6 +1,7 @@
 <!-- eslint-disable ts/no-use-before-define -->
 <script setup lang='ts'>
 import { computed } from 'vue'
+import { formatUnitValue } from '../../shared/helpers'
 import './skeleton.scss'
 
 interface Props {
@@ -21,24 +22,14 @@ const {
 
 const DEFAULT_RADIUS = 'var(--border-radius-s)'
 
-function valueToPixels(value: string | number) {
-  return typeof value === 'number'
-    ? `${value}px`
-    // If last value of string is NOT a number, do not add "px" at the end
-    // eslint-disable-next-line unicorn/prefer-number-properties
-    : isNaN(Number(value[value.length - 1]))
-      ? value
-      : `${value}px`
-}
-
 // Give priority to radius, if it is NOT set to default
-const bR = computed(() => valueToPixels(circle && radius === DEFAULT_RADIUS ? 9999 : radius))
+const bR = computed(() => formatUnitValue(circle && radius === DEFAULT_RADIUS ? 9999 : radius))
 
 // When using `circle` prop, we want to use the same
 // value for both height and width, but we can't
 // know which one will be defined
-const w = computed(() => valueToPixels(circle ? (width || height) : width))
-const h = computed(() => valueToPixels(circle ? (width || height) : height))
+const w = computed(() => formatUnitValue(circle ? (width || height) : width))
+const h = computed(() => formatUnitValue(circle ? (width || height) : height))
 </script>
 
 <template>

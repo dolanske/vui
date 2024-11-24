@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { formatUnitValue } from '../../shared/helpers'
 import './divider.scss'
 
 interface Props {
   thickness?: number
-  space?: number
+  size?: number | string
   vertical?: boolean
-  margin?: string
+  margin?: string | number
 }
 
 const {
   thickness = 1,
-  space = 32,
+  size = 32,
   vertical,
   margin = '0',
 } = defineProps<Props>()
 
-const w = computed(() => vertical ? `${space}px` : 'initial')
+const h = computed(() => formatUnitValue(size))
+const w = computed(() => vertical ? h.value : 'initial')
 const bW = computed(() => `${thickness}px`)
-const h = computed(() => `${space}px`)
-const m = computed(() => typeof margin === 'number' ? `${margin}px` : margin)
+const m = computed(() => formatUnitValue(margin))
 </script>
 
 <template>

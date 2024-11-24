@@ -3,6 +3,7 @@ import type { Placement } from '@floating-ui/vue'
 import type { MaybeElement } from '@vueuse/core'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useTemplateRef } from 'vue'
+import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
 
@@ -24,7 +25,7 @@ interface Props {
 const {
   placement = 'bottom-start',
   expand,
-  minWidth,
+  minWidth = 156,
 } = defineProps<Props>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
@@ -64,7 +65,7 @@ defineExpose({
   isOpen: showMenu,
 })
 
-const mW = computed(() => `${minWidth ?? 156}px`)
+const mW = computed(() => formatUnitValue(minWidth))
 const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 </script>
 

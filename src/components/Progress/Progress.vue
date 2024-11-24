@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { computed, onMounted, useTemplateRef, watchEffect } from 'vue'
-import { delay, isNil, randomMinMax } from '../../shared/helpers'
+import { delay, formatUnitValue, isNil, randomMinMax } from '../../shared/helpers'
 import './progress.scss'
 
 interface Props {
@@ -44,7 +44,7 @@ watchEffect(() => {
   if (progressRef.value && !isNil(height)) {
     progressRef.value.style.setProperty(
       '--vui-progress-height',
-      typeof height === 'number' ? `${height}px` : height,
+      formatUnitValue(height),
     )
   }
 })
