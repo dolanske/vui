@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Sheet from './components/Sheet/Sheet.vue'
+import Button from './components/Button/Button.vue'
+import Dropdown from './components/Dropdown/Dropdown.vue'
+import DropdownItem from './components/Dropdown/DropdownItem.vue'
+import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
-const open = ref(false)
 </script>
 
 <template>
@@ -21,12 +23,10 @@ const open = ref(false)
     </div>
 
     <div v-if="tab === 'components'">
-      <button @click="open = true">
-        Open
-      </button>
-      <Sheet v-model="open">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus eius aliquid sunt voluptas quis est nesciunt cum dolores sapiente ducimus reprehenderit officiis unde, accusamus dolor voluptate facilis neque sequi iusto.</p>
-      </Sheet>
+      <Button size="l" @click="toggle">
+        Hello
+      </Button>
+
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">

@@ -9,11 +9,11 @@
 ## 1.0 Checklist
 
 - [x] Move style attribute assignments to scoped style element instead (flex, grid etc)
-  - [ ] >>test<<
-  - [ ] Button
+  - [x] >>test<<
+  - [x] Button
   - [x] Divider
   - [x] Drawer
-  - [ ] Dropdown
+  - [x] Dropdown
   - [x] Textarea
   - [x] Progress
   - [x] Sheet
