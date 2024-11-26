@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Avatar from './components/Avatar/Avatar.vue'
-import Divider from './components/Divider/Divider.vue'
+import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -21,10 +20,6 @@ const tab = ref('components')
     </div>
 
     <div v-if="tab === 'components'">
-      <Divider size="65px" :margin="32">
-        <Avatar />
-      </Divider>
-
       <br>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">

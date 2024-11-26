@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Space } from '../../shared/types'
 import { computed } from 'vue'
-import { useActualGap } from '../../shared/composables'
 
 export interface FlexProps {
   inline?: boolean
@@ -13,7 +12,7 @@ export interface FlexProps {
   rowReverse?: boolean
   columnReverse?: boolean
 
-  gap?: Sizes | number
+  gap?: Space | number
 
   // NOTE: Add more if needed
   justifyStart?: boolean
@@ -35,7 +34,7 @@ export interface FlexProps {
 const props = defineProps<FlexProps>()
 
 // Flex gap
-const ag = useActualGap(props.gap)
+const ag = computed(() => `var(--space-${props.gap})`)
 
 // Flex direction
 const ad = computed(() => {

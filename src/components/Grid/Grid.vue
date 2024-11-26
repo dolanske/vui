@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Space } from '../../shared/types'
 import { computed } from 'vue'
-import { useActualGap } from '../../shared/composables'
 import { createArray } from '../../shared/helpers'
 
 /**
@@ -10,7 +9,7 @@ import { createArray } from '../../shared/helpers'
 
 interface Props {
   inline?: boolean
-  gap?: Sizes | number
+  gap?: Space | number
   rows?: number | string
   columns?: number | string
   areas?: string[]
@@ -18,7 +17,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const aG = useActualGap(props.gap)
+const ag = computed(() => `var(--space-${props.gap})`)
 
 const aTC = computed(() => {
   if (typeof props.columns === 'number') {
@@ -42,9 +41,7 @@ const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
 </script>
 
 <template>
-  <div
-    class="vui-grid"
-  >
+  <div class="vui-grid">
     <slot />
   </div>
 </template>
@@ -52,7 +49,7 @@ const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
 <style scoped lang="scss">
 .vui-grid {
   display: v-bind(aD);
-  gap: v-bind(aG);
+  gap: v-bind(ag);
   grid-template-columns: v-bind(aTC);
   grid-template-rows: v-bind(aTR);
 }
