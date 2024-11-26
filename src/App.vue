@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Flex from './components/Flex/Flex.vue'
+import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 
@@ -20,7 +20,7 @@ const tab = ref('components')
     </div>
 
     <div v-if="tab === 'components'">
-      <br>
+      h
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

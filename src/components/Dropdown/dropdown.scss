@@ -58,6 +58,10 @@
     svg {
       width: 16px;
       height: 16px;
+
+      path {
+        color: var(--color-text-light);
+      }
     }
   }
 
