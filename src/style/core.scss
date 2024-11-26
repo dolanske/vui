@@ -7,29 +7,36 @@
 @use './fonts.scss';
 
 :root {
+  --container-xs: 360px;
   --container-s: 498px;
   --container-m: 856px;
   --container-l: 1140px;
   --container-xl: 1540px;
+  --container-xxl: 1920px;
 
   --border-radius-xs: 2px;
   --border-radius-s: 4px;
   --border-radius-m: 8px;
   --border-radius-l: 12px;
 
+  --font-size-xxs: 1rem;
   --font-size-xs: 1.15rem;
   --font-size-s: 1.3rem;
   --font-size-ms: 1.45rem;
   --font-size-m: 1.6rem;
-  --font-size-l: 1.65rem;
+  --font-size-l: 1.8rem;
+  --font-size-xl: 2rem;
+  --font-size-xxl: 2.6rem;
+  --font-size-xxxl: 3.4rem;
+  --font-size-xxxxl: 4.8rem;
 
   --space-xxs: 4px;
   --space-xs: 8px;
   --space-s: 12px;
   --space-m: 18px;
-  --space-l: 26px;
-  --space-xl: 40px;
-  --space-xxl: 52px;
+  --space-l: 24px;
+  --space-xl: 34px;
+  --space-xxl: 48px;
   --space-xxxl: 64px;
 
   --transition-quick: 0.08s all ease-in-out;
@@ -43,6 +50,7 @@
   --color-text: rgb(231, 231, 231);
   --color-text-light: rgb(158, 158, 158);
   --color-text-lighter: rgb(100, 100, 100);
+  --color-text-lightest: rgb(65, 65, 65);
   --color-text-invert: rgb(17, 17, 17);
 
   --color-button-gray: rgb(28, 28, 28);
@@ -74,10 +82,10 @@
   --color-border-weak: rgb(36, 36, 36);
 
   --color-accent: rgb(56, 214, 219);
-  --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.5) calc(l));
+  --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.4) calc(l));
   --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.2));
-  --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.6));
-  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.5));
+  --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.5));
+  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.4));
 
   --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
@@ -127,5 +135,6 @@ body {
 @import './animation.scss';
 @import './tooltip.scss';
 @import './utils.scss';
+@import './fonts.scss';
 
 @import './media-query.scss';

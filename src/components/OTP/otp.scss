@@ -15,7 +15,7 @@
       border: 1px solid var(--color-border-strong);
       color: var(--color-text);
       z-index: 1;
-      font-size: var(--font-size-l);
+      font-size: var(--font-size-m);
       outline: 0 solid var(--color-text-light);
       transition: var(--transition);
 
@@ -47,7 +47,6 @@
         }
       }
 
-      // TODO: animate blinking cursor
       &.active {
         z-index: 2;
         outline-width: 2px;

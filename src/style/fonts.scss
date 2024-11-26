@@ -1,0 +1,23 @@
+$sizes: 'xxs', 'xs', 's', 'ms', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl';
+
+@each $size in $sizes {
+  .text-#{$size} {
+    font-size: var(--font-size-#{$size});
+  }
+}
+
+.text-color {
+  color: var(--color-text);
+}
+
+.text-color-accent {
+  color: var(--color-accent);
+}
+
+$colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
+
+@each $color in $colors {
+  .text-color-#{$color} {
+    font-size: var(--color-text-#{$color});
+  }
+}

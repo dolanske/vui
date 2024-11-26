@@ -6,8 +6,152 @@
   width: 100%;
   padding-inline: var(--space-m);
   max-width: var(--container-l);
+
+  &.container-xs {
+    max-width: var(--container-s);
+  }
+
+  &.container-s {
+    max-width: var(--container-s);
+  }
+
+  &.container-m {
+    max-width: var(--container-m);
+  }
+
+  &.container-l {
+    max-width: var(--container-l);
+  }
+
+  &.container-xl {
+    max-width: var(--container-xl);
+  }
+
+  &.container-xxl {
+    max-width: var(--container-xxl);
+  }
 }
 
 .flex-1 {
   flex: 1;
+}
+
+// Sizes
+$sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
+
+// Paddings & margins
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+.my-auto {
+  margin-block: auto;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+// Generate based on sizes
+@each $size in $sizes {
+  // Margin
+  .mb-#{$size} {
+    margin-bottom: var(--space-#{$size});
+  }
+
+  .mr-#{$size} {
+    margin-right: var(--space-#{$size});
+  }
+
+  .ml-#{$size} {
+    margin-left: var(--space-#{$size});
+  }
+
+  .mt-#{$size} {
+    margin-top: var(--space-#{$size});
+  }
+
+  .mx-#{$size} {
+    margin-inline: var(--space-#{$size});
+  }
+
+  .my-#{$size} {
+    margin-block: var(--space-#{$size});
+  }
+
+  .m-#{$size} {
+    margin: var(--space-#{$size});
+  }
+
+  // Padding
+  .pb-#{$size} {
+    padding-bottom: var(--space-#{$size});
+  }
+
+  .pr-#{$size} {
+    padding-right: var(--space-#{$size});
+  }
+
+  .pl-#{$size} {
+    padding-left: var(--space-#{$size});
+  }
+
+  .pt-#{$size} {
+    padding-top: var(--space-#{$size});
+  }
+
+  .px-#{$size} {
+    padding-inline: var(--space-#{$size});
+  }
+
+  .py-#{$size} {
+    padding-block: var(--space-#{$size});
+  }
+
+  .p-#{$size} {
+    padding: var(--space-#{$size});
+  }
+
+  // Gap
+  .g-#{$size} {
+    gap: var(--space-#{$size});
+  }
+
+  .g-y-#{$size} {
+    row-gap: var(--space-#{$size});
+  }
+
+  .g-x-#{$size} {
+    column-gap: var(--space-#{$size});
+  }
+}
+
+// Z-index
+.z-0 {
+  z-index: 0;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-auto {
+  z-index: auto;
 }

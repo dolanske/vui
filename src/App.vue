@@ -20,7 +20,11 @@ const tab = ref('components')
     </div>
 
     <div v-if="tab === 'components'">
-      h
+      <h1 class="mb-xl">
+        Hii
+        <span class="counter text-color-accent">12</span>
+      </h1>
+      <p>I am down</p>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>
