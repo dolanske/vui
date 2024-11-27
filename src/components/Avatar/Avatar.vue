@@ -11,12 +11,14 @@ interface Props {
   url?: string
   fallback?: string
   icon?: string
+  alt?: string
 }
 
 const {
   size = Size.m,
   url,
   fallback,
+  alt = 'avatar',
 } = defineProps<Props>()
 
 const showFallback = ref(false)
@@ -32,7 +34,12 @@ const showFallback = ref(false)
       }),
     }"
   >
-    <img v-if="url && !showFallback" :src="url" @error="showFallback = true">
+    <img
+      v-if="url && !showFallback"
+      :alt
+      :src="url"
+      @error="showFallback = true"
+    >
     <strong v-else>
       <template v-if="showFallback">
         {{ fallback }}
