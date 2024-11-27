@@ -27,7 +27,7 @@ const hoverAnchor = ref(false)
 // Display tooltip
 const showTooltip = ref(false)
 
-let timeoutId: number
+let timeoutId: NodeJS.Timeout
 watch(hoverAnchor, (isHovering) => {
   if (isHovering) {
     if (!delay || delay <= 0) {
