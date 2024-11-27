@@ -16,17 +16,8 @@
   - [ ] Make sure it works on mobile down to 340px
     - [ ] Components
     - [ ] Scale down Typography
-- [x] Remove all occurrences of `v-bind()` from CSS style elements
+
 ---
-
-## 1.1
-
-- [ ] Improve customization
-  - [ ] Test how easy it is to modify values
-  - [ ] Explore option to provide styling using CSS modules?
-  - [ ] Make sure all components have their variables localized so that they can be changed on a component level (ugh what a bother)
-
-- [ ] When assigning default values, always assigne them as CSS variables so they are customizable
 
 ### Post 1.2 components
 
