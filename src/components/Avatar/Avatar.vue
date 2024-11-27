@@ -25,7 +25,7 @@ const showFallback = ref(false)
 <template>
   <div
     class="vui-avatar"
-    :class="[`vui-avatar-size-${typeof size === 'number' ? 'm' : size}`]"
+    :class="[`vui-avatar-size-${typeof size === 'number' ? 'l' : size}`]"
     :style="{
       ...(typeof size === 'number' && {
         '--avatar-size': formatUnitValue(size),

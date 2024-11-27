@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Avatar from './components/Avatar/Avatar.vue'
-import Button from './components/Button/Button.vue'
 import Divider from './components/Divider/Divider.vue'
+import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
 
 import Tabs from './components/Tabs/Tabs.vue'
@@ -30,7 +30,12 @@ const tab = ref('components')
       </h1>
       <p>I am down</p>
 
-      <Avatar :size="80" />
+      <Flex>
+        <Avatar size="s" />
+        <Avatar size="m" />
+        <Avatar size="l" />
+        <Avatar :size="128" />
+      </Flex>
 
       <Divider />
 

@@ -75,6 +75,8 @@ onMounted(() => {
       @click="active = vnode.props.id"
     />
 
-    <div ref="underline" class="vui-tab-underline" />
+    <Transition name="fade" appear>
+      <div ref="underline" class="vui-tab-underline" />
+    </Transition>
   </div>
 </template>

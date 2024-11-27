@@ -13,7 +13,7 @@
     --avatar-size: 48px;
 
     strong {
-      font-size: var(--font-size-m);
+      font-size: var(--font-size-l);
     }
   }
 
@@ -29,11 +29,13 @@
 
   svg {
     color: var(--color-text-light);
+    font-size: inherit;
   }
 
   strong {
     display: block;
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-ms);
+    line-height: 1;
   }
 
   img {
