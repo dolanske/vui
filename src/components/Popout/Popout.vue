@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
-import { autoPlacement, offset, useFloating } from '@floating-ui/vue'
+import { autoPlacement, offset, shift, useFloating } from '@floating-ui/vue'
 import { toRef, useTemplateRef } from 'vue'
 import './popout.scss'
 
@@ -28,6 +28,9 @@ const { floatingStyles } = useFloating(anchorRef, popoutRef, {
   middleware: [
     ...(props.placement ? [] : [autoPlacement()]),
     offset(props.offset),
+    shift({
+      padding: 8,
+    }),
   ],
 })
 </script>

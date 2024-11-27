@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Avatar from './components/Avatar/Avatar.vue'
+import Button from './components/Button/Button.vue'
 import Divider from './components/Divider/Divider.vue'
+import Dropdown from './components/Dropdown/Dropdown.vue'
+
+import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Flex from './components/Flex/Flex.vue'
 import Tab from './components/Tabs/Tab.vue'
-
 import Tabs from './components/Tabs/Tabs.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
@@ -40,13 +43,20 @@ const tab = ref('components')
       <Divider />
 
       <Tooltip>
-        <span cl>Hello world</span>
+        <span class="block mb-xl">Hello world</span>
         <template #tooltip>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, animi! Nobis maxime neque cumque, in a amet voluptatibus tenetur dicta eos delectus illo soluta aliquam voluptatum nulla? In, incidunt asperiores?
           </p>
         </template>
       </Tooltip>
+
+      <Dropdown>
+        <template #trigger="{ toggle }">
+          <Button aria-label="Dropdown menu trigger" square icon="ph:x" @click="toggle" />
+        </template>
+        <DropdownItem>Hiiii</DropdownItem>
+      </Dropdown>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

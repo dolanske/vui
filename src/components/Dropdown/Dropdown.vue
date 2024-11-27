@@ -73,13 +73,10 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
   <div
     ref="anchor"
     class="vui-dropdown-trigger-wrap"
-    :style="{
-      minWidth: mW,
-      width: w,
-    }"
     role="button"
     :aria-expanded="showMenu"
     :aria-haspopup="true"
+    name="Dropdown menu"
   >
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
@@ -91,6 +88,10 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
       :anchor="anchorRef"
       class="vui-dropdown"
       :placement
+      :style="{
+        minWidth: mW,
+        width: w,
+      }"
     >
       <slot :open :close :toggle :is-open="showMenu" />
     </Popout>

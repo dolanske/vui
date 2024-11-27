@@ -27,7 +27,7 @@ const hoverAnchor = ref(false)
 // Display tooltip
 const showTooltip = ref(false)
 
-let timeoutId: NodeJS.Timeout
+let timeoutId: number
 watch(hoverAnchor, (isHovering) => {
   if (isHovering) {
     if (!delay || delay <= 0) {
@@ -57,7 +57,9 @@ const id = useId()
 <template>
   <div
     ref="popoutAnchor"
-    class="inline-block"
+    :style="{
+      width: 'fit-content',
+    }"
     :aria-describedby="id"
     @mouseenter="hoverAnchor = true"
     @mouseleave="hoverAnchor = false"
