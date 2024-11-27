@@ -57,6 +57,7 @@ const id = useId()
 <template>
   <div
     ref="popoutAnchor"
+    class="inline-block"
     :aria-describedby="id"
     @mouseenter="hoverAnchor = true"
     @mouseleave="hoverAnchor = false"

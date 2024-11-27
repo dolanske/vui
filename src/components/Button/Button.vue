@@ -12,6 +12,8 @@ interface Props {
   // Provide URL to turn button into anchor
   // href?: string
   // target?: string
+
+  // State props
   loading?: boolean
   expand?: boolean
   square?: boolean
@@ -67,6 +69,7 @@ const padding = computed(() => {
     class="vui-button"
     :class="[{ loading, expand, disabled, plain, active, icon, square, dashed }, `vui-button-variant-${variant}`]"
     :disabled
+    role="button"
     :style="{
       '--button-height': height,
       '--button-padding': padding,

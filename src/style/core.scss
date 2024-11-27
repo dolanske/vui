@@ -131,6 +131,11 @@ body {
   min-height: 100dvh;
 }
 
+// Set base icon color
+.iconify {
+  color: var(--color-text-light);
+}
+
 @include meta.load-css('typography.scss');
 @include meta.load-css('layout.scss');
 @include meta.load-css('animation.scss');

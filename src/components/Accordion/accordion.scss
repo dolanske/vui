@@ -27,7 +27,6 @@
       &:hover {
         text-decoration: inherit;
         text-underline-offset: inherit;
-
         background-color: var(--color-button-gray);
       }
     }
@@ -67,6 +66,7 @@
 
     svg {
       transition: var(--transition);
+      color: var(--color-text-light);
     }
   }
 

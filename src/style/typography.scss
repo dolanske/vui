@@ -223,7 +223,6 @@ dl {
 article,
 .typeset {
   width: 100%;
-  // overflow: hidden;
 
   ol,
   ul {
@@ -236,7 +235,7 @@ article,
       margin-bottom: var(--space-m);
       font-size: var(--font-size-m);
       position: relative;
-      padding-left: 32px;
+      padding-left: 28px;
 
       & > ul {
         margin-top: 0;
@@ -245,7 +244,7 @@ article,
       &:before {
         content: '';
         position: absolute;
-        top: 3px;
+        top: 5px;
         left: 12px;
       }
 
@@ -261,7 +260,7 @@ article,
         width: 6px;
         height: 6px;
         border-radius: 100%;
-        background-color: var(--color-text-light);
+        background-color: var(--color-text-lighter);
       }
     }
   }

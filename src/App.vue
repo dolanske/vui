@@ -26,7 +26,7 @@ const tab = ref('components')
     <div v-if="tab === 'components'">
       <h1 class="mb-xl">
         Hii
-        <span class="counter text-color-accent">12</span>
+        <span class="counter text-color-accent">129</span>
       </h1>
       <p>I am down</p>
 
@@ -35,17 +35,13 @@ const tab = ref('components')
       <Divider />
 
       <Tooltip>
-        <span>Hello world</span>
+        <span cl>Hello world</span>
         <template #tooltip>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, animi! Nobis maxime neque cumque, in a amet voluptatibus tenetur dicta eos delectus illo soluta aliquam voluptatum nulla? In, incidunt asperiores?
           </p>
         </template>
       </Tooltip>
-
-      <Button size="l">
-        Hii
-      </Button>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

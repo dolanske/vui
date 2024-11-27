@@ -27,6 +27,10 @@
   background-color: var(--color-bg-raised);
   font-weight: 500;
 
+  svg {
+    color: var(--color-text-light);
+  }
+
   strong {
     display: block;
     font-size: var(--font-size-s);
