@@ -90,19 +90,17 @@ const aH = computed(() => props.expand ? '100%' : 'auto')
 </script>
 
 <template>
-  <div class="vui-flex">
+  <div
+    class="vui-flex" :style="{
+      display: aY,
+      flexWrap: aW,
+      flexDirection: ad,
+      justifyContent: aj,
+      gap: ag,
+      alignItems: aA,
+      width: aH,
+    }"
+  >
     <slot />
   </div>
 </template>
-
-<style scoped lang="scss">
-.vui-flex {
-  display: v-bind(aY);
-  flex-wrap: v-bind(aW);
-  flex-direction: v-bind(ad);
-  justify-content: v-bind(aj);
-  gap: v-bind(ag);
-  align-items: v-bind(aA);
-  width: v-bind(aH);
-}
-</style>

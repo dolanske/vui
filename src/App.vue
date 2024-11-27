@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import DropdownItem from './components/Dropdown/DropdownItem.vue'
+import Avatar from './components/Avatar/Avatar.vue'
+import Button from './components/Button/Button.vue'
+import Divider from './components/Divider/Divider.vue'
 import Tab from './components/Tabs/Tab.vue'
+
 import Tabs from './components/Tabs/Tabs.vue'
+import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const tab = ref('components')
 </script>
@@ -25,6 +29,23 @@ const tab = ref('components')
         <span class="counter text-color-accent">12</span>
       </h1>
       <p>I am down</p>
+
+      <Avatar :size="80" />
+
+      <Divider />
+
+      <Tooltip>
+        <span>Hello world</span>
+        <template #tooltip>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, animi! Nobis maxime neque cumque, in a amet voluptatibus tenetur dicta eos delectus illo soluta aliquam voluptatum nulla? In, incidunt asperiores?
+          </p>
+        </template>
+      </Tooltip>
+
+      <Button size="l">
+        Hii
+      </Button>
     </div>
     <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
       <h1>The Joke Tax Chronicles</h1>

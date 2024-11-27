@@ -1,4 +1,5 @@
-// Contains basic layout definitions and classes to compose basic layouts
+// Container layout styling
+$containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
 
 .container {
   display: block;
@@ -7,37 +8,18 @@
   padding-inline: var(--space-m);
   max-width: var(--container-l);
 
-  &.container-xs {
-    max-width: var(--container-s);
+  @each $container in $containers {
+    &.container-#{$container} {
+      max-width: var(--container-#{$container});
+    }
   }
 
-  &.container-s {
-    max-width: var(--container-s);
+  &.container-full {
+    max-width: 100%;
   }
-
-  &.container-m {
-    max-width: var(--container-m);
-  }
-
-  &.container-l {
-    max-width: var(--container-l);
-  }
-
-  &.container-xl {
-    max-width: var(--container-xl);
-  }
-
-  &.container-xxl {
-    max-width: var(--container-xxl);
-  }
-}
-
-.flex-1 {
-  flex: 1;
 }
 
 // Sizes
-$sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
 
 // Paddings & margins
 
@@ -53,7 +35,9 @@ $sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
   margin: auto;
 }
 
-// Generate based on sizes
+// Generate layout classes from size styles
+$sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
+
 @each $size in $sizes {
   // Margin
   .mb-#{$size} {

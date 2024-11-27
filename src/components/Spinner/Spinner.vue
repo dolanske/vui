@@ -32,13 +32,11 @@ const bW = computed(() => {
 </script>
 
 <template>
-  <div :class="{ size }" class="vui-spinner" />
+  <div
+    :class="{ size }" class="vui-spinner" :style="{
+      width: w,
+      height: w,
+      borderWidth: bW,
+    }"
+  />
 </template>
-
-<style lang="scss">
-.vui-spinner {
-  width: v-bind(w);
-  height: v-bind(w);
-  border-width: v-bind(bW);
-}
-</style>

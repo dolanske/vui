@@ -1,5 +1,3 @@
-// share some tiny global state
-
 import { ref } from 'vue'
 
 interface ToastAction {
@@ -68,25 +66,3 @@ export function pushToast(title: string, options?: ToastOptions): Toast {
 export function removeToast(id: number): void {
   toasts.value.delete(id)
 }
-
-//////
-
-// export const toastError: NewToastFn = (title, options) => {
-//   return pushToast('error', title, options)
-// }
-
-// export const toastSuccess: NewToastFn = (title, options) => {
-//   return pushToast('success', title, options)
-// }
-
-// export const toastInfo: NewToastFn = (title, options) => {
-//   return pushToast('info', title, options)
-// }
-
-// export const toastNeutral: NewToastFn = (title, options) => {
-//   return pushToast('neutral', title, options)
-// }
-
-// export const toastWarning: NewToastFn = (title, options) => {
-//   return pushToast('warning', title, options)
-// }

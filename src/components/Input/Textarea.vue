@@ -56,6 +56,11 @@ const fS = computed(() => autoResize ? 'content' : 'auto')
         :placeholder
         :required
         :max="limit"
+        :style="{
+          resize: r,
+          // @ts-expect-error Early-adoption CSS attribute
+          fieldSizing: fS,
+        }"
       />
     </div>
     <p v-if="limit" class="vui-input-limit">
@@ -69,10 +74,3 @@ const fS = computed(() => autoResize ? 'content' : 'auto')
     <slot name="after" />
   </div>
 </template>
-
-<style scoped lang="scss">
-.vui-input-container .vui-input textarea {
-  resize: v-bind(r);
-  field-sizing: v-bind(fS);
-}
-</style>

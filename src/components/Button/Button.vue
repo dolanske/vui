@@ -43,7 +43,7 @@ const {
   dashed,
 } = defineProps<Props>()
 
-const h = computed(() => {
+const height = computed(() => {
   switch (size) {
     case Size.s: return '24px'
     case Size.l: return '40px'
@@ -52,7 +52,7 @@ const h = computed(() => {
   }
 })
 
-const p = computed(() => {
+const padding = computed(() => {
   switch (size) {
     case Size.s: return '5px'
     case Size.l: return '16px'
@@ -67,6 +67,10 @@ const p = computed(() => {
     class="vui-button"
     :class="[{ loading, expand, disabled, plain, active, icon, square, dashed }, `vui-button-variant-${variant}`]"
     :disabled
+    :style="{
+      '--button-height': height,
+      '--button-padding': padding,
+    }"
   >
     <Spinner size="s" />
     <div class="vui-button-slot">
@@ -81,10 +85,3 @@ const p = computed(() => {
     </div>
   </button>
 </template>
-
-<style scoped>
-.vui-button {
-  --button-height: v-bind(h);
-  --button-padding: v-bind(p);
-}
-</style>

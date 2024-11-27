@@ -70,7 +70,12 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 </script>
 
 <template>
-  <div ref="anchor" class="vui-dropdown-trigger-wrap">
+  <div
+    ref="anchor" class="vui-dropdown-trigger-wrap" :style="{
+      minWidth: mW,
+      width: w,
+    }"
+  >
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
@@ -88,11 +93,6 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 </template>
 
 <style scoped lang="scss">
-.vui-dropdown {
-  min-width: v-bind(mW);
-  width: v-bind(w);
-}
-
 .dropdown-enter-active,
 .dropdown-leave-active {
   transition: 0.1s opacity ease-in-out;

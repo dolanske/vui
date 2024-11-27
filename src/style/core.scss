@@ -1,3 +1,4 @@
+@use 'sass:meta';
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
 
@@ -39,7 +40,7 @@
   --space-xxl: 48px;
   --space-xxxl: 64px;
 
-  --transition-quick: 0.08s all ease-in-out;
+  --transition-fast: 0.08s all ease-in-out;
   --transition: 0.14s all ease-in-out;
   --transition-slow: 0.3s all ease-in-out;
 
@@ -130,11 +131,11 @@ body {
   min-height: 100dvh;
 }
 
-@import './typography.scss';
-@import './layout.scss';
-@import './animation.scss';
-@import './tooltip.scss';
-@import './utils.scss';
-@import './fonts.scss';
+@include meta.load-css('typography.scss');
+@include meta.load-css('layout.scss');
+@include meta.load-css('animation.scss');
+@include meta.load-css('tooltip.scss');
+@include meta.load-css('utils.scss');
+@include meta.load-css('fonts.scss');
 
-@import './media-query.scss';
+@include meta.load-css('media-query.scss');

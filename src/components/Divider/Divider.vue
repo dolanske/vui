@@ -24,7 +24,13 @@ const m = computed(() => formatUnitValue(margin))
 </script>
 
 <template>
-  <div class="vui-divider" :class="{ vertical }">
+  <div
+    class="vui-divider" :class="{ vertical }" :style="{
+      margin: m,
+      width: w,
+      height: h,
+    }"
+  >
     <div v-if="$slots.default" class="vui-divider-slot">
       <slot />
     </div>
@@ -32,13 +38,7 @@ const m = computed(() => formatUnitValue(margin))
 </template>
 
 <style lang="scss" scoped>
-.vui-divider {
-  margin: v-bind(m);
-  width: v-bind(w);
-  height: v-bind(h);
-
-  &:before {
-    border-width: v-bind(bW);
-  }
+.vui-divider:before {
+  border-width: v-bind(bW);
 }
 </style>

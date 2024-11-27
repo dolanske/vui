@@ -30,6 +30,7 @@ import Confirm from './components/Modal/Confirm.vue'
 import Modal from './components/Modal/Modal.vue'
 import OTP from './components/OTP/OTP.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
+import { paginate } from './components/Pagination/pagination'
 import Pagination from './components/Pagination/Pagination.vue'
 import Popout from './components/Popout/Popout.vue'
 import Progress from './components/Progress/Progress.vue'
@@ -45,6 +46,7 @@ import Header from './components/Table/Header.vue'
 import Row from './components/Table/Row.vue'
 import SelectAll from './components/Table/SelectAll.vue'
 import SelectRow from './components/Table/SelectRow.vue'
+import { defineTable } from './components/Table/table'
 import Table from './components/Table/Table.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
@@ -73,6 +75,7 @@ export {
   Confirm,
   CopyClipboard,
   Counter,
+  defineTable,
   Divider,
   Drawer,
   Dropdown,
@@ -89,6 +92,7 @@ export {
   Modal,
   OTP,
   OTPItem,
+  paginate,
   Pagination,
   Password,
   Popout,

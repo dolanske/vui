@@ -56,6 +56,7 @@ useEventListener(window, 'resize', computeUnderlinePosition)
   <div
     ref="tabs"
     class="vui-tabs"
+    role="tablist"
     :class="[
       { expand, disabled },
       variant === 'default'

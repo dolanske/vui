@@ -4,26 +4,23 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 
 import dts from 'vite-plugin-dts'
-// import dts from 'vite-plugin-dts'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   plugins: [
     vue(),
     dts({
-      // insertTypesEntry: true,
-      // include: ['src'],
-      // rollupTypes: true,
-      // tsconfigPath: resolve(__dirname, 'tsconfig.app.json'),
       tsconfigPath: './tsconfig.app.json',
     }),
-    // dts({
-    // rollupTypes: true,
-    // tsconfigPath: 'tsconfig.json',
-    // entryRoot: './src',
-    // }),
   ],
   build: {
     lib: {

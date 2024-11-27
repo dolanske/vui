@@ -33,13 +33,11 @@ const h = computed(() => formatUnitValue(circle ? (width || height) : height))
 </script>
 
 <template>
-  <div class="vui-skeleton" />
+  <div
+    class="vui-skeleton" :style="{
+      borderRadius: bR,
+      width: w,
+      height: h,
+    }"
+  />
 </template>
-
-<style lang="scss" scoped>
-.vui-skeleton {
-  border-radius: v-bind(bR);
-  width: v-bind(w);
-  height: v-bind(h);
-}
-</style>

@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { ref, useTemplateRef, watch } from 'vue'
+import { ref, useId, useTemplateRef, watch } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 
@@ -50,18 +50,21 @@ watch(hoverAnchor, (isHovering) => {
     showTooltip.value = false
   }
 })
+
+const id = useId()
 </script>
 
 <template>
   <div
     ref="popoutAnchor"
+    :aria-describedby="id"
     @mouseenter="hoverAnchor = true"
     @mouseleave="hoverAnchor = false"
   >
     <slot />
   </div>
   <Transition appear name="tooltip">
-    <Popout v-if="showTooltip" :anchor="popoutAnchorRef" class="vui-tooltip" :placement>
+    <Popout v-if="showTooltip" :id :anchor="popoutAnchorRef" class="vui-tooltip" :placement name="tooltip">
       <slot name="tooltip" />
     </Popout>
   </Transition>

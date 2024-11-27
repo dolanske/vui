@@ -80,13 +80,11 @@ const bC = computed(() => color)
       'fixed-active': progressAmount > 0 && progressAmount < 100,
     }"
   >
-    <div class="vui-progress-indicator" />
+    <div
+      class="vui-progress-indicator" :style="{
+        width: w,
+        backgroundColor: bC,
+      }"
+    />
   </div>
 </template>
-
-<style scoped lang="scss">
-.vui-progress-indicator {
-  width: v-bind(w);
-  background-color: v-bind(bC);
-}
-</style>

@@ -41,16 +41,14 @@ const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
 </script>
 
 <template>
-  <div class="vui-grid">
+  <div
+    class="vui-grid" :style="{
+      display: aD,
+      gap: ag,
+      gridTemplateColumns: aTC,
+      gridTemplateRows: aTR,
+    }"
+  >
     <slot />
   </div>
 </template>
-
-<style scoped lang="scss">
-.vui-grid {
-  display: v-bind(aD);
-  gap: v-bind(ag);
-  grid-template-columns: v-bind(aTC);
-  grid-template-rows: v-bind(aTR);
-}
-</style>

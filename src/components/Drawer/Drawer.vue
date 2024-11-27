@@ -2,7 +2,7 @@
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
-import { computed, useId } from 'vue'
+import { computed, onMounted, useId } from 'vue'
 import './drawer.scss'
 
 interface Props {
@@ -59,6 +59,12 @@ const mW = computed(() => {
 })
 
 const id = useId()
+
+onMounted(() => {
+  if (!document.querySelector('vaul-drawer-wrapper')) {
+    console.error('Your root component is missing \'vaul-drawer-wrapper\' attribute. \n Without it the <Drawer /> component will not be functional.')
+  }
+})
 </script>
 
 <template>
@@ -85,7 +91,7 @@ const id = useId()
 
 <style lang="scss" scoped>
 :global(body) {
-  transition: var(--transition-quick);
+  transition: var(--transition-fast);
   background-color: var(--color-bg);
 }
 </style>

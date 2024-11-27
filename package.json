@@ -11,7 +11,11 @@
     "type": "git",
     "url": "https://github.com/dolanske/vui.git"
   },
-  "keywords": ["vue", "vue3", "component"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "component"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
