@@ -27,6 +27,9 @@ const underlineRef = useTemplateRef('underline')
 const tabsRef = useTemplateRef('tabs')
 
 function computeUnderlinePosition() {
+  if (!window)
+    return
+
   if (tabsRef.value && underlineRef.value) {
     const activeBounds = tabsRef.value.querySelector('.vui-tab.active')?.getBoundingClientRect()
     const parentBounds = tabsRef.value.getBoundingClientRect()
@@ -39,6 +42,8 @@ function computeUnderlinePosition() {
 }
 
 onMounted(() => {
+  useEventListener(window, 'resize', computeUnderlinePosition)
+
   watch(
     [active, () => expand],
     computeUnderlinePosition,
@@ -48,8 +53,6 @@ onMounted(() => {
     },
   )
 })
-
-useEventListener(window, 'resize', computeUnderlinePosition)
 </script>
 
 <template>

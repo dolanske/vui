@@ -2,7 +2,7 @@
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { Icon } from '@iconify/vue'
 import { useClipboard } from '@vueuse/core'
-import { onBeforeMount, useSlots, useTemplateRef } from 'vue'
+import { onMounted, useSlots, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
 import './copy-clipboard.scss'
 
@@ -36,7 +36,7 @@ const {
 })
 const slots = useSlots()
 
-onBeforeMount(() => {
+onMounted(() => {
   if (!isSupported.value) {
     console.error('Clipboard API is not supported. This component will not work')
   }

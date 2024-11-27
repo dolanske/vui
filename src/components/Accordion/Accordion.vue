@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useResizeObserver } from '@vueuse/core'
-import { ref, useTemplateRef, watch, watchEffect } from 'vue'
+import { onMounted, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import './accordion.scss'
 
 export interface AccordionProps {
@@ -58,10 +58,12 @@ defineExpose({
   isOpen,
 })
 
-useResizeObserver(contentRef, ([entry]) => {
-  if (isOpen.value && contentMaxHeight.value !== entry.contentRect.height) {
-    contentMaxHeight.value = entry.contentRect.height || 0
-  }
+onMounted(() => {
+  useResizeObserver(contentRef, ([entry]) => {
+    if (isOpen.value && contentMaxHeight.value !== entry.contentRect.height) {
+      contentMaxHeight.value = entry.contentRect.height || 0
+    }
+  })
 })
 </script>
 

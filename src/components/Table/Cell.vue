@@ -4,7 +4,7 @@ import { computed, useSlots, useTemplateRef } from 'vue'
 const slots = useSlots()
 const contextRef = useTemplateRef<HTMLTableCellElement>('context')
 const computedStyle = computed(() => {
-  if (!slots.context)
+  if (!slots.context || !window)
     return {}
   const width = contextRef.value?.getBoundingClientRect().width ?? 0
   return {

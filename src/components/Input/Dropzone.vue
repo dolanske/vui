@@ -2,7 +2,7 @@
 import type { InputProps } from './Input.vue'
 import { Icon } from '@iconify/vue'
 import { useEventListener } from '@vueuse/core'
-import { ref, useTemplateRef } from 'vue'
+import { onMounted, ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
 import Input from './Input.vue'
 
@@ -25,11 +25,13 @@ function onSubmitHandler(e: any, isFromField?: boolean) {
 
 const dropzoneRef = useTemplateRef<HTMLDivElement>('dropzone')
 
-useEventListener(dropzoneRef, 'dragenter', onSubmitHandler, false)
-useEventListener(dropzoneRef, 'dragleave', onSubmitHandler, false)
-useEventListener(dropzoneRef, 'dragover', onSubmitHandler, false)
-useEventListener(dropzoneRef, 'drop', onSubmitHandler, false)
-useEventListener(dropzoneRef, 'input', e => onSubmitHandler(e, true), false)
+onMounted(() => {
+  useEventListener(dropzoneRef, 'dragenter', onSubmitHandler, false)
+  useEventListener(dropzoneRef, 'dragleave', onSubmitHandler, false)
+  useEventListener(dropzoneRef, 'dragover', onSubmitHandler, false)
+  useEventListener(dropzoneRef, 'drop', onSubmitHandler, false)
+  useEventListener(dropzoneRef, 'input', e => onSubmitHandler(e, true), false)
+})
 </script>
 
 <template>

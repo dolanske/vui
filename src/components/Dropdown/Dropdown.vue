@@ -53,7 +53,7 @@ onClickOutside(dropdownRef, (event) => {
 })
 
 const anchorWidth = computed(() => {
-  if (!expand)
+  if (!expand || !window)
     return 0
   return anchorRef.value?.getBoundingClientRect().width
 })
