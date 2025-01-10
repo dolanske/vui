@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import Button from './components/Button/Button.vue'
 import Divider from './components/Divider/Divider.vue'
-import Dropdown from './components/Dropdown/Dropdown.vue'
 
+import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Flex from './components/Flex/Flex.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
@@ -13,12 +14,15 @@ import Tabs from './components/Tabs/Tabs.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const tab = ref('components')
+
+const sidebarOpen = ref(true)
 </script>
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar />
+    <Sidebar v-model="sidebarOpen" />
     <main vaul-drawer-wrapper>
+      <Button icon="ph:sidebar-simple-bold" square @click="sidebarOpen = !sidebarOpen" />
       <Tabs v-model="tab" expand>
         <Tab id="home" label="Home" icon="ph:house" />
         <Tab id="components" label="Components" />
@@ -40,7 +44,7 @@ const tab = ref('components')
           <Avatar size="s" />
           <Avatar size="m" />
           <Avatar size="l" />
-          <Avatar :size="128" />
+          <Avatar :size="80" />
         </Flex>
 
         <Divider />

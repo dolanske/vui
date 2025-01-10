@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TabProps } from './Tab.vue'
-import { useEventListener } from '@vueuse/core'
+import { useEventListener, useResizeObserver } from '@vueuse/core'
 import { onMounted, useTemplateRef, type VNode, watch } from 'vue'
 import './tabs.scss'
 
@@ -42,7 +42,7 @@ function computeUnderlinePosition() {
 }
 
 onMounted(() => {
-  useEventListener(window, 'resize', computeUnderlinePosition)
+  useResizeObserver(tabsRef, computeUnderlinePosition)
 
   watch(
     [active, () => expand],
