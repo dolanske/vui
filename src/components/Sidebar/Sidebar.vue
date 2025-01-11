@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { useLocalStorage } from '@vueuse/core'
-import { onMounted } from 'vue'
+import { useCssVar, useLocalStorage } from '@vueuse/core'
+import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
 import './sidebar.scss'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 interface Props {
-  width: number
+  width?: number
   /**
    * Controls wether the sidebar is displayed in full size, or a small version
    */
@@ -23,36 +23,48 @@ interface Props {
    * Sidebar will always float over content.
    */
   fixed?: boolean
+
+  /**
+   * Add edges of background around sidebar
+   */
+  floaty?: boolean
 }
 
-const open = defineModel({
-  default: true,
-  type: Boolean,
-  set(value) {
-    localStorage.setItem('sidebar-state', value.toString())
-  },
+const sidebar = useTemplateRef('sidebar')
+const open = defineModel<boolean>()
+const slots = useSlots()
+const offset = useCssVar('--vui-sidebar-float-offset', sidebar, {
+  initialValue: '8px',
 })
 
-onMounted(() => {
-  open.value = localStorage.getItem('sidebar-state') !== 'false'
+const width = computed(() => {
+  if (!props.floaty)
+    return `${props.width}px`
+  return `calc(${props.width}px - ${offset.value})`
 })
+
+const slotProps = computed(() => ({
+  mini: props.mini,
+  floaty: props.floaty,
+  width: props.width,
+  open,
+}))
 </script>
 
 <template>
-  <div class="vui-sidebar-outer" :style="{ width: `${props.width}px` }" :class="{ open }">
-    <aside class="vui-sidebar" :class="{ open }">
-      <div class="vui-sidebar-header">
-        header
-        {{ open }}
+  <div class="vui-sidebar-outer" :style="{ width }" :class="{ open }">
+    <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty }">
+      <div v-if="slots.header" class="vui-sidebar-header">
+        <slot name="header" v-bind="slotProps" />
       </div>
       <div class="vui-sidebar-content">
         <div class="vui-sidebar-content-wrap text-xxl">
-          content should be scrollable
+          <slot v-bind="slotProps" />
         </div>
       </div>
 
-      <div class="vui-sidebar-footer">
-        footer
+      <div v-if="slots.footer" class="vui-sidebar-footer">
+        <slot name="footer" v-bind="slotProps" />
       </div>
     </aside>
   </div>

@@ -12,7 +12,6 @@
 
   .vui-sidebar-outer {
     transition: var(--transition-slow);
-    // width: 224px;
 
     &:not(.open) {
       width: 0px !important;
@@ -21,6 +20,8 @@
 }
 
 .vui-sidebar {
+  --vui-sidebar-float-offset: 8px;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -28,18 +29,42 @@
   width: 224px;
   position: fixed;
   top: 0;
-  padding: var(--space-s);
   z-index: 50;
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-raised);
   border-right: 1px solid var(--color-border);
   transition: var(--transition-slow);
-
-  // left: -100%;
   transform: translateX(-100%);
 
   &.open {
     transform: translateX(0);
-    // left: 0;
+
+    &.floaty {
+      transform: translateX(0);
+    }
+  }
+
+  &.floaty {
+    top: var(--vui-sidebar-float-offset);
+    left: var(--vui-sidebar-float-offset);
+    bottom: var(--vui-sidebar-float-offset);
+    height: calc(100vh - calc(var(--vui-sidebar-float-offset) * 2));
+    border-radius: var(--border-radius-m);
+    border: 1px solid var(--color-border);
+    transform: translateX(calc(-100% - calc(var(--vui-sidebar-float-offset) * 2)));
+  }
+
+  .vui-sidebar-header,
+  .vui-sidebar-footer,
+  .vui-sidebar-content .vui-sidebar-content-wrap {
+    padding: var(--space-m);
+  }
+
+  .vui-sidebar-header:not(:only-child) {
+    padding-bottom: 0;
+  }
+
+  .vui-sidebar-footer:not(:only-child) {
+    padding-top: 0;
   }
 
   .vui-sidebar-content {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import Button from './components/Button/Button.vue'
@@ -15,12 +14,24 @@ import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const tab = ref('components')
 
-const sidebarOpen = ref(true)
+const sidebarOpen = ref(false)
 </script>
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar v-model="sidebarOpen" />
+    <Sidebar v-model="sidebarOpen" floaty>
+      <template #header>
+        <h2>Sidebar</h2>
+        <Divider size="1" />
+      </template>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita laudantium, veritatis, harum hic quia voluptates soluta deleniti sit non debitis sequi illo, eligendi consequuntur. Est molestias maiores voluptatibus at corrupti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam tempora iure voluptatum. Nam dolore animi, cumque mollitia repellendus facilis nobis qui voluptate architecto ipsum dolorum eos optio ipsam voluptatem magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis temporibus minus sed corrupti laboriosam fugit repudiandae quis sunt, nobis eaque autem recusandae accusantium. Dicta placeat aut modi porro nulla hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem blanditiis, aliquid molestias atque eaque cumque fugit nobis necessitatibus voluptas labore dignissimos dolores quas vel voluptatum magni dicta hic quod quasi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio esse laborum, cum deleniti ab delectus corrupti sequi magni possimus beatae aspernatur. Tempora, doloremque facilis. Ad eveniet a unde laboriosam deleniti.</p>
+      <template #footer>
+        <Button size="l" expand variant="danger">
+          Sign out
+        </Button>
+      </template>
+    </Sidebar>
+
     <main vaul-drawer-wrapper>
       <Button icon="ph:sidebar-simple-bold" square @click="sidebarOpen = !sidebarOpen" />
       <Tabs v-model="tab" expand>
