@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Space } from '../../shared/types'
 import { computed } from 'vue'
+import { formatUnitValue } from '../../shared/helpers'
 
 export interface FlexProps {
   inline?: boolean
@@ -34,7 +35,10 @@ export interface FlexProps {
 const props = defineProps<FlexProps>()
 
 // Flex gap
-const ag = computed(() => `var(--space-${props.gap})`)
+const ag = computed(() => typeof props.gap === 'number'
+  ? formatUnitValue(props.gap)
+  : `var(--space-${props.gap})`,
+)
 
 // Flex direction
 const ad = computed(() => {
