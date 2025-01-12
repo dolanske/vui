@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { useCssVar, useLocalStorage } from '@vueuse/core'
-import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
+import { useCssVar, useLocalStorage, useMouse, whenever } from '@vueuse/core'
+import { computed, onMounted, useSlots, useTemplateRef, watch } from 'vue'
 import './sidebar.scss'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -19,10 +19,6 @@ interface Props {
    * sidebar will apear over content, not pushing anything over
    */
   appear?: boolean
-  /**
-   * Sidebar will always float over content.
-   */
-  fixed?: boolean
 
   /**
    * Add edges of background around sidebar
@@ -49,6 +45,23 @@ const slotProps = computed(() => ({
   width: props.width,
   open,
 }))
+
+const { x } = useMouse()
+
+let appearActive = true
+watch(x, (pos) => {
+  if (!props.appear)
+    return
+
+  if (pos < 20 && !open.value) {
+    open.value = true
+    appearActive = true
+  }
+  else if (appearActive && pos > props.width) {
+    open.value = false
+    appearActive = false
+  }
+})
 </script>
 
 <template>
@@ -58,7 +71,7 @@ const slotProps = computed(() => ({
         <slot name="header" v-bind="slotProps" />
       </div>
       <div class="vui-sidebar-content">
-        <div class="vui-sidebar-content-wrap text-xxl">
+        <div class="vui-sidebar-content-wrap">
           <slot v-bind="slotProps" />
         </div>
       </div>

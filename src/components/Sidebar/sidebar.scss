@@ -21,7 +21,6 @@
 
 .vui-sidebar {
   --vui-sidebar-float-offset: 8px;
-
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -30,10 +29,11 @@
   position: fixed;
   top: 0;
   z-index: 50;
-  background-color: var(--color-bg-raised);
+  background-color: var(--color-bg);
   border-right: 1px solid var(--color-border);
   transition: var(--transition-slow);
   transform: translateX(-100%);
+  will-change: transform;
 
   &.open {
     transform: translateX(0);
@@ -51,6 +51,7 @@
     border-radius: var(--border-radius-m);
     border: 1px solid var(--color-border);
     transform: translateX(calc(-100% - calc(var(--vui-sidebar-float-offset) * 2)));
+    box-shadow: var(--box-shadow);
   }
 
   .vui-sidebar-header,
@@ -75,6 +76,27 @@
       position: absolute;
       inset: 0;
       overflow-y: auto;
+
+      //  TODO: elements in sidebar should have a slight modification
+
+      // DropdownItems (sidebar items
+      // Should have a bit less spacing between slots
+
+      // Divider
+      // Divider should have negative margin to span the netire sidebar (an option?
+
+      // Accordion
+      // Does not have a border under content
+      .vui-accordion {
+        border-bottom: 0;
+      }
+
+      .vui-dropdown-item {
+        padding-inline: var(--space-xs);
+      }
+
+      .vui-divider {
+      }
     }
   }
 }

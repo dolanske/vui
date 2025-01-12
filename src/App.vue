@@ -1,30 +1,52 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Accordion from './components/Accordion/Accordion.vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import Button from './components/Button/Button.vue'
-import Divider from './components/Divider/Divider.vue'
 
+import Divider from './components/Divider/Divider.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Flex from './components/Flex/Flex.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
+
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const tab = ref('components')
-
 const sidebarOpen = ref(false)
 </script>
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar v-model="sidebarOpen" floaty>
+    <Sidebar v-model="sidebarOpen" appear>
       <template #header>
-        <h2>Sidebar</h2>
-        <Divider size="1" />
+        <img class="p-xs" style="background:white;border-radius: 16px;width:40px" src="https://dolansky.dev/backgrounds/star.svg" alt="">
       </template>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita laudantium, veritatis, harum hic quia voluptates soluta deleniti sit non debitis sequi illo, eligendi consequuntur. Est molestias maiores voluptatibus at corrupti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam tempora iure voluptatum. Nam dolore animi, cumque mollitia repellendus facilis nobis qui voluptate architecto ipsum dolorum eos optio ipsam voluptatem magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis temporibus minus sed corrupti laboriosam fugit repudiandae quis sunt, nobis eaque autem recusandae accusantium. Dicta placeat aut modi porro nulla hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem blanditiis, aliquid molestias atque eaque cumque fugit nobis necessitatibus voluptas labore dignissimos dolores quas vel voluptatum magni dicta hic quod quasi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio esse laborum, cum deleniti ab delectus corrupti sequi magni possimus beatae aspernatur. Tempora, doloremque facilis. Ad eveniet a unde laboriosam deleniti.</p>
+      <DropdownItem icon="ph:house">
+        Home
+      </DropdownItem>
+      <Accordion>
+        <template #trigger="{ toggle, isOpen }">
+          <DropdownItem
+            icon="ph:info"
+            :icon-end="isOpen ? 'ph:caret-up' : 'ph:caret-down'"
+            :class="{ selected: isOpen }"
+            @click="toggle"
+          >
+            More
+          </DropdownItem>
+        </template>
+        <div class="pl-s">
+          <DropdownItem>
+            Sub item 1
+          </DropdownItem>
+          <DropdownItem icon="ph:house">
+            Sub item 2
+          </DropdownItem>
+        </div>
+      </Accordion>
       <template #footer>
         <Button size="l" expand variant="danger">
           Sign out
