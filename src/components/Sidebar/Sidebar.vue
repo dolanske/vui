@@ -34,6 +34,8 @@ const offset = useCssVar('--vui-sidebar-float-offset', sidebar, {
 })
 
 const width = computed(() => {
+  if (props.mini)
+    return `64px`
   if (!props.floaty)
     return `${props.width}px`
   return `calc(${props.width}px - ${offset.value})`
@@ -66,7 +68,7 @@ watch(x, (pos) => {
 
 <template>
   <div class="vui-sidebar-outer" :style="{ width }" :class="{ open }">
-    <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty }">
+    <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty }" :style="{ width: `${props.mini ? 64 : props.width}px` }">
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />
       </div>

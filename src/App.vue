@@ -20,7 +20,7 @@ const sidebarOpen = ref(false)
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar v-model="sidebarOpen" appear>
+    <Sidebar v-model="sidebarOpen" appear mini floaty>
       <template #header>
         <img class="p-xs" style="background:white;border-radius: 16px;width:40px" src="https://dolansky.dev/backgrounds/star.svg" alt="">
       </template>
