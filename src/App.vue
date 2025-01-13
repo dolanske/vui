@@ -6,12 +6,13 @@ import Button from './components/Button/Button.vue'
 import Divider from './components/Divider/Divider.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
-import Flex from './components/Flex/Flex.vue'
+import Input from './components/Input/Input.vue'
+import Textarea from './components/Input/Textarea.vue'
+import Kbd from './components/Kbd/Kbd.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 import Tab from './components/Tabs/Tab.vue'
-import Tabs from './components/Tabs/Tabs.vue'
 
-import Tooltip from './components/Tooltip/Tooltip.vue'
+import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
 const sidebarOpen = ref(false)
@@ -59,12 +60,11 @@ const sidebarOpen = ref(false)
       </div>
 
       <div v-if="tab === 'components'">
-        <Flex>
-          <Button expand>
-            joooo
-          </Button>
-          <Button square icon="ph:x" />
-        </Flex>
+        <Input />
+
+        <Textarea />
+
+        <Kbd keys="Shift" />
 
         <Dropdown>
           <template #trigger="{ toggle }">
