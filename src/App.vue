@@ -56,9 +56,12 @@ const sidebarOpen = ref(false)
       </div>
 
       <div v-if="tab === 'components'">
-        <Button variant="accent">
-          Hello world
-        </Button>
+        <Flex>
+          <Button expand>
+            joooo
+          </Button>
+          <Button square icon="ph:x" />
+        </Flex>
 
         <Dropdown>
           <template #trigger="{ toggle }">

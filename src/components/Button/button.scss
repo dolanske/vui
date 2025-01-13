@@ -41,6 +41,8 @@
 
   &.square {
     width: var(--button-height);
+    min-width: var(--button-height);
+    min-height: var(--button-height);
     padding: 0;
   }
 
