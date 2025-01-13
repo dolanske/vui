@@ -17,17 +17,14 @@
     - [ ] Components
     - [ ] Scale down Typography
 - [ ] Sidebar
-  - [ ] Base sidebar
-  - [ ] Sidebar header slot
-  - [ ] Sidebar footer slot
+  - [x] Base sidebar
+  - [x] Sidebar header slot
+  - [x] Sidebar footer slot
   - [ ] Option to hide (animated)
-  - [ ] Option to render icons only / reduced size
+  - [x] Option to render icons only / reduced size
   - [ ] Controlled from outside (v-model?, method?)
-  - [ ] Option to have sidebar hover over content, if it's closed and user moves
+  - [x] Option to have sidebar hover over content, if it's closed and user moves
   cursor all the way to the left
-  - [ ] Menu items
-  - [ ] Sub menu items
-  - [ ] Dropdown menu items
 
 ---
 

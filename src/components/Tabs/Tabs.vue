@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TabProps } from './Tab.vue'
-import { useEventListener, useResizeObserver } from '@vueuse/core'
+import { useResizeObserver } from '@vueuse/core'
 import { onMounted, useTemplateRef, type VNode, watch } from 'vue'
 import './tabs.scss'
 

@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { useCssVar, useLocalStorage, useMouse, whenever } from '@vueuse/core'
-import { computed, onMounted, useSlots, useTemplateRef, watch } from 'vue'
+import { useCssVar, useMouse } from '@vueuse/core'
+import { computed, useSlots, useTemplateRef, watch } from 'vue'
 import './sidebar.scss'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -19,7 +19,6 @@ interface Props {
    * sidebar will apear over content, not pushing anything over
    */
   appear?: boolean
-
   /**
    * Add edges of background around sidebar
    */
@@ -35,7 +34,7 @@ const offset = useCssVar('--vui-sidebar-float-offset', sidebar, {
 
 const width = computed(() => {
   if (props.mini)
-    return `64px`
+    return `65px`
   if (!props.floaty)
     return `${props.width}px`
   return `calc(${props.width}px - ${offset.value})`
@@ -68,7 +67,7 @@ watch(x, (pos) => {
 
 <template>
   <div class="vui-sidebar-outer" :style="{ width }" :class="{ open }">
-    <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty }" :style="{ width: `${props.mini ? 64 : props.width}px` }">
+    <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty, mini: props.mini }" :style="{ width: `${props.mini ? 65 : props.width}px` }">
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />
       </div>

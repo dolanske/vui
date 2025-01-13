@@ -76,26 +76,47 @@
       position: absolute;
       inset: 0;
       overflow-y: auto;
+    }
+  }
 
-      //  TODO: elements in sidebar should have a slight modification
+  // Note: elements in sidebar (& mini) should have a slight modification
 
-      // DropdownItems (sidebar items
-      // Should have a bit less spacing between slots
+  // Accordion
+  // Does not have a border under content
+  .vui-accordion {
+    border-bottom: 0;
+  }
 
-      // Divider
-      // Divider should have negative margin to span the netire sidebar (an option?
+  // DropdownItems (sidebar items
+  // Should have a bit less spacing between slots
+  .vui-dropdown-item {
+    padding-inline: var(--space-xs);
+  }
 
-      // Accordion
-      // Does not have a border under content
-      .vui-accordion {
-        border-bottom: 0;
+  &.mini {
+    .vui-dropdown-item .vui-dropdown-item-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .vui-dropdown-item,
+    .vui-button {
+      --button-height: 40px;
+      width: var(--button-height) !important;
+      height: var(--button-height) !important;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 20px;
+        height: 20px;
       }
 
-      .vui-dropdown-item {
-        padding-inline: var(--space-xs);
-      }
-
-      .vui-divider {
+      .vui-dropdown-item-slot,
+      .vui-dropdown-item-hint,
+      .vui-button-slot-end,
+      .vui-button-slot-start {
+        display: none;
       }
     }
   }

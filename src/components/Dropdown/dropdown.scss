@@ -17,6 +17,7 @@
   width: fit-content;
   gap: var(--space-xs);
   width: 100%;
+  // TODO: make button-height variable global and use it here and everywhere else
   height: 34px;
   border-radius: var(--border-radius-m);
   font-size: var(--font-size-s);

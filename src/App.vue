@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Accordion from './components/Accordion/Accordion.vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import Button from './components/Button/Button.vue'
 
@@ -20,35 +19,18 @@ const sidebarOpen = ref(false)
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar v-model="sidebarOpen" appear mini floaty>
+    <Sidebar v-model="sidebarOpen" appear floaty>
       <template #header>
         <img class="p-xs" style="background:white;border-radius: 16px;width:40px" src="https://dolansky.dev/backgrounds/star.svg" alt="">
       </template>
       <DropdownItem icon="ph:house">
         Home
       </DropdownItem>
-      <Accordion>
-        <template #trigger="{ toggle, isOpen }">
-          <DropdownItem
-            icon="ph:info"
-            :icon-end="isOpen ? 'ph:caret-up' : 'ph:caret-down'"
-            :class="{ selected: isOpen }"
-            @click="toggle"
-          >
-            More
-          </DropdownItem>
-        </template>
-        <div class="pl-s">
-          <DropdownItem>
-            Sub item 1
-          </DropdownItem>
-          <DropdownItem icon="ph:house">
-            Sub item 2
-          </DropdownItem>
-        </div>
-      </Accordion>
+      <DropdownItem icon="ph:signpost">
+        Routing
+      </DropdownItem>
       <template #footer>
-        <Button size="l" expand variant="danger">
+        <Button size="l" expand>
           Sign out
         </Button>
       </template>
