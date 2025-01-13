@@ -6,7 +6,10 @@ import Button from './components/Button/Button.vue'
 import Divider from './components/Divider/Divider.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
+import Counter from './components/Input/Counter.vue'
+import File from './components/Input/File.vue'
 import Input from './components/Input/Input.vue'
+
 import Textarea from './components/Input/Textarea.vue'
 import Kbd from './components/Kbd/Kbd.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
@@ -65,6 +68,10 @@ const sidebarOpen = ref(false)
         <Textarea />
 
         <Kbd keys="Shift" />
+
+        <Counter />
+
+        <File />
 
         <Dropdown>
           <template #trigger="{ toggle }">
