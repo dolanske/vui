@@ -18,6 +18,8 @@ const {
 
 const slots = defineSlots<{
   default: () => Array<VNode & { props: TabProps }>
+  start: unknown
+  end: unknown
 }>()
 
 const active = defineModel()
@@ -67,6 +69,7 @@ onMounted(() => {
         : `vui-tabs-variant-${variant}`,
     ]"
   >
+    <slot name="start" />
     <Component
       :is="vnode"
       v-for="vnode of slots.default()"
@@ -74,6 +77,10 @@ onMounted(() => {
       :class="{ active: vnode.props.id === active }"
       @click="active = vnode.props.id"
     />
+    <template v-if="slots.end">
+      <div v-if="!!!expand" class="flex-1" />
+      <slot name="end" />
+    </template>
 
     <Transition name="fade" appear>
       <div ref="underline" class="vui-tab-underline" />

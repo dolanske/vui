@@ -24,6 +24,10 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   display: flex;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .inline-flex {
   display: inline-flex;
 }

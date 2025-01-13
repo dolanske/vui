@@ -37,8 +37,11 @@ const sidebarOpen = ref(false)
     </Sidebar>
 
     <main vaul-drawer-wrapper>
-      <Button icon="ph:sidebar-simple-bold" square @click="sidebarOpen = !sidebarOpen" />
       <Tabs v-model="tab" expand>
+        <template #start>
+          <Button icon="ph:sidebar-simple-bold" square @click="sidebarOpen = !sidebarOpen" />
+        </template>
+
         <Tab id="home" label="Home" icon="ph:house" />
         <Tab id="components" label="Components" />
         <Tab id="typography" label="Typography" />
