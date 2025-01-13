@@ -56,29 +56,9 @@ const sidebarOpen = ref(false)
       </div>
 
       <div v-if="tab === 'components'">
-        <h1 class="mb-xl">
-          Hii
-          <span class="counter text-color-accent">129</span>
-        </h1>
-        <p>I am down</p>
-
-        <Flex>
-          <Avatar size="s" />
-          <Avatar size="m" />
-          <Avatar size="l" />
-          <Avatar :size="80" />
-        </Flex>
-
-        <Divider />
-
-        <Tooltip>
-          <span class="block mb-xl">Hello world</span>
-          <template #tooltip>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, animi! Nobis maxime neque cumque, in a amet voluptatibus tenetur dicta eos delectus illo soluta aliquam voluptatum nulla? In, incidunt asperiores?
-            </p>
-          </template>
-        </Tooltip>
+        <Button variant="accent">
+          Hello world
+        </Button>
 
         <Dropdown>
           <template #trigger="{ toggle }">

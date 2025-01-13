@@ -84,11 +84,11 @@
   --color-border-strong: rgb(54, 54, 54);
   --color-border-weak: rgb(36, 36, 36);
 
-  --color-accent: rgb(56, 214, 219);
+  --color-accent: rgb(238, 120, 17);
   --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.4) calc(l));
   --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.2));
-  --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.5));
-  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.4));
+  --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.45));
+  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.3));
 
   --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
@@ -100,7 +100,7 @@
 :root {
   font-family: var(--global-font);
   font-size: 63.5%;
-  // TODO remove
+  // TODO remove - should remove?
   position: relative;
   background-color: var(--color-bg);
 
