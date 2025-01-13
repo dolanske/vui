@@ -5,7 +5,7 @@
 // To overwrite any of these styles, simply create a style file and import it
 // after this one
 @use './reset.scss';
-@use './fonts.scss';
+// @use './text.scss';
 
 :root {
   color-scheme: dark;
@@ -143,6 +143,6 @@ body {
 @include meta.load-css('animation.scss');
 @include meta.load-css('tooltip.scss');
 @include meta.load-css('utils.scss');
-@include meta.load-css('fonts.scss');
+@include meta.load-css('text.scss');
 
 @include meta.load-css('media-query.scss');

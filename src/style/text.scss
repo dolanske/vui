@@ -51,3 +51,24 @@ $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
 .text-black {
   font-weight: 900;
 }
+
+// Line truncating
+
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+$lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+
+@each $line in $lines {
+  .text-overflow-#{$line} {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: $line;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}

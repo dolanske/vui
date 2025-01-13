@@ -45,7 +45,14 @@ const sidebarOpen = ref(false)
       </Tabs>
       <div style="margin-bottom: 64px;" />
       <div v-if="tab === 'home'">
-        home
+        <div class="container container-xs">
+          <p class="text-overflow mb-m">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat deleniti alias a, non incidunt temporibus aperiam ducimus enim ut necessitatibus, id ab quod ex architecto, accusamus esse sed nostrum quae?
+          </p>
+          <p v-for="item in 10" :key="item" :class="`text-overflow-${item} mb-m`">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat deleniti alias a, non incidunt temporibus aperiam ducimus enim ut necessitatibus, id ab quod ex architecto, accusamus esse sed nostrum quae? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia ducimus perferendis, soluta molestias saepe incidunt officiis doloribus alias omnis id praesentium impedit possimus quibusdam? Laudantium porro fugiat eius. Voluptatum, id!
+          </p>
+        </div>
       </div>
 
       <div v-if="tab === 'components'">
