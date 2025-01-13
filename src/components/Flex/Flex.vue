@@ -32,7 +32,10 @@ export interface FlexProps {
   expand?: boolean
 }
 
-const props = defineProps<FlexProps>()
+const props = withDefaults(defineProps<FlexProps>(), {
+  // eslint-disable-next-line vue/require-valid-default-prop
+  gap: 's',
+})
 
 // Flex gap
 const ag = computed(() => typeof props.gap === 'number'

@@ -15,7 +15,10 @@ interface Props {
   areas?: string[]
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  // eslint-disable-next-line vue/require-valid-default-prop
+  gap: 's',
+})
 
 const ag = computed(() => typeof props.gap === 'number'
   ? formatUnitValue(props.gap)

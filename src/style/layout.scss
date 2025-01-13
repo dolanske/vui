@@ -36,6 +36,34 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
+.x-center {
+  justify-content: center;
+}
+
+.x-start {
+  justify-content: flex-start;
+}
+
+.x-end {
+  justify-content: flex-end;
+}
+
+.y-start {
+  align-items: center;
+}
+
+.y-end {
+  align-self: flex-end;
+}
+
+.y-center {
+  align-items: center;
+}
+
 // Sizes
 // Paddings & margins
 .mx-auto {
