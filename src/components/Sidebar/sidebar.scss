@@ -1,0 +1,123 @@
+// TODO: flesh out better
+.vui-sidebar-layout {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 32px;
+  position: relative;
+
+  main {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  .vui-sidebar-outer {
+    transition: var(--transition-slow);
+
+    &:not(.open) {
+      width: 0px !important;
+    }
+  }
+}
+
+.vui-sidebar {
+  --vui-sidebar-float-offset: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  height: 100vh;
+  width: 224px;
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+  transition: var(--transition-slow);
+  transform: translateX(-100%);
+  will-change: transform;
+
+  &.open {
+    transform: translateX(0);
+
+    &.floaty {
+      transform: translateX(0);
+    }
+  }
+
+  &.floaty {
+    top: var(--vui-sidebar-float-offset);
+    left: var(--vui-sidebar-float-offset);
+    bottom: var(--vui-sidebar-float-offset);
+    height: calc(100vh - calc(var(--vui-sidebar-float-offset) * 2));
+    border-radius: var(--border-radius-m);
+    border: 1px solid var(--color-border);
+    transform: translateX(calc(-100% - calc(var(--vui-sidebar-float-offset) * 2)));
+    box-shadow: var(--box-shadow);
+  }
+
+  .vui-sidebar-header,
+  .vui-sidebar-footer,
+  .vui-sidebar-content .vui-sidebar-content-wrap {
+    padding: var(--space-s);
+  }
+
+  .vui-sidebar-header:not(:only-child) {
+    padding-bottom: 0;
+  }
+
+  .vui-sidebar-footer:not(:only-child) {
+    padding-top: 0;
+  }
+
+  .vui-sidebar-content {
+    flex: 1;
+    position: relative;
+
+    .vui-sidebar-content-wrap {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+    }
+  }
+
+  // Note: elements in sidebar (& mini) should have a slight modification
+
+  // Accordion
+  // Does not have a border under content
+  .vui-accordion {
+    border-bottom: 0;
+  }
+
+  // DropdownItems (sidebar items
+  // Should have a bit less spacing between slots
+  .vui-dropdown-item {
+    padding-inline: var(--space-xs);
+  }
+
+  &.mini {
+    .vui-dropdown-item .vui-dropdown-item-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .vui-dropdown-item,
+    .vui-button {
+      --button-height: 40px;
+      width: var(--button-height) !important;
+      height: var(--button-height) !important;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .vui-dropdown-item-slot,
+      .vui-dropdown-item-hint,
+      .vui-button-slot-end,
+      .vui-button-slot-start {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Space } from '../../shared/types'
 import { computed } from 'vue'
-import { createArray } from '../../shared/helpers'
+import { createArray, formatUnitValue } from '../../shared/helpers'
 
 /**
  * This component is not meant for complex grids
@@ -17,7 +17,10 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const ag = computed(() => `var(--space-${props.gap})`)
+const ag = computed(() => typeof props.gap === 'number'
+  ? formatUnitValue(props.gap)
+  : `var(--space-${props.gap})`,
+)
 
 const aTC = computed(() => {
   if (typeof props.columns === 'number') {

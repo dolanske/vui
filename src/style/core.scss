@@ -42,9 +42,9 @@
   --space-xxl: 48px;
   --space-xxxl: 64px;
 
-  --transition-fast: 0.08s all ease-in-out;
-  --transition: 0.14s all ease-in-out;
-  --transition-slow: 0.3s all ease-in-out;
+  --transition-fast: 0.15s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition: 0.2s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-slow: 0.35s all cubic-bezier(0.65, 0, 0.35, 1);
 
   --color-bg: rgb(18, 18, 18);
   --color-bg-raised: rgb(28, 28, 28);

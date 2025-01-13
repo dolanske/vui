@@ -16,6 +16,15 @@
   - [ ] Make sure it works on mobile down to 340px
     - [ ] Components
     - [ ] Scale down Typography
+- [ ] Sidebar
+  - [x] Base sidebar
+  - [x] Sidebar header slot
+  - [x] Sidebar footer slot
+  - [ ] Option to hide (animated)
+  - [x] Option to render icons only / reduced size
+  - [ ] Controlled from outside (v-model?, method?)
+  - [x] Option to have sidebar hover over content, if it's closed and user moves
+  cursor all the way to the left
 
 ---
 
