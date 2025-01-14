@@ -28,7 +28,15 @@
   }
 
   input {
-    display: none;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+    outline: none !important;
+
+    &:focus-visible + label .vui-switch-icon {
+      outline: 2px solid var(--color-text);
+    }
 
     & + label {
       display: grid;

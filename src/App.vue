@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Accordion from './components/Accordion/Accordion.vue'
 import Avatar from './components/Avatar/Avatar.vue'
-import Button from './components/Button/Button.vue'
 
+import Button from './components/Button/Button.vue'
+import Checkbox from './components/Checkbox/Checkbox.vue'
 import Divider from './components/Divider/Divider.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
-import Counter from './components/Input/Counter.vue'
 import File from './components/Input/File.vue'
-import Input from './components/Input/Input.vue'
+import Radio from './components/Radio/Radio.vue'
 
-import Textarea from './components/Input/Textarea.vue'
-import Kbd from './components/Kbd/Kbd.vue'
+import RadioGroup from './components/Radio/RadioGroup.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
+import Switch from './components/Switch/Switch.vue'
 import Tab from './components/Tabs/Tab.vue'
 
 import Tabs from './components/Tabs/Tabs.vue'
@@ -63,22 +64,15 @@ const sidebarOpen = ref(false)
       </div>
 
       <div v-if="tab === 'components'">
-        <Input />
+        <Switch />
 
-        <Textarea />
+        <Checkbox label="Uhhhhhh" />
 
-        <Kbd keys="Shift" />
-
-        <Counter />
-
-        <File />
-
-        <Dropdown>
-          <template #trigger="{ toggle }">
-            <Button aria-label="Dropdown menu trigger" square icon="ph:x" @click="toggle" />
-          </template>
-          <DropdownItem>Hiiii</DropdownItem>
-        </Dropdown>
+        <RadioGroup>
+          <Radio value="hii" />
+          <Radio value="shuml" />
+          <Radio value="askdjakld" />
+        </RadioGroup>
       </div>
       <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
         <h1>The Joke Tax Chronicles</h1>

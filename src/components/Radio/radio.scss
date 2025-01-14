@@ -33,7 +33,16 @@
   }
 
   input {
-    display: none;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+    outline: none !important;
+
+    &:focus-visible + label .vui-radio-icon {
+      outline: 2px solid var(--color-text);
+      border-radius: 999px;
+    }
 
     & + label {
       display: grid;

@@ -43,10 +43,9 @@ const id = useId()
       <span class="vui-checkbox-icon">
         <Icon :icon="checked ? iconOn : iconOff" />
       </span>
-      <p v-if="label" class="vui-checkbox-content">{{ label }}</p>
-      <div v-else-if="slots.default" class="vui-checkbox-content">
-        <slot />
-      </div>
+      <p v-if="label || slots.default" class="vui-checkbox-content">
+        <slot>{{ label }}</slot>
+      </p>
     </label>
   </div>
 </template>

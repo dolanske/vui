@@ -38,7 +38,16 @@
   }
 
   input {
-    display: none;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+    outline: none !important;
+
+    &:focus-visible + label .vui-checkbox-icon {
+      outline: 2px solid var(--color-text);
+      border-radius: var(--border-radius-s);
+    }
 
     & + label {
       display: grid;
