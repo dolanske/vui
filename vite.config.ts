@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import path, { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
@@ -9,6 +10,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+  },
   css: {
     preprocessorOptions: {
       scss: {
