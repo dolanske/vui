@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-import { useCssVar, useMouse } from '@vueuse/core'
-import { computed, useSlots, useTemplateRef, watch } from 'vue'
+import { useCssVar, useMouse, useTimeoutFn, watchThrottled } from '@vueuse/core'
+import { computed, useSlots, useTemplateRef } from 'vue'
+import { isNil } from '../../shared/helpers'
 import './sidebar.scss'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,22 +48,37 @@ const slotProps = computed(() => ({
   open,
 }))
 
+// Sidebar `appear` implementation
+const { start, stop, isPending } = useTimeoutFn(() => {
+  open.value = true
+}, 250)
+
+const APPEAR_OFFSET = 32
+
 const { x } = useMouse()
 
-let appearActive = true
-
-watch(x, (pos) => {
+watchThrottled(x, (pos) => {
   if (!props.appear)
     return
 
-  if (pos < 20 && !open.value) {
-    open.value = true
-    appearActive = true
+  if (pos <= APPEAR_OFFSET && pos >= 0 && !open.value && !isPending.value) {
+    start()
   }
-  else if (appearActive && pos > props.width) {
+  else if (isPending.value) {
+    stop()
+  }
+
+  const openWidth = props.mini
+    ? 65
+    : props.floaty
+      ? props.width
+      : props.width - (isNil(offset.value) ? 0 : Number(offset.value?.replace('px', '')))
+
+  if ((pos > APPEAR_OFFSET + openWidth || pos < 0) && open.value) {
     open.value = false
-    appearActive = false
   }
+}, {
+  throttle: 100,
 })
 </script>
 
