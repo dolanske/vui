@@ -1,0 +1,77 @@
+.vui-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  gap: var(--space-xs);
+  width: 100%;
+  height: var(--interactive-el-height);
+  border-radius: var(--border-radius-m);
+  font-size: var(--font-size-s);
+  cursor: default;
+  transition: var(--transition);
+  padding-inline: var(--space-s);
+  white-space: nowrap;
+  margin-bottom: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.disabled {
+    pointer-events: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .vui-dropdown-item-slot,
+    .vui-dropdown-item-icon svg path {
+      color: var(--color-text-lighter);
+    }
+
+    .vui-dropdown-item-hint {
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+
+  .vui-dropdown-item-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+
+      path {
+        color: var(--color-text-light);
+      }
+    }
+  }
+
+  .vui-dropdown-item-hint {
+    margin-left: 8px;
+    font-size: 0.9rem;
+    // white-space: nowrap;
+    color: var(--color-text-lighter);
+  }
+
+  .vui-dropdown-item-slot {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--color-text);
+    flex-wrap: nowrap;
+  }
+
+  &.selected,
+  &:hover {
+    background-color: var(--color-button-gray-hover);
+  }
+}

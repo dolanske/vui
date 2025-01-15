@@ -1,5 +1,5 @@
 .vui-button {
-  --button-height: 34px;
+  --button-height: var(--interactive-el-height);
   --button-padding: 8px;
 
   &.disabled {

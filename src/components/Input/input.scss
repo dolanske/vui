@@ -9,7 +9,7 @@
   --input-color-border-strong: var(--color-border-strong);
   --input-color-border-weak: var(--color-border-weak);
 
-  --input-height: 34px;
+  --input-height: var(--interactive-el-height);
   --input-padding: 8px;
   --textarea-padding: 8px;
 

@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { Icon } from '@iconify/vue'
+import './dropdown-item.scss'
 
 interface Props {
   disabled?: boolean
