@@ -50,6 +50,7 @@ const slotProps = computed(() => ({
 const { x } = useMouse()
 
 let appearActive = true
+
 watch(x, (pos) => {
   if (!props.appear)
     return

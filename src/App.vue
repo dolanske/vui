@@ -1,25 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Accordion from './components/Accordion/Accordion.vue'
-import Avatar from './components/Avatar/Avatar.vue'
 
 import Button from './components/Button/Button.vue'
-import Checkbox from './components/Checkbox/Checkbox.vue'
-import Divider from './components/Divider/Divider.vue'
-import Dropdown from './components/Dropdown/Dropdown.vue'
+import Calendar from './components/Calendar/Calendar.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
-import File from './components/Input/File.vue'
-import Radio from './components/Radio/Radio.vue'
-
-import RadioGroup from './components/Radio/RadioGroup.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
-import Switch from './components/Switch/Switch.vue'
 import Tab from './components/Tabs/Tab.vue'
 
 import Tabs from './components/Tabs/Tabs.vue'
 
 const tab = ref('components')
 const sidebarOpen = ref(false)
+const date = ref(new Date())
 </script>
 
 <template>
@@ -64,15 +56,7 @@ const sidebarOpen = ref(false)
       </div>
 
       <div v-if="tab === 'components'">
-        <Switch />
-
-        <Checkbox label="Uhhhhhh" />
-
-        <RadioGroup>
-          <Radio value="hii" />
-          <Radio value="shuml" />
-          <Radio value="askdjakld" />
-        </RadioGroup>
+        <Calendar v-model="date" time />
       </div>
       <div v-else-if="tab === 'typography'" class="typeset" :style="{ maxWidth: '688px', margin: 'auto' }">
         <h1>The Joke Tax Chronicles</h1>

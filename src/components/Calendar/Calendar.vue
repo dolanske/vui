@@ -2,6 +2,7 @@
 import type { VueDatePickerProps } from '@vuepic/vue-datepicker'
 import { Icon } from '@iconify/vue'
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { useAttrs } from 'vue'
 import '@vuepic/vue-datepicker/dist/main.css'
 import './calendar.scss'
 
@@ -16,12 +17,14 @@ const props = withDefaults(defineProps<VueDatePickerProps & {
 })
 
 const ICON_SIZE = 18
+const attrs = useAttrs()
 </script>
 
 <template>
   <VueDatePicker
-    v-bind="props"
-    :style="props.expand || !$slots.trigger
+    v-bind="{ ...props, ...attrs }"
+    class="vui-calendar"
+    :style="props.expand ?? !$slots.trigger
       ? undefined
       : { display: 'inline-block', width: 'auto' }
     "
