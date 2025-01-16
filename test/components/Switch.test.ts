@@ -11,15 +11,16 @@ describe('component:Switch', () => {
       },
     })
     const input = wrapper.get('input')
-    const text
 
-    = expect(input.element.checked).toBeFalsy()
+    // Setup
+    expect(wrapper.text()).toContain('Hello')
+    expect(input.element.checked).toBeFalsy()
     expect(input.element.type).toBe('checkbox')
 
     const label = wrapper.get('label')
-
     await label.trigger('click')
 
+    // Switch
     expect(input.element.checked).toBeTruthy()
   })
 

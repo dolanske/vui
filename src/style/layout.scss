@@ -24,6 +24,14 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   display: flex;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-1 {
   flex: 1;
 }
