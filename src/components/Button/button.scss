@@ -33,6 +33,7 @@
 
     .vui-button-slot {
       svg {
+        color: var(--color-text);
         width: 18px;
         height: 18px;
       }
@@ -47,7 +48,7 @@
   }
 
   &.dashed {
-    border-style: dashed;
+    border-style: dashed !important;
   }
 
   height: var(--button-height);
