@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Divider from './components/Divider/Divider.vue'
 import ExampleAlerts from './examples/ExampleAlerts.vue'
+import ExampleAvatars from './examples/ExampleAvatars.vue'
 import ExampleBadges from './examples/ExampleBadges.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
@@ -18,5 +19,7 @@ import ExampleSpinners from './examples/ExampleSpinners.vue'
     <ExampleBadges />
     <Divider :size="64" />
     <ExampleSpinners />
+    <Divider :size="64" />
+    <ExampleAvatars />
   </div>
 </template>
