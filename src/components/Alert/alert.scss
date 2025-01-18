@@ -18,8 +18,6 @@
   }
 
   .vui-alert-default-content {
-    padding-top: 3px;
-
     strong {
       display: block;
       font-size: var(--font-size-m);
@@ -44,6 +42,10 @@
     svg path {
       color: var(--color-text);
     }
+
+    &.filled {
+      background-color: var(--color-bg-raised);
+    }
   }
 
   &.vui-alert-variant-info {
@@ -51,6 +53,10 @@
 
     svg path {
       color: var(--color-text-blue);
+    }
+
+    &.filled {
+      background-color: var(--color-bg-blue-lowered);
     }
   }
 
@@ -60,6 +66,10 @@
     svg path {
       color: var(--color-text-green);
     }
+
+    &.filled {
+      background-color: var(--color-bg-green-lowered);
+    }
   }
 
   &.vui-alert-variant-warning {
@@ -68,6 +78,10 @@
     svg path {
       color: var(--color-text-yellow);
     }
+
+    &.filled {
+      background-color: var(--color-bg-yellow-lowered);
+    }
   }
 
   &.vui-alert-variant-danger {
@@ -75,6 +89,10 @@
 
     svg path {
       color: var(--color-text-red);
+    }
+
+    &.filled {
+      background-color: var(--color-bg-red-lowered);
     }
   }
 }

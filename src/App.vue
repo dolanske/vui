@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Divider from './components/Divider/Divider.vue'
+import ExampleAlerts from './examples/ExampleAlerts.vue'
+import ExampleBadges from './examples/ExampleBadges.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
 </script>
 
@@ -9,7 +11,11 @@ import ExampleButtons from './examples/ExampleButtons.vue'
       VUI
     </h1>
     <p>The purpose of this page is to showcase and test every single component case</p>
-    <Divider />
+    <Divider :size="64" />
     <ExampleButtons />
+    <Divider :size="64" />
+    <ExampleBadges />
+    <Divider :size="64" />
+    <ExampleAlerts />
   </div>
 </template>

@@ -3,9 +3,9 @@
   --button-padding: 8px;
 
   &.disabled {
-    pointer-events: none;
     color: var(--color-text-lighter) !important;
     cursor: not-allowed !important;
+    // pointer-events: none;
     filter: saturate(50%) opacity(0.65);
 
     svg path {
@@ -103,8 +103,8 @@
       border: 1px solid var(--color-border);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       background-color: var(--color-button-gray-hover);
     }
   }
@@ -116,8 +116,8 @@
       border: 1px solid var(--color-border-red);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-red-raised);
       background-color: var(--color-bg-red-raised);
     }
@@ -130,8 +130,8 @@
       border: 1px solid var(--color-border-green);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-green-raised);
       background-color: var(--color-bg-green-raised);
     }
@@ -144,8 +144,8 @@
       border: 1px solid var(--color-border-blue);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-blue-raised);
       background-color: var(--color-bg-blue-raised);
     }
@@ -158,8 +158,8 @@
       border: 1px solid var(--color-border-accent);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-accent-raised);
       background-color: var(--color-bg-accent-raised);
     }
@@ -171,8 +171,8 @@
     text-underline-offset: 4px;
     cursor: pointer;
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       text-decoration: underline;
     }
   }

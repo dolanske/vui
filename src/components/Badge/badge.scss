@@ -5,8 +5,8 @@
   height: 26px;
   padding-inline: var(--space-s);
   border-radius: 999px;
-  font-weight: 300;
   font-size: var(--font-size-s);
+  color: var(--color-text);
 
   &.filled {
     font-weight: 500;

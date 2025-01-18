@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { Icon } from '@iconify/vue'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 
@@ -103,6 +104,22 @@ const variants = ['default', 'danger', 'success', 'link', 'blue', 'accent'] as c
           <td>
             <Flex gap="s">
               <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" size="l" />
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Icon + text</th>
+          <td>
+            <Flex gap="s">
+              <Button v-for="btn in variants" :key="btn" :variant="btn">
+                <template #start>
+                  <Icon icon="ph:arrow-left" />
+                </template>
+                Prev
+                <template #end>
+                  <Icon icon="ph:arrow-right" />
+                </template>
+              </Button>
             </Flex>
           </td>
         </tr>
