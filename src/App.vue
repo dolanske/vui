@@ -3,6 +3,7 @@ import Divider from './components/Divider/Divider.vue'
 import ExampleAlerts from './examples/ExampleAlerts.vue'
 import ExampleBadges from './examples/ExampleBadges.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleSpinners from './examples/ExampleSpinners.vue'
 </script>
 
 <template>
@@ -16,6 +17,6 @@ import ExampleButtons from './examples/ExampleButtons.vue'
     <Divider :size="64" />
     <ExampleBadges />
     <Divider :size="64" />
-    <ExampleAlerts />
+    <ExampleSpinners />
   </div>
 </template>

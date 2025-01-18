@@ -22,7 +22,7 @@ interface Props {
 }
 
 const {
-  icon = 'ph:circle-light',
+  icon = 'ph:chat-teardrop',
   variant = 'neutral',
   title,
   description,

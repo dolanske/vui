@@ -9,7 +9,7 @@
     filter: saturate(50%) opacity(0.65);
 
     svg path {
-      color: var(--color-text-lighter) !important;
+      color: var(--color-text) !important;
     }
   }
 
@@ -30,14 +30,13 @@
   &.icon {
     width: var(--button-height);
     padding: 0;
+  }
 
-    .vui-button-slot {
-      svg {
-        color: var(--color-text);
-        width: 18px;
-        height: 18px;
-      }
-    }
+  .vui-button-slot svg {
+    display: block;
+    color: var(--color-text);
+    width: 17px;
+    height: 17px;
   }
 
   &.square {

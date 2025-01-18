@@ -19,6 +19,19 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   }
 }
 
+$widths: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+
+@each $width in $widths {
+  $extra: '%';
+  .w-#{$width} {
+    width: #{$width + $extra};
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
 // Layout
 .flex {
   display: flex;

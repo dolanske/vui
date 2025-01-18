@@ -72,3 +72,7 @@ export function formatUnitValue(value: string | number, unit: string = 'px'): st
       ? value
       : `${value}${unit}`
 }
+
+export function clamp(min: number, max: number, value: number): number {
+  return Math.min(Math.max(value, min), max)
+}

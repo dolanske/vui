@@ -47,7 +47,7 @@ const {
 
 const height = computed(() => {
   switch (size) {
-    case Size.s: return '24px'
+    case Size.s: return '26px'
     case Size.l: return '40px'
     case Size.m:
     default: return 'var(--interactive-el-height)'

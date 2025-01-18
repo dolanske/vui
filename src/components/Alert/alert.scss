@@ -5,9 +5,9 @@
   padding: var(--space-s);
   font-size: var(--font-size-m);
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: center;
 
-  svg {
+  .vui-alert-icon {
     width: 22px;
     height: 22px;
   }
@@ -21,26 +21,25 @@
     strong {
       display: block;
       font-size: var(--font-size-m);
-      font-weight: 550;
-      margin-bottom: 6px;
+      margin-bottom: 2px;
     }
 
     p {
-      font-size: var(--font-size-ms);
+      font-size: var(--font-size-s);
       color: var(--color-text-light);
-      font-weight: 350;
     }
   }
 
   .vui-alert-content {
     font-size: var(--font-size-m);
+    font-weight: 400;
   }
 
   &.vui-alert-variant-neutral {
     border: 1px solid var(--color-border);
 
-    svg path {
-      color: var(--color-text);
+    .vui-alert-icon path {
+      color: var(--color-text-light);
     }
 
     &.filled {
@@ -51,7 +50,7 @@
   &.vui-alert-variant-info {
     border: 1px solid var(--color-border-blue);
 
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-blue);
     }
 
@@ -63,7 +62,7 @@
   &.vui-alert-variant-success {
     border: 1px solid var(--color-border-green);
 
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-green);
     }
 
@@ -75,7 +74,7 @@
   &.vui-alert-variant-warning {
     border: 1px solid var(--color-border-yellow);
 
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-yellow);
     }
 
@@ -87,7 +86,7 @@
   &.vui-alert-variant-danger {
     border: 1px solid var(--color-border-red);
 
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-red);
     }
 

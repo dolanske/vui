@@ -26,7 +26,7 @@
   --font-size-xs: 1.15rem;
   --font-size-s: 1.3rem;
   --font-size-ms: 1.45rem;
-  --font-size-m: 1.6rem;
+  --font-size-m: 1.5rem;
   --font-size-l: 1.8rem;
   --font-size-xl: 2rem;
   --font-size-xxl: 2.6rem;
@@ -51,7 +51,7 @@
   --color-bg-lowered: rgb(14, 14, 14);
 
   --color-text: rgb(231, 231, 231);
-  --color-text-light: rgb(158, 158, 158);
+  --color-text-light: rgb(180, 180, 180);
   --color-text-lighter: rgb(100, 100, 100);
   --color-text-lightest: rgb(65, 65, 65);
   --color-text-invert: rgb(17, 17, 17);
@@ -93,8 +93,17 @@
   --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
 
-  --global-font: Geist, sans-serif;
+  --global-font: Inter, Geist, sans-serif;
   --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
+
+  --font-weight-thin: 200;
+  --font-weight-light: 300;
+  --font-weight: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 700;
+  --font-weight-black: 900;
 
   --interactive-el-height: 34px;
 }

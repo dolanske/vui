@@ -1,5 +1,7 @@
 <script setup lang='ts'>
+import { Icon } from '@iconify/vue'
 import Alert from '../components/Alert/Alert.vue'
+import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 
 const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
@@ -8,7 +10,7 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
 <template>
   <div class="mb-xxl">
     <h3 class="mb-l">
-      Badges
+      Alerts
     </h3>
     <table>
       <tbody>
@@ -36,9 +38,13 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
           <th>Title + description</th>
           <td>
             <Flex column>
-              <Alert v-for="variant in variants" :key="variant" :variant title="Warranty discounts 2025">
-                We'd like to get in touch about your car's extended warranty.
-              </Alert>
+              <Alert
+                v-for="variant in variants"
+                :key="variant"
+                :variant
+                title="Warranty discounts 2025"
+                description="We'd like to get in touch about your car's extended warranty."
+              />
             </Flex>
           </td>
         </tr>
@@ -46,10 +52,24 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
           <th>Title + description + filled</th>
           <td>
             <Flex column>
-              <Alert v-for="variant in variants" :key="variant" :variant title="Warranty discounts 2025" filled>
-                We'd like to get in touch about your car's extended warranty.
-              </Alert>
+              <Alert v-for="variant in variants" :key="variant" :variant title="Warranty discounts 2025" filled description="We'd like to get in touch about your car's extended warranty." />
             </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Custom</th>
+          <td>
+            <Alert variant="warning">
+              <Flex align-center space-between>
+                <p>Unfortunately we can't help you.</p>
+                <Button>
+                  <template #start>
+                    <Icon icon="ph:x" />
+                  </template>
+                  Ignore
+                </Button>
+              </Flex>
+            </Alert>
           </td>
         </tr>
       </tbody>
