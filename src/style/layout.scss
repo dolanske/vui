@@ -24,12 +24,16 @@ $widths: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
 @each $width in $widths {
   $extra: '%';
   .w-#{$width} {
-    width: #{$width + $extra};
+    width: #{$width + $extra} !important;
   }
 }
 
 .w-full {
   width: 100%;
+}
+
+.w-auto {
+  width: auto;
 }
 
 // Layout

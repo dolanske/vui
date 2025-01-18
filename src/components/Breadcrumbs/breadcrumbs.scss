@@ -5,10 +5,11 @@
 
   .vui-breadcrumb-custom-separator {
     color: var(--color-text-lighter);
+    font-size: var(--font-size-m);
   }
 
   li {
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-m);
     color: var(--color-text-lighter);
 
     .vui-breadcrumb-text-simple {

@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import Divider from './components/Divider/Divider.vue'
+import ExampleAccordions from './examples/ExampleAccordions.vue'
 import ExampleAlerts from './examples/ExampleAlerts.vue'
 import ExampleAvatars from './examples/ExampleAvatars.vue'
 import ExampleBadges from './examples/ExampleBadges.vue'
+import ExampleBreadcrumbs from './examples/ExampleBreadcrumbs.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleCards from './examples/ExampleCards.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
+
 import ExampleSpinners from './examples/ExampleSpinners.vue'
 </script>
 
@@ -23,6 +27,14 @@ import ExampleSpinners from './examples/ExampleSpinners.vue'
     <Divider :size="64" />
     <ExampleAvatars />
     <Divider :size="64" />
+    <ExampleAlerts />
+    <Divider :size="64" />
     <ExampleSkeletons />
+    <Divider :size="64" />
+    <ExampleAccordions />
+    <Divider :size="64" />
+    <ExampleBreadcrumbs />
+    <Divider :size="64" />
+    <ExampleCards />
   </div>
 </template>

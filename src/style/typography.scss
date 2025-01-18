@@ -71,7 +71,7 @@ p {
 
   strong,
   b {
-    font-weight: 700;
+    font-weight: var(--font-weight-700);
   }
 
   i {
@@ -137,6 +137,30 @@ table {
   border-collapse: separate;
   overflow-x: auto;
   max-width: 100%;
+
+  // TODO: add alternating row colors
+
+  // TODO add only separating header and body with a border, not between rows
+
+  // &.bg-dark {
+  //   background-color: var(--color-bg-lowered);
+  // }
+
+  // &.bg-light {
+  //   background-color: var(--color-bg-lighter);
+  // }
+
+  // &.no-borders {
+  //   th,
+  //   td {
+  //     border: 0 !important;
+  //   }
+  // }
+
+  th,
+  td {
+    vertical-align: top;
+  }
 
   thead {
     th {

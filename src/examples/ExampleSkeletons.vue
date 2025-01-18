@@ -16,7 +16,7 @@ import Skeleton from '../components/Skeleton/Skeleton.vue'
             <Flex gap="s">
               <Skeleton :width="80" :height="48" :radius="8" />
               <Skeleton :width="48" :height="48" :radius="8" />
-              <Skeleton :width="48" :height="48" :radius="32" />
+              <Skeleton :width="48" circle />
             </Flex>
           </td>
         </tr>
