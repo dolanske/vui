@@ -4,6 +4,7 @@ import ExampleAlerts from './examples/ExampleAlerts.vue'
 import ExampleAvatars from './examples/ExampleAvatars.vue'
 import ExampleBadges from './examples/ExampleBadges.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
 </script>
 
@@ -21,5 +22,7 @@ import ExampleSpinners from './examples/ExampleSpinners.vue'
     <ExampleSpinners />
     <Divider :size="64" />
     <ExampleAvatars />
+    <Divider :size="64" />
+    <ExampleSkeletons />
   </div>
 </template>

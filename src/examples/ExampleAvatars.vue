@@ -2,7 +2,7 @@
 import Avatar from '../components/Avatar/Avatar.vue'
 import Flex from '../components/Flex/Flex.vue'
 
-const variants = ['s', 'm', 'l', 80] as const
+const variants = ['s', 'm', 'l', 96] as const
 </script>
 
 <template>
