@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import Accordion from '../components/Accordion/Accordion.vue'
 import AccordionGroup from '../components/Accordion/AccordionGroup.vue'
+import Grid from '../components/Grid/Grid.vue'
 </script>
 
 <template>
@@ -9,43 +10,49 @@ import AccordionGroup from '../components/Accordion/AccordionGroup.vue'
       Accordion
     </h3>
 
-    <table>
-      <tbody>
-        <tr>
-          <th>Default</th>
-          <td>
-            <Accordion label="Open details">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi nostrum aspernatur nam earum vitae deleniti, odio atque esse sequi, in harum! Sint dolorum quis excepturi odio eum aspernatur aliquid harum.</p>
-            </Accordion>
-          </td>
-        </tr>
-        <tr>
-          <th>Card layout</th>
-          <td>
-            <Accordion label="Open details" card>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi nostrum aspernatur nam earum vitae deleniti, odio atque esse sequi, in harum! Sint dolorum quis excepturi odio eum aspernatur aliquid harum.</p>
-            </Accordion>
-          </td>
-        </tr>
-        <tr>
-          <th>Group</th>
-          <td>
-            <AccordionGroup single>
-              <Accordion label="First">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
-              </Accordion>
-              <Accordion label="Second">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
-              </Accordion>
-              <Accordion label="Third">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
-              </Accordion>
-            </AccordionGroup>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <Grid :columns="2" gap="xl">
+      <div>
+        <strong class="block mb-s">Base</strong>
+        <Accordion label="Open details" class="mb-xl">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi nostrum aspernatur nam earum vitae deleniti, odio atque esse sequi, in harum! Sint dolorum quis excepturi odio eum aspernatur aliquid harum.</p>
+        </Accordion>
 
-    <div class="w-65" />
+        <div class="mb-xl" />
+
+        <strong class="block mb-s">Group</strong>
+        <AccordionGroup single>
+          <Accordion label="First">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+          </Accordion>
+          <Accordion label="Second">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+          </Accordion>
+          <Accordion label="Third">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+          </Accordion>
+        </AccordionGroup>
+      </div>
+      <div>
+        <strong class="block mb-s">Card</strong>
+        <Accordion label="Open details" card>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi nostrum aspernatur nam earum vitae deleniti, odio atque esse sequi, in harum! Sint dolorum quis excepturi odio eum aspernatur aliquid harum.</p>
+        </Accordion>
+
+        <div class="mb-xl" />
+
+        <strong class="block mb-s">Card group</strong>
+        <AccordionGroup single class="mb-xl">
+          <Accordion card label="First" class="mb-xs">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+          </Accordion>
+          <Accordion card label="Second" class="mb-xs">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+          </Accordion>
+          <Accordion card label="Third" class="mb-xs">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+          </Accordion>
+        </AccordionGroup>
+      </div>
+    </Grid>
   </div>
 </template>
