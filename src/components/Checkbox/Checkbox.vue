@@ -9,14 +9,16 @@ interface Props {
   iconOff?: string
   disabled?: boolean
   checked?: boolean
+  accent?: boolean
 }
 
 const {
   label,
-  iconOn = 'ph:check-square-fill',
+  iconOn = 'ph:check-square',
   iconOff = 'ph:square',
   disabled,
   checked: checkedProp,
+  accent,
 } = defineProps<Props>()
 const emit = defineEmits<{
   change: [checked: boolean]
@@ -27,7 +29,7 @@ const id = useId()
 </script>
 
 <template>
-  <div class="vui-checkbox" :class="{ disabled: !!disabled, checked }">
+  <div class="vui-checkbox" :class="{ disabled: !!disabled, checked, accent }">
     <input
       :id
       v-model="checked"

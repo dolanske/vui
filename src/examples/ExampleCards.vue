@@ -61,11 +61,11 @@ import Grid from '../components/Grid/Grid.vue'
             </template>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
             <template #footer>
-              <Flex gap="s" justify-end>
-                <Button>Cancel</Button>
+              <Flex gap="s" justify-start>
                 <Button variant="success">
                   Save
                 </Button>
+                <Button>Cancel</Button>
               </Flex>
             </template>
           </Card>

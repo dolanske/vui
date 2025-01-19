@@ -5,17 +5,18 @@ import './switch.scss'
 interface Props {
   label?: string
   disabled?: boolean
+  accent?: boolean
 }
 
-const { label, disabled } = defineProps<Props>()
+const { label, disabled, accent } = defineProps<Props>()
 const slots = defineSlots()
 const checked = defineModel<boolean>()
 const id = useId()
 </script>
 
 <template>
-  <div class="vui-switch" :class="{ disabled, checked }">
-    <input :id v-model="checked" type="checkbox">
+  <div class="vui-switch" :class="{ disabled, checked, accent }">
+    <input :id v-model="checked" type="checkbox" :disabled>
     <label :for="id">
       <div class="vui-switch-icon">
         <span class="vui-switch-indicator" />

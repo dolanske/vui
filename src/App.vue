@@ -7,8 +7,8 @@ import ExampleBadges from './examples/ExampleBadges.vue'
 import ExampleBreadcrumbs from './examples/ExampleBreadcrumbs.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleCards from './examples/ExampleCards.vue'
+import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
-
 import ExampleSpinners from './examples/ExampleSpinners.vue'
 </script>
 
@@ -36,5 +36,7 @@ import ExampleSpinners from './examples/ExampleSpinners.vue'
     <ExampleBreadcrumbs />
     <Divider :size="64" />
     <ExampleCards />
+    <Divider :size="64" />
+    <ExampleCheckboxes />
   </div>
 </template>
