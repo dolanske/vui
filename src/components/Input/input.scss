@@ -28,7 +28,9 @@
 
   &.required .vui-input > label:after {
     content: '*';
+    padding-left: 2px;
     color: var(--input-color-text-red);
+    font-size: var(--font-size-l);
   }
 
   &.readonly .vui-input {

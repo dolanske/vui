@@ -9,6 +9,7 @@ import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleCards from './examples/ExampleCards.vue'
 import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
+import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
 import ExampleTabs from './examples/ExampleTabs.vue'
@@ -44,5 +45,7 @@ import ExampleTabs from './examples/ExampleTabs.vue'
     <ExampleCopyClipboard />
     <Divider :size="64" />
     <ExampleTabs />
+    <Divider :size="64" />
+    <ExampleInputs />
   </div>
 </template>

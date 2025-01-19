@@ -7,8 +7,10 @@ import './input.scss'
 
 // FIXME: sometimes spamming inputs when limit is set, it will _just_ let me write one more letter
 
+export type InputType = 'text' | 'password' | 'color' | 'date' | 'email' | 'month' | 'number' | 'range' | 'search' | 'tel' | 'time' | 'week' | 'url'
+
 export interface InputProps {
-  type?: InputTypeHTMLAttribute
+  type?: InputType
   label?: string
   hint?: string
   limit?: number | string
