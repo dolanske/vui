@@ -2,7 +2,8 @@
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { Icon } from '@iconify/vue'
 import { useClipboard } from '@vueuse/core'
-import { onMounted, useSlots, useTemplateRef } from 'vue'
+import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
+import { isNil } from '../../shared/helpers'
 import Flex from '../Flex/Flex.vue'
 import './copy-clipboard.scss'
 
@@ -36,12 +37,20 @@ const {
 })
 const slots = useSlots()
 
+const parsedConfirm = computed(() => {
+  if (isNil(confirm))
+    return false
+  if (confirm === '')
+    return true
+  else return confirm
+})
+
 onMounted(() => {
   if (!isSupported.value) {
     console.error('Clipboard API is not supported. This component will not work')
   }
 
-  if (confirm && slots.confirm) {
+  if (typeof parsedConfirm.value === 'string' && slots.confirm) {
     console.warn('You are using the \'confirm\' prop and slot. The slot will take precedence.')
   }
 })
@@ -67,10 +76,10 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   </div>
 
   <Transition name="fade-up" mode="in-out">
-    <div v-if="copied && (confirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
+    <div v-if="copied && (!!parsedConfirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
       <slot name="confirm">
-        <template v-if="confirm">
-          {{ confirm }}
+        <template v-if="typeof parsedConfirm === 'string'">
+          {{ parsedConfirm }}
         </template>
         <Flex v-else align-center justify-center>
           <Icon width="16" height="16" icon="ph:check-bold" />

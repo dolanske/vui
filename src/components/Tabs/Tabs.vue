@@ -74,8 +74,8 @@ onMounted(() => {
       :is="vnode"
       v-for="vnode of slots.default()"
       :key="vnode.props.id"
-      :class="{ active: vnode.props.id === active }"
-      @click="active = vnode.props.id"
+      :class="{ active: vnode.props.label === active }"
+      @click="active = vnode.props.label"
     />
     <template v-if="slots.end">
       <div v-if="!!!expand" class="flex-1" />

@@ -8,8 +8,10 @@ import ExampleBreadcrumbs from './examples/ExampleBreadcrumbs.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleCards from './examples/ExampleCards.vue'
 import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
+import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
+import ExampleTabs from './examples/ExampleTabs.vue'
 </script>
 
 <template>
@@ -38,5 +40,9 @@ import ExampleSpinners from './examples/ExampleSpinners.vue'
     <ExampleCards />
     <Divider :size="64" />
     <ExampleCheckboxes />
+    <Divider :size="64" />
+    <ExampleCopyClipboard />
+    <Divider :size="64" />
+    <ExampleTabs />
   </div>
 </template>

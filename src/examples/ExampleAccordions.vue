@@ -41,7 +41,7 @@ import Grid from '../components/Grid/Grid.vue'
         <div class="mb-xl" />
 
         <strong class="block mb-s">Card group</strong>
-        <AccordionGroup single class="mb-xl">
+        <AccordionGroup single>
           <Accordion card label="First" class="mb-xs">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
           </Accordion>
