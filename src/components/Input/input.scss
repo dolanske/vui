@@ -17,9 +17,16 @@
 
   width: 224px;
 
-  &.disabled input,
-  &.disabled textarea {
-    cursor: not-allowed;
+  &.disabled {
+    .vui-input label {
+      color: var(--input-color-text-lighter);
+    }
+
+    input,
+    textarea {
+      cursor: not-allowed;
+      resize: none !important;
+    }
   }
 
   &.expand {
@@ -40,6 +47,7 @@
       pointer-events: none;
       color: var(--input-color-text-light);
       border-color: var(--input-color-border-weak);
+      resize: none !important;
     }
   }
 
@@ -107,7 +115,8 @@
 
       &:has(input:focus-visible),
       &:focus-visible {
-        outline: 2px solid var(--color-text);
+        // Override error outline
+        outline: 2px solid var(--color-text) !important;
       }
 
       .vui-button {

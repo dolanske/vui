@@ -102,6 +102,8 @@ import Textarea from '../components/Input/Textarea.vue'
       <Textarea expand label="Resize horizontal" resize="horizontal" />
       <Textarea expand label="Resize both" :resize="true" :errors="['Just an error test carry on', 'Whoops another issue']" />
       <Textarea expand label="Autoresize" hint="This is not supported in firefox yet" />
+      <Textarea expand label="Readonly" model-value="Hiiiiiiiii uwuwuwu" readonly />
+      <Textarea expand label="Disabled" disabled />
     </Grid>
   </div>
 </template>
