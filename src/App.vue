@@ -13,6 +13,7 @@ import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
 import ExampleTabs from './examples/ExampleTabs.vue'
+import ExampleToasts from './examples/ExampleToasts.vue'
 </script>
 
 <template>
@@ -47,5 +48,7 @@ import ExampleTabs from './examples/ExampleTabs.vue'
     <ExampleTabs />
     <Divider :size="64" />
     <ExampleInputs />
+    <Divider :size="64" />
+    <ExampleToasts />
   </div>
 </template>
