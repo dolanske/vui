@@ -65,12 +65,12 @@ const inputRef = useTemplateRef('input')
 
 watchEffect(() => {
   if (focus)
-    inputRef.value?.focus()
+    inputRef.value?.focus({ preventScroll: true })
 })
 
 defineExpose({
   focus: () => {
-    inputRef.value?.focus()
+    inputRef.value?.focus({ preventScroll: true })
   },
 })
 

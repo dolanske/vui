@@ -132,7 +132,7 @@ const selected2 = ref([])
     <h6 class="mb-l">
       Select
     </h6>
-    <Grid gap="m" :columns="3">
+    <Grid gap="xl" :columns="3">
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
       <Select expand :options="options" label="Base readonly" readonly />
       <Select expand :options="options" label="Base disabled" disabled placeholder="Custom placeholder bro" />

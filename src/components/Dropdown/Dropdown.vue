@@ -1,8 +1,8 @@
 <script setup lang='ts'>
 import type { MaybeElement } from '@vueuse/core'
 import type { Placement } from '../../shared/types'
-import { onClickOutside } from '@vueuse/core'
-import { computed, ref, useTemplateRef } from 'vue'
+import { onClickOutside, useMagicKeys, whenever } from '@vueuse/core'
+import { computed, ref, useTemplateRef, watch } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
@@ -27,6 +27,10 @@ const {
   expand,
   minWidth = 156,
 } = defineProps<Props>()
+
+const emit = defineEmits<{
+  close: []
+}>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
 const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
@@ -67,6 +71,14 @@ defineExpose({
 
 const mW = computed(() => formatUnitValue(minWidth))
 const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
+
+const { escape } = useMagicKeys()
+whenever(escape, close)
+
+watch(showMenu, (v) => {
+  if (!v)
+    emit('close')
+})
 </script>
 
 <template>

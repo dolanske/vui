@@ -48,6 +48,7 @@ const {
 } = defineProps<Props>()
 
 const selected = defineModel<SelectOption[] | undefined>()
+const trigger = useTemplateRef('trigger')
 
 //
 function setValue(option: SelectOption) {
@@ -124,8 +125,8 @@ function clearValue() {
 </script>
 
 <template>
-  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled }">
-    <Dropdown ref="dropdown" :expand>
+  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }">
+    <Dropdown ref="dropdown" :expand @close="trigger?.focus({ preventScroll: true })">
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" for="id">{{ label }}</label>
@@ -133,7 +134,7 @@ function clearValue() {
             {{ hint }}
           </p>
 
-          <button class="vui-input-style vui-select-trigger-container" :disabled @click="toggle">
+          <button ref="trigger" class="vui-input-style vui-select-trigger-container" :disabled @click="toggle">
             <span>
               {{ renderPlaceholder }}
             </span>
@@ -149,15 +150,6 @@ function clearValue() {
             </template>
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </button>
-
-          <p v-if="maxActiveOptions && !single" class="vui-input-limit">
-            {{ `${selected ? selected.length : 0}/${maxActiveOptions}` }}
-          </p>
-          <ul v-if="errors.length > 0" class="vui-input-errors">
-            <li v-for="err in errors" :key="err">
-              {{ err }}
-            </li>
-          </ul>
         </div>
       </template>
 
@@ -196,5 +188,14 @@ function clearValue() {
         </DropdownItem>
       </template>
     </Dropdown>
+
+    <p v-if="maxActiveOptions && !single" class="vui-input-limit">
+      {{ `${selected ? selected.length : 0}/${maxActiveOptions}` }}
+    </p>
+    <ul v-if="errors.length > 0" class="vui-input-errors">
+      <li v-for="err in errors" :key="err">
+        {{ err }}
+      </li>
+    </ul>
   </div>
 </template>
