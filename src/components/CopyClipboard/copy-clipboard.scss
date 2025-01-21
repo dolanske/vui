@@ -10,6 +10,7 @@
   font-size: var(--font-size-s);
   color: var(--color-text);
   box-shadow: var(--box-shadow);
+  z-index: 1000;
 
   svg path {
     color: var(--color-text);

@@ -2,6 +2,7 @@
 import type { InputProps } from './Input.vue'
 import { Icon } from '@iconify/vue'
 import Button from '../Button/Button.vue'
+import ButtonGroup from '../ButtonGroup/ButtonGroup.vue'
 import Input from './Input.vue'
 
 type Props = Omit<InputProps, 'type'> & {
@@ -30,33 +31,28 @@ const count = defineModel<number>({
 
 <template>
   <Input v-bind="inputProps" v-model.number="count" type="number">
-    <template v-if="!hideDecrement" #start>
-      <Button key="decrease" :disabled="!decrementEnabled" size="s" @click="count -= decrementBy">
-        <Icon icon="ph:minus" /> {{ decrementBy > 1 ? decrementBy : '' }}
-      </Button>
-    </template>
+    <!-- <template v-if="!hideDecrement" #start>
+    </template> -->
 
-    <template v-if="!hideIncrement" #end>
-      <Button key="increase" :disabled="!incrementEnabled" size="s" @click="count += incrementBy">
-        <Icon icon="ph:plus" /> {{ incrementBy > 1 ? incrementBy : '' }}
-      </Button>
+    <template #end>
+      <ButtonGroup>
+        <Button v-if="!hideDecrement" key="decrease" :disabled="!decrementEnabled" :style="{ 'border-top-left-radius': 0, 'border-bottom-left-radius': 0 }" @click="count -= decrementBy">
+          <Icon icon="ph:minus" /> {{ decrementBy > 1 ? decrementBy : '' }}
+        </Button>
+        <Button v-if="!hideIncrement" key="increase" :disabled="!incrementEnabled" @click="count += incrementBy">
+          <Icon icon="ph:plus" /> {{ incrementBy > 1 ? incrementBy : '' }}
+        </Button>
+      </ButtonGroup>
     </template>
   </Input>
 </template>
 
 <style scoped lang="scss">
-:deep(.vui-input-style) {
-  padding-inline: 4px !important;
-  gap: 8px !important;
-}
-
 :deep(.vui-button) {
   padding-inline: 2px !important;
 }
 
 :deep(input) {
-  text-align: center;
-
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;

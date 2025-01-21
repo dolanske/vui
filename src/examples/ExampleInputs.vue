@@ -4,6 +4,7 @@ import Button from '../components/Button/Button.vue'
 import Divider from '../components/Divider/Divider.vue'
 import Grid from '../components/Grid/Grid.vue'
 import Color from '../components/Input/Color.vue'
+import Counter from '../components/Input/Counter.vue'
 import File from '../components/Input/File.vue'
 import Input from '../components/Input/Input.vue'
 import Password from '../components/Input/Password.vue'
@@ -15,27 +16,31 @@ import Password from '../components/Input/Password.vue'
       Inputs
     </h3>
 
-    <Grid gap="s" :columns="3">
+    <h6 class="mb-l">
+      Input extensions
+    </h6>
+
+    <Grid gap="l" :columns="3">
       <Input placeholder="Margarett Bridgetson" />
-      <Input label="Name" />
+      <Input label="Default" />
       <Input label="Password" placeholder="*******" type="password" model-value="asdasdasdass" />
-      <Input label="Name" hint="What is your birth name?" />
-      <Input label="Name" hint="What is your birth name?" limit="65" placeholder="Your name" />
-      <Input label="Name" hint="What is your birth name?" limit="65" :errors="['Your name is too short']" />
-      <Input label="Name" hint="What is your birth name?" readonly model-value="Readonly value" />
-      <Input label="Name" hint="What is your birth name?" required />
-      <Input label="Name" hint="What is your birth name?" disabled />
-      <Input label="Phone" hint="What is your phone number, sir?">
+      <Input label="Has hint" hint="What is your birth name?" />
+      <Input label="Limited" hint="What is your birth name?" limit="65" placeholder="Your name" />
+      <Input label="With errors" hint="What is your birth name?" limit="65" :errors="['Your name is too short']" />
+      <Input label="Readonly" hint="What is your birth name?" readonly model-value="Readonly value" />
+      <Input label="Required" hint="What is your birth name?" required />
+      <Input label="Disabled" hint="What is your birth name?" disabled />
+      <Input label="With slot" hint="What is your phone number, sir?">
         <template #start>
           +358
         </template>
       </Input>
-      <Input label="Phone" hint="What is your birth name?" placeholder="Your phone sir">
+      <Input label="With icon" hint="What is your birth name?" placeholder="Your phone sir">
         <template #start>
           <Icon icon="ph:phone" />
         </template>
       </Input>
-      <Input label="Phone" hint="What is your birth name?" placeholder="Your phone sir">
+      <Input label="With button" hint="What is your birth name?" placeholder="Your phone sir">
         <template #start>
           <Icon icon="ph:phone" />
         </template>
@@ -43,7 +48,7 @@ import Password from '../components/Input/Password.vue'
           <Button>Clear</Button>
         </template>
       </Input>
-      <Input label="You" placeholder="Some stuff">
+      <Input label="Two buttons" placeholder="Some stuff">
         <template #start>
           <Button square icon="ph:eye" />
         </template>
@@ -51,7 +56,7 @@ import Password from '../components/Input/Password.vue'
           <Button>Clear</Button>
         </template>
       </Input>
-      <Input label="You" placeholder="Some stuff">
+      <Input label="Icon and button" placeholder="Some stuff">
         <template #start>
           <Button>Start</Button>
         </template>
@@ -64,7 +69,7 @@ import Password from '../components/Input/Password.vue'
     <Divider :size="48" />
 
     <h6 class="mb-l">
-      Input types
+      Default input types
     </h6>
 
     <Grid gap="m" :columns="3">
@@ -78,9 +83,9 @@ import Password from '../components/Input/Password.vue'
       <Input label="Search" type="search" />
       <Input label="Tel" type="tel" />
       <Input label="Time" type="time" />
-      <Input label="Url" type="url" />
-
+      <Input label="Url" type="url" :errors="['Bro didnt count enough']" />
       <File label="File" />
+      <Counter label="Counter" hint="It counts!!" />
     </Grid>
   </div>
 </template>

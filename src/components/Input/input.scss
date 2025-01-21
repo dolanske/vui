@@ -47,7 +47,7 @@
     .vui-input {
       .vui-input-style,
       textarea {
-        border-color: var(--color-text-red) !important;
+        outline: 1px solid var(--color-text-red) !important;
       }
     }
   }
@@ -66,6 +66,12 @@
       margin-bottom: 8px;
       font-size: var(--font-size-ms);
       color: var(--input-color-text);
+    }
+
+    svg {
+      min-width: 16px;
+      min-height: 16px;
+      // font-size: var(--font-size-l);
     }
 
     .vui-input-hint {
@@ -91,22 +97,39 @@
       background: transparent;
       height: var(--input-height);
       line-height: var(--input-height);
-      color: var(--color-text);
+      color: var(--color-text-lighter);
       outline: none;
-      padding-inline: var(--input-padding);
       font-size: var(--font-size-ms);
       width: 100%;
       transition: var(--transition);
+      padding-inline: var(--input-padding);
+      z-index: 1;
 
       &:has(input:focus-visible),
       &:focus-visible {
         outline: 2px solid var(--color-text);
       }
+
+      .vui-button {
+        &:first-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          margin-left: calc(calc(var(--input-padding) + 1px) * -1);
+        }
+
+        &:last-child {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          margin-right: calc(calc(var(--input-padding) + 1px) * -1);
+        }
+      }
     }
 
     input,
     textarea {
+      color: var(--color-text);
       font-family: var(--global-font);
+      // padding-inline: 3px;
     }
 
     input[type='file']::file-selector-button {
@@ -154,7 +177,7 @@
           inset: 4px;
           right: unset;
           width: calc(var(--input-height) - 8px);
-          background-color: var(--color-bg-raised);
+          background-color: var(--color-border);
           border-radius: var(--border-radius-s);
           font-size: var(--font-size-l);
           display: flex;
@@ -232,6 +255,7 @@
         border-color: var(--color-border);
       }
     }
+
     .vui-input {
       .vui-input-style {
         height: unset;

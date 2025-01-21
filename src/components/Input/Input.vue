@@ -87,7 +87,7 @@ const renderLimit = computed(() => {
       <p v-if="hint" class="vui-input-hint">
         {{ hint }}
       </p>
-      <Flex class="vui-input-style" :gap="3" align-center>
+      <Flex class="vui-input-style" :gap="5" align-center>
         <slot name="start" />
         <slot name="__internal_replace_input" :input-id="id" />
         <input
