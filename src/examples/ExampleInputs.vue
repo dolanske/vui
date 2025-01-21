@@ -8,6 +8,7 @@ import Counter from '../components/Input/Counter.vue'
 import File from '../components/Input/File.vue'
 import Input from '../components/Input/Input.vue'
 import Password from '../components/Input/Password.vue'
+import Textarea from '../components/Input/Textarea.vue'
 </script>
 
 <template>
@@ -86,6 +87,21 @@ import Password from '../components/Input/Password.vue'
       <Input label="Url" type="url" :errors="['Bro didnt count enough']" />
       <File label="File" />
       <Counter label="Counter" hint="It counts!!" />
+    </Grid>
+
+    <Divider :size="48" />
+
+    <h6 class="mb-l">
+      Textarea
+    </h6>
+
+    <Grid :columns="2" gap="m">
+      <Textarea label="Your story" hint="tell me everything" :resize="false" required />
+      <Textarea expand label="With limit" :limit="64" :resize="false" placeholder="Bro tell me a short story" />
+      <Textarea expand label="Resize vertical" />
+      <Textarea expand label="Resize horizontal" resize="horizontal" />
+      <Textarea expand label="Resize both" :resize="true" :errors="['Just an error test carry on', 'Whoops another issue']" />
+      <Textarea expand label="Autoresize" hint="This is not supported in firefox yet" />
     </Grid>
   </div>
 </template>
