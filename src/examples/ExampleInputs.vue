@@ -5,6 +5,7 @@ import Divider from '../components/Divider/Divider.vue'
 import Grid from '../components/Grid/Grid.vue'
 import Color from '../components/Input/Color.vue'
 import Counter from '../components/Input/Counter.vue'
+import Dropzone from '../components/Input/Dropzone.vue'
 import File from '../components/Input/File.vue'
 import Input from '../components/Input/Input.vue'
 import Password from '../components/Input/Password.vue'
@@ -105,5 +106,13 @@ import Textarea from '../components/Input/Textarea.vue'
       <Textarea expand label="Readonly" model-value="Hiiiiiiiii uwuwuwu" readonly />
       <Textarea expand label="Disabled" disabled />
     </Grid>
+
+    <Divider :size="48" />
+
+    <h6 class="mb-l">
+      Dropzone
+    </h6>
+
+    <Dropzone expand />
   </div>
 </template>
