@@ -113,8 +113,8 @@
       padding-inline: var(--input-padding);
       z-index: 1;
 
-      &:has(input:focus-visible),
-      &:focus-visible {
+      &:has(input:focus),
+      &:focus {
         // Override error outline
         outline: 2px solid var(--color-text) !important;
       }
@@ -163,7 +163,7 @@
       outline: none !important;
       opacity: 0;
 
-      &:focus-visible + label .vui-input-color-indicator {
+      &:focus + label .vui-input-color-indicator {
         outline: 2px solid var(--color-text);
       }
 
@@ -176,7 +176,7 @@
           padding-inline: var(--space-xs);
           border-radius: var(--border-radius-s);
 
-          &:focus-visible {
+          &:focus {
             outline: 2px solid var(--color-text);
           }
         }

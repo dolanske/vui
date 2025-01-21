@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { Icon } from '@iconify/vue'
+import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Divider from '../components/Divider/Divider.vue'
 import Grid from '../components/Grid/Grid.vue'
@@ -10,6 +11,17 @@ import File from '../components/Input/File.vue'
 import Input from '../components/Input/Input.vue'
 import Password from '../components/Input/Password.vue'
 import Textarea from '../components/Input/Textarea.vue'
+import Select from '../components/Select/Select.vue'
+
+const options = [
+  { value: 0, label: 'Jan' },
+  { value: 1, label: 'Andrew' },
+  { value: 2, label: 'Felix' },
+]
+
+const selected = ref([])
+const selected1 = ref([])
+const selected2 = ref([])
 </script>
 
 <template>
@@ -114,5 +126,20 @@ import Textarea from '../components/Input/Textarea.vue'
     </h6>
 
     <Dropzone expand />
+
+    <Divider :size="48" />
+
+    <h6 class="mb-l">
+      Select
+    </h6>
+    <Grid gap="m" :columns="3">
+      <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
+      <Select expand :options="options" label="Base readonly" readonly />
+      <Select expand :options="options" label="Base disabled" disabled placeholder="Custom placeholder bro" />
+      <Select :options="options" label="Required (single)" expand required />
+      <Select v-model="selected" :options="options" label="Base multi" expand :single="false" />
+      <Select v-model="selected2" :options="options" label="Multi, max options 2" expand :single="false" :max-active-options="2" />
+      <Select v-model="selected1" :options="options" label="Multi required" required expand :single="false" hint="Must always have at least one option selected" />
+    </Grid>
   </div>
 </template>

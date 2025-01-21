@@ -28,6 +28,7 @@ type Props = {
   search?: boolean
   maxActiveOptions?: number
   showClear?: boolean
+  disabled?: boolean
 }
 
 const {
@@ -41,6 +42,7 @@ const {
   search,
   maxActiveOptions = 3,
   showClear,
+  disabled,
 } = defineProps<Props>()
 
 const selected = defineModel<SelectOption[] | undefined>()
@@ -68,7 +70,7 @@ function setValue(option: SelectOption) {
       if (!selected.value) {
         selected.value = [option]
       }
-      else {
+      else if (selected.value.length < maxActiveOptions) {
         selected.value?.push(option)
       }
     }
@@ -120,7 +122,7 @@ function clearValue() {
 </script>
 
 <template>
-  <div class="vui-input-container vui-select" :class="{ expand, required, readonly }">
+  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled }">
     <Dropdown ref="dropdown" :expand>
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
@@ -129,18 +131,20 @@ function clearValue() {
             {{ hint }}
           </p>
 
-          <button class="vui-input-style vui-select-trigger-container" @click="toggle">
+          <button class="vui-input-style vui-select-trigger-container" :disabled @click="toggle">
             <span>
               {{ renderPlaceholder }}
             </span>
-            <Button
-              v-if="showClear && !required && selected"
-              plain
-              icon="ph:x"
-              square
-              size="s"
-              @click.stop="clearValue"
-            />
+            <template v-if="showClear && !required && selected">
+              <div class="flex-1" />
+              <Button
+                plain
+                icon="ph:x"
+                square
+                size="s"
+                @click.stop="clearValue"
+              />
+            </template>
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </button>
         </div>
@@ -152,7 +156,12 @@ function clearValue() {
             v-model="searchStr"
             placeholder="Search..."
             :focus="isOpen"
-          />
+            expand
+          >
+            <template #start>
+              <Icon icon="ph:magnifying-glass" />
+            </template>
+          </Input>
         </DropdownTitle>
 
         <p v-if="filteredOptions.length === 0" class="vue-select-no-results">
