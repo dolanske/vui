@@ -16,7 +16,7 @@ interface Props {
 }
 
 const {
-  placement = 'bottom',
+  placement,
   delay = 0,
 } = defineProps<Props>()
 

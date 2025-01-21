@@ -26,7 +26,9 @@ const anchorRef = toRef(props.anchor)
 const { floatingStyles } = useFloating(anchorRef, popoutRef, {
   placement: props.placement,
   middleware: [
-    ...(props.placement ? [] : [autoPlacement()]),
+    ...(props.placement
+      ? []
+      : [autoPlacement()]),
     offset(props.offset),
     shift({
       padding: 8,
