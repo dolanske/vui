@@ -29,6 +29,7 @@ type Props = {
   maxActiveOptions?: number
   showClear?: boolean
   disabled?: boolean
+  errors?: string[]
 }
 
 const {
@@ -40,9 +41,10 @@ const {
   options,
   single = true,
   search,
-  maxActiveOptions = 3,
+  maxActiveOptions,
   showClear,
   disabled,
+  errors = [] as string[],
 } = defineProps<Props>()
 
 const selected = defineModel<SelectOption[] | undefined>()
@@ -70,7 +72,7 @@ function setValue(option: SelectOption) {
       if (!selected.value) {
         selected.value = [option]
       }
-      else if (selected.value.length < maxActiveOptions) {
+      else if (!maxActiveOptions || (selected.value.length < maxActiveOptions)) {
         selected.value?.push(option)
       }
     }
@@ -99,7 +101,7 @@ const renderPlaceholder = computed(() => {
     return selected.value[0].label
 
   // If amount of selected exceeds the active capacity
-  if (selected.value.length > maxActiveOptions) {
+  if (selected.value.length > 3) {
     return `${selected.value.length} selected`
   }
 
@@ -147,6 +149,15 @@ function clearValue() {
             </template>
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </button>
+
+          <p v-if="maxActiveOptions && !single" class="vui-input-limit">
+            {{ `${selected ? selected.length : 0}/${maxActiveOptions}` }}
+          </p>
+          <ul v-if="errors.length > 0" class="vui-input-errors">
+            <li v-for="err in errors" :key="err">
+              {{ err }}
+            </li>
+          </ul>
         </div>
       </template>
 

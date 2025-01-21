@@ -137,6 +137,7 @@ const selected2 = ref([])
       <Select expand :options="options" label="Base readonly" readonly />
       <Select expand :options="options" label="Base disabled" disabled placeholder="Custom placeholder bro" />
       <Select :options="options" label="Required (single)" expand required />
+      <Select :options="options" label="Base + errors" expand :errors="['Hello bro']" />
       <Select v-model="selected" :options="options" label="Base multi" expand :single="false" />
       <Select v-model="selected2" :options="options" label="Multi, max options 2" expand :single="false" :max-active-options="2" />
       <Select v-model="selected1" :options="options" label="Multi required" required expand :single="false" hint="Must always have at least one option selected" />
