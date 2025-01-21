@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import Checkbox from '../components/Checkbox/Checkbox.vue'
-import Flex from '../components/Flex/Flex.vue'
 import Grid from '../components/Grid/Grid.vue'
 import Radio from '../components/Radio/Radio.vue'
 import RadioGroup from '../components/Radio/RadioGroup.vue'

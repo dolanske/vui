@@ -3,6 +3,7 @@ import { Icon } from '@iconify/vue'
 import Button from '../components/Button/Button.vue'
 import Divider from '../components/Divider/Divider.vue'
 import Grid from '../components/Grid/Grid.vue'
+import Color from '../components/Input/Color.vue'
 import File from '../components/Input/File.vue'
 import Input from '../components/Input/Input.vue'
 import Password from '../components/Input/Password.vue'
@@ -69,7 +70,7 @@ import Password from '../components/Input/Password.vue'
     <Grid gap="m" :columns="3">
       <Input label="Text" />
       <Password label="Password" />
-      <Input label="Color" type="color" />
+      <Color placeholder="Erm uhmm" label="Pick color" hint="A bonus hint idk" />
       <Input label="Date" type="date" />
       <Input label="Email" type="email" />
       <Input label="Number" type="number" />

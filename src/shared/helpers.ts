@@ -42,6 +42,13 @@ export function stringRgbToValues(rgbString: string): [number, number, number] {
   return rgbString.match(/\d+/g)!.map(Number) as any as [number, number, number]
 }
 
+// export function rgbToHex(r: number, g: number, b: number): string {
+//   return `#${[r, g, b].map((x) => {
+//     const hex = x.toString(16)
+//     return hex.length === 1 ? `0${hex}` : hex
+//   }).join('')}`
+// }
+
 export function randomMinMax(min: number, max: number): number {
   min = Math.ceil(min)
   max = Math.floor(max)

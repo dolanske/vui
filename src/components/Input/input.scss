@@ -52,6 +52,13 @@
     }
   }
 
+  &.vui-input-color {
+    .vui-input-style {
+      padding-left: 0 !important;
+      outline: none !important;
+    }
+  }
+
   .vui-input {
     label {
       display: block;
@@ -117,13 +124,47 @@
     }
 
     input[type='color'] {
-      &:-webkit-color-swatch {
-        border-radius: var(--border-radius-m);
-        padding: 0;
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      overflow: hidden;
+      outline: none !important;
+      opacity: 0;
+
+      &:focus-visible + label .vui-input-color-indicator {
+        outline: 2px solid var(--color-text);
       }
 
-      &:-webkit-color-swatch-wrapper {
-        padding: 0;
+      & + label {
+        position: relative;
+        margin: 0;
+        padding-left: var(--input-height);
+
+        input {
+          padding-inline: var(--space-xs);
+          border-radius: var(--border-radius-s);
+
+          &:focus-visible {
+            outline: 2px solid var(--color-text);
+          }
+        }
+
+        .vui-input-color-indicator {
+          position: absolute;
+          inset: 4px;
+          right: unset;
+          width: calc(var(--input-height) - 8px);
+          background-color: var(--color-bg-raised);
+          border-radius: var(--border-radius-s);
+          font-size: var(--font-size-l);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
       }
     }
 
