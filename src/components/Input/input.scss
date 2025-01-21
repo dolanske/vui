@@ -116,6 +116,17 @@
       background-color: var(--color-border);
     }
 
+    input[type='color'] {
+      &:-webkit-color-swatch {
+        border-radius: var(--border-radius-m);
+        padding: 0;
+      }
+
+      &:-webkit-color-swatch-wrapper {
+        padding: 0;
+      }
+    }
+
     ::-moz-range-thumb,
     ::-webkit-slider-thumb {
       width: 16px;

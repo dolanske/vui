@@ -72,13 +72,11 @@ import Password from '../components/Input/Password.vue'
       <Input label="Color" type="color" />
       <Input label="Date" type="date" />
       <Input label="Email" type="email" />
-      <Input label="Month" type="month" />
       <Input label="Number" type="number" />
       <Input label="Range" type="range" />
       <Input label="Search" type="search" />
       <Input label="Tel" type="tel" />
       <Input label="Time" type="time" />
-      <Input label="Week" type="week" />
       <Input label="Url" type="url" />
 
       <File label="File" />
