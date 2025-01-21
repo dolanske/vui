@@ -3,6 +3,7 @@ import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Divider from '../components/Divider/Divider.vue'
+import Flex from '../components/Flex/Flex.vue'
 import Grid from '../components/Grid/Grid.vue'
 import Color from '../components/Input/Color.vue'
 import Counter from '../components/Input/Counter.vue'
@@ -11,6 +12,8 @@ import File from '../components/Input/File.vue'
 import Input from '../components/Input/Input.vue'
 import Password from '../components/Input/Password.vue'
 import Textarea from '../components/Input/Textarea.vue'
+import OTP from '../components/OTP/OTP.vue'
+import OTPItem from '../components/OTP/OTPItem.vue'
 import Select from '../components/Select/Select.vue'
 
 const options = [
@@ -142,5 +145,51 @@ const selected2 = ref([])
       <Select v-model="selected2" :options="options" label="Multi, max options 2" expand :single="false" :max-active-options="2" />
       <Select v-model="selected1" :options="options" label="Multi required" required expand :single="false" hint="Must always have at least one option selected" />
     </Grid>
+    <Divider :size="48" />
+
+    <h6 class="mb-l">
+      OTP
+    </h6>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Base</th>
+          <td>
+            <OTP>
+              <Flex :gap="0" align-center>
+                <OTPItem :i="0" />
+                <OTPItem :i="1" />
+                <OTPItem :i="2" />
+                <span class="ml-m mr-m">-</span>
+                <OTPItem :i="3" />
+                <OTPItem :i="4" />
+                <OTPItem :i="5" />
+              </Flex>
+            </OTP>
+          </td>
+        </tr>
+        <tr>
+          <th>Redacted + only numbers</th>
+          <td>
+            <OTP redacted mode="num">
+              <OTPItem :i="0" />
+              <OTPItem :i="1" />
+              <OTPItem :i="2" />
+            </OTP>
+          </td>
+        </tr>
+        <tr>
+          <th>Only characters</th>
+          <td>
+            <OTP redacted mode="char">
+              <OTPItem :i="0" />
+              <OTPItem :i="1" />
+              <OTPItem :i="2" />
+            </OTP>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
