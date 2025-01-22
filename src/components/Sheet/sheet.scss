@@ -10,24 +10,32 @@
     top: 0;
     border-bottom: 1px solid var(--color-border);
     height: auto;
+    border-bottom-right-radius: var(--border-radius-l);
+    border-bottom-left-radius: var(--border-radius-l);
   }
 
   &.vui-sheet-position-bottom {
     bottom: 0;
     border-top: 1px solid var(--color-border);
     height: auto;
+    border-top-right-radius: var(--border-radius-l);
+    border-top-left-radius: var(--border-radius-l);
   }
 
   &.vui-sheet-position-right {
     right: 0;
     top: 0;
     border-left: 1px solid var(--color-border);
+    border-top-left-radius: var(--border-radius-l);
+    border-bottom-left-radius: var(--border-radius-l);
   }
 
   &.vui-sheet-position-left {
     left: 0;
     top: 0;
     border-right: 1px solid var(--color-border);
+    border-top-right-radius: var(--border-radius-l);
+    border-bottom-right-radius: var(--border-radius-l);
   }
 
   &.vui-sheet-position-top,
@@ -36,6 +44,7 @@
     width: 100%;
   }
 
+  .vui-sheet-footer,
   .vui-sheet-header,
   .vui-sheet-content {
     width: 100%;

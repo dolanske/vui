@@ -1,5 +1,7 @@
 .vui-input-container {
   &.vui-select {
+    width: auto;
+
     &.expand {
       .vui-dropdown-trigger-wrap,
       .vui-dropdown-trigger-content {

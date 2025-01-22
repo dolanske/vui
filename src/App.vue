@@ -10,6 +10,7 @@ import ExampleCards from './examples/ExampleCards.vue'
 import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
 import ExampleInputs from './examples/ExampleInputs.vue'
+import ExampleModals from './examples/ExampleModals.vue'
 import ExampleSheets from './examples/ExampleSheets.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
@@ -56,5 +57,7 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
     <ExampleTooltips />
     <Divider :size="64" />
     <ExampleSheets />
+    <Divider :size="64" />
+    <ExampleModals />
   </div>
 </template>
