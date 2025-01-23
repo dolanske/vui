@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { VNode } from 'vue'
+import type Kbd from './Kbd.vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
 
 /**
@@ -12,11 +12,7 @@ const emits = defineEmits<{
 }>()
 
 const slots = defineSlots<{
-  default: () => Array<VNode & {
-    props: {
-      keys: string
-    }
-  }>
+  default: () => Array<typeof Kbd>
 }>()
 const keys = useMagicKeys()
 

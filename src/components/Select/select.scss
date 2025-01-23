@@ -20,6 +20,11 @@
     }
 
     .vui-select-trigger-container {
+      &.has-value span {
+        color: var(--color-text);
+        font-weight: var(--font-weight-medium);
+      }
+
       span {
         white-space: nowrap;
         text-overflow: ellipsis;

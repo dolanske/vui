@@ -134,7 +134,13 @@ function clearValue() {
             {{ hint }}
           </p>
 
-          <button ref="trigger" class="vui-input-style vui-select-trigger-container" :disabled @click="toggle">
+          <button
+            ref="trigger"
+            class="vui-input-style vui-select-trigger-container"
+            :class="{ 'has-value': selected && selected.length > 0 }"
+            :disabled
+            @click="toggle"
+          >
             <span>
               {{ renderPlaceholder }}
             </span>
