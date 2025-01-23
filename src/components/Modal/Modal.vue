@@ -8,7 +8,7 @@ import Card from '../Card/Card.vue'
 import './modal.scss'
 
 export interface ModalProps {
-  size?: Sizes | 'full'
+  size?: Sizes | 'full' | 'screen'
   /**
    * Modal wraps a floating card. You can optinally pass in any props you'd pass
    * into the <Card /> component.
@@ -54,8 +54,8 @@ function tryClose() {
 <template>
   <Teleport to="body">
     <Transition appear name="modal">
-      <Backdrop v-if="open" @close="tryClose">
-        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable, centered }]" v-bind="attrs" @click.self="tryClose">
+      <Backdrop v-if="open" :class="{ 'p-0': size === 'screen' }" @close="tryClose">
+        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable: scrollable || size === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
               <slot name="header" :close="close" />

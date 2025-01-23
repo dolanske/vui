@@ -21,6 +21,17 @@
     max-width: 728px;
   }
 
+  &.vui-modal-size-screen {
+    position: fixed;
+    inset: 0;
+
+    & > .vui-card {
+      border-radius: 0;
+      border: none;
+      height: 100vh;
+    }
+  }
+
   &.scrollable {
     & > .vui-card {
       display: flex;

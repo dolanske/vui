@@ -9,6 +9,7 @@ const open = ref(false)
 const open2 = ref(false)
 const open3 = ref(false)
 const open4 = ref(false)
+const open5 = ref(false)
 
 const size = ref<Sizes | 'full'>('s')
 function setSize(s: any) {
@@ -104,6 +105,29 @@ function setSize(s: any) {
               </template>
               <p class="text-xxxxl">
                 Non dismissable modal means that it can only be closed via a provided button. Like a confirmation etc. No chance of closing it by clicking the x buttton, pressing escape or clicking the backdrop. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas nisi eos dolores ipsa perspiciatis ullam voluptates quos. Recusandae quod atque, laudantium quis, ad quaerat cumque vero quibusdam facilis, blanditiis eius.
+              </p>
+              <template #footer="{ close }">
+                <Button @click="close">
+                  Close
+                </Button>
+              </template>
+            </Modal>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Fullscreen
+          </th>
+          <td>
+            <Button @click="open5 = !open5">
+              Open
+            </Button>
+            <Modal v-model="open5" size="screen" :card="{ separators: true }" scrollable>
+              <template #header>
+                <h4>What is this?</h4>
+              </template>
+              <p class="text-xxxxl">
+                Non dismissable modal means that it can only be closed via a provided button. Like a confirmation etc. No chance of closing it by clicking the x buttton, pressing escape or clicking the backdrop. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas nisi eos dolores ipsa perspiciatis ullam voluptates quos. Recusandae quod atque, laudantium quis, ad quaerat cumque vero quibusdam facilis, blanditiis eius. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sed, impedit officia ad earum optio molestiae nihil mollitia quas enim neque repudiandae minus? Odio fugit voluptates enim et iste odit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. In mollitia harum consectetur ad soluta laudantium? In earum animi harum impedit modi dolores, quod ex, ipsa ipsum est perferendis laudantium aut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, cupiditate autem aut nisi quas voluptatem dolorem, eaque odit voluptates laboriosam consequuntur dolore alias a provident corporis nemo. Blanditiis, vel! Maiores!
               </p>
               <template #footer="{ close }">
                 <Button @click="close">
