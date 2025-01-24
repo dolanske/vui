@@ -9,6 +9,7 @@ import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleCards from './examples/ExampleCards.vue'
 import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
+import ExampleDividers from './examples/ExampleDividers.vue'
 import ExampleDrawers from './examples/ExampleDrawers.vue'
 import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleKBD from './examples/ExampleKBD.vue'
@@ -66,6 +67,8 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <ExampleDrawers />
       <Divider :size="64" />
       <ExampleKBD />
+      <Divider :size="64" />
+      <ExampleDividers />
     </div>
   </main>
 </template>
