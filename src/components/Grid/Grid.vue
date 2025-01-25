@@ -12,7 +12,7 @@ interface Props {
   gap?: Space | number
   rows?: number | string
   columns?: number | string
-  areas?: string[]
+  // areas?: string[]
 }
 
 const props = withDefaults(defineProps<Props>(), {

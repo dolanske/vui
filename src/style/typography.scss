@@ -62,11 +62,13 @@ p {
   }
 
   code {
-    border-radius: var(--border-radius-xs);
+    border-radius: var(--border-radius-s);
     background-color: var(--color-bg-raised);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    padding: 1px 3px;
+    padding: 2px 6px;
+    font-weight: 400;
+    font-size: var(--font-size-s);
   }
 
   strong,

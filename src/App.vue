@@ -11,6 +11,7 @@ import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
 import ExampleDividers from './examples/ExampleDividers.vue'
 import ExampleDrawers from './examples/ExampleDrawers.vue'
+import ExampleFlexGrid from './examples/ExampleFlexGrid.vue'
 import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleKBD from './examples/ExampleKBD.vue'
 import ExampleModals from './examples/ExampleModals.vue'
@@ -69,6 +70,8 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <ExampleKBD />
       <Divider :size="64" />
       <ExampleDividers />
+      <Divider :size="64" />
+      <ExampleFlexGrid />
     </div>
   </main>
 </template>

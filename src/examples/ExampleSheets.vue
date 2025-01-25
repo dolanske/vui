@@ -20,7 +20,7 @@ const option = ref([options[0]])
       Sheets
     </h3>
 
-    <Select v-model="option" expand label="Position" :options class="mb-l" />
+    <Select v-model="option" expand label="Position" :options class="mb-l" required />
 
     <table>
       <tbody>
