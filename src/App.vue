@@ -16,6 +16,7 @@ import ExampleFlexGrid from './examples/ExampleFlexGrid.vue'
 import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleKBD from './examples/ExampleKBD.vue'
 import ExampleModals from './examples/ExampleModals.vue'
+import ExamplePopouts from './examples/ExamplePopouts.vue'
 import ExampleSheets from './examples/ExampleSheets.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
@@ -69,6 +70,8 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <ExampleDrawers />
       <Divider :size="64" />
       <ExampleKBD />
+      <Divider :size="64" />
+      <ExamplePopouts />
       <Divider :size="64" />
       <ExampleDividers />
       <Divider :size="64" />
