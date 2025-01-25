@@ -55,10 +55,17 @@
   }
 
   .vui-dropdown-item-hint {
+    display: flex;
+    align-items: center;
+    gap: 2px;
     margin-left: 8px;
     font-size: 0.9rem;
     // white-space: nowrap;
     color: var(--color-text-lighter);
+
+    svg {
+      color: var(--color-text-lighter);
+    }
   }
 
   .vui-dropdown-item-slot {

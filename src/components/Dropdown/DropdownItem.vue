@@ -8,21 +8,23 @@ interface Props {
   iconEnd?: string
 }
 
+// TODO: in documentation, mention that to offset items without icon, just pass in empty div to the icon slot
+
 const props = defineProps<Props>()
 </script>
 
 <template>
-  <button class="vui-dropdown-item" :class="{ disabled }">
+  <button class="vui-dropdown-item" :class="{ disabled }" :disabled>
     <!-- This should always be here to offset items which dont have icons -->
-    <div class="vui-dropdown-item-icon">
-      <Icon v-if="props.icon" :icon="props.icon" />
+    <div v-if="props.icon" class="vui-dropdown-item-icon">
+      <Icon :icon="props.icon" />
     </div>
 
     <div class="vui-dropdown-item-slot">
       <slot />
     </div>
 
-    <div class="vui-dropdown-item-hint">
+    <div v-if="$slots.hint" class="vui-dropdown-item-hint">
       <slot name="hint" />
     </div>
 

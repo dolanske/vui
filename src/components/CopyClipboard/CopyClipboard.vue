@@ -51,7 +51,7 @@ onMounted(() => {
   }
 
   if (typeof parsedConfirm.value === 'string' && slots.confirm) {
-    console.warn('You are using the \'confirm\' prop and slot. The slot will take precedence.')
+    console.warn('[ClipBoard] You are using the \'confirm\' prop and slot. The slot will take precedence.')
   }
 })
 

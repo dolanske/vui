@@ -2,10 +2,12 @@
 import type { MaybeElement } from '@vueuse/core'
 import type { Placement } from '../../shared/types'
 import { onClickOutside, useMagicKeys, whenever } from '@vueuse/core'
-import { computed, ref, useTemplateRef, watch } from 'vue'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
+
+// FIXME: figure out how minWidth and expand should work together
 
 export interface Props {
   /**
@@ -79,6 +81,11 @@ watch(showMenu, (v) => {
   if (!v)
     emit('close')
 })
+
+onMounted(() => {
+  if (expand && minWidth !== 156)
+    console.warn('[Dropdown] Dropdown: minWidth prop is ignored when expand is set to true')
+})
 </script>
 
 <template>
@@ -101,7 +108,7 @@ watch(showMenu, (v) => {
       class="vui-dropdown"
       :placement
       :style="{
-        minWidth: mW,
+        minWidth: expand ? w : mW,
         width: w,
       }"
     >
