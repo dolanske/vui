@@ -21,6 +21,7 @@ import ExamplePopouts from './examples/ExamplePopouts.vue'
 import ExampleSheets from './examples/ExampleSheets.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import ExampleSpinners from './examples/ExampleSpinners.vue'
+import ExampleTables from './examples/ExampleTables.vue'
 import ExampleTabs from './examples/ExampleTabs.vue'
 import ExampleToasts from './examples/ExampleToasts.vue'
 import ExampleTooltips from './examples/ExampleTooltips.vue'
@@ -81,6 +82,8 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <ExampleDropdowns />
       <Divider :size="64" />
       <ExampleFlexGrid />
+      <Divider :size="64" />
+      <ExampleTables />
     </div>
   </main>
 </template>
