@@ -178,10 +178,12 @@ table {
 
       &:first-child {
         border-top-left-radius: var(--border-radius-s);
+        border-bottom-left-radius: 0 !important;
       }
 
       &:last-child {
         border-top-right-radius: var(--border-radius-s);
+        border-bottom-right-radius: 0 !important;
       }
     }
   }

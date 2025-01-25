@@ -16,17 +16,15 @@
 
     <table class="mb-l">
       <thead>
-        <tr>
-          <th>One</th>
-          <th>Two</th>
-          <th>Three</th>
-        </tr>
+        <th>One</th>
+        <th>Two</th>
+        <th>Three</th>
       </thead>
       <tbody>
         <tr>
-          <th>First </th>
-          <th>Second</th>
-          <th>Third</th>
+          <td>First </td>
+          <td>Second</td>
+          <td>Third</td>
         </tr>
       </tbody>
     </table>
