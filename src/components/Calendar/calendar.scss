@@ -39,6 +39,16 @@
   --dp-time-font-size: var(--font-size-s);
 }
 
+.vui-calendar-inline {
+  .dp__outer_menu_wrap {
+    box-shadow: none;
+  }
+
+  .dp__menu {
+    border: none;
+  }
+}
+
 .dp__main {
   font-size: var(--n-font-size-m);
 }

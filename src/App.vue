@@ -6,6 +6,7 @@ import ExampleAvatars from './examples/ExampleAvatars.vue'
 import ExampleBadges from './examples/ExampleBadges.vue'
 import ExampleBreadcrumbs from './examples/ExampleBreadcrumbs.vue'
 import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleCalendars from './examples/ExampleCalendars.vue'
 import ExampleCards from './examples/ExampleCards.vue'
 import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
@@ -34,6 +35,8 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <p>The purpose of this page is to showcase and test every single component case</p>
       <Divider :size="64" />
       <ExampleButtons />
+      <Divider :size="64" />
+      <ExampleCalendars />
       <Divider :size="64" />
       <ExampleBadges />
       <Divider :size="64" />

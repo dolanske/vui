@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<VueDatePickerProps & {
   autoPosition: true,
   dark: true,
   format: 'dd/MM/yyyy HH:mm',
+  monthNameFormat: 'long',
   expand: false,
 })
 
@@ -24,6 +25,7 @@ const attrs = useAttrs()
   <VueDatePicker
     v-bind="{ ...props, ...attrs }"
     class="vui-calendar"
+    :class="{ 'vui-calendar-inline': props.inline }"
     :style="props.expand ?? !$slots.trigger
       ? undefined
       : { display: 'inline-block', width: 'auto' }
