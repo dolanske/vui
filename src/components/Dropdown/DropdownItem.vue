@@ -8,8 +8,6 @@ interface Props {
   iconEnd?: string
 }
 
-// TODO: in documentation, mention that to offset items without icon, just pass in empty div to the icon slot
-
 const props = defineProps<Props>()
 </script>
 

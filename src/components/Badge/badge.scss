@@ -86,4 +86,19 @@
     color: var(--color-text);
     border: 1px solid var(--color-border-red);
   }
+
+  &.vui-badge-variant-accent {
+    &:not(.outline) {
+      background-color: var(--color-bg-accent-lowered);
+
+      &.filled {
+        background-color: var(--color-accent);
+        color: var(--color-text-invert);
+        border-color: transparent;
+      }
+    }
+
+    color: var(--color-text);
+    border: 1px solid var(--color-border-accent);
+  }
 }

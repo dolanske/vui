@@ -46,7 +46,7 @@
   --transition: 0.2s all cubic-bezier(0.65, 0, 0.35, 1);
   --transition-slow: 0.35s all cubic-bezier(0.65, 0, 0.35, 1);
 
-  --color-bg: rgb(18, 18, 18);
+  --color-bg: rgb(17, 17, 17);
   --color-bg-medium: rgb(22, 22, 22);
   --color-bg-raised: rgb(28, 28, 28);
   --color-bg-lowered: rgb(14, 14, 14);
@@ -89,7 +89,7 @@
   --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.4) calc(l));
   --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.2));
   --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.45));
-  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.3));
+  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.5));
 
   --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);

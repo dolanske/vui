@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, ref } from 'vue'
 import Accordion from '../components/Accordion/Accordion.vue'
+import Divider from '../components/Divider/Divider.vue'
 import { paginate } from '../components/Pagination/pagination'
 import Pagination from '../components/Pagination/Pagination.vue'
 import * as Table from '../components/Table/index'
@@ -52,10 +53,10 @@ const {
 
 // Example
 //
-const testData = ['Jan', 'Andrew', 'Kasper', 'Anton', 'Felix', 'Daniel', 'Gabriel', 'Ayalga', '']
+const testData = ['Jan', 'Andrew', 'Kasper', 'Anton', 'Felix', 'Daniel', 'Gabriel', 'Ayalga', 'Floris']
 const page = ref(1)
 const paginationExample = computed(() => paginate(testData.length, page.value, 2))
-const exampleToRender = computed(() => testData.slice(paginationExample.value.startIndex, paginationExample.value.endIndex))
+const exampleToRender = computed(() => testData.slice(paginationExample.value.startIndex, paginationExample.value.endIndex + 1))
 </script>
 
 <template>
@@ -173,10 +174,10 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
     </p>
 
     <p class="mb-m">
-      Here we have a list of names and we're gonna paginate through them. {{ testData.join(', ') }}
+      Here we have a list of names and we're gonna paginate through them:<br><br> {{ testData.join(', ') }}
     </p>
-    <Pagination :pagination="paginationExample" class="mb-l" @change="(num) => page = num" />
-    <div class="typeset mb-m">
+    <Pagination :pagination="paginationExample" @change="(num) => page = num" />
+    <div class="typeset">
       <ul>
         <li
           v-for="name in exampleToRender"
@@ -187,6 +188,8 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
       </ul>
     </div>
 
-    <pre>{{ paginationExample }}</pre>
+    <Divider :size="40" class="w-40" />
+
+    <p>The <code>defineTable</code> hook can also be used with other UI components. Not just tables. That's why all the table interactivity is not within the component, but in a hook. It's very flexible and allows custom functionality.</p>
   </div>
 </template>

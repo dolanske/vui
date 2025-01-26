@@ -25,11 +25,6 @@ interface Props {
    * Wrap table with a border
    */
   outerBorder?: boolean
-  /**
-   * TODO:
-   * Alternate row background color
-   */
-  // alternate?: boolean
 }
 
 const {

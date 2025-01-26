@@ -2,7 +2,7 @@
 import Badge from '../components/Badge/Badge.vue'
 import Flex from '../components/Flex/Flex.vue'
 
-const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
+const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] as const
 </script>
 
 <template>

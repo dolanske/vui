@@ -2,7 +2,7 @@
 import './badge.scss'
 
 interface Props {
-  variant?: 'neutral' | 'danger' | 'warning' | 'success' | 'info'
+  variant?: 'neutral' | 'danger' | 'warning' | 'success' | 'info' | 'accent'
   outline?: boolean
   filled?: boolean
 }

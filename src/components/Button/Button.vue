@@ -74,6 +74,7 @@ const padding = computed(() => {
       '--button-height': height,
       '--button-padding': padding,
     }"
+    :name="icon && !$slots.default ? icon.split(':')[1] : undefined"
   >
     <Spinner size="s" />
     <div class="vui-button-slot">

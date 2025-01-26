@@ -1,7 +1,7 @@
 <!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
@@ -122,6 +122,8 @@ function clearValue() {
   selected.value = undefined
   dropdownRef.value?.close()
 }
+
+const id = useId()
 </script>
 
 <template>
@@ -129,12 +131,13 @@ function clearValue() {
     <Dropdown ref="dropdown" :expand @close="trigger?.focus({ preventScroll: true })">
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
-          <label v-if="label" for="id">{{ label }}</label>
+          <label v-if="label" :for="id">{{ label }}</label>
           <p v-if="hint" class="vui-input-hint">
             {{ hint }}
           </p>
 
           <button
+            :id
             ref="trigger"
             class="vui-input-style vui-select-trigger-container"
             :class="{ 'has-value': selected && selected.length > 0 }"
@@ -151,6 +154,7 @@ function clearValue() {
                 icon="ph:x"
                 square
                 size="s"
+
                 @click.stop="clearValue"
               />
             </template>
