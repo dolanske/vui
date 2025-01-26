@@ -47,6 +47,10 @@
     tr {
       border: none;
 
+      &:first-child td {
+        border-top: 0 !important;
+      }
+
       &:has(.vui-table-interactive-cell.selected) {
         td {
           background-color: var(--color-bg-raised);
