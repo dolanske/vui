@@ -109,6 +109,15 @@
   --interactive-el-height: 34px;
 }
 
+// Disable motion for users who have requested it
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0s all linear;
+    --transition: 0s all linear;
+    --transition-slow: 0s all linear;
+  }
+}
+
 :root {
   font-family: var(--global-font);
   font-size: 63.5%;
@@ -156,5 +165,4 @@ body {
 @include meta.load-css('tooltip.scss');
 @include meta.load-css('utils.scss');
 @include meta.load-css('text.scss');
-
 @include meta.load-css('media-query.scss');

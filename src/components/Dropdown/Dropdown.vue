@@ -120,7 +120,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: 0.1s opacity ease-in-out;
+  transition: var(--transition-fast);
 }
 
 .dropdown-enter-from,

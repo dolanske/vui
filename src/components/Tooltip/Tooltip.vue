@@ -76,7 +76,7 @@ const id = useId()
 <style scoped>
 .tooltip-enter-active,
 .tooltip-leave-active {
-  transition: 0.1s opacity ease-in-out;
+  transition: var(--transition-fast);
 }
 
 .tooltip-enter-from,
