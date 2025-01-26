@@ -52,6 +52,14 @@
           background-color: var(--color-bg-raised);
         }
       }
+
+      &:last-child td {
+        border-bottom: 0;
+      }
+    }
+
+    th {
+      border-top: 0 !important;
     }
 
     th,

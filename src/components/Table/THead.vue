@@ -40,12 +40,12 @@ const sortStateBind = computed(() => {
 
 <template>
   <th>
-    <div v-if="props.header" class="vui-table-th-content">
+    <div v-if="props.header || $slots.default" class="vui-table-th-content">
       <slot>
-        {{ props.header.label }}
+        {{ props.header?.label }}
       </slot>
       <Button
-        v-if="props.sort"
+        v-if="props.sort && props.header"
         class="vui-table-sort-button"
         v-bind="sortStateBind"
         :class="{ active: !!props.header.sortKey }"

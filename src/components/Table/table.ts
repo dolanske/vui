@@ -38,7 +38,7 @@ interface TableOptionsInput {
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
-export function defineTable<const Dataset extends Array<BaseRow>>(
+export function defineTable<const Dataset extends any[]>(
   computedDataset: MaybeRefOrGetter<Dataset>,
   tableOptions?: TableOptionsInput,
 ) {

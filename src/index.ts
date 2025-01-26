@@ -41,13 +41,12 @@ import Sheet from './components/Sheet/Sheet.vue'
 import Skeleton from './components/Skeleton/Skeleton.vue'
 import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
-import Cell from './components/Table/Cell.vue'
-import Header from './components/Table/Header.vue'
-import Row from './components/Table/Row.vue'
-import SelectAll from './components/Table/SelectAll.vue'
-import SelectRow from './components/Table/SelectRow.vue'
 import { defineTable } from './components/Table/table'
 import Table from './components/Table/Table.vue'
+import TCell from './components/Table/TCell.vue'
+import Header from './components/Table/THead.vue'
+import TSelectAll from './components/Table/TSelectAll.vue'
+import TSelectRow from './components/Table/TSelectRow.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 import { pushToast, removeToast } from './components/Toast/toast'
@@ -70,7 +69,6 @@ export {
   ButtonGroup,
   Calendar,
   Card,
-  Cell,
   Checkbox,
   Confirm,
   CopyClipboard,
@@ -101,11 +99,8 @@ export {
   Radio,
   RadioGroup,
   removeToast,
-  Row,
   searchString,
   Select,
-  SelectAll,
-  SelectRow,
   Sheet,
   Skeleton,
   Spinner,
@@ -113,7 +108,10 @@ export {
   Tab,
   Table,
   Tabs,
+  TCell,
   Textarea,
   Toasts,
   Tooltip,
+  TSelectAll,
+  TSelectRow,
 }

@@ -25,6 +25,12 @@ interface Props {
    * Wrap table with a border
    */
   outerBorder?: boolean
+
+  /**
+   * TODO:
+   * Alternate row background color
+   */
+  alternate?: boolean
 }
 
 const {
@@ -59,7 +65,7 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
         <slot name="body" />
       </tbody>
     </table>
-    <div class="vui-table-pagination-wrap">
+    <div v-if="$slots.pagination" class="vui-table-pagination-wrap">
       <slot name="pagination" />
     </div>
   </div>
