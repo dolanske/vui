@@ -278,7 +278,11 @@
         }
 
         input {
-          display: none;
+          width: 1px;
+          height: 1px;
+          position: absolute;
+          outline: 0 !important;
+          opacity: 0 !important;
 
           & + label {
             display: flex;
