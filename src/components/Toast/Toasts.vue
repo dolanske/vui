@@ -14,6 +14,11 @@ import './toast.scss'
             <p v-if="toast.description">
               {{ toast.description }}
             </p>
+            <Component
+              :is="toast.body"
+              v-if="toast.body"
+              v-bind="{ data: toast.bodyProps, toastId }"
+            />
           </div>
           <Button v-if="toast.action" @click="toast.action.handler(toast.id)">
             {{ toast.action.label }}

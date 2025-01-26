@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import { defineComponent, h, markRaw } from 'vue'
 import Button from '../components/Button/Button.vue'
 import { pushToast, removeToast } from '../components/Toast/toast'
 import Toasts from '../components/Toast/Toasts.vue'
+
+const testBody = markRaw(defineComponent((props) => {
+  return () => h('h2', `${props.data.title} ${props.toastId}`)
+}, {
+  props: {
+    data: Object,
+    toastId: Number,
+  },
+}))
 </script>
 
 <template>
@@ -58,6 +68,21 @@ import Toasts from '../components/Toast/Toasts.vue'
                   },
                 },
                 persist: true,
+              })"
+            >
+              Push toast
+            </Button>
+          </td>
+        </tr>
+        <tr>
+          <th>Custom body</th>
+          <td>
+            <Button
+              @click="pushToast('uhhh', {
+                bodyProps: {
+                  title: 'Bro im a custom component and my id is',
+                },
+                body: testBody,
               })"
             >
               Push toast
