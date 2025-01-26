@@ -16,7 +16,7 @@ const {
     <Button
       square
       plain
-      :icon="isSelectedAll ? 'ph:check-square-fill' : 'ph:square'"
+      :icon="isSelectedAll ? 'ph:check-square' : 'ph:square'"
       @click="selectAllRows()"
     />
   </th>

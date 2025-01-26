@@ -159,15 +159,6 @@ table {
   //   }
   // }
 
-  th,
-  td {
-    vertical-align: top;
-  }
-
-  th {
-    font-weight: 600;
-  }
-
   thead {
     th {
       border-bottom: 1px solid var(--color-border);
@@ -216,12 +207,20 @@ table {
     font-size: var(--font-size-m);
     line-height: 1.4em;
     font-variant-numeric: tabular-nums;
+    vertical-align: top;
 
     &:first-child {
       border-left: 1px solid var(--color-border);
     }
 
     border-right: 1px solid var(--color-border);
+  }
+
+  th {
+    font-weight: 600;
+    color: var(--color-text-light);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
   }
 
   tr {

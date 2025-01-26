@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { BaseRow, TableSelectionProvide } from './table'
 import { computed, inject } from 'vue'
+import { isObjectInSet } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import { TableSelectionProvideSymbol } from './table'
 
@@ -14,7 +15,7 @@ const {
   selectRow,
   selectedRows,
 } = inject(TableSelectionProvideSymbol) as TableSelectionProvide
-const isSelected = computed(() => selectedRows.value.has(props.row))
+const isSelected = computed(() => isObjectInSet(selectedRows.value, props.row))
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const isSelected = computed(() => selectedRows.value.has(props.row))
     <Button
       square
       plain
-      :icon="isSelected ? 'ph:check-square-fill' : 'ph:square'"
+      :icon="isSelected ? 'ph:check-square' : 'ph:square'"
       @click="selectRow(props.row)"
     />
   </td>

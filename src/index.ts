@@ -41,12 +41,8 @@ import Sheet from './components/Sheet/Sheet.vue'
 import Skeleton from './components/Skeleton/Skeleton.vue'
 import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
+import * as Table from './components/Table'
 import { defineTable } from './components/Table/table'
-import Table from './components/Table/Table.vue'
-import TCell from './components/Table/TCell.vue'
-import Header from './components/Table/THead.vue'
-import TSelectAll from './components/Table/TSelectAll.vue'
-import TSelectRow from './components/Table/TSelectRow.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 import { pushToast, removeToast } from './components/Toast/toast'
@@ -83,7 +79,6 @@ export {
   File,
   Flex,
   Grid,
-  Header,
   Input,
   Kbd,
   KbdGroup,
@@ -108,10 +103,7 @@ export {
   Tab,
   Table,
   Tabs,
-  TCell,
   Textarea,
   Toasts,
   Tooltip,
-  TSelectAll,
-  TSelectRow,
 }

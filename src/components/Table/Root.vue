@@ -25,12 +25,11 @@ interface Props {
    * Wrap table with a border
    */
   outerBorder?: boolean
-
   /**
    * TODO:
    * Alternate row background color
    */
-  alternate?: boolean
+  // alternate?: boolean
 }
 
 const {
@@ -56,7 +55,7 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
     }"
   >
     <table>
-      <thead>
+      <thead v-if="$slots.header">
         <tr>
           <slot name="header" />
         </tr>

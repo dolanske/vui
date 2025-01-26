@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
+import Pagination from '../components/Pagination/Pagination.vue'
+import * as Table from '../components/Table/index'
 import { defineTable } from '../components/Table/table'
-import Table from '../components/Table/Table.vue'
-import TCell from '../components/Table/TCell.vue'
-import THead from '../components/Table/THead.vue'
 
 interface Item {
   'ID Nation': string
@@ -14,28 +13,42 @@ interface Item {
   'Year': string
 }
 
-const data = ref<Item[]>([])
+interface StrippedItem {
+  Nation: string
+  Population: number
+  Year: string
+}
+
+const data = ref<StrippedItem[]>([])
 
 onBeforeMount(async () => {
   data.value = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population')
     .then(response => response.json())
-    .then(({ data }) => {
-      return data
-    })
-    .catch((error) => {
-      console.error('Error:', error)
+    .then(({ data }: { data: Item[] }) => {
+      return data.map(row => ({
+        Nation: row.Nation,
+        Population: row.Population,
+        Year: row.Year,
+      }))
     })
 })
 
 const {
   rows,
   headers,
+  pagination,
+  setPage,
+  selectedRows,
 } = defineTable(data, {
   pagination: {
     enabled: true,
-    perPage: 5,
+    perPage: 3,
   },
+  select: true,
 })
+
+// TODO: add an example of other table props with simple data
+// TODO: add an example of pagination not used with a table but standalone
 </script>
 
 <template>
@@ -52,9 +65,11 @@ const {
 
     <table class="mb-l">
       <thead>
-        <th>One</th>
-        <th>Two</th>
-        <th>Three</th>
+        <tr>
+          <th>One</th>
+          <th>Two</th>
+          <th>Three</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
@@ -88,20 +103,27 @@ const {
       Data table
     </h5>
 
-    <Table>
+    <Table.Root separate-cells class="mb-l">
       <template #header>
-        <THead v-for="header in headers" :key="header.label" :header />
-        <!-- <THead sort>Nation</THead>
-        <THead>Population</THead>
-        <THead>Year</THead> -->
+        <Table.SelectAll />
+        <Table.Head v-for="header in headers" :key="header.label" :header sort />
       </template>
       <template #body>
-        <tr v-for="row in rows" :key="row['Slug Nation']">
-          <TCell>{{ row.Nation }}</TCell>
-          <TCell>{{ row.Population }}</TCell>
-          <TCell>{{ row.Year }}</TCell>
+        <tr v-for="row in rows" :key="row.Year">
+          <Table.SelectRow :row />
+          <Table.Cell>{{ row.Nation }}</Table.Cell>
+          <Table.Cell>{{ row.Population }}</Table.Cell>
+          <Table.Cell>{{ row.Year }}</Table.Cell>
         </tr>
       </template>
-    </Table>
+      <template #pagination>
+        <Pagination :pagination :first-last="false" @change="setPage" />
+      </template>
+    </Table.Root>
+
+    <span class="mb-s block">Selected rows</span>
+    <pre>
+      {{ selectedRows }}
+    </pre>
   </div>
 </template>

@@ -139,7 +139,7 @@ export function defineTable<const Dataset extends any[]>(
   })
 
   const headers = computed(() => Object
-    .keys($data.value[0])
+    .keys($data.value[0] || {})
     .map((key) => {
       return {
         label: key,
@@ -212,7 +212,11 @@ export function defineTable<const Dataset extends any[]>(
       selectedRows.value = new Set()
     }
     else {
-      selectedRows.value = new Set($data.value.map(row => row))
+      const data = new Set<BaseRow>()
+      for (const item of $data.value) {
+        data.add(item)
+      }
+      selectedRows.value = new Set(data)
     }
   }
 
