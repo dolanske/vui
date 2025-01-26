@@ -57,3 +57,21 @@
     }
   }
 }
+
+select {
+  display: block;
+  height: var(--interactive-el-height);
+  line-height: var(--interactive-el-height);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-s);
+  padding-inline: var(--space-xs);
+  transition: var(--transition-fast);
+  z-index: 1;
+  font-size: var(--font-size-ms);
+  color: var(--color-text);
+
+  &:hover {
+    border-color: var(--color-border-strong);
+  }
+}

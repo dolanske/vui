@@ -144,6 +144,21 @@ const selected2 = ref([])
       <Select v-model="selected" :options="options" label="Base multi" expand :single="false" />
       <Select v-model="selected2" :options="options" label="Multi, max options 2" expand :single="false" :max-active-options="2" />
       <Select v-model="selected1" :options="options" label="Multi required" required expand :single="false" hint="Must always have at least one option selected" />
+
+      <select>
+        <option value="" disabled>
+          Select option
+        </option>
+        <option value="Jan">
+          Jan
+        </option>
+        <option value="Andrew">
+          Andrew
+        </option>
+        <option value="Kasper">
+          Kasper
+        </option>
+      </select>
     </Grid>
     <Divider :size="48" />
 
