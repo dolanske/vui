@@ -1,6 +1,6 @@
 <script setup lang='ts'>
-import { useCssVar, useMouse, useTimeoutFn, watchThrottled } from '@vueuse/core'
-import { computed, useSlots, useTemplateRef } from 'vue'
+import { useCssVar, useMouse, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
+import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
 import { isNil } from '../../shared/helpers'
 import './sidebar.scss'
 
@@ -27,18 +27,21 @@ interface Props {
 }
 
 const sidebar = useTemplateRef('sidebar')
-const open = defineModel<boolean>()
+const open = defineModel<boolean>({
+  default: true,
+})
 const slots = useSlots()
 const offset = useCssVar('--vui-sidebar-float-offset', sidebar, {
   initialValue: '8px',
 })
 
 const width = computed(() => {
-  if (props.mini)
-    return `65px`
+  if (props.mini) {
+    return props.floaty ? '73px' : `65px`
+  }
   if (!props.floaty)
     return `${props.width}px`
-  return `calc(${props.width}px - ${offset.value})`
+  return `calc(${props.width}px + ${offset.value})`
 })
 
 const slotProps = computed(() => ({
@@ -46,19 +49,29 @@ const slotProps = computed(() => ({
   floaty: props.floaty,
   width: props.width,
   open,
+  close: () => open.value = false,
 }))
 
 // Sidebar `appear` implementation
 const { start, stop, isPending } = useTimeoutFn(() => {
-  open.value = true
+  if (props.appear) {
+    open.value = true
+  }
 }, 250)
 
 const APPEAR_OFFSET = 32
 
-const { x } = useMouse()
+const wrap = useTemplateRef('wrap')
+const { elementX } = useMouseInElement(wrap)
 
-watchThrottled(x, (pos) => {
-  if (!props.appear)
+onMounted(() => {
+  if (props.appear && open.value) {
+    open.value = false
+  }
+})
+
+watchThrottled(elementX, (pos) => {
+  if (!props.appear || (pos <= APPEAR_OFFSET && pos >= 0 && isPending.value))
     return
 
   if (pos <= APPEAR_OFFSET && pos >= 0 && !open.value && !isPending.value) {
@@ -83,7 +96,7 @@ watchThrottled(x, (pos) => {
 </script>
 
 <template>
-  <div class="vui-sidebar-outer" :style="{ width }" :class="{ open }">
+  <div ref="wrap" class="vui-sidebar-outer" :style="{ width }" :class="{ open }">
     <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty, mini: props.mini }" :style="{ width: `${props.mini ? 65 : props.width}px` }">
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />
