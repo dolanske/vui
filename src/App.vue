@@ -17,6 +17,7 @@ import ExampleFlexGrid from './examples/ExampleFlexGrid.vue'
 import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleKBD from './examples/ExampleKBD.vue'
 import ExampleModals from './examples/ExampleModals.vue'
+import ExamplePalette from './examples/ExamplePalette.vue'
 import ExamplePopouts from './examples/ExamplePopouts.vue'
 import ExampleSheets from './examples/ExampleSheets.vue'
 import ExampleSidebars from './examples/ExampleSidebars.vue'
@@ -35,6 +36,8 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
         VUI
       </h1>
       <p>The purpose of this page is to showcase and test every single component case</p>
+      <Divider :size="64" />
+      <ExamplePalette />
       <Divider :size="64" />
       <ExampleButtons />
       <Divider :size="64" />
