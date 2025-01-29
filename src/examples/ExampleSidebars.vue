@@ -26,7 +26,7 @@ const s3 = ref(true)
           <Sidebar>
             <template #header>
               <Flex align-center>
-                <img src="https://dolansky.dev/backgrounds/star.png" style="filter:invert()" width="40" alt="">
+                <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
                 <h3>ABC</h3>
               </Flex>
             </template>
@@ -68,7 +68,7 @@ const s3 = ref(true)
           <Sidebar v-model="s1" floaty>
             <template #header="{ close }">
               <Flex align-center>
-                <img src="https://dolansky.dev/backgrounds/star.png" style="filter:invert()" width="40" alt="">
+                <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
                 <h3 class="flex-1">
                   ABC
                 </h3>
@@ -113,7 +113,7 @@ const s3 = ref(true)
           <Sidebar v-model="s2" mini>
             <template #header>
               <Flex align-center>
-                <img src="https://dolansky.dev/backgrounds/star.png" style="filter:invert()" width="40" alt="">
+                <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
               </Flex>
             </template>
             <DropdownItem icon="ph:house">
@@ -160,7 +160,7 @@ const s3 = ref(true)
           <Sidebar v-model="s3" mini floaty>
             <template #header>
               <Flex align-center>
-                <img src="https://dolansky.dev/backgrounds/star.png" style="filter:invert()" width="40" alt="">
+                <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
               </Flex>
             </template>
             <DropdownItem icon="ph:house">
@@ -206,7 +206,7 @@ const s3 = ref(true)
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
           <Sidebar appear :width="300">
             <template #header>
-              <img src="https://dolansky.dev/backgrounds/star.png" style="filter:invert()" width="40" alt="">
+              <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
             <DropdownItem icon="ph:house">
               Home
@@ -232,7 +232,7 @@ const s3 = ref(true)
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
           <Sidebar appear mini floaty>
             <template #header>
-              <img src="https://dolansky.dev/backgrounds/star.png" style="filter:invert()" width="40" alt="">
+              <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
             <DropdownItem icon="ph:house">
               Home
@@ -261,5 +261,11 @@ const s3 = ref(true)
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
   overflow: hidden;
+}
+
+html.dark {
+  .sidebar-logo {
+    filter: invert() !important;
+  }
 }
 </style>

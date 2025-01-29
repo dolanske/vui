@@ -9,10 +9,10 @@
   --light-color-text-light: rgb(64, 64, 64);
   --light-color-text-lighter: rgb(90, 90, 90);
   --light-color-text-lightest: rgb(125, 125, 125);
-  --light-color-text-invert: rgb(17, 17, 17);
+  --light-color-text-invert: rgb(248, 248, 248);
 
-  --light-color-button-gray: rgb(28, 28, 28);
-  --light-color-button-gray-hover: rgb(38, 38, 38);
+  --light-color-button-gray: rgb(228, 228, 228);
+  --light-color-button-gray-hover: rgb(208, 208, 208);
 
   --light-color-text-red: rgb(243, 78, 70);
   --light-color-bg-red-lowered: rgb(66, 22, 20);
@@ -35,9 +35,9 @@
   --light-color-bg-blue-raised: rgb(26, 59, 119);
   --light-color-border-blue: rgb(20, 45, 112);
 
-  --light-color-border: rgb(40, 40, 40);
-  --light-color-border-strong: rgb(54, 54, 54);
-  --light-color-border-weak: rgb(36, 36, 36);
+  --light-color-border: rgb(200, 200, 200);
+  --light-color-border-strong: rgb(180, 180, 180);
+  --light-color-border-weak: rgb(216, 216, 216);
 
   --light-color-accent: rgb(238, 120, 17);
   --light-color-accent-disabled: hsl(from var(--light-color-accent) calc(h) calc(s * 0.4) calc(l));
@@ -45,8 +45,8 @@
   --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.45));
   --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.5));
 
-  --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
-  --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
+  --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.075);
+  --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);
 }
 
 // Dark theme
@@ -54,7 +54,7 @@
   --dark-color-bg: rgb(17, 17, 17);
   --dark-color-bg-medium: rgb(22, 22, 22);
   --dark-color-bg-raised: rgb(28, 28, 28);
-  --dark-color-bg-lowered: rgb(14, 14, 14);
+  --dark-color-bg-lowered: rgb(12, 12, 12);
 
   --dark-color-text: rgb(231, 231, 231);
   --dark-color-text-light: rgb(180, 180, 180);
@@ -100,106 +100,106 @@
   --dark-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-bg: var(--light-color-bg);
-    --color-bg-medium: var(--light-color-bg-medium);
-    --color-bg-raised: var(--light-color-bg-raised);
-    --color-bg-lowered: var(--light-color-bg-lowered);
+:root.light {
+  color-scheme: light;
 
-    --color-text: var(--light-color-text);
-    --color-text-light: var(--light-color-text-light);
-    --color-text-lighter: var(--light-color-text-lighter);
-    --color-text-lightest: var(--light-color-text-lightest);
-    --color-text-invert: var(--light-color-text-invert);
+  --color-bg: var(--light-color-bg);
+  --color-bg-medium: var(--light-color-bg-medium);
+  --color-bg-raised: var(--light-color-bg-raised);
+  --color-bg-lowered: var(--light-color-bg-lowered);
 
-    --color-button-gray: var(--light-color-button-gray);
-    --color-button-gray-hover: var(--light-color-button-gray-hover);
+  --color-text: var(--light-color-text);
+  --color-text-light: var(--light-color-text-light);
+  --color-text-lighter: var(--light-color-text-lighter);
+  --color-text-lightest: var(--light-color-text-lightest);
+  --color-text-invert: var(--light-color-text-invert);
 
-    --color-text-red: var(--light-color-text-red);
-    --color-bg-red-lowered: var(--light-color-bg-red-lowered);
-    --color-bg-red-raised: var(--light-color-bg-red-raised);
-    --color-border-red: var(--light-color-border-red);
+  --color-button-gray: var(--light-color-button-gray);
+  --color-button-gray-hover: var(--light-color-button-gray-hover);
 
-    --color-text-green: var(--light-color-text-green);
-    --color-text-green-disabled: var(--light-color-text-green-disabled);
-    --color-bg-green-lowered: var(--light-color-bg-green-lowered);
-    --color-bg-green-raised: var(--light-color-bg-green-raised);
-    --color-border-green: var(--light-color-border-green);
+  --color-text-red: var(--light-color-text-red);
+  --color-bg-red-lowered: var(--light-color-bg-red-lowered);
+  --color-bg-red-raised: var(--light-color-bg-red-raised);
+  --color-border-red: var(--light-color-border-red);
 
-    --color-text-yellow: var(--light-color-text-yellow);
-    --color-bg-yellow-lowered: var(--light-color-bg-yellow-lowered);
-    --color-bg-yellow-raised: var(--light-color-bg-yellow-raised);
-    --color-border-yellow: var(--light-color-border-yellow);
+  --color-text-green: var(--light-color-text-green);
+  --color-text-green-disabled: var(--light-color-text-green-disabled);
+  --color-bg-green-lowered: var(--light-color-bg-green-lowered);
+  --color-bg-green-raised: var(--light-color-bg-green-raised);
+  --color-border-green: var(--light-color-border-green);
 
-    --color-text-blue: var(--light-color-text-blue);
-    --color-bg-blue-lowered: var(--light-color-bg-blue-lowered);
-    --color-bg-blue-raised: var(--light-color-bg-blue-raised);
-    --color-border-blue: var(--light-color-border-blue);
+  --color-text-yellow: var(--light-color-text-yellow);
+  --color-bg-yellow-lowered: var(--light-color-bg-yellow-lowered);
+  --color-bg-yellow-raised: var(--light-color-bg-yellow-raised);
+  --color-border-yellow: var(--light-color-border-yellow);
 
-    --color-border: var(--light-color-border);
-    --color-border-strong: var(--light-color-border-strong);
-    --color-border-weak: var(--light-color-border-weak);
+  --color-text-blue: var(--light-color-text-blue);
+  --color-bg-blue-lowered: var(--light-color-bg-blue-lowered);
+  --color-bg-blue-raised: var(--light-color-bg-blue-raised);
+  --color-border-blue: var(--light-color-border-blue);
 
-    --color-accent: var(--light-color-accent);
-    --color-accent-disabled: var(--light-color-accent-disabled);
-    --color-bg-accent-lowered: var(--light-color-bg-accent-lowered);
-    --color-bg-accent-raised: var(--light-color-bg-accent-raised);
-    --color-border-accent: var(--light-color-border-accent);
+  --color-border: var(--light-color-border);
+  --color-border-strong: var(--light-color-border-strong);
+  --color-border-weak: var(--light-color-border-weak);
 
-    --box-shadow: var(--light-box-shadow);
-    --box-shadow-strong: var(--light-box-shadow-strong);
-  }
+  --color-accent: var(--light-color-accent);
+  --color-accent-disabled: var(--light-color-accent-disabled);
+  --color-bg-accent-lowered: var(--light-color-bg-accent-lowered);
+  --color-bg-accent-raised: var(--light-color-bg-accent-raised);
+  --color-border-accent: var(--light-color-border-accent);
+
+  --box-shadow: var(--light-box-shadow);
+  --box-shadow-strong: var(--light-box-shadow-strong);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: var(--dark-color-bg);
-    --color-bg-medium: var(--dark-color-bg-medium);
-    --color-bg-raised: var(--dark-color-bg-raised);
-    --color-bg-lowered: var(--dark-color-bg-lowered);
+:root.dark {
+  color-scheme: dark;
 
-    --color-text: var(--dark-color-text);
-    --color-text-light: var(--dark-color-text-light);
-    --color-text-lighter: var(--dark-color-text-lighter);
-    --color-text-lightest: var(--dark-color-text-lightest);
-    --color-text-invert: var(--dark-color-text-invert);
+  --color-bg: var(--dark-color-bg);
+  --color-bg-medium: var(--dark-color-bg-medium);
+  --color-bg-raised: var(--dark-color-bg-raised);
+  --color-bg-lowered: var(--dark-color-bg-lowered);
 
-    --color-button-gray: var(--dark-color-button-gray);
-    --color-button-gray-hover: var(--dark-color-button-gray-hover);
+  --color-text: var(--dark-color-text);
+  --color-text-light: var(--dark-color-text-light);
+  --color-text-lighter: var(--dark-color-text-lighter);
+  --color-text-lightest: var(--dark-color-text-lightest);
+  --color-text-invert: var(--dark-color-text-invert);
 
-    --color-text-red: var(--dark-color-text-red);
-    --color-bg-red-lowered: var(--dark-color-bg-red-lowered);
-    --color-bg-red-raised: var(--dark-color-bg-red-raised);
-    --color-border-red: var(--dark-color-border-red);
+  --color-button-gray: var(--dark-color-button-gray);
+  --color-button-gray-hover: var(--dark-color-button-gray-hover);
 
-    --color-text-green: var(--dark-color-text-green);
-    --color-text-green-disabled: var(--dark-color-text-green-disabled);
-    --color-bg-green-lowered: var(--dark-color-bg-green-lowered);
-    --color-bg-green-raised: var(--dark-color-bg-green-raised);
-    --color-border-green: var(--dark-color-border-green);
+  --color-text-red: var(--dark-color-text-red);
+  --color-bg-red-lowered: var(--dark-color-bg-red-lowered);
+  --color-bg-red-raised: var(--dark-color-bg-red-raised);
+  --color-border-red: var(--dark-color-border-red);
 
-    --color-text-yellow: var(--dark-color-text-yellow);
-    --color-bg-yellow-lowered: var(--dark-color-bg-yellow-lowered);
-    --color-bg-yellow-raised: var(--dark-color-bg-yellow-raised);
-    --color-border-yellow: var(--dark-color-border-yellow);
+  --color-text-green: var(--dark-color-text-green);
+  --color-text-green-disabled: var(--dark-color-text-green-disabled);
+  --color-bg-green-lowered: var(--dark-color-bg-green-lowered);
+  --color-bg-green-raised: var(--dark-color-bg-green-raised);
+  --color-border-green: var(--dark-color-border-green);
 
-    --color-text-blue: var(--dark-color-text-blue);
-    --color-bg-blue-lowered: var(--dark-color-bg-blue-lowered);
-    --color-bg-blue-raised: var(--dark-color-bg-blue-raised);
-    --color-border-blue: var(--dark-color-border-blue);
+  --color-text-yellow: var(--dark-color-text-yellow);
+  --color-bg-yellow-lowered: var(--dark-color-bg-yellow-lowered);
+  --color-bg-yellow-raised: var(--dark-color-bg-yellow-raised);
+  --color-border-yellow: var(--dark-color-border-yellow);
 
-    --color-border: var(--dark-color-border);
-    --color-border-strong: var(--dark-color-border-strong);
-    --color-border-weak: var(--dark-color-border-weak);
+  --color-text-blue: var(--dark-color-text-blue);
+  --color-bg-blue-lowered: var(--dark-color-bg-blue-lowered);
+  --color-bg-blue-raised: var(--dark-color-bg-blue-raised);
+  --color-border-blue: var(--dark-color-border-blue);
 
-    --color-accent: var(--dark-color-accent);
-    --color-accent-disabled: var(--dark-color-accent-disabled);
-    --color-bg-accent-lowered: var(--dark-color-bg-accent-lowered);
-    --color-bg-accent-raised: var(--dark-color-bg-accent-raised);
-    --color-border-accent: var(--dark-color-border-accent);
+  --color-border: var(--dark-color-border);
+  --color-border-strong: var(--dark-color-border-strong);
+  --color-border-weak: var(--dark-color-border-weak);
 
-    --box-shadow: var(--dark-box-shadow);
-    --box-shadow-strong: var(--dark-box-shadow-strong);
-  }
+  --color-accent: var(--dark-color-accent);
+  --color-accent-disabled: var(--dark-color-accent-disabled);
+  --color-bg-accent-lowered: var(--dark-color-bg-accent-lowered);
+  --color-bg-accent-raised: var(--dark-color-bg-accent-raised);
+  --color-border-accent: var(--dark-color-border-accent);
+
+  --box-shadow: var(--dark-box-shadow);
+  --box-shadow-strong: var(--dark-box-shadow-strong);
 }
