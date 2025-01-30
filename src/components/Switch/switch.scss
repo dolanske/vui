@@ -77,3 +77,13 @@
     }
   }
 }
+
+:root.light {
+  .vui-switch .vui-switch-icon .vui-switch-indicator {
+    background-color: var(--color-bg-lowered);
+  }
+
+  .vui-switch.checked .vui-switch-icon .vui-switch-indicator {
+    background-color: var(--color-text);
+  }
+}
