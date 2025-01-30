@@ -35,9 +35,9 @@ const option = ref([options[0]])
                 <template #header>
                   <h2>Hello </h2>
                 </template>
-                <h1 class="text-color-lighter">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias consectetur obcaecati recusandae debitis voluptatum exercitationem. Nam facilis laudantium labore sint cum, veritatis autem asperiores consectetur possimus cumque beatae eveniet.
-                </h1>
+                <h2 class="text-color-lighter">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus alias consectetur obcaecati recusandae debitis voluptatum exercitationem. Nam facilis laudantium labore sint cum, veritatis autem asperiores consectetur possimus cumque beatae eveniet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rem quod quisquam laborum sed excepturi, eum nisi nostrum, totam nihil magni voluptatum rerum culpa voluptatibus velit, sapiente fuga similique eius?
+                </h2>
                 <template #footer="{ close }">
                   <p class="mb-s">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis placeat nisi, in velit temporibus at esse error et iusto vero odit illo veritatis rem cum delectus autem minus quod reiciendis.

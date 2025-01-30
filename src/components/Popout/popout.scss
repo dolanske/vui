@@ -2,7 +2,14 @@
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   min-width: 80px;
-  background-color: var(--color-bg-raised);
+  background-color: var(--color-bg-medium);
   border-radius: var(--border-radius-m);
   z-index: 1000;
+}
+
+:root.light {
+  .vui-popout {
+    background-color: var(--color-bg);
+    box-shadow: var(--box-shadow-strong);
+  }
 }

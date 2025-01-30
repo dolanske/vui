@@ -150,6 +150,20 @@
     }
   }
 
+  &.vui-button-variant-yellow {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-bg-yellow-lowered);
+      border: 1px solid var(--color-border-yellow);
+    }
+
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
+      border: 1px solid var(--color-bg-yellow-raised);
+      background-color: var(--color-bg-yellow-raised);
+    }
+  }
+
   &.vui-button-variant-accent {
     &:not(.plain) {
       color: var(--color-text);

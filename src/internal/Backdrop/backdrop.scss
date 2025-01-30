@@ -26,3 +26,9 @@
 html:has(.vui-backdrop) {
   overflow: hidden;
 }
+
+:root.light {
+  .vui-backdrop:after {
+    background-color: var(--dark-color-bg);
+  }
+}

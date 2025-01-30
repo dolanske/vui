@@ -102,3 +102,10 @@
     border: 1px solid var(--color-border-accent);
   }
 }
+
+:root.light {
+  .vui-badge.vui-badge-variant-success:not(.outline).filled,
+  .vui-badge.vui-badge-variant-warning:not(.outline).filled {
+    color: var(--color-text);
+  }
+}

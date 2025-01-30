@@ -6,7 +6,7 @@ import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-export type Variants = 'default' | 'danger' | 'success' | 'link' | 'blue' | 'accent'
+export type Variants = 'default' | 'danger' | 'success' | 'link' | 'blue' | 'accent' | 'yellow'
 
 interface Props {
   // Provide URL to turn button into anchor

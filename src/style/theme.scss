@@ -1,49 +1,49 @@
 // Light theme
 :root {
-  --light-color-bg: rgb(248, 248, 248);
-  --light-color-bg-medium: rgb(232, 232, 232);
-  --light-color-bg-raised: rgb(218, 218, 218);
+  --light-color-bg: rgb(246, 246, 246);
+  --light-color-bg-medium: rgb(236, 236, 236);
+  --light-color-bg-raised: rgb(222, 222, 222);
   --light-color-bg-lowered: rgb(255, 255, 255);
 
   --light-color-text: rgb(8, 8, 8);
   --light-color-text-light: rgb(64, 64, 64);
-  --light-color-text-lighter: rgb(90, 90, 90);
-  --light-color-text-lightest: rgb(125, 125, 125);
+  --light-color-text-lighter: rgb(92, 92, 92);
+  --light-color-text-lightest: rgb(128, 128, 128);
   --light-color-text-invert: rgb(248, 248, 248);
 
-  --light-color-button-gray: rgb(228, 228, 228);
-  --light-color-button-gray-hover: rgb(208, 208, 208);
+  --light-color-button-gray: rgb(230, 230, 230);
+  --light-color-button-gray-hover: rgb(212, 212, 212);
 
   --light-color-text-red: rgb(243, 78, 70);
-  --light-color-bg-red-lowered: rgb(66, 22, 20);
-  --light-color-bg-red-raised: rgb(119, 31, 26);
-  --light-color-border-red: rgb(94, 23, 19);
+  --light-color-bg-red-lowered: rgb(211, 99, 94);
+  --light-color-bg-red-raised: rgb(255, 86, 86);
+  --light-color-border-red: rgb(206, 61, 54);
 
   --light-color-text-green: rgb(44, 214, 52);
   --light-color-text-green-disabled: rgb(109, 193, 113);
-  --light-color-bg-green-lowered: rgb(19, 46, 9);
-  --light-color-bg-green-raised: rgb(48, 122, 22);
-  --light-color-border-green: rgb(27, 70, 12);
+  --light-color-bg-green-lowered: rgb(81, 170, 48);
+  --light-color-bg-green-raised: rgb(114, 245, 82);
+  --light-color-border-green: rgb(73, 177, 35);
 
   --light-color-text-yellow: rgb(243, 231, 70);
-  --light-color-bg-yellow-lowered: rgb(59, 46, 10);
-  --light-color-bg-yellow-raised: rgb(119, 82, 26);
-  --light-color-border-yellow: rgb(99, 97, 16);
+  --light-color-bg-yellow-lowered: rgb(226, 177, 43);
+  --light-color-bg-yellow-raised: rgb(253, 200, 86);
+  --light-color-border-yellow: rgb(197, 175, 50);
 
   --light-color-text-blue: rgb(85, 141, 245);
-  --light-color-bg-blue-lowered: rgb(10, 25, 59);
-  --light-color-bg-blue-raised: rgb(26, 59, 119);
-  --light-color-border-blue: rgb(20, 45, 112);
+  --light-color-bg-blue-lowered: rgb(87, 130, 233);
+  --light-color-bg-blue-raised: rgb(86, 145, 255);
+  --light-color-border-blue: rgb(67, 104, 206);
 
   --light-color-border: rgb(200, 200, 200);
   --light-color-border-strong: rgb(180, 180, 180);
   --light-color-border-weak: rgb(216, 216, 216);
 
   --light-color-accent: rgb(238, 120, 17);
-  --light-color-accent-disabled: hsl(from var(--light-color-accent) calc(h) calc(s * 0.4) calc(l));
-  --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.2));
-  --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.45));
-  --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.5));
+  --light-color-accent-disabled: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l));
+  --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.85));
+  --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.95));
+  --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.7));
 
   --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.075);
   --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);

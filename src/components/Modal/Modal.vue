@@ -94,6 +94,6 @@ function tryClose() {
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(1.025);
 }
 </style>

@@ -100,7 +100,7 @@ onMounted(() => {
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
-  <Transition appear name="dropdown">
+  <Transition name="dropdown" mode="out-in">
     <Popout
       v-if="showMenu"
       ref="dropdown"

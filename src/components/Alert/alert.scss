@@ -95,3 +95,16 @@
     }
   }
 }
+
+:root.light {
+  .vui-alert.vui-alert-variant-danger .vui-alert-icon path,
+  .vui-alert.vui-alert-variant-warning .vui-alert-icon path,
+  .vui-alert.vui-alert-variant-success .vui-alert-icon path,
+  .vui-alert.vui-alert-variant-info .vui-alert-icon path {
+    color: var(--color-text);
+  }
+
+  .vui-alert.filled .vui-alert-default-content p {
+    color: var(--color-text);
+  }
+}

@@ -170,8 +170,6 @@ import ExampleColor from './shared/ExampleColor.vue'
   &.dark {
     background-color: black;
 
-    .vui-button .vui-button-slot,
-    svg,
     h5,
     span {
       color: var(--dark-color-text) !important;

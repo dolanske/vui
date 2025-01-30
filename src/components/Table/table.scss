@@ -146,3 +146,9 @@
     }
   }
 }
+
+:root.light {
+  .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
+    background-color: var(--color-bg-medium);
+  }
+}
