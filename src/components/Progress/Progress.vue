@@ -2,6 +2,7 @@
 import { whenever } from '@vueuse/core'
 import { computed, onMounted, useTemplateRef, watch, watchEffect } from 'vue'
 import { clamp, delay, formatUnitValue, isNil, randomMinMax } from '../../shared/helpers'
+import { theme } from '../../shared/theme'
 import './progress.scss'
 
 interface Props {
@@ -26,7 +27,7 @@ interface Props {
 
 const {
   fake,
-  color = 'var(--color-accent)',
+  color = theme === 'dark' ? 'var(--color-accent)' : 'var(--color-border-accent)',
   fixed,
   height,
 } = defineProps<Props>()

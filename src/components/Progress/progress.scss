@@ -39,3 +39,9 @@
     transition: var(--transition-slow);
   }
 }
+
+:root.light {
+  .vui-progress-indicator {
+    background-color: var(--);
+  }
+}

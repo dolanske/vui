@@ -14,36 +14,36 @@
   --light-color-button-gray: rgb(230, 230, 230);
   --light-color-button-gray-hover: rgb(212, 212, 212);
 
-  --light-color-text-red: rgb(243, 78, 70);
-  --light-color-bg-red-lowered: rgb(211, 99, 94);
+  --light-color-text-red: rgb(174, 59, 53);
+  --light-color-bg-red-lowered: rgb(248, 127, 121);
   --light-color-bg-red-raised: rgb(255, 86, 86);
-  --light-color-border-red: rgb(206, 61, 54);
+  --light-color-border-red: rgb(230, 100, 93);
 
   --light-color-text-green: rgb(44, 214, 52);
   --light-color-text-green-disabled: rgb(109, 193, 113);
-  --light-color-bg-green-lowered: rgb(81, 170, 48);
-  --light-color-bg-green-raised: rgb(114, 245, 82);
+  --light-color-bg-green-lowered: rgb(95, 196, 58);
+  --light-color-bg-green-raised: rgb(96, 221, 38);
   --light-color-border-green: rgb(73, 177, 35);
 
-  --light-color-text-yellow: rgb(243, 231, 70);
-  --light-color-bg-yellow-lowered: rgb(226, 177, 43);
+  --light-color-text-yellow: rgb(165, 133, 37);
+  --light-color-bg-yellow-lowered: rgb(241, 192, 56);
   --light-color-bg-yellow-raised: rgb(253, 200, 86);
-  --light-color-border-yellow: rgb(197, 175, 50);
+  --light-color-border-yellow: rgb(180, 141, 24);
 
   --light-color-text-blue: rgb(85, 141, 245);
-  --light-color-bg-blue-lowered: rgb(87, 130, 233);
-  --light-color-bg-blue-raised: rgb(86, 145, 255);
-  --light-color-border-blue: rgb(67, 104, 206);
+  --light-color-bg-blue-lowered: rgb(123, 159, 242);
+  --light-color-bg-blue-raised: rgb(155, 190, 255);
+  --light-color-border-blue: rgb(93, 130, 234);
 
   --light-color-border: rgb(200, 200, 200);
   --light-color-border-strong: rgb(152, 152, 152);
   --light-color-border-weak: rgb(224, 224, 224);
 
-  --light-color-accent: rgb(238, 120, 17);
+  --light-color-accent: rgb(232, 203, 255);
   --light-color-accent-disabled: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l));
-  --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.85));
-  --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.95));
-  --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) s calc(l * 0.7));
+  --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) calc(s * 0.6) calc(l * 0.9));
+  --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 1));
+  --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l * 0.5));
 
   --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.075);
   --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);
@@ -76,10 +76,10 @@
   --dark-color-bg-green-raised: rgb(48, 122, 22);
   --dark-color-border-green: rgb(27, 70, 12);
 
-  --dark-color-text-yellow: rgb(243, 231, 70);
-  --dark-color-bg-yellow-lowered: rgb(59, 46, 10);
-  --dark-color-bg-yellow-raised: rgb(119, 82, 26);
-  --dark-color-border-yellow: rgb(99, 97, 16);
+  --dark-color-text-yellow: rgb(255, 193, 7);
+  --dark-color-bg-yellow-lowered: rgb(78, 52, 0);
+  --dark-color-bg-yellow-raised: rgb(152, 104, 0);
+  --dark-color-border-yellow: rgb(116, 91, 13);
 
   --dark-color-text-blue: rgb(85, 141, 245);
   --dark-color-bg-blue-lowered: rgb(10, 25, 59);

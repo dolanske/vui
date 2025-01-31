@@ -48,6 +48,11 @@
 
   &.dashed {
     border-style: dashed !important;
+    background-color: transparent !important;
+
+    &:hover {
+      background-color: var(--color-bg-raised) !important;
+    }
   }
 
   height: var(--button-height);

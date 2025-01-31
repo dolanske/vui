@@ -82,9 +82,6 @@ import ExampleColor from './shared/ExampleColor.vue'
         <ExampleColor name="Bg Accent Lowered" color="--light-color-bg-accent-lowered" />
         <ExampleColor name="Bg Accent Raised" color="--light-color-bg-accent-raised" />
         <ExampleColor name="Border Accent" color="--light-color-border-accent" />
-        <div class="padder" />
-        <ExampleColor name="Box Shadow" color="--light-box-shadow" />
-        <ExampleColor name="Box Shadow Strong" color="--light-box-shadow-strong" />
       </Flex>
 
       <Flex class="theme-wrap dark" gap="xxs" column>
@@ -141,9 +138,6 @@ import ExampleColor from './shared/ExampleColor.vue'
         <ExampleColor name="Bg Accent Lowered" color="--dark-color-bg-accent-lowered" />
         <ExampleColor name="Bg Accent Raised" color="--dark-color-bg-accent-raised" />
         <ExampleColor name="Border Accent" color="--dark-color-border-accent" />
-        <div class="padder" />
-        <ExampleColor name="Box Shadow" color="--dark-box-shadow" />
-        <ExampleColor name="Box Shadow Strong" color="--dark-box-shadow-strong" />
       </Flex>
     </Grid>
   </div>
