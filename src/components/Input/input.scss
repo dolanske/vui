@@ -258,7 +258,7 @@
 
   &.vui-dropzone {
     &.dragging .vui-input .vui-input-style {
-      border-color: var(--color-accent);
+      border-color: var(--color-accent-border);
 
       &:hover {
         border-color: var(--color-border);
@@ -274,7 +274,7 @@
         line-height: 1.2em;
 
         &:hover {
-          border-color: var(--color-accent);
+          border-color: var(--color-border-accent);
         }
 
         input {
@@ -290,6 +290,7 @@
             justify-content: center;
             width: 100%;
             min-height: 96px;
+            margin: 0;
             color: var(--color-text-light);
           }
         }

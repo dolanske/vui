@@ -62,6 +62,7 @@ p {
   }
 
   code {
+    font-family: var(--global-font-mono);
     border-radius: var(--border-radius-s);
     background-color: var(--color-bg-raised);
     color: var(--color-text);

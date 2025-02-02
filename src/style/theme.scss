@@ -15,24 +15,24 @@
   --light-color-button-gray-hover: rgb(212, 212, 212);
 
   --light-color-text-red: rgb(174, 59, 53);
-  --light-color-bg-red-lowered: rgb(248, 127, 121);
-  --light-color-bg-red-raised: rgb(255, 86, 86);
+  --light-color-bg-red-lowered: rgb(249, 178, 174);
+  --light-color-bg-red-raised: rgb(255, 128, 128);
   --light-color-border-red: rgb(230, 100, 93);
 
   --light-color-text-green: rgb(44, 214, 52);
-  --light-color-text-green-disabled: rgb(109, 193, 113);
-  --light-color-bg-green-lowered: rgb(95, 196, 58);
+  --light-color-text-green-disabled: rgb(156, 224, 159);
+  --light-color-bg-green-lowered: rgb(179, 241, 156);
   --light-color-bg-green-raised: rgb(96, 221, 38);
   --light-color-border-green: rgb(73, 177, 35);
 
   --light-color-text-yellow: rgb(165, 133, 37);
-  --light-color-bg-yellow-lowered: rgb(241, 192, 56);
+  --light-color-bg-yellow-lowered: rgb(230, 205, 137);
   --light-color-bg-yellow-raised: rgb(253, 200, 86);
   --light-color-border-yellow: rgb(180, 141, 24);
 
   --light-color-text-blue: rgb(85, 141, 245);
-  --light-color-bg-blue-lowered: rgb(123, 159, 242);
-  --light-color-bg-blue-raised: rgb(155, 190, 255);
+  --light-color-bg-blue-lowered: rgb(196, 214, 255);
+  --light-color-bg-blue-raised: rgb(136, 178, 255);
   --light-color-border-blue: rgb(93, 130, 234);
 
   --light-color-border: rgb(200, 200, 200);
@@ -90,7 +90,7 @@
   --dark-color-border-strong: rgb(54, 54, 54);
   --dark-color-border-weak: rgb(36, 36, 36);
 
-  --dark-color-accent: rgb(238, 120, 17);
+  --dark-color-accent: rgb(232, 203, 255);
   --dark-color-accent-disabled: hsl(from var(--dark-color-accent) calc(h) calc(s * 0.4) calc(l));
   --dark-color-bg-accent-lowered: hsl(from var(--dark-color-accent) calc(h) s calc(l * 0.2));
   --dark-color-bg-accent-raised: hsl(from var(--dark-color-accent) calc(h) s calc(l * 0.45));
