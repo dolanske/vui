@@ -64,11 +64,17 @@
           display: flex;
           align-items: center;
           min-height: var(--checkbox-size);
-          font-size: var(--font-size-ms);
+          font-size: var(--font-size-m);
           align-self: flex-start;
           // line-height: var(--checkbox-size);
         }
       }
     }
+  }
+}
+
+:root.light {
+  .vui-checkbox.checked.accent .vui-checkbox-icon svg {
+    color: var(--color-border-accent);
   }
 }

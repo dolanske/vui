@@ -8,7 +8,7 @@
     }
 
     &.accent .vui-switch-icon .vui-switch-indicator {
-      background-color: var(--color-accent) !important;
+      background-color: var(--color-accent);
     }
   }
 
@@ -71,7 +71,7 @@
         &:is(p) {
           height: var(--switch-size);
           line-height: var(--switch-size);
-          font-size: var(--font-size-ms);
+          font-size: var(--font-size-m);
         }
       }
     }
@@ -81,6 +81,10 @@
 :root.light {
   .vui-switch .vui-switch-icon .vui-switch-indicator {
     background-color: var(--color-bg-lowered);
+  }
+
+  .vui-switch.checked.accent .vui-switch-icon .vui-switch-indicator {
+    background-color: var(--color-border-accent);
   }
 
   .vui-switch.checked .vui-switch-icon .vui-switch-indicator {

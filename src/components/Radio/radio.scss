@@ -63,10 +63,16 @@
           display: flex;
           align-items: center;
           min-height: var(--radio-size);
-          font-size: var(--font-size-ms);
+          font-size: var(--font-size-m);
           // line-height: var(--radio-size);
         }
       }
     }
+  }
+}
+
+:root.light {
+  .vui-radio.checked.accent .vui-radio-icon svg {
+    color: var(--color-border-accent);
   }
 }
