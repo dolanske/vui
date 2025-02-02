@@ -27,6 +27,7 @@
   - [ ] Code highlighting
   - [ ] Copy code
   - [ ] Type, padding, etc
+  - [ ] Use this https://shiki.style/guide/install
 - [ ] Command dropdown
 - [ ] Documentation
   - [ ] Design my own documentation site (GENERIC?!)

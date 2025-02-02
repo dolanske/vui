@@ -78,3 +78,9 @@
     bottom: 0;
   }
 }
+
+:root.light {
+  .vui-tabs.vui-tabs-variant-filled {
+    background-color: var(--color-bg-medium);
+  }
+}

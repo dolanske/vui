@@ -9,7 +9,7 @@ const emits = defineEmits<{ files: [FileList] }>()
 <template>
   <Input
     type="file"
-    v-bind="{ ...props }"
+    v-bind="props"
     @input="emits('files', $event.target.files)"
   />
 </template>

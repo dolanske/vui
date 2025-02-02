@@ -25,8 +25,7 @@ const show = ref(showPassword)
     <template #end>
       <Button
         square
-        size="s"
-        :data-title-top="show ? 'Hide password' : 'Show password'"
+        :data-title-top="show ? 'Hide' : 'Reveal'"
         @click="show = !show"
       >
         <Icon :width="18" :height="18" :icon="show ? 'ph:eye-slash' : 'ph:eye'" />
@@ -34,14 +33,3 @@ const show = ref(showPassword)
     </template>
   </Input>
 </template>
-
-<style scoped lang="scss">
-:deep(.vui-input-style) {
-  padding-right: 4px !important;
-  gap: 8px !important;
-}
-
-[data-title-top]:before {
-  min-width: 104px;
-}
-</style>

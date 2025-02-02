@@ -12,7 +12,13 @@ interface Props {
   gap?: Space | number
   rows?: number | string
   columns?: number | string
-  areas?: string[]
+  // areas?: string[]
+
+  // NOTE: Add more if needed
+  alignCenter?: boolean
+  alignStart?: boolean
+  alignEnd?: boolean
+  alignBaseline?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -43,6 +49,18 @@ const aTR = computed(() => {
   return props.rows ?? 'none'
 })
 
+const aA = computed(() => {
+  if (props.alignStart)
+    return 'flex-start'
+  else if (props.alignEnd)
+    return 'flex-end'
+  else if (props.alignCenter)
+    return 'center'
+  else if (props.alignBaseline)
+    return 'baseline'
+  return 'flex-start'
+})
+
 const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
 </script>
 
@@ -53,6 +71,8 @@ const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
       gap: ag,
       gridTemplateColumns: aTC,
       gridTemplateRows: aTR,
+      alignItems: aA,
+
     }"
   >
     <slot />

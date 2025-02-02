@@ -6,7 +6,7 @@ import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-export type Variants = 'default' | 'danger' | 'success' | 'link' | 'blue' | 'accent'
+export type Variants = 'default' | 'danger' | 'success' | 'link' | 'blue' | 'accent' | 'yellow'
 
 interface Props {
   // Provide URL to turn button into anchor
@@ -47,7 +47,7 @@ const {
 
 const height = computed(() => {
   switch (size) {
-    case Size.s: return '24px'
+    case Size.s: return '26px'
     case Size.l: return '40px'
     case Size.m:
     default: return 'var(--interactive-el-height)'
@@ -74,6 +74,7 @@ const padding = computed(() => {
       '--button-height': height,
       '--button-padding': padding,
     }"
+    :name="icon && !$slots.default ? icon.split(':')[1] : undefined"
   >
     <Spinner size="s" />
     <div class="vui-button-slot">

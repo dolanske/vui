@@ -3,13 +3,13 @@
   --button-padding: 8px;
 
   &.disabled {
-    pointer-events: none;
     color: var(--color-text-lighter) !important;
     cursor: not-allowed !important;
+    // pointer-events: none;
     filter: saturate(50%) opacity(0.65);
 
     svg path {
-      color: var(--color-text-lighter) !important;
+      color: var(--color-text) !important;
     }
   }
 
@@ -30,13 +30,13 @@
   &.icon {
     width: var(--button-height);
     padding: 0;
+  }
 
-    .vui-button-slot {
-      svg {
-        width: 18px;
-        height: 18px;
-      }
-    }
+  .vui-button-slot svg {
+    display: block;
+    color: var(--color-text);
+    width: 17px;
+    height: 17px;
   }
 
   &.square {
@@ -47,7 +47,12 @@
   }
 
   &.dashed {
-    border-style: dashed;
+    border-style: dashed !important;
+    background-color: transparent !important;
+
+    &:hover {
+      background-color: var(--color-bg-raised) !important;
+    }
   }
 
   height: var(--button-height);
@@ -59,7 +64,7 @@
   padding-inline: var(--button-padding);
   font-size: var(--font-size-s);
   position: relative;
-  transition: var(--transition);
+  transition: var(--transition-fast);
   border: 1px solid transparent;
   background-color: transparent;
   color: var(--color-text);
@@ -69,7 +74,7 @@
   .vui-button-slot {
     display: flex;
     place-items: center;
-    transition: var(--transition);
+    transition: var(--transition-fast);
     opacity: 1;
   }
 
@@ -88,7 +93,7 @@
   }
 
   .vui-spinner {
-    transition: var(--transition);
+    transition: var(--transition-fast);
     opacity: 0;
     position: absolute;
     pointer-events: none;
@@ -102,8 +107,8 @@
       border: 1px solid var(--color-border);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       background-color: var(--color-button-gray-hover);
     }
   }
@@ -115,8 +120,8 @@
       border: 1px solid var(--color-border-red);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-red-raised);
       background-color: var(--color-bg-red-raised);
     }
@@ -129,8 +134,8 @@
       border: 1px solid var(--color-border-green);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-green-raised);
       background-color: var(--color-bg-green-raised);
     }
@@ -143,10 +148,24 @@
       border: 1px solid var(--color-border-blue);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-blue-raised);
       background-color: var(--color-bg-blue-raised);
+    }
+  }
+
+  &.vui-button-variant-yellow {
+    &:not(.plain) {
+      color: var(--color-text);
+      background-color: var(--color-bg-yellow-lowered);
+      border: 1px solid var(--color-border-yellow);
+    }
+
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
+      border: 1px solid var(--color-bg-yellow-raised);
+      background-color: var(--color-bg-yellow-raised);
     }
   }
 
@@ -157,8 +176,8 @@
       border: 1px solid var(--color-border-accent);
     }
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       border: 1px solid var(--color-bg-accent-raised);
       background-color: var(--color-bg-accent-raised);
     }
@@ -170,8 +189,8 @@
     text-underline-offset: 4px;
     cursor: pointer;
 
-    &.active,
-    &:hover {
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
       text-decoration: underline;
     }
   }

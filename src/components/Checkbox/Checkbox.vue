@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useId } from 'vue'
+import { theme } from '../../shared/theme'
 import './checkbox.scss'
 
 interface Props {
@@ -9,14 +10,16 @@ interface Props {
   iconOff?: string
   disabled?: boolean
   checked?: boolean
+  accent?: boolean
 }
 
 const {
   label,
-  iconOn = 'ph:check-square-fill',
+  iconOn = theme.value === 'light' ? 'ph:check-square-fill' : 'ph:check-square',
   iconOff = 'ph:square',
   disabled,
   checked: checkedProp,
+  accent,
 } = defineProps<Props>()
 const emit = defineEmits<{
   change: [checked: boolean]
@@ -27,7 +30,7 @@ const id = useId()
 </script>
 
 <template>
-  <div class="vui-checkbox" :class="{ disabled: !!disabled, checked }">
+  <div class="vui-checkbox" :class="{ disabled: !!disabled, checked, accent }">
     <input
       :id
       v-model="checked"

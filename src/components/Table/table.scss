@@ -47,11 +47,23 @@
     tr {
       border: none;
 
+      &:first-child td {
+        border-top: 0 !important;
+      }
+
       &:has(.vui-table-interactive-cell.selected) {
         td {
           background-color: var(--color-bg-raised);
         }
       }
+
+      &:last-child td {
+        border-bottom: 0;
+      }
+    }
+
+    th {
+      border-top: 0 !important;
     }
 
     th,
@@ -72,6 +84,7 @@
         height: auto;
         padding-inline: var(--space-xs);
         padding-block: 0;
+        vertical-align: middle;
 
         &.selected .vui-button.icon .vui-button-slot svg path {
           color: var(--color-text) !important;
@@ -124,11 +137,18 @@
   }
 
   .vui-table-pagination-wrap {
-    padding: var(--space-s) var(--space-m);
+    padding: var(--space-xs) var(--space-m);
+    border-top: 1px solid var(--color-border);
 
     p {
       font-size: var(--font-size-s);
       color: var(--color-text-lighter);
     }
+  }
+}
+
+:root.light {
+  .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
+    background-color: var(--color-bg-medium);
   }
 }

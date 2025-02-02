@@ -5,8 +5,8 @@
   height: 26px;
   padding-inline: var(--space-s);
   border-radius: 999px;
-  font-weight: 300;
   font-size: var(--font-size-s);
+  color: var(--color-text);
 
   &.filled {
     font-weight: 500;
@@ -85,5 +85,28 @@
 
     color: var(--color-text);
     border: 1px solid var(--color-border-red);
+  }
+
+  &.vui-badge-variant-accent {
+    &:not(.outline) {
+      background-color: var(--color-bg-accent-lowered);
+
+      &.filled {
+        background-color: var(--color-accent);
+        color: var(--color-text-invert);
+        border-color: transparent;
+      }
+    }
+
+    color: var(--color-text);
+    border: 1px solid var(--color-border-accent);
+  }
+}
+
+:root.light {
+  .vui-badge.vui-badge-variant-accent:not(.outline).filled,
+  .vui-badge.vui-badge-variant-success:not(.outline).filled,
+  .vui-badge.vui-badge-variant-warning:not(.outline).filled {
+    color: var(--color-text);
   }
 }

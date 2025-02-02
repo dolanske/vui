@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, type InputTypeHTMLAttribute, useId, useTemplateRef, watchEffect } from 'vue'
+import { computed, useId, useTemplateRef, watchEffect } from 'vue'
 import { getMaybeRefLength } from '../../shared/helpers'
 import Flex from '../Flex/Flex.vue'
 import '../../style/core.scss'
@@ -7,8 +7,10 @@ import './input.scss'
 
 // FIXME: sometimes spamming inputs when limit is set, it will _just_ let me write one more letter
 
+export type InputType = 'text' | 'password' | 'color' | 'date' | 'email' | 'number' | 'range' | 'search' | 'tel' | 'time' | 'url' | 'file'
+
 export interface InputProps {
-  type?: InputTypeHTMLAttribute
+  type?: InputType
   label?: string
   hint?: string
   limit?: number | string
@@ -63,12 +65,12 @@ const inputRef = useTemplateRef('input')
 
 watchEffect(() => {
   if (focus)
-    inputRef.value?.focus()
+    inputRef.value?.focus({ preventScroll: true })
 })
 
 defineExpose({
   focus: () => {
-    inputRef.value?.focus()
+    inputRef.value?.focus({ preventScroll: true })
   },
 })
 
@@ -81,11 +83,11 @@ const renderLimit = computed(() => {
   <div class="vui-input-container" :class="{ expand, disabled, required, readonly, 'has-errors': errors.length > 0 }">
     <slot name="before" />
     <div class="vui-input">
-      <label v-if="label" for="id">{{ label }}</label>
+      <label v-if="label" :for="id">{{ label }}</label>
       <p v-if="hint" class="vui-input-hint">
         {{ hint }}
       </p>
-      <Flex class="vui-input-style" :gap="3" align-center>
+      <Flex class="vui-input-style" :gap="5" align-center>
         <slot name="start" />
         <slot name="__internal_replace_input" :input-id="id" />
         <input

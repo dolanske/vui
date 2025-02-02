@@ -50,7 +50,7 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
     }"
   >
     <table>
-      <thead>
+      <thead v-if="$slots.header">
         <tr>
           <slot name="header" />
         </tr>
@@ -59,7 +59,7 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
         <slot name="body" />
       </tbody>
     </table>
-    <div class="vui-table-pagination-wrap">
+    <div v-if="$slots.pagination" class="vui-table-pagination-wrap">
       <slot name="pagination" />
     </div>
   </div>

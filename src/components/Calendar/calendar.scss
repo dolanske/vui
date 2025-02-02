@@ -1,3 +1,4 @@
+.dp__theme_light,
 .dp__theme_dark {
   --dp-background-color: var(--color-bg);
   --dp-text-color: var(--color-text);
@@ -28,6 +29,8 @@
   --dp-range-between-border-color: var(--dp-hover-color, #fff);
 }
 
+// TODO: dp theme light
+
 :root {
   --dp-font-family: var(--global-font);
   --dp-border-radius: var(--border-radius-s);
@@ -37,6 +40,16 @@
   --dp-font-size: var(--font-size-ms);
   --dp-preview-font-size: var(--font-size-s);
   --dp-time-font-size: var(--font-size-s);
+}
+
+.vui-calendar-inline {
+  .dp__outer_menu_wrap {
+    box-shadow: none;
+  }
+
+  .dp__menu {
+    border: none;
+  }
 }
 
 .dp__main {

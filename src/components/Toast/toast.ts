@@ -1,3 +1,4 @@
+import type { Component } from 'vue'
 import { ref } from 'vue'
 
 interface ToastAction {
@@ -10,6 +11,8 @@ interface ToastOptions {
   timeout?: number
   action?: ToastAction
   description?: string
+  body?: Component
+  bodyProps?: object
 }
 
 interface Toast {
@@ -20,6 +23,8 @@ interface Toast {
   createdAt: number
   expiresAt: number
   description?: string
+  body?: Component
+  bodyProps?: object
 }
 
 // Store in a ref so the toast component can import it
@@ -44,6 +49,8 @@ export function pushToast(title: string, options?: ToastOptions): Toast {
     action: parsedOptions.action,
     createdAt: Date.now(),
     expiresAt: Date.now() + parsedOptions.timeout,
+    body: parsedOptions.body,
+    bodyProps: parsedOptions.bodyProps ?? {},
   }
 
   toasts.value.set(id, newToast)

@@ -1,11 +1,13 @@
 <script setup lang='ts'>
 import type { MaybeElement } from '@vueuse/core'
 import type { Placement } from '../../shared/types'
-import { onClickOutside } from '@vueuse/core'
-import { computed, ref, useTemplateRef } from 'vue'
+import { onClickOutside, useMagicKeys, whenever } from '@vueuse/core'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
+
+// FIXME: figure out how minWidth and expand should work together
 
 export interface Props {
   /**
@@ -27,6 +29,10 @@ const {
   expand,
   minWidth = 156,
 } = defineProps<Props>()
+
+const emit = defineEmits<{
+  close: []
+}>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
 const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
@@ -67,6 +73,19 @@ defineExpose({
 
 const mW = computed(() => formatUnitValue(minWidth))
 const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
+
+const { escape } = useMagicKeys()
+whenever(escape, close)
+
+watch(showMenu, (v) => {
+  if (!v)
+    emit('close')
+})
+
+onMounted(() => {
+  if (expand && minWidth !== 156)
+    console.warn('[Dropdown] Dropdown: minWidth prop is ignored when expand is set to true')
+})
 </script>
 
 <template>
@@ -81,7 +100,7 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
-  <Transition appear name="dropdown">
+  <Transition name="dropdown" mode="out-in">
     <Popout
       v-if="showMenu"
       ref="dropdown"
@@ -89,7 +108,7 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
       class="vui-dropdown"
       :placement
       :style="{
-        minWidth: mW,
+        minWidth: expand ? w : mW,
         width: w,
       }"
     >
@@ -101,7 +120,7 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 <style scoped lang="scss">
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: 0.1s opacity ease-in-out;
+  transition: var(--transition-fast);
 }
 
 .dropdown-enter-from,

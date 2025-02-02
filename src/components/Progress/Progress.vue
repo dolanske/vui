@@ -1,6 +1,8 @@
 <script setup lang='ts'>
-import { computed, onMounted, useTemplateRef, watchEffect } from 'vue'
-import { delay, formatUnitValue, isNil, randomMinMax } from '../../shared/helpers'
+import { whenever } from '@vueuse/core'
+import { computed, onMounted, useTemplateRef, watch, watchEffect } from 'vue'
+import { clamp, delay, formatUnitValue, isNil, randomMinMax } from '../../shared/helpers'
+import { theme } from '../../shared/theme'
 import './progress.scss'
 
 interface Props {
@@ -25,15 +27,19 @@ interface Props {
 
 const {
   fake,
-  color = 'var(--color-accent)',
+  color = theme === 'dark' ? 'var(--color-accent)' : 'var(--color-border-accent)',
   fixed,
   height,
 } = defineProps<Props>()
 
+const emit = defineEmits<{
+  done: []
+}>()
+
 const progressAmount = defineModel<number>({
   default: 0,
   set(value) {
-    return Math.min(value, 100)
+    return clamp(0, 100, value)
   },
 })
 
@@ -49,6 +55,8 @@ watchEffect(() => {
   }
 })
 
+whenever(() => fake, fakeIncrement)
+
 // Automatically / randomly increment but never reach 100% until
 async function fakeIncrement() {
   if (fake && progressAmount.value < 100) {
@@ -59,15 +67,21 @@ async function fakeIncrement() {
     }
     else {
       progressAmount.value += randomMinMax(1, 10)
-      await delay(randomMinMax(200, 1000))
+      await delay(randomMinMax(200, 12000))
     }
     fakeIncrement()
   }
 }
 
+watch(progressAmount, (v) => {
+  if (v >= 100) {
+    emit('done')
+  }
+})
+
 onMounted(fakeIncrement)
 
-const w = computed(() => `${progressAmount.value}%`)
+const w = computed(() => `${clamp(0, 100, progressAmount.value)}%`)
 const bC = computed(() => color)
 </script>
 

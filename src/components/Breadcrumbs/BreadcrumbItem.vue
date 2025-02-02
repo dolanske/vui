@@ -3,7 +3,7 @@ import '../Button/button.scss'
 
 export interface BreadcrumbItemProps {
   label?: string
-  path?: string
+  href?: string
 }
 
 const props = defineProps<BreadcrumbItemProps>()
@@ -11,7 +11,7 @@ const props = defineProps<BreadcrumbItemProps>()
 
 <template>
   <li>
-    <a v-if="props.path" :href="props.path" class="vui-breadcrumb-link">
+    <a v-if="props.href" :href="props.href" class="vui-breadcrumb-link">
       <slot>
         {{ props.label }}
       </slot>

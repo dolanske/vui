@@ -55,13 +55,19 @@ const baseTransform = computed(() => {
             <div class="flex-1">
               <slot name="header" :close />
             </div>
-            <Button square icon="ph:x" @click="open = false" />
+            <Button plain square icon="ph:x" @click="open = false" />
           </div>
 
-          <Divider v-if="separator && $slots.header" :space="1" />
+          <Divider v-if="separator && $slots.header" :size="1" />
 
           <div v-if="$slots.default" class="vui-sheet-content">
             <slot :close />
+          </div>
+
+          <Divider v-if="separator && $slots.footer" :size="1" />
+
+          <div class="vui-sheet-footer">
+            <slot name="footer" :close />
           </div>
         </div>
       </Backdrop>

@@ -20,6 +20,7 @@ const {
   resize = 'vertical',
   autoResize,
   errors = [] as string[],
+  disabled,
 } = defineProps<Props>()
 
 const model = defineModel<string>({
@@ -41,10 +42,10 @@ const fS = computed(() => autoResize ? 'content' : 'auto')
 </script>
 
 <template>
-  <div class="vui-input-container" :class="{ expand, required, readonly, 'has-errors': errors.length > 0 }">
+  <div class="vui-input-container" :class="{ expand, required, readonly, 'has-errors': errors.length > 0, disabled }">
     <slot name="before" />
     <div class="vui-input">
-      <label v-if="label" for="id">{{ label }}</label>
+      <label v-if="label" :for="id">{{ label }}</label>
       <p v-if="hint" class="vui-input-hint">
         {{ hint }}
       </p>
@@ -55,6 +56,7 @@ const fS = computed(() => autoResize ? 'content' : 'auto')
         name="id"
         :placeholder
         :required
+        :disabled
         :max="limit"
         :style="{
           resize: r,
