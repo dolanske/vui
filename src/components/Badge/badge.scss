@@ -109,4 +109,17 @@
   .vui-badge.vui-badge-variant-warning:not(.outline).filled {
     color: var(--color-text);
   }
+
+  .vui-badge.vui-badge-variant-danger:not(.outline).filled {
+    background-color: var(--color-border-red);
+  }
+
+  .vui-badge.vui-badge-variant-success:not(.outline).filled {
+    background-color: var(--color-border-green);
+    color: var(--color-text-invert);
+  }
+
+  .vui-badge.vui-badge-variant-warning:not(.outline).filled {
+    background-color: var(--color-bg-yellow-raised);
+  }
 }
