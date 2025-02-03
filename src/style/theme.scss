@@ -14,6 +14,9 @@
   --light-color-button-gray: rgb(230, 230, 230);
   --light-color-button-gray-hover: rgb(212, 212, 212);
 
+  --light-color-button-fill: rgb(38, 38, 38);
+  --light-color-button-fill-hover: rgb(8, 8, 8);
+
   --light-color-text-red: rgb(255, 58, 47);
   --light-color-bg-red-lowered: rgb(249, 178, 174);
   --light-color-bg-red-raised: rgb(255, 128, 128);
@@ -65,6 +68,9 @@
   --dark-color-button-gray: rgb(28, 28, 28);
   --dark-color-button-gray-hover: rgb(38, 38, 38);
 
+  --dark-color-button-fill: rgb(232, 232, 232);
+  --dark-color-button-fill-hover: rgb(255, 255, 255);
+
   --dark-color-text-red: rgb(243, 78, 70);
   --dark-color-bg-red-lowered: rgb(66, 22, 20);
   --dark-color-bg-red-raised: rgb(119, 31, 26);
@@ -82,7 +88,7 @@
   --dark-color-border-yellow: rgb(116, 91, 13);
 
   --dark-color-text-blue: rgb(85, 141, 245);
-  --dark-color-bg-blue-lowered: rgb(10, 25, 59);
+  --dark-color-bg-blue-lowered: rgb(13, 32, 74);
   --dark-color-bg-blue-raised: rgb(26, 59, 119);
   --dark-color-border-blue: rgb(20, 45, 112);
 
@@ -116,6 +122,9 @@
 
   --color-button-gray: var(--light-color-button-gray);
   --color-button-gray-hover: var(--light-color-button-gray-hover);
+
+  --color-button-fill: var(--light-color-button-fill);
+  --color-button-fill-hover: var(--light-color-button-fill-hover);
 
   --color-text-red: var(--light-color-text-red);
   --color-bg-red-lowered: var(--light-color-bg-red-lowered);
@@ -168,6 +177,9 @@
 
   --color-button-gray: var(--dark-color-button-gray);
   --color-button-gray-hover: var(--dark-color-button-gray-hover);
+
+  --color-button-fill: var(--dark-color-button-fill);
+  --color-button-fill-hover: var(--dark-color-button-fill-hover);
 
   --color-text-red: var(--dark-color-text-red);
   --color-bg-red-lowered: var(--dark-color-bg-red-lowered);

@@ -183,6 +183,36 @@
     }
   }
 
+  &.vui-button-variant-neutral {
+    &:not(.plain):not(.dashed) {
+      color: var(--color-text-invert);
+      background-color: var(--color-button-fill);
+      border: 1px solid var(--color-button-fill);
+
+      svg {
+        color: var(--color-text-invert);
+      }
+    }
+
+    &.disabled {
+      color: var(--dark-color-text-light) !important;
+    }
+
+    &.dashed:not(:hover) {
+      border: 1px solid var(--color-button-fill);
+    }
+
+    &.plain:hover {
+      color: var(--color-text-invert);
+    }
+
+    &:not(:disabled).active,
+    &:not(:disabled):hover {
+      border: 1px solid var(--color-button-fill-hover);
+      background-color: var(--color-button-fill-hover);
+    }
+  }
+
   &.vui-button-variant-link {
     color: var(--color-text);
     background: transparent;

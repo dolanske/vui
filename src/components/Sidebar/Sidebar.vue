@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useCssVar, useMouse, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
+import { useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
 import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
 import { isNil } from '../../shared/helpers'
 import './sidebar.scss'

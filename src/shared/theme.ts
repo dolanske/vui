@@ -7,7 +7,8 @@ const themeImpl = useColorMode({
   modes: {
     dark: 'dark',
     light: 'light',
-    // TODO: add more
+    // TODO: add black theme
+    // TODO: add high contrast light & dark theme
   },
 })
 
