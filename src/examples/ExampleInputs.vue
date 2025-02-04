@@ -22,6 +22,30 @@ const options = [
   { value: 2, label: 'Felix' },
 ]
 
+const longOptions = [
+  ...options,
+  {
+    value: 3,
+    label: 'Kasper',
+  },
+  {
+    value: 4,
+    label: 'Margarett',
+  },
+  {
+    value: 5,
+    label: 'Bridgetson',
+  },
+  {
+    value: 6,
+    label: 'Jenifer',
+  },
+  {
+    value: 7,
+    label: 'Christopher',
+  },
+]
+
 const selected = ref([])
 const selected1 = ref([])
 const selected2 = ref([])
@@ -136,7 +160,7 @@ const selected2 = ref([])
       Select
     </h6>
     <Grid gap="xl" :columns="3">
-      <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
+      <Select expand :options="longOptions" label="Base, single, search, showClear" search show-clear />
       <Select expand :options="options" label="Base readonly" readonly />
       <Select expand :options="options" label="Base disabled" disabled placeholder="Custom placeholder bro" />
       <Select :options="options" label="Required (single)" expand required />

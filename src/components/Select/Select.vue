@@ -164,7 +164,7 @@ const id = useId()
       </template>
 
       <template #default="{ close, isOpen }">
-        <DropdownTitle v-if="search">
+        <DropdownTitle v-if="search" sticky>
           <Input
             v-model="searchStr"
             placeholder="Search..."

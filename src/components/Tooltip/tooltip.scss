@@ -1,8 +1,8 @@
 .vui-tooltip {
   padding: var(--space-s);
   max-width: 512px;
-  transition: var(--transition-fast);
+  background-color: var(--color-bg-raised);
 }
 
-:root.light {
-}
+// :root.light {
+// }

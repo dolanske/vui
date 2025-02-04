@@ -7,8 +7,6 @@ import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
 
-// FIXME: figure out how minWidth and expand should work together
-
 export interface Props {
   /**
    * Tooltip placement related to the anchor
@@ -22,10 +20,16 @@ export interface Props {
    * Sets the width of the dropdown to the width of its anchor
    */
   expand?: boolean
+
+  /**
+   * Set he max height of the dropdown element before it starts scrolling
+   */
+  maxHeight?: number | string
 }
 
 const {
   placement = 'bottom-start',
+  maxHeight = 356,
   expand,
   minWidth = 156,
 } = defineProps<Props>()
@@ -100,24 +104,25 @@ onMounted(() => {
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
-  <Transition name="dropdown" mode="out-in">
-    <Popout
-      v-if="showMenu"
-      ref="dropdown"
-      :anchor="anchorRef"
-      class="vui-dropdown"
-      :placement
-      :style="{
-        minWidth: expand ? w : mW,
-        width: w,
-      }"
-    >
-      <slot :open :close :toggle :is-open="showMenu" />
-    </Popout>
-  </Transition>
+  <!-- <Transition name="dropdown" mode="out-in"> -->
+  <Popout
+    v-if="showMenu"
+    ref="dropdown"
+    :anchor="anchorRef"
+    class="vui-dropdown"
+    :placement
+    :style="{
+      minWidth: expand ? w : mW,
+      width: w,
+      maxHeight: formatUnitValue(maxHeight),
+    }"
+  >
+    <slot :open :close :toggle :is-open="showMenu" />
+  </Popout>
+  <!-- </Transition> -->
 </template>
 
-<style scoped lang="scss">
+<!-- <style scoped lang="scss">
 .dropdown-enter-active,
 .dropdown-leave-active {
   transition: var(--transition-fast);
@@ -127,4 +132,4 @@ onMounted(() => {
 .dropdown-leave-to {
   opacity: 0;
 }
-</style>
+</style> -->
