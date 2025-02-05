@@ -17,7 +17,7 @@ Available tooltip positions:
 
   &:before {
     font-family: var(--global-font);
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     background-color: var(--color-bg-raised);
     color: var(--color-text);
 
