@@ -4,7 +4,7 @@ import Button from '../components/Button/Button.vue'
 import ButtonGroup from '../components/ButtonGroup/ButtonGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
 
-const variants = ['neutral', 'default', 'danger', 'success', 'link', 'blue', 'yellow', 'accent'] as const
+const variants = ['neutral', 'default', 'danger', 'success', 'link', 'accent'] as const
 </script>
 
 <template>

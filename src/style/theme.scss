@@ -19,13 +19,13 @@
 
   --light-color-text-red: rgb(255, 58, 47);
   --light-color-bg-red-lowered: rgb(249, 178, 174);
-  --light-color-bg-red-raised: rgb(255, 128, 128);
+  --light-color-bg-red-raised: rgb(255, 138, 138);
   --light-color-border-red: rgb(230, 100, 93);
 
   --light-color-text-green: rgb(44, 214, 52);
   --light-color-text-green-disabled: rgb(156, 224, 159);
   --light-color-bg-green-lowered: rgb(179, 241, 156);
-  --light-color-bg-green-raised: rgb(96, 221, 38);
+  --light-color-bg-green-raised: rgb(121, 230, 71);
   --light-color-border-green: rgb(73, 177, 35);
 
   --light-color-text-yellow: rgb(165, 133, 37);
@@ -46,7 +46,7 @@
   --light-color-accent-disabled: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l));
   --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) calc(s * 0.6) calc(l * 0.9));
   --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 1));
-  --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l * 0.5));
+  --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l * 0.75));
 
   --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.075);
   --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);
