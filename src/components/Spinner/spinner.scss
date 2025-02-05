@@ -1,5 +1,6 @@
 .vui-spinner {
-  --spinner-color: var(--color-text);
+  --spinner-color: var(--color-border-accent);
+
   aspect-ratio: 1;
   border-radius: 50%;
   border: 3px solid var(--spinner-color);
