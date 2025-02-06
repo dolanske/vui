@@ -47,11 +47,6 @@
 
   &.dashed {
     border-style: dashed !important;
-    background-color: transparent !important;
-
-    &:hover {
-      background-color: var(--color-bg-raised) !important;
-    }
   }
 
   height: var(--button-height);
@@ -102,10 +97,18 @@
   &.vui-button-variant-default {
     &:not(.plain) {
       color: var(--color-text);
-      background-color: var(--color-button-gray);
       border: 1px solid var(--color-border);
+
+      &:not(.dashed) {
+        background-color: var(--color-button-gray);
+      }
     }
 
+    &.dashed {
+      border-color: var(--color-border-strong);
+    }
+
+    &.dashed:hover,
     &:not(:disabled).active,
     &:not(:disabled):hover {
       background-color: var(--color-button-gray-hover);
@@ -115,10 +118,14 @@
   &.vui-button-variant-danger {
     &:not(.plain) {
       color: var(--color-text);
-      background-color: var(--color-bg-red-lowered);
       border: 1px solid var(--color-border-red);
+
+      &:not(.dashed) {
+        background-color: var(--color-bg-red-lowered);
+      }
     }
 
+    &.dashed:hover,
     &:not(:disabled).active,
     &:not(:disabled):hover {
       border: 1px solid var(--color-bg-red-raised);
@@ -129,8 +136,11 @@
   &.vui-button-variant-success {
     &:not(.plain) {
       color: var(--color-text);
-      background-color: var(--color-bg-green-lowered);
       border: 1px solid var(--color-border-green);
+
+      &:not(.dashed) {
+        background-color: var(--color-bg-green-lowered);
+      }
     }
 
     &:not(:disabled).active,
@@ -143,10 +153,14 @@
   &.vui-button-variant-accent {
     &:not(.plain) {
       color: var(--color-text);
-      background-color: var(--color-bg-accent-lowered);
       border: 1px solid var(--color-border-accent);
+
+      &:not(.dashed) {
+        background-color: var(--color-bg-accent-lowered);
+      }
     }
 
+    &.dashed:hover,
     &:not(:disabled).active,
     &:not(:disabled):hover {
       border: 1px solid var(--color-bg-accent-raised);
@@ -174,6 +188,10 @@
     }
 
     &.plain:hover {
+      color: var(--color-text-invert);
+    }
+
+    &.dashed:hover {
       color: var(--color-text-invert);
     }
 
