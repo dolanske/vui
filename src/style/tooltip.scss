@@ -34,6 +34,8 @@ Available tooltip positions:
     z-index: -1;
     visibility: hidden;
     pointer-events: none;
+    max-width: 256px;
+    width: max-content;
   }
 
   &:hover {

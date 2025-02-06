@@ -100,7 +100,7 @@
   --dark-color-accent-disabled: hsl(from var(--dark-color-accent) calc(h) calc(s * 0.4) calc(l));
   --dark-color-bg-accent-lowered: hsl(from var(--dark-color-accent) calc(h) s calc(l * 0.2));
   --dark-color-bg-accent-raised: hsl(from var(--dark-color-accent) calc(h) s calc(l * 0.45));
-  --dark-color-border-accent: hsl(from var(--dark-color-accent) calc(h) s calc(l * 0.5));
+  --dark-color-border-accent: hsl(from var(--dark-color-accent) calc(h) s calc(l * 0.35));
 
   --dark-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
   --dark-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);

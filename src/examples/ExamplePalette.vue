@@ -31,7 +31,7 @@ import ExampleColor from './shared/ExampleColor.vue'
       <Flex class="theme-wrap light" column gap="xxs">
         <Flex space-between class="mb-l" align-center expand>
           <h5>Light</h5>
-          <Button :disabled="theme === 'light'" variant="default" @click="setColorTheme('light')">
+          <Button :disabled="theme === 'light'" variant="default" data-title-top="Switch theme" @click="setColorTheme('light')">
             <template #start>
               <Icon icon="ph:sun" />
             </template>
@@ -87,7 +87,7 @@ import ExampleColor from './shared/ExampleColor.vue'
       <Flex class="theme-wrap dark" gap="xxs" column>
         <Flex space-between class="mb-l" align-center expand>
           <h5>Dark</h5>
-          <Button :disabled="theme === 'dark'" variant="default" @click="setColorTheme('dark')">
+          <Button :disabled="theme === 'dark'" variant="default" data-title-top="Switch theme" @click="setColorTheme('dark')">
             <template #start>
               <Icon icon="ph:moon" />
             </template>

@@ -72,3 +72,21 @@ $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
     -webkit-line-clamp: $line;
   }
 }
+
+// White space
+
+.ws-wrap {
+  white-space: wrap;
+}
+
+.ws-pre {
+  white-space: pre;
+}
+
+.ws-prewrap {
+  white-space: pre-wrap;
+}
+
+.ws-nowrap {
+  white-space: nowrap;
+}
