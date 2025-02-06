@@ -48,10 +48,10 @@ const sortStateBind = computed(() => {
         v-if="props.sort && props.header"
         class="vui-table-sort-button"
         v-bind="sortStateBind"
-        :class="{ active: !!props.header.sortKey }"
         size="s"
-        plain
+        :plain="!!!props.header.sortKey"
         square
+        variant="gray"
         @click="props.header.sortToggle"
       />
     </div>

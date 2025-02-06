@@ -11,8 +11,8 @@
   --light-color-text-lightest: rgb(128, 128, 128);
   --light-color-text-invert: rgb(248, 248, 248);
 
-  --light-color-button-gray: rgb(230, 230, 230);
-  --light-color-button-gray-hover: rgb(212, 212, 212);
+  --light-color-button-gray: rgb(224, 224, 224);
+  --light-color-button-gray-hover: rgb(208, 208, 208);
 
   --light-color-button-fill: rgb(38, 38, 38);
   --light-color-button-fill-hover: rgb(8, 8, 8);
@@ -42,9 +42,9 @@
   --light-color-border-strong: rgb(152, 152, 152);
   --light-color-border-weak: rgb(224, 224, 224);
 
-  --light-color-accent: rgb(232, 203, 255);
+  --light-color-accent: rgb(185, 99, 255);
   --light-color-accent-disabled: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l));
-  --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) calc(s * 0.6) calc(l * 0.9));
+  --light-color-bg-accent-lowered: hsl(from var(--light-color-accent) calc(h) calc(s * 0.8) calc(l * 0.9));
   --light-color-bg-accent-raised: hsl(from var(--light-color-accent) calc(h) s calc(l * 1));
   --light-color-border-accent: hsl(from var(--light-color-accent) calc(h) calc(s * 0.5) calc(l * 0.75));
 

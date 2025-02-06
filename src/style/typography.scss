@@ -55,8 +55,7 @@ p {
   a {
     color: var(--color-text);
     text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 
     &:hover {
       text-decoration: none;
@@ -221,7 +220,6 @@ table {
 
   th {
     font-weight: 600;
-    color: var(--color-text-light);
     font-size: var(--font-size-xs);
     text-transform: uppercase;
   }

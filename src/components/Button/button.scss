@@ -8,7 +8,7 @@
     filter: saturate(50%) opacity(0.65);
 
     svg path {
-      color: var(--color-text) !important;
+      color: var(--color-text-lighter) !important;
     }
   }
 
@@ -47,6 +47,10 @@
 
   &.dashed {
     border-style: dashed !important;
+  }
+
+  svg path {
+    transition: var(--transition-fast);
   }
 
   height: var(--button-height);
@@ -93,11 +97,18 @@
     pointer-events: none;
   }
 
+  &.outline {
+    border: 1px solid transparent;
+  }
+
   // Variants
-  &.vui-button-variant-default {
+  &.vui-button-variant-gray {
+    &.outline {
+      border-color: var(--color-border);
+    }
+
     &:not(.plain) {
       color: var(--color-text);
-      border: 1px solid var(--color-border);
 
       &:not(.dashed) {
         background-color: var(--color-button-gray);
@@ -116,9 +127,12 @@
   }
 
   &.vui-button-variant-danger {
+    &.outline {
+      border-color: var(--color-border-red);
+    }
+
     &:not(.plain) {
       color: var(--color-text);
-      border: 1px solid var(--color-border-red);
 
       &:not(.dashed) {
         background-color: var(--color-bg-red-lowered);
@@ -134,9 +148,12 @@
   }
 
   &.vui-button-variant-success {
+    &.outline {
+      border-color: var(--color-border-green);
+    }
+
     &:not(.plain) {
       color: var(--color-text);
-      border: 1px solid var(--color-border-green);
 
       &:not(.dashed) {
         background-color: var(--color-bg-green-lowered);
@@ -151,9 +168,12 @@
   }
 
   &.vui-button-variant-accent {
+    &.outline {
+      border-color: var(--color-border-accent);
+    }
+
     &:not(.plain) {
       color: var(--color-text);
-      border: 1px solid var(--color-border-accent);
 
       &:not(.dashed) {
         background-color: var(--color-bg-accent-lowered);
@@ -168,11 +188,14 @@
     }
   }
 
-  &.vui-button-variant-neutral {
+  &.vui-button-variant-default {
+    &.outline {
+      border-color: var(--color-button-fill);
+    }
+
     &:not(.plain):not(.dashed) {
       color: var(--color-text-invert);
       background-color: var(--color-button-fill);
-      border: 1px solid var(--color-button-fill);
 
       svg {
         color: var(--color-text-invert);
@@ -188,7 +211,12 @@
     }
 
     &.plain:hover {
-      color: var(--color-text-invert);
+      color: var(--color-text-invert) !important;
+
+      svg,
+      path {
+        color: var(--color-text-invert) !important;
+      }
     }
 
     &.dashed:hover {

@@ -120,17 +120,17 @@
 
     th {
       .vui-table-th-content {
-        color: var(--color-text-light);
+        color: var(--color-text);
         font-size: var(--font-size-xs);
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: var(--font-weight-semibold);
         display: flex;
         justify-content: flex-start;
         align-items: center;
         gap: var(--space-xs);
 
         .vui-table-sort-button:not(.active) svg path {
-          color: var(--color-text-lighter);
+          color: var(--color-text-light);
         }
       }
     }

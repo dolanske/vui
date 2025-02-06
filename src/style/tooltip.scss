@@ -18,8 +18,9 @@ Available tooltip positions:
   &:before {
     font-family: var(--global-font);
     font-weight: var(--font-weight-regular);
-    background-color: var(--color-bg-raised);
-    color: var(--color-text);
+    background-color: var(--color-button-gray);
+    color: var(--color-text) !important;
+    box-shadow: var(--box-shadow-strong);
 
     font-size: var(--font-size-m);
     position: absolute;
@@ -43,6 +44,21 @@ Available tooltip positions:
       visibility: visible;
       opacity: 1;
       z-index: 99999;
+    }
+  }
+}
+
+:root.light {
+  [data-title-left],
+  [data-title-right],
+  [data-title-bottom],
+  [data-title-bottom-left],
+  [data-title-bottom-right],
+  [data-title-top],
+  [data-title-top-left],
+  [data-title-top-right] {
+    &:before {
+      background-color: var(--color-bg-lowered);
     }
   }
 }

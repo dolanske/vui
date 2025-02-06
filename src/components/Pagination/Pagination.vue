@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import type { Variants } from '../Button/Button.vue'
 import type { Pagination } from './pagination'
 import { computed } from 'vue'
 import Button from '../Button/Button.vue'
@@ -9,6 +10,7 @@ interface Props {
   pagination: Pagination
   prevNext?: boolean
   firstLast?: boolean
+  variant: Variants
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -50,7 +52,7 @@ function setPrev() {
           :key="page"
           square
           :plain="props.pagination.currentPage !== page"
-          :variant="props.pagination.currentPage === page ? 'accent' : 'default'"
+          variant="gray"
           @click="emit('change', page)"
         >
           {{ page }}

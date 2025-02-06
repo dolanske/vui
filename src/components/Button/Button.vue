@@ -6,7 +6,7 @@ import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-export type Variants = 'default' | 'danger' | 'success' | 'link' | 'accent' | 'neutral'
+export type Variants = 'default' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
 
 interface Props {
   // Provide URL to turn button into anchor
@@ -15,24 +15,18 @@ interface Props {
 
   // State props
   loading?: boolean
+
+  size?: Sizes
   expand?: boolean
   square?: boolean
-  dashed?: boolean
-  disabled?: boolean
-  size?: Sizes
-  /**
-   * Sets the hover styling property
-   */
-  active?: boolean
-  /**
-   * No styling applied to the button unless hovered
-   */
-  plain?: boolean
-  variant?: Variants
-  /**
-   * The children will be set to an icon and the icon will become a square
-   */
   icon?: string
+
+  variant?: Variants
+  dashed?: boolean
+  outlineDashed?: boolean
+  active?: boolean
+  disabled?: boolean
+  plain?: boolean
 }
 
 const {
