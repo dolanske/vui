@@ -16,7 +16,7 @@ interface Props {
 }
 
 const {
-  placement = 'bottom',
+  placement,
   delay = 0,
 } = defineProps<Props>()
 
@@ -66,21 +66,21 @@ const id = useId()
   >
     <slot />
   </div>
-  <Transition appear name="tooltip">
-    <Popout v-if="showTooltip" :id :anchor="popoutAnchorRef" class="vui-tooltip" :placement name="tooltip">
-      <slot name="tooltip" />
-    </Popout>
-  </Transition>
+  <!-- <Transition name="tooltip"> -->
+  <Popout v-if="showTooltip" :id :anchor="popoutAnchorRef" class="vui-tooltip" :placement>
+    <slot name="tooltip" />
+  </Popout>
+  <!-- </Transition> -->
 </template>
 
-<style scoped>
+<!-- <style scoped>
 .tooltip-enter-active,
 .tooltip-leave-active {
-  transition: 0.1s opacity ease-in-out;
+  transition: var(--transition-fast);
 }
 
 .tooltip-enter-from,
 .tooltip-leave-to {
   opacity: 0;
 }
-</style>
+</style> -->

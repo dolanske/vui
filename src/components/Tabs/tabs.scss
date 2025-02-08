@@ -50,9 +50,10 @@
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    font-size: var(--font-size-ms);
+    font-size: var(--font-size-m);
     position: relative;
-    color: var(--color-text-light);
+    color: var(--color-text-lighter);
+    font-weight: var(--font-weight-medium);
     transition: var(--transition);
     cursor: default;
     gap: var(--space-xs);
@@ -73,8 +74,14 @@
   .vui-tab-underline {
     transition: var(--transition);
     display: block;
-    border-bottom: 1px solid var(--color-text);
+    border-bottom: 2px solid var(--color-text);
     position: absolute;
     bottom: 0;
+  }
+}
+
+:root.light {
+  .vui-tabs.vui-tabs-variant-filled {
+    background-color: var(--color-bg-medium);
   }
 }

@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import type { Variants } from '../Button/Button.vue'
 import type { Pagination } from './pagination'
 import { computed } from 'vue'
 import Button from '../Button/Button.vue'
@@ -9,12 +10,14 @@ interface Props {
   pagination: Pagination
   prevNext?: boolean
   firstLast?: boolean
+  variant?: Variants
 }
 
 const props = withDefaults(defineProps<Props>(), {
   numbers: true,
   prevNext: true,
   firstLast: true,
+  variant: 'gray',
 })
 
 const emit = defineEmits<{
@@ -34,7 +37,7 @@ function setPrev() {
 </script>
 
 <template>
-  <Flex inline class="vui-pagination" gap="s">
+  <Flex inline class="vui-pagination" gap="xxs">
     <slot name="start">
       <Button v-if="props.firstLast" data-title-top="First page" plain :disabled="props.pagination.startPage === props.pagination.currentPage" square icon="ph:caret-double-left" @click="emit('change', props.pagination.startPage)" />
     </slot>
@@ -44,13 +47,13 @@ function setPrev() {
     </slot>
 
     <template v-if="props.numbers">
-      <Flex gap="s">
+      <Flex gap="xxs">
         <Button
           v-for="page in props.pagination.pages"
           :key="page"
           square
           :plain="props.pagination.currentPage !== page"
-          :variant="props.pagination.currentPage === page ? 'blue' : 'default'"
+          variant="gray"
           @click="emit('change', page)"
         >
           {{ page }}

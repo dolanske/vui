@@ -5,8 +5,9 @@
 // To overwrite any of these styles, simply create a style file and import it
 // after this one
 @use './reset.scss';
-// @use './text.scss';
+@use './theme.scss';
 
+// TODO: Split this into based on media query prefers-dark-mode
 :root {
   color-scheme: dark;
 
@@ -17,16 +18,16 @@
   --container-xl: 1540px;
   --container-xxl: 1920px;
 
-  --border-radius-xs: 2px;
-  --border-radius-s: 4px;
+  --border-radius-xs: 3px;
+  --border-radius-s: 5px;
   --border-radius-m: 8px;
   --border-radius-l: 12px;
 
   --font-size-xxs: 1rem;
   --font-size-xs: 1.15rem;
   --font-size-s: 1.3rem;
-  --font-size-ms: 1.45rem;
-  --font-size-m: 1.6rem;
+  --font-size-m: 1.45rem;
+  --font-size-m: 1.5rem;
   --font-size-l: 1.8rem;
   --font-size-xl: 2rem;
   --font-size-xxl: 2.6rem;
@@ -42,61 +43,35 @@
   --space-xxl: 48px;
   --space-xxxl: 64px;
 
-  --transition-fast: 0.15s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-fast: 0.1s all ease-in-out;
   --transition: 0.2s all cubic-bezier(0.65, 0, 0.35, 1);
   --transition-slow: 0.35s all cubic-bezier(0.65, 0, 0.35, 1);
 
-  --color-bg: rgb(18, 18, 18);
-  --color-bg-raised: rgb(28, 28, 28);
-  --color-bg-lowered: rgb(14, 14, 14);
-
-  --color-text: rgb(231, 231, 231);
-  --color-text-light: rgb(158, 158, 158);
-  --color-text-lighter: rgb(100, 100, 100);
-  --color-text-lightest: rgb(65, 65, 65);
-  --color-text-invert: rgb(17, 17, 17);
-
-  --color-button-gray: rgb(28, 28, 28);
-  --color-button-gray-hover: rgb(38, 38, 38);
-
-  --color-text-red: rgb(243, 78, 70);
-  --color-bg-red-lowered: rgb(66, 22, 20);
-  --color-bg-red-raised: rgb(119, 31, 26);
-  --color-border-red: rgb(94, 23, 19);
-
-  --color-text-green: rgb(44, 214, 52);
-  --color-text-green-disabled: rgb(109, 193, 113);
-  --color-bg-green-lowered: rgb(19, 46, 9);
-  --color-bg-green-raised: rgb(48, 122, 22);
-  --color-border-green: rgb(27, 70, 12);
-
-  --color-text-yellow: rgb(243, 231, 70);
-  --color-bg-yellow-lowered: rgb(59, 46, 10);
-  --color-bg-yellow-raised: rgb(119, 82, 26);
-  --color-border-yellow: rgb(99, 97, 16);
-
-  --color-text-blue: rgb(85, 141, 245);
-  --color-bg-blue-lowered: rgb(10, 25, 59);
-  --color-bg-blue-raised: rgb(26, 59, 119);
-  --color-border-blue: rgb(20, 45, 112);
-
-  --color-border: rgb(40, 40, 40);
-  --color-border-strong: rgb(54, 54, 54);
-  --color-border-weak: rgb(36, 36, 36);
-
-  --color-accent: rgb(238, 120, 17);
-  --color-accent-disabled: hsl(from var(--color-accent) calc(h) calc(s * 0.4) calc(l));
-  --color-bg-accent-lowered: hsl(from var(--color-accent) calc(h) s calc(l * 0.2));
-  --color-bg-accent-raised: hsl(from var(--color-accent) calc(h) s calc(l * 0.45));
-  --color-border-accent: hsl(from var(--color-accent) calc(h) s calc(l * 0.3));
-
-  --box-shadow: 0 2px 12px rgba(8, 8, 8, 0.2);
-  --box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
-
-  --global-font: Geist, sans-serif;
+  --global-font: Inter, sans-serif;
   --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
 
+  --font-weight-thin: 200;
+  --font-weight-light: 300;
+  --font-weight: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 700;
+  --font-weight-black: 900;
+
   --interactive-el-height: 34px;
+}
+
+@media (prefers-color-scheme: dark) {
+}
+
+// Disable motion for users who have requested it
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0s all linear;
+    --transition: 0s all linear;
+    --transition-slow: 0s all linear;
+  }
 }
 
 :root {
@@ -108,6 +83,7 @@
 
   overflow-x: hidden;
   width: 100%;
+  font-weight: var(--font-weight);
 
   font-feature-settings: normal;
   font-variation-settings: normal;
@@ -146,5 +122,4 @@ body {
 @include meta.load-css('tooltip.scss');
 @include meta.load-css('utils.scss');
 @include meta.load-css('text.scss');
-
 @include meta.load-css('media-query.scss');

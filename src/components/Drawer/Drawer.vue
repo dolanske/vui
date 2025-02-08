@@ -45,7 +45,7 @@ const open = defineModel<boolean>()
 
 const mW = computed(() => {
   if (typeof containerSize === 'string') {
-    if (containerClass === 'full') {
+    if (containerSize === 'full') {
       return '100%'
     }
     else {
@@ -61,7 +61,7 @@ const mW = computed(() => {
 const id = useId()
 
 onMounted(() => {
-  if (!document.querySelector('vaul-drawer-wrapper')) {
+  if (!document.querySelector('[vaul-drawer-wrapper]')) {
     console.error('Your root component is missing \'vaul-drawer-wrapper\' attribute. \n Without it the <Drawer /> component will not be functional.')
   }
 })
@@ -70,14 +70,14 @@ onMounted(() => {
 <template>
   <DrawerRoot
     :open
-    should-scale-background
     v-bind="rootProps"
+    :aria-describedby="id"
     @close="open = false"
     @update:open="(state) => open = state"
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
-      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }" :aria-describedby="id">
+      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }">
         <div :key="mW" class="vui-drawer-container container" :class="containerClass" :style="{ 'max-width': mW }">
           <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}

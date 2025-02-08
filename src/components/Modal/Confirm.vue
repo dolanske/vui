@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: 's',
   canDismiss: true,
   showCancel: true,
-  confirmVariant: 'default',
+  confirmVariant: 'gray',
 })
 
 const emits = defineEmits<{

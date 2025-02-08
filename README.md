@@ -9,10 +9,10 @@
 ## 1.0 Checklist
 
 - [ ] Real life test
-  - [ ] Might be useful to build this in the hivecom project
-  - [ ] Build an example page with 100% of the components
-  - [ ] Run accessibility tools on it
-  - [ ] Run color contrast test
+  - [x] Might be useful to build this in the hivecom project
+  - [x] Build an example page with 100% of the components
+  - [x] Run accessibility tools on it
+  - [x] Run color contrast test
   - [ ] Make sure it works on mobile down to 340px
     - [ ] Components
     - [ ] Scale down Typography
@@ -27,6 +27,7 @@
   - [ ] Code highlighting
   - [ ] Copy code
   - [ ] Type, padding, etc
+  - [ ] Use this https://shiki.style/guide/install
 - [ ] Command dropdown
 - [ ] Documentation
   - [ ] Design my own documentation site (GENERIC?!)

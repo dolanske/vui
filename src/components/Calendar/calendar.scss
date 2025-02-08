@@ -1,3 +1,4 @@
+.dp__theme_light,
 .dp__theme_dark {
   --dp-background-color: var(--color-bg);
   --dp-text-color: var(--color-text);
@@ -28,19 +29,41 @@
   --dp-range-between-border-color: var(--dp-hover-color, #fff);
 }
 
+// TODO: dp theme light
+
+.dp__theme_light {
+  --dp-primary-text-color: var(--color-text);
+}
+
 :root {
   --dp-font-family: var(--global-font);
   --dp-border-radius: var(--border-radius-s);
   --dp-cell-border-radius: var(--border-radius-s);
   --dp-common-transition: var(--transition);
 
-  --dp-font-size: var(--font-size-ms);
+  --dp-font-size: var(--font-size-m);
   --dp-preview-font-size: var(--font-size-s);
   --dp-time-font-size: var(--font-size-s);
 }
 
+.vui-calendar-inline {
+  .dp__outer_menu_wrap {
+    box-shadow: none;
+  }
+
+  .dp__menu {
+    border: none;
+  }
+}
+
+.dp__overlay_cell_pad {
+  font-size: var(--font-size-m);
+  text-transform: capitalize;
+  font-weight: var(--font-weight-medium);
+}
+
 .dp__main {
-  font-size: var(--n-font-size-m);
+  font-size: var(--font-size-m);
 }
 
 .dp__outer_menu_wrap {

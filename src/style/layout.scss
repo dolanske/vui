@@ -19,19 +19,24 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   }
 }
 
+$widths: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+
+@each $width in $widths {
+  $extra: '%';
+  .w-#{$width} {
+    width: #{$width + $extra} !important;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
 // Layout
-.flex {
-  display: flex;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-.inline-flex {
-  display: inline-flex;
-}
-
 .block {
   display: block;
 }
@@ -44,6 +49,28 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   display: inline;
 }
 
+// Flex stuff
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
 .x-center {
   justify-content: center;
 }
@@ -52,12 +79,24 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   justify-content: flex-start;
 }
 
+.x-between {
+  justify-content: space-between;
+}
+
+.x-around {
+  justify-content: space-around;
+}
+
+.x-evenly {
+  justify-content: space-evenly;
+}
+
 .x-end {
   justify-content: flex-end;
 }
 
 .y-start {
-  align-items: center;
+  align-items: flex-start;
 }
 
 .y-end {
@@ -66,6 +105,10 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
 
 .y-center {
   align-items: center;
+}
+
+.y-baseline {
+  align-items: baseline;
 }
 
 // Sizes
@@ -83,7 +126,7 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
 }
 
 // Generate layout classes from size styles
-$sizes: 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
+$sizes: 0, 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
 
 @each $size in $sizes {
   // Margin
@@ -164,5 +207,27 @@ $zindexes: 0, 10, 20, 30, 40, 50, auto;
 @each $zindex in $zindexes {
   .z-#{$zindex} {
     z-index: $zindex;
+  }
+}
+
+// Grid
+
+.grid {
+  display: grid;
+}
+
+.inline-grid {
+  display: inline-table;
+}
+
+$cols: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+
+@each $col in $cols {
+  .col-#{$col} {
+    grid-template-columns: repeat($col, 1fr);
+  }
+
+  .row {
+    grid-template-rows: repeat($col, 1fr);
   }
 }

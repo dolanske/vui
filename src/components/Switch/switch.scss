@@ -1,9 +1,27 @@
 .vui-switch {
   --switch-size: 24px;
 
-  &.checked .vui-switch-icon .vui-switch-indicator {
-    left: calc(100% - 24px);
-    background-color: var(--color-text);
+  &.checked {
+    .vui-switch-icon .vui-switch-indicator {
+      left: calc(100% - 24px);
+      background-color: var(--color-text);
+    }
+
+    &.accent .vui-switch-icon .vui-switch-indicator {
+      background-color: var(--color-accent);
+    }
+  }
+
+  &.disabled {
+    .vui-switch-icon {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    input + label .vui-switch-content {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 
   .vui-switch-icon {
@@ -12,7 +30,7 @@
     border-radius: 22px;
     background-color: var(--color-bg-raised);
     position: relative;
-    cursor: pointer;
+    cursor: default;
 
     .vui-switch-indicator {
       display: block;
@@ -22,7 +40,7 @@
       width: 20px;
       height: 20px;
       border-radius: 100%;
-      background-color: var(--color-bg);
+      background-color: var(--color-text-lighter);
       transition: var(--transition);
     }
   }
@@ -33,6 +51,7 @@
     position: absolute;
     overflow: hidden;
     outline: none !important;
+    opacity: 0;
 
     &:focus-visible + label .vui-switch-icon {
       outline: 2px solid var(--color-text);
@@ -52,9 +71,23 @@
         &:is(p) {
           height: var(--switch-size);
           line-height: var(--switch-size);
-          font-size: var(--font-size-ms);
+          font-size: var(--font-size-m);
         }
       }
     }
+  }
+}
+
+:root.light {
+  .vui-switch .vui-switch-icon .vui-switch-indicator {
+    background-color: var(--color-bg-lowered);
+  }
+
+  .vui-switch.checked.accent .vui-switch-icon .vui-switch-indicator {
+    background-color: var(--color-accent);
+  }
+
+  .vui-switch.checked .vui-switch-icon .vui-switch-indicator {
+    background-color: var(--color-text);
   }
 }

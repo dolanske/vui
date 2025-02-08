@@ -1,7 +1,7 @@
 <!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
 import { Icon } from '@iconify/vue'
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
@@ -28,6 +28,8 @@ type Props = {
   search?: boolean
   maxActiveOptions?: number
   showClear?: boolean
+  disabled?: boolean
+  errors?: string[]
 }
 
 const {
@@ -39,11 +41,14 @@ const {
   options,
   single = true,
   search,
-  maxActiveOptions = 3,
+  maxActiveOptions,
   showClear,
+  disabled,
+  errors = [] as string[],
 } = defineProps<Props>()
 
 const selected = defineModel<SelectOption[] | undefined>()
+const trigger = useTemplateRef('trigger')
 
 //
 function setValue(option: SelectOption) {
@@ -68,7 +73,7 @@ function setValue(option: SelectOption) {
       if (!selected.value) {
         selected.value = [option]
       }
-      else {
+      else if (!maxActiveOptions || (selected.value.length < maxActiveOptions)) {
         selected.value?.push(option)
       }
     }
@@ -97,7 +102,7 @@ const renderPlaceholder = computed(() => {
     return selected.value[0].label
 
   // If amount of selected exceeds the active capacity
-  if (selected.value.length > maxActiveOptions) {
+  if (selected.value.length > 3) {
     return `${selected.value.length} selected`
   }
 
@@ -117,42 +122,59 @@ function clearValue() {
   selected.value = undefined
   dropdownRef.value?.close()
 }
+
+const id = useId()
 </script>
 
 <template>
-  <div class="vui-input-container vui-select" :class="{ expand, required, readonly }">
-    <Dropdown ref="dropdown" :expand>
+  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }">
+    <Dropdown ref="dropdown" :expand @close="trigger?.focus({ preventScroll: true })">
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
-          <label v-if="label" for="id">{{ label }}</label>
+          <label v-if="label" :for="id">{{ label }}</label>
           <p v-if="hint" class="vui-input-hint">
             {{ hint }}
           </p>
 
-          <button class="vui-input-style vui-select-trigger-container" @click="toggle">
+          <button
+            :id
+            ref="trigger"
+            class="vui-input-style vui-select-trigger-container"
+            :class="{ 'has-value': selected && selected.length > 0 }"
+            :disabled
+            @click="toggle"
+          >
             <span>
               {{ renderPlaceholder }}
             </span>
-            <Button
-              v-if="showClear && !required && selected"
-              plain
-              icon="ph:x"
-              square
-              size="s"
-              @click.stop="clearValue"
-            />
+            <template v-if="showClear && !required && selected">
+              <div class="flex-1" />
+              <Button
+                plain
+                icon="ph:x"
+                square
+                size="s"
+
+                @click.stop="clearValue"
+              />
+            </template>
             <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </button>
         </div>
       </template>
 
       <template #default="{ close, isOpen }">
-        <DropdownTitle v-if="search">
+        <DropdownTitle v-if="search" sticky>
           <Input
             v-model="searchStr"
             placeholder="Search..."
             :focus="isOpen"
-          />
+            expand
+          >
+            <template #start>
+              <Icon icon="ph:magnifying-glass" />
+            </template>
+          </Input>
         </DropdownTitle>
 
         <p v-if="filteredOptions.length === 0" class="vue-select-no-results">
@@ -176,5 +198,14 @@ function clearValue() {
         </DropdownItem>
       </template>
     </Dropdown>
+
+    <p v-if="maxActiveOptions && !single" class="vui-input-limit">
+      {{ `${selected ? selected.length : 0}/${maxActiveOptions}` }}
+    </p>
+    <ul v-if="errors.length > 0" class="vui-input-errors">
+      <li v-for="err in errors" :key="err">
+        {{ err }}
+      </li>
+    </ul>
   </div>
 </template>

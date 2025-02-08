@@ -1,6 +1,6 @@
 .vui-dropdown-trigger-wrap {
-  // display: inline-block;
-  width: fit-content;
+  // width: fit-content;
+  position: relative;
 }
 
 .vui-dropdown {
@@ -8,6 +8,7 @@
   border-radius: var(--border-radius-m);
   border: 1px solid var(--color-border);
   padding: 4px;
+  overflow-y: auto;
 }
 
 .vui-dropdown-title {
@@ -15,19 +16,26 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-block: var(--space-s);
-  padding-inline: calc(var(--space-s) + 4px);
-  font-size: var(--font-size-ms);
+  padding-block: var(--space-xs);
+  padding-inline: calc(var(--space-xs) + 8px);
+  font-size: var(--font-size-m);
   border-bottom: 1px solid var(--color-border);
-  font-weight: 500;
-  // margin-block: 4px;
+  font-weight: var(--font-weight-semibold);
   margin-inline: -4px;
   margin-top: -4px;
   margin-bottom: 4px;
   gap: var(--space-m);
   justify-content: space-between;
+  background-color: var(--color-bg-medium);
+  z-index: 50;
+
+  &.sticky {
+    position: sticky;
+    top: -4px;
+  }
 
   &:not(:first-child) {
+    margin-top: 4px;
     border-top: 1px solid var(--color-border);
   }
 
@@ -35,5 +43,11 @@
     font-size: var(--font-size-s);
     font-weight: 400;
     color: var(--color-text-lighter);
+  }
+}
+
+:root.light {
+  .vui-dropdown-title {
+    background-color: var(--color-bg);
   }
 }

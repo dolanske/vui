@@ -41,13 +41,8 @@ import Sheet from './components/Sheet/Sheet.vue'
 import Skeleton from './components/Skeleton/Skeleton.vue'
 import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
-import Cell from './components/Table/Cell.vue'
-import Header from './components/Table/Header.vue'
-import Row from './components/Table/Row.vue'
-import SelectAll from './components/Table/SelectAll.vue'
-import SelectRow from './components/Table/SelectRow.vue'
+import * as Table from './components/Table'
 import { defineTable } from './components/Table/table'
-import Table from './components/Table/Table.vue'
 import Tab from './components/Tabs/Tab.vue'
 import Tabs from './components/Tabs/Tabs.vue'
 import { pushToast, removeToast } from './components/Toast/toast'
@@ -55,6 +50,7 @@ import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
 import { searchString } from './shared/helpers'
+import { setColorTheme, theme } from './shared/theme'
 import './index.scss'
 
 export {
@@ -70,7 +66,6 @@ export {
   ButtonGroup,
   Calendar,
   Card,
-  Cell,
   Checkbox,
   Confirm,
   CopyClipboard,
@@ -85,7 +80,6 @@ export {
   File,
   Flex,
   Grid,
-  Header,
   Input,
   Kbd,
   KbdGroup,
@@ -101,11 +95,9 @@ export {
   Radio,
   RadioGroup,
   removeToast,
-  Row,
   searchString,
   Select,
-  SelectAll,
-  SelectRow,
+  setColorTheme,
   Sheet,
   Skeleton,
   Spinner,
@@ -114,6 +106,7 @@ export {
   Table,
   Tabs,
   Textarea,
+  theme,
   Toasts,
   Tooltip,
 }

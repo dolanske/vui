@@ -5,24 +5,21 @@
     .vui-checkbox-icon svg {
       color: var(--color-text);
     }
+
+    &.accent .vui-checkbox-icon svg {
+      color: var(--color-accent);
+    }
   }
 
   &.disabled {
-    cursor: not-allowed;
-
     .vui-checkbox-icon {
-      pointer-events: none;
-      svg path {
-        color: var(--color-text-lighter);
-      }
+      opacity: 0.25;
+      cursor: not-allowed;
     }
 
-    input + label {
+    input + label .vui-checkbox-content {
+      opacity: 0.4;
       cursor: not-allowed;
-
-      p {
-        color: var(--color-text-lighter);
-      }
     }
   }
 
@@ -43,10 +40,12 @@
     position: absolute;
     overflow: hidden;
     outline: none !important;
+    opacity: 0;
 
     &:focus-visible + label .vui-checkbox-icon {
       outline: 2px solid var(--color-text);
       border-radius: var(--border-radius-s);
+      cursor: default;
     }
 
     & + label {
@@ -65,11 +64,17 @@
           display: flex;
           align-items: center;
           min-height: var(--checkbox-size);
-          font-size: var(--font-size-ms);
+          font-size: var(--font-size-m);
           align-self: flex-start;
           // line-height: var(--checkbox-size);
         }
       }
     }
+  }
+}
+
+:root.light {
+  .vui-checkbox.checked.accent .vui-checkbox-icon svg {
+    color: var(--color-accent);
   }
 }

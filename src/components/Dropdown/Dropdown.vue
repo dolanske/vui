@@ -1,8 +1,8 @@
 <script setup lang='ts'>
 import type { MaybeElement } from '@vueuse/core'
 import type { Placement } from '../../shared/types'
-import { onClickOutside } from '@vueuse/core'
-import { computed, ref, useTemplateRef } from 'vue'
+import { onClickOutside, useMagicKeys, whenever } from '@vueuse/core'
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
@@ -20,13 +20,23 @@ export interface Props {
    * Sets the width of the dropdown to the width of its anchor
    */
   expand?: boolean
+
+  /**
+   * Set he max height of the dropdown element before it starts scrolling
+   */
+  maxHeight?: number | string
 }
 
 const {
   placement = 'bottom-start',
+  maxHeight = 356,
   expand,
   minWidth = 156,
 } = defineProps<Props>()
+
+const emit = defineEmits<{
+  close: []
+}>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
 const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
@@ -67,6 +77,19 @@ defineExpose({
 
 const mW = computed(() => formatUnitValue(minWidth))
 const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
+
+const { escape } = useMagicKeys()
+whenever(escape, close)
+
+watch(showMenu, (v) => {
+  if (!v)
+    emit('close')
+})
+
+onMounted(() => {
+  if (expand && minWidth !== 156)
+    console.warn('[Dropdown] Dropdown: minWidth prop is ignored when expand is set to true')
+})
 </script>
 
 <template>
@@ -81,31 +104,32 @@ const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
-  <Transition appear name="dropdown">
-    <Popout
-      v-if="showMenu"
-      ref="dropdown"
-      :anchor="anchorRef"
-      class="vui-dropdown"
-      :placement
-      :style="{
-        minWidth: mW,
-        width: w,
-      }"
-    >
-      <slot :open :close :toggle :is-open="showMenu" />
-    </Popout>
-  </Transition>
+  <!-- <Transition name="dropdown" mode="out-in"> -->
+  <Popout
+    v-if="showMenu"
+    ref="dropdown"
+    :anchor="anchorRef"
+    class="vui-dropdown"
+    :placement
+    :style="{
+      minWidth: expand ? w : mW,
+      width: w,
+      maxHeight: formatUnitValue(maxHeight),
+    }"
+  >
+    <slot :open :close :toggle :is-open="showMenu" />
+  </Popout>
+  <!-- </Transition> -->
 </template>
 
-<style scoped lang="scss">
+<!-- <style scoped lang="scss">
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: 0.1s opacity ease-in-out;
+  transition: var(--transition-fast);
 }
 
 .dropdown-enter-from,
 .dropdown-leave-to {
   opacity: 0;
 }
-</style>
+</style> -->

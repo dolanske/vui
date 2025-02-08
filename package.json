@@ -1,9 +1,9 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "private": false,
-  "description": "Brother in Christ there's a new UI library ",
+  "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
   "license": "GPL-3.0",
   "sass": "src/index.scss",
@@ -43,7 +43,8 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "vitest"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.5",
@@ -59,10 +60,13 @@
     "@antfu/eslint-config": "^3.8.0",
     "@iconify/vue": "^4.1.2",
     "@vitejs/plugin-vue": "^5.1.5",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^9.14.0",
     "eslint-plugin-format": "^0.1.2",
+    "jsdom": "^26.0.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.11",
+    "vitest": "^2.1.8",
     "vue-tsc": "^2.1.10"
   }
 }

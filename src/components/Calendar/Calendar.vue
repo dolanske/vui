@@ -3,6 +3,7 @@ import type { VueDatePickerProps } from '@vuepic/vue-datepicker'
 import { Icon } from '@iconify/vue'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import { useAttrs } from 'vue'
+import { theme } from '../../shared/theme'
 import '@vuepic/vue-datepicker/dist/main.css'
 import './calendar.scss'
 
@@ -11,8 +12,8 @@ const props = withDefaults(defineProps<VueDatePickerProps & {
 }>(), {
   autoApply: true,
   autoPosition: true,
-  dark: true,
   format: 'dd/MM/yyyy HH:mm',
+  monthNameFormat: 'long',
   expand: false,
 })
 
@@ -24,10 +25,12 @@ const attrs = useAttrs()
   <VueDatePicker
     v-bind="{ ...props, ...attrs }"
     class="vui-calendar"
+    :class="{ 'vui-calendar-inline': props.inline }"
     :style="props.expand ?? !$slots.trigger
       ? undefined
       : { display: 'inline-block', width: 'auto' }
     "
+    :dark="theme === 'dark'"
   >
     <!-- Icon slots -->
     <template #input-icon>

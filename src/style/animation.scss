@@ -1,6 +1,7 @@
 .fade-enter-active,
 .fade-leave-active {
   transition: var(--transition);
+  will-change: opacity;
 }
 
 .fade-enter-from,

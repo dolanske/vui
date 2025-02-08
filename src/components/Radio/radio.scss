@@ -5,18 +5,21 @@
     .vui-radio-icon svg {
       color: var(--color-text);
     }
+
+    &.accent .vui-radio-icon svg {
+      color: var(--color-accent);
+    }
   }
 
   &.disabled {
-    cursor: not-allowed;
-    pointer-events: none;
-
-    .vui-radio-icon svg path {
-      color: var(--color-text-lighter) !important;
+    .vui-radio-icon {
+      opacity: 0.25;
+      cursor: not-allowed;
     }
 
-    input + label p {
-      color: var(--color-text-lighter);
+    input + label .vui-radio-content {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
   }
 
@@ -38,6 +41,7 @@
     position: absolute;
     overflow: hidden;
     outline: none !important;
+    opacity: 0;
 
     &:focus-visible + label .vui-radio-icon {
       outline: 2px solid var(--color-text);
@@ -59,10 +63,16 @@
           display: flex;
           align-items: center;
           min-height: var(--radio-size);
-          font-size: var(--font-size-ms);
+          font-size: var(--font-size-m);
           // line-height: var(--radio-size);
         }
       }
     }
+  }
+}
+
+:root.light {
+  .vui-radio.checked.accent .vui-radio-icon svg {
+    color: var(--color-accent);
   }
 }

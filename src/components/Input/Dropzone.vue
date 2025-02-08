@@ -48,7 +48,7 @@ onMounted(() => {
       <input :id="inputId" type="file">
       <label :for="inputId">
         <slot :dragging>
-          <Flex justify-center gap="s" align-baseline>
+          <Flex justify-center gap="xs" align-center>
             <template v-if="dragging">
               <Icon icon="ph:target" />
               Drop it

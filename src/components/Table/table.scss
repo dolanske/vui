@@ -47,16 +47,28 @@
     tr {
       border: none;
 
+      &:first-child td {
+        border-top: 0 !important;
+      }
+
       &:has(.vui-table-interactive-cell.selected) {
         td {
           background-color: var(--color-bg-raised);
         }
       }
+
+      &:last-child td {
+        border-bottom: 0;
+      }
+    }
+
+    th {
+      border-top: 0 !important;
     }
 
     th,
     td {
-      font-size: var(--font-size-ms);
+      font-size: var(--font-size-m);
       border: none;
       border-left: none !important;
       transition: var(--transition-fast);
@@ -72,6 +84,7 @@
         height: auto;
         padding-inline: var(--space-xs);
         padding-block: 0;
+        vertical-align: middle;
 
         &.selected .vui-button.icon .vui-button-slot svg path {
           color: var(--color-text) !important;
@@ -107,28 +120,35 @@
 
     th {
       .vui-table-th-content {
-        color: var(--color-text-light);
+        color: var(--color-text);
         font-size: var(--font-size-xs);
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: var(--font-weight-semibold);
         display: flex;
         justify-content: flex-start;
         align-items: center;
         gap: var(--space-xs);
 
         .vui-table-sort-button:not(.active) svg path {
-          color: var(--color-text-lighter);
+          color: var(--color-text-light);
         }
       }
     }
   }
 
   .vui-table-pagination-wrap {
-    padding: var(--space-s) var(--space-m);
+    padding: var(--space-xs) var(--space-m);
+    border-top: 1px solid var(--color-border);
 
     p {
       font-size: var(--font-size-s);
       color: var(--color-text-lighter);
     }
+  }
+}
+
+:root.light {
+  .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
+    background-color: var(--color-bg-medium);
   }
 }

@@ -21,7 +21,7 @@
     }
 
     &:not(:last-child) {
-      margin-right: -1px;
+      margin-right: 0px;
     }
   }
 
@@ -44,7 +44,7 @@
       }
 
       &:not(:last-child) {
-        margin-bottom: -1px;
+        margin-bottom: 0px;
       }
     }
   }

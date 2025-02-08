@@ -12,9 +12,9 @@
   }
 
   &:not(.separators) {
-    .vui-card-content:not(:first-child) {
-      padding-block: var(--space-xs);
-    }
+    // &:not(.header-separator) .vui-card-content:first-child {
+    //   padding-bottom: var(--space-xs);
+    // }
 
     &.header-separator {
       .vui-card-content:not(:first-child) {
@@ -32,7 +32,7 @@
 
   .vui-card-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     padding: var(--space-s) var(--space-m);
     background-color: var(--color-bg);

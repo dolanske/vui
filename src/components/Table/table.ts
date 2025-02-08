@@ -38,7 +38,7 @@ interface TableOptionsInput {
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
-export function defineTable<const Dataset extends Array<BaseRow>>(
+export function defineTable<const Dataset extends any[]>(
   computedDataset: MaybeRefOrGetter<Dataset>,
   tableOptions?: TableOptionsInput,
 ) {
@@ -139,7 +139,7 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
   })
 
   const headers = computed(() => Object
-    .keys($data.value[0])
+    .keys($data.value[0] || {})
     .map((key) => {
       return {
         label: key,
@@ -212,7 +212,11 @@ export function defineTable<const Dataset extends Array<BaseRow>>(
       selectedRows.value = new Set()
     }
     else {
-      selectedRows.value = new Set($data.value.map(row => row))
+      const data = new Set<BaseRow>()
+      for (const item of $data.value) {
+        data.add(item)
+      }
+      selectedRows.value = new Set(data)
     }
   }
 

@@ -7,11 +7,19 @@
   padding: 6px 8px;
   border-radius: var(--border-radius-s);
   background-color: var(--color-bg-raised);
-  font-size: var(--font-size-s);
-  color: var(--color-text-light);
+  font-size: var(--font-size-m);
+  color: var(--color-text);
   box-shadow: var(--box-shadow);
+  z-index: 1000;
 
   svg path {
     color: var(--color-text);
+  }
+}
+
+:root.light {
+  .vui-clipboard-tooltip {
+    background-color: var(--color-bg);
+    box-shadow: var(--box-shadow-strong);
   }
 }

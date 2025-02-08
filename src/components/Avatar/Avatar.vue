@@ -34,8 +34,11 @@ const showFallback = ref(false)
       }),
     }"
   >
+    <span v-if="$slots.default">
+      <slot />
+    </span>
     <img
-      v-if="url && !showFallback"
+      v-else-if="url && !showFallback"
       :alt
       :src="url"
       @error="showFallback = true"

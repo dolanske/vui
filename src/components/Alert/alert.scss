@@ -5,9 +5,10 @@
   padding: var(--space-s);
   font-size: var(--font-size-m);
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: center;
+  border: 1px solid var(--color-border);
 
-  svg {
+  .vui-alert-icon {
     width: 22px;
     height: 22px;
   }
@@ -18,63 +19,143 @@
   }
 
   .vui-alert-default-content {
-    padding-top: 3px;
-
     strong {
       display: block;
       font-size: var(--font-size-m);
-      font-weight: 550;
-      margin-bottom: 6px;
+      margin-bottom: 2px;
     }
 
     p {
-      font-size: var(--font-size-ms);
+      font-size: var(--font-size-s);
       color: var(--color-text-light);
-      font-weight: 350;
     }
   }
 
   .vui-alert-content {
     font-size: var(--font-size-m);
+    font-weight: 400;
+  }
+
+  &.filled {
+    border: none !important;
   }
 
   &.vui-alert-variant-neutral {
-    border: 1px solid var(--color-border);
+    .vui-alert-icon path {
+      color: var(--color-text-light);
+    }
 
-    svg path {
-      color: var(--color-text);
+    &.filled {
+      background-color: var(--color-bg-raised);
     }
   }
 
   &.vui-alert-variant-info {
-    border: 1px solid var(--color-border-blue);
-
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-blue);
+    }
+
+    &.filled {
+      background-color: hsla(from var(--color-bg-blue-lowered) h s l / 0.5);
     }
   }
 
   &.vui-alert-variant-success {
-    border: 1px solid var(--color-border-green);
-
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-green);
+    }
+
+    &.filled {
+      background-color: hsla(from var(--color-bg-green-lowered) h s l / 0.4);
     }
   }
 
   &.vui-alert-variant-warning {
-    border: 1px solid var(--color-border-yellow);
-
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-yellow);
+    }
+
+    &.filled {
+      background-color: hsla(from var(--color-bg-yellow-lowered) h s l / 0.6);
     }
   }
 
   &.vui-alert-variant-danger {
-    border: 1px solid var(--color-border-red);
-
-    svg path {
+    .vui-alert-icon path {
       color: var(--color-text-red);
     }
+
+    &.filled {
+      background-color: hsla(from var(--color-bg-red-lowered) h s l / 0.5);
+    }
   }
+}
+
+:root.light {
+  .vui-alert.filled {
+    border: none;
+
+    &.vui-alert-variant-neutral {
+      background-color: var(--color-bg-medium);
+    }
+
+    &.vui-alert-variant-danger {
+      background-color: hsla(from var(--color-bg-red-raised) h s l / 0.15);
+    }
+
+    &.vui-alert-variant-warning {
+      background-color: hsla(from var(--color-bg-yellow-raised) h s l / 0.2);
+    }
+
+    &.vui-alert-variant-success {
+      background-color: hsla(from var(--color-bg-green-raised) h s l / 0.15);
+    }
+
+    &.vui-alert-variant-info {
+      background-color: hsla(from var(--color-bg-blue-raised) h s l / 0.15);
+    }
+  }
+
+  // .vui-alert.vui-alert-variant-success:not(.filled, .outline) {
+  //   background-color: hsla(from var(--color-text-green) h s l / 0.15);
+  // }
+
+  // .vui-alert.vui-alert-variant-danger .vui-alert-icon path {
+  //   color: var(--color-border-red);
+  // }
+
+  // .vui-alert.vui-alert-variant-warning .vui-alert-icon path {
+  //   color: var(--color-border-yellow);
+  // }
+
+  // .vui-alert.vui-alert-variant-success .vui-alert-icon path {
+  //   color: var(--color-border-green);
+  // }
+
+  // .vui-alert.vui-alert-variant-info .vui-alert-icon path {
+  //   color: var(--color-border-blue);
+  // }
+
+  // .vui-alert {
+  //   &.filled {
+  //     &.vui-alert-variant-danger .vui-alert-icon path,
+  //     &.vui-alert-variant-warning .vui-alert-icon path,
+  //     &.vui-alert-variant-success .vui-alert-icon path,
+  //     &.vui-alert-variant-info .vui-alert-icon path {
+  //       color: var(--color-text-light);
+  //     }
+
+  //     strong,
+  //     p {
+  //       color: var(--color-text);
+  //     }
+  //   }
+  // }
+
+  // .vui-alert.filled.vui-alert-variant-danger .vui-alert-icon path,
+  // .vui-alert.filled.vui-alert-variant-warning .vui-alert-icon path,
+  // .vui-alert.filled.vui-alert-variant-success .vui-alert-icon path,
+  // .vui-alert.filled.vui-alert-variant-info .vui-alert-icon path {
+  //   color: var(--color-text-light);
+  // }
 }

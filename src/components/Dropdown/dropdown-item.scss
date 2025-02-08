@@ -7,9 +7,9 @@
   width: 100%;
   height: var(--interactive-el-height);
   border-radius: var(--border-radius-m);
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-m);
   cursor: default;
-  transition: var(--transition);
+  transition: var(--transition-fast);
   padding-inline: var(--space-s);
   white-space: nowrap;
   margin-bottom: 4px;
@@ -55,10 +55,17 @@
   }
 
   .vui-dropdown-item-hint {
+    display: flex;
+    align-items: center;
+    gap: 2px;
     margin-left: 8px;
     font-size: 0.9rem;
     // white-space: nowrap;
     color: var(--color-text-lighter);
+
+    svg {
+      color: var(--color-text-lighter);
+    }
   }
 
   .vui-dropdown-item-slot {

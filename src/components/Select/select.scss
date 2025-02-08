@@ -1,5 +1,7 @@
 .vui-input-container {
   &.vui-select {
+    width: auto;
+
     &.expand {
       .vui-dropdown-trigger-wrap,
       .vui-dropdown-trigger-content {
@@ -7,7 +9,22 @@
       }
     }
 
+    &.disabled {
+      .vui-input-style {
+        cursor: not-allowed;
+
+        &:hover {
+          border-color: var(--color-border);
+        }
+      }
+    }
+
     .vui-select-trigger-container {
+      &.has-value span {
+        color: var(--color-text);
+        font-weight: var(--font-weight-medium);
+      }
+
       span {
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -30,8 +47,6 @@
         margin-right: -6px;
 
         .vui-button-slot svg {
-          width: 14px;
-          height: 14px;
           color: var(--color-text-light);
         }
       }
@@ -40,5 +55,23 @@
         border-color: var(--color-border-strong);
       }
     }
+  }
+}
+
+select {
+  display: block;
+  height: var(--interactive-el-height);
+  line-height: var(--interactive-el-height);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-s);
+  padding-inline: var(--space-xs);
+  transition: var(--transition-fast);
+  z-index: 1;
+  font-size: var(--font-size-m);
+  color: var(--color-text);
+
+  &:hover {
+    border-color: var(--color-border-strong);
   }
 }

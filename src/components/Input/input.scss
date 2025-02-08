@@ -17,9 +17,16 @@
 
   width: 224px;
 
-  &.disabled input,
-  &.disabled textarea {
-    cursor: not-allowed;
+  &.disabled {
+    .vui-input label {
+      color: var(--input-color-text-lighter);
+    }
+
+    input,
+    textarea {
+      cursor: not-allowed;
+      resize: none !important;
+    }
   }
 
   &.expand {
@@ -28,7 +35,9 @@
 
   &.required .vui-input > label:after {
     content: '*';
+    padding-left: 2px;
     color: var(--input-color-text-red);
+    font-size: var(--font-size-l);
   }
 
   &.readonly .vui-input {
@@ -38,6 +47,7 @@
       pointer-events: none;
       color: var(--input-color-text-light);
       border-color: var(--input-color-border-weak);
+      resize: none !important;
     }
   }
 
@@ -45,8 +55,15 @@
     .vui-input {
       .vui-input-style,
       textarea {
-        border-color: var(--color-text-red) !important;
+        outline: 1px solid var(--color-text-red) !important;
       }
+    }
+  }
+
+  &.vui-input-color {
+    .vui-input-style {
+      padding-left: 0 !important;
+      outline: none !important;
     }
   }
 
@@ -55,8 +72,14 @@
       display: block;
       text-align: left;
       margin-bottom: 8px;
-      font-size: var(--font-size-ms);
+      font-size: var(--font-size-m);
       color: var(--input-color-text);
+    }
+
+    svg {
+      min-width: 16px;
+      min-height: 16px;
+      // font-size: var(--font-size-l);
     }
 
     .vui-input-hint {
@@ -82,22 +105,42 @@
       background: transparent;
       height: var(--input-height);
       line-height: var(--input-height);
-      color: var(--color-text);
+      color: var(--color-text-lighter);
       outline: none;
-      padding-inline: var(--input-padding);
-      font-size: var(--font-size-ms);
+      font-size: var(--font-size-m);
       width: 100%;
-      transition: var(--transition);
+      transition: var(--transition-fast);
+      padding-inline: var(--input-padding);
+      z-index: 1;
 
-      &:has(input:focus-visible),
-      &:focus-visible {
-        outline: 2px solid var(--color-text);
+      &:has(input:focus),
+      &:focus {
+        // Override error outline
+        outline: 2px solid var(--color-text) !important;
+      }
+
+      .vui-button {
+        border: 1px solid var(--color-border);
+
+        &:first-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          margin-left: calc(calc(var(--input-padding) + 1px) * -1);
+        }
+
+        &:last-child {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          margin-right: calc(calc(var(--input-padding) + 1px) * -1);
+        }
       }
     }
 
     input,
     textarea {
+      color: var(--color-text);
       font-family: var(--global-font);
+      // padding-inline: 3px;
     }
 
     input[type='file']::file-selector-button {
@@ -112,6 +155,51 @@
       height: 4px;
       border-radius: 2px;
       background-color: var(--color-border);
+    }
+
+    input[type='color'] {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      overflow: hidden;
+      outline: none !important;
+      opacity: 0;
+
+      &:focus + label .vui-input-color-indicator {
+        outline: 2px solid var(--color-text);
+      }
+
+      & + label {
+        position: relative;
+        margin: 0;
+        padding-left: var(--input-height);
+
+        input {
+          padding-inline: var(--space-xs);
+          border-radius: var(--border-radius-s);
+
+          &:focus {
+            outline: 2px solid var(--color-text);
+          }
+        }
+
+        .vui-input-color-indicator {
+          position: absolute;
+          inset: 4px;
+          right: unset;
+          width: calc(var(--input-height) - 8px);
+          background-color: var(--color-border);
+          border-radius: var(--border-radius-s);
+          font-size: var(--font-size-l);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
     }
 
     ::-moz-range-thumb,
@@ -130,7 +218,7 @@
       line-height: calc(var(--input-height) - 1px);
       background: transparent;
       outline: none;
-      font-size: var(--font-size-ms);
+      font-size: var(--font-size-m);
       color: var(--color-text);
 
       &:-webkit-autofill {
@@ -172,12 +260,13 @@
 
   &.vui-dropzone {
     &.dragging .vui-input .vui-input-style {
-      border-color: var(--color-border-accent);
+      border-color: var(--color-accent);
 
       &:hover {
         border-color: var(--color-border);
       }
     }
+
     .vui-input {
       .vui-input-style {
         height: unset;
@@ -187,11 +276,15 @@
         line-height: 1.2em;
 
         &:hover {
-          border-color: var(--color-border-strong);
+          border-color: var(--color-accent);
         }
 
         input {
-          display: none;
+          width: 1px;
+          height: 1px;
+          position: absolute;
+          outline: 0 !important;
+          opacity: 0 !important;
 
           & + label {
             display: flex;
@@ -199,6 +292,7 @@
             justify-content: center;
             width: 100%;
             min-height: 96px;
+            margin: 0;
             color: var(--color-text-light);
           }
         }

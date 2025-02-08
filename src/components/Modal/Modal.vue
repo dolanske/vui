@@ -8,7 +8,7 @@ import Card from '../Card/Card.vue'
 import './modal.scss'
 
 export interface ModalProps {
-  size?: Sizes | 'full'
+  size?: Sizes | 'full' | 'screen'
   /**
    * Modal wraps a floating card. You can optinally pass in any props you'd pass
    * into the <Card /> component.
@@ -43,32 +43,40 @@ function close() {
 }
 
 const attrs = useAttrs()
+
+function tryClose() {
+  if (canDismiss) {
+    close()
+  }
+}
 </script>
 
 <template>
   <Teleport to="body">
     <Transition appear name="modal">
-      <Backdrop v-if="open" @close="close">
-        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable, centered }]" v-bind="attrs">
-          <Button
-            v-if="canDismiss"
-            class="vui-modal-close"
-            plain
-            square
-            icon="ph:x"
-            @click="open = false"
-          />
+      <Backdrop v-if="open" :class="{ 'p-0': size === 'screen' }" @close="tryClose">
+        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable: scrollable || size === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
-              <slot name="header" :close />
+              <slot name="header" :close="close" />
+            </template>
+            <template #header-end>
+              <Button
+                v-if="canDismiss"
+                class="vui-modal-close"
+                plain
+                square
+                icon="ph:x"
+                @click="open = false"
+              />
             </template>
             <template v-if="$slots.default" #default>
               <div>
-                <slot name="default" :close />
+                <slot name="default" :close="close" />
               </div>
             </template>
             <template v-if="$slots.footer" #footer>
-              <slot name="footer" :close />
+              <slot name="footer" :close="close" />
             </template>
           </Card>
         </div>
@@ -86,6 +94,6 @@ const attrs = useAttrs()
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(1.025);
 }
 </style>

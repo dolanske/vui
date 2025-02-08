@@ -53,8 +53,9 @@ p {
   }
 
   a {
-    color: var(--color-text-blue);
+    color: var(--color-text);
     text-decoration: underline;
+    text-underline-offset: 3px;
 
     &:hover {
       text-decoration: none;
@@ -62,16 +63,19 @@ p {
   }
 
   code {
-    border-radius: var(--border-radius-xs);
+    font-family: var(--global-font-mono);
+    border-radius: var(--border-radius-s);
     background-color: var(--color-bg-raised);
     color: var(--color-text);
     border: 1px solid var(--color-border);
-    padding: 1px 3px;
+    padding: 0px 3px;
+    font-weight: var(--font-weight);
+    font-size: var(--font-size-s);
   }
 
   strong,
   b {
-    font-weight: 700;
+    font-weight: var(--font-weight-700);
   }
 
   i {
@@ -90,7 +94,7 @@ hr {
 span,
 strong,
 p {
-  font-size: var(--font-size-ms);
+  font-size: var(--font-size-m);
 }
 
 blockquote {
@@ -135,9 +139,66 @@ pre {
 table {
   text-indent: 0;
   border-collapse: separate;
-  // width: 100%;
   overflow-x: auto;
   max-width: 100%;
+
+  // TODO: add alternating row colors
+
+  // TODO add only separating header and body with a border, not between rows
+
+  // &.bg-dark {
+  //   background-color: var(--color-bg-lowered);
+  // }
+
+  // &.bg-light {
+  //   background-color: var(--color-bg-lighter);
+  // }
+
+  // &.no-borders {
+  //   th,
+  //   td {
+  //     border: 0 !important;
+  //   }
+  // }
+
+  thead {
+    th {
+      border-bottom: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
+      white-space: nowrap;
+
+      &:first-child {
+        border-top-left-radius: var(--border-radius-s);
+        border-bottom-left-radius: 0 !important;
+      }
+
+      &:last-child {
+        border-top-right-radius: var(--border-radius-s);
+        border-bottom-right-radius: 0 !important;
+      }
+    }
+  }
+
+  tbody {
+    th {
+      border-radius: 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    &:first-child tr:first-child {
+      td {
+        border-top: 1px solid var(--color-border);
+
+        &:first-child {
+          border-top-left-radius: var(--border-radius-s);
+        }
+
+        &:last-child {
+          border-top-right-radius: var(--border-radius-s);
+        }
+      }
+    }
+  }
 
   th,
   td {
@@ -148,6 +209,7 @@ table {
     font-size: var(--font-size-m);
     line-height: 1.4em;
     font-variant-numeric: tabular-nums;
+    vertical-align: top;
 
     &:first-child {
       border-left: 1px solid var(--color-border);
@@ -157,18 +219,9 @@ table {
   }
 
   th {
-    border-bottom: 1px solid var(--color-border);
-    border-top: 1px solid var(--color-border);
     font-weight: 600;
-    white-space: nowrap;
-
-    &:first-child {
-      border-top-left-radius: var(--border-radius-s);
-    }
-
-    &:last-child {
-      border-top-right-radius: var(--border-radius-s);
-    }
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
   }
 
   tr {
@@ -177,7 +230,31 @@ table {
       font-weight: 400;
     }
 
+    &:first-child {
+      th {
+        border-top: 1px solid var(--color-border);
+
+        &:first-child {
+          border-top-left-radius: var(--border-radius-s);
+        }
+
+        &:last-child {
+          border-top-right-radius: var(--border-radius-s);
+        }
+      }
+    }
+
     &:last-child {
+      th {
+        &:first-child {
+          border-bottom-left-radius: var(--border-radius-s);
+        }
+
+        &:last-child {
+          border-bottom-right-radius: var(--border-radius-s);
+        }
+      }
+
       td {
         &:first-child {
           border-bottom-left-radius: var(--border-radius-s);
@@ -210,7 +287,7 @@ dl {
     padding-left: 0;
     color: var(--color-text-lighter);
     font-weight: 500;
-    font-size: var(--font-size-ms);
+    font-size: var(--font-size-m);
     grid-column-start: 1;
   }
 
