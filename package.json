@@ -1,9 +1,9 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "private": false,
-  "description": "Brother in Christ there's a new UI library ",
+  "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
   "license": "GPL-3.0",
   "sass": "src/index.scss",

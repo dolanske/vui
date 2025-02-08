@@ -10,13 +10,14 @@ interface Props {
   pagination: Pagination
   prevNext?: boolean
   firstLast?: boolean
-  variant: Variants
+  variant?: Variants
 }
 
 const props = withDefaults(defineProps<Props>(), {
   numbers: true,
   prevNext: true,
   firstLast: true,
+  variant: 'gray',
 })
 
 const emit = defineEmits<{

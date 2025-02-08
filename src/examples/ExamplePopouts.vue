@@ -4,7 +4,7 @@ import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Popout from '../components/Popout/Popout.vue'
 
-const anchor = useTemplateRef('anchor')
+const anch = useTemplateRef('anch')
 const open = ref(false)
 </script>
 
@@ -19,14 +19,14 @@ const open = ref(false)
     </p>
 
     <Flex>
-      <Button ref="anchor" class="mb-xxs" @click="open = !open">
+      <Button ref="anch" class="mb-xxs" @click="open = !open">
         Open popout
       </Button>
       <p class="text-s text-color-light w-50">
         This popout has offset of <code>32</code> and its placement is <code>bottom-start</code>. It also has an attached event to <code>clickOutside</code> which is fired when user clicks outside of the popout. In that case, we manually close it.
       </p>
     </Flex>
-    <Popout v-if="open" :anchor class="test-popout" :offset="32" placement="bottom-start" @click-outside="open = false">
+    <Popout v-if="open" :anchor="anch" class="test-popout" :offset="32" placement="bottom-start" @click-outside="open = false">
       <h3>Popout content</h3>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem facere eligendi ex, alias itaque molestiae, vero animi, vitae vel fuga corporis aut consectetur temporibus ipsum placeat dolores perferendis. Deleniti, et!</p>
     </Popout>

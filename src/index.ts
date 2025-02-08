@@ -50,6 +50,7 @@ import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
 import { searchString } from './shared/helpers'
+import { setColorTheme, theme } from './shared/theme'
 import './index.scss'
 
 export {
@@ -96,6 +97,7 @@ export {
   removeToast,
   searchString,
   Select,
+  setColorTheme,
   Sheet,
   Skeleton,
   Spinner,
@@ -104,6 +106,7 @@ export {
   Table,
   Tabs,
   Textarea,
+  theme,
   Toasts,
   Tooltip,
 }
