@@ -8,18 +8,12 @@
   padding: 0 4px;
   transition: var(--transition-fast);
   font-weight: 600;
-  background-color: var(--color-text);
-  color: var(--color-text-invert);
+  background-color: var(--color-button-gray);
+  color: var(--color-text-accent);
 
   &.active {
     transform: translateY(2px);
-    background-color: var(--light-color-bg-accent-raised);
-  }
-}
-
-:root.light {
-  .vui-kbd.active {
-    background-color: var(--light-color-bg-accent-lowered);
-    color: var(--color-accent);
+    color: var(--color-text-invert);
+    background-color: var(--color-button-fill);
   }
 }

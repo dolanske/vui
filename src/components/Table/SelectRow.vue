@@ -23,7 +23,7 @@ const isSelected = computed(() => isObjectInSet(selectedRows.value, props.row))
     <Button
       square
       plain
-      :icon="isSelected ? 'ph:check-square' : 'ph:square'"
+      :icon="isSelected ? 'ph:check-square-fill' : 'ph:square'"
       @click="selectRow(props.row)"
     />
   </td>

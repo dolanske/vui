@@ -31,7 +31,7 @@ import ExampleColor from './shared/ExampleColor.vue'
       <Flex class="theme-wrap light" column gap="xxs">
         <Flex space-between class="mb-l" align-center expand>
           <h5>Light</h5>
-          <Button :disabled="theme === 'light'" variant="default" data-title-top="Switch theme" @click="setColorTheme('light')">
+          <Button :disabled="theme === 'light'" variant="gray" data-title-top="Switch theme" @click="setColorTheme('light')">
             <template #start>
               <Icon icon="ph:sun" />
             </template>
@@ -55,39 +55,32 @@ import ExampleColor from './shared/ExampleColor.vue'
         <ExampleColor name="Text Red" color="--light-color-text-red" />
         <ExampleColor name="Bg Red Lowered" color="--light-color-bg-red-lowered" />
         <ExampleColor name="Bg Red Raised" color="--light-color-bg-red-raised" />
-        <ExampleColor name="Border Red" color="--light-color-border-red" />
         <div class="padder" />
         <ExampleColor name="Text Green" color="--light-color-text-green" />
-        <ExampleColor name="Text Green Disabled" color="--light-color-text-green-disabled" />
         <ExampleColor name="Bg Green Lowered" color="--light-color-bg-green-lowered" />
         <ExampleColor name="Bg Green Raised" color="--light-color-bg-green-raised" />
-        <ExampleColor name="Border Green" color="--light-color-border-green" />
         <div class="padder" />
         <ExampleColor name="Text Yellow" color="--light-color-text-yellow" />
         <ExampleColor name="Bg Yellow Lowered" color="--light-color-bg-yellow-lowered" />
         <ExampleColor name="Bg Yellow Raised" color="--light-color-bg-yellow-raised" />
-        <ExampleColor name="Border Yellow" color="--light-color-border-yellow" />
         <div class="padder" />
         <ExampleColor name="Text Blue" color="--light-color-text-blue" />
         <ExampleColor name="Bg Blue Lowered" color="--light-color-bg-blue-lowered" />
         <ExampleColor name="Bg Blue Raised" color="--light-color-bg-blue-raised" />
-        <ExampleColor name="Border Blue" color="--light-color-border-blue" />
         <div class="padder" />
         <ExampleColor name="Border" color="--light-color-border" />
         <ExampleColor name="Border Strong" color="--light-color-border-strong" />
         <ExampleColor name="Border Weak" color="--light-color-border-weak" />
         <div class="padder" />
         <ExampleColor name="Accent" color="--light-color-accent" />
-        <ExampleColor name="Accent Disabled" color="--light-color-accent-disabled" />
         <ExampleColor name="Bg Accent Lowered" color="--light-color-bg-accent-lowered" />
         <ExampleColor name="Bg Accent Raised" color="--light-color-bg-accent-raised" />
-        <ExampleColor name="Border Accent" color="--light-color-border-accent" />
       </Flex>
 
       <Flex class="theme-wrap dark" gap="xxs" column>
         <Flex space-between class="mb-l" align-center expand>
           <h5>Dark</h5>
-          <Button :disabled="theme === 'dark'" variant="default" data-title-top="Switch theme" @click="setColorTheme('dark')">
+          <Button :disabled="theme === 'dark'" variant="gray" data-title-top="Switch theme" @click="setColorTheme('dark')">
             <template #start>
               <Icon icon="ph:moon" />
             </template>
@@ -111,33 +104,26 @@ import ExampleColor from './shared/ExampleColor.vue'
         <ExampleColor name="Text Red" color="--dark-color-text-red" />
         <ExampleColor name="Bg Red Lowered" color="--dark-color-bg-red-lowered" />
         <ExampleColor name="Bg Red Raised" color="--dark-color-bg-red-raised" />
-        <ExampleColor name="Border Red" color="--dark-color-border-red" />
         <div class="padder" />
         <ExampleColor name="Text Green" color="--dark-color-text-green" />
-        <ExampleColor name="Text Green Disabled" color="--dark-color-text-green-disabled" />
         <ExampleColor name="Bg Green Lowered" color="--dark-color-bg-green-lowered" />
         <ExampleColor name="Bg Green Raised" color="--dark-color-bg-green-raised" />
-        <ExampleColor name="Border Green" color="--dark-color-border-green" />
         <div class="padder" />
         <ExampleColor name="Text Yellow" color="--dark-color-text-yellow" />
         <ExampleColor name="Bg Yellow Lowered" color="--dark-color-bg-yellow-lowered" />
         <ExampleColor name="Bg Yellow Raised" color="--dark-color-bg-yellow-raised" />
-        <ExampleColor name="Border Yellow" color="--dark-color-border-yellow" />
         <div class="padder" />
         <ExampleColor name="Text Blue" color="--dark-color-text-blue" />
         <ExampleColor name="Bg Blue Lowered" color="--dark-color-bg-blue-lowered" />
         <ExampleColor name="Bg Blue Raised" color="--dark-color-bg-blue-raised" />
-        <ExampleColor name="Border Blue" color="--dark-color-border-blue" />
         <div class="padder" />
         <ExampleColor name="Border" color="--dark-color-border" />
         <ExampleColor name="Border Strong" color="--dark-color-border-strong" />
         <ExampleColor name="Border Weak" color="--dark-color-border-weak" />
         <div class="padder" />
         <ExampleColor name="Accent" color="--dark-color-accent" />
-        <ExampleColor name="Accent Disabled" color="--dark-color-accent-disabled" />
         <ExampleColor name="Bg Accent Lowered" color="--dark-color-bg-accent-lowered" />
         <ExampleColor name="Bg Accent Raised" color="--dark-color-bg-accent-raised" />
-        <ExampleColor name="Border Accent" color="--dark-color-border-accent" />
       </Flex>
     </Grid>
   </div>

@@ -6,7 +6,7 @@ import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-export type Variants = 'default' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
+export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
 
 interface Props {
   // Provide URL to turn button into anchor
@@ -22,9 +22,9 @@ interface Props {
   icon?: string
 
   variant?: Variants
-  dashed?: boolean
-  outlineDashed?: boolean
-  active?: boolean
+  outline?: boolean
+  // dashed?: boolean
+  // outlineDashed?: boolean
   disabled?: boolean
   plain?: boolean
 }
@@ -34,14 +34,14 @@ const {
   disabled,
   expand,
   size = 'm',
-  variant = 'default',
+  variant = 'gray',
   icon,
-  dashed,
+  // dashed,
 } = defineProps<Props>()
 
 const height = computed(() => {
   switch (size) {
-    case Size.s: return '26px'
+    case Size.s: return '28px'
     case Size.l: return '40px'
     case Size.m:
     default: return 'var(--interactive-el-height)'
@@ -50,7 +50,7 @@ const height = computed(() => {
 
 const padding = computed(() => {
   switch (size) {
-    case Size.s: return '5px'
+    case Size.s: return '4px'
     case Size.l: return '16px'
     case Size.m:
     default: return '8px'
@@ -61,7 +61,7 @@ const padding = computed(() => {
 <template>
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled, plain, active, icon, square, dashed }, `vui-button-variant-${variant}`]"
+    :class="[{ loading, expand, disabled, plain, icon, square, outline }, `vui-button-variant-${variant}`]"
     :disabled
     role="button"
     :style="{

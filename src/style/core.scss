@@ -47,7 +47,7 @@
   --transition: 0.2s all cubic-bezier(0.65, 0, 0.35, 1);
   --transition-slow: 0.35s all cubic-bezier(0.65, 0, 0.35, 1);
 
-  --global-font: Geist, sans-serif;
+  --global-font: Inter, sans-serif;
   --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
 
   --font-weight-thin: 200;
@@ -83,7 +83,7 @@
 
   overflow-x: hidden;
   width: 100%;
-  font-weight: 400;
+  font-weight: var(--font-weight);
 
   font-feature-settings: normal;
   font-variation-settings: normal;

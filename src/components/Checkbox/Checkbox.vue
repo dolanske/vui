@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useId } from 'vue'
-import { theme } from '../../shared/theme'
 import './checkbox.scss'
 
 interface Props {
@@ -15,7 +14,8 @@ interface Props {
 
 const {
   label,
-  iconOn = theme.value === 'light' ? 'ph:check-square-fill' : 'ph:check-square',
+  // iconOn = theme.value === 'light' ? 'ph:check-square-fill' : 'ph:check-square',
+  iconOn = 'ph:check-square-fill',
   iconOff = 'ph:square',
   disabled,
   checked: checkedProp,

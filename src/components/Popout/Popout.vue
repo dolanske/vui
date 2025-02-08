@@ -1,8 +1,8 @@
 <script setup lang='ts'>
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
-import { autoPlacement, flip, offset, shift, useFloating } from '@floating-ui/vue'
-import { onClickOutside, useWindowScroll } from '@vueuse/core'
-import { toRef, Transition, useTemplateRef, watch, watchEffect } from 'vue'
+import { flip, offset, shift, useFloating } from '@floating-ui/vue'
+import { onClickOutside } from '@vueuse/core'
+import { toRef, useTemplateRef } from 'vue'
 import './popout.scss'
 
 export interface Props {

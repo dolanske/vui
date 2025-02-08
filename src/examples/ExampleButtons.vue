@@ -4,7 +4,7 @@ import Button from '../components/Button/Button.vue'
 import ButtonGroup from '../components/ButtonGroup/ButtonGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
 
-const variants = ['gray', 'default', 'danger', 'success', 'link', 'accent'] as const
+const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as const
 </script>
 
 <template>
@@ -39,16 +39,6 @@ const variants = ['gray', 'default', 'danger', 'success', 'link', 'accent'] as c
           <td>
             <Flex gap="s">
               <Button v-for="btn in variants" :key="btn" :variant="btn" size="s">
-                Button
-              </Button>
-            </Flex>
-          </td>
-        </tr>
-        <tr>
-          <th>Active</th>
-          <td>
-            <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn" active>
                 Button
               </Button>
             </Flex>

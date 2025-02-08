@@ -120,6 +120,8 @@
       }
 
       .vui-button {
+        border: 1px solid var(--color-border);
+
         &:first-child {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
@@ -258,7 +260,7 @@
 
   &.vui-dropzone {
     &.dragging .vui-input .vui-input-style {
-      border-color: var(--color-accent-border);
+      border-color: var(--color-accent);
 
       &:hover {
         border-color: var(--color-border);
@@ -274,7 +276,7 @@
         line-height: 1.2em;
 
         &:hover {
-          border-color: var(--color-border-accent);
+          border-color: var(--color-accent);
         }
 
         input {

@@ -3,12 +3,12 @@
   --button-padding: 8px;
 
   &.disabled {
-    color: var(--color-text-lighter) !important;
+    // color: var(--color-text-lighter) !important;
     cursor: not-allowed !important;
-    filter: saturate(50%) opacity(0.65);
+    filter: saturate(75%) opacity(50%);
 
     svg path {
-      color: var(--color-text-lighter) !important;
+      color: var(--color-text-light) !important;
     }
   }
 
@@ -97,136 +97,127 @@
     pointer-events: none;
   }
 
-  &.outline {
-    border: 1px solid transparent;
-  }
-
   // Variants
-  &.vui-button-variant-gray {
-    &.outline {
-      border-color: var(--color-border);
-    }
-
-    &:not(.plain) {
-      color: var(--color-text);
-
-      &:not(.dashed) {
-        background-color: var(--color-button-gray);
-      }
-    }
-
-    &.dashed {
-      border-color: var(--color-border-strong);
-    }
-
-    &.dashed:hover,
-    &:not(:disabled).active,
-    &:not(:disabled):hover {
-      background-color: var(--color-button-gray-hover);
-    }
-  }
-
   &.vui-button-variant-danger {
-    &.outline {
-      border-color: var(--color-border-red);
-    }
-
-    &:not(.plain) {
+    &:not(.plain):not(.outline) {
       color: var(--color-text);
+      background-color: var(--color-bg-red-raised);
 
-      &:not(.dashed) {
-        background-color: var(--color-bg-red-lowered);
+      svg,
+      path {
+        color: var(--color-text);
       }
     }
 
-    &.dashed:hover,
-    &:not(:disabled).active,
-    &:not(:disabled):hover {
-      border: 1px solid var(--color-bg-red-raised);
-      background-color: var(--color-bg-red-raised);
+    &.outline {
+      border-color: var(--color-bg-red-lowered);
+    }
+
+    &:not(.plain):not(.disabled):not(.plain):hover,
+    &:hover:not(.disabled) {
+      background-color: var(--color-bg-red-lowered);
     }
   }
 
   &.vui-button-variant-success {
-    &.outline {
-      border-color: var(--color-border-green);
-    }
-
-    &:not(.plain) {
+    &:not(.plain):not(.outline) {
       color: var(--color-text);
-
-      &:not(.dashed) {
-        background-color: var(--color-bg-green-lowered);
-      }
-    }
-
-    &:not(:disabled).active,
-    &:not(:disabled):hover {
-      border: 1px solid var(--color-bg-green-raised);
       background-color: var(--color-bg-green-raised);
-    }
-  }
 
-  &.vui-button-variant-accent {
-    &.outline {
-      border-color: var(--color-border-accent);
-    }
-
-    &:not(.plain) {
-      color: var(--color-text);
-
-      &:not(.dashed) {
-        background-color: var(--color-bg-accent-lowered);
+      svg,
+      path {
+        color: var(--color-text);
       }
     }
 
-    &.dashed:hover,
-    &:not(:disabled).active,
-    &:not(:disabled):hover {
-      border: 1px solid var(--color-bg-accent-raised);
-      background-color: var(--color-bg-accent-raised);
+    &.outline {
+      border-color: var(--color-bg-green-lowered);
+    }
+
+    &:not(.plain):not(.disabled):not(.plain):hover,
+    &:hover:not(.disabled) {
+      background-color: var(--color-bg-green-lowered);
     }
   }
 
-  &.vui-button-variant-default {
-    &.outline {
-      border-color: var(--color-button-fill);
+  &.vui-button-variant-gray {
+    &:not(.plain):not(.outline) {
+      color: var(--color-text);
+      background-color: var(--color-button-gray);
+
+      svg,
+      path {
+        color: var(--color-text);
+      }
     }
 
-    &:not(.plain):not(.dashed) {
+    &.outline {
+      border-color: var(--color-button-gray-hover);
+    }
+
+    &:not(.plain):not(.disabled):not(.plain):hover,
+    &:hover:not(.disabled) {
+      background-color: var(--color-button-gray-hover);
+    }
+  }
+
+  &.vui-button-variant-fill {
+    &:not(.plain):not(.outline) {
       color: var(--color-text-invert);
       background-color: var(--color-button-fill);
 
-      svg {
+      svg,
+      path {
         color: var(--color-text-invert);
       }
     }
 
-    &.disabled {
-      color: var(--dark-color-text-light) !important;
-    }
+    &.outline {
+      border-color: var(--color-button-fill-hover);
 
-    &.dashed:not(:hover) {
-      border: 1px solid var(--color-button-fill);
-    }
+      &:hover {
+        color: var(--color-text-invert);
 
-    &.plain:hover {
-      color: var(--color-text-invert) !important;
-
-      svg,
-      path {
-        color: var(--color-text-invert) !important;
+        svg,
+        path {
+          color: var(--color-text-invert);
+        }
       }
     }
 
-    &.dashed:hover {
-      color: var(--color-text-invert);
+    &:not(.plain):not(.disabled):not(.plain):hover,
+    &:hover:not(.disabled) {
+      background-color: var(--color-button-fill-hover);
+
+      &.plain {
+        color: var(--color-text-invert);
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+        }
+      }
+    }
+  }
+
+  &.vui-button-variant-accent {
+    &:not(.plain):not(.outline) {
+      color: var(--color-text);
+      background-color: var(--color-bg-accent-raised);
+
+      svg,
+      path {
+        color: var(--color-text);
+      }
     }
 
-    &:not(:disabled).active,
-    &:not(:disabled):hover {
-      border: 1px solid var(--color-button-fill-hover);
-      background-color: var(--color-button-fill-hover);
+    &.outline {
+      border-color: var(--color-bg-accent-lowered);
+    }
+
+    &:not(.plain):not(.disabled):not(.plain):hover,
+    &:hover:not(.disabled) {
+      background-color: var(--color-bg-accent-lowered);
     }
   }
 
@@ -239,6 +230,50 @@
     &:not(:disabled).active,
     &:not(:disabled):hover {
       text-decoration: underline;
+    }
+  }
+}
+
+:root.light {
+  .vui-button {
+    &.vui-button-variant-danger {
+      &:not(.plain):not(.outline) {
+        color: var(--color-text-invert);
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+        }
+      }
+
+      &.outline:hover {
+        color: var(--color-text-invert);
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+        }
+      }
+    }
+
+    &.vui-button-variant-success {
+      &:not(.plain):not(.outline) {
+        color: var(--color-text-invert);
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+        }
+      }
+
+      &.outline:hover {
+        color: var(--color-text-invert);
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+        }
+      }
     }
   }
 }

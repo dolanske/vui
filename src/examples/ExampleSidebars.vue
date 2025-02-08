@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import Avatar from '../components/Avatar/Avatar.vue'
 import Button from '../components/Button/Button.vue'
-import Divider from '../components/Divider/Divider.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Grid from '../components/Grid/Grid.vue'
