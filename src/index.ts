@@ -18,6 +18,7 @@ import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
 import Flex from './components/Flex/Flex.vue'
 import Grid from './components/Grid/Grid.vue'
+import Color from './components/Input/Color.vue'
 import Counter from './components/Input/Counter.vue'
 import Dropzone from './components/Input/Dropzone.vue'
 import File from './components/Input/File.vue'
@@ -38,6 +39,7 @@ import Radio from './components/Radio/Radio.vue'
 import RadioGroup from './components/Radio/RadioGroup.vue'
 import Select from './components/Select/Select.vue'
 import Sheet from './components/Sheet/Sheet.vue'
+import Sidebar from './components/Sidebar/Sidebar.vue'
 import Skeleton from './components/Skeleton/Skeleton.vue'
 import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
@@ -67,6 +69,7 @@ export {
   Calendar,
   Card,
   Checkbox,
+  Color,
   Confirm,
   CopyClipboard,
   Counter,
@@ -99,6 +102,7 @@ export {
   Select,
   setColorTheme,
   Sheet,
+  Sidebar,
   Skeleton,
   Spinner,
   Switch,
