@@ -74,7 +74,7 @@ onMounted(() => {
     <Component
       :is="vnode"
       v-for="vnode of slots.default()"
-      :key="vnode.props.id"
+      :key="vnode.props.label"
       :class="{ active: vnode.props.label === active }"
       @click="active = vnode.props.label"
     />

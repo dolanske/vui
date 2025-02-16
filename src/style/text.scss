@@ -6,14 +6,6 @@ $sizes: 'xxs', 'xs', 's', 'ms', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl';
   }
 }
 
-.text-color {
-  color: var(--color-text);
-}
-
-.text-color-accent {
-  color: var(--color-accent);
-}
-
 $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
 
 @each $color in $colors {
@@ -89,4 +81,44 @@ $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 .ws-nowrap {
   white-space: nowrap;
+}
+
+.color-text {
+  color: var(--color-text);
+}
+
+.color-text-light {
+  color: var(--color-text-light);
+}
+
+.color-text-lighter {
+  color: var(--color-text-lighter);
+}
+
+.color-text-lightest {
+  color: var(--color-text-lightest);
+}
+
+.color-text-invert {
+  color: var(--color-text-invert);
+}
+
+.color-text-red {
+  color: var(--color-text-red);
+}
+
+.color-text-green {
+  color: var(--color-text-green);
+}
+
+.color-text-yellow {
+  color: var(--color-text-yellow);
+}
+
+.color-text-blue {
+  color: var(--color-text-blue);
+}
+
+.color-accent {
+  color: var(--color-accent);
 }
