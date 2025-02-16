@@ -53,7 +53,7 @@ import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
 import { searchString } from './shared/helpers'
 import { setColorTheme, theme } from './shared/theme'
-import './index.scss'
+import './style.scss'
 
 export {
   Accordion,
