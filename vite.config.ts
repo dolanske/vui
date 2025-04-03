@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
   const isGitHubPages = mode === "pages";
 
   return {
+    base: isGitHubPages ? "/vui/" : "/",
     test: {
       environment: "jsdom",
     },
