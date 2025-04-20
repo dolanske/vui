@@ -18,9 +18,11 @@ watch(paused, () => fakeProgress.value = 0)
 
 <template>
   <div class="mb-xxl">
-    <h3 class="mb-l flex g-m y-center">
-      Loading
-      <Button square :icon="paused ? 'ph:play' : 'ph:pause'" size="s" plain @click="paused = !paused" />
+    <h3 class="mb-l">
+      <Flex align-center gap="m">
+        Loading
+        <Button square :icon="paused ? 'ph:play' : 'ph:pause'" size="s" plain @click="paused = !paused" />
+      </Flex>
     </h3>
     <table>
       <tbody>

@@ -44,6 +44,19 @@ $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
   font-weight: 900;
 }
 
+// Text align
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
 // Line truncating
 
 .text-overflow {

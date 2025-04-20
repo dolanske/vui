@@ -1,11 +1,15 @@
 .vui-badge {
+  --vui-badge-padding-block: 2px;
+  --vui-badge-padding-inline: var(--space-s);
+  --vui-badge-font-size: var(--font-size-s);
+
   display: inline-flex;
   gap: var(--space-s);
   place-items: center;
-  height: 26px;
-  padding-inline: var(--space-s);
+  padding-inline: var(--vui-badge-padding-inline);
+  padding-block: var(--vui-badge-padding-block);
   border-radius: 999px;
-  font-size: var(--font-size-s);
+  font-size: var(--vui-badge-font-size);
   color: var(--color-text);
   border: 1px solid transparent;
 
