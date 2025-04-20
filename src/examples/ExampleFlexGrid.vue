@@ -114,6 +114,8 @@ const cols = ref(3)
 
 <style scoped>
 .example {
+  display: block;
+  width: 100%;
   height: 24px;
   border-radius: var(--border-radius-m);
   background-color: var(--color-border);
