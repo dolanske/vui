@@ -8,6 +8,13 @@ import Card from '../Card/Card.vue'
 import './modal.scss'
 
 export interface ModalProps {
+  /**
+   * Controls the visibility of the modal
+   */
+  open?: boolean
+  /**
+   * Controls the width of the modal
+   */
   size?: Sizes | 'full' | 'screen'
   /**
    * Modal wraps a floating card. You can optinally pass in any props you'd pass
@@ -34,19 +41,16 @@ const {
   scrollable,
   centered,
   canDismiss = true,
+  open = false,
 } = defineProps<ModalProps>()
 
-const open = defineModel<boolean>()
-
-function close() {
-  open.value = false
-}
+const emit = defineEmits<{ close: [] }>()
 
 const attrs = useAttrs()
 
 function tryClose() {
   if (canDismiss) {
-    close()
+    emit('close')
   }
 }
 </script>
@@ -58,7 +62,7 @@ function tryClose() {
         <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable: scrollable || size === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
-              <slot name="header" :close="close" />
+              <slot name="header" :close="() => emit('close')" />
             </template>
             <template #header-end>
               <Button
@@ -67,16 +71,16 @@ function tryClose() {
                 plain
                 square
                 icon="ph:x"
-                @click="open = false"
+                @click="emit('close')"
               />
             </template>
             <template v-if="$slots.default" #default>
               <div>
-                <slot name="default" :close="close" />
+                <slot name="default" :close="() => emit('close')" />
               </div>
             </template>
             <template v-if="$slots.footer" #footer>
-              <slot name="footer" :close="close" />
+              <slot name="footer" :close="() => emit('close')" />
             </template>
           </Card>
         </div>

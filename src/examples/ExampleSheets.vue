@@ -31,7 +31,7 @@ const option = ref([options[0]])
               <Button @click="open1 = !open1">
                 Open
               </Button>
-              <Sheet v-model="open1" :position="option[0].value" separator>
+              <Sheet :open="open1" :position="option[0].value" separator @close="open1 = false">
                 <template #header>
                   <h2>Hello </h2>
                 </template>
@@ -62,7 +62,7 @@ const option = ref([options[0]])
               <Button @click="open2 = !open2">
                 Open
               </Button>
-              <Sheet v-model="open2" :position="option[0].value" :size="width">
+              <Sheet :open="open2" :position="option[0].value" :size="width" @close="open2 = false">
                 <template #header>
                   <h2>Hello </h2>
                 </template>

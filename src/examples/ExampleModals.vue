@@ -32,7 +32,7 @@ function setSize(s: any) {
             <Button @click="open = !open">
               Open
             </Button>
-            <Modal v-model="open">
+            <Modal :open="open" @close="open = false">
               <template #header>
                 <h4>Modal </h4>
               </template>
@@ -59,7 +59,7 @@ function setSize(s: any) {
                 Full
               </Button>
             </Flex>
-            <Modal v-model="open2" :size>
+            <Modal :open="open2" :size @close="open2 = false">
               <template #header>
                 <h4>Modal </h4>
               </template>
@@ -78,7 +78,7 @@ function setSize(s: any) {
             <Button @click="open3 = !open3">
               Open
             </Button>
-            <Modal v-model="open3" centered :card="{ separators: true }" :can-dismiss="false">
+            <Modal :open="open3" centered :card="{ separators: true }" :can-dismiss="false" @close="open3 = false">
               <template #header>
                 <h4>What is this?</h4>
               </template>
@@ -99,7 +99,7 @@ function setSize(s: any) {
             <Button @click="open4 = !open4">
               Open
             </Button>
-            <Modal v-model="open4" :card="{ separators: true }" scrollable>
+            <Modal :open="open4" :card="{ separators: true }" scrollable @close="open4 = false">
               <template #header>
                 <h4>What is this?</h4>
               </template>
@@ -122,7 +122,7 @@ function setSize(s: any) {
             <Button @click="open5 = !open5">
               Open
             </Button>
-            <Modal v-model="open5" size="screen" :card="{ separators: true }" scrollable>
+            <Modal :open="open5" size="screen" :card="{ separators: true }" scrollable @close="open5 = false">
               <template #header>
                 <h4>What is this?</h4>
               </template>
