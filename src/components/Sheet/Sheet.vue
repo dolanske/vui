@@ -7,8 +7,21 @@ import Divider from '../Divider/Divider.vue'
 import './sheet.scss'
 
 interface Props {
+  /**
+   * Controls the visibility of the sheet
+   */
+  open?: boolean
+  /**
+   * Controls the position of the sheet
+   */
   position?: 'left' | 'right' | 'top' | 'bottom'
+  /**
+   * Sets the width of the sheet
+   */
   size?: number | string
+  /**
+   * Wether to show a divider between header and content
+   */
   separator?: boolean
 }
 
@@ -16,15 +29,12 @@ const {
   position = 'right',
   size = 398,
   separator,
+  open = false,
 } = defineProps<Props>()
 
+const emit = defineEmits<{ close: [] }>()
+
 const TRANSITION_OFFSET = 16
-
-const open = defineModel<boolean>()
-
-function close() {
-  open.value = false
-}
 
 const style = computed(() => {
   if (position === 'left' || position === 'right') {
@@ -49,25 +59,25 @@ const baseTransform = computed(() => {
 <template>
   <Teleport to="body">
     <Transition appear name="sheet">
-      <Backdrop v-if="open" @close="open = false">
+      <Backdrop v-if="open" @close="emit('close')">
         <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
           <div class="vui-sheet-header">
             <div class="flex-1">
-              <slot name="header" :close />
+              <slot name="header" :close="() => emit('close')" />
             </div>
-            <Button plain square icon="ph:x" @click="open = false" />
+            <Button plain square icon="ph:x" @click="emit('close')" />
           </div>
 
           <Divider v-if="separator && $slots.header" :size="1" />
 
           <div v-if="$slots.default" class="vui-sheet-content">
-            <slot :close />
+            <slot :close="() => emit('close')" />
           </div>
 
           <Divider v-if="separator && $slots.footer" :size="1" />
 
           <div class="vui-sheet-footer">
-            <slot name="footer" :close />
+            <slot name="footer" :close="() => emit('close')" />
           </div>
         </div>
       </Backdrop>

@@ -21,21 +21,21 @@ const props = withDefaults(defineProps<Props>(), {
   canDismiss: true,
   showCancel: true,
   confirmVariant: 'gray',
+  open: false,
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   cancel: []
   confirm: []
+  close: []
 }>()
-
-const open = defineModel<boolean>()
 </script>
 
 <template>
-  <pre>{{ $props }}</pre>
   <Modal
     v-bind="props"
-    v-model="open"
+    :open="props.open"
+    @close="emit('close')"
   >
     <template #default>
       <div class="typeset">
@@ -43,11 +43,11 @@ const open = defineModel<boolean>()
       </div>
     </template>
     <template #footer>
-      <Flex justify-end>
-        <Button v-if="props.showCancel" plain @click="emits('cancel'), open = false">
+      <Flex x-end>
+        <Button v-if="props.showCancel" plain @click="emit('cancel'), emit('close')">
           {{ props.cancelText }}
         </Button>
-        <Button :variant="props.confirmVariant" @click="emits('confirm'), open = false">
+        <Button :variant="props.confirmVariant" @click="emit('confirm'), emit('close')">
           {{ props.confirmText }}
         </Button>
       </Flex>

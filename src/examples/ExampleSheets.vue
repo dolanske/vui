@@ -27,11 +27,11 @@ const option = ref([options[0]])
         <tr>
           <th>Base + divider + footer</th>
           <td>
-            <Flex gap="m" justify-start>
+            <Flex gap="m" x-start>
               <Button @click="open1 = !open1">
                 Open
               </Button>
-              <Sheet v-model="open1" :position="option[0].value" separator>
+              <Sheet :open="open1" :position="option[0].value" separator @close="open1 = false">
                 <template #header>
                   <h2>Hello </h2>
                 </template>
@@ -53,7 +53,7 @@ const option = ref([options[0]])
         <tr>
           <th>Width</th>
           <td>
-            <Flex gap="m" justify-start align-center>
+            <Flex gap="m" x-start y-center>
               <Input v-model="width">
                 <template #start>
                   Width
@@ -62,7 +62,7 @@ const option = ref([options[0]])
               <Button @click="open2 = !open2">
                 Open
               </Button>
-              <Sheet v-model="open2" :position="option[0].value" :size="width">
+              <Sheet :open="open2" :position="option[0].value" :size="width" @close="open2 = false">
                 <template #header>
                   <h2>Hello </h2>
                 </template>

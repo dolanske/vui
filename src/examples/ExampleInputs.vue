@@ -196,7 +196,7 @@ const selected2 = ref([])
           <th>Base</th>
           <td>
             <OTP>
-              <Flex :gap="0" align-center>
+              <Flex :gap="0" y-center>
                 <OTPItem :i="0" />
                 <OTPItem :i="1" />
                 <OTPItem :i="2" />

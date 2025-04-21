@@ -39,7 +39,7 @@ import Grid from '../components/Grid/Grid.vue'
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
 
             <template #footer>
-              <Flex gap="s" justify-end>
+              <Flex gap="s" x-end>
                 <Button>Cancel</Button>
                 <Button variant="success">
                   Save
@@ -61,7 +61,7 @@ import Grid from '../components/Grid/Grid.vue'
             </template>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
             <template #footer>
-              <Flex gap="s" justify-start>
+              <Flex gap="s" x-start>
                 <Button variant="success">
                   Save
                 </Button>
@@ -80,7 +80,7 @@ import Grid from '../components/Grid/Grid.vue'
           </template>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
           <template #footer>
-            <Flex gap="s" justify-end>
+            <Flex gap="s" x-end>
               <Button>Cancel</Button>
               <Button variant="success">
                 Save

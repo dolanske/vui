@@ -33,7 +33,7 @@ import Flex from '../components/Flex/Flex.vue'
             <CopyClipboard text="Copy me!" confirm>
               <Button>Copy me!</Button>
               <template #confirm>
-                <Flex column gap="s" align-center>
+                <Flex column gap="s" y-center>
                   <strong>The dawg</strong>
                   <img style="width:128px;border-radius:8px" src="https://i.imgur.com/jMxIs6p.png" alt="">
                 </Flex>

@@ -68,7 +68,7 @@ const cols = ref(3)
           <th>Align props</th>
           <td>
             <Flex>
-              <code>align-start</code><code>align-end</code><code>align-center</code>
+              <code>align-start</code><code>align-end</code><code>y-center</code>
               <code>align-baseline</code>
             </Flex>
           </td>
@@ -114,6 +114,8 @@ const cols = ref(3)
 
 <style scoped>
 .example {
+  display: block;
+  width: 100%;
   height: 24px;
   border-radius: var(--border-radius-m);
   background-color: var(--color-border);

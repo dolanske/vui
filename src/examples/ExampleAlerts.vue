@@ -60,7 +60,7 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
           <th>Custom</th>
           <td>
             <Alert variant="warning">
-              <Flex align-center space-between>
+              <Flex y-center x-between>
                 <p>Unfortunately we can't help you.</p>
                 <Button>
                   <template #start>

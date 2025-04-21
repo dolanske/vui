@@ -24,7 +24,7 @@ const s3 = ref(true)
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
           <Sidebar>
             <template #header>
-              <Flex align-center>
+              <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
                 <h3>ABC</h3>
               </Flex>
@@ -40,7 +40,7 @@ const s3 = ref(true)
             </DropdownItem>
 
             <template #footer>
-              <Flex align-center>
+              <Flex y-center>
                 <Avatar size="m" />
                 <span class="flex-1">dolanske</span>
                 <Button plain size="s" icon="ph:sign-out" />
@@ -66,7 +66,7 @@ const s3 = ref(true)
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
           <Sidebar v-model="s1" floaty>
             <template #header="{ close }">
-              <Flex align-center>
+              <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
                 <h3 class="flex-1">
                   ABC
@@ -85,7 +85,7 @@ const s3 = ref(true)
             </DropdownItem>
           </Sidebar>
           <main class="p-l">
-            <Flex align-center class="mb-m">
+            <Flex y-center class="mb-m">
               <Button plain size="s" icon="ph:sidebar-simple" @click="s1 = !s1" />
               <h4>
                 My page
@@ -111,7 +111,7 @@ const s3 = ref(true)
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
           <Sidebar v-model="s2" mini>
             <template #header>
-              <Flex align-center>
+              <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
               </Flex>
             </template>
@@ -126,13 +126,13 @@ const s3 = ref(true)
             </DropdownItem>
 
             <template #footer="{ close }">
-              <Flex justify-center>
+              <Flex x-center>
                 <Button plain icon="ph:x" @click="close" />
               </Flex>
             </template>
           </Sidebar>
           <main class="p-l">
-            <Flex align-center class="mb-m">
+            <Flex y-center class="mb-m">
               <Button plain size="s" icon="ph:sidebar-simple" @click="s2 = !s2" />
               <h4>
                 My page
@@ -158,7 +158,7 @@ const s3 = ref(true)
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
           <Sidebar v-model="s3" mini floaty>
             <template #header>
-              <Flex align-center>
+              <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
               </Flex>
             </template>
@@ -173,13 +173,13 @@ const s3 = ref(true)
             </DropdownItem>
 
             <template #footer="{ close }">
-              <Flex justify-center>
+              <Flex x-center>
                 <Button plain icon="ph:x" @click="close" />
               </Flex>
             </template>
           </Sidebar>
           <main class="p-l">
-            <Flex align-center class="mb-m">
+            <Flex y-center class="mb-m">
               <Button plain size="s" icon="ph:sidebar-simple" @click="s3 = !s3" />
               <h4>
                 My page

@@ -7,6 +7,10 @@ import './drawer.scss'
 
 interface Props {
   /**
+   * Controls the visibility of the drawer
+   */
+  open?: boolean
+  /**
    * Title for accessibility.
    */
   title?: string
@@ -39,9 +43,10 @@ const {
   rootProps,
   portalProps,
   handle = true,
+  open = false,
 } = defineProps<Props>()
 
-const open = defineModel<boolean>()
+const emit = defineEmits<{ close: [] }>()
 
 const mW = computed(() => {
   if (typeof containerSize === 'string') {
@@ -72,8 +77,8 @@ onMounted(() => {
     :open
     v-bind="rootProps"
     :aria-describedby="id"
-    @close="open = false"
-    @update:open="(state) => open = state"
+    @close=" emit('close')"
+    @update:open="(state) => state === false && emit('close')"
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />

@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Grid columns="212px 32px" align-center>
+  <Grid columns="212px 32px" y-center>
     <span>{{ props.name }}</span>
     <div
       class="cube" :style="{

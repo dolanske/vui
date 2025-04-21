@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "private": false,
   "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
@@ -49,25 +49,25 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.6",
-    "@types/node": "^22.13.2",
-    "@vuepic/vue-datepicker": "^11.0.1",
-    "@vueuse/core": "^12.5.0",
-    "sass": "^1.84.0",
-    "vaul-vue": "^0.2.1",
-    "vite-plugin-dts": "^4.5.0",
+    "@types/node": "^22.14.1",
+    "@vuepic/vue-datepicker": "^11.0.2",
+    "@vueuse/core": "^13.1.0",
+    "sass": "^1.86.3",
+    "vaul-vue": "^0.4.1",
+    "vite-plugin-dts": "^4.5.3",
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.2.0",
+    "@antfu/eslint-config": "^4.12.0",
     "@iconify/vue": "^4.3.0",
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue": "^5.2.3",
     "@vue/test-utils": "^2.4.6",
-    "eslint": "^9.20.1",
+    "eslint": "^9.25.0",
     "eslint-plugin-format": "^1.0.1",
-    "jsdom": "^26.0.0",
-    "typescript": "^5.7.3",
-    "vite": "^6.1.0",
-    "vitest": "^3.0.5",
-    "vue-tsc": "^2.2.0"
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.2",
+    "vitest": "^3.1.1",
+    "vue-tsc": "^2.2.8"
   }
 }

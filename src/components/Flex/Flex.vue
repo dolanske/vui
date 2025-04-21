@@ -16,18 +16,18 @@ export interface FlexProps {
   gap?: Space | number
 
   // NOTE: Add more if needed
-  justifyStart?: boolean
-  justifyEnd?: boolean
-  justifyCenter?: boolean
-  spaceBetween?: boolean
-  spaceAround?: boolean
-  spaceEvenly?: boolean
+  xStart?: boolean
+  xEnd?: boolean
+  xCenter?: boolean
+  xBetween?: boolean
+  xAround?: boolean
+  xEvenly?: boolean
 
   // NOTE: Add more if needed
-  alignCenter?: boolean
-  alignStart?: boolean
-  alignEnd?: boolean
-  alignBaseline?: boolean
+  yCenter?: boolean
+  yStart?: boolean
+  yEnd?: boolean
+  yBaseline?: boolean
 
   expand?: boolean
 }
@@ -58,30 +58,30 @@ const ad = computed(() => {
 
 // Justify content
 const aj = computed(() => {
-  if (props.justifyStart)
+  if (props.xStart)
     return 'flex-start'
-  else if (props.justifyEnd)
+  else if (props.xEnd)
     return 'flex-end'
-  else if (props.justifyCenter)
+  else if (props.xCenter)
     return 'center'
-  else if (props.spaceBetween)
+  else if (props.xBetween)
     return 'space-between'
-  else if (props.spaceEvenly)
+  else if (props.xEvenly)
     return 'space-evenly'
-  else if (props.spaceAround)
+  else if (props.xAround)
     return 'space-around'
   else return 'flex-start'
 })
 
 // Align items
 const aA = computed(() => {
-  if (props.alignStart)
+  if (props.yStart)
     return 'flex-start'
-  else if (props.alignEnd)
+  else if (props.yEnd)
     return 'flex-end'
-  else if (props.alignCenter)
+  else if (props.yCenter)
     return 'center'
-  else if (props.alignBaseline)
+  else if (props.yBaseline)
     return 'baseline'
   return 'flex-start'
 })

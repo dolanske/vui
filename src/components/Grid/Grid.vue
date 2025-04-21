@@ -15,10 +15,10 @@ interface Props {
   // areas?: string[]
 
   // NOTE: Add more if needed
-  alignCenter?: boolean
-  alignStart?: boolean
-  alignEnd?: boolean
-  alignBaseline?: boolean
+  yCenter?: boolean
+  yStart?: boolean
+  yEnd?: boolean
+  yBaseline?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -50,13 +50,13 @@ const aTR = computed(() => {
 })
 
 const aA = computed(() => {
-  if (props.alignStart)
+  if (props.yStart)
     return 'flex-start'
-  else if (props.alignEnd)
+  else if (props.yEnd)
     return 'flex-end'
-  else if (props.alignCenter)
+  else if (props.yCenter)
     return 'center'
-  else if (props.alignBaseline)
+  else if (props.yBaseline)
     return 'baseline'
   return 'flex-start'
 })
@@ -72,7 +72,6 @@ const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
       gridTemplateColumns: aTC,
       gridTemplateRows: aTR,
       alignItems: aA,
-
     }"
   >
     <slot />

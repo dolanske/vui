@@ -29,7 +29,7 @@ import ExampleColor from './shared/ExampleColor.vue'
 
     <Grid :columns="2">
       <Flex class="theme-wrap light" column gap="xxs">
-        <Flex space-between class="mb-l" align-center expand>
+        <Flex x-between class="mb-l" y-center expand>
           <h5>Light</h5>
           <Button :disabled="theme === 'light'" variant="gray" data-title-top="Switch theme" @click="setColorTheme('light')">
             <template #start>
@@ -78,7 +78,7 @@ import ExampleColor from './shared/ExampleColor.vue'
       </Flex>
 
       <Flex class="theme-wrap dark" gap="xxs" column>
-        <Flex space-between class="mb-l" align-center expand>
+        <Flex x-between class="mb-l" y-center expand>
           <h5>Dark</h5>
           <Button :disabled="theme === 'dark'" variant="gray" data-title-top="Switch theme" @click="setColorTheme('dark')">
             <template #start>

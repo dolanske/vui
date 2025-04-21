@@ -18,9 +18,11 @@ watch(paused, () => fakeProgress.value = 0)
 
 <template>
   <div class="mb-xxl">
-    <h3 class="mb-l flex g-m y-center">
-      Loading
-      <Button square :icon="paused ? 'ph:play' : 'ph:pause'" size="s" plain @click="paused = !paused" />
+    <h3 class="mb-l">
+      <Flex y-center gap="m">
+        Loading
+        <Button square :icon="paused ? 'ph:play' : 'ph:pause'" size="s" plain @click="paused = !paused" />
+      </Flex>
     </h3>
     <table>
       <tbody>
@@ -43,7 +45,7 @@ watch(paused, () => fakeProgress.value = 0)
         <tr>
           <th>Progress bar</th>
           <td class="w-80">
-            <Flex gap="s" align-center>
+            <Flex gap="s" y-center>
               <Button square icon="ph:minus" size="s" @click="progress -= 5" />
               <Progress v-model="progress" class="w-full" />
               <Button square icon="ph:plus" size="s" @click="progress += 5" />
@@ -53,7 +55,7 @@ watch(paused, () => fakeProgress.value = 0)
         <tr>
           <th>Progress bar tall</th>
           <td class="w-80">
-            <Flex gap="s" align-center>
+            <Flex gap="s" y-center>
               <Progress v-model="progress" :height="8" class="w-full" />
             </Flex>
           </td>
