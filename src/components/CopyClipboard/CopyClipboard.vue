@@ -81,7 +81,7 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
         <template v-if="typeof parsedConfirm === 'string'">
           {{ parsedConfirm }}
         </template>
-        <Flex v-else align-center justify-center>
+        <Flex v-else y-center x-center>
           <Icon width="16" height="16" icon="ph:check-bold" />
           Copied to clipboard
         </Flex>

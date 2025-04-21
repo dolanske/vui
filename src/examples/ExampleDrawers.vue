@@ -43,7 +43,7 @@ function setSize(s: any) {
                 Full
               </Button>
             </Flex>
-            <Drawer v-model="open" title="Hello" :container-size="size">
+            <Drawer :open title="Hello" :container-size="size" @close="open = false">
               <h2>Hello</h2>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate laudantium maiores? Nesciunt harum doloribus accusantium architecto, quod rem porro iusto, quia dicta ex sapiente nulla earum voluptatibus, dolor veritatis?</p>
             </Drawer>
@@ -55,7 +55,7 @@ function setSize(s: any) {
             <Button @click="open2 = !open2">
               Open
             </Button>
-            <Drawer v-model="open2" :handle="false" title="Hello" :container-size="size" :root-props="{ shouldScaleBackground: true }">
+            <Drawer :open="open2" :handle="false" title="Hello" :container-size="size" @close="open2 = false">
               <h2>Hello</h2>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate laudantium maiores? Nesciunt harum doloribus accusantium architecto, quod rem porro iusto, quia dicta ex sapiente nulla earum voluptatibus, dolor veritatis?</p>
             </Drawer>

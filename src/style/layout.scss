@@ -49,67 +49,41 @@ $widths: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
   display: inline;
 }
 
-// Flex stuff
+// Flex alignment classes
 
-// .flex {
-//   display: flex;
-// }
+// Horizontal alignment (x-axis)
+.x-start {
+  justify-self: start;
+}
 
-// .flex-col {
-//   flex-direction: column;
-// }
+.x-end {
+  justify-self: end;
+}
 
-// .flex-row {
-//   flex-direction: row;
-// }
+.x-center {
+  justify-self: center;
+}
 
-// .flex-1 {
-//   flex: 1;
-// }
+.x-stretch {
+  justify-self: stretch;
+}
 
-// .inline-flex {
-//   display: inline-flex;
-// }
+// Vertical alignment (y-axis)
+.y-start {
+  align-self: start;
+}
 
-// .x-center {
-//   justify-content: center;
-// }
+.y-end {
+  align-self: end;
+}
 
-// .x-start {
-//   justify-content: flex-start;
-// }
+.y-center {
+  align-self: center;
+}
 
-// .x-between {
-//   justify-content: space-between;
-// }
-
-// .x-around {
-//   justify-content: space-around;
-// }
-
-// .x-evenly {
-//   justify-content: space-evenly;
-// }
-A
-// .x-end {
-//   justify-content: flex-end;
-// }
-
-// .y-start {
-//   align-items: flex-start;
-// }
-
-// .y-end {
-//   align-self: flex-end;
-// }
-
-// .y-center {
-//   align-items: center;
-// }
-
-// .y-baseline {
-//   align-items: baseline;
-// }
+.y-stretch {
+  align-self: stretch;
+}
 
 // Sizes
 // Paddings & margins

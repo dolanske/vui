@@ -27,7 +27,7 @@ const option = ref([options[0]])
         <tr>
           <th>Base + divider + footer</th>
           <td>
-            <Flex gap="m" justify-start>
+            <Flex gap="m" x-start>
               <Button @click="open1 = !open1">
                 Open
               </Button>
@@ -53,7 +53,7 @@ const option = ref([options[0]])
         <tr>
           <th>Width</th>
           <td>
-            <Flex gap="m" justify-start align-center>
+            <Flex gap="m" x-start y-center>
               <Input v-model="width">
                 <template #start>
                   Width

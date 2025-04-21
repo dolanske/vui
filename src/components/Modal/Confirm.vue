@@ -43,7 +43,7 @@ const emit = defineEmits<{
       </div>
     </template>
     <template #footer>
-      <Flex justify-end>
+      <Flex x-end>
         <Button v-if="props.showCancel" plain @click="emit('cancel'), emit('close')">
           {{ props.cancelText }}
         </Button>

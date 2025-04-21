@@ -7,7 +7,6 @@
 @use './reset.scss';
 @use './theme.scss';
 
-// TODO: Split this into based on media query prefers-dark-mode
 :root {
   color-scheme: dark;
 
@@ -43,9 +42,9 @@
   --space-xxl: 48px;
   --space-xxxl: 64px;
 
-  --transition-fast: 0.1s all ease-in-out;
-  --transition: 0.2s all cubic-bezier(0.65, 0, 0.35, 1);
-  --transition-slow: 0.35s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-fast: 0.075s all ease-in-out;
+  --transition: 0.15s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-slow: 0.3s all cubic-bezier(0.65, 0, 0.35, 1);
 
   --global-font: Inter, sans-serif;
   --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
@@ -62,9 +61,6 @@
   --interactive-el-height: 34px;
 }
 
-@media (prefers-color-scheme: dark) {
-}
-
 // Disable motion for users who have requested it
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -77,7 +73,6 @@
 :root {
   font-family: var(--global-font);
   font-size: 63.5%;
-  // TODO remove - should remove?
   position: relative;
   background-color: var(--color-bg);
 
@@ -92,7 +87,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // TODO end remove
 
   * {
     -webkit-box-sizing: border-box;
