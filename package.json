@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
@@ -22,9 +22,9 @@
       "import": "./dist/vui.js"
     },
     "./style": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css",
-      "default": "./dist/style.css"
+      "import": "./dist/vui.css",
+      "require": "./dist/vui.css",
+      "default": "./dist/vui.css"
     }
   },
   "main": "./dist/vui.js",
