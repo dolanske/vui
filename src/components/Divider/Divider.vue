@@ -19,7 +19,6 @@ const {
 
 const h = computed(() => formatUnitValue(size))
 const w = computed(() => vertical ? h.value : 'initial')
-const bW = computed(() => `${thickness}px`)
 const m = computed(() => formatUnitValue(margin))
 </script>
 
@@ -31,14 +30,9 @@ const m = computed(() => formatUnitValue(margin))
       height: h,
     }"
   >
+    <hr :style="{ [vertical ? 'borderRightWidth' : 'borderBottomWidth']: `${thickness}px` }">
     <div v-if="$slots.default" class="vui-divider-slot">
       <slot />
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.vui-divider:before {
-  border-width: v-bind(bW);
-}
-</style>
