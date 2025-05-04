@@ -147,7 +147,7 @@ const id = useId()
             <span>
               {{ renderPlaceholder }}
             </span>
-            <template v-if="showClear && !required && selected">
+            <template v-if="showClear && !required && (selected && selected.length > 0)">
               <div class="flex-1" />
               <Button
                 plain
