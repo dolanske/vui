@@ -19,6 +19,8 @@ interface Props {
   yStart?: boolean
   yEnd?: boolean
   yBaseline?: boolean
+
+  expand?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -62,6 +64,8 @@ const aA = computed(() => {
 })
 
 const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
+
+const aH = computed(() => props.expand ? '100%' : 'auto')
 </script>
 
 <template>
@@ -72,6 +76,7 @@ const aD = computed(() => props.inline ? 'inline-grid' : 'grid')
       gridTemplateColumns: aTC,
       gridTemplateRows: aTR,
       alignItems: aA,
+      width: aH,
     }"
   >
     <slot />

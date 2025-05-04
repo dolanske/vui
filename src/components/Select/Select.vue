@@ -154,7 +154,6 @@ const id = useId()
                 icon="ph:x"
                 square
                 size="s"
-
                 @click.stop="clearValue"
               />
             </template>

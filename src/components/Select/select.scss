@@ -25,6 +25,10 @@
         font-weight: var(--font-weight-medium);
       }
 
+      .vui-button {
+        border: none !important;
+      }
+
       span {
         white-space: nowrap;
         text-overflow: ellipsis;
