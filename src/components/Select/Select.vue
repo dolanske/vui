@@ -128,7 +128,7 @@ const id = useId()
 
 <template>
   <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }">
-    <Dropdown ref="dropdown" :expand @close="trigger?.focus({ preventScroll: true })">
+    <Dropdown ref="dropdown" :expand @close="trigger?.focus({ preventScroll: true })" min-width="192px">
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" :for="id">{{ label }}</label>

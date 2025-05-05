@@ -184,8 +184,10 @@ const selected2 = ref([])
         </option>
       </select>
     </Grid>
+    <div class="inline-block">
+      <Select :options="longOptions" label="Short" show-clear />
+    </div>
     <Divider :size="48" />
-
     <h6 class="mb-l">
       OTP
     </h6>
