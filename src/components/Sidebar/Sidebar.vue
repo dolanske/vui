@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
-import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
+import { computed, onBeforeMount, useSlots, useTemplateRef } from 'vue'
 import { isNil } from '../../shared/helpers'
 import './sidebar.scss'
 
@@ -26,12 +26,12 @@ interface Props {
   floaty?: boolean
 }
 
-const sidebar = useTemplateRef('sidebar')
+const sidebarRef = useTemplateRef('sidebar')
 const open = defineModel<boolean>({
   default: true,
 })
 const slots = useSlots()
-const offset = useCssVar('--vui-sidebar-float-offset', sidebar, {
+const offset = useCssVar('--vui-sidebar-float-offset', sidebarRef, {
   initialValue: '8px',
 })
 
@@ -61,10 +61,10 @@ const { start, stop, isPending } = useTimeoutFn(() => {
 
 const APPEAR_OFFSET = 32
 
-const wrap = useTemplateRef('wrap')
-const { elementX } = useMouseInElement(wrap)
+const wrapEl = useTemplateRef('wrap')
+const { elementX } = useMouseInElement(wrapEl)
 
-onMounted(() => {
+onBeforeMount(() => {
   if (props.appear && open.value) {
     open.value = false
   }
@@ -92,6 +92,7 @@ watchThrottled(elementX, (pos) => {
   }
 }, {
   throttle: 100,
+  immediate: true,
 })
 </script>
 

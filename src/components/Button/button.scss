@@ -95,7 +95,7 @@
     opacity: 0;
     position: absolute;
     pointer-events: none;
-    --spinner-color: var(--color-text)
+    --spinner-color: var(--color-text);
   }
 
   // Variants
@@ -168,7 +168,7 @@
       background-color: var(--color-button-fill);
 
       .vui-spinner {
-        --spinner-color: var(--color-text-invert)
+        --spinner-color: var(--color-text-invert);
       }
 
       svg,

@@ -48,7 +48,7 @@ const {
 } = defineProps<Props>()
 
 const selected = defineModel<SelectOption[] | undefined>()
-const trigger = useTemplateRef('trigger')
+const triggerRef = useTemplateRef('trigger')
 
 //
 function setValue(option: SelectOption) {
@@ -128,7 +128,7 @@ const id = useId()
 
 <template>
   <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }">
-    <Dropdown ref="dropdown" :expand @close="trigger?.focus({ preventScroll: true })" min-width="192px">
+    <Dropdown ref="dropdown" :expand min-width="192px" @close="triggerRef?.focus({ preventScroll: true })">
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" :for="id">{{ label }}</label>

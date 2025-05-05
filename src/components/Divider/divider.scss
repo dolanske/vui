@@ -30,7 +30,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    & > *:first-child { 
+    & > *:first-child {
       outline: 3px solid var(--color-bg);
     }
   }
