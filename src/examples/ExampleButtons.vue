@@ -75,7 +75,7 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           </td>
         </tr>
         <tr>
-          <th>Squar + icon</th>
+          <th>Square + icon</th>
           <td>
             <Flex gap="s">
               <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" />
@@ -83,7 +83,7 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           </td>
         </tr>
         <tr>
-          <th>Squar + icon + small</th>
+          <th>Square + icon + small</th>
           <td>
             <Flex gap="s">
               <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" size="s" />
@@ -91,10 +91,18 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           </td>
         </tr>
         <tr>
-          <th>Squar + icon + large</th>
+          <th>Square + icon + large</th>
           <td>
             <Flex gap="s">
               <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" size="l" />
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Loading</th>
+          <td>
+            <Flex gap="s">
+              <Button v-for="btn in variants" :key="btn" :variant="btn" loading size="l" />
             </Flex>
           </td>
         </tr>
