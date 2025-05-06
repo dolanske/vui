@@ -113,7 +113,6 @@ onMounted(() => {
     :placement
     :style="{
       minWidth: expand ? w : mW,
-      width: w,
       maxHeight: formatUnitValue(maxHeight),
     }"
   >

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { VNode } from 'vue'
 import type { AccordionProps } from './Accordion.vue'
-import type Accordion from './Accordion.vue'
-import { useTemplateRef } from 'vue'
+import { useId, useSlots } from 'vue'
+import { useFlattenedSlot } from '../../shared/slots'
 // Renderless component which is used to house multiple accordions which can be triggered together in some way
 
 interface Props {
@@ -14,19 +13,23 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const slots = defineSlots<{
-  default: () => Array<VNode & { props: AccordionProps }>
-}>()
+// Since accordions do not have a child parent, we need to group them by a
+// common id
+const id = useId()
 
-const accordionRefs = useTemplateRef<InstanceType<typeof Accordion>[]>('accordion')
+const slots = useSlots()
+const children = useFlattenedSlot<AccordionProps>(slots.default)
 
 function handleAccordionOpen(newIndex: number) {
-  if (!accordionRefs.value || !props.single)
+  if (!props.single)
     return
 
-  accordionRefs.value.forEach((item, index) => {
+  const children = document.querySelectorAll(`[data-accordion-group-id=${id}]`)
+
+  children.forEach((item, index) => {
     if (index !== newIndex) {
-      item.close()
+      // @ts-expect-error We do a little accessin'
+      item.__vnode.ctx.exposed.close()
     }
   })
 }
@@ -35,9 +38,9 @@ function handleAccordionOpen(newIndex: number) {
 <template>
   <component
     :is="item"
-    v-for="(item, index) of slots.default()"
-    ref="accordion"
+    v-for="(item, index) of children"
     :key="item"
+    :data-accordion-group-id="id"
     @open="handleAccordionOpen(index)"
   />
 </template>

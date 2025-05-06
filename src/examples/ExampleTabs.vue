@@ -2,10 +2,16 @@
 import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
+import Flex from '../components/Flex/Flex.vue'
 import Tab from '../components/Tabs/Tab.vue'
 import Tabs from '../components/Tabs/Tabs.vue'
+// import Flex from '../components/Flex/Flex.vue'
 
 const activeTab = ref('Home')
+
+// Dynamic test
+const dynamicTabs = ref(['First', 'Second', 'Third'])
+const activeDynamic = ref(dynamicTabs.value[0])
 </script>
 
 <template>
@@ -19,9 +25,9 @@ const activeTab = ref('Home')
           <th>Base</th>
           <td>
             <Tabs v-model="activeTab">
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
             </Tabs>
           </td>
         </tr>
@@ -29,9 +35,9 @@ const activeTab = ref('Home')
           <th>Filled</th>
           <td>
             <Tabs v-model="activeTab" variant="filled">
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
             </Tabs>
           </td>
         </tr>
@@ -39,17 +45,17 @@ const activeTab = ref('Home')
           <th>Expanded</th>
           <td class="w-100">
             <Tabs v-model="activeTab" expand>
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
             </Tabs>
 
             <div class="mb-xl" />
 
             <Tabs v-model="activeTab" expand variant="filled">
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
             </Tabs>
           </td>
         </tr>
@@ -65,17 +71,17 @@ const activeTab = ref('Home')
                   Sidebar
                 </Button>
               </template>
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
             </Tabs>
 
             <div class="mb-xl" />
 
             <Tabs v-model="activeTab" variant="filled">
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
 
               <template #end>
                 <Button icon="ph:x" plain />
@@ -95,21 +101,37 @@ const activeTab = ref('Home')
                   Sidebar
                 </Button>
               </template>
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
             </Tabs>
 
             <div class="mb-xl" />
 
             <Tabs v-model="activeTab" expand variant="filled">
-              <Tab label="Home" />
-              <Tab label="About" />
-              <Tab label="You" />
+              <Tab value="Home" />
+              <Tab value="About" />
+              <Tab value="You" />
 
               <template #end>
                 <Button icon="ph:x" plain />
               </template>
+            </Tabs>
+          </td>
+        </tr>
+        <tr>
+          <th>Dynamic</th>
+          <td>
+            <Flex>
+              <Button @click="dynamicTabs.push(`Tab ${dynamicTabs.length}`)">
+                Add
+              </Button>
+              <Button @click="dynamicTabs.shift()">
+                Remove
+              </Button>
+            </Flex>
+            <Tabs v-model="activeDynamic">
+              <Tab v-for="tab in dynamicTabs" :key="tab" :value="tab" />
             </Tabs>
           </td>
         </tr>

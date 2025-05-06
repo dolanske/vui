@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { VNode } from 'vue'
 import type { TabProps } from './Tab.vue'
 import { useResizeObserver } from '@vueuse/core'
-import { onMounted, useTemplateRef, watch } from 'vue'
+import { onMounted, useSlots, useTemplateRef, watch } from 'vue'
+import { useFlattenedSlot } from '../../shared/slots'
 import './tabs.scss'
 
 interface Props {
@@ -17,11 +17,11 @@ const {
   variant = 'default',
 } = defineProps<Props>()
 
-const slots = defineSlots<{
-  default: () => Array<VNode & { props: TabProps }>
-  start: unknown
-  end: unknown
-}>()
+// const slots = defineSlots<{
+//   default: () => Array<VNode & { props: TabProps }>
+//   start: unknown
+//   end: unknown
+// }>()
 
 const active = defineModel()
 
@@ -56,6 +56,9 @@ onMounted(() => {
     },
   )
 })
+
+const slots = useSlots()
+const flattened = useFlattenedSlot<TabProps>(slots.default)
 </script>
 
 <template>
@@ -71,14 +74,14 @@ onMounted(() => {
     ]"
   >
     <slot name="start" />
-    <Component
-      :is="vnode"
-      v-for="vnode of slots.default()"
-      :key="vnode.props.label"
-      :class="{ active: vnode.props.label === active }"
-      @click="active = vnode.props.label"
-    />
-    <template v-if="slots.end">
+    <template v-for="vnode of flattened" :key="vnode.props.value">
+      <Component
+        :is="vnode"
+        :class="{ active: vnode.props.value === active }"
+        @click="active = vnode.props.value"
+      />
+    </template>
+    <template v-if="$slots.end">
       <div v-if="!!!expand" class="flex-1" />
       <slot name="end" />
     </template>

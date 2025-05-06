@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import type { VNode } from 'vue'
-import type { BreadcrumbItemProps } from './BreadcrumbItem.vue'
 import { Icon } from '@iconify/vue'
+import { useSlots } from 'vue'
+import { useFlattenedSlot } from '../../shared/slots'
 import './breadcrumbs.scss'
 
 interface Props {
@@ -12,16 +12,15 @@ const {
   separator = 'ph:caret-right',
 } = defineProps<Props>()
 
-const slots = defineSlots<{
-  default: () => Array<VNode & { props: BreadcrumbItemProps }>
-}>()
+const slots = useSlots()
+const flattened = useFlattenedSlot(slots.default)
 </script>
 
 <template>
   <ul class="vui-breadcrumbs">
-    <template v-for="(vnode, index) of slots.default()" :key="vnode.props?.label || index">
+    <template v-for="(vnode, index) of flattened" :key="vnode.props?.label || index">
       <component :is="vnode" />
-      <template v-if="index !== slots.default().length - 1">
+      <template v-if="index !== flattened.length - 1">
         <Icon v-if="separator.length > 1 && separator.includes(':')" class="vui-breadcrumb-custom-separator" :icon="separator" />
         <span v-else class="vui-breadcrumb-custom-separator">{{ separator }}</span>
       </template>
