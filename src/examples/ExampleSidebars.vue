@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { useStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import Avatar from '../components/Avatar/Avatar.vue'
 import Button from '../components/Button/Button.vue'
@@ -6,8 +7,11 @@ import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Grid from '../components/Grid/Grid.vue'
 import Sidebar from '../components/Sidebar/Sidebar.vue'
+import Switch from '../components/Switch/Switch.vue'
 
-const s1 = ref(true)
+const s1 = useStorage('sidebar-open', false)
+const s1Mini = useStorage('sidebar-mini', true)
+
 const s2 = ref(true)
 const s3 = ref(true)
 </script>
@@ -38,7 +42,6 @@ const s3 = ref(true)
             <DropdownItem icon="ph:phone">
               Contact
             </DropdownItem>
-
             <template #footer>
               <Flex y-center>
                 <Avatar size="m" />
@@ -107,9 +110,12 @@ const s3 = ref(true)
       </div>
 
       <div>
-        <span class="mb-m block">Mini </span>
+        <Flex y-center x-star class="mb-m">
+          <span class="block">Mini</span>
+          <Switch v-model="s1Mini" />
+        </Flex>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar v-model="s2" mini>
+          <Sidebar v-model="s2" :mini="s1Mini">
             <template #header>
               <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
