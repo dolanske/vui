@@ -42,3 +42,12 @@ export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | unde
 
   return computed(() => rawChildren.value)
 }
+
+export function enforceSlotType(vnodes: ShallowRef<VNodesProps<any>>, name: string) {
+  watchEffect(() => {
+    // @ts-expect-error Accessing internals
+    if (vnodes.value.some(item => item.type.__name !== name)) {
+      throw new Error(`You can only pass \`<${name} />\` components as children.`)
+    }
+  })
+}

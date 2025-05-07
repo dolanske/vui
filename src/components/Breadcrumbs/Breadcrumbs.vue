@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { Icon } from '@iconify/vue'
 import { useSlots } from 'vue'
-import { useFlattenedSlot } from '../../shared/slots'
+import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 import './breadcrumbs.scss'
 
 interface Props {
@@ -14,6 +14,7 @@ const {
 
 const slots = useSlots()
 const flattened = useFlattenedSlot(slots.default)
+enforceSlotType(flattened, "BreadcrumbItem")
 </script>
 
 <template>

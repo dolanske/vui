@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AccordionProps } from './Accordion.vue'
-import { useId, useSlots } from 'vue'
-import { useFlattenedSlot } from '../../shared/slots'
+import { useId, useSlots, watchEffect } from 'vue'
+import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 // Renderless component which is used to house multiple accordions which can be triggered together in some way
 
 interface Props {
@@ -18,27 +18,29 @@ const props = defineProps<Props>()
 const id = useId()
 
 const slots = useSlots()
-const children = useFlattenedSlot<AccordionProps>(slots.default)
+const flattened = useFlattenedSlot<AccordionProps>(slots.default)
 
 function handleAccordionOpen(newIndex: number) {
   if (!props.single)
     return
 
-  const children = document.querySelectorAll(`[data-accordion-group-id=${id}]`)
+  const grouped = document.querySelectorAll(`[data-accordion-group-id=${id}]`)
 
-  children.forEach((item, index) => {
+  grouped.forEach((item, index) => {
     if (index !== newIndex) {
       // @ts-expect-error We do a little accessin'
       item.__vnode.ctx.exposed.close()
     }
   })
 }
+
+enforceSlotType(flattened, "Accordion")
 </script>
 
 <template>
   <component
+    v-for="(item, index) of flattened"
     :is="item"
-    v-for="(item, index) of children"
     :key="item"
     :data-accordion-group-id="id"
     @open="handleAccordionOpen(index)"
