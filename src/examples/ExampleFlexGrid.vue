@@ -59,8 +59,8 @@ const cols = ref(3)
           <th>Justify props</th>
           <td>
             <Flex>
-              <code>justify-start</code><code>justify-end</code><code>justify-center</code>
-              <code>space-between</code><code>space-around</code><code>space-evenly</code>
+              <code>x-start</code><code>x-end</code><code>x-center</code>
+              <code>x-between</code><code>x-around</code><code>x-evenly</code>
             </Flex>
           </td>
         </tr>
@@ -68,8 +68,8 @@ const cols = ref(3)
           <th>Align props</th>
           <td>
             <Flex>
-              <code>align-start</code><code>align-end</code><code>y-center</code>
-              <code>align-baseline</code>
+              <code>y-start</code><code>y-end</code><code>y-center</code>
+              <code>y-baseline</code>
             </Flex>
           </td>
         </tr>
