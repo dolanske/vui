@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TabProps } from './Tab.vue'
 import { useResizeObserver } from '@vueuse/core'
-import { onMounted, useSlots, useTemplateRef, watch, watchEffect } from 'vue'
+import { onMounted, useSlots, useTemplateRef, watch } from 'vue'
 import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 import './tabs.scss'
 
@@ -54,7 +54,7 @@ onMounted(() => {
 const slots = useSlots()
 const flattened = useFlattenedSlot<TabProps>(slots.default)
 
-enforceSlotType(flattened, "Tab")
+enforceSlotType(flattened, 'Tab')
 </script>
 
 <template>

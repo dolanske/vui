@@ -1,9 +1,8 @@
 <script setup lang='ts'>
 import type { FlexProps } from '../Flex/Flex.vue'
-import type Radio from './Radio.vue'
-import { useSlots, watchEffect } from 'vue'
-import Flex from '../Flex/Flex.vue'
+import { useSlots } from 'vue'
 import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
+import Flex from '../Flex/Flex.vue'
 
 interface Props extends FlexProps {
   disabled?: boolean
@@ -18,7 +17,7 @@ const checked = defineModel()
 
 const slots = useSlots()
 const flattened = useFlattenedSlot(slots.default)
-enforceSlotType(flattened, "Radio")
+enforceSlotType(flattened, 'Radio')
 </script>
 
 <template>

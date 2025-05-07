@@ -14,7 +14,7 @@ const {
 
 const slots = useSlots()
 const flattened = useFlattenedSlot(slots.default)
-enforceSlotType(flattened, "BreadcrumbItem")
+enforceSlotType(flattened, 'BreadcrumbItem')
 </script>
 
 <template>
