@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import type { FlexProps } from '../Flex/Flex.vue'
-import { useSlots } from 'vue'
 import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 import Flex from '../Flex/Flex.vue'
 
@@ -13,9 +12,10 @@ const {
   ...flexProps
 } = defineProps<Props>()
 
+const slots = defineSlots()
+
 const checked = defineModel()
 
-const slots = useSlots()
 const flattened = useFlattenedSlot(slots.default)
 enforceSlotType(flattened, 'Radio')
 </script>

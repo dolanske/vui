@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AccordionProps } from './Accordion.vue'
-import { useId, useSlots } from 'vue'
+import { useId } from 'vue'
 import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 // Renderless component which is used to house multiple accordions which can be triggered together in some way
 
@@ -13,11 +13,12 @@ interface Props {
 
 const props = defineProps<Props>()
 
+const slots = defineSlots()
+
 // Since accordions do not have a child parent, we need to group them by a
 // common id
 const id = useId()
 
-const slots = useSlots()
 const flattened = useFlattenedSlot<AccordionProps>(slots.default)
 
 function handleAccordionOpen(newIndex: number) {

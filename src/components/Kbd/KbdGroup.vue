@@ -1,6 +1,5 @@
 <script setup lang='ts'>
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { useSlots } from 'vue'
 import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 
 /**
@@ -12,12 +11,9 @@ const emits = defineEmits<{
   trigger: []
 }>()
 
-// const slots = defineSlots<{
-//   default: () => Array<typeof Kbd>
-// }>()
+const slots = defineSlots()
 const keys = useMagicKeys()
 
-const slots = useSlots()
 const flattened = useFlattenedSlot(slots.default)
 enforceSlotType(flattened, 'Kbd')
 
