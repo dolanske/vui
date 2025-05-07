@@ -43,6 +43,14 @@ export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | unde
   return computed(() => rawChildren.value)
 }
 
+/**
+ * Checks whether all of the provided VNodes are of the same type. Throws an
+ * error if not. This function should be used in components that only allow a
+ * single type of component
+ *
+ * @param vnodes Array of VNodes to check
+ * @param name Expected name of the components
+ */
 export function enforceSlotType(vnodes: ShallowRef<VNodesProps<any>>, name: string): void {
   watchEffect(() => {
     // @ts-expect-error Accessing internals
