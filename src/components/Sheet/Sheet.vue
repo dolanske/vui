@@ -62,9 +62,7 @@ const baseTransform = computed(() => {
       <Backdrop v-if="open" @close="emit('close')">
         <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
           <div class="vui-sheet-header">
-            <div class="flex-1">
-              <slot name="header" :close="() => emit('close')" />
-            </div>
+            <slot name="header" :close="() => emit('close')" />
             <Button plain square icon="ph:x" @click="emit('close')" />
           </div>
 

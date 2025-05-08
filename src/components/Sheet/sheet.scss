@@ -58,9 +58,11 @@
   }
 
   .vui-sheet-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 34px;
     gap: var(--space-m);
     align-self: flex-start;
+    align-items: center;
 
     & + .vui-sheet-content {
       padding-top: var(--space-s);
