@@ -61,6 +61,7 @@ const tooltipRef = useTemplateRef('tooltip')
 const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   whileElementsMounted: autoUpdate,
   transform: false,
+  strategy: 'fixed',
   placement: 'top',
   middleware: [
     offset(8),

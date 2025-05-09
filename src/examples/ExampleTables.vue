@@ -191,5 +191,100 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
     <Divider :size="40" class="w-40" />
 
     <p>The <code>defineTable</code> hook can also be used with other UI components. Not just tables. That's why all the table interactivity is not within the component, but in a hook. It's very flexible and allows custom functionality.</p>
+
+    <Divider :size="40" />
+
+    <h5 class="mb-s">
+      Responsitivity
+    </h5>
+
+    <p class="mb-m">
+      Table can be made responsible if they overflow their width and are wrapped in a <code>.vui-table-container</code> element.
+    </p>
+
+    <div class="container container-m">
+      <div class="vui-table-overflow">
+        <table>
+          <thead>
+            <tr>
+              <th data-title-top="ID">
+                ID
+              </th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip</th>
+              <th>Country</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>John Doe</td>
+              <td>john.doe@example.com</td>
+              <td>(555) 123-4567</td>
+              <td>123 Main St</td>
+              <td>New York</td>
+              <td>NY</td>
+              <td>10001</td>
+              <td>USA</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>002</td>
+              <td>Jane Smith</td>
+              <td>jane.smith@example.com</td>
+              <td>(555) 987-6543</td>
+              <td>456 Oak Ave</td>
+              <td>Los Angeles</td>
+              <td>CA</td>
+              <td>90001</td>
+              <td>USA</td>
+              <td>Inactive</td>
+            </tr>
+            <tr>
+              <td>003</td>
+              <td>Robert Johnson</td>
+              <td>robert.j@example.com</td>
+              <td>(555) 456-7890</td>
+              <td>789 Pine Blvd</td>
+              <td>Chicago</td>
+              <td>IL</td>
+              <td>60601</td>
+              <td>USA</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>004</td>
+              <td>Emily Davis</td>
+              <td>emily.d@example.com</td>
+              <td>(555) 234-5678</td>
+              <td>321 Cedar Ln</td>
+              <td>Houston</td>
+              <td>TX</td>
+              <td>77001</td>
+              <td>USA</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td>005</td>
+              <td>Michael Wilson</td>
+              <td>michael.w@example.com</td>
+              <td>(555) 876-5432</td>
+              <td>654 Maple Dr</td>
+              <td>Miami</td>
+              <td>FL</td>
+              <td>33101</td>
+              <td>USA</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>

@@ -1,3 +1,10 @@
+.vui-table-overflow {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
 .vui-table-container {
   display: block;
   width: 100%;
@@ -68,7 +75,6 @@
 
     th,
     td {
-      font-size: var(--font-size-m);
       border: none;
       border-left: none !important;
       transition: var(--transition-fast);

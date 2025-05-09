@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
-import { flip, offset, shift, useFloating } from '@floating-ui/vue'
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
 import { toRef, useTemplateRef } from 'vue'
 import './popout.scss'
@@ -31,11 +31,10 @@ const popoutRef = useTemplateRef('popout')
 const anchorRef = toRef(props.anchor)
 
 const { floatingStyles } = useFloating(anchorRef, popoutRef, {
+  whileElementsMounted: autoUpdate,
+  strategy: 'fixed',
   placement: props.placement,
   middleware: [
-    // ...(props.placement
-    //   ? []
-    //   : [autoPlacement()]),
     shift({ padding: 8 }),
     flip(),
     offset(props.offset),
