@@ -6,6 +6,7 @@ import { paginate } from '../components/Pagination/pagination'
 import Pagination from '../components/Pagination/Pagination.vue'
 import * as Table from '../components/Table/index'
 import { defineTable } from '../components/Table/table'
+import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 interface Item {
   'ID Nation': string
@@ -207,18 +208,86 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
         <table>
           <thead>
             <tr>
-              <th data-title-top="ID">
-                ID
+              <th>
+                <Tooltip placement="top">
+                  <p>ID</p>
+                  <template #tooltip>
+                    <p>ID</p>
+                  </template>
+                </Tooltip>
               </th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Zip</th>
-              <th>Country</th>
-              <th>Status</th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Name</p>
+                  <template #tooltip>
+                    <p>Name</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Email</p>
+                  <template #tooltip>
+                    <p>Email</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Phone</p>
+                  <template #tooltip>
+                    <p>Phone</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Address</p>
+                  <template #tooltip>
+                    <p>Address</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>City</p>
+                  <template #tooltip>
+                    <p>City</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>State</p>
+                  <template #tooltip>
+                    <p>State</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Zip</p>
+                  <template #tooltip>
+                    <p>Zip</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Country</p>
+                  <template #tooltip>
+                    <p>Country</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  <p>Status</p>
+                  <template #tooltip>
+                    <p>Status</p>
+                  </template>
+                </Tooltip>
+              </th>
             </tr>
           </thead>
           <tbody>

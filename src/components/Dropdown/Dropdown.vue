@@ -104,10 +104,9 @@ onMounted(() => {
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
-  <!-- <Transition name="dropdown" mode="out-in"> -->
   <Popout
-    v-if="showMenu"
     ref="dropdown"
+    :visible="showMenu"
     :anchor="anchorRef"
     class="vui-dropdown"
     :placement
@@ -118,17 +117,4 @@ onMounted(() => {
   >
     <slot :open :close :toggle :is-open="showMenu" />
   </Popout>
-  <!-- </Transition> -->
 </template>
-
-<!-- <style scoped lang="scss">
-.dropdown-enter-active,
-.dropdown-leave-active {
-  transition: var(--transition-fast);
-}
-
-.dropdown-enter-from,
-.dropdown-leave-to {
-  opacity: 0;
-}
-</style> -->

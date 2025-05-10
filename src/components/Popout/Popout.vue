@@ -2,7 +2,7 @@
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { toRef, useTemplateRef } from 'vue'
+import { onMounted, onUpdated, toRef, useTemplateRef, watch } from 'vue'
 import './popout.scss'
 
 export interface Props {
@@ -18,6 +18,10 @@ export interface Props {
    * Distance between the anchor and the rendered tooltip
    */
   offset?: number
+  /**
+   * Set the visibility of the dropdown
+   */
+  visible: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,9 +34,10 @@ const emit = defineEmits<{
 const popoutRef = useTemplateRef('popout')
 const anchorRef = toRef(props.anchor)
 
-const { floatingStyles } = useFloating(anchorRef, popoutRef, {
+const { floatingStyles, update } = useFloating(anchorRef, popoutRef, {
   whileElementsMounted: autoUpdate,
   strategy: 'fixed',
+  transform: false,
   placement: props.placement,
   middleware: [
     shift({ padding: 8 }),
@@ -41,11 +46,26 @@ const { floatingStyles } = useFloating(anchorRef, popoutRef, {
   ],
 })
 
+// Make sure to update the popout when the anchor is mounted
+watch(() => props.anchor, (value) => {
+  if (value) {
+    anchorRef.value = value
+    update()
+  }
+})
+
 onClickOutside(popoutRef, () => emit('clickOutside'))
 </script>
 
 <template>
-  <div ref="popout" :style="floatingStyles" class="vui-popout">
-    <slot />
-  </div>
+  <Transition name="fade-up">
+    <div
+      v-if="props.visible"
+      ref="popout"
+      :style="floatingStyles"
+      class="vui-popout"
+    >
+      <slot />
+    </div>
+  </Transition>
 </template>

@@ -66,21 +66,7 @@ const id = useId()
   >
     <slot />
   </div>
-  <!-- <Transition name="tooltip"> -->
-  <Popout v-if="showTooltip" :id :anchor="popoutAnchorRef" class="vui-tooltip" :placement>
+  <Popout :id :visible="showTooltip" :anchor="popoutAnchorRef" class="vui-tooltip" :placement>
     <slot name="tooltip" />
   </Popout>
-  <!-- </Transition> -->
 </template>
-
-<!-- <style scoped>
-.tooltip-enter-active,
-.tooltip-leave-active {
-  transition: var(--transition-fast);
-}
-
-.tooltip-enter-from,
-.tooltip-leave-to {
-  opacity: 0;
-}
-</style> -->
