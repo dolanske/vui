@@ -210,7 +210,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
             <tr>
               <th>
                 <Tooltip placement="top">
-                  <p>ID</p>
+                  ID
                   <template #tooltip>
                     <p>ID</p>
                   </template>
@@ -218,7 +218,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Name</p>
+                  Name
                   <template #tooltip>
                     <p>Name</p>
                   </template>
@@ -226,7 +226,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Email</p>
+                  Email
                   <template #tooltip>
                     <p>Email</p>
                   </template>
@@ -234,7 +234,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Phone</p>
+                  Phone
                   <template #tooltip>
                     <p>Phone</p>
                   </template>
@@ -242,7 +242,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Address</p>
+                  Address
                   <template #tooltip>
                     <p>Address</p>
                   </template>
@@ -250,7 +250,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>City</p>
+                  City
                   <template #tooltip>
                     <p>City</p>
                   </template>
@@ -258,7 +258,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>State</p>
+                  State
                   <template #tooltip>
                     <p>State</p>
                   </template>
@@ -266,7 +266,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Zip</p>
+                  Zip
                   <template #tooltip>
                     <p>Zip</p>
                   </template>
@@ -274,7 +274,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Country</p>
+                  Country
                   <template #tooltip>
                     <p>Country</p>
                   </template>
@@ -282,7 +282,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               </th>
               <th>
                 <Tooltip placement="top">
-                  <p>Status</p>
+                  Status
                   <template #tooltip>
                     <p>Status</p>
                   </template>

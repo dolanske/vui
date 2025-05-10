@@ -26,6 +26,7 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   offset: 8,
+  placement: 'top',
 })
 
 const emit = defineEmits<{
