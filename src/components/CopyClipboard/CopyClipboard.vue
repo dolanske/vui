@@ -76,7 +76,7 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
     <slot :copy :copied />
   </div>
 
-  <Transition name="fade-up" mode="in-out">
+  <Transition name="fade-top" mode="in-out">
     <div v-if="copied && (!!parsedConfirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
       <slot name="confirm">
         <template v-if="typeof parsedConfirm === 'string'">

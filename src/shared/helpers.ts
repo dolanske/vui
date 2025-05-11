@@ -1,3 +1,5 @@
+import type { Placement } from '@floating-ui/vue'
+
 export function createArray(length: number, startOffset: number = 0): number[] {
   return Array
     .from({ length })
@@ -114,4 +116,9 @@ export function isObjectInSet(set: Set<any>, obj: any): boolean {
   }
 
   return false
+}
+
+export function getPlacementAnimationName(position: Placement): string {
+  const suffix = position.includes('-') ? position.split('-')[0] : position
+  return `fade-${suffix}`
 }

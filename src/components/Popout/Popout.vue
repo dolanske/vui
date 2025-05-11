@@ -3,6 +3,7 @@ import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
 import { onMounted, onUpdated, toRef, useTemplateRef, watch } from 'vue'
+import { getPlacementAnimationName } from '../../shared/helpers'
 import './popout.scss'
 
 export interface Props {
@@ -59,7 +60,7 @@ onClickOutside(popoutRef, () => emit('clickOutside'))
 </script>
 
 <template>
-  <Transition name="fade-up">
+  <Transition :name="getPlacementAnimationName(props.placement)">
     <div
       v-if="props.visible"
       ref="popout"
