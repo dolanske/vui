@@ -1,9 +1,10 @@
 <script setup lang='ts'>
+import type { Placement } from '@floating-ui/vue'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { Icon } from '@iconify/vue'
 import { useClipboard } from '@vueuse/core'
 import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
-import { isNil } from '../../shared/helpers'
+import { getPlacementAnimationName, isNil } from '../../shared/helpers'
 import Flex from '../Flex/Flex.vue'
 import './copy-clipboard.scss'
 
@@ -20,12 +21,17 @@ interface Props {
    * How long will the copy confirmation tooltip be visible in milliseconds.
    */
   confirmTime?: number
+  /**
+   * Tooltip position. Default is top
+   */
+  confirmPlacement?: Placement
 }
 
 const {
   text,
   confirm,
   confirmTime,
+  confirmPlacement = 'top',
 } = defineProps<Props>()
 
 const {
@@ -62,7 +68,7 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
   whileElementsMounted: autoUpdate,
   transform: false,
   strategy: 'fixed',
-  placement: 'top',
+  placement: confirmPlacement,
   middleware: [
     offset(8),
     shift(),
@@ -76,7 +82,7 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
     <slot :copy :copied />
   </div>
 
-  <Transition name="fade-top" mode="in-out">
+  <Transition :name="getPlacementAnimationName(confirmPlacement)" mode="in-out">
     <div v-if="copied && (!!parsedConfirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
       <slot name="confirm">
         <template v-if="typeof parsedConfirm === 'string'">

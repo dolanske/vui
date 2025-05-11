@@ -6,37 +6,14 @@
 
 ---
 
-## 1.0 Checklist
+## TODO
 
-- [ ] Real life test
-  - [x] Might be useful to build this in the hivecom project
-  - [x] Build an example page with 100% of the components
-  - [x] Run accessibility tools on it
-  - [x] Run color contrast test
-  - [ ] Make sure it works on mobile down to 340px
-    - [ ] Components
-    - [ ] Scale down Typography
-- [x] Sidebar
-
----
-
-### Post 1.2 components
-
+- [ ] Bump target from ES2022 whenever vite-plugin-dts is fixed
 - [ ] Carousel (slider)
 - [ ] CodeBlock
   - [ ] Code highlighting
   - [ ] Copy code
   - [ ] Type, padding, etc
   - [ ] Use this https://shiki.style/guide/install
-- [ ] Command dropdown
-- [ ] Documentation
-  - [ ] Design my own documentation site (GENERIC?!)
-  - [ ] Pages
-    - [ ] CSS variable setup, accent, fonts
-    - [ ] CSS helpers
-    - [ ] Components
-    - [ ] Typography page
-
-### Whenever
-
-- [ ] Bump target from ES2022 whenever vite-plugin-dts is fixed
+- [ ] Command menu
+- [ ] Documentation site using my own template
