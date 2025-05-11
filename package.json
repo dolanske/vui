@@ -9,7 +9,7 @@
   "sass": "src/index.scss",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dolanske/vui.git"
+    "url": "git+https://github.com/dolanske/vui.git"
   },
   "keywords": [
     "vue",
