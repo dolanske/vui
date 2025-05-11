@@ -163,19 +163,6 @@ $sizes: 0, 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
   .p-#{$size} {
     padding: var(--space-#{$size});
   }
-
-  // Gap
-  // .g-#{$size} {
-  //   gap: var(--space-#{$size});
-  // }
-
-  // .g-y-#{$size} {
-  //   row-gap: var(--space-#{$size});
-  // }
-
-  // .g-x-#{$size} {
-  //   column-gap: var(--space-#{$size});
-  // }
 }
 
 // Z-index
@@ -186,25 +173,3 @@ $zindexes: 0, 10, 20, 30, 40, 50, auto;
     z-index: $zindex;
   }
 }
-
-// Grid
-
-// .grid {
-//   display: grid;
-// }
-
-// .inline-grid {
-//   display: inline-table;
-// }
-
-// $cols: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
-
-// @each $col in $cols {
-//   .col-#{$col} {
-//     grid-template-columns: repeat($col, 1fr);
-//   }
-
-//   .row {
-//     grid-template-rows: repeat($col, 1fr);
-//   }
-// }

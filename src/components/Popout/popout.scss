@@ -5,6 +5,7 @@
   background-color: var(--color-bg-medium);
   border-radius: var(--border-radius-m);
   z-index: 1000;
+  position: fixed;
 }
 
 :root.light {

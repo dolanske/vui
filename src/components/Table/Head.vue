@@ -2,6 +2,7 @@
 import type { Header } from './table'
 import { computed } from 'vue'
 import Button from '../Button/Button.vue'
+import Tooltip from '../Tooltip/Tooltip.vue'
 
 interface Props {
   /**
@@ -23,16 +24,16 @@ const sortStateBind = computed(() => {
     return
   switch (props.header.sortKey) {
     case 'asc': return {
-      'icon': 'ph:sort-ascending',
-      'data-title-top': 'Ascending',
+      icon: 'ph:sort-ascending',
+      tooltipText: 'Ascending',
     }
     case 'desc': return {
-      'icon': 'ph:sort-descending',
-      'data-title-top': 'Descending',
+      icon: 'ph:sort-descending',
+      tooltipText: 'Descending',
     }
     default: return {
-      'icon': 'ph:arrows-down-up',
-      'data-title-top': 'Sort column',
+      icon: 'ph:arrows-down-up',
+      tooltipText: 'Sort column',
     }
   }
 })
@@ -44,16 +45,22 @@ const sortStateBind = computed(() => {
       <slot>
         {{ props.header?.label }}
       </slot>
-      <Button
-        v-if="props.sort && props.header"
-        class="vui-table-sort-button"
-        v-bind="sortStateBind"
-        size="s"
-        :plain="!!!props.header.sortKey"
-        square
-        variant="gray"
-        @click="props.header.sortToggle"
-      />
+      <template v-if="props.sort && props.header">
+        <Tooltip placement="top">
+          <Button
+            :icon="sortStateBind?.icon"
+            class="vui-table-sort-button"
+            size="s"
+            :plain="!!!props.header.sortKey"
+            square
+            variant="gray"
+            @click="props.header.sortToggle"
+          />
+          <template #tooltip>
+            {{ sortStateBind?.tooltipText }}
+          </template>
+        </Tooltip>
+      </template>
     </div>
   </th>
 </template>

@@ -6,6 +6,7 @@ import { paginate } from '../components/Pagination/pagination'
 import Pagination from '../components/Pagination/Pagination.vue'
 import * as Table from '../components/Table/index'
 import { defineTable } from '../components/Table/table'
+import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 interface Item {
   'ID Nation': string
@@ -191,5 +192,168 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
     <Divider :size="40" class="w-40" />
 
     <p>The <code>defineTable</code> hook can also be used with other UI components. Not just tables. That's why all the table interactivity is not within the component, but in a hook. It's very flexible and allows custom functionality.</p>
+
+    <Divider :size="40" />
+
+    <h5 class="mb-s">
+      Responsitivity
+    </h5>
+
+    <p class="mb-m">
+      Table can be made responsible if they overflow their width and are wrapped in a <code>.vui-table-container</code> element.
+    </p>
+
+    <div class="container container-m">
+      <div class="vui-table-overflow">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <Tooltip placement="top">
+                  ID
+                  <template #tooltip>
+                    <p>ID</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Name
+                  <template #tooltip>
+                    <p>Name</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Email
+                  <template #tooltip>
+                    <p>Email</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Phone
+                  <template #tooltip>
+                    <p>Phone</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Address
+                  <template #tooltip>
+                    <p>Address</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  City
+                  <template #tooltip>
+                    <p>City</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  State
+                  <template #tooltip>
+                    <p>State</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Zip
+                  <template #tooltip>
+                    <p>Zip</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Country
+                  <template #tooltip>
+                    <p>Country</p>
+                  </template>
+                </Tooltip>
+              </th>
+              <th>
+                <Tooltip placement="top">
+                  Status
+                  <template #tooltip>
+                    <p>Status</p>
+                  </template>
+                </Tooltip>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>John Doe</td>
+              <td>john.doe@example.com</td>
+              <td>(555) 123-4567</td>
+              <td>123 Main St</td>
+              <td>New York</td>
+              <td>NY</td>
+              <td>10001</td>
+              <td>USA</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>002</td>
+              <td>Jane Smith</td>
+              <td>jane.smith@example.com</td>
+              <td>(555) 987-6543</td>
+              <td>456 Oak Ave</td>
+              <td>Los Angeles</td>
+              <td>CA</td>
+              <td>90001</td>
+              <td>USA</td>
+              <td>Inactive</td>
+            </tr>
+            <tr>
+              <td>003</td>
+              <td>Robert Johnson</td>
+              <td>robert.j@example.com</td>
+              <td>(555) 456-7890</td>
+              <td>789 Pine Blvd</td>
+              <td>Chicago</td>
+              <td>IL</td>
+              <td>60601</td>
+              <td>USA</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>004</td>
+              <td>Emily Davis</td>
+              <td>emily.d@example.com</td>
+              <td>(555) 234-5678</td>
+              <td>321 Cedar Ln</td>
+              <td>Houston</td>
+              <td>TX</td>
+              <td>77001</td>
+              <td>USA</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td>005</td>
+              <td>Michael Wilson</td>
+              <td>michael.w@example.com</td>
+              <td>(555) 876-5432</td>
+              <td>654 Maple Dr</td>
+              <td>Miami</td>
+              <td>FL</td>
+              <td>33101</td>
+              <td>USA</td>
+              <td>Active</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>

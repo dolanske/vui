@@ -25,7 +25,7 @@ const show = ref(showPassword)
     <template #end>
       <Button
         square
-        :data-title-top="show ? 'Hide' : 'Reveal'"
+        :aria-label="show ? 'Hide' : 'Reveal'"
         @click="show = !show"
       >
         <Icon :width="18" :height="18" :icon="show ? 'ph:eye-slash' : 'ph:eye'" />

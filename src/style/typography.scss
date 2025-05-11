@@ -297,10 +297,12 @@ dl {
   }
 }
 
+article {
+  width: 100%;
+}
+
 article,
 .typeset {
-  width: 100%;
-
   ol,
   ul {
     ol,

@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { ref, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useId, useTemplateRef, watch } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 
@@ -52,35 +52,27 @@ watch(hoverAnchor, (isHovering) => {
 })
 
 const id = useId()
+const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement | null)
 </script>
 
 <template>
   <div
     ref="popoutAnchor"
-    :style="{
-      width: 'fit-content',
-    }"
+    class="popout-anchor"
     :aria-describedby="id"
     @mouseenter="hoverAnchor = true"
     @mouseleave="hoverAnchor = false"
   >
     <slot />
   </div>
-  <!-- <Transition name="tooltip"> -->
-  <Popout v-if="showTooltip" :id :anchor="popoutAnchorRef" class="vui-tooltip" :placement>
+  <Popout :id :visible="showTooltip" :anchor class="vui-tooltip" :placement>
     <slot name="tooltip" />
   </Popout>
-  <!-- </Transition> -->
 </template>
 
-<!-- <style scoped>
-.tooltip-enter-active,
-.tooltip-leave-active {
-  transition: var(--transition-fast);
+<style scoped lang="scss">
+.popout-anchor {
+  display: contents;
+  width: fit-content;
 }
-
-.tooltip-enter-from,
-.tooltip-leave-to {
-  opacity: 0;
-}
-</style> -->
+</style>

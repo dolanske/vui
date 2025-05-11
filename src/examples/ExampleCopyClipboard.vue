@@ -28,9 +28,9 @@ import Flex from '../components/Flex/Flex.vue'
           </td>
         </tr>
         <tr>
-          <th>Custom confirm popup</th>
+          <th>Custom confirm popup & positioned at the right</th>
           <td>
-            <CopyClipboard text="Copy me!" confirm>
+            <CopyClipboard text="Copy me!" confirm confirm-placement="right">
               <Button>Copy me!</Button>
               <template #confirm>
                 <Flex column gap="s" y-center>
