@@ -1,0 +1,25 @@
+@use 'sass:meta';
+
+@import url(@dolanske/vui/style);
+
+@include meta.load-css('overrides.scss');
+
+html,
+body {
+  font-size: 63.5%;
+  font-size: 1.4rem;
+  background-color: var(--color-bg);
+}
+
+body {
+  min-height: unset;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+main {
+  padding-bottom: var(--space-xxxl);
+}
