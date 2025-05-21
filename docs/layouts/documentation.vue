@@ -9,14 +9,20 @@ type AvailableTabs = 'Style tokens' | 'CSS framework' | 'Components'
 
 const currentTab = ref<AvailableTabs | ''>('')
 
+// TODO: change to using query collection path
 const subPages: Record<AvailableTabs, LinkItem[]> = {
   'Style tokens': [
-    { label: 'Tokens', path: '/docs/tokens' },
-    { label: 'Variables', path: '/docs/tokens/variables' },
-    { label: 'Theme', path: '/docs/tokens/theme' },
+    { label: 'Introduction', path: '/docs/tokens' },
+    { label: 'Colors', path: '/docs/tokens/colors' },
+    { label: 'Themes', path: '/docs/tokens/theming' },
+    { label: 'Spacing', path: '/docs/tokens/spacing' },
+    { label: 'Text', path: '/docs/tokens/text' },
+    { label: 'Z-index', path: '/docs/tokens/z-index' },
+
+    
   ],
   'CSS framework': [
-    { label: 'Framework', path: '/docs/framework' },
+    { label: 'Introduction', path: '/docs/framework' },
     { label: 'Colors', path: '/docs/framework/colors' },
     { label: 'Text & font', path: '/docs/framework/text-font' },
     { label: 'Typography', path: '/docs/framework/typography' },
@@ -29,7 +35,7 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
   // TODO: list every component
   // NOTE: Make sure that components which are logically grouped, are within 1 sub-page
   'Components': [
-    { label: 'Components', path: '/docs/components' },
+    { label: 'Introduction', path: '/docs/components' },
   ],
 }
 
@@ -232,6 +238,8 @@ const breadcrumbItems = computed(() => {
 
 .app-sidebar {
   .vui-dropdown-item {
+    margin: 0;
+
     .vui-dropdown-item-slot {
       color: var(--color-text-light);
     }

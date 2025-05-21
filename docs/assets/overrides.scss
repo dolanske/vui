@@ -11,3 +11,9 @@
   border-bottom-width: 1px;
   bottom: -1px;
 }
+
+pre {
+  border: none;
+  background-color: var(--color-bg-lowered);
+  line-height: 1.4em;
+}
