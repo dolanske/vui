@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { BreadcrumbItem, Breadcrumbs, Button, DropdownItem, Flex, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 
 const route = useRoute()
 const router = useRouter()
 
-const availableTabs = ['Style tokens', 'CSS framework', 'Components'] as const
-const currentTab = ref<typeof availableTabs[number]>('Style tokens')
+type AvailableTabs = 'Style tokens' | 'CSS framework' | 'Components'
 
-const subPages: Record<typeof availableTabs[number], LinkItem[]> = {
+const currentTab = ref<AvailableTabs | ''>('')
+
+const subPages: Record<AvailableTabs, LinkItem[]> = {
   'Style tokens': [
     { label: 'Tokens', path: '/docs/tokens' },
     { label: 'Variables', path: '/docs/tokens/variables' },
@@ -32,23 +33,60 @@ const subPages: Record<typeof availableTabs[number], LinkItem[]> = {
   ],
 }
 
-const subPagesToRender = computed(() => subPages[currentTab.value])
+// When mounting, we need to first keep tabs in sync with the URL. So loop over
+// states and set the active tab to the correct one
+watch(() => route.fullPath, (currentPath) => {
+  // The root page is always the first one in the list
+  const tokensPath = subPages['Style tokens'][0]
+  const cssFrameworkPath = subPages['CSS framework'][0]
+  const componentsPath = subPages.Components[0]
+  // const currentPath = route.fullPath
+
+  // Root docs page is active, so set active tab to nothing
+  if (currentPath.endsWith('/docs')) {
+    currentTab.value = ''
+  }
+  else if (currentPath.includes(tokensPath.path)) {
+    currentTab.value = 'Style tokens'
+  }
+  else if (currentPath.includes(cssFrameworkPath.path)) {
+    currentTab.value = 'CSS framework'
+  }
+  else if (currentPath.includes(componentsPath.path)) {
+    currentTab.value = 'Components'
+  }
+}, {
+  immediate: true,
+  flush: 'post',
+})
+
+const subPagesToRender = computed(() => {
+  if (!currentTab.value)
+    return null
+
+  return subPages[currentTab.value]
+})
 
 const prevAndNext = computed(() => {
+  if (!subPagesToRender.value)
+    return null
+
   const indexOfActive = subPagesToRender.value.findIndex(item => route.path === item.path)
 
   if (indexOfActive === -1)
     return null
 
   return {
-    prev: subPagesToRender.value.at(indexOfActive - 1),
-    next: subPagesToRender.value.at(indexOfActive + 1),
+    prev: subPagesToRender.value[indexOfActive - 1],
+    next: subPagesToRender.value[indexOfActive + 1],
   }
 })
 
 // Reset to default route when main context changes
 watch(subPagesToRender, (pages) => {
-  router.push(pages[0].path)
+  if (pages) {
+    router.push(pages[0].path)
+  }
 })
 
 // Bredcrumbs
@@ -78,13 +116,15 @@ const breadcrumbItems = computed(() => {
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar>
+    <Sidebar class="app-sidebar">
       <template #header>
-        <Flex class="mb-s">
-          <h4>VUI</h4>
+        <Flex class="mb-s" y-center>
+          <h5 class="vui-logo">
+            VUI
+          </h5>
           <div class="flex-1" />
-          <Button square>
-            <Icon name="ph:search" />
+          <Button square outline>
+            <Icon name="ph:magnifying-glass" />
           </Button>
         </Flex>
         <hr>
@@ -92,6 +132,8 @@ const breadcrumbItems = computed(() => {
       <DropdownItem
         v-for="subPage in subPagesToRender"
         :key="subPage.path"
+        class="sidebar-item"
+        :class="{ active: route.fullPath.endsWith(subPage.path) }"
         @click="router.push(subPage.path)"
       >
         {{ subPage.label }}
@@ -101,12 +143,25 @@ const breadcrumbItems = computed(() => {
     <main>
       <div class="container container-m">
         <Tabs v-model="currentTab" expand class="docs-tabs">
-          <Tab v-for="value in availableTabs" :key="value" :value />
+          <Tab value="Style tokens">
+            <Icon name="ph:brackets-curly" />
+            Style tokens
+          </Tab>
+          <Tab value="CSS framework">
+            <Icon name="ph:file-css" />
+            CSS framework
+          </Tab>
+          <Tab value="Components">
+            <Icon name="ph:rectangle-dashed" />
+            Components
+          </Tab>
         </Tabs>
 
-        <Breadcrumbs class="mb-s">
-          <BreadcrumbItem v-for="item in breadcrumbItems" :key="item.path" @click="router.push(item.path)">
-            {{ item.label }}
+        <Breadcrumbs class="app-breadcrumbs">
+          <BreadcrumbItem v-for="item in breadcrumbItems" :key="item.path">
+            <Button variant="link" @click="router.push(item.path)">
+              {{ item.label }}
+            </Button>
           </BreadcrumbItem>
         </Breadcrumbs>
 
@@ -114,30 +169,108 @@ const breadcrumbItems = computed(() => {
           <slot />
         </article>
 
-        <Flex v-if="prevAndNext">
+        <Divider class="pt-xxl pb-xl" />
+
+        <Grid v-if="prevAndNext" :columns="2">
           <Button v-if="prevAndNext.prev" expand size="l" outline @click="router.push(prevAndNext.prev.path)">
             <template #start>
               <Icon name="ph:caret-left" />
             </template>
             {{ prevAndNext.prev.label }}
           </Button>
+          <div v-else />
 
           <Button v-if="prevAndNext.next" expand size="l" outline @click="router.push(prevAndNext.next.path)">
             {{ prevAndNext.next.label }}
-            <template #start>
+            <template #end>
               <Icon name="ph:caret-right" />
             </template>
           </Button>
-        </Flex>
+          <div v-else />
+        </Grid>
       </div>
     </main>
   </div>
 </template>
 
+<style>
+.vui-logo {
+  position: relative;
+  padding-left: 46px;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &:before {
+    z-index: -1;
+    background: #833ab4;
+    background: linear-gradient(135deg, rgb(195, 46, 225) 0%, rgb(253, 115, 29) 50%, rgb(249, 212, 5) 100%);
+  }
+
+  &:after {
+    z-index: 2;
+    background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 4.55%,
+      #000000 4.55%,
+      rgba(0, 0, 0, 0) 54.55%,
+      #000000 54.55%,
+      #000000 100%
+    );
+    background-size: 6px 6px;
+  }
+}
+
+.app-sidebar {
+  .vui-dropdown-item {
+    .vui-dropdown-item-slot {
+      color: var(--color-text-light);
+    }
+
+    &:hover,
+    &.active {
+      .vui-dropdown-item-slot {
+        color: var(--color-text) !important;
+      }
+
+      background-color: var(--color-bg-raised);
+    }
+  }
+}
+
+.app-breadcrumbs {
+  .vui-button {
+    padding-inline: 0;
+    color: var(--color-text-lighter);
+    text-transform: capitalize;
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+</style>
+
 <style scoped lang="scss">
 .docs-tabs {
   position: sticky;
   top: 0;
-  margin-bottom: 128px;
+  margin-bottom: 96px;
+  background-color: var(--color-bg);
+  z-index: 1000;
+
+  .vui-tab {
+    height: 64px;
+    font-size: var(--font-size-m);
+  }
 }
 </style>

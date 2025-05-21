@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Card, Flex, setColorTheme } from '@dolanske/vui'
+import { Button, Card, Flex } from '@dolanske/vui'
 
 const router = useRouter()
 </script>
@@ -11,19 +11,19 @@ const router = useRouter()
     </div>
 
     <Flex x-between gap="s" class="mb-m">
-      <Button expand size="l" outline>
+      <Button expand size="l" outline @click="router.push('/docs/tokens')">
         <template #start>
           <Icon name="ph:brackets-curly" />
         </template>
         Style tokens
       </Button>
-      <Button expand size="l" outline>
+      <Button expand size="l" outline @click="router.push('/docs/framework')">
         <template #start>
           <Icon name="ph:file-css" />
         </template>
         CSS Framework
       </Button>
-      <Button expand size="l" outline>
+      <Button expand size="l" outline @click="router.push('/docs/components')">
         <template #start>
           <Icon name="ph:rectangle-dashed" />
         </template>
