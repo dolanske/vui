@@ -11,7 +11,7 @@ h4,
 h5,
 h6 {
   display: block;
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
 }
 
 h1 {
@@ -45,7 +45,7 @@ blockquote,
 p {
   font-size: var(--font-size-m);
   line-height: 1.4em;
-  font-weight: 400;
+  font-weight: var(--font-weight);
 
   & > * {
     line-height: inherit;
@@ -75,7 +75,7 @@ p {
 
   strong,
   b {
-    font-weight: var(--font-weight-700);
+    font-weight: var(--font-weight-bold);
   }
 
   i {
@@ -122,7 +122,7 @@ pre {
     font-family: var(--global-font);
     display: block;
     position: absolute;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     top: 6px;
     right: 6px;
     padding: 5px;
@@ -219,7 +219,7 @@ table {
   }
 
   th {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
     text-transform: uppercase;
   }
@@ -227,7 +227,7 @@ table {
   tr {
     td {
       border-bottom: 1px solid var(--color-border);
-      font-weight: 400;
+      font-weight: var(--font-weight);
     }
 
     &:first-child {
@@ -286,7 +286,7 @@ dl {
   dt {
     padding-left: 0;
     color: var(--color-text-lighter);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     font-size: var(--font-size-m);
     grid-column-start: 1;
   }

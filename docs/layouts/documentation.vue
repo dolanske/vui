@@ -19,7 +19,6 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
     { label: 'Text', path: '/docs/tokens/text' },
     { label: 'Z-index', path: '/docs/tokens/z-index' },
 
-    
   ],
   'CSS framework': [
     { label: 'Introduction', path: '/docs/framework' },
@@ -237,6 +236,10 @@ const breadcrumbItems = computed(() => {
 }
 
 .app-sidebar {
+  .vui-sidebar {
+    background-color: var(--color-bg-lowered);
+  }
+
   .vui-dropdown-item {
     margin: 0;
 
@@ -256,6 +259,8 @@ const breadcrumbItems = computed(() => {
 }
 
 .app-breadcrumbs {
+  margin-bottom: var(--space-s);
+
   .vui-button {
     padding-inline: 0;
     color: var(--color-text-lighter);
@@ -264,6 +269,16 @@ const breadcrumbItems = computed(() => {
     &:hover {
       color: var(--color-text);
     }
+  }
+}
+
+article {
+  h1 {
+    margin-bottom: var(--space-xl);
+  }
+
+  p {
+    line-height: 1.5em;
   }
 }
 </style>

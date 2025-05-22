@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h2>Components</h2>
+    <h1>Components</h1>
     <p>The root page for CSS framework before something is selected</p>
   </div>
 </template>

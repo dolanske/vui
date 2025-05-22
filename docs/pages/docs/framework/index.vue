@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h2>CSS framework</h2>
+    <h1>CSS framework</h1>
     <p>The root page for CSS framework before something is selected</p>
   </div>
 </template>
