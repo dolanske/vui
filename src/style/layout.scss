@@ -19,12 +19,16 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
   }
 }
 
-$widths: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+$sizes: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
 
-@each $width in $widths {
+@each $size in $sizes {
   $extra: '%';
-  .w-#{$width} {
-    width: #{$width + $extra} !important;
+  .w-#{$size} {
+    width: #{$size + $extra} !important;
+  }
+
+  .h-#{$size} {
+    height: #{$size + $extra} !important;
   }
 }
 

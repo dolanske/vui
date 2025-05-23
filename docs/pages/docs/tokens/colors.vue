@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Button, Card, Input, searchString, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
+import NoResults from '~/components/list/NoResults.vue'
 import { removeColorPrefix } from '~/utils/format'
 
 const currentTheme = useColorMode()
@@ -122,27 +123,10 @@ const filteredColorList = computed(() => {
         v-bind="{ ...item }"
       />
     </template>
-    <div v-else class="colors-no-results">
-      <p>No results found for "<strong>{{ search }}</strong>"</p>
-      <Button variant="fill" @click="search = ''">
-        Clear
-      </Button>
-    </div>
+    <NoResults
+      v-else 
+      :search="search" 
+      @clear="search = ''" 
+      />
   </div>
 </template>
-
-<style scoped>
-.colors-no-results {
-  border: 1px solid var(--color-border);
-  padding: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: var(--space-m);
-
-  strong {
-    font-weight: var(--font-weight-semibold);
-  }
-}
-</style>

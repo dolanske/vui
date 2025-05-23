@@ -35,6 +35,10 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
   // NOTE: Make sure that components which are logically grouped, are within 1 sub-page
   'Components': [
     { label: 'Introduction', path: '/docs/components' },
+    ...componentList.map(component => ({
+      label: component.name,
+      path: component.path,
+    })),
   ],
 }
 
