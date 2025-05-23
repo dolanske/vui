@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Card, Input, searchString, Tab, Tabs } from '@dolanske/vui'
+import { Button, Input, searchString, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
 import NoResults from '~/components/list/NoResults.vue'
 import { removeColorPrefix } from '~/utils/format'
@@ -124,9 +124,9 @@ const filteredColorList = computed(() => {
       />
     </template>
     <NoResults
-      v-else 
-      :search="search" 
-      @clear="search = ''" 
-      />
+      v-else
+      :search="search"
+      @clear="search = ''"
+    />
   </div>
 </template>

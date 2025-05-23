@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button } from '@dolanske/vui';
+import { Button } from '@dolanske/vui'
 
 const props = defineProps<{
   search: string
@@ -11,12 +11,12 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div  class="no-results">
-      <p>No results found for "<strong>{{ search }}</strong>"</p>
-      <Button size="s" variant="fill" @click="emit('clear')">
-        Clear
-      </Button>
-    </div>
+  <div class="no-results">
+    <p>No results found for "<strong>{{ props.search }}</strong>"</p>
+    <Button size="s" variant="fill" @click="emit('clear')">
+      Clear
+    </Button>
+  </div>
 </template>
 
 <style scoped>

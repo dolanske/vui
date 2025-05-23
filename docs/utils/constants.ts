@@ -1,3 +1,5 @@
+// TODO extract every single list into this file instead so it can later be fed into the search function
+
 export const componentList = [
   { name: 'Accordion', path: '/docs/components/accordion', tags: ['group'], description: 'Expandable content sections that can be toggled open and closed' },
   { name: 'Alert', path: '/docs/components/alert', description: 'Displays important messages or notifications to users' },
@@ -29,8 +31,8 @@ export const componentList = [
   { name: 'Spinner', path: '/docs/components/spinner', description: 'Animated loading indicator' },
   { name: 'Switch', path: '/docs/components/switch', description: 'Toggle switch for binary options' },
   { name: 'Table', path: '/docs/components/table', tags: ['cell', 'head', 'header', 'row', 'select'], description: 'Data display component with rows and columns' },
-  { name: 'Tab', path: '/docs/components/tab', tags: ['tabs'], description: 'Individual tab within a tabbed interface' },
   { name: 'Tabs', path: '/docs/components/tabs', tags: ['group'], description: 'Container for organizing content into tabbed sections' },
+  { name: 'Tab', path: '/docs/components/tab', tags: ['tabs'], description: 'Individual tab within a tabbed interface' },
   { name: 'Toast', path: '/docs/components/toast', description: 'Temporary notification message that appears and disappears' },
   { name: 'Tooltip', path: '/docs/components/tooltip', description: 'Small popup that appears when hovering over an element' },
 ]

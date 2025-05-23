@@ -291,7 +291,7 @@ article {
 .docs-tabs {
   position: sticky;
   top: 0;
-  margin-bottom: 96px;
+  margin-bottom: 72px;
   background-color: var(--color-bg);
   z-index: 1000;
 

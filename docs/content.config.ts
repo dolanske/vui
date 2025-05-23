@@ -6,6 +6,6 @@ export default defineContentConfig({
       type: 'page',
       source: 'docs/**/*.md',
     }),
-    
+
   },
 })

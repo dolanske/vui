@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+// TODO add example projects
 </script>
 
 <template>

@@ -17,7 +17,9 @@ const filteredComponents = computed(() => {
 <template>
   <div>
     <h1>Components</h1>
-    <p class="mb-l">The library consists of {{ componentList.length }} main components and some sub-components which are documented in the same section.</p>
+    <p class="mb-l">
+      The library consists of {{ componentList.length }} main components and some sub-components which are documented in the same section.
+    </p>
 
     <Grid gap="l" :columns="2" class="mb-m">
       <Input v-model="search" placeholder="Search components..." class="w-100">
@@ -32,9 +34,9 @@ const filteredComponents = computed(() => {
       </Input>
     </Grid>
 
-    <Grid gap="l" :columns="2" style="align-items: stretch;" v-if="filteredComponents.length > 0">
+    <Grid v-if="filteredComponents.length > 0" gap="l" :columns="2" style="align-items: stretch;">
       <NuxtLink v-for="component in filteredComponents" :key="component.name" :href="component.path">
-        <Card style="height: 100%;" class="p-m">
+        <Card style="height: 100%;" class="component-card">
           <Icon name="ph:shapes" size="24" />
           <h5 class="text-xxl">
             {{ component.name }}
@@ -47,3 +49,15 @@ const filteredComponents = computed(() => {
     <NoResults v-else :search="search" @clear="search = ''" />
   </div>
 </template>
+
+<style scoped>
+.component-card {
+  padding: var(--space-m);
+
+  &:hover {
+    border-color: var(--color-border-strong);
+    background-color: var(--color-bg-lowered);
+    cursor: default;
+  }
+}
+</style>

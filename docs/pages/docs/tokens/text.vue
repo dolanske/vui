@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Badge, Button, Card, CopyClipboard, Divider, Grid } from '@dolanske/vui'
+import { Badge, Button, Card, CopyClipboard, Grid } from '@dolanske/vui'
 
 const fontSizes = [
   { name: 'XXS size', token: '--font-size-xxs', size: '1rem' },
