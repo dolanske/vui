@@ -85,10 +85,14 @@ const filteredColorList = computed(() => {
 <template>
   <div>
     <h1>Colors</h1>
+    <p>
+      The VUI design system uses CSS custom properties (variables) to manage its color system. These variables are built using theme-specific color tokens that define the core palette.
+    </p>
+
     <p class="mb-l">
-      VUI theme is comprised of CSS variables. These variables are further composed of theme-specific tokens. Depending on the
+      The active theme determines which values are assigned to these top-level variables. VUI includes both <code>light</code> and <code>dark</code> themes by default, but the system is extensible, allowing users to create and implement their own custom themes. Learn more about
       <!-- eslint-disable-next-line -->
-      <NuxtLink href="/docs/tokens/theming">active theme</NuxtLink>, the top-level variables contain different values. By default, it comes with a <code>light</code> and <code>dark</code> themes, but users can define as many as they want.
+      <NuxtLink href="/docs/tokens/theming">theme configuration</NuxtLink>.
     </p>
 
     <Input v-model="search" placeholder="Search color tokens..." class="mb-m w-40">

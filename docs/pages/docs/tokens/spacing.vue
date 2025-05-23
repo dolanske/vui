@@ -17,7 +17,7 @@ const sizes = [
   <div>
     <h1>Spacing</h1>
     <p class="mb-xl">
-      Set of variables which define the sizes of <strong>margin</strong>, <strong>padding</strong> and <strong>gap</strong> properties.
+      A set of predefined CSS variables that define consistent spacing values for <strong>margin</strong>, <strong>padding</strong>, and <strong>gap</strong> properties throughout your application. These spacing tokens help maintain visual harmony and consistent layout spacing across pages and components.
     </p>
 
     <div v-for="item in sizes" :key="item.token" class="space-item">

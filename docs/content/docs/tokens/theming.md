@@ -1,17 +1,17 @@
 # Theming
 
-Continuing what was described in [colors](/docs/tokens/colors), VUI also defines two main themes. Dark and light mode. Each contains a distinctive set of colors which map to the main color variables. If you want to support both light & dark mode, you should set your color variables with the `light` or `dark` prefix.
+Building upon what was described in [colors](/docs/tokens/colors), VUI defines two main themes: dark and light mode. Each theme contains a distinctive set of colors that map to the main color variables. To support both light and dark modes, you should set your color variables with the `light` or `dark` prefix.
 
+Here's a simple example of how to re-map some of the existing CSS variables:
 
-Here's a simple example how you'd re-map some of the existing CSS variables.
 ```css
 :root {
-  --light-color-accent:rgb(247, 63, 31);
-  --dark-color-accent:rgb(165, 47, 27);
+  --light-color-accent: rgb(247, 63, 31);
+  --dark-color-accent: rgb(165, 47, 27);
 }
 ```
 
-Under the hood, VUI simply sets the correct CSS variable depending on the theme.
+Under the hood, VUI automatically sets the correct CSS variable based on the active theme:
 
 ```css
 :root.light {
@@ -23,7 +23,7 @@ Under the hood, VUI simply sets the correct CSS variable depending on the theme.
 }
 ```
 
-Because VUI allows you to define custom themes, you can use the VueUse's `useColorMode` and define your own themes. If you add for instance a `dark-contrast` theme, you can theme it by simply adding a new class to the `:root` selector.
+Since VUI supports custom themes, you can use VueUse's `useColorMode` to define your own themes. For example, if you want to add a `dark-contrast` theme, you can implement it by adding a new class to the `:root` selector:
 
 ```css
 :root.dark-contrast {
