@@ -4,7 +4,6 @@
 
 <template>
   <div>
-    <h1>Z-Index</h1>
-    <p>TBA</p>
+    sorry 
   </div>
 </template>

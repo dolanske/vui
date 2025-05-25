@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@dolanske/vui": "^1.3.0",
+    "@nuxt/content": "^3.5.1",
     "@nuxt/icon": "^1.12.0",
     "@nuxtjs/mdc": "^0.17.0",
     "nuxt": "^3.17.3",

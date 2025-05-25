@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { BreadcrumbItem, Breadcrumbs, Button, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 
 const route = useRoute()
 const router = useRouter()
@@ -178,22 +178,20 @@ const breadcrumbItems = computed(() => {
           <slot />
         </article>
 
-        <Divider class="pt-xxl pb-xl" />
-
-        <Grid v-if="prevAndNext" :columns="2">
+        <Grid v-if="prevAndNext" :columns="2" class="docs-bottom-navigation">
           <Button v-if="prevAndNext.prev" expand size="l" outline @click="router.push(prevAndNext.prev.path)">
-            <template #start>
+            <Flex column gap="xs">
               <Icon name="ph:arrow-left" size="18" />
-            </template>
-            {{ prevAndNext.prev.label }}
+              <p>{{ prevAndNext.prev.label }}</p>
+            </Flex>
           </Button>
           <div v-else />
 
           <Button v-if="prevAndNext.next" expand size="l" outline @click="router.push(prevAndNext.next.path)">
-            {{ prevAndNext.next.label }}
-            <template #end>
+            <Flex column gap="xs" y-end>
               <Icon name="ph:arrow-right" size="18" />
-            </template>
+              <p>{{ prevAndNext.next.label }}</p>
+            </Flex>
           </Button>
           <div v-else />
         </Grid>
@@ -298,6 +296,27 @@ article {
   .vui-tab {
     height: 64px;
     font-size: var(--font-size-m);
+  }
+}
+
+.docs-bottom-navigation {
+  margin-top: 128px;
+
+  .vui-button .vui-button-slot {
+    display: block !important;
+  }
+
+  .vui-button {
+    padding: var(--space-m);
+    height: 80px;
+
+    &:first-of-type {
+      justify-content: flex-start;
+    }
+
+    &:last-of-type {
+      justify-content: flex-end;
+    }
   }
 }
 </style>

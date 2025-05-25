@@ -21,3 +21,32 @@ pre {
 p {
   color: var(--color-text-light);
 }
+
+.typeface {
+  table {
+    width: 100%;
+
+    * {
+      border-right: none !important;
+      border-left: none !important;
+    }
+
+    th {
+      color: var(--color-text-lighter) !important;
+      font-weight: var(--font-weight-semibold);
+    }
+
+    td:first-child {
+      code {
+        color: var(--color-text-accent);
+        background-color: var(--color-bg-accent-lowered);
+        border: none;
+      }
+    }
+
+    th,
+    td {
+      padding-block: var(--space-l);
+    }
+  }
+}
