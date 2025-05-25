@@ -183,7 +183,7 @@ const breadcrumbItems = computed(() => {
         <Grid v-if="prevAndNext" :columns="2">
           <Button v-if="prevAndNext.prev" expand size="l" outline @click="router.push(prevAndNext.prev.path)">
             <template #start>
-              <Icon name="ph:caret-left" />
+              <Icon name="ph:arrow-left" size="18" />
             </template>
             {{ prevAndNext.prev.label }}
           </Button>
@@ -192,7 +192,7 @@ const breadcrumbItems = computed(() => {
           <Button v-if="prevAndNext.next" expand size="l" outline @click="router.push(prevAndNext.next.path)">
             {{ prevAndNext.next.label }}
             <template #end>
-              <Icon name="ph:caret-right" />
+              <Icon name="ph:arrow-right" size="18" />
             </template>
           </Button>
           <div v-else />

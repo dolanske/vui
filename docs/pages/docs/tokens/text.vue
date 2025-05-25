@@ -17,8 +17,12 @@ const fontSizes = [
 <template>
   <div>
     <h1>Text</h1>
-    <p class="mb-l">
+    <p>
       Building on simplicity and consistency, VUI uses <strong>Inter</strong> for interfaces and <strong>Geist mono</strong> for code/monospace. It discourages from using more than 1 font family per context.
+    </p>
+
+    <p class="mb-l">
+      The root font-size is <code>63.5%</code> which makes conversion between pixels and rem values straightforward because now we can convert <code>1rem</code> to <code>10px</code> and so on. For example <code>1.6rem</code> is <code>16px</code>.
     </p>
 
     <h2 class="mb-l">
@@ -82,11 +86,12 @@ const fontSizes = [
     </p>
 
     <div class="mb-xl">
-      <div v-for="item in fontSizes" :key="item.token" class="text-item">
+      <div v-for="item in fontSizes" :key="item.token" class="list-item">
         <strong class="text-size-indicator" :style="{ fontSize: item.size }">Cute dog</strong>
 
         <div class="flex-1">
-          <span>{{ item.name }}</span>
+          <strong class="list-item-name">{{ item.name }}</strong>
+          <span class="list-item-value">{{ item.size }}</span>
         </div>
 
         <CopyClipboard :text="item.token" confirm="Copied!">
@@ -116,21 +121,7 @@ const fontSizes = [
 </template>
 
 <style scoped lang="scss">
-.text-item {
-  display: flex;
-  gap: var(--space-l);
-  align-items: center;
-
-  margin-bottom: var(--space-l);
-  padding-bottom: var(--space-l);
-  border-bottom: 1px solid var(--color-border-weak);
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  .text-size-indicator {
-    width: 256px;
-  }
+.text-size-indicator {
+  width: 256px;
 }
 </style>

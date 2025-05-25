@@ -18,15 +18,15 @@ const parsedToken = computed(() => {
 </script>
 
 <template>
-  <div class="docs-color-item">
+  <div class="list-item">
     <div class="cube" :style="{ 'background-color': `${props.hex}` }" />
 
     <div class="flex-1">
-      <strong class="color-name">{{ props.name }}</strong>
+      <strong class="list-item-name">{{ props.name }}</strong>
 
-      <Flex>
-        <span v-if="props.rgb" class="color-value">{{ props.rgb }}</span>
-        <span v-if="props.hex" class="color-value">{{ props.hex }}</span>
+      <Flex gap="xl">
+        <span v-if="props.rgb" class="list-item-value">{{ props.rgb }}</span>
+        <span v-if="props.hex" class="list-item-value">{{ props.hex }}</span>
       </Flex>
     </div>
 
@@ -51,37 +51,5 @@ const parsedToken = computed(() => {
   display: block;
   width: 96px;
   height: 40px;
-}
-
-.docs-color-item {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  gap: var(--space-xl);
-  align-items: center;
-  margin-bottom: var(--space-l);
-  padding-bottom: var(--space-l);
-  border-bottom: 1px solid var(--color-border-weak);
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  .color-name {
-    display: block;
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--space-xs);
-  }
-
-  .color-value {
-    color: var(--color-text-lighter);
-    font-size: var(--font-size-s);
-    width: 128px;
-
-    &:only-child {
-      width: 100%;
-    }
-  }
 }
 </style>

@@ -24,3 +24,39 @@ main {
   padding-bottom: var(--space-xxxl);
   overflow-y: auto;
 }
+
+// Used in a table-like list with CSS variables and copy buttons
+.list-item {
+  display: flex;
+  gap: var(--space-l);
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: var(--space-l);
+  padding-bottom: var(--space-l);
+  border-bottom: 1px solid var(--color-border-weak);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  .list-item-name {
+    display: block;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-xs);
+
+    &:only-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .list-item-value {
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-s);
+
+    &:only-child {
+      width: 100%;
+    }
+  }
+}

@@ -15,14 +15,13 @@ export default defineNuxtConfig({
       },
     },
   },
-  content: {
-    build: {
-      markdown: {
-        highlight: {
-          theme: 'vitesse-dark',
-        },
-      },
+  mdc: {
+    highlight: {
+      theme: 'vitesse-dark',
     },
   },
-  modules: ['@nuxt/icon', '@nuxt/content'],
+  modules: [
+    '@nuxt/icon',
+    '@nuxtjs/mdc',
+  ],
 })
