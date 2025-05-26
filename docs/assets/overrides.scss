@@ -44,9 +44,13 @@ p {
       }
     }
 
-    th,
     td {
       padding-block: var(--space-l);
+
+      code {
+        display: inline-block;
+        margin-bottom: var(--space-xs);
+      }
     }
   }
 }

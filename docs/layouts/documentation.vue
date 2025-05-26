@@ -12,7 +12,7 @@ const currentTab = ref<AvailableTabs | ''>('')
 // TODO: change to using query collection path
 const subPages: Record<AvailableTabs, LinkItem[]> = {
   'Style tokens': [
-    { label: 'Introduction', path: '/docs/tokens' },
+    { label: 'Getting started', path: '/docs/tokens' },
     { label: 'Colors', path: '/docs/tokens/colors' },
     { label: 'Themes', path: '/docs/tokens/theming' },
     { label: 'Spacing', path: '/docs/tokens/spacing' },
@@ -21,7 +21,7 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
 
   ],
   'CSS framework': [
-    { label: 'Introduction', path: '/docs/framework' },
+    { label: 'Getting started', path: '/docs/framework' },
     { label: 'Colors', path: '/docs/framework/colors' },
     { label: 'Text & font', path: '/docs/framework/text-font' },
     { label: 'Typography', path: '/docs/framework/typography' },
@@ -31,10 +31,8 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
     { label: 'Utilities', path: '/docs/framework/utilities' },
     { label: 'Defaults', path: '/docs/framework/defaults' },
   ],
-  // TODO: list every component
-  // NOTE: Make sure that components which are logically grouped, are within 1 sub-page
   'Components': [
-    { label: 'Introduction', path: '/docs/components' },
+    { label: 'Getting started', path: '/docs/components' },
     ...componentList.map(component => ({
       label: component.name,
       path: component.path,

@@ -81,6 +81,7 @@ export const lightThemeTokens = [
 
 export const componentList = [
   { name: 'Accordion', path: '/docs/components/accordion', tags: ['group'], description: 'Expandable content sections that can be toggled open and closed' },
+  { name: 'Accordion Group', path: '/docs/components/accordion-group', tags: ['group'], description: 'Group of accordions that can be toggled open and closed individually or each at a time' },
   { name: 'Alert', path: '/docs/components/alert', description: 'Displays important messages or notifications to users' },
   { name: 'Avatar', path: '/docs/components/avatar', description: 'Circular image component for user profiles or icons' },
   { name: 'Badge', path: '/docs/components/badge', description: 'Small visual indicator for status, counts, or labels' },

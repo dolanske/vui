@@ -1,21 +1,18 @@
 # Accordion
 
-TODO: move this example to AccordionGroup. This page should be only for the singular accordion
-
-Vertical stack of interactive component(s), where each upon clicking reveals associated content within. These can be configured to work standalone and controlled via props or put inside a group which manages their state.
+An accordion is an interactive heading that reveals an associated section of content when clicked. It can be grouped together with multiple accordions using the [AccordionGroup](/docs/components/accordion-group) component.
 
 ::accordion-example
 
 ```vue
+<script setup>
+import { Accordion } from '@dolanske/vui'
+</script>
+
 <template>
-  <AccordionGroup single>
-    <Accordion label="About Vui" card class="mb-xs">
-      <p>Vui is a vu3 component library</p>
-    </Accordion>
-    <Accordion label="About Vui" card class="mb-xs">
-      <p>Just clone the repo and submit a PR!</p>
-    </Accordion>
-  </AccordionGroup>
+  <Accordion label="About Vui" card class="mb-xs">
+    <p>Vui is a vu3 component library</p>
+  </Accordion>
 </template>
 ```
 
@@ -23,12 +20,10 @@ Vertical stack of interactive component(s), where each upon clicking reveals ass
 
 ### Props
 
-When not used within a group, accordions just add as simple collapsible content with a header and content.
-
 | Name    | Default | Type                                                                                                    |
 | ------- | ------- | ------------------------------------------------------------------------------------------------------- |
 | `open`  | —       | `boolean` <br> Controls whether the accordion is open from the outside                                  |
-| `label` | —       | `string` <br> If provided, the acordion will display the text in the header                             |
+| `label` | —       | `string` <br> If provided, the accordion will display the text in the header                            |
 | `card`  | —       | `boolean` <br> If set as true, the accordion will look like the [card component](/docs/components/card) |
 
 ### Events
@@ -40,7 +35,30 @@ When not used within a group, accordions just add as simple collapsible content 
 
 ### Slots
 
-TBA
+| Name      | Accepts | Description                                                                                                                                                                                                    |
+| --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `default` | `any`   | The content inside the accordion                                                                                                                                                                               |
+| `trigger` | `any`   | Allows user to define custom header which opens the accordion when clicked. It will replace the `label` prop if provided. This slot also exposes all the properties defined in the [Exposes](#exposes) section |
+
+Here's a simple example of how to define a custom header.
+
+```vue
+<script>
+import { Accordion, Button, Icon } from '@dolanske/vui'
+</script>
+
+<template>
+  <Accordion>
+    <template #trigger="{ isOpen, toggle }">
+      <Button @click="toggle">
+        Details
+        <Icon :name="isOpen ? 'chevron-up' : 'chevron-down'" />
+      </Button>
+    </template>
+    <p>Vui provides a lot of customization.</p>
+  </Accordion>
+</template>
+```
 
 ### Exposes
 
