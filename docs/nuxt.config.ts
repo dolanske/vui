@@ -27,5 +27,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/icon',
     '@nuxt/content',
+    './modules/vui-global-register',
   ],
 })
