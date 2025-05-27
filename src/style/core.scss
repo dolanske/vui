@@ -5,6 +5,7 @@
 // To overwrite any of these styles, simply create a style file and import it
 // after this one
 @use './reset.scss';
+@use './fonts.scss';
 @use './theme.scss';
 
 :root {
@@ -41,27 +42,37 @@
   --space-xxl: 48px;
   --space-xxxl: 64px;
 
-  --transition-fast: 0.075s all ease-in-out;
-  --transition: 0.15s all cubic-bezier(0.65, 0, 0.35, 1);
-  --transition-slow: 0.3s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-fast: 0.055s all ease-in-out;
+  --transition: 0.1s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-slow: 0.25s all cubic-bezier(0.65, 0, 0.35, 1);
 
-  // TODO: add box-shadow
+  --global-font: 'Inter', sans-serif;
+  --global-font-mono: 'Geist Mono', 'Courier New', 'Courier', monospace;
 
-  // TODO: add z-index
-
-  --global-font: Inter, sans-serif;
-  --global-font-mono: 'Geist Mono', 'Courier New', Courier, monospace;
-
-  --font-weight-thin: 200;
-  --font-weight-light: 300;
+  --font-weight: 300;
   --font-weight: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-weight-extrabold: 700;
+  --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
-  --interactive-el-height: 34px;
+  --line-height-tight: 1.125em;
+  --line-height-title: 1.25em;
+  --line-height-base: 1.4em;
+
+  --z-behind: -1;
+  --z-default: 1;
+  --z-active: 50;
+  --z-mask: 75;
+  --z-sticky: 100;
+  --z-nav: 200;
+  --z-overlay: 300;
+  --z-popout: 400;
+  --z-toast: 500;
+  --z-modal: 600;
+
+  --interactive-el-height: 36px;
 }
 
 // Disable motion for users who have requested it

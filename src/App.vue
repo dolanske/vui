@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Card from './components/Card/Card.vue'
 import Divider from './components/Divider/Divider.vue'
 import ExampleAccordions from './examples/ExampleAccordions.vue'
 import ExampleAlerts from './examples/ExampleAlerts.vue'
@@ -35,6 +36,13 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <h1 class="mb-l">
         VUI
       </h1>
+
+      <Card class="typeface">
+        <pre><code>export function removeColorPrefix(value: string): string {
+  return value.replace('--dark', '--').replace('--light', '--')
+}</code></pre>
+      </Card>
+
       <p>The purpose of this page is to showcase and test every single component case</p>
       <Divider :size="64" />
       <ExamplePalette />

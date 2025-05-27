@@ -75,6 +75,9 @@ import ExampleColor from './shared/ExampleColor.vue'
         <ExampleColor name="Accent" color="--light-color-accent" />
         <ExampleColor name="Bg Accent Lowered" color="--light-color-bg-accent-lowered" />
         <ExampleColor name="Bg Accent Raised" color="--light-color-bg-accent-raised" />
+        <!-- <div class="padder" />
+        <div class="w-50 block my-m mx-auto" style="height:64px;box-shadow:var(--light-box-shadow)" />
+        <div class="w-50 block my-m mx-auto" style="height:64px;box-shadow:var(--light-box-shadow-strong)" /> -->
       </Flex>
 
       <Flex class="theme-wrap dark" gap="xxs" column>
@@ -124,6 +127,9 @@ import ExampleColor from './shared/ExampleColor.vue'
         <ExampleColor name="Accent" color="--dark-color-accent" />
         <ExampleColor name="Bg Accent Lowered" color="--dark-color-bg-accent-lowered" />
         <ExampleColor name="Bg Accent Raised" color="--dark-color-bg-accent-raised" />
+        <!-- <div class="padder" />
+        <div class="w-50 block my-m mx-auto" style="height:64px;box-shadow:var(--dark-box-shadow)" />
+        <div class="w-50 block my-m mx-auto" style="height:64px;box-shadow:var(--dark-box-shadow-strong)" /> -->
       </Flex>
     </Grid>
   </div>

@@ -14,7 +14,7 @@
       height: var(--interactive-el-height);
       border: 1px solid var(--color-border-strong);
       color: var(--color-text);
-      z-index: 1;
+      z-index: var(--z-default);
       font-size: var(--font-size-m);
       outline: 0 solid var(--color-text-light);
       transition: var(--transition-fast);
@@ -49,7 +49,7 @@
       }
 
       &.active {
-        z-index: 2;
+        z-index: var(--z-active);
         outline-width: 2px;
 
         .blinker {
@@ -79,6 +79,6 @@
     outline-width: 0px;
     opacity: 0;
     background: transparent;
-    z-index: 5;
+    z-index: var(--z-mask);
   }
 }

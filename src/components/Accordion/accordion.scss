@@ -4,6 +4,19 @@
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0;
 
+  &.is-unstyled {
+    border-bottom: none;
+
+    .vui-accordion-header {
+      padding: unset;
+      text-decoration: unset;
+
+      &:hover {
+        text-decoration: unset;
+      }
+    }
+  }
+
   &.is-card {
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-m);
@@ -37,10 +50,12 @@
   }
 
   &.open {
-    padding-bottom: var(--space-m);
+    &:not(.is-unstyled) {
+      padding-bottom: var(--space-m);
 
-    .vui-accordion-header svg {
-      transform: rotate(180deg);
+      .vui-accordion-header svg {
+        transform: rotate(180deg);
+      }
     }
 
     .vui-accordion-content {

@@ -30,7 +30,7 @@
 
   .vui-progress-indicator {
     position: absolute;
-    z-index: 4;
+    z-index: var(--z-active);
     inset: 0;
     right: unset;
     width: 0;

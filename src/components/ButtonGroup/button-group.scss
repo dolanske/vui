@@ -1,9 +1,9 @@
 .vui-button-group {
   .vui-button {
-    z-index: 1;
+    z-index: var(--z-default);
 
     &:hover {
-      z-index: 2;
+      z-index: var(--z-active);
     }
 
     &:not(:first-child, :last-child) {

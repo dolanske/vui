@@ -10,7 +10,7 @@
   font-size: var(--font-size-m);
   color: var(--color-text);
   box-shadow: var(--box-shadow);
-  z-index: 1000;
+  z-index: var(--z-popout);
 
   svg path {
     color: var(--color-text);

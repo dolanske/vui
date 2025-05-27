@@ -12,6 +12,7 @@ h5,
 h6 {
   display: block;
   font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-title);
 }
 
 h1 {
@@ -44,7 +45,7 @@ table td,
 blockquote,
 p {
   font-size: var(--font-size-m);
-  line-height: 1.4em;
+  line-height: var(--line-height-base);
   font-weight: var(--font-weight);
 
   & > * {
@@ -62,17 +63,6 @@ p {
     }
   }
 
-  code {
-    font-family: var(--global-font-mono);
-    border-radius: var(--border-radius-s);
-    background-color: var(--color-bg-raised);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    padding: 0px 3px;
-    font-weight: var(--font-weight);
-    font-size: var(--font-size-s);
-  }
-
   strong,
   b {
     font-weight: var(--font-weight-bold);
@@ -85,6 +75,20 @@ p {
   u {
     text-decoration: line-through;
   }
+}
+
+code {
+  display: inline-block;
+  font-family: var(--global-font-mono);
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-bg-raised);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0px 4px;
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-s);
+  min-height: 22px;
+  line-height: var(--line-height-base);
 }
 
 hr {
@@ -102,20 +106,34 @@ blockquote {
   padding-block: var(--space-s);
   padding-left: var(--space-l);
   border-left: 3px solid var(--color-border);
+  line-height: var(--line-height-base);
 }
 
 pre {
   font-family: var(--global-font-mono);
   font-size: var(--font-size-s);
-  font-weight: 300;
-  line-height: 1.2em;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height-base);
   padding: var(--space-m);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
   white-space: pre-wrap;
   background-color: var(--color-bg-raised);
-  z-index: 1;
+  z-index: var(--z-default);
   position: relative;
+
+  code {
+    min-height: unset;
+    padding: unset;
+    border-radius: unset;
+    border: unset;
+    color: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
 
   &[data-lang]::after {
     content: attr(data-lang);
@@ -207,7 +225,7 @@ table {
     padding-block: var(--space-s);
     min-width: 80px;
     font-size: var(--font-size-m);
-    line-height: 1.4em;
+    line-height: var(--line-height-base);
     font-variant-numeric: tabular-nums;
     vertical-align: top;
 

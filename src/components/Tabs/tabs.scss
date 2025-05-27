@@ -9,7 +9,7 @@
   &.vui-tabs-variant-filled {
     background-color: var(--color-bg-raised);
     border-bottom: none;
-    z-index: 1;
+    z-index: var(--z-default);
     border-radius: var(--border-radius-m);
     padding-inline: 4px;
 
@@ -18,7 +18,7 @@
       background-color: var(--color-bg-lowered);
       top: 3px;
       bottom: 3px;
-      z-index: -1;
+      z-index: var(--z-behind);
       border-radius: var(--border-radius-m);
     }
   }

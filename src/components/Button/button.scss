@@ -1,6 +1,8 @@
 .vui-button {
   --button-height: var(--interactive-el-height);
   --button-padding: 8px;
+  --button-font-size: var(--font-size-s);
+  --button-font-size-l: 1.4rem;
 
   &.disabled {
     // color: var(--color-text-lighter) !important;
@@ -49,6 +51,10 @@
     border-style: dashed !important;
   }
 
+  &.vui-button-size-l {
+    font-size: var(--button-font-size-l);
+  }
+
   svg path {
     transition: var(--transition-fast);
   }
@@ -60,12 +66,13 @@
   border-radius: var(--border-radius-s);
   background: transparent;
   padding-inline: var(--button-padding);
-  font-size: var(--font-size-s);
+  font-size: var(--button-font-size);
   position: relative;
   transition: var(--transition-fast);
   border: 1px solid transparent;
   background-color: transparent;
   color: var(--color-text);
+  font-weight: var(--font-weight-medium);
 
   // Default gray
 
@@ -74,6 +81,7 @@
     place-items: center;
     transition: var(--transition-fast);
     opacity: 1;
+    font-weight: var(--font-weight-medium);
   }
 
   .vui-button-slot-start,

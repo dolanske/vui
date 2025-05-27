@@ -4,6 +4,6 @@
 
 <template>
   <div>
-    sorry 
+    sorry
   </div>
 </template>
