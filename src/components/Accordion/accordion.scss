@@ -51,7 +51,9 @@
 
   &.open {
     &:not(.is-unstyled) {
-      padding-bottom: var(--space-m);
+      &:not(.is-card) {
+        padding-bottom: var(--space-m);
+      }
 
       .vui-accordion-header svg {
         transform: rotate(180deg);
