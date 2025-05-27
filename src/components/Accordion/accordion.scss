@@ -22,7 +22,7 @@
     border-radius: var(--border-radius-m);
 
     &.open {
-      padding-bottom: 0;
+      padding-bottom: 0 !important;
 
       .vui-accordion-header {
         border-block-width: 1px;

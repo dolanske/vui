@@ -32,7 +32,7 @@ const dynamicAccordions = ref([
         <strong class="block mb-s text-semibold">Group</strong>
         <AccordionGroup>
           <Accordion v-for="item in dynamicAccordions" :key="item" :label="item">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.</p>
           </Accordion>
         </AccordionGroup>
       </div>
@@ -47,7 +47,7 @@ const dynamicAccordions = ref([
         <strong class="block mb-s text-semibold">Card group</strong>
         <AccordionGroup single>
           <Accordion v-for="item in dynamicAccordions" :key="item" :label="item" card class="mb-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.</p>
           </Accordion>
         </AccordionGroup>
       </div>
