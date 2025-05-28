@@ -144,3 +144,16 @@ export const fontWeightTokens = [
   { name: 'Extrabold', token: '--font-weight-extrabold', weight: '800' },
   { name: 'Black', token: '--font-weight-black', weight: '900' },
 ]
+
+export const zIndexTokens = [
+  { name: 'Behind', token: '--z-behind', value: '-1', description: 'Used for elements that should appear behind other content' },
+  { name: 'Default', token: '--z-default', value: '1', description: 'Base z-index for standard page elements' },
+  { name: 'Active', token: '--z-active', value: '50', description: 'For elements that are currently being interacted with' },
+  { name: 'Mask', token: '--z-mask', value: '75', description: 'Used for semi-transparent overlays that block interaction' },
+  { name: 'Sticky', token: '--z-sticky', value: '100', description: 'For elements that stick to viewport while scrolling' },
+  { name: 'Nav', token: '--z-nav', value: '200', description: 'Navigation elements that should stay above content' },
+  { name: 'Overlay', token: '--z-overlay', value: '300', description: 'Full-screen overlays that cover the entire viewport' },
+  { name: 'Popout', token: '--z-popout', value: '400', description: 'Floating elements like dropdowns and tooltips' },
+  { name: 'Toast', token: '--z-toast', value: '500', description: 'Temporary notifications that appear above other UI' },
+  { name: 'Modal', token: '--z-modal', value: '600', description: 'Dialog boxes that require user attention' },
+]
