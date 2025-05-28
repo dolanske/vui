@@ -1,6 +1,6 @@
 // TODO extract every single list into this file instead so it can later be fed into the search function
 
-export const textSizeTokens = [
+export const sizeTokens = [
   { token: '--space-xxs', size: '4px', name: 'XXS space ' },
   { token: '--space-xs', size: '8px', name: 'XS space ' },
   { token: '--space-s', size: '12px', name: 'S space ' },
@@ -9,6 +9,18 @@ export const textSizeTokens = [
   { token: '--space-xl', size: '34px', name: 'XL space ' },
   { token: '--space-xxl', size: '48px', name: 'XXL space ' },
   { token: '--space-xxxl', size: '64px', name: 'XXXL space ' },
+]
+
+export const fontSizeTokens = [
+  { name: 'XXS size', token: '--font-size-xxs', size: '1rem' },
+  { name: 'XS size', token: '--font-size-xs', size: '1.15rem' },
+  { name: 'S size', token: '--font-size-s', size: '1.3rem' },
+  { name: 'M size', token: '--font-size-m', size: '1.5rem' },
+  { name: 'L size', token: '--font-size-l', size: '1.8rem' },
+  { name: 'XL size', token: '--font-size-xl', size: '2rem' },
+  { name: 'XXL size', token: '--font-size-xxl', size: '2.6rem' },
+  { name: 'XXXL size', token: '--font-size-xxxl', size: '3.4rem' },
+  { name: 'XXXXL size', token: '--font-size-xxxxl', size: '4.8rem' },
 ]
 
 export const darkThemeTokens = [
@@ -115,4 +127,20 @@ export const componentList = [
   { name: 'Tab', path: '/docs/components/tab', tags: ['tabs'], description: 'Individual tab within a tabbed interface' },
   { name: 'Toast', path: '/docs/components/toast', description: 'Temporary notification message that appears and disappears' },
   { name: 'Tooltip', path: '/docs/components/tooltip', description: 'Small popup that appears when hovering over an element' },
+]
+
+export const lineHeightTokens = [
+  { name: 'Tight', token: '--line-height-tight', height: '1.125em' },
+  { name: 'Title', token: '--line-height-title', height: '1.25em' },
+  { name: 'Base', token: '--line-height-base', height: '1.4em' },
+]
+
+export const fontWeightTokens = [
+  { name: 'Light', token: '--font-weight-light', weight: '300' },
+  { name: 'Regular', token: '--font-weight', weight: '400' },
+  { name: 'Medium', token: '--font-weight-medium', weight: '500' },
+  { name: 'Semibold', token: '--font-weight-semibold', weight: '600' },
+  { name: 'Bold', token: '--font-weight-bold', weight: '700' },
+  { name: 'Extrabold', token: '--font-weight-extrabold', weight: '800' },
+  { name: 'Black', token: '--font-weight-black', weight: '900' },
 ]

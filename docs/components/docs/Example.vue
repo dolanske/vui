@@ -33,6 +33,7 @@ const tab = ref('Component')
 .example-code {
   border: 1px solid var(--color-border-weak);
   background-color: var(--color-bg-lowered);
+  border-radius: var(--border-radius-m);
 }
 
 .example-code pre {

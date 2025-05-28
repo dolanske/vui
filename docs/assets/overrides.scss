@@ -1,10 +1,13 @@
 :root {
   --dark-color-bg: #000;
+  --dark-color-accent: #e46aff;
+}
 
-  // --border-radius-m: 0px;
-  // --border-radius-s: 0px;
-
-  --dark-color-accent: #ff6913;
+table {
+  td,
+  th {
+    border-radius: 0 !important;
+  }
 }
 
 .vui-tabs .vui-tab-underline {
@@ -23,6 +26,10 @@ p {
 }
 
 .typeface {
+  code {
+    font-size: var(--font-size-s);
+  }
+
   table {
     width: 100%;
 

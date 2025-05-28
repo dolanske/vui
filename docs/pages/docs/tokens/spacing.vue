@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Badge, Button, CopyClipboard } from '@dolanske/vui'
-import { textSizeTokens } from '~/utils/constants'
+import { sizeTokens } from '~/utils/constants'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import { textSizeTokens } from '~/utils/constants'
       A set of predefined CSS variables that define consistent spacing values for <strong>margin</strong>, <strong>padding</strong>, and <strong>gap</strong> properties throughout your application. These spacing tokens help maintain visual harmony and consistent layout spacing across pages and components.
     </p>
 
-    <div v-for="item in textSizeTokens" :key="item.token" class="list-item">
+    <div v-for="item in sizeTokens" :key="item.token" class="list-item">
       <div class="size-indicator-wrap">
         <div class="size-indicator" :style="{ width: item.size }" />
         <span>{{ item.size }}</span>
@@ -38,20 +38,6 @@ import { textSizeTokens } from '~/utils/constants'
 </template>
 
 <style scoped lang="scss">
-// .space-item {
-//   display: flex;
-//   gap: var(--space-l);
-//   align-items: center;
-
-//   margin-bottom: var(--space-l);
-//   padding-bottom: var(--space-l);
-//   border-bottom: 1px solid var(--color-border-weak);
-
-//   &:last-of-type {
-//     border-bottom: none;
-//   }
-// }
-
 .size-indicator-wrap {
   display: flex;
   align-items: center;
