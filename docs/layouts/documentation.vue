@@ -15,10 +15,10 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
     { label: 'Getting started', path: '/docs/tokens' },
     { label: 'Colors', path: '/docs/tokens/colors' },
     { label: 'Themes', path: '/docs/tokens/theming' },
-    { label: 'Spacing', path: '/docs/tokens/spacing' },
     { label: 'Text & Font', path: '/docs/tokens/text' },
+    { label: 'Spacing', path: '/docs/tokens/spacing' },
+    { label: 'Transitions', path: '/docs/tokens/transitions' },
     { label: 'Z-index', path: '/docs/tokens/z-index' },
-
   ],
   'CSS framework': [
     { label: 'Getting started', path: '/docs/framework' },
