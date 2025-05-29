@@ -35,7 +35,12 @@ const filteredComponents = computed(() => {
     </Grid>
 
     <Grid v-if="filteredComponents.length > 0" gap="l" :columns="2" style="align-items: stretch;">
-      <NuxtLink v-for="component in filteredComponents" :key="component.name" :href="component.path">
+      <NuxtLink
+        v-for="component in filteredComponents"
+        :key="component.name"
+        :href="component.path"
+        :class="{ 'link-disabled': component.disabled }"
+      >
         <Card style="height: 100%;" class="component-card">
           <Icon name="ph:shapes" size="24" />
           <h5 class="text-xxl">
@@ -51,6 +56,11 @@ const filteredComponents = computed(() => {
 </template>
 
 <style scoped>
+.link-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .component-card {
   padding: var(--space-m);
 

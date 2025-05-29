@@ -96,7 +96,7 @@ export const componentList = [
   { name: 'Accordion Group', path: '/docs/components/accordion-group', tags: ['group'], description: 'Group of accordions that can be toggled open and closed individually or each at a time', disabled: false },
   { name: 'Alert', path: '/docs/components/alert', description: 'Displays important messages or notifications to users', disabled: false },
   { name: 'Avatar', path: '/docs/components/avatar', description: 'Circular image component for user profiles or icons', disabled: false },
-  { name: 'Badge', path: '/docs/components/badge', description: 'Small visual indicator for status, counts, or labels', disabled: true },
+  { name: 'Badge', path: '/docs/components/badge', description: 'Small visual indicator for status, counts, or labels', disabled: false },
   { name: 'Breadcrumbs', path: '/docs/components/breadcrumbs', tags: ['item'], description: 'Navigation aid showing current page location in hierarchy', disabled: true },
   { name: 'Button', path: '/docs/components/button', tags: ['group'], description: 'Interactive element for triggering actions or events', disabled: true },
   { name: 'Calendar', path: '/docs/components/calendar', tags: ['date', 'picker'], description: 'Date selection and display component with month view', disabled: true },
