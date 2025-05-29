@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
 import { BreadcrumbItem, Breadcrumbs, Button, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { useColorMode } from '@vueuse/core'
 
 const route = useRoute()
 const router = useRouter()
+
+const colorMode = useColorMode()
 
 type AvailableTabs = 'Style tokens' | 'CSS framework' | 'Components'
 
@@ -36,6 +39,7 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
     ...componentList.map(component => ({
       label: component.name,
       path: component.path,
+      disabled: component.disabled,
     })),
   ],
 }
@@ -136,10 +140,30 @@ const breadcrumbItems = computed(() => {
         </Flex>
         <hr>
       </template>
+
+      <template #footer>
+        <hr>
+        <!-- Bind color for these specific styles -->
+        <Flex y-center gap="xs" :style="{ '--color-text-light': 'var(--color-text-invert)' }">
+          <Button size="s" square variant="fill" @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">
+            <Icon
+              :name="colorMode === 'dark' ? 'ph:sun' : 'ph:moon'"
+            />
+          </Button>
+
+          <Button size="s" square variant="fill">
+            <Icon name="ph:github-logo" />
+          </Button>
+          <div class="flex-1" />
+          <span class="text-s color-text-lightest">VUI v.1.4.6</span>
+        </Flex>
+      </template>
+
       <DropdownItem
         v-for="subPage in subPagesToRender"
         :key="subPage.path"
         class="sidebar-item"
+        :disabled="!!subPage.disabled"
         :class="{ active: route.fullPath.endsWith(subPage.path) }"
         @click="router.push(subPage.path)"
       >
@@ -226,10 +250,10 @@ const breadcrumbItems = computed(() => {
     background-image: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0) 4.55%,
-      #000000 4.55%,
+      var(--color-text-invert) 4.55%,
       rgba(0, 0, 0, 0) 54.55%,
-      #000000 54.55%,
-      #000000 100%
+      var(--color-text-invert) 54.55%,
+      var(--color-text-invert) 100%
     );
     background-size: 6px 6px;
   }

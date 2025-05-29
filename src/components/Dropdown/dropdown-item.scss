@@ -27,7 +27,7 @@
 
     .vui-dropdown-item-slot,
     .vui-dropdown-item-icon svg path {
-      color: var(--color-text-lighter);
+      color: var(--color-text-lighter) !important;
     }
 
     .vui-dropdown-item-hint {

@@ -15,6 +15,10 @@ table {
   bottom: -1px;
 }
 
+.vui-dropdown-item.disabled {
+  opacity: 0.4;
+}
+
 pre {
   border: none;
   background-color: var(--color-bg-lowered);
