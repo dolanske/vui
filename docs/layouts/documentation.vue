@@ -39,7 +39,6 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
     ...componentList.map(component => ({
       label: component.name,
       path: component.path,
-      disabled: component.disabled,
     })),
   ],
 }
@@ -163,7 +162,6 @@ const breadcrumbItems = computed(() => {
         v-for="subPage in subPagesToRender"
         :key="subPage.path"
         class="sidebar-item"
-        :disabled="!!subPage.disabled"
         :class="{ active: route.fullPath.endsWith(subPage.path) }"
         @click="router.push(subPage.path)"
       >
