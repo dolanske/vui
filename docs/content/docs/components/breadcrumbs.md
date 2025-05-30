@@ -4,6 +4,22 @@ A navigation component that shows the current page's location within a navigatio
 
 ::breadcrumbs-example
 
+```vue
+<script setup>
+import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
+</script>
+
+<template>
+  <Breadcrumbs>
+    <BreadcrumbItem label="Home" href="#" />
+    <BreadcrumbItem label="Products" href="#" />
+    <BreadcrumbItem label="Electronics" />
+  </Breadcrumbs>
+</template>
+```
+
+::
+
 ### Props
 
 #### Breadcrumbs
@@ -33,7 +49,11 @@ A navigation component that shows the current page's location within a navigatio
 | --------- | --------------------------------------------------------------------------- |
 | `default` | Custom content for the breadcrumb item. Falls back to `label` prop if empty |
 
-### Custom Separator Example
+### Examples
+
+#### Custom Separator
+
+::breadcrumbs-custom-separator-example
 
 ```vue
 <script setup>
@@ -41,47 +61,48 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 </script>
 
 <template>
-  <Breadcrumbs separator="/">
-    <BreadcrumbItem label="Home" href="/" />
-    <BreadcrumbItem label="Products" href="/products" />
+  <Breadcrumbs separator="///">
+    <BreadcrumbItem label="Home" href="#" />
+    <BreadcrumbItem label="Products" href="#" />
     <BreadcrumbItem label="Electronics" />
   </Breadcrumbs>
 </template>
 ```
 
-### Custom Content Example
+::
+
+#### Custom Content
+
+::breadcrumbs-custom-content-example
 
 ```vue
 <script setup>
 import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
   <Breadcrumbs>
-    <BreadcrumbItem href="/">
-      <template #default>
-        <span class="flex items-center">
-          <Icon icon="mdi:home" class="mr-xs" />
-          Home
-        </span>
-      </template>
+    <BreadcrumbItem href="#">
+      <Flex y-center>
+        <Icon icon="mdi:home" />
+        Home
+      </Flex>
     </BreadcrumbItem>
-    <BreadcrumbItem href="/products">
-      <template #default>
-        <span class="flex items-center">
-          <Icon icon="mdi:package" class="mr-xs" />
-          Products
-        </span>
-      </template>
+    <BreadcrumbItem href="#">
+      <Flex y-center>
+        <Icon icon="mdi:package" />
+        Products
+      </Flex>
     </BreadcrumbItem>
     <BreadcrumbItem>
-      <template #default>
-        <span class="flex items-center">
-          <Icon icon="mdi:laptop" class="mr-xs" />
-          Electronics
-        </span>
-      </template>
+      <Flex y-center>
+        <Icon icon="mdi:laptop" />
+        Electronics
+      </Flex>
     </BreadcrumbItem>
   </Breadcrumbs>
 </template>
 ```
+
+::

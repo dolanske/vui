@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Accordion } from '@dolanske/vui'
+
 </script>
 
 <template>

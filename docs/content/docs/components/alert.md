@@ -54,7 +54,48 @@ Please note. Unless you're using the `description` prop, the Alert component doe
 
 ### Examples
 
-TBA
+#### Custom Icon, Title and Description
 
-- Example with custom icon, title and description (not filled, info)
-- Example with components in slots
+::alert-custom-example
+
+```vue
+<script setup>
+import { Alert } from '@dolanske/vui'
+</script>
+
+<template>
+  <Alert
+    variant="info"
+    icon="ph:info"
+    title="System Update"
+    description="A new version of the system is available. Please update to the latest version to ensure optimal performance and security."
+  />
+</template>
+```
+
+::
+
+#### Components in Slots
+
+::alert-components-example
+
+```vue
+<script setup>
+import { Alert, Button, Flex } from '@dolanske/vui'
+</script>
+
+<template>
+  <Alert variant="warning" filled>
+    <Flex y-center x-between>
+      <p class="m-0">
+        Your session will expire in 5 minutes
+      </p>
+      <Button variant="warning" size="sm">
+        Extend Session
+      </Button>
+    </Flex>
+  </Alert>
+</template>
+```
+
+::
