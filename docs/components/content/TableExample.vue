@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Button, defineTable, Table } from '@dolanske/vui'
-import { ref } from 'vue'
 
 interface TableRow {
   id: number

@@ -10,20 +10,20 @@ import { Icon } from '@iconify/vue'
         <Breadcrumbs>
           <BreadcrumbItem href="#">
             <Flex y-center>
-                <Icon icon="mdi:home" />
-                Home
+              <Icon icon="mdi:home" />
+              Home
             </Flex>
           </BreadcrumbItem>
           <BreadcrumbItem href="#">
             <Flex y-center>
-                <Icon icon="mdi:package" />
-                Products
+              <Icon icon="mdi:package" />
+              Products
             </Flex>
           </BreadcrumbItem>
           <BreadcrumbItem>
             <Flex y-center>
-                <Icon icon="mdi:laptop" />
-                Electronics
+              <Icon icon="mdi:laptop" />
+              Electronics
             </Flex>
           </BreadcrumbItem>
         </Breadcrumbs>
@@ -49,4 +49,4 @@ import { Icon } from '@iconify/vue'
     }
   }
 }
-</style> 
+</style>

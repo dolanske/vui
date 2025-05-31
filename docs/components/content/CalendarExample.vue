@@ -1,15 +1,25 @@
 <script setup>
-import { Calendar } from '@dolanske/vui'
+import { Calendar, Flex } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const date = ref(new Date())
-const dateRange = ref([])
-const dateWithTrigger = ref(new Date())
-const inlineDate = ref(new Date())
+// const dateRange = ref([])
+// const dateWithTrigger = ref(new Date())
+// const inlineDate = ref(new Date())
 </script>
 
 <template>
-  <div class="space-y-l">
+  <DocsExample>
+    <template #component>
+      <Flex x-center>
+        <Calendar v-model="date" />
+      </Flex>
+    </template>
+    <template #code>
+      <slot />
+    </template>
+  </DocsExample>
+  <!-- <div class="space-y-l">
     <div>
       <h3 class="text-m mb-s">
         Basic Usage
@@ -53,5 +63,5 @@ const inlineDate = ref(new Date())
         format="dd/MM/yyyy"
       />
     </div>
-  </div>
+  </div> -->
 </template>

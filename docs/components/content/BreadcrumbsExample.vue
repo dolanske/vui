@@ -6,9 +6,9 @@ import { BreadcrumbItem, Breadcrumbs, Flex } from '@dolanske/vui'
   <DocsExample>
     <template #component>
       <Flex x-center>
-      <Breadcrumbs>
-        <BreadcrumbItem label="Home" href="#" />
-        <BreadcrumbItem label="Products" href="#" />
+        <Breadcrumbs>
+          <BreadcrumbItem label="Home" href="#" />
+          <BreadcrumbItem label="Products" href="#" />
           <BreadcrumbItem label="Electronics" />
         </Breadcrumbs>
       </Flex>

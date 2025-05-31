@@ -4,6 +4,21 @@ A date picker component that allows users to select dates and times. It's built 
 
 ::calendar-example
 
+```vue
+<script setup>
+import { Calendar, Flex } from '@dolanske/vui'
+import { ref } from 'vue'
+
+const date = ref(new Date())
+</script>
+
+<template>
+  <Calendar v-model="date" />
+</template>
+```
+
+::
+
 ### Props
 
 The Calendar component accepts all props from `@vuepic/vue-datepicker` with some defaults applied. Here are the most commonly used props:
@@ -22,11 +37,15 @@ For a complete list of available props, refer to the [@vuepic/vue-datepicker doc
 
 ### Slots
 
-| Name      | Description                                       |
-| --------- | ------------------------------------------------- |
-| `trigger` | Custom trigger element to open the calendar popup |
+| Name      | Accepts | Description                                                    |
+| --------- | ------- | -------------------------------------------------------------- |
+| `trigger` | `any`   | Custom trigger element to open the calendar popup when clicked |
 
-### Date Range Selection
+### Examples
+
+#### Date Range Selection
+
+::calendar-date-range-example
 
 ```vue
 <script setup>
@@ -46,7 +65,11 @@ const dateRange = ref([])
 </template>
 ```
 
-### Custom Trigger
+::
+
+#### Custom Trigger
+
+::calendar-custom-trigger-example
 
 ```vue
 <script setup>
@@ -67,7 +90,11 @@ const date = ref(new Date())
 </template>
 ```
 
-### Inline Calendar
+::
+
+#### Inline
+
+::calendar-inline-example
 
 ```vue
 <script setup>
@@ -86,3 +113,5 @@ const date = ref(new Date())
   />
 </template>
 ```
+
+::

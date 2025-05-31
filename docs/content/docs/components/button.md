@@ -29,27 +29,33 @@ import { Button } from '@dolanske/vui'
 
 ### Props
 
-| Name       | Default  | Type                                                                                                    |
-| ---------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| `loading`  | `false`  | `boolean` <br> Shows a loading spinner and disables the button                                          |
-| `size`     | `'m'`    | `'s' \| 'm' \| 'l'` <br> Controls the size of the button                                                |
-| `expand`   | `false`  | `boolean` <br> Makes the button expand to full width                                                    |
-| `square`   | `false`  | `boolean` <br> Makes the button square instead of rectangular                                           |
-| `icon`     | —        | `string` <br> Icon name from Iconify to display in the button                                           |
-| `variant`  | `'gray'` | `'fill' \| 'danger' \| 'success' \| 'link' \| 'accent' \| 'gray'` <br> Controls the button's appearance |
-| `outline`  | `false`  | `boolean` <br> Makes the button outlined instead of filled                                              |
-| `disabled` | `false`  | `boolean` <br> Disables the button                                                                      |
-| `plain`    | `false`  | `boolean` <br> Removes background and border, keeping only the text                                     |
+| Name       | Default  | Type                                                                                        |
+| ---------- | -------- | ------------------------------------------------------------------------------------------- |
+| `loading`  | `false`  | `boolean` <br> Shows a loading spinner and disables the button                              |
+| `size`     | `'m'`    | `s`, `m`, `l` <br> Controls the size of the button                                          |
+| `expand`   | `false`  | `boolean` <br> Makes the button expand to full width                                        |
+| `square`   | `false`  | `boolean` <br> Makes the button square instead of rectangular                               |
+| `icon`     | —        | `string` <br> Icon name from Iconify to display in the button                               |
+| `variant`  | `'gray'` | `fill`, `danger`, `success`, `link`, `accent`, `gray` <br> Controls the button's appearance |
+| `outline`  | `false`  | `boolean` <br> Makes the button outlined instead of filled                                  |
+| `disabled` | `false`  | `boolean` <br> Disables the button                                                          |
+| `plain`    | `false`  | `boolean` <br> Removes background and border, keeping only the text                         |
 
 ### Slots
 
-| Name      | Description                                     |
-| --------- | ----------------------------------------------- |
-| `default` | The main content of the button                  |
-| `start`   | Content to be displayed before the main content |
-| `end`     | Content to be displayed after the main content  |
+| Name      | Accepts | Description                                     |
+| --------- | ------- | ----------------------------------------------- |
+| `default` | `any`   | The main content of the button                  |
+| `start`   | `any`   | Content to be displayed before the main content |
+| `end`     | `any`   | Content to be displayed after the main content  |
 
-Here's an example of using slots and icons:
+### Events
+
+The button component emits all standard button events like `click`, `focus`, `blur`, etc.
+
+### Examples
+
+#### Custom slots
 
 ::button-slot-example
 
@@ -73,6 +79,32 @@ import { Button } from '@dolanske/vui'
 
 ::
 
-### Events
+#### Button group
 
-The button component emits all standard button events like `click`, `focus`, `blur`, etc.
+Using the custom `<ButtonGroup>` element we can group elements in a visual way
+
+::button-group-example
+
+```vue
+<script setup>
+import { Button, ButtonGroup } from '@dolanske/vui'
+</script>
+
+<template>
+  <ButtonGroup>
+    <Button outline>
+      Hello
+    </Button>
+    <Button outline icon="ph:caret-down" />
+  </ButtonGroup>
+
+  <ButtonGroup>
+    <Button square icon="ph:text-b-bold" active />
+    <Button square icon="ph:text-bold" />
+    <Button square icon="ph:text-italic" />
+    <Button square icon="ph:text-a-underline" />
+  </ButtonGroup>
+</template>
+```
+
+::

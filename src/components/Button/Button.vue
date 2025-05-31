@@ -73,12 +73,12 @@ const padding = computed(() => {
   >
     <Spinner v-if="!isNil(loading)" size="s" />
     <div class="vui-button-slot">
-      <div class="vui-button-slot-start">
+      <div v-if="$slots.start" class="vui-button-slot-start">
         <slot name="start" />
       </div>
       <Icon v-if="icon" :icon="icon" />
       <slot v-else />
-      <div class="vui-button-slot-end">
+      <div v-if="$slots.end" class="vui-button-slot-end">
         <slot name="end" />
       </div>
     </div>

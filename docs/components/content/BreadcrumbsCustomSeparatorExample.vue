@@ -33,4 +33,4 @@ import { BreadcrumbItem, Breadcrumbs, Flex } from '@dolanske/vui'
     }
   }
 }
-</style> 
+</style>

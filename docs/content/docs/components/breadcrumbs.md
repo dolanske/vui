@@ -39,15 +39,15 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 
 #### Breadcrumbs
 
-| Name      | Description                                                                 |
-| --------- | --------------------------------------------------------------------------- |
-| `default` | Content slot for `BreadcrumbItem` components. Must contain `BreadcrumbItem` |
+| Name      | Accepts          | Description                   |
+| --------- | ---------------- | ----------------------------- |
+| `default` | `BreadcrumbItem` | Accepts only breadcrumb items |
 
 #### BreadcrumbItem
 
-| Name      | Description                                                                 |
-| --------- | --------------------------------------------------------------------------- |
-| `default` | Custom content for the breadcrumb item. Falls back to `label` prop if empty |
+| Name      | Accepts | Description                                                                 |
+| --------- | ------- | --------------------------------------------------------------------------- |
+| `default` | `any`   | Custom content for the breadcrumb item. Falls back to `label` prop if empty |
 
 ### Examples
 
