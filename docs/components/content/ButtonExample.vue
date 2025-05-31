@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Button } from '@dolanske/vui'
+import { Button, Flex } from '@dolanske/vui'
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <div class="flex flex-col gap-xs">
+      <Flex x-center>
         <Button variant="fill" class="mb-xs">
           Primary Button
         </Button>
@@ -18,7 +18,7 @@ import { Button } from '@dolanske/vui'
         <Button variant="fill" loading class="mb-xs">
           Loading
         </Button>
-      </div>
+      </Flex>
     </template>
     <template #code>
       <slot />

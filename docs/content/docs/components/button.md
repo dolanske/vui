@@ -13,6 +13,15 @@ import { Button } from '@dolanske/vui'
   <Button variant="fill" class="mb-xs">
     Primary Button
   </Button>
+  <Button variant="gray" class="mb-xs">
+    Secondary Button
+  </Button>
+  <Button variant="fill" icon="mdi:plus" class="mb-xs">
+    With Icon
+  </Button>
+  <Button variant="fill" loading class="mb-xs">
+    Loading
+  </Button>
 </template>
 ```
 
@@ -42,23 +51,27 @@ import { Button } from '@dolanske/vui'
 
 Here's an example of using slots and icons:
 
+::button-slot-example
+
 ```vue
 <script setup>
 import { Button } from '@dolanske/vui'
 </script>
 
 <template>
-  <Button variant="fill" icon="mdi:plus" class="mb-xs">
+  <Button variant="fill">
     <template #start>
-      <span class="mr-xs">Start</span>
+      <Icon name="ph:plus" />
     </template>
     Add Item
     <template #end>
-      <span class="ml-xs">End</span>
+      <Icon name="ph:caret-down" />
     </template>
   </Button>
 </template>
 ```
+
+::
 
 ### Events
 
