@@ -125,7 +125,7 @@ const breadcrumbItems = computed(() => {
 </script>
 
 <template>
-  <div class="vui-sidebar-layout">
+  <div class="vui-sidebar-layout" vaul-drawer-wrapper>
     <Sidebar class="app-sidebar">
       <template #header>
         <Flex class="mb-s" y-center>
@@ -154,7 +154,7 @@ const breadcrumbItems = computed(() => {
             <Icon name="ph:github-logo" />
           </Button>
           <div class="flex-1" />
-          <span class="text-s color-text-lightest">VUI v.1.4.6</span>
+          <span class="text-s color-text-lightest">VUI 1.4.6</span>
         </Flex>
       </template>
 
