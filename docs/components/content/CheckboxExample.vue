@@ -1,27 +1,31 @@
 <script setup lang="ts">
-import { Checkbox } from '@dolanske/vui'
+import { Checkbox, Flex } from '@dolanske/vui'
+
+const prechecked = ref(true)
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <div class="flex flex-col gap-xs">
+      <Flex column gap="m">
         <Checkbox label="Basic checkbox" />
         <Checkbox label="Disabled checkbox" disabled />
-        <Checkbox label="Checked checkbox" checked />
-        <Checkbox
-          icon-on="mdi:checkbox-marked"
-          icon-off="mdi:checkbox-blank-outline"
-          accent
-        >
+        <Checkbox v-model="prechecked" label="Checked checkbox" checked />
+        <Checkbox icon-on="ph:toggle-left" icon-off="ph:toggle-right-fill" accent>
           <template #default>
-            Custom icons with <strong>accent</strong> color
+            Custom icons with <code>accent</code> color
           </template>
         </Checkbox>
-      </div>
+      </Flex>
     </template>
     <template #code>
       <slot />
     </template>
   </DocsExample>
 </template>
+
+<style scoped>
+:deep(p) {
+  margin: 0;
+}
+</style>
