@@ -24,16 +24,16 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 
 #### Breadcrumbs
 
-| Name        | Default            | Type     | Description                                                                 |
-| ----------- | ------------------ | -------- | --------------------------------------------------------------------------- |
-| `separator` | `'ph:caret-right'` | `string` | Icon name from Iconify or text to use as separator between breadcrumb items |
+| Name        | Default            | Type                                                                                      |
+| ----------- | ------------------ | ----------------------------------------------------------------------------------------- |
+| `separator` | `'ph:caret-right'` | `string` <br> Icon name from Iconify or text to use as separator between breadcrumb items |
 
 #### BreadcrumbItem
 
-| Name    | Default | Type     | Description                                 |
-| ------- | ------- | -------- | ------------------------------------------- |
-| `label` | —       | `string` | Text to display in the breadcrumb item      |
-| `href`  | —       | `string` | URL to navigate to when the item is clicked |
+| Name    | Default | Type                                                      |
+| ------- | ------- | --------------------------------------------------------- |
+| `label` | —       | `string` <br> Text to display in the breadcrumb item      |
+| `href`  | —       | `string` <br> URL to navigate to when the item is clicked |
 
 ### Slots
 

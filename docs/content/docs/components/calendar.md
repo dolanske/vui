@@ -23,15 +23,15 @@ const date = ref(new Date())
 
 The Calendar component accepts all props from `@vuepic/vue-datepicker` with some defaults applied. Here are the most commonly used props:
 
-| Name              | Default              | Type      | Description                                                  |
-| ----------------- | -------------------- | --------- | ------------------------------------------------------------ |
-| `autoApply`       | `true`               | `boolean` | Automatically apply the selected date when clicking on a day |
-| `autoPosition`    | `true`               | `boolean` | Automatically position the calendar popup                    |
-| `format`          | `'dd/MM/yyyy HH:mm'` | `string`  | Format of the displayed date                                 |
-| `monthNameFormat` | `'long'`             | `string`  | Format of the month name in the header                       |
-| `expand`          | `false`              | `boolean` | Makes the calendar input expand to full width                |
-| `inline`          | `false`              | `boolean` | Renders the calendar inline instead of as a popup            |
-| `dark`            | Based on theme       | `boolean` | Enables dark mode for the calendar                           |
+| Name              | Default              | Type                                                                        |
+| ----------------- | -------------------- | --------------------------------------------------------------------------- |
+| `autoApply`       | `true`               | `boolean` <br> Automatically apply the selected date when clicking on a day |
+| `autoPosition`    | `true`               | `boolean` <br> Automatically position the calendar popup                    |
+| `format`          | `'dd/MM/yyyy HH:mm'` | `string` <br> Format of the displayed date                                  |
+| `monthNameFormat` | `'long'`             | `string` <br> Format of the month name in the header                        |
+| `expand`          | `false`              | `boolean` <br> Makes the calendar input expand to full width                |
+| `inline`          | `false`              | `boolean` <br> Renders the calendar inline instead of as a popup            |
+| `dark`            | Based on theme       | `boolean` <br> Enables dark mode for the calendar                           |
 
 For a complete list of available props, refer to the [@vuepic/vue-datepicker documentation](https://vue3datepicker.com/).
 
