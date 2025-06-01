@@ -10,15 +10,25 @@ import { Button, Card } from '@dolanske/vui'
 </script>
 
 <template>
-  <Card>
+  <Card separators>
     <template #header>
-      Card Title
+      <strong class="text-bold text-xl">Separators</strong>
     </template>
-    <p>This is the main content of the card.</p>
+    <template #header-end>
+      <Button plain size="s" square icon="ph:x" />
+    </template>
+    <p class="m-0">
+      This card has separators and a header-end slot. All the cool stuff.
+    </p>
     <template #footer>
-      <Button variant="fill">
-        Action
-      </Button>
+      <Flex x-end>
+        <Button size="s" variant="gray" outline>
+          Cancel
+        </Button>
+        <Button size="s" variant="fill">
+          Save
+        </Button>
+      </Flex>
     </template>
   </Card>
 </template>
@@ -28,50 +38,18 @@ import { Button, Card } from '@dolanske/vui'
 
 ### Props
 
-| Name              | Default | Type      | Description                                                    |
-| ----------------- | ------- | --------- | -------------------------------------------------------------- |
-| `separators`      | `false` | `boolean` | Adds separators between all sections (header, content, footer) |
-| `headerSeparator` | `false` | `boolean` | Adds a separator only after the header section                 |
-| `footerSeparator` | `false` | `boolean` | Adds a separator only before the footer section                |
-| `padding`         | `true`  | `boolean` | Controls whether the card content has padding                  |
+| Name              | Default | Type                                                                          |
+| ----------------- | ------- | ----------------------------------------------------------------------------- |
+| `separators`      | `false` | `boolean` <br> Adds separators between all sections (header, content, footer) |
+| `headerSeparator` | `false` | `boolean` <br> Adds a separator only after the header section                 |
+| `footerSeparator` | `false` | `boolean` <br> Adds a separator only before the footer section                |
+| `padding`         | `true`  | `boolean` <br> Controls whether the card content has padding                  |
 
 ### Slots
 
-| Name         | Description                                                              |
-| ------------ | ------------------------------------------------------------------------ |
-| `default`    | The main content of the card                                             |
-| `header`     | Content to be displayed in the header section                            |
-| `header-end` | Content to be displayed at the end of the header section (right-aligned) |
-| `footer`     | Content to be displayed in the footer section                            |
-
-Here's an example of a card with all features:
-
-```vue
-<script setup>
-import { Button, Card } from '@dolanske/vui'
-</script>
-
-<template>
-  <Card separators>
-    <template #header>
-      Card Title
-    </template>
-    <template #header-end>
-      <Button variant="link">
-        Settings
-      </Button>
-    </template>
-    <p>This is the main content of the card.</p>
-    <template #footer>
-      <div class="flex justify-end gap-xs">
-        <Button variant="gray">
-          Cancel
-        </Button>
-        <Button variant="fill">
-          Save
-        </Button>
-      </div>
-    </template>
-  </Card>
-</template>
-```
+| Name         | Accepts | Description                                                              |
+| ------------ | ------- | ------------------------------------------------------------------------ |
+| `default`    | `any`   | The main content of the card                                             |
+| `header`     | `any`   | Content to be displayed in the header section                            |
+| `header-end` | `any`   | Content to be displayed at the end of the header section (right-aligned) |
+| `footer`     | `any`   | Content to be displayed in the footer section                            |

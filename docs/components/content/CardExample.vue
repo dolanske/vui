@@ -1,44 +1,33 @@
 <script setup lang="ts">
-import { Button, Card } from '@dolanske/vui'
+import { Button, Card, Flex } from '@dolanske/vui'
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <div class="flex flex-col gap-xs">
-        <Card>
-          <template #header>
-            Basic Card
-          </template>
-          <p class="m-0">
-            This is a basic card with header and content.
-          </p>
-        </Card>
-
+      <Flex x-center>
         <Card separators>
           <template #header>
-            Card with Separators
+            <strong class="text-bold text-xl">Separators</strong>
           </template>
           <template #header-end>
-            <Button variant="link">
-              Settings
-            </Button>
+            <Button plain size="s" square icon="ph:x" />
           </template>
           <p class="m-0">
-            This card has separators and a header-end slot.
+            This card has separators and a header-end slot. All the cool stuff.
           </p>
           <template #footer>
-            <div class="flex justify-end gap-xs">
-              <Button variant="gray">
+            <Flex x-end>
+              <Button size="s" variant="gray" outline>
                 Cancel
               </Button>
-              <Button variant="fill">
+              <Button size="s" variant="fill">
                 Save
               </Button>
-            </div>
+            </Flex>
           </template>
         </Card>
-      </div>
+      </Flex>
     </template>
     <template #code>
       <slot />
