@@ -38,7 +38,7 @@ import { Alert } from '@dolanske/vui'
 
 | Name          | Default   | Type                                                                                           |
 | ------------- | --------- | ---------------------------------------------------------------------------------------------- |
-| `variant`     | `neutral` | `neutral`, `info`, `success`, `warning`, `danger` <br> The visual style of the alert           |
+| `variant`     | `neutral` | `neutral` `info` `success` `warning` `danger` <br> The visual style of the alert               |
 | `icon`        | —         | `string` <br> Override the variant's default icon                                              |
 | `title`       | —         | `string` <br> Optional title for the alert. When provided, uses a different styling than slots |
 | `filled`      | —         | `boolean` <br> When true, uses a stronger color variant with colored background                |

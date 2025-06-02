@@ -25,13 +25,13 @@ import { Avatar } from '@dolanske/vui'
 
 ### Props
 
-| Name       | Default  | Type                                                                                           |
-| ---------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `size`     | `m`      | `s`, `m`, `l`, `number` <br> The size of the avatar. Can be a predefined size or custom number |
-| `url`      | —        | `string` <br> URL of the avatar image to display                                               |
-| `fallback` | —        | `string` <br> Text to show when the image fails to load                                        |
-| `icon`     | —        | `string` <br> Icon to display when no image or fallback is provided (defaults to 'ph:user')    |
-| `alt`      | `avatar` | `string` <br> Alt text for the avatar image                                                    |
+| Name       | Default  | Type                                                                                        |
+| ---------- | -------- | ------------------------------------------------------------------------------------------- |
+| `size`     | `m`      | `s` `m` `l` `number` <br> The size of the avatar. Can be a predefined size or custom number |
+| `url`      | —        | `string` <br> URL of the avatar image to display                                            |
+| `fallback` | —        | `string` <br> Text to show when the image fails to load                                     |
+| `icon`     | —        | `string` <br> Icon to display when no image or fallback is provided (defaults to 'ph:user') |
+| `alt`      | `avatar` | `string` <br> Alt text for the avatar image                                                 |
 
 ### Slots
 

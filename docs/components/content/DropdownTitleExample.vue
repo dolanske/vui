@@ -1,34 +1,26 @@
 <script setup>
-import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
+import { DropdownTitle, Flex } from '@dolanske/vui'
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <Dropdown>
-        <template #trigger>
-          <Button>
-            Settings
-          </Button>
-        </template>
-
-        <DropdownTitle>
-          User Settings
-          <template #end>
-            <span class="text-sm text-gray-500">v1.0.0</span>
-          </template>
-        </DropdownTitle>
-
-        <DropdownItem icon="ph:user">
-          Profile
-        </DropdownItem>
-        <DropdownItem icon="ph:bell">
-          Notifications
-        </DropdownItem>
-        <DropdownItem icon="ph:lock">
-          Security
-        </DropdownItem>
-      </Dropdown>
+      <div class="container container-xs">
+        <Flex x-center column gap="0">
+          <DropdownTitle>
+            Points
+            <div class="counter">
+              10
+            </div>
+          </DropdownTitle>
+          <DropdownTitle class="w-100">
+            Manage
+            <template #end>
+              <Icon name="ph:plus" />
+            </template>
+          </DropdownTitle>
+        </Flex>
+      </div>
     </template>
     <template #code>
       <slot />

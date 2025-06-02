@@ -77,11 +77,11 @@ import { Badge } from '@dolanske/vui'
 
 ### Props
 
-| Name      | Default   | Type                                                                                           |
-| --------- | --------- | ---------------------------------------------------------------------------------------------- |
-| `variant` | `neutral` | `neutral`, `danger`, `warning`, `success`, `info`, `accent` <br> The visual style of the badge |
-| `outline` | `false`   | `boolean` <br> Whether to show the badge with an outline style                                 |
-| `filled`  | `false`   | `boolean` <br> Whether to show the badge with a filled background                              |
+| Name      | Default   | Type                                                                                      |
+| --------- | --------- | ----------------------------------------------------------------------------------------- |
+| `variant` | `neutral` | `neutral` `danger` `warning` `success` `info` `accent` <br> The visual style of the badge |
+| `outline` | `false`   | `boolean` <br> Whether to show the badge with an outline style                            |
+| `filled`  | `false`   | `boolean` <br> Whether to show the badge with a filled background                         |
 
 ### Slots
 

@@ -29,12 +29,12 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name        | Default | Type                                                                                      |
-| ----------- | ------- | ----------------------------------------------------------------------------------------- |
-| `thickness` | `1`     | `number` <br> Thickness of the divider line in pixels                                     |
-| `size`      | `32`    | `number \| string` <br> Length of the divider (width for horizontal, height for vertical) |
-| `vertical`  | `false` | `boolean` <br> Makes the divider vertical instead of horizontal                           |
-| `margin`    | `0`     | `string \| number` <br> Margin around the divider (can be any valid CSS margin value)     |
+| Name        | Default | Type                                                                                     |
+| ----------- | ------- | ---------------------------------------------------------------------------------------- |
+| `thickness` | `1`     | `number` <br> Thickness of the divider line in pixels                                    |
+| `size`      | `32`    | `number` `string` <br> Length of the divider (width for horizontal, height for vertical) |
+| `vertical`  | `false` | `boolean` <br> Makes the divider vertical instead of horizontal                          |
+| `margin`    | `0`     | `string` `number` <br> Margin around the divider (can be any valid CSS margin value)     |
 
 ### Slots
 

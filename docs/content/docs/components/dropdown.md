@@ -11,36 +11,29 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 
 <template>
   <Dropdown>
-    <template #trigger="{ toggle }">
-      <Button class="btn btn-primary" @click="toggle">
+    <template #trigger="{ open }">
+      <Button variant="fill" @click="open">
         Menu
       </Button>
     </template>
-
     <DropdownTitle>
       Actions
-      <template #end>
+      <div class="counter">
         3
-      </template>
+      </div>
     </DropdownTitle>
 
-    <DropdownItem icon="ph:user">
+    <DropdownItem>
       New user
       <template #hint>
-        <Icon icon="ic:round-keyboard-command-key" />
+        <Icon icon="ph:command" />
         + C
       </template>
     </DropdownItem>
-    <DropdownItem icon-end="ph:arrow-right">
+    <DropdownItem icon-end="ph:caret-right">
       Update
     </DropdownItem>
-    <DropdownItem>Cancel</DropdownItem>
-
-    <DropdownTitle>Yourself</DropdownTitle>
-    <DropdownItem icon="ph:x" disabled>
-      Disabled option
-    </DropdownItem>
-    <DropdownItem icon="ph:x">
+    <DropdownItem disabled icon="ph:x">
       Delete
     </DropdownItem>
   </Dropdown>
@@ -51,12 +44,12 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 
 ### Props
 
-| Name        | Type               | Default          | Description                                                            |
-| ----------- | ------------------ | ---------------- | ---------------------------------------------------------------------- |
-| `placement` | `Placement`        | `'bottom-start'` | Position of the dropdown relative to the trigger                       |
-| `minWidth`  | `number \| string` | `156`            | Minimum width of the dropdown in pixels or CSS units                   |
-| `expand`    | `boolean`          | `false`          | Whether to expand the dropdown to match the trigger's width            |
-| `maxHeight` | `number \| string` | `356`            | Maximum height of the dropdown before scrolling in pixels or CSS units |
+| Name        | Default          | Type                                                                                                                                                                                    |
+| ----------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `placement` | `'bottom-start'` | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
+| `minWidth`  | `156`            | `number` `string` <br> Minimum width of the dropdown in pixels or CSS units                                                                                                             |
+| `expand`    | `false`          | `boolean` <br> Whether to expand the dropdown to match the trigger's width                                                                                                              |
+| `maxHeight` | `356`            | `number` `string` <br> Maximum height of the dropdown before scrolling in pixels or CSS units                                                                                           |
 
 ### Events
 
@@ -66,189 +59,105 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 
 ### Slots
 
-| Name      | Props                                                                          | Description                            |
-| --------- | ------------------------------------------------------------------------------ | -------------------------------------- |
-| `trigger` | `{ open: () => void, isOpen: boolean, close: () => void, toggle: () => void }` | The element that triggers the dropdown |
-| `default` | `{ open: () => void, close: () => void, toggle: () => void, isOpen: boolean }` | The dropdown content                   |
+| Name      | Accepts | Props                | Description                            |
+| --------- | ------- | -------------------- | -------------------------------------- |
+| `trigger` | `any`   | `DropdownSlotsProps` | The element that triggers the dropdown |
+| `default` | `any`   | `DropdownSlotsProps` | The dropdown content                   |
+
+Both slots share the same exposed properties
+
+```ts
+interface DropdownSlotsProps {
+  isOpen: Ref<boolean>
+  open: () => void
+  close: () => void
+  toggle: () => void
+}
+```
 
 ### Components
+
+The dropdopwn component is meant to be used with a few specific components. If you're looking for a generic floating component, check out the [Popout](/docs/components/popout).
 
 #### DropdownItem
 
 A clickable item in the dropdown menu.
 
+::dropdown-item-example
+
+```vue
+<script setup lang="ts">
+import { DropdownItem } from '@dolanske/vui'
+</script>
+
+<template>
+  <DropdownItem icon-end="ph:plus">
+    Create
+  </DropdownItem>
+  <DropdownItem icon="ph:user">
+    Update
+    <template #hint>
+      <Icon name="ph:command" />
+      + U
+    </template>
+  </DropdownItem>
+  <DropdownItem disabled icon-end="ph:trash">
+    Delete
+  </DropdownItem>
+</template>
+```
+
+::
+
 ##### Props
 
-| Name       | Type      | Default | Description                              |
-| ---------- | --------- | ------- | ---------------------------------------- |
-| `disabled` | `boolean` | `false` | Whether the item is disabled             |
-| `icon`     | `string`  | -       | Icon to display at the start of the item |
-| `iconEnd`  | `string`  | -       | Icon to display at the end of the item   |
+| Name       | Default | Type                                                   |
+| ---------- | ------- | ------------------------------------------------------ |
+| `disabled` | `false` | `boolean` <br> Whether the item is disabled            |
+| `icon`     | -       | `string` <br> Icon to display at the start of the item |
+| `iconEnd`  | -       | `string` <br> Icon to display at the end of the item   |
 
 ##### Slots
 
-| Name      | Props | Description                     |
-| --------- | ----- | ------------------------------- |
-| `default` | -     | The main content of the item    |
-| `hint`    | -     | Additional hint text to display |
+| Name      | Accepts | Props | Description                     |
+| --------- | ------- | ----- | ------------------------------- |
+| `default` | `any`   | -     | The main content of the item    |
+| `hint`    | `any`   | -     | Additional hint text to display |
 
 #### DropdownTitle
 
-A title or header section in the dropdown menu.
-
-##### Props
-
-| Name     | Type      | Default | Description                               |
-| -------- | --------- | ------- | ----------------------------------------- |
-| `sticky` | `boolean` | `false` | Whether the title should stick to the top |
-
-##### Slots
-
-| Name      | Props | Description                                |
-| --------- | ----- | ------------------------------------------ |
-| `default` | -     | The title text                             |
-| `end`     | -     | Content to display at the end of the title |
-
-### Examples
-
-::dropdown-basic-example
-
-```vue
-<script setup>
-import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
-</script>
-
-<template>
-  <Dropdown>
-    <template #trigger>
-      <Button>
-        Open Menu
-      </Button>
-    </template>
-
-    <DropdownItem>Option 1</DropdownItem>
-    <DropdownItem>Option 2</DropdownItem>
-    <DropdownItem>Option 3</DropdownItem>
-  </Dropdown>
-</template>
-```
-
-::
-
-::dropdown-icons-example
-
-```vue
-<script setup>
-import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
-</script>
-
-<template>
-  <Dropdown>
-    <template #trigger>
-      <Button>
-        Actions
-      </Button>
-    </template>
-
-    <DropdownItem icon="ph:edit">
-      Edit
-      <template #hint>
-        Ctrl + E
-      </template>
-    </DropdownItem>
-    <DropdownItem icon="ph:trash">
-      Delete
-      <template #hint>
-        Del
-      </template>
-    </DropdownItem>
-  </Dropdown>
-</template>
-```
-
-::
+A title or header section in the dropdown menu which also divides the dropdown into sections.
 
 ::dropdown-title-example
 
 ```vue
-<script setup>
-import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
-</script>
-
 <template>
-  <Dropdown>
-    <template #trigger>
-      <Button>
-        Settings
-      </Button>
+  <DropdownTitle>
+    Points
+    <div class="counter">
+      10
+    </div>
+  </DropdownTitle>
+  <DropdownTitle class="w-100">
+    Manage
+    <template #end>
+      <Icon name="ph:plus" />
     </template>
-
-    <DropdownTitle>
-      User Settings
-      <template #end>
-        <span class="text-sm text-gray-500">v1.0.0</span>
-      </template>
-    </DropdownTitle>
-
-    <DropdownItem icon="ph:user">
-      Profile
-    </DropdownItem>
-    <DropdownItem icon="ph:bell">
-      Notifications
-    </DropdownItem>
-    <DropdownItem icon="ph:lock">
-      Security
-    </DropdownItem>
-  </Dropdown>
+  </DropdownTitle>
 </template>
 ```
 
 ::
 
-::dropdown-expanded-example
+##### Props
 
-```vue
-<script setup>
-import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
-</script>
+| Name     | Default | Type                                                     |
+| -------- | ------- | -------------------------------------------------------- |
+| `sticky` | `false` | `boolean` <br> Whether the title should stick to the top |
 
-<template>
-  <Dropdown expand>
-    <template #trigger>
-      <Button class="w-[200px]">
-        Select Option
-      </Button>
-    </template>
+##### Slots
 
-    <DropdownItem>Option 1</DropdownItem>
-    <DropdownItem>Option 2</DropdownItem>
-    <DropdownItem>Option 3</DropdownItem>
-  </Dropdown>
-</template>
-```
-
-::
-
-::dropdown-placement-example
-
-```vue
-<script setup>
-import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
-</script>
-
-<template>
-  <Dropdown placement="right-start">
-    <template #trigger>
-      <Button>
-        Open Menu
-      </Button>
-    </template>
-
-    <DropdownItem>Option 1</DropdownItem>
-    <DropdownItem>Option 2</DropdownItem>
-    <DropdownItem>Option 3</DropdownItem>
-  </Dropdown>
-</template>
-```
-
-::
+| Name      | Accepts | Props | Description                                |
+| --------- | ------- | ----- | ------------------------------------------ |
+| `default` | `any`   | -     | The title text                             |
+| `end`     | `any`   | -     | Content to display at the end of the title |

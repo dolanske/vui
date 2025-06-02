@@ -29,17 +29,17 @@ import { Button } from '@dolanske/vui'
 
 ### Props
 
-| Name       | Default  | Type                                                                                        |
-| ---------- | -------- | ------------------------------------------------------------------------------------------- |
-| `loading`  | `false`  | `boolean` <br> Shows a loading spinner and disables the button                              |
-| `size`     | `'m'`    | `s`, `m`, `l` <br> Controls the size of the button                                          |
-| `expand`   | `false`  | `boolean` <br> Makes the button expand to full width                                        |
-| `square`   | `false`  | `boolean` <br> Makes the button square instead of rectangular                               |
-| `icon`     | —        | `string` <br> Icon name from Iconify to display in the button                               |
-| `variant`  | `'gray'` | `fill`, `danger`, `success`, `link`, `accent`, `gray` <br> Controls the button's appearance |
-| `outline`  | `false`  | `boolean` <br> Makes the button outlined instead of filled                                  |
-| `disabled` | `false`  | `boolean` <br> Disables the button                                                          |
-| `plain`    | `false`  | `boolean` <br> Removes background and border, keeping only the text                         |
+| Name       | Default  | Type                                                                                   |
+| ---------- | -------- | -------------------------------------------------------------------------------------- |
+| `loading`  | `false`  | `boolean` <br> Shows a loading spinner and disables the button                         |
+| `size`     | `'m'`    | `s` `m` `l` <br> Controls the size of the button                                       |
+| `expand`   | `false`  | `boolean` <br> Makes the button expand to full width                                   |
+| `square`   | `false`  | `boolean` <br> Makes the button square instead of rectangular                          |
+| `icon`     | —        | `string` <br> Icon name from Iconify to display in the button                          |
+| `variant`  | `'gray'` | `fill` `danger` `success` `link` `accent` `gray` <br> Controls the button's appearance |
+| `outline`  | `false`  | `boolean` <br> Makes the button outlined instead of filled                             |
+| `disabled` | `false`  | `boolean` <br> Disables the button                                                     |
+| `plain`    | `false`  | `boolean` <br> Removes background and border, keeping only the text                    |
 
 ### Slots
 

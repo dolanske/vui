@@ -1,44 +1,40 @@
 <script setup lang="ts">
-import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
+import { Button, Dropdown, DropdownItem, DropdownTitle, Flex } from '@dolanske/vui'
+import { Icon } from '@iconify/vue/dist/iconify.js'
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <Dropdown>
-        <template #trigger="{ toggle }">
-          <Button class="btn btn-primary" @click="toggle">
-            Menu
-          </Button>
-        </template>
-
-        <DropdownTitle>
-          Actions
-          <template #end>
-            3
+      <Flex x-center>
+        <Dropdown>
+          <template #trigger="{ open }">
+            <Button variant="fill" @click="open">
+              Menu
+            </Button>
           </template>
-        </DropdownTitle>
+          <DropdownTitle>
+            Actions
+            <div class="counter">
+              3
+            </div>
+          </DropdownTitle>
 
-        <DropdownItem icon="ph:user">
-          New user
-          <template #hint>
-            <Icon icon="ic:round-keyboard-command-key" />
-            + C
-          </template>
-        </DropdownItem>
-        <DropdownItem icon-end="ph:arrow-right">
-          Update
-        </DropdownItem>
-        <DropdownItem>Cancel</DropdownItem>
-
-        <DropdownTitle>Yourself</DropdownTitle>
-        <DropdownItem icon="ph:x" disabled>
-          Disabled option
-        </DropdownItem>
-        <DropdownItem icon="ph:x">
-          Delete
-        </DropdownItem>
-      </Dropdown>
+          <DropdownItem>
+            New user
+            <template #hint>
+              <Icon icon="ph:command" />
+              + C
+            </template>
+          </DropdownItem>
+          <DropdownItem icon-end="ph:caret-right">
+            Update
+          </DropdownItem>
+          <DropdownItem disabled icon="ph:x">
+            Delete
+          </DropdownItem>
+        </Dropdown>
+      </Flex>
     </template>
     <template #code>
       <slot />
