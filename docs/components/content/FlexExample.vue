@@ -1,42 +1,34 @@
 <script setup lang="ts">
-import { Button, Flex } from '@dolanske/vui'
+import { Flex } from '@dolanske/vui'
+
+const sizes = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'] as const
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <div class="flex flex-col gap-md">
-        <!-- Basic row -->
-        <Flex gap="m" x-center y-center>
-          <Button>Item 1</Button>
-          <Button>Item 2</Button>
-          <Button>Item 3</Button>
+      <Flex gap="l" column>
+        <Flex v-for="size in sizes" :key="size" expand :gap="size" y-center>
+          <div v-for="key in 3" :key class="example flex-1">
+            {{ size.toUpperCase() }}
+          </div>
         </Flex>
-
-        <!-- Row with space between -->
-        <Flex x-between>
-          <Button>Left</Button>
-          <Button>Right</Button>
-        </Flex>
-
-        <!-- Column with center alignment -->
-        <Flex column x-center gap="m">
-          <Button>Top</Button>
-          <Button>Middle</Button>
-          <Button>Bottom</Button>
-        </Flex>
-
-        <!-- Wrapped row with custom gap -->
-        <Flex wrap :gap="16">
-          <Button>Item 1</Button>
-          <Button>Item 2</Button>
-          <Button>Item 3</Button>
-          <Button>Item 4</Button>
-        </Flex>
-      </div>
+      </Flex>
     </template>
     <template #code>
       <slot />
     </template>
   </DocsExample>
 </template>
+
+<style scoped>
+.example {
+  display: block;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  border-radius: var(--border-radius-m);
+  background-color: var(--color-border);
+  text-align: center;
+}
+</style>

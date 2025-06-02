@@ -6,14 +6,21 @@ A flexible box layout component that provides a convenient way to create flexbox
 
 ```vue
 <script setup>
-import { Button, Flex } from '@dolanske/vui'
+import { Flex } from '@dolanske/vui'
 </script>
 
 <template>
-  <Flex gap="m" x-center y-center>
-    <Button>Item 1</Button>
-    <Button>Item 2</Button>
-    <Button>Item 3</Button>
+  <Flex gap="l" column>
+    <Flex
+      v-for="size in ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl']"
+      :key="size"
+      :gap="size"
+      expand
+    >
+      <div v-for="key in 3" :key class="flex-1">
+        {{ size.toUpperCase() }}
+      </div>
+    </Flex>
   </Flex>
 </template>
 ```
@@ -22,61 +29,64 @@ import { Button, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name            | Default | Type              | Description                                                  |
-| --------------- | ------- | ----------------- | ------------------------------------------------------------ |
-| `inline`        | `false` | `boolean`         | Makes the flex container inline                              |
-| `wrap`          | `false` | `boolean`         | Allows flex items to wrap to multiple lines                  |
-| `wrapReverse`   | `false` | `boolean`         | Reverses the wrap direction                                  |
-| `row`           | `true`  | `boolean`         | Sets flex direction to row                                   |
-| `column`        | `false` | `boolean`         | Sets flex direction to column                                |
-| `rowReverse`    | `false` | `boolean`         | Sets flex direction to row-reverse                           |
-| `columnReverse` | `false` | `boolean`         | Sets flex direction to column-reverse                        |
-| `gap`           | `'s'`   | `Space \| number` | Gap between flex items (uses theme spacing or custom number) |
-| `xStart`        | `true`  | `boolean`         | Aligns items to the start of the main axis                   |
-| `xEnd`          | `false` | `boolean`         | Aligns items to the end of the main axis                     |
-| `xCenter`       | `false` | `boolean`         | Centers items along the main axis                            |
-| `xBetween`      | `false` | `boolean`         | Distributes items with space between them                    |
-| `xAround`       | `false` | `boolean`         | Distributes items with space around them                     |
-| `xEvenly`       | `false` | `boolean`         | Distributes items with equal space around them               |
-| `yCenter`       | `false` | `boolean`         | Centers items along the cross axis                           |
-| `yStart`        | `true`  | `boolean`         | Aligns items to the start of the cross axis                  |
-| `yEnd`          | `false` | `boolean`         | Aligns items to the end of the cross axis                    |
-| `yBaseline`     | `false` | `boolean`         | Aligns items along their baselines                           |
-| `expand`        | `false` | `boolean`         | Makes the flex container expand to full width                |
+The idea is that you control the component by using boolean props. This way it should be a breeze to define any layouts you want.
+| Name | Default | Type |
+| --------------- | ------- | -------------------------------------------------------------------- |
+| `inline` | `false` | `boolean` <br> Makes the flex container inline |
+| `wrap` | `false` | `boolean` <br> Allows flex items to wrap to multiple lines |
+| `wrap-reverse` | `false` | `boolean` <br> Reverses the wrap direction |
+| `row` | `true` | `boolean` <br> Sets flex direction to row |
+| `column` | `false` | `boolean` <br> Sets flex direction to column |
+| `row-reverse` | `false` | `boolean` <br> Sets flex direction to row-reverse |
+| `column-reverse` | `false` | `boolean` <br> Sets flex direction to column-reverse |
+| `gap` | `s` | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between flex items (uses theme spacing or custom number) |
+| `x-start` | `true` | `boolean` <br> Aligns items to the start of the main axis |
+| `x-end` | `false` | `boolean` <br> Aligns items to the end of the main axis |
+| `x-center` | `false` | `boolean` <br> Centers items along the main axis |
+| `x-between` | `false` | `boolean` <br> Distributes items with space between them |
+| `x-around` | `false` | `boolean` <br> Distributes items with space around them |
+| `x-evenly` | `false` | `boolean` <br> Distributes items with equal space around them |
+| `y-center` | `false` | `boolean` <br> Centers items along the cross axis |
+| `y-start` | `true` | `boolean` <br> Aligns items to the start of the cross axis |
+| `y-end` | `false` | `boolean` <br> Aligns items to the end of the cross axis |
+| `y-baseline` | `false` | `boolean` <br> Aligns items along their baselines |
+| `expand` | `false` | `boolean` <br> Makes the flex container expand to full width |
 
 ### Slots
 
-| Name      | Description                   |
-| --------- | ----------------------------- |
-| `default` | The flex items to be laid out |
+| Name      | Accepts | Description                   |
+| --------- | ------- | ----------------------------- |
+| `default` | `any`   | The flex items to be laid out |
 
-Here are some examples of different flex layouts:
+### Examples
+
+A few simple code examples of how a flex layout might look like.
 
 ```vue
 <script setup>
-import { Button, Flex } from '@dolanske/vui'
+import { Flex } from '@dolanske/vui'
 </script>
 
 <template>
   <!-- Row with space between -->
-  <Flex x-between class="mb-md">
-    <Button>Left</Button>
-    <Button>Right</Button>
+  <Flex x-between>
+    <p>Left</p>
+    <p>Right</p>
   </Flex>
 
   <!-- Column with center alignment -->
-  <Flex column x-center gap="m" class="mb-md">
-    <Button>Top</Button>
-    <Button>Middle</Button>
-    <Button>Bottom</Button>
+  <Flex column x-center gap="m">
+    <p>Top</p>
+    <p>Middle</p>
+    <p>Bottom</p>
   </Flex>
 
   <!-- Wrapped row with custom gap -->
   <Flex wrap :gap="16">
-    <Button>Item 1</Button>
-    <Button>Item 2</Button>
-    <Button>Item 3</Button>
-    <Button>Item 4</Button>
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+    <p>Item 4</p>
   </Flex>
 </template>
 ```
