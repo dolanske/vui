@@ -54,9 +54,9 @@ The drawer component requires a root element with the `vaul-drawer-wrapper` attr
 
 ### Events
 
-| Name    | Description                       |
-| ------- | --------------------------------- |
-| `close` | Emitted when the drawer is closed |
+| Name    | Payload | Description                       |
+| ------- | ------- | --------------------------------- |
+| `close` | -       | Emitted when the drawer is closed |
 
 ### Slots
 

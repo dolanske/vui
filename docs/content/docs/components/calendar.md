@@ -1,6 +1,6 @@
 # Calendar
 
-A date picker component that allows users to select dates and times. It's built on top of `@vuepic/vue-datepicker` and provides a consistent look and feel with the rest of the UI components.
+A date picker component that allows users to select dates and times. It's built on top of [Vue Datepicker](https://vue3datepicker.com/installation/) and provides a consistent look and feel with the rest of the UI components.
 
 ::calendar-example
 
@@ -21,7 +21,7 @@ const date = ref(new Date())
 
 ### Props
 
-The Calendar component accepts all props from `@vuepic/vue-datepicker` with some defaults applied. Here are the most commonly used props:
+The Calendar component accepts all the props listed in the [official documentation](https://vue3datepicker.com/props/modes/). Vuil builds on top of this and customizes this with a few defaults:
 
 | Name              | Default              | Type                                                                        |
 | ----------------- | -------------------- | --------------------------------------------------------------------------- |
@@ -33,13 +33,15 @@ The Calendar component accepts all props from `@vuepic/vue-datepicker` with some
 | `inline`          | `false`              | `boolean` <br> Renders the calendar inline instead of as a popup            |
 | `dark`            | Based on theme       | `boolean` <br> Enables dark mode for the calendar                           |
 
-For a complete list of available props, refer to the [@vuepic/vue-datepicker documentation](https://vue3datepicker.com/).
-
 ### Slots
 
 | Name      | Accepts | Description                                                    |
 | --------- | ------- | -------------------------------------------------------------- |
 | `trigger` | `any`   | Custom trigger element to open the calendar popup when clicked |
+
+### Events
+
+All events emitted by the component are described here in the [official documentation](https://vue3datepicker.com/methods-and-events/events/).
 
 ### Examples
 
