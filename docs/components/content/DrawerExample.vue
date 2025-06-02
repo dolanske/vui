@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Drawer } from '@dolanske/vui'
+import { Button, Drawer, Flex } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
@@ -8,27 +8,23 @@ const isOpen = ref(false)
 <template>
   <DocsExample>
     <template #component>
-      <div>
-        <Button @click="isOpen = true">
+      <Flex x-center>
+        <Button variant="fill" @click="isOpen = true">
           Open Drawer
         </Button>
 
-        <Drawer v-model:open="isOpen" title="Settings">
-          <div class="p-md">
-            <h2 class="m-0 mb-md">
-              Drawer Content
-            </h2>
-            <p class="m-0 mb-md">
-              This is the content of the drawer.
-            </p>
-            <div class="flex justify-end">
-              <Button variant="fill" @click="isOpen = false">
-                Close
-              </Button>
-            </div>
-          </div>
+        <Drawer :open="isOpen" title="Settings" container-size="m" @close="isOpen = false">
+          <h2 class="mb-s">
+            Drawer Content
+          </h2>
+          <p class="mb-l">
+            This is the content of the drawer.
+          </p>
+          <Button variant="fill" @click="isOpen = false">
+            Close
+          </Button>
         </Drawer>
-      </div>
+      </Flex>
     </template>
     <template #code>
       <slot />
