@@ -6,14 +6,29 @@ A simple grid layout component that provides a convenient way to create grid lay
 
 ```vue
 <script setup>
-import { Button, Grid } from '@dolanske/vui'
+import { Grid } from '@dolanske/vui'
 </script>
 
 <template>
   <Grid :columns="3" gap="m">
-    <Button>Item 1</Button>
-    <Button>Item 2</Button>
-    <Button>Item 3</Button>
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+  </Grid>
+
+  <!-- Custom grid template -->
+  <Grid columns="4fr 0.5fr 1fr" gap="m">
+    <div>Wide</div>
+    <div>Narrow</div>
+    <div>Narrow</div>
+  </Grid>
+
+  <!-- Grid with rows -->
+  <Grid :columns="2" rows="1fr 2fr" gap="m">
+    <div>Top Left</div>
+    <div>Top Right</div>
+    <div>Bottom Left</div>
+    <div>Bottom Right</div>
   </Grid>
 </template>
 ```
@@ -22,53 +37,23 @@ import { Button, Grid } from '@dolanske/vui'
 
 ### Props
 
-| Name        | Default | Type               | Description                                                  |
-| ----------- | ------- | ------------------ | ------------------------------------------------------------ |
-| `inline`    | `false` | `boolean`          | Makes the grid container inline                              |
-| `gap`       | `'s'`   | `Space \| number`  | Gap between grid items (uses theme spacing or custom number) |
-| `rows`      | —       | `number \| string` | Number of rows or custom grid template rows                  |
-| `columns`   | —       | `number \| string` | Number of columns or custom grid template columns            |
-| `yCenter`   | `false` | `boolean`          | Centers items along the cross axis                           |
-| `yStart`    | `true`  | `boolean`          | Aligns items to the start of the cross axis                  |
-| `yEnd`      | `false` | `boolean`          | Aligns items to the end of the cross axis                    |
-| `yBaseline` | `false` | `boolean`          | Aligns items along their baselines                           |
-| `yStretch`  | `false` | `boolean`          | Stretches items to fill the cross axis                       |
-| `expand`    | `false` | `boolean`          | Makes the grid container expand to full width                |
+The idea is that you control the component by using boolean props. This allows you to define layouts quickly.
+
+| Name         | Default | Type                                                                                                                |
+| ------------ | ------- | ------------------------------------------------------------------------------------------------------------------- |
+| `inline`     | `false` | `boolean` <br> Makes the grid container inline                                                                      |
+| `gap`        | `s`     | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between flex items (uses theme spacing or custom number) |
+| `rows`       | —       | `number` `string` <br> Number of rows or custom grid template rows                                                  |
+| `columns`    | —       | `number` `string` <br> Number of columns or custom grid template columns                                            |
+| `y-center`   | `false` | `boolean` <br> Centers items along the cross axis                                                                   |
+| `y-start`    | `true`  | `boolean` <br> Aligns items to the start of the cross axis                                                          |
+| `y-end`      | `false` | `boolean` <br> Aligns items to the end of the cross axis                                                            |
+| `y-baseline` | `false` | `boolean` <br> Aligns items along their baselines                                                                   |
+| `y-stretch`  | `false` | `boolean` <br> Stretches items to fill the cross axis                                                               |
+| `expand`     | `false` | `boolean` <br> Makes the grid container expand to full width                                                        |
 
 ### Slots
 
-| Name      | Description                   |
-| --------- | ----------------------------- |
-| `default` | The grid items to be laid out |
-
-Here are some examples of different grid layouts:
-
-```vue
-<script setup>
-import { Button, Grid } from '@dolanske/vui'
-</script>
-
-<template>
-  <!-- Basic 3-column grid -->
-  <Grid :columns="3" gap="m" class="mb-md">
-    <Button>Item 1</Button>
-    <Button>Item 2</Button>
-    <Button>Item 3</Button>
-  </Grid>
-
-  <!-- Custom grid template -->
-  <Grid columns="2fr 1fr 1fr" gap="m" class="mb-md">
-    <Button>Wide</Button>
-    <Button>Narrow</Button>
-    <Button>Narrow</Button>
-  </Grid>
-
-  <!-- Grid with rows -->
-  <Grid :columns="2" :rows="2" gap="m">
-    <Button>Top Left</Button>
-    <Button>Top Right</Button>
-    <Button>Bottom Left</Button>
-    <Button>Bottom Right</Button>
-  </Grid>
-</template>
-```
+| Name      | Accepts | Description                   |
+| --------- | ------- | ----------------------------- |
+| `default` | `any`   | The grid items to be laid out |

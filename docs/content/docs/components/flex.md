@@ -29,7 +29,7 @@ import { Flex } from '@dolanske/vui'
 
 ### Props
 
-The idea is that you control the component by using boolean props. This way it should be a breeze to define any layouts you want.
+The idea is that you control the component by using boolean props. This allows you to define layouts quickly.
 | Name | Default | Type |
 | --------------- | ------- | -------------------------------------------------------------------- |
 | `inline` | `false` | `boolean` <br> Makes the flex container inline |
@@ -57,36 +57,3 @@ The idea is that you control the component by using boolean props. This way it s
 | Name      | Accepts | Description                   |
 | --------- | ------- | ----------------------------- |
 | `default` | `any`   | The flex items to be laid out |
-
-### Examples
-
-A few simple code examples of how a flex layout might look like.
-
-```vue
-<script setup>
-import { Flex } from '@dolanske/vui'
-</script>
-
-<template>
-  <!-- Row with space between -->
-  <Flex x-between>
-    <p>Left</p>
-    <p>Right</p>
-  </Flex>
-
-  <!-- Column with center alignment -->
-  <Flex column x-center gap="m">
-    <p>Top</p>
-    <p>Middle</p>
-    <p>Bottom</p>
-  </Flex>
-
-  <!-- Wrapped row with custom gap -->
-  <Flex wrap :gap="16">
-    <p>Item 1</p>
-    <p>Item 2</p>
-    <p>Item 3</p>
-    <p>Item 4</p>
-  </Flex>
-</template>
-```
