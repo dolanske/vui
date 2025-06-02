@@ -5,119 +5,40 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 <template>
   <DocsExample>
     <template #component>
-      <div class="flex flex-col gap-md">
-        <!-- Basic dropdown -->
-        <div>
-          <h3 class="mb-sm">
-            Basic Dropdown
-          </h3>
-          <Dropdown>
-            <template #trigger>
-              <Button>
-                Open Menu
-              </Button>
-            </template>
+      <Dropdown>
+        <template #trigger="{ toggle }">
+          <Button class="btn btn-primary" @click="toggle">
+            Menu
+          </Button>
+        </template>
 
-            <DropdownItem>Option 1</DropdownItem>
-            <DropdownItem>Option 2</DropdownItem>
-            <DropdownItem>Option 3</DropdownItem>
-          </Dropdown>
-        </div>
+        <DropdownTitle>
+          Actions
+          <template #end>
+            3
+          </template>
+        </DropdownTitle>
 
-        <!-- Dropdown with icons and hints -->
-        <div>
-          <h3 class="mb-sm">
-            Dropdown with Icons and Hints
-          </h3>
-          <Dropdown>
-            <template #trigger>
-              <Button>
-                Actions
-              </Button>
-            </template>
+        <DropdownItem icon="ph:user">
+          New user
+          <template #hint>
+            <Icon icon="ic:round-keyboard-command-key" />
+            + C
+          </template>
+        </DropdownItem>
+        <DropdownItem icon-end="ph:arrow-right">
+          Update
+        </DropdownItem>
+        <DropdownItem>Cancel</DropdownItem>
 
-            <DropdownItem icon="ph:edit">
-              Edit
-              <template #hint>
-                Ctrl + E
-              </template>
-            </DropdownItem>
-            <DropdownItem icon="ph:trash">
-              Delete
-              <template #hint>
-                Del
-              </template>
-            </DropdownItem>
-          </Dropdown>
-        </div>
-
-        <!-- Dropdown with title -->
-        <div>
-          <h3 class="mb-sm">
-            Dropdown with Title
-          </h3>
-          <Dropdown>
-            <template #trigger>
-              <Button>
-                Settings
-              </Button>
-            </template>
-
-            <DropdownTitle>
-              User Settings
-              <template #end>
-                <span class="text-sm text-gray-500">v1.0.0</span>
-              </template>
-            </DropdownTitle>
-
-            <DropdownItem icon="ph:user">
-              Profile
-            </DropdownItem>
-            <DropdownItem icon="ph:bell">
-              Notifications
-            </DropdownItem>
-            <DropdownItem icon="ph:lock">
-              Security
-            </DropdownItem>
-          </Dropdown>
-        </div>
-
-        <!-- Expanded dropdown -->
-        <div>
-          <h3 class="mb-sm">
-            Expanded Dropdown
-          </h3>
-          <Dropdown expand>
-            <template #trigger>
-              <Button class="w-[200px]">
-                Select Option
-              </Button>
-            </template>
-
-            <DropdownItem>Option 1</DropdownItem>
-            <DropdownItem>Option 2</DropdownItem>
-            <DropdownItem>Option 3</DropdownItem>
-          </Dropdown>
-        </div>
-
-        <!-- Custom placement -->
-        <div>
-          <h3 class="mb-sm">
-            Custom Placement
-          </h3>
-          <Dropdown placement="right-start">
-            <template #trigger>
-              <Button>
-                Open Menu
-              </Button>
-            </template>
-
-            <DropdownItem>Option 1</DropdownItem>
-            <DropdownItem>Option 2</DropdownItem>
-            <DropdownItem>Option 3</DropdownItem>
-          </Dropdown>
-        </div>
-      </div>
+        <DropdownTitle>Yourself</DropdownTitle>
+        <DropdownItem icon="ph:x" disabled>
+          Disabled option
+        </DropdownItem>
+        <DropdownItem icon="ph:x">
+          Delete
+        </DropdownItem>
+      </Dropdown>
     </template>
     <template #code>
       <slot />

@@ -1,45 +1,55 @@
 # Dropdown
 
-A dropdown menu component that provides a flexible way to display a list of options or actions. It supports various features like icons, hints, and custom content.
+A dropdown menu component that provides a flexible way to display a list of options or actions. It supports various features like icons, hints, titles and custom content.
 
-## Usage
+::dropdown-example
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
-
-const isOpen = ref(false)
 </script>
 
 <template>
   <Dropdown>
-    <template #trigger>
-      <Button>
-        Open Menu
+    <template #trigger="{ toggle }">
+      <Button class="btn btn-primary" @click="toggle">
+        Menu
       </Button>
     </template>
 
-    <DropdownTitle>Menu Title</DropdownTitle>
-    <DropdownItem icon="ph:house">
-      Home
+    <DropdownTitle>
+      Actions
+      <template #end>
+        3
+      </template>
+    </DropdownTitle>
+
+    <DropdownItem icon="ph:user">
+      New user
+      <template #hint>
+        <Icon icon="ic:round-keyboard-command-key" />
+        + C
+      </template>
     </DropdownItem>
-    <DropdownItem icon="ph:gear">
-      Settings
+    <DropdownItem icon-end="ph:arrow-right">
+      Update
     </DropdownItem>
-    <DropdownItem icon="ph:sign-out" disabled>
-      Sign Out
+    <DropdownItem>Cancel</DropdownItem>
+
+    <DropdownTitle>Yourself</DropdownTitle>
+    <DropdownItem icon="ph:x" disabled>
+      Disabled option
+    </DropdownItem>
+    <DropdownItem icon="ph:x">
+      Delete
     </DropdownItem>
   </Dropdown>
 </template>
 ```
 
-## Components
+::
 
-### Dropdown
-
-The main dropdown container component.
-
-#### Props
+### Props
 
 | Name        | Type               | Default          | Description                                                            |
 | ----------- | ------------------ | ---------------- | ---------------------------------------------------------------------- |
@@ -48,24 +58,26 @@ The main dropdown container component.
 | `expand`    | `boolean`          | `false`          | Whether to expand the dropdown to match the trigger's width            |
 | `maxHeight` | `number \| string` | `356`            | Maximum height of the dropdown before scrolling in pixels or CSS units |
 
-#### Events
+### Events
 
 | Name    | Type | Description                         |
 | ------- | ---- | ----------------------------------- |
 | `close` | -    | Emitted when the dropdown is closed |
 
-#### Slots
+### Slots
 
 | Name      | Props                                                                          | Description                            |
 | --------- | ------------------------------------------------------------------------------ | -------------------------------------- |
 | `trigger` | `{ open: () => void, isOpen: boolean, close: () => void, toggle: () => void }` | The element that triggers the dropdown |
 | `default` | `{ open: () => void, close: () => void, toggle: () => void, isOpen: boolean }` | The dropdown content                   |
 
-### DropdownItem
+### Components
+
+#### DropdownItem
 
 A clickable item in the dropdown menu.
 
-#### Props
+##### Props
 
 | Name       | Type      | Default | Description                              |
 | ---------- | --------- | ------- | ---------------------------------------- |
@@ -73,33 +85,33 @@ A clickable item in the dropdown menu.
 | `icon`     | `string`  | -       | Icon to display at the start of the item |
 | `iconEnd`  | `string`  | -       | Icon to display at the end of the item   |
 
-#### Slots
+##### Slots
 
 | Name      | Props | Description                     |
 | --------- | ----- | ------------------------------- |
 | `default` | -     | The main content of the item    |
 | `hint`    | -     | Additional hint text to display |
 
-### DropdownTitle
+#### DropdownTitle
 
 A title or header section in the dropdown menu.
 
-#### Props
+##### Props
 
 | Name     | Type      | Default | Description                               |
 | -------- | --------- | ------- | ----------------------------------------- |
 | `sticky` | `boolean` | `false` | Whether the title should stick to the top |
 
-#### Slots
+##### Slots
 
 | Name      | Props | Description                                |
 | --------- | ----- | ------------------------------------------ |
 | `default` | -     | The title text                             |
 | `end`     | -     | Content to display at the end of the title |
 
-## Examples
+### Examples
 
-### Basic Dropdown
+::dropdown-basic-example
 
 ```vue
 <script setup>
@@ -121,7 +133,9 @@ import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
 </template>
 ```
 
-### Dropdown with Icons and Hints
+::
+
+::dropdown-icons-example
 
 ```vue
 <script setup>
@@ -152,7 +166,9 @@ import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
 </template>
 ```
 
-### Dropdown with Title
+::
+
+::dropdown-title-example
 
 ```vue
 <script setup>
@@ -187,7 +203,9 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 </template>
 ```
 
-### Expanded Dropdown
+::
+
+::dropdown-expanded-example
 
 ```vue
 <script setup>
@@ -209,7 +227,9 @@ import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
 </template>
 ```
 
-### Custom Placement
+::
+
+::dropdown-placement-example
 
 ```vue
 <script setup>
@@ -230,3 +250,5 @@ import { Button, Dropdown, DropdownItem } from '@dolanske/vui'
   </Dropdown>
 </template>
 ```
+
+::
