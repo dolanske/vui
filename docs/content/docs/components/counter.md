@@ -1,4 +1,4 @@
-# Counter Input
+# Counter
 
 A specialized input component for numeric values that includes increment and decrement buttons. It extends the base Input component with counter-specific functionality.
 
@@ -7,10 +7,18 @@ A specialized input component for numeric values that includes increment and dec
 ```vue
 <script setup>
 import { Counter } from '@dolanske/vui'
+import { ref } from 'vue'
+const count = ref(0)
 </script>
 
 <template>
-  <Counter v-model="count" />
+  <Counter
+    v-model="count"
+    hint="Choose a number between 0 and 10"
+    label="Counter"
+    :increment-enabled="count < 10"
+    :decrement-enabled="count > 0"
+  />
 </template>
 ```
 
@@ -18,104 +26,13 @@ import { Counter } from '@dolanske/vui'
 
 ### Props
 
-The Counter component accepts all props from the base Input component, with the following additions:
+The Counter component accepts all props from the base [Input](/docs/components/input) component, with the following additions:
 
-| Name               | Default | Type      | Description                                                         |
-| ------------------ | ------- | --------- | ------------------------------------------------------------------- |
-| `incrementBy`      | `1`     | `number`  | Amount to increment the value by when clicking the increment button |
-| `incrementEnabled` | `true`  | `boolean` | Whether the increment button is enabled                             |
-| `hideIncrement`    | `false` | `boolean` | Whether to hide the increment button                                |
-| `decrementBy`      | `1`     | `number`  | Amount to decrement the value by when clicking the decrement button |
-| `decrementEnabled` | `true`  | `boolean` | Whether the decrement button is enabled                             |
-| `hideDecrement`    | `false` | `boolean` | Whether to hide the decrement button                                |
-
-### Basic Usage
-
-```vue
-<script setup>
-import { Counter } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <Counter v-model="count" />
-</template>
-```
-
-### With Custom Increment/Decrement Values
-
-```vue
-<script setup>
-import { Counter } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <Counter
-    v-model="count"
-    :increment-by="5"
-    :decrement-by="5"
-  />
-</template>
-```
-
-### With Disabled Buttons
-
-```vue
-<script setup>
-import { Counter } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <Counter
-    v-model="count"
-    :increment-enabled="count < 10"
-    :decrement-enabled="count > 0"
-  />
-</template>
-```
-
-### With Hidden Buttons
-
-```vue
-<script setup>
-import { Counter } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <Counter
-    v-model="count"
-    :hide-increment="true"
-    :hide-decrement="true"
-  />
-</template>
-```
-
-### With Label and Placeholder
-
-```vue
-<script setup>
-import { Counter } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <Counter
-    v-model="count"
-    label="Quantity"
-    placeholder="Enter quantity"
-  />
-</template>
-```
+| Name                | Default | Type                                                                              |
+| ------------------- | ------- | --------------------------------------------------------------------------------- |
+| `increment-by`      | `1`     | `number` <br> Amount to increment the value by when clicking the increment button |
+| `increment-enabled` | `true`  | `boolean` <br> Whether the increment button is enabled                            |
+| `hide-increment`    | `false` | `boolean` <br> Whether to hide the increment button                               |
+| `decrement-by`      | `1`     | `number` <br> Amount to decrement the value by when clicking the decrement button |
+| `decrement-enabled` | `true`  | `boolean` <br> Whether the decrement button is enabled                            |
+| `hide-decrement`    | `false` | `boolean` <br> Whether to hide the decrement button                               |

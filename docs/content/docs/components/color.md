@@ -1,4 +1,4 @@
-# Color Input
+# Color
 
 A specialized input component for selecting colors. It combines a color picker with a text input for direct color value entry. It accepts
 

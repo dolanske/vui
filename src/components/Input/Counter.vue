@@ -31,9 +31,6 @@ const count = defineModel<number>({
 
 <template>
   <Input v-bind="inputProps" v-model.number="count" type="number">
-    <!-- <template v-if="!hideDecrement" #start>
-    </template> -->
-
     <template #end>
       <ButtonGroup>
         <Button v-if="!hideDecrement" key="decrease" :disabled="!decrementEnabled" :style="{ 'border-top-left-radius': 0, 'border-bottom-left-radius': 0, 'marginRight': '-1px' }" @click="count -= decrementBy">
