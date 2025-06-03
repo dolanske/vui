@@ -145,11 +145,8 @@ const breadcrumbItems = computed(() => {
         <!-- Bind color for these specific styles -->
         <Flex y-center gap="xs" :style="{ '--color-text-light': 'var(--color-text-invert)' }">
           <Button size="s" square variant="fill" @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">
-            <Icon
-              :name="colorMode === 'dark' ? 'ph:sun' : 'ph:moon'"
-            />
+            <Icon :name="colorMode === 'dark' ? 'ph:sun' : 'ph:moon'" />
           </Button>
-
           <Button size="s" square variant="fill">
             <Icon name="ph:github-logo" />
           </Button>
