@@ -4,118 +4,64 @@ A multi-line text input component that extends the base Input component with tex
 
 ::textarea-example
 
+```vue
+<script setup>
+import { Textarea } from '@dolanske/vui'
+import { ref } from 'vue'
+
+const text = ref('')
+</script>
+
+<template>
+  <Textarea
+    v-model="text"
+    expand
+    label="Description"
+    hint="Let me know what you think about vui"
+    placeholder="Your text..."
+    :limit="280"
+    required
+  />
+</template>
+```
+
+::
+
 ### Props
 
-The Textarea component accepts all props from the base Input component, with the following additions:
+| Name          | Default    | Type                                                                                |
+| ------------- | ---------- | ----------------------------------------------------------------------------------- |
+| `resize`      | `vertical` | `boolean` `vertical` `horizontal` <br> Controls the resize behavior of the textarea |
+| `autoResize`  | `false`    | `boolean` <br> Automatically adjusts the height based on content                    |
+| `label`       | —          | `string` <br> Label text for the textarea                                           |
+| `hint`        | —          | `string` <br> Helper text displayed below the textarea                              |
+| `limit`       | —          | `number` `string` <br> Maximum number of characters allowed                         |
+| `expand`      | `false`    | `boolean` <br> Makes the textarea expand to full width                              |
+| `placeholder` | —          | `string` <br> Placeholder text when textarea is empty                               |
+| `required`    | `false`    | `boolean` <br> Makes the textarea required                                          |
+| `modelValue`  | `''`       | `string` <br> Value of the textarea (for v-model)                                   |
+| `readonly`    | `false`    | `boolean` <br> Makes the textarea readonly                                          |
+| `focus`       | `false`    | `boolean` <br> Focuses the textarea when mounted                                    |
+| `errors`      | `[]`       | `string[]` <br> Array of error messages to display                                  |
+| `disabled`    | `false`    | `boolean` <br> Disables the textarea                                                |
 
-| Name         | Default      | Type                                    | Description                                       |
-| ------------ | ------------ | --------------------------------------- | ------------------------------------------------- |
-| `resize`     | `'vertical'` | `boolean \| 'vertical' \| 'horizontal'` | Controls the resize behavior of the textarea      |
-| `autoResize` | `false`      | `boolean`                               | Automatically adjusts the height based on content |
+### Events
 
-### With Label and Placeholder
+| Name                | Payload  | Description                             |
+| ------------------- | -------- | --------------------------------------- |
+| `update:modelValue` | `string` | Emitted when the textarea value changes |
 
-```vue
-<script setup>
-import { Textarea } from '@dolanske/vui'
-import { ref } from 'vue'
+### Slots
 
-const text = ref('')
-</script>
+| Name     | Accepts | Description                                                |
+| -------- | ------- | ---------------------------------------------------------- |
+| `before` | `any`   | Content to be displayed before any of the textarea content |
+| `start`  | `any`   | Content to be displayed at the start of the textarea       |
+| `end`    | `any`   | Content to be displayed at the end of the textarea         |
+| `after`  | `any`   | Content to be displayed after all the textarea content     |
 
-<template>
-  <Textarea
-    v-model="text"
-    label="Description"
-    placeholder="Enter your description"
-  />
-</template>
-```
+### Exposes
 
-### With Character Limit
-
-```vue
-<script setup>
-import { Textarea } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const text = ref('')
-</script>
-
-<template>
-  <Textarea
-    v-model="text"
-    label="Bio"
-    :limit="280"
-    placeholder="Tell us about yourself"
-  />
-</template>
-```
-
-### With Auto-resize
-
-```vue
-<script setup>
-import { Textarea } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const text = ref('')
-</script>
-
-<template>
-  <Textarea
-    v-model="text"
-    label="Notes"
-    auto-resize
-    placeholder="Enter your notes"
-  />
-</template>
-```
-
-### With Custom Resize Behavior
-
-```vue
-<script setup>
-import { Textarea } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const text = ref('')
-</script>
-
-<template>
-  <Textarea
-    v-model="text"
-    label="Content"
-    resize="horizontal"
-    placeholder="Enter content"
-  />
-</template>
-```
-
-### With Validation
-
-```vue
-<script setup>
-import { Textarea } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const text = ref('')
-const errors = ref([])
-
-function validateText(value) {
-  errors.value = []
-  if (value.length < 10) {
-    errors.value.push('Text must be at least 10 characters long')
-  }
-}
-</script>
-
-<template>
-  <Textarea
-    v-model="text"
-    label="Feedback"
-    :errors="errors"
-    @update:model-value="validateText"
-  />
-</template>
-```
+| Name    | Type     | Description                  |
+| ------- | -------- | ---------------------------- |
+| `focus` | `method` | Focuses the textarea element |
