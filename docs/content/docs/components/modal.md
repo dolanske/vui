@@ -1,33 +1,55 @@
 # Modal
 
-A modal component that displays content in a floating window over the main content. It supports various sizes, customization options, and can be used for dialogs, forms, or any other content that needs to be displayed in a focused context.
+A modal component that displays content in a floating window over the main content. It supports various sizes, customization options, and can be used for dialogs, forms, or any other content that needs to be displayed in a focused context above the page content.
 
-## Usage
+::modal-example
 
 ```vue
+<script setup lang="ts">
+import { Button, Flex, Modal } from '@dolanske/vui'
+import { ref } from 'vue'
+
+const isOpen = ref(false)
+</script>
+
 <template>
-  <Modal v-model:open="isOpen" title="Example Modal">
-    <p>This is the modal content</p>
+  <Button @click="isOpen = true">
+    Basic Modal
+  </Button>
+  <Modal :open="isOpen" size="m" :card="{ separators: true }" @close="isOpen = false">
+    <template #header>
+      <h4>Modal </h4>
+    </template>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad harum id, distinctio voluptatum repellat eveniet repellendus saepe velit rem illo facere aspernatur iste nam, quasi dolores expedita consectetur enim autem?</p>
+    <template #footer="{ close }">
+      <Flex x-end>
+        <Button @click="close">
+          Close
+        </Button>
+      </flex>
+    </template>
   </Modal>
 </template>
 ```
 
+::
+
 ## Props
 
-| Name         | Type                                                      | Default | Description                                                    |
-| ------------ | --------------------------------------------------------- | ------- | -------------------------------------------------------------- |
-| `open`       | `boolean`                                                 | `false` | Controls the visibility of the modal                           |
-| `size`       | `'xs' \| 's' \| 'm' \| 'l' \| 'xl' \| 'full' \| 'screen'` | `'m'`   | Controls the width of the modal                                |
-| `card`       | `CardProps`                                               | `{}`    | Props to pass to the underlying Card component                 |
-| `scrollable` | `boolean`                                                 | `false` | Makes the modal content scrollable instead of the modal itself |
-| `centered`   | `boolean`                                                 | `false` | Centers the modal vertically on the screen                     |
-| `canDismiss` | `boolean`                                                 | `true`  | Whether the modal can be closed by clicking the X button       |
+| Name         | Default | Type                                                                                   |
+| ------------ | ------- | -------------------------------------------------------------------------------------- |
+| `open`       | `false` | `boolean`<br>Controls the visibility of the modal                                      |
+| `size`       | `'m'`   | `xs` `s` `m` `l` `xl` `screen` `screen` <br> Controls the width of the modal           |
+| `card`       | -       | `CardProps`<br>Props to pass to the underlying [Card](/docs/components/card) component |
+| `scrollable` | `false` | `boolean`<br>Makes the modal content scrollable instead of the modal itself            |
+| `centered`   | `false` | `boolean`<br>Centers the modal vertically on the screen                                |
+| `canDismiss` | `true`  | `boolean`<br>Whether the modal can be closed by clicking the X button                  |
 
 ## Events
 
-| Name    | Description                      |
-| ------- | -------------------------------- |
-| `close` | Emitted when the modal is closed |
+| Name    | Payload | Description                      |
+| ------- | ------- | -------------------------------- |
+| `close` | -       | Emitted when the modal is closed |
 
 ## Slots
 
@@ -36,51 +58,3 @@ A modal component that displays content in a floating window over the main conte
 | `default` | `{ close: () => void }` | The main content of the modal |
 | `header`  | `{ close: () => void }` | Custom header content         |
 | `footer`  | `{ close: () => void }` | Custom footer content         |
-
-## Examples
-
-### Basic Modal
-
-```vue
-<template>
-  <Modal v-model:open="isOpen" title="Basic Modal">
-    <p>This is a basic modal with default settings.</p>
-  </Modal>
-</template>
-```
-
-### Custom Sized Modal
-
-```vue
-<template>
-  <Modal v-model:open="isOpen" size="l" title="Large Modal">
-    <p>This is a large modal with custom size.</p>
-  </Modal>
-</template>
-```
-
-### Centered Modal with Custom Header
-
-```vue
-<template>
-  <Modal v-model:open="isOpen" centered>
-    <template #header="{ close }">
-      <h2>Custom Header</h2>
-      <Button @click="close" />
-    </template>
-    <p>This modal is centered and has a custom header.</p>
-  </Modal>
-</template>
-```
-
-### Scrollable Modal
-
-```vue
-<template>
-  <Modal v-model:open="isOpen" scrollable title="Scrollable Content">
-    <p v-for="i in 20" :key="i">
-      This is a scrollable modal with lots of content.
-    </p>
-  </Modal>
-</template>
-```

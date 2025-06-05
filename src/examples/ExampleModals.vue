@@ -11,7 +11,7 @@ const open3 = ref(false)
 const open4 = ref(false)
 const open5 = ref(false)
 
-const size = ref<Sizes | 'full'>('s')
+const size = ref<Sizes | 'screen'>('s')
 function setSize(s: any) {
   size.value = s
   open2.value = true
@@ -55,8 +55,8 @@ function setSize(s: any) {
               <Button square @click="setSize('l')">
                 L
               </Button>
-              <Button square @click="setSize('full')">
-                Full
+              <Button square @click="setSize('screen')">
+                Screen
               </Button>
             </Flex>
             <Modal :open="open2" :size @close="open2 = false">

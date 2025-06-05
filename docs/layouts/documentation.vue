@@ -308,7 +308,7 @@ article {
   top: 0;
   margin-bottom: 72px;
   background-color: var(--color-bg);
-  z-index: 1000;
+  z-index: 100;
 
   .vui-tab {
     height: 64px;

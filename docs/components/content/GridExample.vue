@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Flex, Grid } from '@dolanske/vui'
+import { Flex, Grid } from '@dolanske/vui'
 </script>
 
 <template>
