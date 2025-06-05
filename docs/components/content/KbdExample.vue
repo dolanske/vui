@@ -1,55 +1,37 @@
 <script setup>
-import { Kbd } from '@dolanske/vui'
+import { Flex, Kbd, KbdGroup } from '@dolanske/vui'
+import { useEventListener } from '@vueuse/core'
 
-function handleShortcut() {
-  // Handle shortcut here
-}
+const isActive = ref(false)
+
+useEventListener(document, 'keyup', () => {
+  isActive.value = false
+})
 </script>
 
 <template>
-  <div class="space-y-l">
-    <div>
-      <h3 class="text-m mb-s">
-        Basic Usage
-      </h3>
-      <Kbd keys="Escape" />
-    </div>
-
-    <div>
-      <h3 class="text-m mb-s">
-        With Key Combination
-      </h3>
-      <Kbd keys="Ctrl+S" />
-    </div>
-
-    <div>
-      <h3 class="text-m mb-s">
-        With Custom Label
-      </h3>
-      <Kbd
-        keys="Ctrl+S"
-        label="Save"
-      />
-    </div>
-
-    <div>
-      <h3 class="text-m mb-s">
-        With Highlight
-      </h3>
-      <Kbd
-        keys="Ctrl+S"
-        highlight
-      />
-    </div>
-
-    <div>
-      <h3 class="text-m mb-s">
-        With Event Handling
-      </h3>
-      <Kbd
-        keys="Ctrl+S"
-        @trigger="handleShortcut"
-      />
-    </div>
-  </div>
+  <DocsExample>
+    <template #component>
+      <Flex column y-center>
+        <Flex x-center gap="xs">
+          <KbdGroup @trigger="isActive = true">
+            <Kbd keys="Shift" highlight />
+            <Kbd keys="S" highlight />
+          </KbdGroup>
+        </Flex>
+        <p :style="{ color: isActive ? 'var(--color-text-green)' : 'var(--color-text)' }">
+          {{ isActive ? 'Yay!!!!' : 'Press both keys.' }}
+        </p>
+      </Flex>
+    </template>
+    <template #code>
+      <slot />
+    </template>
+  </DocsExample>
 </template>
+
+<style scoped>
+p {
+  margin: 0;
+}
+</style>

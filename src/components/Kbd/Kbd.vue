@@ -43,6 +43,8 @@ const isActive = computed(() => {
 
 <template>
   <kbd class="vui-kbd" :class="{ active: isActive }">
-    {{ props.label ?? props.keys.replaceAll("+", " + ") }}
+    <slot>
+      {{ props.label ?? props.keys.replaceAll("+", " + ") }}
+    </slot>
   </kbd>
 </template>
