@@ -39,7 +39,6 @@ const filteredComponents = computed(() => {
         v-for="component in filteredComponents"
         :key="component.name"
         :href="component.path"
-        :class="{ 'link-disabled': component.disabled }"
       >
         <Card style="height: 100%;" class="component-card">
           <Icon name="ph:shapes" size="24" />

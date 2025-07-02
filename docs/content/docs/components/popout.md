@@ -14,21 +14,20 @@ const anchorRef = ref(null)
 </script>
 
 <template>
-  <div ref="anchorRef">
-    <Button @click="isVisible = !isVisible">
-      Toggle Popout
-    </Button>
-  </div>
+  <Button @click="isVisible = !isVisible">
+    Toggle Popout
+  </Button>
 
   <Popout
     :anchor="anchorRef"
     :visible="isVisible"
     placement="bottom"
+    class="p-l"
+    style="max-width: 256px"
     @click-outside="isVisible = false"
   >
-    <div class="p-md bg-white shadow-lg rounded">
-      Popout content
-    </div>
+    <h3>Popout content</h3>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem facere eligendi ex, alias itaque molestiae, vero animi, vitae vel fuga corporis aut consectetur temporibus ipsum placeat dolores perferendis. Deleniti, et!</p>
   </Popout>
 </template>
 ```
@@ -37,88 +36,21 @@ const anchorRef = ref(null)
 
 ### Props
 
-| Name        | Type          | Default | Description                                             |
-| ----------- | ------------- | ------- | ------------------------------------------------------- |
-| `anchor`    | `HTMLElement` | -       | Reference to the HTML element the Popout is anchored to |
-| `placement` | `Placement`   | `'top'` | Position of the popout relative to the anchor           |
-| `offset`    | `number`      | `8`     | Distance between the anchor and the popout in pixels    |
-| `visible`   | `boolean`     | -       | Whether the popout is visible                           |
+| Name        | Default | Type                                                                       |
+| ----------- | ------- | -------------------------------------------------------------------------- |
+| `anchor`    | —       | `HTMLElement` <br> Reference to the HTML element the Popout is anchored to |
+| `placement` | `top`   | `string` <br> Position of the popout relative to the anchor                |
+| `offset`    | `8`     | `number` <br> Distance between the anchor and the popout in pixels         |
+| `visible`   | —       | `boolean` <br> Whether the popout is visible                               |
 
 ### Events
 
-| Name           | Type | Description                              |
-| -------------- | ---- | ---------------------------------------- |
-| `clickOutside` | -    | Emitted when clicking outside the popout |
+| Name           | Payload | Type                                    |
+| -------------- | ------- | --------------------------------------- |
+| `clickOutside` | —       | Called when clicking outside the popout |
 
-### Features
+### Slots
 
-- Automatic positioning and flipping
-- Smooth animations based on placement
-- Click outside detection
-- Responsive to anchor element changes
-- Support for all Floating UI placements
-
-### Examples
-
-#### Basic Popout
-
-```vue
-<script setup>
-import { Button, Popout } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const isVisible = ref(false)
-const anchorRef = ref(null)
-</script>
-
-<template>
-  <div ref="anchorRef">
-    <Button @click="isVisible = !isVisible">
-      Toggle Popout
-    </Button>
-  </div>
-
-  <Popout
-    :anchor="anchorRef"
-    :visible="isVisible"
-    placement="bottom"
-    @click-outside="isVisible = false"
-  >
-    <div class="p-md bg-white shadow-lg rounded">
-      Popout content
-    </div>
-  </Popout>
-</template>
-```
-
-#### Custom Placement
-
-```vue
-<script setup>
-import { Button, Popout } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const isVisible = ref(false)
-const anchorRef = ref(null)
-</script>
-
-<template>
-  <div ref="anchorRef">
-    <Button @click="isVisible = !isVisible">
-      Toggle Popout
-    </Button>
-  </div>
-
-  <Popout
-    :anchor="anchorRef"
-    :visible="isVisible"
-    placement="right"
-    :offset="16"
-    @click-outside="isVisible = false"
-  >
-    <div class="p-md bg-white shadow-lg rounded">
-      Popout with custom placement and offset
-    </div>
-  </Popout>
-</template>
-```
+| Name      | Accepts | Description                   |
+| --------- | ------- | ----------------------------- |
+| `default` | `any`   | The content inside the popout |
