@@ -266,13 +266,15 @@ const breadcrumbItems = computed(() => {
       color: var(--color-text-light);
     }
 
-    &:hover,
+    &.active,
+    &:hover {
+      background-color: var(--color-bg-raised);
+    }
+
     &.active {
       .vui-dropdown-item-slot {
-        color: var(--color-text) !important;
+        color: var(--color-accent) !important;
       }
-
-      background-color: var(--color-bg-raised);
     }
   }
 }

@@ -14,6 +14,9 @@ export default defineConfig(({ mode }) => {
 
   return {
     ...(isGitHubPages && { base: '/vui/' }),
+    server: {
+      port: 3005,
+    },
     test: {
       environment: 'jsdom',
     },

@@ -10,7 +10,7 @@ const isNonDismissableOpen = ref(false)
 <template>
   <DocsExample>
     <template #component>
-      <Flex gap="s" x-center>
+      <Flex :gap="0" x-center>
         <Button @click="isOpen = true">
           Basic Modal
         </Button>
