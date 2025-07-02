@@ -17,6 +17,7 @@
     bottom: unset;
     height: 0;
     border-radius: none !important;
+    z-index: 9999999;
 
     &.fixed-active {
       height: var(--vui-progress-height);
