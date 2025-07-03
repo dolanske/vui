@@ -44,9 +44,9 @@ const selected = ref('option1')
 | --------- | ------- | ----------------------------------------------------------------------------- |
 | `default` | `any`   | Content to be displayed as the label (overrides the `label` prop if provided) |
 
-### Single usage vs RadioGroup
+### Single Usage vs RadioGroup
 
-The `Radio` component can either be used on its own or inside a `RadioGroup`.
+The `Radio` component can be used individually or grouped together within a `RadioGroup`.
 
 ```vue
 <template>
