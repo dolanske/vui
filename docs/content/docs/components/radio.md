@@ -44,7 +44,7 @@ const selected = ref('option1')
 | --------- | ------- | ----------------------------------------------------------------------------- |
 | `default` | `any`   | Content to be displayed as the label (overrides the `label` prop if provided) |
 
-### Single Usage vs RadioGroup
+## Single vs Grouped
 
 The `Radio` component can be used individually or grouped together within a `RadioGroup`.
 
@@ -70,7 +70,7 @@ When grouping, do not put `v-model` on the individual `Radio` components, but in
 </template>
 ```
 
-#### RadioGroup Props
+### RadioGroup Props
 
 The `RadioGroup` component wraps its slot in a [Flex](/components/flex) component and also accepts all of its props to properly position the contents.
 

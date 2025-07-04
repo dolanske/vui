@@ -31,3 +31,9 @@ const isOpen = ref(false)
     </template>
   </DocsExample>
 </template>
+
+<style scoped>
+:deep(p) {
+  margin: 0;
+}
+</style>
