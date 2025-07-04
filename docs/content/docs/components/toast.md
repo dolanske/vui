@@ -2,35 +2,48 @@
 
 A toast notification component that displays temporary messages to users. It supports various options like custom actions, descriptions, and custom body components.
 
-## Usage
+::toast-example
 
 ```vue
 <script setup>
-import { pushToast } from '@dolanske/vui'
+import { Button, pushToast } from '@dolanske/vui'
 
-// Show a simple toast
-pushToast('Operation successful')
+function showBasicToast() {
+  pushToast('Operation successful')
+}
 
-// Show a toast with description and action
-pushToast('File deleted', {
-  description: 'The file has been moved to trash',
-  action: {
-    label: 'Undo',
-    handler: () => {
-      // Handle undo action
+function showActionToast() {
+  pushToast('File deleted', {
+    description: 'The file has been moved to trash',
+    action: {
+      label: 'Undo',
+      handler: (_toastId) => {
+        // Handle undo action
+      },
     },
-  },
-})
+  })
+}
 </script>
+
+<template>
+  <div class="flex gap-md">
+    <Button @click="showBasicToast">
+      Show Basic Toast
+    </Button>
+    <Button @click="showActionToast">
+      Show Action Toast
+    </Button>
+  </div>
+</template>
 ```
+
+::
 
 ## API
 
 ### pushToast
 
-The main function to create and display a toast notification.
-
-#### Parameters
+The main function to create and display a toast notification. It returns the toast object it just created including the `id` which can be used to remove the toast before the user dismisses it.
 
 | Name      | Type           | Description                          |
 | --------- | -------------- | ------------------------------------ |
@@ -59,64 +72,19 @@ The main function to create and display a toast notification.
 
 Function to manually remove a toast notification.
 
-#### Parameters
-
 | Name | Type     | Description                   |
 | ---- | -------- | ----------------------------- |
 | `id` | `number` | The ID of the toast to remove |
 
 ## Examples
 
-### Basic Toast
+#### Persistent Toast
+
+::toast-persistent-example
 
 ```vue
 <script setup>
-import { pushToast } from '@dolanske/vui'
-
-function showBasicToast() {
-  pushToast('Operation successful')
-}
-</script>
-
-<template>
-  <Button @click="showBasicToast">
-    Show Toast
-  </Button>
-</template>
-```
-
-### Toast with Description and Action
-
-```vue
-<script setup>
-import { pushToast } from '@dolanske/vui'
-
-function showActionToast() {
-  pushToast('File deleted', {
-    description: 'The file has been moved to trash',
-    action: {
-      label: 'Undo',
-      handler: (toastId) => {
-        // Handle undo action
-        console.log('Undo clicked for toast:', toastId)
-      },
-    },
-  })
-}
-</script>
-
-<template>
-  <Button @click="showActionToast">
-    Show Action Toast
-  </Button>
-</template>
-```
-
-### Persistent Toast
-
-```vue
-<script setup>
-import { pushToast } from '@dolanske/vui'
+import { Button, pushToast } from '@dolanske/vui'
 
 function showPersistentToast() {
   pushToast('Important message', {
@@ -133,30 +101,35 @@ function showPersistentToast() {
 </template>
 ```
 
-### Custom Body Toast
+::
+
+#### Custom Body Toast
+
+::toast-custom-body-example
 
 ```vue
 <script setup>
-import { pushToast } from '@dolanske/vui'
+import { Button, pushToast } from '@dolanske/vui'
+import { defineComponent, markRaw } from 'vue'
 
-const CustomBody = defineComponent({
+const CustomBody = markRaw(defineComponent({
   props: {
     data: Object,
     toastId: Number,
   },
-  template: `
-    <div class="custom-toast-body">
-      <p>Custom content for toast {{ toastId }}</p>
-      <pre>{{ JSON.stringify(data, null, 2) }}</pre>
-    </div>
-  `,
-})
+  render() {
+    return h('div', { class: 'custom-toast-body' }, [
+      h('p', `Custom content for toast id: ${this.toastId}`),
+      h('pre', JSON.stringify(this.data, null, 2)),
+    ])
+  },
+}))
 
 function showCustomToast() {
   pushToast('Custom Toast', {
     body: CustomBody,
     bodyProps: {
-      customData: 'This is custom data',
+      data: { customData: 'This is custom data' },
     },
   })
 }
@@ -168,3 +141,5 @@ function showCustomToast() {
   </Button>
 </template>
 ```
+
+::

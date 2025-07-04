@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Toasts } from '@dolanske/vui'
+
 const route = useRoute()
 const isDocumentation = computed(() => route.fullPath.includes('/docs'))
 </script>
@@ -7,4 +9,5 @@ const isDocumentation = computed(() => route.fullPath.includes('/docs'))
   <NuxtLayout :name="isDocumentation ? 'documentation' : 'default'">
     <NuxtPage />
   </NuxtLayout>
+  <Toasts />
 </template>
