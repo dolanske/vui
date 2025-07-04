@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { Tab, Tabs } from '@dolanske/vui'
 
+const props = defineProps<{
+  full?: boolean
+}>()
+
 defineSlots<{
   component: () => VNode
   code: () => VNode
@@ -19,7 +23,7 @@ const tab = ref('Component')
         Code
       </Tab>
     </Tabs>
-    <div v-if="tab === 'Component'" class="example-component">
+    <div v-if="tab === 'Component'" class="example-component" :class="{ full: props.full }">
       <slot name="component" />
     </div>
     <div v-else-if="tab === 'Code'" class="example-code">
@@ -29,6 +33,11 @@ const tab = ref('Component')
 </template>
 
 <style lang="scss">
+.example-root {
+  position: relative;
+  overflow: hidden;
+}
+
 .example-component,
 .example-code {
   border: 1px solid var(--color-border-weak);
@@ -38,6 +47,11 @@ const tab = ref('Component')
 
 .example-code pre {
   margin-top: 0 !important;
+}
+
+.example-component.full {
+  padding: 0;
+  overflow: hidden;
 }
 
 .example-component {

@@ -2,7 +2,101 @@
 
 A responsive sidebar component that can be used for navigation, menus, or any other content that needs to be displayed in a side panel. It supports both full-width and mini modes, and can be configured to appear on hover.
 
-## Usage
+::sidebar-example
+
+```vue
+<script>
+import { Button, DropdownItem, Flex, Sidebar } from '@dolanske/vui'
+import { ref } from 'vue'
+
+const isOpen = ref(true)
+</script>
+
+<template>
+  <div class="vui-sidebar-layout" :style="{ height: '512px' }">
+    <Sidebar :mini="!isOpen">
+      <template #header>
+        <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="" style="filter: invert(1);">
+      </template>
+      <DropdownItem icon="ph:house">
+        Home
+      </DropdownItem>
+      <DropdownItem icon="ph:user">
+        About
+      </DropdownItem>
+      <DropdownItem icon="ph:phone">
+        Contact
+      </DropdownItem>
+      <template #footer>
+        <Flex y-center x-centerd>
+          <Avatar v-show="isOpen" size="m" />
+          <span v-show="isOpen" class="flex-1">dolanske</span>
+          <Button plain size="s" icon="ph:sign-out" />
+        </Flex>
+      </template>
+    </Sidebar>
+    <main class="p-xl">
+      <Flex y-center class="mb-l">
+        <Button plain size="s" icon="ph:sidebar-simple" @click="isOpen = !isOpen" />
+        <h4 style="margin: 0;">
+          My page
+        </h4>
+      </Flex>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque deleniti asperiores quibusdam et commodi deserunt libero officia doloremque. Possimus ipsum sunt odit culpa consequatur hic reiciendis doloremque consequuntur tempore excepturi?</p>
+      <hr>
+      <p>Yes that's correct</p>
+      <ul>
+        <li>Secure</li>
+        <li>Reliant</li>
+        <li>Ublumf</li>
+      </ul>
+    </main>
+  </div>
+</template>
+```
+
+::
+
+### Props
+
+| Name     | Default | Type                                                                                     |
+| -------- | ------- | ---------------------------------------------------------------------------------------- |
+| `width`  | `224`   | `number` <br> Width of the sidebar in pixels when in full mode                           |
+| `mini`   | `false` | `boolean` <br> Whether to display the sidebar in mini mode (collapsed)                   |
+| `appear` | `false` | `boolean` <br> Whether the sidebar should appear on hover at the left edge of the screen |
+| `floaty` | `false` | `boolean` <br> Whether to add edges of background around the sidebar                     |
+
+### Events
+
+Sidebar is controlled via `v-model`, because it can also close itself and this change should be propagated to the parent.
+
+| Name                | Payload | Description                                   |
+| ------------------- | ------- | --------------------------------------------- |
+| `update:modelValue` | —       | Emitted when the sidebar's open state changes |
+
+### Slots
+
+All slots expose the same properties, which allow the UI to control the state of the Sidebar.
+
+| Name      | Accepts         | Description                                     |
+| --------- | --------------- | ----------------------------------------------- |
+| `default` | `SidebarExpose` | Main content of the sidebar                     |
+| `header`  | `SidebarExpose` | Content to display at the top of the sidebar    |
+| `footer`  | `SidebarExpose` | Content to display at the bottom of the sidebar |
+
+```ts
+interface SidebarExpose {
+  mini: Ref<boolean>
+  floaty: Ref<boolean>
+  width: Ref<number>
+  open: Ref<boolean>
+  close: () => void
+}
+```
+
+### Examples
+
+::sidebar-floaty-example
 
 ```vue
 <script setup>
@@ -13,161 +107,25 @@ const isOpen = ref(true)
 </script>
 
 <template>
-  <Sidebar v-model="isOpen" :width="224">
-    <template #header>
-      <div class="p-md">
-        <h2>Navigation</h2>
-      </div>
-    </template>
-
-    <div class="p-md">
-      <!-- Sidebar content -->
-    </div>
-
-    <template #footer>
-      <div class="p-md">
-        <!-- Footer content -->
-      </div>
-    </template>
-  </Sidebar>
-</template>
-```
-
-## Props
-
-| Name     | Type      | Default | Description                                                               |
-| -------- | --------- | ------- | ------------------------------------------------------------------------- |
-| `width`  | `number`  | `224`   | Width of the sidebar in pixels when in full mode                          |
-| `mini`   | `boolean` | `false` | Whether to display the sidebar in mini mode (collapsed)                   |
-| `appear` | `boolean` | `false` | Whether the sidebar should appear on hover at the left edge of the screen |
-| `floaty` | `boolean` | `false` | Whether to add edges of background around the sidebar                     |
-
-## Events
-
-| Name                | Type      | Description                                   |
-| ------------------- | --------- | --------------------------------------------- |
-| `update:modelValue` | `boolean` | Emitted when the sidebar's open state changes |
-
-## Slots
-
-| Name      | Props                                                                                 | Description                                     |
-| --------- | ------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `default` | `{ mini: boolean, floaty: boolean, width: number, open: boolean, close: () => void }` | Main content of the sidebar                     |
-| `header`  | `{ mini: boolean, floaty: boolean, width: number, open: boolean, close: () => void }` | Content to display at the top of the sidebar    |
-| `footer`  | `{ mini: boolean, floaty: boolean, width: number, open: boolean, close: () => void }` | Content to display at the bottom of the sidebar |
-
-## Examples
-
-### Basic Sidebar
-
-```vue
-<script setup>
-import { Sidebar } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const isOpen = ref(true)
-</script>
-
-<template>
-  <Sidebar v-model="isOpen">
-    <div class="p-md">
-      <h3>Navigation</h3>
-      <nav>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
-      </nav>
-    </div>
-  </Sidebar>
-</template>
-```
-
-### Mini Sidebar
-
-```vue
-<script setup>
-import { Sidebar } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const isOpen = ref(true)
-</script>
-
-<template>
-  <Sidebar v-model="isOpen" mini>
-    <div class="p-md">
-      <nav>
-        <ul>
-          <li>🏠</li>
-          <li>ℹ️</li>
-          <li>📞</li>
-        </ul>
-      </nav>
-    </div>
-  </Sidebar>
-</template>
-```
-
-### Appear on Hover
-
-```vue
-<script setup>
-import { Sidebar } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const isOpen = ref(false)
-</script>
-
-<template>
-  <Sidebar v-model="isOpen" appear>
-    <div class="p-md">
-      <h3>Navigation</h3>
-      <nav>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
-      </nav>
-    </div>
-  </Sidebar>
-</template>
-```
-
-### With Header and Footer
-
-```vue
-<script setup>
-import { Sidebar } from '@dolanske/vui'
-import { ref } from 'vue'
-
-const isOpen = ref(true)
-</script>
-
-<template>
-  <Sidebar v-model="isOpen">
-    <template #header>
-      <div class="p-md">
-        <h2>My App</h2>
-      </div>
-    </template>
-
-    <div class="p-md">
-      <nav>
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
-      </nav>
-    </div>
-
-    <template #footer>
-      <div class="p-md">
-        <p>© 2024 My App</p>
-      </div>
-    </template>
-  </Sidebar>
+  <div class="vui-sidebar-layout">
+    <Sidebar appear :width="128" floaty>
+      <template #header>
+        <img
+          src="https://dolansky.dev/backgrounds/star.png"
+          class="sidebar-logo"
+          width="40"
+        >
+      </template>
+      <DropdownItem icon="ph:house">
+        Home
+      </DropdownItem>
+      <DropdownItem icon="ph:user">
+        About
+      </DropdownItem>
+      <DropdownItem icon="ph:phone">
+        Contact
+      </DropdownItem>
+    </Sidebar>
+  </div>
 </template>
 ```

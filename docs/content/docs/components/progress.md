@@ -21,6 +21,8 @@ const progress = ref(50)
 
 ### Props
 
+The value of the progress component is controlled via  `v-model`
+
 | Name     | Default               | Type                                                                    |
 | -------- | --------------------- | ----------------------------------------------------------------------- |
 | `fake`   | —                     | `boolean` <br> Will randomly increment but never actually reach the end |
