@@ -30,9 +30,10 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
     { label: 'Typography', path: '/docs/framework/typography' },
     { label: 'Spacing', path: '/docs/framework/spacing' },
     { label: 'Layout', path: '/docs/framework/layout' },
+    { label: 'Z-index', path: '/docs/framework/z-index' },
     // NOTE: utils, tooltip
     { label: 'Utilities', path: '/docs/framework/utilities' },
-    { label: 'Defaults', path: '/docs/framework/defaults' },
+    // { label: 'Defaults', path: '/docs/framework/defaults' },
   ],
   'Components': [
     { label: 'Getting started', path: '/docs/components' },

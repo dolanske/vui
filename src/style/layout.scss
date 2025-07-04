@@ -53,6 +53,10 @@ $sizes: 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 
   display: inline;
 }
 
+.contents {
+  display: contents;
+}
+
 // Flex alignment classes
 .flex-1 {
   flex: 1;
@@ -170,10 +174,42 @@ $sizes: 0, 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
 }
 
 // Z-index
-$zindexes: 0, 10, 20, 30, 40, 50, auto;
+.z-behind {
+  z-index: -1;
+}
 
-@each $zindex in $zindexes {
-  .z-#{$zindex} {
-    z-index: $zindex;
-  }
+.z-default {
+  z-index: 1;
+}
+
+.z-active {
+  z-index: 50;
+}
+
+.z-mask {
+  z-index: 75;
+}
+
+.z-sticky {
+  z-index: 100;
+}
+
+.z-nav {
+  z-index: 200;
+}
+
+.z-overlay {
+  z-index: 300;
+}
+
+.z-popout {
+  z-index: 400;
+}
+
+.z-toast {
+  z-index: 500;
+}
+
+.z-modal {
+  z-index: 600;
 }

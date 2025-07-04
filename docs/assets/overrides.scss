@@ -32,6 +32,14 @@ p {
 // Inline code should be always in line
 td code {
   white-space: nowrap;
+
+  &:only-child {
+    margin: 0 !important;
+  }
+}
+
+td:first-child code {
+  margin: 0 !important;
 }
 
 .typeface {
