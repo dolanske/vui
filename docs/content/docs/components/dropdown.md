@@ -44,12 +44,12 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 
 ### Props
 
-| Name        | Default          | Type                                                                                                                                                                                    |
-| ----------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `placement` | `'bottom-start'` | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
-| `minWidth`  | `156`            | `number` `string` <br> Minimum width of the dropdown in pixels or CSS units                                                                                                             |
-| `expand`    | `false`          | `boolean` <br> Whether to expand the dropdown to match the trigger's width                                                                                                              |
-| `maxHeight` | `356`            | `number` `string` <br> Maximum height of the dropdown before scrolling in pixels or CSS units                                                                                           |
+| Name        | Default        | Type                                                                                                                                                                                    |
+| ----------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `placement` | `bottom-start` | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
+| `minWidth`  | `156`          | `number` `string` <br> Minimum width of the dropdown in pixels or CSS units                                                                                                             |
+| `expand`    | `false`        | `boolean` <br> Whether to expand the dropdown to match the trigger's width                                                                                                              |
+| `maxHeight` | `356`          | `number` `string` <br> Maximum height of the dropdown before scrolling in pixels or CSS units                                                                                           |
 
 ### Events
 
