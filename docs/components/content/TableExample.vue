@@ -1,122 +1,75 @@
 <script setup lang="ts">
-import { Button, defineTable, Table } from '@dolanske/vui'
+import { defineTable, Input, Pagination, Table } from '@dolanske/vui'
+import { computed } from 'vue'
 
 interface TableRow {
   id: number
   name: string
   age: number
-  email: string
-  [key: string]: string | number
 }
 
 const data: TableRow[] = [
-  { id: 1, name: 'John', age: 30, email: 'john@example.com' },
-  { id: 2, name: 'Jane', age: 25, email: 'jane@example.com' },
-  { id: 3, name: 'Bob', age: 35, email: 'bob@example.com' },
-  { id: 4, name: 'Alice', age: 28, email: 'alice@example.com' },
-  { id: 5, name: 'Charlie', age: 32, email: 'charlie@example.com' },
+  { id: 1, name: 'John Doe', age: 30 },
+  { id: 2, name: 'Jane Smith', age: 25 },
+  { id: 3, name: 'Bob Johnson', age: 35 },
+  { id: 4, name: 'Alice Brown', age: 28 },
+  { id: 5, name: 'Charlie Davis', age: 32 },
 ]
 
-const { headers, rows, pagination } = defineTable(data, {
+const { headers, rows, pagination, setPage, selectedRows, search } = defineTable(data, {
   pagination: {
     enabled: true,
     perPage: 3,
   },
   select: true,
 })
+
+const selectedRowsArray = computed(() => Array.from(selectedRows.value))
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <div class="flex flex-col gap-md">
-        <!-- Basic table -->
-        <div>
-          <h3 class="mb-sm">
-            Basic Table
-          </h3>
-          <Table.Root>
-            <template #header>
-              <Table.Head v-for="header in headers" :key="header.label" :header="header" sort />
-            </template>
-            <template #body>
-              <tr v-for="row in rows" :key="row.id">
-                <Table.Cell v-for="header in headers" :key="header.label">
-                  {{ row[header.label] }}
-                </Table.Cell>
-              </tr>
-            </template>
-          </Table.Root>
-        </div>
+      <div>
+        <!-- Search input -->
+        <Input
+          v-model="search"
+          placeholder="Search..."
+          class="mb-m"
+        />
 
-        <!-- Table with selection -->
-        <div>
-          <h3 class="mb-sm">
-            Table with Selection
-          </h3>
-          <Table.Root>
-            <template #header>
-              <Table.SelectAll />
-              <Table.Head v-for="header in headers" :key="header.label" :header="header" sort />
-            </template>
-            <template #body>
-              <tr v-for="row in rows" :key="row.id">
-                <Table.SelectRow :row="row" />
-                <Table.Cell v-for="header in headers" :key="header.label">
-                  {{ row[header.label] }}
-                </Table.Cell>
-              </tr>
-            </template>
-          </Table.Root>
-        </div>
+        <Table.Root separate-cells>
+          <template #header>
+            <Table.SelectAll />
+            <Table.Head v-for="header in headers" :key="header.label" :header="header" sort />
+          </template>
+          <template #body>
+            <tr v-for="row in rows" :key="row.id">
+              <Table.SelectRow :row="row" />
+              <Table.Cell>
+                {{ row.id }}
+              </Table.Cell>
+              <Table.Cell>
+                {{ row.name }}
+              </Table.Cell>
+              <Table.Cell>
+                {{ row.age }}
+              </Table.Cell>
+            </tr>
+          </template>
+          <template #pagination>
+            <Pagination :pagination="pagination" @change="setPage" />
+          </template>
+        </Table.Root>
 
-        <!-- Table with custom cell content -->
-        <div>
-          <h3 class="mb-sm">
-            Table with Custom Cell Content
-          </h3>
-          <Table.Root>
-            <template #header>
-              <Table.Head v-for="header in headers" :key="header.label" :header="header" sort />
-            </template>
-            <template #body>
-              <tr v-for="row in rows" :key="row.id">
-                <Table.Cell v-for="header in headers" :key="header.label">
-                  {{ row[header.label] }}
-                  <template #context>
-                    <Button icon="ph:dots-three" plain square />
-                  </template>
-                </Table.Cell>
-              </tr>
-            </template>
-          </Table.Root>
-        </div>
-
-        <!-- Table with pagination -->
-        <div>
-          <h3 class="mb-sm">
-            Table with Pagination
-          </h3>
-          <Table.Root>
-            <template #header>
-              <Table.Head v-for="header in headers" :key="header.label" :header="header" sort />
-            </template>
-            <template #body>
-              <tr v-for="row in rows" :key="row.id">
-                <Table.Cell v-for="header in headers" :key="header.label">
-                  {{ row[header.label] }}
-                </Table.Cell>
-              </tr>
-            </template>
-            <template #pagination>
-              <Pagination
-                :pagination="pagination"
-                :numbers="true"
-                :prev-next="true"
-                :first-last="true"
-              />
-            </template>
-          </Table.Root>
+        <!-- Selected rows info -->
+        <div v-if="selectedRowsArray.length > 0" class="mt-m text-m">
+          <p class="text-sm font-medium">
+            Selected {{ selectedRowsArray.length }} row{{ selectedRowsArray.length === 1 ? '' : 's' }}:
+          </p>
+          <p class="text-sm text-gray-600">
+            {{ selectedRowsArray.map(row => row.name).join(', ') }}
+          </p>
         </div>
       </div>
     </template>
@@ -125,3 +78,13 @@ const { headers, rows, pagination } = defineTable(data, {
     </template>
   </DocsExample>
 </template>
+
+<style scoped>
+:deep(p) {
+  margin: 0;
+}
+
+:deep(table) {
+  margin: 0;
+}
+</style>
