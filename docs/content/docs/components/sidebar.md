@@ -2,6 +2,8 @@
 
 A responsive sidebar component that can be used for navigation, menus, or any other content that needs to be displayed in a side panel. It supports both full-width and mini modes, and can be configured to appear on hover.
 
+Please note, Sidebar must always be placed within a `<div class="vui-sidebar-layout" />` element. Similar to [Drawer](/docs/components/drawer)
+
 ::sidebar-example
 
 ```vue

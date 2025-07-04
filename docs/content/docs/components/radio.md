@@ -72,7 +72,7 @@ When grouping, do not put `v-model` on the individual `Radio` components, but in
 
 ### RadioGroup Props
 
-The `RadioGroup` component wraps its slot in a [Flex](/components/flex) component and also accepts all of its props to properly position the contents.
+The `RadioGroup` component wraps its slot in a [Flex](/docs/components/flex) component and also accepts all of its props to properly position the contents.
 
 | Name       | Default | Type                                                               |
 | ---------- | ------- | ------------------------------------------------------------------ |
