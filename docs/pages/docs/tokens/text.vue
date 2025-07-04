@@ -63,7 +63,7 @@ import { Badge, Button, Card, CopyClipboard, Grid } from '@dolanske/vui'
             </Button>
           </CopyClipboard>
         </template>
-        <pre class="m-0 text-xl" :style="{ height: '80px' }">The quick brown fox jumps over the lazy dog.</pre>
+        <pre class="m-0 text-xl" :style="{ height: '80px', padding: '0 16px', display: 'flex', alignItems: 'center' }">The quick brown fox jumps over the lazy dog.</pre>
       </Card>
     </Grid>
 

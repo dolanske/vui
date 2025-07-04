@@ -22,7 +22,7 @@ const filteredComponents = computed(() => {
     </p>
 
     <Grid gap="l" :columns="2" class="mb-m">
-      <Input v-model="search" placeholder="Search components..." class="w-100">
+      <Input v-model="search" placeholder="Search components..." class="w-100" focus>
         <template #start>
           <Icon name="ph:magnifying-glass" />
         </template>

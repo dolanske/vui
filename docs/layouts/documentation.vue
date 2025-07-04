@@ -122,6 +122,11 @@ const breadcrumbItems = computed(() => {
     ...reducedPathItems,
   ]
 })
+
+function pushPage(page: string) {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  router.push(page)
+}
 </script>
 
 <template>
@@ -160,7 +165,7 @@ const breadcrumbItems = computed(() => {
         :key="subPage.path"
         class="sidebar-item"
         :class="{ active: route.fullPath.endsWith(subPage.path) }"
-        @click="router.push(subPage.path)"
+        @click="pushPage(subPage.path)"
       >
         {{ subPage.label }}
       </DropdownItem>
@@ -185,7 +190,7 @@ const breadcrumbItems = computed(() => {
 
         <Breadcrumbs class="app-breadcrumbs">
           <BreadcrumbItem v-for="item in breadcrumbItems" :key="item.path">
-            <Button variant="link" @click="router.push(item.path)">
+            <Button variant="link" @click="pushPage(item.path)">
               {{ item.label }}
             </Button>
           </BreadcrumbItem>
@@ -196,7 +201,7 @@ const breadcrumbItems = computed(() => {
         </article>
 
         <Grid v-if="prevAndNext" :columns="2" class="docs-bottom-navigation">
-          <Button v-if="prevAndNext.prev" expand size="l" outline @click="router.push(prevAndNext.prev.path)">
+          <Button v-if="prevAndNext.prev" expand size="l" outline @click="pushPage(prevAndNext.prev.path)">
             <Flex column gap="xs">
               <Icon name="ph:arrow-left" size="18" />
               <p>{{ prevAndNext.prev.label }}</p>
@@ -204,7 +209,7 @@ const breadcrumbItems = computed(() => {
           </Button>
           <div v-else />
 
-          <Button v-if="prevAndNext.next" expand size="l" outline @click="router.push(prevAndNext.next.path)">
+          <Button v-if="prevAndNext.next" expand size="l" outline @click="pushPage(prevAndNext.next.path)">
             <Flex column gap="xs" y-end>
               <Icon name="ph:arrow-right" size="18" />
               <p>{{ prevAndNext.next.label }}</p>
@@ -261,6 +266,7 @@ const breadcrumbItems = computed(() => {
 
   .vui-dropdown-item {
     margin: 0;
+    --interactive-el-height: 32px;
 
     .vui-dropdown-item-slot {
       color: var(--color-text-light);

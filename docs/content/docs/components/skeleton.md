@@ -4,61 +4,31 @@ The Skeleton component is a loading placeholder that can be used to indicate con
 
 ::skeleton-example
 
-## Props
-
-| Prop     | Type               | Default                  | Description                           |
-| -------- | ------------------ | ------------------------ | ------------------------------------- |
-| `radius` | `string \| number` | `var(--border-radius-s)` | The border radius of the skeleton     |
-| `width`  | `string \| number` | `'100%'`                 | The width of the skeleton             |
-| `height` | `string \| number` | `'32px'`                 | The height of the skeleton            |
-| `circle` | `boolean`          | `false`                  | Whether to make the skeleton circular |
-
-## Examples
-
-### Custom Size
-
 ```vue
-<Skeleton
-  width="200px"
-  height="100px"
-/>
+<script setup>
+import { Grid, Skeleton } from '@dolanske/vui'
+</script>
+
+<template>
+  <Grid :columns="3" gap="s">
+    <Skeleton />
+    <Skeleton :radius="16" />
+    <Grid :columns="3" gap="s">
+      <Skeleton :width="32" :height="32" circle />
+      <Skeleton :width="32" :height="32" circle />
+      <Skeleton :width="32" :height="32" circle />
+    </Grid>
+  </Grid>
+</template>
 ```
 
-### Custom Radius
+::
 
-```vue
-<Skeleton
-  radius="8px"
-  width="200px"
-  height="100px"
-/>
-```
+### Props
 
-### Circle
-
-```vue
-<Skeleton
-  circle
-  width="100px"
-/>
-```
-
-### Multiple Skeletons
-
-```vue
-<div class="space-y-s">
-  <Skeleton width="200px" height="24px" />
-  <Skeleton width="150px" height="24px" />
-  <Skeleton width="180px" height="24px" />
-</div>
-```
-
-### Card Layout
-
-```vue
-<div class="card p-m">
-  <Skeleton width="200px" height="24px" class="mb-s" />
-  <Skeleton width="100%" height="100px" class="mb-s" />
-  <Skeleton width="80px" height="32px" />
-</div>
-```
+| Name     | Default                  | Type                                                     |
+| -------- | ------------------------ | -------------------------------------------------------- |
+| `radius` | `var(--border-radius-s)` | `string` `number` <br> The border radius of the skeleton |
+| `width`  | `100%`                   | `string` `number` <br> The width of the skeleton         |
+| `height` | `32px`                   | `string` `number` <br> The height of the skeleton        |
+| `circle` | `false`                  | `boolean` <br> Whether to make the skeleton circular     |

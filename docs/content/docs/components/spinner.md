@@ -4,54 +4,24 @@ The Spinner component is a loading indicator that shows an animated circular pro
 
 ::spinner-example
 
+```vue
+<script setup>
+import { Flex, Spinner } from '@dolanske/vui'
+</script>
+
+<template>
+  <Flex x-center y-center gap="l">
+    <Spinner size="s" />
+    <Spinner size="m" />
+    <Spinner size="l" />
+  </Flex>
+</template>
+```
+
+::
+
 ## Props
 
-| Prop   | Type                | Default | Description             |
-| ------ | ------------------- | ------- | ----------------------- |
-| `size` | `'s' \| 'm' \| 'l'` | `'m'`   | The size of the spinner |
-
-## Examples
-
-### Different Sizes
-
-```vue
-<div class="flex gap-m items-center">
-  <Spinner size="s" />
-  <Spinner size="m" />
-  <Spinner size="l" />
-</div>
-```
-
-### In Button
-
-```vue
-<Button disabled>
-  <Spinner size="s" class="mr-s" />
-  Loading...
-</Button>
-```
-
-### In Card
-
-```vue
-<div class="card p-m flex items-center justify-center">
-  <Spinner size="l" />
-</div>
-```
-
-### With Text
-
-```vue
-<div class="flex items-center gap-s">
-  <Spinner />
-  <span>Loading content...</span>
-</div>
-```
-
-### Centered in Container
-
-```vue
-<div class="h-200px flex items-center justify-center">
-  <Spinner size="l" />
-</div>
-```
+| Name   | Default | Type                                     |
+| ------ | ------- | ---------------------------------------- |
+| `size` | `m`     | `s` `m` `l` <br> The size of the spinner |
