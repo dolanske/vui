@@ -2,7 +2,6 @@
 import type { LinkItem } from '~/types/shared'
 import { BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
-import { RouterLink } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
@@ -142,11 +141,11 @@ const persistentSidebarLinks = computed(() => {
       </template>
 
       <!-- Always-present pages -->
-      <RouterLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path">
+      <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path">
         <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }">
           {{ link.label }}
         </DropdownItem>
-      </RouterLink>
+      </NuxtLink>
 
       <Divider v-show="subPagesToRender" />
 

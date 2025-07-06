@@ -103,9 +103,9 @@ import { containerClasses, displayClasses, flexClasses, heightClasses, widthClas
       Flex
     </h2>
     <p class="mb-xl">
-      Classes for flexbox layout control. You should almost always use the <RouterLink to="/docs/components/Flex">
+      Classes for flexbox layout control. You should almost always use the <NuxtLink to="/docs/components/Flex">
         Flex
-      </RouterLink> component.
+      </NuxtLink> component.
     </p>
 
     <TokenItem name="Flex 1" class-name="flex-1">

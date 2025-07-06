@@ -26,9 +26,9 @@ const textAlignmentClasses = [
     <h1>Text</h1>
     <p>VUI provides utility text classes for quick styling. Use these sparingly when creating dedicated CSS classes would be overkill.</p>
     <p>
-      Text classes are automatically generated from <RouterLink to="/docs/tokens/text">
+      Text classes are automatically generated from <NuxtLink to="/docs/tokens/text">
         CSS design tokens
-      </RouterLink>, so token updates automatically propagate to all utility classes.
+      </NuxtLink>, so token updates automatically propagate to all utility classes.
     </p>
 
     <h2 class="mb-xl">

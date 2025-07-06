@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
@@ -31,6 +34,11 @@ export default defineNuxtConfig({
       },
     },
   },
+  nitro: {
+    prerender: {
+      routes: prerenderRoutes(),
+    },
+  },
   fonts: {
     provider: 'google',
     families: [
@@ -45,3 +53,12 @@ export default defineNuxtConfig({
     './modules/vui-global-register',
   ],
 })
+
+function prerenderRoutes() {
+  const contentDir = path.resolve(__dirname, 'content') // adjust if needed
+  const files = fs.readdirSync(contentDir)
+
+  return files
+    .filter(f => f.endsWith('.md'))
+    .map(f => `/${f.replace(/\.md$/, '')}`)
+}
