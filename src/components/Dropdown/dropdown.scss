@@ -1,4 +1,4 @@
-.vui-dropdown-trigger-wrap {
+f.vui-dropdown-trigger-wrap {
   // width: fit-content;
   position: relative;
 }
@@ -18,9 +18,10 @@
   justify-content: flex-start;
   padding-block: var(--space-xs);
   padding-inline: calc(var(--space-xs) + 8px);
-  font-size: var(--font-size-m);
-  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
   font-weight: var(--font-weight-semibold);
+  border-bottom: 1px solid var(--color-border);
   margin-inline: -4px;
   margin-top: -4px;
   margin-bottom: 4px;
