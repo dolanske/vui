@@ -268,7 +268,6 @@ export const widthClasses = [
   { name: 'Width 90%', className: 'w-90', value: '90%' },
   { name: 'Width 95%', className: 'w-95', value: '95%' },
   { name: 'Width 100%', className: 'w-100', value: '100%' },
-  { name: 'Width full', className: 'w-full', value: '100%' },
   { name: 'Width auto', className: 'w-auto', value: 'auto' },
 ]
 

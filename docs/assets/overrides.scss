@@ -1,6 +1,6 @@
 :root {
   --dark-color-bg: #000;
-  --dark-color-accent: #e46aff;
+  --dark-color-accent: #fd731d;
 }
 
 table {
@@ -78,7 +78,7 @@ td:first-child code {
     }
 
     td {
-      padding-block: var(--space-l);
+      padding-block: var(--space-m);
 
       code {
         display: inline-block;

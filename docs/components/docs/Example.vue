@@ -35,7 +35,7 @@ const tab = ref('Component')
 <style lang="scss">
 .example-root {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .example-component,
@@ -51,7 +51,7 @@ const tab = ref('Component')
 
 .example-component.full {
   padding: 0;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .example-component {

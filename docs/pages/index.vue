@@ -46,7 +46,7 @@ const router = useRouter()
     </Card>
 
     <a href="https://dolansky.dev/" target="_blank" class="author">
-      <img src="/favicon.svg" alt="">
+      <img src="/jdlogo.svg" alt="">
       Created by @dolanske
     </a>
   </div>

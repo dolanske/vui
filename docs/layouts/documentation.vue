@@ -104,7 +104,6 @@ function pushPage(page: string) {
 
 const persistentSidebarLinks = computed(() => {
   const links = [...globalLinks]
-
   return subPagesToRender.value ? links : links.concat(documentationTabs)
 })
 </script>
@@ -114,9 +113,8 @@ const persistentSidebarLinks = computed(() => {
     <Sidebar class="app-sidebar" :width="196">
       <template #header>
         <Flex class="mb-s" y-center>
-          <h5 class="vui-logo">
-            VUI
-          </h5>
+          <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
+          <h5>VUI</h5>
           <div class="flex-1" />
           <Button square outline>
             <Icon name="ph:magnifying-glass" />
@@ -142,7 +140,7 @@ const persistentSidebarLinks = computed(() => {
 
       <!-- Always-present pages -->
       <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path">
-        <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }">
+        <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }" @click="currentTab = ''">
           {{ link.label }}
         </DropdownItem>
       </NuxtLink>
@@ -208,40 +206,13 @@ const persistentSidebarLinks = computed(() => {
 </template>
 
 <style>
-.vui-logo {
-  position: relative;
-  padding-left: 46px;
+:root {
+  --docs-tab-height: 64px;
+}
 
-  &:before,
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-  }
-
-  &:before {
-    z-index: -1;
-    background: #833ab4;
-    background: linear-gradient(135deg, rgb(195, 46, 225) 0%, rgb(253, 115, 29) 50%, rgb(249, 212, 5) 100%);
-  }
-
-  &:after {
-    z-index: 2;
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0) 4.55%,
-      var(--color-text-invert) 4.55%,
-      rgba(0, 0, 0, 0) 54.55%,
-      var(--color-text-invert) 54.55%,
-      var(--color-text-invert) 100%
-    );
-    background-size: 6px 6px;
-  }
+.vui-logo-image {
+  width: 32px;
+  height: 32px;
 }
 
 .app-sidebar {
@@ -272,6 +243,10 @@ const persistentSidebarLinks = computed(() => {
 
 .app-breadcrumbs {
   margin-bottom: var(--space-s);
+  position: sticky;
+  top: calc(var(--docs-tab-height) + 1px);
+  z-index: var(--z-sticky);
+  background-color: var(--color-bg);
 
   .vui-button {
     padding-inline: 0;
@@ -304,7 +279,7 @@ article {
   z-index: 100;
 
   .vui-tab {
-    height: 64px;
+    height: var(--docs-tab-height);
     font-size: var(--font-size-m);
   }
 }
