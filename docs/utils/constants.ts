@@ -238,6 +238,77 @@ export const spaceClasses = [
   { name: 'XXXL space', className: 'space-xxxl', size: '64px' },
 ]
 
+export const containerClasses = [
+  { name: 'Extra small container', className: 'container-xs', description: 'Extra small container', maxWidth: 'var(--container-xs)', value: '480px' },
+  { name: 'Small container', className: 'container-s', description: 'Small container', maxWidth: 'var(--container-s)', value: '640px' },
+  { name: 'Medium container', className: 'container-m', description: 'Medium container', maxWidth: 'var(--container-m)', value: '768px' },
+  { name: 'Default container', className: 'container', description: 'Default container with auto margins and padding. This class is required to make other container sizes work.', maxWidth: 'var(--container-l)', value: '1200px' },
+  { name: 'Extra large container', className: 'container-xl', description: 'Extra large container', maxWidth: 'var(--container-xl)', value: '1400px' },
+  { name: 'Extra extra large container', className: 'container-xxl', description: 'Extra extra large container', maxWidth: 'var(--container-xxl)', value: '1600px' },
+  { name: 'Full width container', className: 'container-full', description: 'Full width container', maxWidth: '-', value: '100%' },
+]
+
+export const widthClasses = [
+  { name: 'Width 0%', className: 'w-0', value: '0%' },
+  { name: 'Width 5%', className: 'w-5', value: '5%' },
+  { name: 'Width 10%', className: 'w-10', value: '10%' },
+  { name: 'Width 15%', className: 'w-15', value: '15%' },
+  { name: 'Width 20%', className: 'w-20', value: '20%' },
+  { name: 'Width 25%', className: 'w-25', value: '25%' },
+  { name: 'Width 30%', className: 'w-30', value: '30%' },
+  { name: 'Width 35%', className: 'w-35', value: '35%' },
+  { name: 'Width 40%', className: 'w-40', value: '40%' },
+  { name: 'Width 45%', className: 'w-45', value: '45%' },
+  { name: 'Width 50%', className: 'w-50', value: '50%' },
+  { name: 'Width 55%', className: 'w-55', value: '55%' },
+  { name: 'Width 60%', className: 'w-60', value: '60%' },
+  { name: 'Width 65%', className: 'w-65', value: '65%' },
+  { name: 'Width 70%', className: 'w-70', value: '70%' },
+  { name: 'Width 75%', className: 'w-75', value: '75%' },
+  { name: 'Width 80%', className: 'w-80', value: '80%' },
+  { name: 'Width 85%', className: 'w-85', value: '85%' },
+  { name: 'Width 90%', className: 'w-90', value: '90%' },
+  { name: 'Width 95%', className: 'w-95', value: '95%' },
+  { name: 'Width 100%', className: 'w-100', value: '100%' },
+  { name: 'Width full', className: 'w-full', value: '100%' },
+  { name: 'Width auto', className: 'w-auto', value: 'auto' },
+]
+
+export const heightClasses = [
+  { name: 'Height 0%', className: 'h-0', value: '0%' },
+  { name: 'Height 5%', className: 'h-5', value: '5%' },
+  { name: 'Height 10%', className: 'h-10', value: '10%' },
+  { name: 'Height 15%', className: 'h-15', value: '15%' },
+  { name: 'Height 20%', className: 'h-20', value: '20%' },
+  { name: 'Height 25%', className: 'h-25', value: '25%' },
+  { name: 'Height 30%', className: 'h-30', value: '30%' },
+  { name: 'Height 35%', className: 'h-35', value: '35%' },
+  { name: 'Height 40%', className: 'h-40', value: '40%' },
+  { name: 'Height 45%', className: 'h-45', value: '45%' },
+  { name: 'Height 50%', className: 'h-50', value: '50%' },
+  { name: 'Height 55%', className: 'h-55', value: '55%' },
+  { name: 'Height 60%', className: 'h-60', value: '60%' },
+  { name: 'Height 65%', className: 'h-65', value: '65%' },
+  { name: 'Height 70%', className: 'h-70', value: '70%' },
+  { name: 'Height 75%', className: 'h-75', value: '75%' },
+  { name: 'Height 80%', className: 'h-80', value: '80%' },
+  { name: 'Height 85%', className: 'h-85', value: '85%' },
+  { name: 'Height 90%', className: 'h-90', value: '90%' },
+  { name: 'Height 95%', className: 'h-95', value: '95%' },
+  { name: 'Height 100%', className: 'h-100', value: '100%' },
+]
+
+export const displayClasses = [
+  { name: 'Block display', className: 'block', value: 'block' },
+  { name: 'Inline block display', className: 'inline-block', value: 'inline-block' },
+  { name: 'Inline display', className: 'inline', value: 'inline' },
+  { name: 'Contents display', className: 'contents', value: 'contents' },
+]
+
+export const flexClasses = [
+  { name: 'Flex grow and shrink', className: 'flex-1', property: 'flex: 1' },
+]
+
 export const autoMarginClasses = [
   { name: 'Auto horizontal margins', className: 'mx-auto', property: 'margin-inline: auto' },
   { name: 'Auto vertical margins', className: 'my-auto', property: 'margin-block: auto' },

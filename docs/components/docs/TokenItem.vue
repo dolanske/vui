@@ -48,7 +48,7 @@ const computedStyle = computed(() => {
 
     <div class="flex-1">
       <strong class="list-item-name">{{ props.name }}</strong>
-      <span class="list-item-value">
+      <span v-if="props.size || $slots.value" class="list-item-value">
         <slot name="value">{{ props.size }}</slot>
       </span>
     </div>
