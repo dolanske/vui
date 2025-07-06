@@ -1,11 +1,11 @@
-import fs from 'node:fs'
-import path from 'node:path'
+// import fs from 'node:fs'
+// import path from 'node:path'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   app: {
-    baseURL: '/docs',
+    baseURL: '/docs/',
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
@@ -34,13 +34,13 @@ export default defineNuxtConfig({
       },
     },
   },
-  nitro: {
-    prerender: {
-      routes: prerenderRoutes(),
-      failOnError: false,
-      crawlLinks: true,
-    },
-  },
+  // nitro: {
+  //   prerender: {
+  //     routes: prerenderRoutes(),
+  //     failOnError: false,
+  //     crawlLinks: true,
+  //   },
+  // },
   fonts: {
     provider: 'google',
     families: [
@@ -56,11 +56,11 @@ export default defineNuxtConfig({
   ],
 })
 
-function prerenderRoutes() {
-  const contentDir = path.resolve(__dirname, 'content') // adjust if needed
-  const files = fs.readdirSync(contentDir)
+// function prerenderRoutes() {
+//   const contentDir = path.resolve(__dirname, 'content') // adjust if needed
+//   const files = fs.readdirSync(contentDir)
 
-  return files
-    .filter(f => f.endsWith('.md'))
-    .map(f => `/${f.replace(/\.md$/, '')}`)
-}
+//   return files
+//     .filter(f => f.endsWith('.md'))
+//     .map(f => `/${f.replace(/\.md$/, '')}`)
+// }
