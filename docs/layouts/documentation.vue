@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { BreadcrumbItem, Breadcrumbs, Button, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
+import { RouterLink } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
@@ -128,6 +129,12 @@ function pushPage(page: string) {
   window.scrollTo({ top: 0, behavior: 'smooth' })
   router.push(page)
 }
+
+const navigationLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/docs', label: 'Guide' },
+  { to: '/docs/projects', label: 'Projects' },
+]
 </script>
 
 <template>
@@ -160,6 +167,15 @@ function pushPage(page: string) {
           <span class="text-s color-text-lightest">VUI 1.4.6</span>
         </Flex>
       </template>
+
+      <!-- Always-present pages -->
+      <RouterLink :to="link.to" v-for="link in navigationLinks" :key="link.to">
+        <DropdownItem :class="{ active: route.fullPath.endsWith(link.to) }">
+          {{ link.label }}
+        </DropdownItem>
+      </RouterLink>
+      
+      <Divider v-show="subPagesToRender" />
 
       <span class="pl-xs text-xs block mb-s text-semibold">
         {{ currentTab }}

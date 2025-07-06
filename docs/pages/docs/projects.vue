@@ -4,9 +4,10 @@
 
 <template>
   <div>
-    <h1>Here are projects using vui</h1>
+    <h1>Projects using VUI</h1>
     <ul>
       <li>Hivecom net</li>
+      <li>VUI documentation</li>
     </ul>
   </div>
 </template>

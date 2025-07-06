@@ -1,9 +1,10 @@
 <script setup lang="ts">
-
+const slug = useRoute().params.slug
+const { data } = await useAsyncData(`components-${slug}`, () => {
+  return queryCollection('docs').path(`/docs/guide`).first()
+})
 </script>
 
 <template>
-  <div>
-    <h3>Library description</h3>
-  </div>
+  <ContentRenderer :value="data!" />
 </template>
