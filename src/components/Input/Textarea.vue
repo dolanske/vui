@@ -6,6 +6,8 @@ import '../Input/input.scss'
 type Props = Omit<InputProps, 'type'> & {
   resize?: boolean | 'vertical' | 'horizontal'
   autoResize?: boolean
+  rows?: number
+  cols?: number
 }
 
 const {
@@ -21,6 +23,8 @@ const {
   autoResize,
   errors = [] as string[],
   disabled,
+  rows = 5,
+  cols,
 } = defineProps<Props>()
 
 const model = defineModel<string>({
@@ -58,10 +62,14 @@ const fS = computed(() => autoResize ? 'content' : 'auto')
         :required
         :disabled
         :max="limit"
+        :rows="rows"
+        :cols="cols"
         :style="{
           resize: r,
           // @ts-expect-error Early-adoption CSS attribute
           fieldSizing: fS,
+          // Add 1 to the width to account for the border
+          ...(cols ? { width: `${cols + 1}ch` } : {}),
         }"
       />
     </div>

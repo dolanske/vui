@@ -136,7 +136,7 @@ const selected2 = ref([])
     </h6>
 
     <Grid :columns="2" gap="m">
-      <Textarea label="Your story" hint="tell me everything" :resize="false" required />
+      <Textarea label="Your story" hint="Normal textarea + 3 rows prop" :resize="false" required :rows="3" />
       <Textarea expand label="With limit" :limit="64" :resize="false" placeholder="Bro tell me a short story" />
       <Textarea expand label="Resize vertical" />
       <Textarea expand label="Resize horizontal" resize="horizontal" />

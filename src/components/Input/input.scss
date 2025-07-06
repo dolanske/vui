@@ -230,7 +230,8 @@
     textarea {
       line-height: 1.3em;
       height: auto;
-      min-height: 5lh;
+      // 5lh = 5 lines of height
+      // min-height: 5lh;
       field-sizing: content;
       padding: var(--textarea-padding);
       transition: none;
