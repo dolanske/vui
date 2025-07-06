@@ -32,6 +32,8 @@ const text = ref('')
 | Name          | Default    | Type                                                                                |
 | ------------- | ---------- | ----------------------------------------------------------------------------------- |
 | `resize`      | `vertical` | `boolean` `vertical` `horizontal` <br> Controls the resize behavior of the textarea |
+| `cols`        | -          | `number` <br> Modifies the width of the textarea in character count                 |
+| `rows`        | `5`        | `number` <br> Modifies the height of the textarea in row cou                        |
 | `autoResize`  | `false`    | `boolean` <br> Automatically adjusts the height based on content                    |
 | `label`       | —          | `string` <br> Label text for the textarea                                           |
 | `hint`        | —          | `string` <br> Helper text displayed below the textarea                              |

@@ -181,7 +181,7 @@ const persistentSidebarLinks = computed(() => {
           </BreadcrumbItem>
         </Breadcrumbs>
 
-        <article class="typeface">
+        <article class="typeset">
           <slot />
         </article>
 

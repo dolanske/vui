@@ -3,6 +3,7 @@ import Avatar from '../components/Avatar/Avatar.vue'
 import Flex from '../components/Flex/Flex.vue'
 
 const variants = ['s', 'm', 'l', 96] as const
+const radius = ['xs', 's', 'm', 'l', 48] as const
 </script>
 
 <template>
@@ -33,6 +34,16 @@ const variants = ['s', 'm', 'l', 96] as const
           <td>
             <Flex>
               <Avatar v-for="size in variants" :key="size" :size>
+                AB
+              </Avatar>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Radius</th>
+          <td>
+            <Flex>
+              <Avatar v-for="r in radius" :key="r" :radius="r" size="l">
                 AB
               </Avatar>
             </Flex>

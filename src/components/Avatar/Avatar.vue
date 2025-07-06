@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
 import { Icon } from '@iconify/vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import { Size } from '../../shared/types'
 import './avatar.scss'
@@ -12,6 +12,7 @@ interface Props {
   fallback?: string
   icon?: string
   alt?: string
+  radius?: Sizes | 'xs' | number
 }
 
 const {
@@ -19,9 +20,17 @@ const {
   url,
   fallback,
   alt = 'avatar',
+  radius = 999,
 } = defineProps<Props>()
 
 const showFallback = ref(false)
+
+const aR = computed(() => {
+  if (typeof radius === 'number')
+    return radius
+
+  return `var(--border-radius-${radius})`
+})
 </script>
 
 <template>
@@ -32,6 +41,7 @@ const showFallback = ref(false)
       ...(typeof size === 'number' && {
         '--avatar-size': formatUnitValue(size),
       }),
+      borderRadius: aR,
     }"
   >
     <span v-if="$slots.default">
