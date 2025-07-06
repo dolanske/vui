@@ -27,7 +27,7 @@
   gap: var(--space-m);
   justify-content: space-between;
   background-color: var(--color-bg-medium);
-  z-index: 50;
+  z-index: var(--z-popout);
 
   &.sticky {
     position: sticky;
@@ -41,7 +41,7 @@
 
   .vui-dropdown-title-end {
     font-size: var(--font-size-s);
-    font-weight: 400;
+    font-weight: var(--font-weight);
     color: var(--color-text-lighter);
   }
 }

@@ -15,7 +15,7 @@ export interface ModalProps {
   /**
    * Controls the width of the modal
    */
-  size?: Sizes | 'full' | 'screen'
+  size?: Sizes | 'screen'
   /**
    * Modal wraps a floating card. You can optinally pass in any props you'd pass
    * into the <Card /> component.

@@ -8,6 +8,7 @@ import Tabs from '../components/Tabs/Tabs.vue'
 // import Flex from '../components/Flex/Flex.vue'
 
 const activeTab = ref('Home')
+const noActiveNow = ref('')
 
 // Dynamic test
 const dynamicTabs = ref(['First', 'Second', 'Third'])
@@ -22,9 +23,9 @@ const activeDynamic = ref(dynamicTabs.value[0])
     <table>
       <tbody>
         <tr>
-          <th>Base</th>
+          <th>Base + nothing active at first</th>
           <td>
-            <Tabs v-model="activeTab">
+            <Tabs v-model="noActiveNow">
               <Tab value="Home" />
               <Tab value="About" />
               <Tab value="You" />

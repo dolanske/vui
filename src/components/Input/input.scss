@@ -44,7 +44,7 @@
     input,
     textarea,
     .vui-input-style {
-      pointer-events: none;
+      // pointer-events: none;
       color: var(--input-color-text-light);
       border-color: var(--input-color-border-weak);
       resize: none !important;
@@ -92,7 +92,7 @@
     }
 
     ::placeholder {
-      font-weight: 400;
+      font-weight: var(--font-weight);
       color: var(--color-text-lighter);
       font-family: var(--global-font);
     }
@@ -111,7 +111,7 @@
       width: 100%;
       transition: var(--transition-fast);
       padding-inline: var(--input-padding);
-      z-index: 1;
+      z-index: var(--z-default);
 
       &:has(input:focus),
       &:focus {

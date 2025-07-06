@@ -11,7 +11,8 @@ h4,
 h5,
 h6 {
   display: block;
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-title);
 }
 
 h1 {
@@ -38,14 +39,15 @@ h6 {
   font-size: var(--font-size-m);
 }
 
+li,
 figcaption,
 table th,
 table td,
 blockquote,
 p {
   font-size: var(--font-size-m);
-  line-height: 1.4em;
-  font-weight: 400;
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight);
 
   & > * {
     line-height: inherit;
@@ -62,20 +64,9 @@ p {
     }
   }
 
-  code {
-    font-family: var(--global-font-mono);
-    border-radius: var(--border-radius-s);
-    background-color: var(--color-bg-raised);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    padding: 0px 3px;
-    font-weight: var(--font-weight);
-    font-size: var(--font-size-s);
-  }
-
   strong,
   b {
-    font-weight: var(--font-weight-700);
+    font-weight: var(--font-weight-bold);
   }
 
   i {
@@ -85,6 +76,21 @@ p {
   u {
     text-decoration: line-through;
   }
+}
+
+code {
+  display: inline-block;
+  font-family: var(--global-font-mono);
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-bg-raised);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0px 4px;
+  margin-inline: 1px;
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-s);
+  min-height: 22px;
+  line-height: var(--line-height-base);
 }
 
 hr {
@@ -102,27 +108,41 @@ blockquote {
   padding-block: var(--space-s);
   padding-left: var(--space-l);
   border-left: 3px solid var(--color-border);
+  line-height: var(--line-height-base);
 }
 
 pre {
   font-family: var(--global-font-mono);
   font-size: var(--font-size-s);
-  font-weight: 300;
-  line-height: 1.2em;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height-base);
   padding: var(--space-m);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-m);
   white-space: pre-wrap;
   background-color: var(--color-bg-raised);
-  z-index: 1;
+  z-index: var(--z-default);
   position: relative;
+
+  code {
+    min-height: unset;
+    padding: unset;
+    border-radius: unset;
+    border: unset;
+    color: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
 
   &[data-lang]::after {
     content: attr(data-lang);
     font-family: var(--global-font);
     display: block;
     position: absolute;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     top: 6px;
     right: 6px;
     padding: 5px;
@@ -207,7 +227,7 @@ table {
     padding-block: var(--space-s);
     min-width: 80px;
     font-size: var(--font-size-m);
-    line-height: 1.4em;
+    line-height: var(--line-height-base);
     font-variant-numeric: tabular-nums;
     vertical-align: top;
 
@@ -219,7 +239,7 @@ table {
   }
 
   th {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
     text-transform: uppercase;
   }
@@ -227,7 +247,7 @@ table {
   tr {
     td {
       border-bottom: 1px solid var(--color-border);
-      font-weight: 400;
+      font-weight: var(--font-weight);
     }
 
     &:first-child {
@@ -286,7 +306,7 @@ dl {
   dt {
     padding-left: 0;
     color: var(--color-text-lighter);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     font-size: var(--font-size-m);
     grid-column-start: 1;
   }
@@ -315,6 +335,7 @@ article,
       font-size: var(--font-size-m);
       position: relative;
       padding-left: 28px;
+      line-height: var(--line-height-base);
 
       & > ul {
         margin-top: 0;

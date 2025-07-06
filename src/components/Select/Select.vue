@@ -186,6 +186,8 @@ const id = useId()
           :class="{ selected: selected?.find(v => v.value === option.value) }"
           :icon="selected?.find(v => v.value === option.value) ? 'ph:check-bold' : ''"
           @click="() => {
+            if (readonly) return
+
             setValue(option)
             // In single mode, close modal after clicking
             if (single && !(required && selected && selected[0].value === option.value)) {

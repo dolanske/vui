@@ -77,7 +77,7 @@ onMounted(() => {
     :open
     v-bind="rootProps"
     :aria-describedby="id"
-    @close=" emit('close')"
+    @close="emit('close')"
     @update:open="(state) => state === false && emit('close')"
   >
     <DrawerPortal v-bind="portalProps">

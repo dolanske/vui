@@ -27,13 +27,13 @@
 
     .vui-dropdown-item-slot,
     .vui-dropdown-item-icon svg path {
-      color: var(--color-text-lighter);
+      color: var(--color-text-lighter) !important;
     }
 
     .vui-dropdown-item-hint {
       visibility: hidden;
       opacity: 0;
-      z-index: -1;
+      z-index: var(--z-behind);
     }
   }
 

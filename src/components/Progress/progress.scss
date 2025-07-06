@@ -17,6 +17,7 @@
     bottom: unset;
     height: 0;
     border-radius: none !important;
+    z-index: 9999999;
 
     &.fixed-active {
       height: var(--vui-progress-height);
@@ -30,7 +31,7 @@
 
   .vui-progress-indicator {
     position: absolute;
-    z-index: 4;
+    z-index: var(--z-active);
     inset: 0;
     right: unset;
     width: 0;

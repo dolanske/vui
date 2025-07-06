@@ -14,7 +14,6 @@ interface Props {
 
 const {
   label,
-  // iconOn = theme.value === 'light' ? 'ph:check-square-fill' : 'ph:check-square',
   iconOn = 'ph:check-square-fill',
   iconOff = 'ph:square',
   disabled,

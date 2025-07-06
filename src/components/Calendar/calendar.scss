@@ -39,7 +39,7 @@
   --dp-font-family: var(--global-font);
   --dp-border-radius: var(--border-radius-s);
   --dp-cell-border-radius: var(--border-radius-s);
-  --dp-common-transition: var(--transition);
+  --dp-common-transition: var(--transition-fast);
 
   --dp-font-size: var(--font-size-m);
   --dp-preview-font-size: var(--font-size-s);
@@ -64,6 +64,11 @@
 
 .dp__main {
   font-size: var(--font-size-m);
+  font-weight: var(--font-weight);
+}
+
+.dp__btn {
+  font-weight: var(--font-medium);
 }
 
 .dp__outer_menu_wrap {

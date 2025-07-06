@@ -1,0 +1,88 @@
+:root {
+  --dark-color-bg: #000;
+  --dark-color-accent: #e46aff;
+}
+
+table {
+  td,
+  th {
+    border-radius: 0 !important;
+  }
+}
+
+.vui-tabs .vui-tab-underline {
+  border-bottom-width: 1px;
+  bottom: -1px;
+}
+
+.vui-dropdown-item.disabled {
+  opacity: 0.4;
+}
+
+pre {
+  border: none;
+  background-color: var(--color-bg-lowered);
+  line-height: var(--line-height-base);
+}
+
+p {
+  color: var(--color-text-light);
+}
+
+// Inline code should be always in line
+td code {
+  white-space: nowrap;
+
+  &:only-child {
+    margin: 0 !important;
+  }
+}
+
+td:first-child code {
+  margin: 0 !important;
+}
+
+.typeface {
+  h1,
+  h2,
+  h3 {
+    & + :is(h4, h5, h6) {
+      margin-top: var(--space-m) !important;
+    }
+  }
+
+  code {
+    font-size: var(--font-size-s);
+  }
+
+  table {
+    width: 100%;
+
+    * {
+      border-right: none !important;
+      border-left: none !important;
+    }
+
+    th {
+      color: var(--color-text-lighter) !important;
+      font-weight: var(--font-weight-semibold);
+    }
+
+    td:first-child {
+      code {
+        color: var(--color-text-accent);
+        background-color: var(--color-bg-accent-lowered);
+        border: none;
+      }
+    }
+
+    td {
+      padding-block: var(--space-l);
+
+      code {
+        display: inline-block;
+        margin-bottom: var(--space-xs);
+      }
+    }
+  }
+}

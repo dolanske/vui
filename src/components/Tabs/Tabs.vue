@@ -84,7 +84,7 @@ enforceSlotType(flattened, 'Tab')
     </template>
 
     <Transition name="fade" appear>
-      <div ref="underline" class="vui-tab-underline" />
+      <div v-if="active" ref="underline" class="vui-tab-underline" />
     </Transition>
   </div>
 </template>

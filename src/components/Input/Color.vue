@@ -9,6 +9,8 @@ const props = defineProps<InputProps>()
 const attrs = useAttrs()
 const color = defineModel<string>()
 const id = useId()
+
+// TODO: defineSlots so that __intenal_replace_input doesn't show up in intellisense
 </script>
 
 <template>

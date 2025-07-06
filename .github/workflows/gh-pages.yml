@@ -29,6 +29,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - run: cd ./docs/
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node

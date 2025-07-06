@@ -72,7 +72,7 @@ select {
   border-radius: var(--border-radius-s);
   padding-inline: var(--space-xs);
   transition: var(--transition-fast);
-  z-index: 1;
+  z-index: var(--z-default);
   font-size: var(--font-size-m);
   color: var(--color-text);
 

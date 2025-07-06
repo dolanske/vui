@@ -2,6 +2,7 @@
 import type { Sizes } from '../../shared/types'
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
+import { isNil } from '../../shared/helpers'
 import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
@@ -42,7 +43,7 @@ const {
 const height = computed(() => {
   switch (size) {
     case Size.s: return '28px'
-    case Size.l: return '40px'
+    case Size.l: return '42px'
     case Size.m:
     default: return 'var(--interactive-el-height)'
   }
@@ -51,7 +52,7 @@ const height = computed(() => {
 const padding = computed(() => {
   switch (size) {
     case Size.s: return '4px'
-    case Size.l: return '16px'
+    case Size.l: return '18px'
     case Size.m:
     default: return '8px'
   }
@@ -61,7 +62,7 @@ const padding = computed(() => {
 <template>
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled, plain, icon, square, outline }, `vui-button-variant-${variant}`]"
+    :class="[{ loading, expand, disabled, plain, icon, square, outline }, `vui-button-variant-${variant}`, `vui-button-size-${size}`]"
     :disabled
     role="button"
     :style="{
@@ -70,14 +71,14 @@ const padding = computed(() => {
     }"
     :name="icon && !$slots.default ? icon.split(':')[1] : undefined"
   >
-    <Spinner size="s" />
+    <Spinner v-if="!isNil(loading)" size="s" />
     <div class="vui-button-slot">
-      <div class="vui-button-slot-start">
+      <div v-if="$slots.start" class="vui-button-slot-start">
         <slot name="start" />
       </div>
       <Icon v-if="icon" :icon="icon" />
       <slot v-else />
-      <div class="vui-button-slot-end">
+      <div v-if="$slots.end" class="vui-button-slot-end">
         <slot name="end" />
       </div>
     </div>

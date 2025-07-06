@@ -13,7 +13,10 @@ export default defineConfig(({ mode }) => {
   const isGitHubPages = mode === 'pages'
 
   return {
-    base: isGitHubPages ? '/vui/' : '/',
+    ...(isGitHubPages && { base: '/vui/' }),
+    server: {
+      port: 3005,
+    },
     test: {
       environment: 'jsdom',
     },
@@ -27,11 +30,12 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       // Only generate type definitions for library builds
-      !isGitHubPages
-      && dts({
-        tsconfigPath: './tsconfig.app.json',
-      }),
-    ].filter(Boolean),
+      ...(isGitHubPages
+        ? []
+        : [dts({
+            tsconfigPath: './tsconfig.app.json',
+          })]),
+    ],
     build: {
       // For GitHub Pages, build a regular site instead of a library
       ...(isGitHubPages

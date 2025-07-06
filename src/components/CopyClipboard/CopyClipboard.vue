@@ -30,7 +30,7 @@ interface Props {
 const {
   text,
   confirm,
-  confirmTime,
+  confirmTime = 1500,
   confirmPlacement = 'top',
 } = defineProps<Props>()
 
@@ -88,7 +88,7 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
         <template v-if="typeof parsedConfirm === 'string'">
           {{ parsedConfirm }}
         </template>
-        <Flex v-else y-center x-center>
+        <Flex v-else y-center x-center gap="s">
           <Icon width="16" height="16" icon="ph:check-bold" />
           Copied to clipboard
         </Flex>

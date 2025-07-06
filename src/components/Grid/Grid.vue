@@ -19,6 +19,7 @@ interface Props {
   yStart?: boolean
   yEnd?: boolean
   yBaseline?: boolean
+  yStretch?: boolean
 
   expand?: boolean
 }
@@ -60,6 +61,8 @@ const aA = computed(() => {
     return 'center'
   else if (props.yBaseline)
     return 'baseline'
+  else if (props.yStretch)
+    return 'stretch'
   return 'flex-start'
 })
 

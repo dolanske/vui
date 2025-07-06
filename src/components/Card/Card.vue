@@ -27,7 +27,7 @@ const {
     }"
   >
     <div v-if="$slots.header || $slots['header-end']" class="vui-card-header">
-      <div>
+      <div class="flex-1">
         <slot name="header" />
       </div>
       <slot name="header-end" />

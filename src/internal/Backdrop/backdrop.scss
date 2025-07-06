@@ -3,7 +3,7 @@
 }
 
 .vui-backdrop {
-  z-index: 1000;
+  z-index: var(--z-overlay);
   position: fixed;
   display: block;
   width: 100dvw;
@@ -16,7 +16,7 @@
   &:after {
     content: '';
     position: fixed;
-    z-index: -1;
+    z-index: var(--z-behind);
     inset: 0;
     background-color: var(--color-bg-lowered);
     opacity: 0.75;
