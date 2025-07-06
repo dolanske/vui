@@ -6,43 +6,16 @@ import { RouterLink } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
-
 const colorMode = useColorMode()
 
 type AvailableTabs = 'Style tokens' | 'CSS framework' | 'Components'
 
 const currentTab = ref<AvailableTabs | ''>('')
 
-// TODO: change to using query collection path
 const subPages: Record<AvailableTabs, LinkItem[]> = {
-  'Style tokens': [
-    { label: 'Getting started', path: '/docs/tokens' },
-    { label: 'Colors', path: '/docs/tokens/colors' },
-    { label: 'Themes', path: '/docs/tokens/theming' },
-    { label: 'Text & Font', path: '/docs/tokens/text' },
-    { label: 'Spacing', path: '/docs/tokens/spacing' },
-    { label: 'Transitions', path: '/docs/tokens/transitions' },
-    { label: 'Z-index', path: '/docs/tokens/z-index' },
-  ],
-  'CSS framework': [
-    { label: 'Getting started', path: '/docs/framework' },
-    { label: 'Colors', path: '/docs/framework/colors' },
-    { label: 'Text & font', path: '/docs/framework/text' },
-    { label: 'Typography', path: '/docs/framework/typography' },
-    { label: 'Spacing', path: '/docs/framework/spacing' },
-    { label: 'Layout', path: '/docs/framework/layout' },
-    { label: 'Z-index', path: '/docs/framework/z-index' },
-    // NOTE: utils, tooltip
-    { label: 'Utilities', path: '/docs/framework/utilities' },
-    // { label: 'Defaults', path: '/docs/framework/defaults' },
-  ],
-  'Components': [
-    { label: 'Getting started', path: '/docs/components' },
-    ...componentList.map(component => ({
-      label: component.name,
-      path: component.path,
-    })),
-  ],
+  'Style tokens': tokenPages,
+  'CSS framework': frameworkPages,
+  'Components': componentPages,
 }
 
 // When mounting, we need to first keep tabs in sync with the URL. So loop over
@@ -130,16 +103,16 @@ function pushPage(page: string) {
   router.push(page)
 }
 
-const navigationLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/docs', label: 'Guide' },
-  { to: '/docs/projects', label: 'Projects' },
-]
+const persistentSidebarLinks = computed(() => {
+  const links = [...globalLinks]
+
+  return subPagesToRender.value ? links : links.concat(documentationTabs)
+})
 </script>
 
 <template>
   <div class="vui-sidebar-layout" vaul-drawer-wrapper>
-    <Sidebar class="app-sidebar">
+    <Sidebar class="app-sidebar" :width="196">
       <template #header>
         <Flex class="mb-s" y-center>
           <h5 class="vui-logo">
@@ -169,12 +142,12 @@ const navigationLinks = [
       </template>
 
       <!-- Always-present pages -->
-      <RouterLink :to="link.to" v-for="link in navigationLinks" :key="link.to">
-        <DropdownItem :class="{ active: route.fullPath.endsWith(link.to) }">
+      <RouterLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path">
+        <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }">
           {{ link.label }}
         </DropdownItem>
       </RouterLink>
-      
+
       <Divider v-show="subPagesToRender" />
 
       <span class="pl-xs text-xs block mb-s text-semibold">
@@ -195,17 +168,9 @@ const navigationLinks = [
     <main>
       <div class="container container-m">
         <Tabs v-model="currentTab" expand class="docs-tabs">
-          <Tab value="Style tokens">
-            <Icon name="ph:brackets-curly" />
-            Style tokens
-          </Tab>
-          <Tab value="CSS framework">
-            <Icon name="ph:file-css" />
-            CSS framework
-          </Tab>
-          <Tab value="Components">
-            <Icon name="ph:rectangle-dashed" />
-            Components
+          <Tab v-for="item in documentationTabs" :key="item.label" :value="item.label">
+            <Icon :name="item.icon" />
+            {{ item.label }}
           </Tab>
         </Tabs>
 

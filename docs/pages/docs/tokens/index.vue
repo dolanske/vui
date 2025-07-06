@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO list all tokens in a samey-ish list with groups and search
 </script>
 
 <template>

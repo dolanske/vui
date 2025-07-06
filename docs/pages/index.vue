@@ -11,23 +11,18 @@ const router = useRouter()
     </div>
 
     <Flex x-between gap="s" class="mb-m">
-      <Button expand size="l" outline @click="router.push('/docs/tokens')">
+      <Button
+        v-for="item in documentationTabs"
+        :key="item.label"
+        expand
+        size="l"
+        outline
+        @click="router.push(item.path)"
+      >
         <template #start>
-          <Icon name="ph:brackets-curly" />
+          <Icon :name="item.icon" />
         </template>
-        Style tokens
-      </Button>
-      <Button expand size="l" outline @click="router.push('/docs/framework')">
-        <template #start>
-          <Icon name="ph:file-css" />
-        </template>
-        CSS Framework
-      </Button>
-      <Button expand size="l" outline @click="router.push('/docs/components')">
-        <template #start>
-          <Icon name="ph:rectangle-dashed" />
-        </template>
-        Components
+        {{ item.label }}
       </Button>
     </Flex>
 

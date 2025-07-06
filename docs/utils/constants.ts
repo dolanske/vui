@@ -1,5 +1,3 @@
-// TODO extract every single list into this file instead so it can later be fed into the search function
-
 export const sizeTokens = [
   { token: '--space-xxs', size: '4px', name: 'XXS space ' },
   { token: '--space-xs', size: '8px', name: 'XS space ' },
@@ -333,4 +331,47 @@ export const paddingClasses = [
   { name: 'Padding horizontal', className: 'px-{size}', property: 'padding-inline: var(--space-{size})', icon: 'ph:arrows-out-line-horizontal' },
   { name: 'Padding vertical', className: 'py-{size}', property: 'padding-block: var(--space-{size})', icon: 'ph:arrows-out-line-vertical' },
   { name: 'Padding all sides', className: 'p-{size}', property: 'padding: var(--space-{size})', icon: 'ph:arrows-out-cardinal' },
+]
+
+// Pages & links
+
+export const tokenPages = [
+  { label: 'Getting started', path: '/docs/tokens' },
+  { label: 'Colors', path: '/docs/tokens/colors' },
+  { label: 'Themes', path: '/docs/tokens/theming' },
+  { label: 'Text & Font', path: '/docs/tokens/text' },
+  { label: 'Spacing', path: '/docs/tokens/spacing' },
+  { label: 'Transitions', path: '/docs/tokens/transitions' },
+  { label: 'Z-index', path: '/docs/tokens/z-index' },
+]
+
+export const frameworkPages = [
+  { label: 'Getting started', path: '/docs/framework' },
+  { label: 'Colors', path: '/docs/framework/colors' },
+  { label: 'Text & font', path: '/docs/framework/text' },
+  { label: 'Typography', path: '/docs/framework/typography' },
+  { label: 'Spacing', path: '/docs/framework/spacing' },
+  { label: 'Layout', path: '/docs/framework/layout' },
+  { label: 'Z-index', path: '/docs/framework/z-index' },
+  { label: 'Utilities', path: '/docs/framework/utilities' },
+]
+
+export const componentPages = [
+  { label: 'Getting started', path: '/docs/components' },
+  ...componentList.map(component => ({
+    label: component.name,
+    path: component.path,
+  })),
+]
+
+export const globalLinks = [
+  { path: '/', label: 'Home' },
+  { path: '/docs', label: 'Guide' },
+  { path: '/docs/projects', label: 'Projects' },
+]
+
+export const documentationTabs = [
+  { label: 'Style tokens', icon: 'ph:brackets-curly', path: '/docs/tokens' },
+  { label: 'CSS framework', icon: 'ph:file-css', path: '/docs/framework' },
+  { label: 'Components', icon: 'ph:rectangle-dashed', path: '/docs/components' },
 ]
