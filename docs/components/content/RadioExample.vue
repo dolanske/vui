@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Flex, Radio, RadioGroup } from '@dolanske/vui'
+import { Radio, RadioGroup } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const selected = ref('option1')

@@ -168,3 +168,45 @@ export const transitionTokens = [
   { name: 'Default', token: '--transition', value: '0.125s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Used for appear animations of display elements' },
   { name: 'Slow', token: '--transition-slow', value: '0.25s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Slower transitions for large elements' },
 ]
+
+export const lightTextClasses = lightThemeTokens
+  .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
+  .map(token => ({
+    token: token.token.replace('--light-color-', '').replace('-', '-color-'),
+    name: token.name,
+    cssVariable: token.token,
+    hex: token.hex,
+    rgb: token.rgb,
+  }))
+
+export const darkTextClasses = darkThemeTokens
+  .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
+  .map(token => ({
+    token: token.token.replace('--dark-color-', '').replace('-', '-color-'),
+    name: token.name,
+    cssVariable: token.token,
+    hex: token.hex,
+    rgb: token.rgb,
+  }))
+
+export const fontSizeClasses = [
+  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1rem' },
+  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.15rem' },
+  { name: 'S size', className: 'text-s', token: '--font-size-s', size: '1.3rem' },
+  { name: 'M size', className: 'text-m', token: '--font-size-m', size: '1.5rem' },
+  { name: 'L size', className: 'text-l', token: '--font-size-l', size: '1.8rem' },
+  { name: 'XL size', className: 'text-xl', token: '--font-size-xl', size: '2rem' },
+  { name: 'XXL size', className: 'text-xxl', token: '--font-size-xxl', size: '2.6rem' },
+  { name: 'XXXL size', className: 'text-xxxl', token: '--font-size-xxxl', size: '3.4rem' },
+  { name: 'XXXXL size', className: 'text-xxxxl', token: '--font-size-xxxxl', size: '4.8rem' },
+]
+
+export const fontWeightClasses = [
+  { name: 'Light', className: 'text-light', token: '--font-weight-light', weight: '300' },
+  { name: 'Regular', className: 'text-regular', token: '--font-weight', weight: '400' },
+  { name: 'Medium', className: 'text-medium', token: '--font-weight-medium', weight: '500' },
+  { name: 'Semibold', className: 'text-semibold', token: '--font-weight-semibold', weight: '600' },
+  { name: 'Bold', className: 'text-bold', token: '--font-weight-bold', weight: '700' },
+  { name: 'Extrabold', className: 'text-extra-bold', token: '--font-weight-extrabold', weight: '800' },
+  { name: 'Black', className: 'text-black', token: '--font-weight-black', weight: '900' },
+]

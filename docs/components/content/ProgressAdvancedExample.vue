@@ -17,10 +17,10 @@ function increment() {
         <!-- Basic Progress -->
         <div class="w-100">
           <Flex class="mt-s" gap="s">
-            <Button @click="increment" variant="fill">
+            <Button variant="fill" @click="increment">
               Add 16%
             </Button>
-            <Button @click="progress = 0" variant="fill">
+            <Button variant="fill" @click="progress = 0">
               Reset
             </Button>
           </Flex>

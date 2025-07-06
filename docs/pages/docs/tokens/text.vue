@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Badge, Button, Card, CopyClipboard, Grid } from '@dolanske/vui'
+import TokenItem from '~/components/docs/TokenItem.vue'
+import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/constants'
 </script>
 
 <template>
@@ -70,32 +72,17 @@ import { Badge, Button, Card, CopyClipboard, Grid } from '@dolanske/vui'
     <h2>Text size</h2>
 
     <p class="mb-l">
-      VUI prioritizes dashboard and functional UI design, allowing for smaller font sizes. However, when creating design-focused marketing and visual pages, it's recommended to maintain a minimum font size of <code>1.4rem</code>.
+      VUI prioritizes dashboard and functional UI design, allowing for smaller font sizes. However, when creating design-focused marketing and visual pages, it's recommended to maintain a minimum font size of <code>1.5rem</code>.
     </p>
 
     <div class="mb-xl">
-      <div v-for="item in fontSizeTokens" :key="item.token" class="list-item">
-        <strong class="text-size-indicator" :style="{ fontSize: item.size }">Cute dog</strong>
-
-        <div class="flex-1">
-          <strong class="list-item-name">{{ item.name }}</strong>
-          <span class="list-item-value">{{ item.size }}</span>
-        </div>
-
-        <CopyClipboard :text="item.token" confirm="Copied!">
-          <Button plain expand>
-            <template #start>
-              <Badge>
-                {{ item.token }}
-              </Badge>
-            </template>
-
-            <template #end>
-              <Icon name="ph:copy" size="18" />
-            </template>
-          </Button>
-        </CopyClipboard>
-      </div>
+      <TokenItem
+        v-for="item in fontSizeClasses"
+        :key="item.token"
+        :name="item.name"
+        :size="item.size"
+        :class-name="item.className"
+      />
     </div>
 
     <h2>Font weight</h2>
@@ -105,28 +92,20 @@ import { Badge, Button, Card, CopyClipboard, Grid } from '@dolanske/vui'
     </p>
 
     <div class="mb-xl">
-      <div v-for="item in fontWeightTokens" :key="item.token" class="list-item">
-        <strong class="text-size-indicator" :style="{ fontWeight: item.weight, fontSize: '2rem' }">Red fox</strong>
-
-        <div class="flex-1">
-          <strong class="list-item-name">{{ item.name }}</strong>
-          <span class="list-item-value">{{ item.weight }}</span>
-        </div>
-
-        <CopyClipboard :text="item.token" confirm="Copied!">
-          <Button plain expand>
-            <template #start>
-              <Badge>
-                {{ item.token }}
-              </Badge>
-            </template>
-
-            <template #end>
-              <Icon name="ph:copy" size="18" />
-            </template>
-          </Button>
-        </CopyClipboard>
-      </div>
+      <TokenItem
+        v-for="item in fontWeightClasses"
+        :key="item.token"
+        :name="item.name"
+        :class-name="item.className"
+        :indicator-style="{ fontWeight: item.weight, fontSize: '2rem' }"
+      >
+        <template #text>
+          Red fox
+        </template>
+        <template #value>
+          {{ item.weight }}
+        </template>
+      </TokenItem>
     </div>
 
     <h2>Line height</h2>
@@ -135,30 +114,20 @@ import { Badge, Button, Card, CopyClipboard, Grid } from '@dolanske/vui'
       Line height is divided into only three categories, to keep things consistent. In most cases, you should be using the <code>base</code> or <code>title</code> line heights.
     </p>
 
-    <div class="mb-xl">
-      <div v-for="item in lineHeightTokens" :key="item.token" class="list-item">
-        <strong class="text-size-indicator" :style="{ lineHeight: item.height }">Lorem ipsum dolor sit amet consectetur adipisicing elit.</strong>
-
-        <div class="flex-1">
-          <strong class="list-item-name">{{ item.name }}</strong>
-          <span class="list-item-value">{{ item.height }}</span>
-        </div>
-
-        <CopyClipboard :text="item.token" confirm="Copied!">
-          <Button plain expand>
-            <template #start>
-              <Badge>
-                {{ item.token }}
-              </Badge>
-            </template>
-
-            <template #end>
-              <Icon name="ph:copy" size="18" />
-            </template>
-          </Button>
-        </CopyClipboard>
-      </div>
-    </div>
+    <TokenItem
+      v-for="item in lineHeightTokens"
+      :key="item.token"
+      :name="item.name"
+      :class-name="item.token"
+      :indicator-style="{ lineHeight: item.height, width: '256px' }"
+    >
+      <template #text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </template>
+      <template #value>
+        {{ item.height }}
+      </template>
+    </TokenItem>
   </div>
 </template>
 

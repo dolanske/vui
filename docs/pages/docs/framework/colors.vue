@@ -1,34 +1,11 @@
 <script setup lang="ts">
 import { useColorMode } from '@vueuse/core'
-import { darkThemeTokens, lightThemeTokens } from '~/utils/constants'
+import { darkTextClasses, lightTextClasses } from '~/utils/constants'
 
 const currentTheme = useColorMode()
 const themeTab = ref(currentTheme.value)
 
-const lightTextColors = lightThemeTokens
-  .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
-  .map(token => ({
-    token: token.token.replace('--light-color-', '').replace('-', '-color-'),
-    name: token.name,
-    cssVariable: token.token,
-    hex: token.hex,
-    rgb: token.rgb,
-  }))
-
-const darkTextColors = darkThemeTokens
-  .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
-  .map(token => ({
-    token: token.token.replace('--dark-color-', '').replace('-', '-color-'),
-    name: token.name,
-    cssVariable: token.token,
-    hex: token.hex,
-    rgb: token.rgb,
-  }))
-
-const filteredColorList = computed(() => {
-  return themeTab.value === 'dark' ? darkTextColors : lightTextColors
-  // return colors.filter(({ name, token }) => searchString([name, removeColorPrefix(token)], search.value))
-})
+const filteredColorList = computed(() => themeTab.value === 'dark' ? darkTextClasses : lightTextClasses)
 </script>
 
 <template>

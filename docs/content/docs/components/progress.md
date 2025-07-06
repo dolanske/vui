@@ -21,7 +21,7 @@ const progress = ref(50)
 
 ### Props
 
-The value of the progress component is controlled via  `v-model`
+The value of the progress component is controlled via `v-model`
 
 | Name     | Default               | Type                                                                    |
 | -------- | --------------------- | ----------------------------------------------------------------------- |
@@ -44,7 +44,7 @@ The following example shows different variations of the progress component.
 
 ```vue
 <script setup>
-import { Button, Progress, Flex } from '@dolanske/vui'
+import { Button, Flex, Progress } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const progress = ref(0)
@@ -56,7 +56,7 @@ function increment() {
 </script>
 
 <template>
-   <Flex column gap="l">
+  <Flex column gap="l">
     <div class="w-100">
       <Flex class="mt-s" gap="s">
         <Button @click="increment">
@@ -104,4 +104,3 @@ function increment() {
 ```
 
 ::
-

@@ -2,21 +2,20 @@
 import { Badge, Button, CopyClipboard, Flex } from '@dolanske/vui'
 
 interface Props {
-  token:string
+  token: string
   name: string
   cssVariable: string
-  hex: string
+  hex: string | null
   rgb: string
 }
 
 const props = defineProps<Props>()
-
 </script>
 
 <template>
   <div class="list-item">
     <div class="flex-1">
-      <strong class="list-item-name" :style="{color: props.hex}">{{ props.name }}</strong>
+      <strong class="list-item-name" :style="{ color: props.rgb }">{{ props.name }}</strong>
 
       <Flex gap="xl">
         <span class="list-item-value">{{ props.hex }}</span>
@@ -44,5 +43,9 @@ const props = defineProps<Props>()
 .list-item {
   display: flex;
   justify-content: space-between;
+
+  .list-item-name {
+    font-size: var(--font-size-l);
+  }
 }
 </style>

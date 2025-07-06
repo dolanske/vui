@@ -2,6 +2,7 @@
 import { Button, Input, searchString, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
 import NoResults from '~/components/list/NoResults.vue'
+// import TokenItem from '~/components/docs/TokenItem.vue'
 import { darkThemeTokens, lightThemeTokens } from '~/utils/constants'
 import { removeColorPrefix } from '~/utils/format'
 
@@ -55,6 +56,26 @@ const filteredColorList = computed(() => {
         :key="item.name"
         v-bind="{ ...item }"
       />
+
+      <!-- Example of how TokenItem can replace ColorItem:
+      <TokenItem
+        v-for="item in filteredColorList"
+        :key="item.name"
+        :name="item.name"
+        :class-name="removeColorPrefix(item.token)"
+      >
+        <template #indicator>
+          <div class="color-cube" :style="{ backgroundColor: item.hex }" />
+        </template>
+        <template #value>
+          <div class="color-values">
+            <span v-if="item.rgb">{{ item.rgb }}</span>
+            <span v-if="item.hex">{{ item.hex }}</span>
+          </div>
+        </template>
+        <template #badge-prefix></template>
+      </TokenItem>
+      -->
     </template>
     <NoResults
       v-else

@@ -26,7 +26,7 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
   'CSS framework': [
     { label: 'Getting started', path: '/docs/framework' },
     { label: 'Colors', path: '/docs/framework/colors' },
-    { label: 'Text & font', path: '/docs/framework/text-font' },
+    { label: 'Text & font', path: '/docs/framework/text' },
     { label: 'Typography', path: '/docs/framework/typography' },
     { label: 'Spacing', path: '/docs/framework/spacing' },
     { label: 'Layout', path: '/docs/framework/layout' },
@@ -160,6 +160,10 @@ function pushPage(page: string) {
           <span class="text-s color-text-lightest">VUI 1.4.6</span>
         </Flex>
       </template>
+
+      <span class="pl-xs text-xs block mb-s text-semibold">
+        {{ currentTab }}
+      </span>
 
       <DropdownItem
         v-for="subPage in subPagesToRender"

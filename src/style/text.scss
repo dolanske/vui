@@ -71,12 +71,6 @@ $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
 
 // Line truncating
 
-.text-overflow {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 @each $line in $lines {

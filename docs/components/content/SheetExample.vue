@@ -1,5 +1,5 @@
 <script setup>
-import { Button, Divider, Flex, Sheet } from '@dolanske/vui'
+import { Button, Flex, Sheet } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
