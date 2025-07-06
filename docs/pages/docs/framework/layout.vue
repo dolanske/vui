@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TokenItem from '~/components/docs/TokenItem.vue'
-import { containerClasses, displayClasses, flexClasses, heightClasses, widthClasses } from '~/utils/constants'
+import { containerClasses, displayClasses, heightClasses, widthClasses } from '~/utils/constants'
 </script>
 
 <template>
