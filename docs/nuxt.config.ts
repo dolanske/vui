@@ -5,7 +5,7 @@
 export default defineNuxtConfig({
   ssr: false,
   app: {
-    baseURL: '/docs/',
+    baseURL: '/vui/',
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
