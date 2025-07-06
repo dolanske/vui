@@ -92,12 +92,8 @@ import { containerClasses, displayClasses, flexClasses, heightClasses, widthClas
       :key="item.className"
       :name="item.name"
       :class-name="item.className"
+      :indicator="false"
     >
-      <template #indicator>
-        <div class="display-indicator">
-          <Icon name="ph:squares-four" size="18" />
-        </div>
-      </template>
       <template #value>
         display: {{ item.value }}
       </template>
@@ -107,22 +103,22 @@ import { containerClasses, displayClasses, flexClasses, heightClasses, widthClas
       Flex
     </h2>
     <p class="mb-xl">
-      Classes for flexbox layout control. The intended use of this class is to stretch an element inside a flexbox to fill the available space.
+      Classes for flexbox layout control. You should almost always use the <RouterLink to="/docs/components/Flex">
+        Flex
+      </RouterLink> component.
     </p>
 
-    <TokenItem
-      v-for="item in flexClasses"
-      :key="item.className"
-      :name="item.name"
-      :class-name="item.className"
-    >
+    <TokenItem name="Flex 1" class-name="flex-1">
       <template #indicator>
-        <div class="flex-indicator">
-          <Icon name="ph:arrows-out-line-horizontal" size="18" />
-        </div>
+        <Flex gap="m">
+          <div class="flex-indicator" />
+          <div class="flex-indicator" />
+          <div class="flex-indicator flex-1" />
+          <div class="flex-indicator" />
+        </Flex>
       </template>
       <template #value>
-        {{ item.property }}
+        The highlighted element has a <code class="inline-code">flex: 1</code> applied to it. This makes the element grow to fill available space in a flex container.
       </template>
     </TokenItem>
   </div>
@@ -176,13 +172,19 @@ import { containerClasses, displayClasses, flexClasses, heightClasses, widthClas
 }
 
 .flex-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 40px;
-  background: var(--color-bg-medium);
-  border-radius: 4px;
-  color: var(--color-text-light);
+  height: 8px;
+  min-width: 24px;
+  background-color: var(--color-border-strong);
+  border-radius: 999px;
+
+  &.flex-1 {
+    background-color: var(--color-accent);
+  }
+}
+
+.inline-code {
+  font-size: var(--font-size-xs);
+  padding: 1px;
+  min-height: unset;
 }
 </style>

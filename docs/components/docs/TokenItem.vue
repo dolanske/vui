@@ -20,15 +20,16 @@
 import { Badge, Button, CopyClipboard } from '@dolanske/vui'
 
 interface Props {
-  name: string
+  name?: string
   size?: string
   className: string
   indicatorStyle?: Record<string, any>
   indicatorClassName?: string
   copyable?: boolean
+  indicator?: boolean
 }
 
-const { copyable = true, ...props } = defineProps<Props>()
+const { copyable = true, indicator = true, ...props } = defineProps<Props>()
 
 const computedStyle = computed(() => {
   const baseStyle = props.size ? { fontSize: props.size } : {}
@@ -38,7 +39,7 @@ const computedStyle = computed(() => {
 
 <template>
   <div class="list-item">
-    <div class="indicator-container">
+    <div v-if="indicator" class="indicator-container">
       <slot name="indicator" :style="computedStyle" :class="props.indicatorClassName">
         <strong class="text-size-indicator" :class="props.indicatorClassName" :style="computedStyle">
           <slot name="text">Cute dog</slot>
@@ -74,10 +75,6 @@ const computedStyle = computed(() => {
 </template>
 
 <style scoped lang="scss">
-// .text-size-indicator {
-//   width: 256px;
-// }
-
 .indicator-container {
   width: 256px;
 }
