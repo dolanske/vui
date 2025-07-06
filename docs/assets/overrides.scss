@@ -42,7 +42,7 @@ td:first-child code {
   margin: 0 !important;
 }
 
-.typeface {
+.typeset {
   h1,
   h2,
   h3 {
@@ -58,7 +58,8 @@ td:first-child code {
   table {
     width: 100%;
 
-    * {
+    td,
+    th {
       border-right: none !important;
       border-left: none !important;
     }
