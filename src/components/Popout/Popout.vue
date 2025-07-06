@@ -60,6 +60,7 @@ onClickOutside(popoutRef, () => emit('clickOutside'))
 </script>
 
 <template>
+  <!-- <Teleport to="#app"> -->
   <Transition :name="getPlacementAnimationName(props.placement)">
     <div
       v-if="props.visible"
@@ -70,4 +71,5 @@ onClickOutside(popoutRef, () => emit('clickOutside'))
       <slot />
     </div>
   </Transition>
+  <!-- </Teleport> -->
 </template>

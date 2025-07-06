@@ -76,6 +76,7 @@
     font-weight: 500;
     color: var(--color-text);
     border-radius: var(--border-radius-m);
+    transition: var(--transition-fast);
 
     &:hover {
       text-decoration: underline;
