@@ -169,6 +169,9 @@ export const transitionTokens = [
   { name: 'Slow', token: '--transition-slow', value: '0.25s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Slower transitions for large elements' },
 ]
 
+// CSS framework classes
+// Generated from tokens
+
 export const lightTextClasses = lightThemeTokens
   .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
   .map(token => ({
@@ -209,4 +212,54 @@ export const fontWeightClasses = [
   { name: 'Bold', className: 'text-bold', token: '--font-weight-bold', weight: '700' },
   { name: 'Extrabold', className: 'text-extra-bold', token: '--font-weight-extrabold', weight: '800' },
   { name: 'Black', className: 'text-black', token: '--font-weight-black', weight: '900' },
+]
+
+export const zIndexClasses = [
+  { name: 'Behind', className: 'z-behind', value: '-1', description: 'Used for elements that should appear behind other content' },
+  { name: 'Default', className: 'z-default', value: '1', description: 'Base z-index for standard page elements' },
+  { name: 'Active', className: 'z-active', value: '50', description: 'For elements that are currently being interacted with' },
+  { name: 'Mask', className: 'z-mask', value: '75', description: 'Used for semi-transparent overlays that block interaction' },
+  { name: 'Sticky', className: 'z-sticky', value: '100', description: 'For elements that stick to viewport while scrolling' },
+  { name: 'Nav', className: 'z-nav', value: '200', description: 'Navigation elements that should stay above content' },
+  { name: 'Overlay', className: 'z-overlay', value: '300', description: 'Full-screen overlays that cover the entire viewport' },
+  { name: 'Popout', className: 'z-popout', value: '400', description: 'Floating elements like dropdowns and tooltips' },
+  { name: 'Toast', className: 'z-toast', value: '500', description: 'Temporary notifications that appear above other UI' },
+  { name: 'Modal', className: 'z-modal', value: '600', description: 'Dialog boxes that require user attention' },
+]
+
+export const spaceClasses = [
+  { name: 'XXS space', className: 'space-xxs', size: '4px' },
+  { name: 'XS space', className: 'space-xs', size: '8px' },
+  { name: 'S space', className: 'space-s', size: '12px' },
+  { name: 'M space', className: 'space-m', size: '18px' },
+  { name: 'L space', className: 'space-l', size: '24px' },
+  { name: 'XL space', className: 'space-xl', size: '34px' },
+  { name: 'XXL space', className: 'space-xxl', size: '48px' },
+  { name: 'XXXL space', className: 'space-xxxl', size: '64px' },
+]
+
+export const autoMarginClasses = [
+  { name: 'Auto horizontal margins', className: 'mx-auto', property: 'margin-inline: auto' },
+  { name: 'Auto vertical margins', className: 'my-auto', property: 'margin-block: auto' },
+  { name: 'Auto margins on all sides', className: 'm-auto', property: 'margin: auto' },
+]
+
+export const marginClasses = [
+  { name: 'Margin bottom', className: 'mb-{size}', property: 'margin-bottom: var(--space-{size})', icon: 'ph:arrow-down' },
+  { name: 'Margin right', className: 'mr-{size}', property: 'margin-right: var(--space-{size})', icon: 'ph:arrow-right' },
+  { name: 'Margin left', className: 'ml-{size}', property: 'margin-left: var(--space-{size})', icon: 'ph:arrow-left' },
+  { name: 'Margin top', className: 'mt-{size}', property: 'margin-top: var(--space-{size})', icon: 'ph:arrow-up' },
+  { name: 'Margin horizontal', className: 'mx-{size}', property: 'margin-inline: var(--space-{size})', icon: 'ph:arrows-out-line-horizontal' },
+  { name: 'Margin vertical', className: 'my-{size}', property: 'margin-block: var(--space-{size})', icon: 'ph:arrows-out-line-vertical' },
+  { name: 'Margin all sides', className: 'm-{size}', property: 'margin: var(--space-{size})', icon: 'ph:arrows-out-cardinal' },
+]
+
+export const paddingClasses = [
+  { name: 'Padding bottom', className: 'pb-{size}', property: 'padding-bottom: var(--space-{size})', icon: 'ph:arrow-down' },
+  { name: 'Padding right', className: 'pr-{size}', property: 'padding-right: var(--space-{size})', icon: 'ph:arrow-right' },
+  { name: 'Padding left', className: 'pl-{size}', property: 'padding-left: var(--space-{size})', icon: 'ph:arrow-left' },
+  { name: 'Padding top', className: 'pt-{size}', property: 'padding-top: var(--space-{size})', icon: 'ph:arrow-up' },
+  { name: 'Padding horizontal', className: 'px-{size}', property: 'padding-inline: var(--space-{size})', icon: 'ph:arrows-out-line-horizontal' },
+  { name: 'Padding vertical', className: 'py-{size}', property: 'padding-block: var(--space-{size})', icon: 'ph:arrows-out-line-vertical' },
+  { name: 'Padding all sides', className: 'p-{size}', property: 'padding: var(--space-{size})', icon: 'ph:arrows-out-cardinal' },
 ]

@@ -55,7 +55,7 @@ Classes for controlling the display property of elements.
 
 ## Flex
 
-Classes for flexbox layout control.
+Classes for flexbox layout control. The intended use of this class is to stretch an element inside a flexbox to fill the available space.
 
 | Class     | Description          | Property  |
 | --------- | -------------------- | --------- |

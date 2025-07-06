@@ -63,3 +63,40 @@ main {
     }
   }
 }
+
+// Used for size indicator in tokens and CSS framework pages
+.size-indicator-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  width: 156px;
+
+  span {
+    font-size: var(--font-size-s);
+    color: var(--color-text-lighter);
+  }
+
+  .size-indicator {
+    display: block;
+    height: 1px;
+    border-bottom: 1px solid var(--color-text-light);
+    position: relative;
+
+    &:before,
+    &:after {
+      content: '';
+      height: 12px;
+      width: 1px;
+      background-color: var(--color-text-light);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -1px;
+    }
+
+    &:after {
+      left: unset;
+      right: -1px;
+    }
+  }
+}

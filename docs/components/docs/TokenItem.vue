@@ -25,9 +25,10 @@ interface Props {
   className: string
   indicatorStyle?: Record<string, any>
   indicatorClassName?: string
+  copyable?: boolean
 }
 
-const props = defineProps<Props>()
+const { copyable = true, ...props } = defineProps<Props>()
 
 const computedStyle = computed(() => {
   const baseStyle = props.size ? { fontSize: props.size } : {}
@@ -52,28 +53,30 @@ const computedStyle = computed(() => {
       </span>
     </div>
 
-    <CopyClipboard :text="props.className" confirm="Copied!">
-      <Button plain expand>
-        <template #start>
-          <Badge>
-            <slot name="badge-prefix">
-              {{ `.` }}
-            </slot>{{ props.className }}
-          </Badge>
-        </template>
+    <slot name="actions">
+      <CopyClipboard v-if="copyable" :text="props.className" confirm="Copied!">
+        <Button plain expand>
+          <template #start>
+            <Badge>
+              <slot name="badge-prefix">
+                {{ `.` }}
+              </slot>{{ props.className }}
+            </Badge>
+          </template>
 
-        <template #end>
-          <Icon name="ph:copy" size="18" />
-        </template>
-      </Button>
-    </CopyClipboard>
+          <template #end>
+            <Icon name="ph:copy" size="18" />
+          </template>
+        </Button>
+      </CopyClipboard>
+    </slot>
   </div>
 </template>
 
 <style scoped lang="scss">
-.text-size-indicator {
-  width: 256px;
-}
+// .text-size-indicator {
+//   width: 256px;
+// }
 
 .indicator-container {
   width: 256px;
