@@ -136,7 +136,7 @@ const persistentSidebarLinks = computed(() => {
             <Icon name="ph:github-logo" />
           </Button>
           <div class="flex-1" />
-          <span class="text-s color-text-lightest">VUI 1.4.6</span>
+          <span class="text-s color-text-lightest">VUI 1.4.7</span>
         </Flex>
       </template>
 
