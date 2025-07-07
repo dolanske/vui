@@ -1,9 +1,41 @@
-// import fs from 'node:fs'
-// import path from 'node:path'
+import { glob } from 'node:fs'
+import { basename, resolve } from 'node:path'
+
+async function prerenderRoutes() {
+  const contentDir = resolve('content') // Adjust if your content is elsewhere, e.g., 'posts'
+
+  // Use glob to find all markdown files (or whatever extensions you use)
+  const files = await new Promise<string[]>((resolve, reject) => {
+    glob('**/*.{md,yml,csv,json}', { cwd: contentDir }, (err, files) => {
+      if (err)
+        return reject(err)
+      resolve(files)
+    })
+  })
+
+  // Map file paths to Nuxt content paths (e.g., 'my-post.md' -> '/my-post')
+  const contentPaths = files.map((file) => {
+    let path = file
+      .replace(/\.(md|yml|csv|json)$/, '') // Remove file extension
+      .replace(/\\/g, '/') // Normalize slashes for Windows compatibility
+
+    // If your content files are in subdirectories, you might need to handle 'index' files
+    // For example, 'blog/my-post/index.md' -> '/blog/my-post'
+    if (basename(path) === 'index') {
+      path = path.substring(0, path.lastIndexOf('/'))
+    }
+
+    return `/${path}` // Add leading slash
+  })
+
+  // Add any other specific routes you want to guarantee prerendering
+  return ['/', ...contentPaths]
+}
+
+const routes = await prerenderRoutes()
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
   app: {
     baseURL: '/vui/',
   },
@@ -34,13 +66,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  // nitro: {
-  //   prerender: {
-  //     routes: prerenderRoutes(),
-  //     failOnError: false,
-  //     crawlLinks: true,
-  //   },
-  // },
   fonts: {
     provider: 'google',
     families: [
@@ -55,6 +80,13 @@ export default defineNuxtConfig({
     '@nuxt/image',
     './modules/vui-global-register',
   ],
+  ssr: true,
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes,
+    },
+  },
 })
 
 // function prerenderRoutes() {

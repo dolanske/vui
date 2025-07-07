@@ -1,10 +1,8 @@
 <script setup lang="ts">
-const slug = useRoute().params.slug
-const { data } = await useAsyncData(`components-${slug}`, () => {
-  return queryCollection('docs').path(`/docs/guide`).first()
-})
+const { data: page } = await useAsyncData('my-markdown-page', () =>
+  queryCollection('docs').path('/docs/guide').first())
 </script>
 
 <template>
-  <ContentRenderer :value="data!" />
+  <ContentRenderer :value="page!" />
 </template>
