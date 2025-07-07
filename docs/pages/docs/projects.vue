@@ -6,12 +6,14 @@ const projects = [
     title: 'Hivecom',
     description: 'Community hub for my online friends built with nuxt, supabase and VUI. It features a fully fleshed out community management system with user management, roles, announcements, events, discord & steam integrations and so much more.',
     url: 'https://dev.hivecom.net/',
+    logo: 'hivecom.svg',
     tags: ['Marketing', 'Admin', 'CMS'],
   },
   {
     title: 'VUI docs',
-    description: 'This documentation website was fully created using the library.',
+    description: 'The website you\'re currently viewing has been created using the VUI component library.',
     url: '/',
+    logo: 'vui.svg',
     tags: ['Documentation', 'CMS'],
   },
 ] as const
@@ -29,9 +31,18 @@ const projects = [
       <a v-for="project in projects" :key="project.url" :href="project.url" target="_blank" class="project-card">
         <Card>
           <Flex column gap="xs" style="height: 100%;">
-            <h3>
-              {{ project.title }}
-            </h3>
+            <Flex gap="s" y-center class="mb-m" expand>
+              <NuxtImg
+                :src="`/logos/${project.logo}`"
+                :alt="project.title"
+                width="32"
+                height="32"
+              />
+              <h3 class="flex-1">
+                {{ project.title }}
+              </h3>
+              <Icon name="ph:link" />
+            </Flex>
             <p class="text-color-light flex-1">{{ project.description }}</p>
 
             <Flex v-if="project.tags.length" gap="xs" class="mt-xl">
@@ -71,8 +82,16 @@ const projects = [
     }
   }
 
+  img {
+    margin: 0;
+    border-radius: 0;
+    // Font line-height offset
+    transform: translateY(-2px);
+  }
+
   h3 {
-    margin-bottom: var(--space-xs);
+    display: block;
+    margin: 0;
   }
 
   p {

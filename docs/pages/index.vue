@@ -32,7 +32,7 @@ const router = useRouter()
       </p>
 
       <Flex x-center>
-        <Button variant="gray" outline size="l" class="btn-cta" @click="router.push('/examples')">
+        <Button variant="gray" outline size="l" class="btn-cta" @click="router.push('/docs/projects')">
           Examples
         </Button>
 
