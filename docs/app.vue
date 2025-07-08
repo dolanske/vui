@@ -9,5 +9,6 @@ const isDocumentation = computed(() => route.fullPath.includes('/docs'))
   <NuxtLayout :name="isDocumentation ? 'documentation' : 'default'">
     <NuxtPage />
   </NuxtLayout>
+  <NuxtLoadingIndicator />
   <Toasts />
 </template>

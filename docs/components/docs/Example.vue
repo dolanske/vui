@@ -56,5 +56,9 @@ const tab = ref('Component')
 
 .example-component {
   padding: var(--space-xxl) 128px;
+
+  p {
+    margin-top: 0 !important;
+  }
 }
 </style>

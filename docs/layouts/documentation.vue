@@ -110,7 +110,7 @@ const persistentSidebarLinks = computed(() => {
 
 <template>
   <div class="vui-sidebar-layout" vaul-drawer-wrapper>
-    <Sidebar class="app-sidebar" :width="196">
+    <Sidebar class="app-sidebar" :width="212">
       <template #header>
         <Flex class="mb-s" y-center>
           <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
@@ -139,8 +139,8 @@ const persistentSidebarLinks = computed(() => {
       </template>
 
       <!-- Always-present pages -->
-      <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path">
-        <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }" @click="currentTab = ''">
+      <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path" @click="currentTab = ''">
+        <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }">
           {{ link.label }}
         </DropdownItem>
       </NuxtLink>
@@ -216,10 +216,6 @@ const persistentSidebarLinks = computed(() => {
 }
 
 .app-sidebar {
-  .vui-sidebar {
-    background-color: var(--color-bg-lowered);
-  }
-
   .vui-dropdown-item {
     margin: 0;
     --interactive-el-height: 32px;
