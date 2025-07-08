@@ -40,7 +40,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
             </Button>
           </CopyClipboard>
         </template>
-        <p class="m-0 text-xxl" :style="{ height: '80px' }">
+        <p class="m-0 text-xxl" :style="{ height: '80px', margin: 0 }">
           The quick brown fox jumps over the lazy dog.
         </p>
       </Card>
@@ -65,7 +65,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
             </Button>
           </CopyClipboard>
         </template>
-        <pre class="m-0 text-xl" :style="{ height: '80px', padding: '0 16px', display: 'flex', alignItems: 'center' }">The quick brown fox jumps over the lazy dog.</pre>
+        <pre class="m-0 text-xl" :style="{ height: '80px', padding: '0 16px', display: 'flex', alignItems: 'center', margin: 0 }">The quick brown fox jumps over the lazy dog.</pre>
       </Card>
     </Grid>
 
