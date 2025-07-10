@@ -10,6 +10,7 @@ import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleCalendars from './examples/ExampleCalendars.vue'
 import ExampleCards from './examples/ExampleCards.vue'
 import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
+import ExampleCommands from './examples/ExampleCommands.vue'
 import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
 import ExampleDividers from './examples/ExampleDividers.vue'
 import ExampleDrawers from './examples/ExampleDrawers.vue'
@@ -36,6 +37,9 @@ import ExampleTooltips from './examples/ExampleTooltips.vue'
       <h1 class="mb-l">
         VUI
       </h1>
+
+      <ExampleCommands />
+      <Divider :size="64" />
 
       <Card class="typeface">
         <pre><code>export function removeColorPrefix(value: string): string {

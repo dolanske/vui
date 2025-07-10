@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
+import { useMagicKeys, whenever } from '@vueuse/core'
 import { useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import Button from '../Button/Button.vue'
@@ -33,6 +34,11 @@ export interface ModalProps {
    * Wether modal can be closed by clicking the X button
    */
   canDismiss?: boolean
+
+  /**
+   * Hides the X button in the top right of the modal. The modal can still be closed by other means.
+   */
+  hideCloseButton?: boolean
 }
 
 const {
@@ -41,6 +47,7 @@ const {
   scrollable,
   centered,
   canDismiss = true,
+  hideCloseButton = false,
   open = false,
 } = defineProps<ModalProps>()
 
@@ -53,6 +60,10 @@ function tryClose() {
     emit('close')
   }
 }
+
+const { escape } = useMagicKeys()
+
+whenever(escape, tryClose)
 </script>
 
 <template>
@@ -64,7 +75,7 @@ function tryClose() {
             <template v-if="$slots.header" #header>
               <slot name="header" :close="() => emit('close')" />
             </template>
-            <template #header-end>
+            <template v-if="!hideCloseButton" #header-end>
               <Button
                 v-if="canDismiss"
                 class="vui-modal-close"

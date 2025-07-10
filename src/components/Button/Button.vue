@@ -11,8 +11,8 @@ export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'gray
 
 interface Props {
   // Provide URL to turn button into anchor
-  // href?: string
-  // target?: string
+  href?: string
+  target?: string
 
   // State props
   loading?: boolean
@@ -37,6 +37,8 @@ const {
   size = 'm',
   variant = 'gray',
   icon,
+  href,
+  target = '_blank',
   // dashed,
 } = defineProps<Props>()
 
@@ -60,7 +62,8 @@ const padding = computed(() => {
 </script>
 
 <template>
-  <button
+  <component
+    :is="href ? 'a' : 'button'"
     class="vui-button"
     :class="[{ loading, expand, disabled, plain, icon, square, outline }, `vui-button-variant-${variant}`, `vui-button-size-${size}`]"
     :disabled
@@ -70,6 +73,9 @@ const padding = computed(() => {
       '--button-padding': padding,
     }"
     :name="icon && !$slots.default ? icon.split(':')[1] : undefined"
+    v-bind="{
+      ...(target && { target }),
+    }"
   >
     <Spinner v-if="!isNil(loading)" size="s" />
     <div class="vui-button-slot">
@@ -82,5 +88,5 @@ const padding = computed(() => {
         <slot name="end" />
       </div>
     </div>
-  </button>
+  </component>
 </template>

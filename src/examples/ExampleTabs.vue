@@ -5,7 +5,6 @@ import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Tab from '../components/Tabs/Tab.vue'
 import Tabs from '../components/Tabs/Tabs.vue'
-// import Flex from '../components/Flex/Flex.vue'
 
 const activeTab = ref('Home')
 const noActiveNow = ref('')

@@ -30,7 +30,7 @@ const dynamicAccordions = ref([
         <div class="mb-xl" />
 
         <strong class="block mb-s text-semibold">Group</strong>
-        <AccordionGroup>
+        <AccordionGroup single>
           <Accordion v-for="item in dynamicAccordions" :key="item" :label="item">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquam ad dicta nesciunt exercitationem? Quas vitae suscipit aliquam numquam incidunt corporis ullam, nihil dolores perferendis ipsa velit tempora accusantium cupiditate.</p>
           </Accordion>

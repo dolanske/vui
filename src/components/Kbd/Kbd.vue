@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import './kbd.scss'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
    *
    * keys="Escape" keys="Ctrl+A"
    */
-  keys: string
+  keys?: string
   /**
    * Display custom label instead of the automatically formatted keys.
    */
@@ -27,12 +27,17 @@ const emits = defineEmits<{
 }>()
 const keyHandler = useMagicKeys()
 
-whenever(keyHandler[props.keys], () => {
-  emits('trigger')
+// Make sure we listen for the existence of props.keys in case they are not
+// available at first
+whenever(() => props.keys, (value) => {
+  whenever(keyHandler[value], () => {
+    emits('trigger')
+  })
 })
 
+
 const isActive = computed(() => {
-  if (!props.highlight)
+  if (!props.highlight || !props.keys)
     return false
 
   return props.keys.split('+').every((key) => {
@@ -44,7 +49,7 @@ const isActive = computed(() => {
 <template>
   <kbd class="vui-kbd" :class="{ active: isActive }">
     <slot>
-      {{ props.label ?? props.keys.replaceAll("+", " + ") }}
+      {{ props.label ?? props.keys?.replaceAll("+", " + ") }}
     </slot>
   </kbd>
 </template>

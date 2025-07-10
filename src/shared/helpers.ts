@@ -1,4 +1,5 @@
 import type { Placement } from '@floating-ui/vue'
+import type { MaybeArray } from './types'
 
 export function createArray(length: number, startOffset: number = 0): number[] {
   return Array
@@ -9,13 +10,19 @@ export function createArray(length: number, startOffset: number = 0): number[] {
 // Searches through the input and checkes wether it contains match
 // It searches the input by splitting it by whitespace and matching each
 // word against the string
-export function searchString(match: string | string[], input: string): boolean {
+export function searchString(match: MaybeArray<string | number | null | undefined>, input?: string): boolean {
+  if (!input)
+      return true
+
   if (!match)
     return false
 
-  const joint: string = Array.isArray(match) ? match.join(' ') : match
+  const joint: string = Array.isArray(match) 
+    ? match.filter(Boolean).join(' ')
+    : match.toString()
 
   const split = input.trim().split(/\s+/)
+  // NOTE: should this be every or some?
   return split.every(s => joint.toLowerCase().includes(s.toLowerCase()))
 }
 
