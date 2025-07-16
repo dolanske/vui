@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { computed } from 'vue'
+import { IconChatTeardrop, IconCheckCircle, IconInfo, IconWarning, IconWarningDiamond } from '@iconify-prerendered/vue-ph'
 import './alert.scss'
 
 interface Props {
   variant?: 'neutral' | 'info' | 'success' | 'warning' | 'danger'
-  /**
-   * Override the variant's default icon
-   */
-  icon?: string
   /**
    * Setting a title and description will use slightly different styling other
    * than slots.
@@ -22,27 +17,22 @@ interface Props {
 }
 
 const {
-  icon = 'ph:chat-teardrop',
   variant = 'neutral',
   title,
   description,
   filled,
 } = defineProps<Props>()
-
-const actualIcon = computed(() => {
-  switch (variant) {
-    case 'info': return 'ph:info'
-    case 'success': return 'ph:check-circle'
-    case 'warning': return 'ph:warning'
-    case 'danger': return 'ph:warning-diamond'
-    default: return icon
-  }
-})
 </script>
 
 <template>
   <div class="vui-alert" :class="[{ filled }, `vui-alert-variant-${variant}`]">
-    <Icon v-if="actualIcon" class="vui-alert-icon" :icon="actualIcon" />
+    <slot name="icon">
+      <IconInfo v-if="variant === 'info'" class="vui-alert-icon" />
+      <IconCheckCircle v-else-if="variant === 'success'" class="vui-alert-icon" />
+      <IconWarning v-else-if="variant === 'warning'" class="vui-alert-icon" />
+      <IconWarningDiamond v-else-if="variant === 'danger'" class="vui-alert-icon" />
+      <IconChatTeardrop v-else class="vui-alert-icon" />
+    </slot>
     <div v-if="$slots.default && !title" class="vui-alert-content">
       <slot />
     </div>
@@ -53,7 +43,6 @@ const actualIcon = computed(() => {
       </p>
       <slot v-else-if="$slots.default" />
     </div>
-
     <slot name="end" />
   </div>
 </template>

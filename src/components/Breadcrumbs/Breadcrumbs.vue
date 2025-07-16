@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconCaretRight } from '@iconify-prerendered/vue-ph'
 import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
 import './breadcrumbs.scss'
 
@@ -7,9 +7,7 @@ interface Props {
   separator?: string
 }
 
-const {
-  separator = 'ph:caret-right',
-} = defineProps<Props>()
+const { separator } = defineProps<Props>()
 
 const slots = defineSlots()
 const flattened = useFlattenedSlot(slots.default)
@@ -21,7 +19,9 @@ enforceSlotType(flattened, 'BreadcrumbItem')
     <template v-for="(vnode, index) of flattened" :key="vnode.props?.label || index">
       <component :is="vnode" />
       <template v-if="index !== flattened.length - 1">
-        <Icon v-if="separator.length > 1 && separator.includes(':')" class="vui-breadcrumb-custom-separator" :icon="separator" />
+        <slot v-if="!separator" name="separator">
+          <IconCaretRight class="vui-breadcrumb-custom-separator" />
+        </slot>
         <span v-else class="vui-breadcrumb-custom-separator">{{ separator }}</span>
       </template>
     </template>

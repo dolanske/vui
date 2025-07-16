@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { Placement } from '@floating-ui/vue'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
-import { Icon } from '@iconify/vue'
+import { IconCheckBold } from '@iconify-prerendered/vue-ph'
 import { useClipboard } from '@vueuse/core'
 import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
 import { getPlacementAnimationName, isNil } from '../../shared/helpers'
@@ -14,7 +14,7 @@ interface Props {
    */
   text: string
   /**
-   * Wether to show a tooltip after successful copy
+   * Whether to show a tooltip after successful copy
    */
   confirm?: string | boolean
   /**
@@ -88,8 +88,8 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
         <template v-if="typeof parsedConfirm === 'string'">
           {{ parsedConfirm }}
         </template>
-        <Flex v-else y-center x-center gap="s">
-          <Icon width="16" height="16" icon="ph:check-bold" />
+        <Flex v-else y-center x-center gap="xs">
+          <IconCheckBold />
           Copied to clipboard
         </Flex>
       </slot>

@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.6",
+    "@iconify-prerendered/vue-ph": "^0.28.1714973607",
     "@types/node": "^22.15.14",
     "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/core": "^13.1.0",
