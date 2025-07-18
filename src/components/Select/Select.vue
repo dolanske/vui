@@ -1,6 +1,6 @@
 <!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
-import { Icon } from '@iconify/vue'
+import { IconCaretDown, IconCaretUp, IconCheckBold, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
@@ -151,13 +151,15 @@ const id = useId()
               <div class="flex-1" />
               <Button
                 plain
-                icon="ph:x"
                 square
                 size="s"
                 @click.stop="clearValue"
-              />
+              >
+                <IconX />
+              </Button>
             </template>
-            <Icon :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
+            <IconCaretUp v-if="isOpen" />
+            <IconCaretDown v-else />
           </button>
         </div>
       </template>
@@ -171,7 +173,7 @@ const id = useId()
             expand
           >
             <template #start>
-              <Icon icon="ph:magnifying-glass" />
+              <IconMagnifyingGlass />
             </template>
           </Input>
         </DropdownTitle>
@@ -184,7 +186,6 @@ const id = useId()
           v-for="option in filteredOptions"
           :key="option.value"
           :class="{ selected: selected?.find(v => v.value === option.value) }"
-          :icon="selected?.find(v => v.value === option.value) ? 'ph:check-bold' : ''"
           @click="() => {
             if (readonly) return
 
@@ -196,6 +197,9 @@ const id = useId()
           }"
         >
           {{ option.label }}
+          <template #icon>
+            <IconCheckBold v-if="selected?.find(v => v.value === option.value)" />
+          </template>
         </DropdownItem>
       </template>
     </Dropdown>

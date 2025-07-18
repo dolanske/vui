@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { OtpContext } from './OTP.vue'
-import { Icon } from '@iconify/vue'
+import { IconAsterisk } from '@iconify-prerendered/vue-ph'
+
 import { inject } from 'vue'
 
 interface Props {
@@ -28,7 +29,7 @@ register()
   >
     <div class="blinker" />
     <template v-if="otpValue.trim().at(props.i)">
-      <Icon v-if="redacted" icon="ph:asterisk" />
+      <IconAsterisk v-if="redacted" />
       <template v-else>
         {{ otpValue.at(props.i) }}
       </template>

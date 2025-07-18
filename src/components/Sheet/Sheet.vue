@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { IconX } from '@iconify-prerendered/vue-ph'
 import { computed } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { formatUnitValue } from '../../shared/helpers'
@@ -63,7 +64,9 @@ const baseTransform = computed(() => {
         <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
           <div class="vui-sheet-header">
             <slot name="header" :close="() => emit('close')" />
-            <Button plain square icon="ph:x" @click="emit('close')" />
+            <Button plain square @click="emit('close')">
+              <IconX />
+            </Button>
           </div>
 
           <Divider v-if="separator && $slots.header" :size="1" />

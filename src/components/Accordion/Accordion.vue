@@ -82,7 +82,7 @@ onMounted(() => {
       <slot name="header">
         {{ props.label }}
       </slot>
-      <IconCaretDown v-if="!props.unstyled" icon="ph:caret-down" />
+      <IconCaretDown v-if="!props.unstyled" />
     </button>
 
     <div

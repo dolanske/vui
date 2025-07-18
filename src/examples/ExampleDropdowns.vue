@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import { IconArrowRight, IconCommand, IconTrash, IconUser, IconX } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'
@@ -71,23 +71,39 @@ const placements = ['top', 'bottom', 'left', 'right'] as const
                 </template>
               </DropdownTitle>
 
-              <DropdownItem icon="ph:user">
+              <DropdownItem>
+                <template #icon>
+                  <IconUser />
+                </template>
+
                 New user
                 <template #hint>
-                  <Icon icon="ic:round-keyboard-command-key" />
+                  <IconCommand />
                   + C
                 </template>
               </DropdownItem>
-              <DropdownItem icon-end="ph:arrow-right">
+              <DropdownItem>
+                <template #icon>
+                  <IconArrowRight />
+                </template>
+
                 Update
               </DropdownItem>
               <DropdownItem>Cancel</DropdownItem>
 
               <DropdownTitle>Yourself</DropdownTitle>
-              <DropdownItem icon="ph:x" disabled>
+              <DropdownItem disabled>
+                <template #icon>
+                  <IconX />
+                </template>
+
                 Disabled option
               </DropdownItem>
-              <DropdownItem icon="ph:x">
+              <DropdownItem>
+                <template #icon>
+                  <IconTrash />
+                </template>
+
                 Delete
               </DropdownItem>
             </Dropdown>

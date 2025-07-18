@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InputProps } from './Input.vue'
-import { Icon } from '@iconify/vue'
+import { IconPalette } from '@iconify-prerendered/vue-ph'
 import { useAttrs, useId } from 'vue'
 import Input from './Input.vue'
 
@@ -19,7 +19,7 @@ const id = useId()
       <input :id v-model="color" type="color" tabindex="0">
       <label :for="id">
         <div class="vui-input-color-indicator" :style="{ backgroundColor: color }">
-          <Icon v-if="!color" icon="ph:palette" />
+          <IconPalette v-if="!color" />
         </div>
         <input v-model="color" type="text" :placeholder="props.placeholder">
       </label>

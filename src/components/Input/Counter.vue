@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { InputProps } from './Input.vue'
-import { Icon } from '@iconify/vue'
+import { IconMinus, IconPlus } from '@iconify-prerendered/vue-ph'
 import Button from '../Button/Button.vue'
 import ButtonGroup from '../ButtonGroup/ButtonGroup.vue'
 import Input from './Input.vue'
@@ -34,10 +34,10 @@ const count = defineModel<number>({
     <template #end>
       <ButtonGroup>
         <Button v-if="!hideDecrement" key="decrease" :disabled="!decrementEnabled" :style="{ 'border-top-left-radius': 0, 'border-bottom-left-radius': 0, 'marginRight': '-1px' }" @click="count -= decrementBy">
-          <Icon icon="ph:minus" /> {{ decrementBy > 1 ? decrementBy : '' }}
+          <IconMinus /> {{ decrementBy > 1 ? decrementBy : '' }}
         </Button>
         <Button v-if="!hideIncrement" key="increase" :disabled="!incrementEnabled" @click="count += incrementBy">
-          <Icon icon="ph:plus" /> {{ incrementBy > 1 ? incrementBy : '' }}
+          <IconPlus /> {{ incrementBy > 1 ? incrementBy : '' }}
         </Button>
       </ButtonGroup>
     </template>

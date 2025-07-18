@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconSidebar, IconX } from '@iconify-prerendered/vue-ph'
 import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
@@ -67,7 +67,7 @@ const activeDynamic = ref(dynamicTabs.value[0])
               <template #start>
                 <Button>
                   <template #start>
-                    <Icon icon="ph:sidebar" />
+                    <IconSidebar />
                   </template>
                   Sidebar
                 </Button>
@@ -85,7 +85,9 @@ const activeDynamic = ref(dynamicTabs.value[0])
               <Tab value="You" />
 
               <template #end>
-                <Button icon="ph:x" plain />
+                <Button plain>
+                  <IconX />
+                </Button>
               </template>
             </Tabs>
           </td>
@@ -97,7 +99,7 @@ const activeDynamic = ref(dynamicTabs.value[0])
               <template #start>
                 <Button>
                   <template #start>
-                    <Icon icon="ph:sidebar" />
+                    <IconSidebar />
                   </template>
                   Sidebar
                 </Button>
@@ -115,7 +117,9 @@ const activeDynamic = ref(dynamicTabs.value[0])
               <Tab value="You" />
 
               <template #end>
-                <Button icon="ph:x" plain />
+                <Button plain>
+                  <IconX />
+                </Button>
               </template>
             </Tabs>
           </td>

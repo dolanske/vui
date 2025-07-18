@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { InputProps } from './Input.vue'
-import { Icon } from '@iconify/vue'
+import { IconEye, IconEyeSlash } from '@iconify-prerendered/vue-ph'
+
 import { ref } from 'vue'
 import Button from '../Button/Button.vue'
 import Input from './Input.vue'
@@ -28,7 +29,8 @@ const show = ref(showPassword)
         :aria-label="show ? 'Hide' : 'Reveal'"
         @click="show = !show"
       >
-        <Icon :width="18" :height="18" :icon="show ? 'ph:eye-slash' : 'ph:eye'" />
+        <IconEyeSlash v-if="show" width="18" height="18" />
+        <IconEye v-else width="18" height="18" />
       </Button>
     </template>
   </Input>

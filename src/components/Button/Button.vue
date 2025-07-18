@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
-import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 import { isNil } from '../../shared/helpers'
 import { Size } from '../../shared/types'
@@ -20,7 +19,7 @@ interface Props {
   size?: Sizes
   expand?: boolean
   square?: boolean
-  icon?: string
+  // icon?: string
 
   variant?: Variants
   outline?: boolean
@@ -36,7 +35,7 @@ const {
   expand,
   size = 'm',
   variant = 'gray',
-  icon,
+  // icon,
   // dashed,
 } = defineProps<Props>()
 
@@ -62,22 +61,20 @@ const padding = computed(() => {
 <template>
   <button
     class="vui-button"
-    :class="[{ loading, expand, disabled, plain, icon, square, outline }, `vui-button-variant-${variant}`, `vui-button-size-${size}`]"
+    :class="[{ loading, expand, disabled, plain, square, outline }, `vui-button-variant-${variant}`, `vui-button-size-${size}`]"
     :disabled
     role="button"
     :style="{
       '--button-height': height,
       '--button-padding': padding,
     }"
-    :name="icon && !$slots.default ? icon.split(':')[1] : undefined"
   >
     <Spinner v-if="!isNil(loading)" size="s" />
     <div class="vui-button-slot">
       <div v-if="$slots.start" class="vui-button-slot-start">
         <slot name="start" />
       </div>
-      <Icon v-if="icon" :icon="icon" />
-      <slot v-else />
+      <slot />
       <div v-if="$slots.end" class="vui-button-slot-end">
         <slot name="end" />
       </div>

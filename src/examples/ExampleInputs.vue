@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconEye, IconPhone } from '@iconify-prerendered/vue-ph'
 import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Divider from '../components/Divider/Divider.vue'
@@ -78,12 +78,12 @@ const selected2 = ref([])
       </Input>
       <Input label="With icon" hint="What is your birth name?" placeholder="Your phone sir">
         <template #start>
-          <Icon icon="ph:phone" />
+          <IconPhone />
         </template>
       </Input>
       <Input label="With button" hint="What is your birth name?" placeholder="Your phone sir">
         <template #start>
-          <Icon icon="ph:phone" />
+          <IconPhone />
         </template>
         <template #end>
           <Button>Clear</Button>
@@ -91,7 +91,9 @@ const selected2 = ref([])
       </Input>
       <Input label="Two buttons" placeholder="Some stuff">
         <template #start>
-          <Button square icon="ph:eye" />
+          <Button square>
+            <IconEye />
+          </Button>
         </template>
         <template #end>
           <Button>Clear</Button>
@@ -102,7 +104,7 @@ const selected2 = ref([])
           <Button>Start</Button>
         </template>
         <template #end>
-          <Icon icon="ph:phone" />
+          <IconPhone />
         </template>
       </Input>
     </Grid>
