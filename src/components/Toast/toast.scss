@@ -1,9 +1,75 @@
 .vui-toast-wrapper {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
   width: 100%;
   max-width: 392px;
+
+  // Bottom placements
+  &.bottom {
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.bottom-start {
+    bottom: 32px;
+    left: 32px;
+  }
+
+  &.bottom-end {
+    bottom: 32px;
+    right: 32px;
+  }
+
+  // Top placements
+  &.top {
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.top-start {
+    top: 32px;
+    left: 32px;
+  }
+
+  &.top-end {
+    top: 32px;
+    right: 32px;
+  }
+
+  // Right placements
+  &.right {
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.right-start {
+    right: 32px;
+    top: 32px;
+  }
+
+  &.right-end {
+    right: 32px;
+    bottom: 32px;
+  }
+
+  // Left placements
+  &.left {
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.left-start {
+    left: 32px;
+    top: 32px;
+  }
+
+  &.left-end {
+    left: 32px;
+    bottom: 32px;
+  }
 
   .vui-toast-list {
     display: flex;

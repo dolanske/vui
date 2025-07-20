@@ -1,6 +1,6 @@
 .vui-popout {
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-strong);
   background-color: var(--color-bg-medium);
   border-radius: var(--border-radius-m);
   z-index: var(--z-popout);
@@ -11,6 +11,6 @@
 :root.light {
   .vui-popout {
     background-color: var(--color-bg);
-    box-shadow: var(--box-shadow-strong);
+    box-shadow: var(--box-shadow);
   }
 }

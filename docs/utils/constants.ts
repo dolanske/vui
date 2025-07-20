@@ -10,8 +10,8 @@ export const sizeTokens = [
 ]
 
 export const fontSizeTokens = [
-  { name: 'XXS size', token: '--font-size-xxs', size: '1rem' },
-  { name: 'XS size', token: '--font-size-xs', size: '1.15rem' },
+  { name: 'XXS size', token: '--font-size-xxs', size: '1.1rem' },
+  { name: 'XS size', token: '--font-size-xs', size: '1.175rem' },
   { name: 'S size', token: '--font-size-s', size: '1.3rem' },
   { name: 'M size', token: '--font-size-m', size: '1.5rem' },
   { name: 'L size', token: '--font-size-l', size: '1.8rem' },
@@ -191,8 +191,8 @@ export const darkTextClasses = darkThemeTokens
   }))
 
 export const fontSizeClasses = [
-  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1rem' },
-  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.15rem' },
+  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1.1rem' },
+  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.175rem' },
   { name: 'S size', className: 'text-s', token: '--font-size-s', size: '1.3rem' },
   { name: 'M size', className: 'text-m', token: '--font-size-m', size: '1.5rem' },
   { name: 'L size', className: 'text-l', token: '--font-size-l', size: '1.8rem' },
