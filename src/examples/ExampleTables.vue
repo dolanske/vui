@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import Accordion from '../components/Accordion/Accordion.vue'
 import Divider from '../components/Divider/Divider.vue'
 import { paginate } from '../components/Pagination/pagination'
@@ -8,46 +8,69 @@ import * as Table from '../components/Table/index'
 import { defineTable } from '../components/Table/table'
 import Tooltip from '../components/Tooltip/Tooltip.vue'
 
-interface Item {
-  'ID Nation': string
-  'ID Year': number
-  'Nation': string
-  'Population': number
-  'Slug Nation': string
-  'Year': string
-}
-
-interface StrippedItem {
-  Nation: string
-  Population: number
-  Year: string
-}
-
-const data = ref<StrippedItem[]>([])
-
-onBeforeMount(async () => {
-  data.value = await fetch('https://datausa.io/api/data?drilldowns=State&measures=Population')
-    .then(response => response.json())
-    .then(({ data }: { data: Item[] }) => {
-      return data.map(row => ({
-        Nation: row.Nation,
-        Population: row.Population,
-        Year: row.Year,
-      }))
-    })
-})
+const data = [
+  { State: 'Alabama', Population: 5024279, Capital: 'Montgomery' },
+  { State: 'Alaska', Population: 733391, Capital: 'Juneau' },
+  { State: 'Arizona', Population: 7151502, Capital: 'Phoenix' },
+  { State: 'Arkansas', Population: 3011524, Capital: 'Little Rock' },
+  { State: 'California', Population: 39538223, Capital: 'Sacramento' },
+  { State: 'Colorado', Population: 5773714, Capital: 'Denver' },
+  { State: 'Connecticut', Population: 3605944, Capital: 'Hartford' },
+  { State: 'Delaware', Population: 989948, Capital: 'Dover' },
+  { State: 'Florida', Population: 21538187, Capital: 'Tallahassee' },
+  { State: 'Georgia', Population: 10711908, Capital: 'Atlanta' },
+  { State: 'Hawaii', Population: 1455271, Capital: 'Honolulu' },
+  { State: 'Idaho', Population: 1839106, Capital: 'Boise' },
+  { State: 'Illinois', Population: 12812508, Capital: 'Springfield' },
+  { State: 'Indiana', Population: 6785528, Capital: 'Indianapolis' },
+  { State: 'Iowa', Population: 3190369, Capital: 'Des Moines' },
+  { State: 'Kansas', Population: 2937880, Capital: 'Topeka' },
+  { State: 'Kentucky', Population: 4505836, Capital: 'Frankfort' },
+  { State: 'Louisiana', Population: 4657757, Capital: 'Baton Rouge' },
+  { State: 'Maine', Population: 1362359, Capital: 'Augusta' },
+  { State: 'Maryland', Population: 6177224, Capital: 'Annapolis' },
+  { State: 'Massachusetts', Population: 7029917, Capital: 'Boston' },
+  { State: 'Michigan', Population: 10037261, Capital: 'Lansing' },
+  { State: 'Minnesota', Population: 5737915, Capital: 'Saint Paul' },
+  { State: 'Mississippi', Population: 2961279, Capital: 'Jackson' },
+  { State: 'Missouri', Population: 6196010, Capital: 'Jefferson City' },
+  { State: 'Montana', Population: 1084225, Capital: 'Helena' },
+  { State: 'Nebraska', Population: 1961504, Capital: 'Lincoln' },
+  { State: 'Nevada', Population: 3104614, Capital: 'Carson City' },
+  { State: 'New Hampshire', Population: 1377529, Capital: 'Concord' },
+  { State: 'New Jersey', Population: 9288994, Capital: 'Trenton' },
+  { State: 'New Mexico', Population: 2117522, Capital: 'Santa Fe' },
+  { State: 'New York', Population: 20201249, Capital: 'Albany' },
+  { State: 'North Carolina', Population: 10439388, Capital: 'Raleigh' },
+  { State: 'North Dakota', Population: 779094, Capital: 'Bismarck' },
+  { State: 'Ohio', Population: 11799448, Capital: 'Columbus' },
+  { State: 'Oklahoma', Population: 3959353, Capital: 'Oklahoma City' },
+  { State: 'Oregon', Population: 4237256, Capital: 'Salem' },
+  { State: 'Pennsylvania', Population: 13002700, Capital: 'Harrisburg' },
+  { State: 'Rhode Island', Population: 1097379, Capital: 'Providence' },
+  { State: 'South Carolina', Population: 5118425, Capital: 'Columbia' },
+  { State: 'South Dakota', Population: 886667, Capital: 'Pierre' },
+  { State: 'Tennessee', Population: 6910840, Capital: 'Nashville' },
+  { State: 'Texas', Population: 29145505, Capital: 'Austin' },
+  { State: 'Utah', Population: 3271616, Capital: 'Salt Lake City' },
+  { State: 'Vermont', Population: 643077, Capital: 'Montpelier' },
+  { State: 'Virginia', Population: 8631393, Capital: 'Richmond' },
+  { State: 'Washington', Population: 7705281, Capital: 'Olympia' },
+  { State: 'West Virginia', Population: 1793716, Capital: 'Charleston' },
+  { State: 'Wisconsin', Population: 5893718, Capital: 'Madison' },
+  { State: 'Wyoming', Population: 576851, Capital: 'Cheyenne' },
+]
 
 const {
   rows,
   headers,
   pagination,
-  allRows,
   setPage,
   selectedRows,
 } = defineTable(data, {
   pagination: {
     enabled: true,
-    perPage: 3,
+    perPage: 5,
   },
   select: true,
 })
@@ -116,17 +139,17 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
       This example demonstrates the full capability of the table component. Including column sorting, pagination and row selection.
     </p>
 
-    <Table.Root separate-cells class="mb-l">
+    <Table.Root separate-cells class="mb-l" fixed>
       <template #header>
         <Table.SelectAll />
         <Table.Head v-for="header in headers" :key="header.label" :header sort />
       </template>
       <template #body>
-        <tr v-for="row in rows" :key="row.Year">
+        <tr v-for="row in rows" :key="row.State">
           <Table.SelectRow :row />
-          <Table.Cell>{{ row.Nation }}</Table.Cell>
+          <Table.Cell>{{ row.State }}</Table.Cell>
           <Table.Cell>{{ row.Population }}</Table.Cell>
-          <Table.Cell>{{ row.Year }}</Table.Cell>
+          <Table.Cell>{{ row.Capital }}</Table.Cell>
         </tr>
       </template>
       <template #pagination>
@@ -152,18 +175,6 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
         <li><p><code>nowrap</code> Adds ellipsis to text which overflows to keep row size consistent (default: <code>false</code>)</p></li>
         <li><p><code>fixed</code> Keeps all the columns the same size (default: <code>false</code>)</p></li>
       </ul>
-    </div>
-
-    <div class="container container-s mb-xxl ml-0">
-      <Table.Root :outer-border="false" :separate-cells="true" nowrap fixed>
-        <template #body>
-          <tr v-for="row in allRows" :key="row.Year">
-            <Table.Cell>{{ `${row.Nation} ${row.Nation}` }}</Table.Cell>
-            <Table.Cell>{{ row.Population }}</Table.Cell>
-            <Table.Cell>{{ row.Year }}</Table.Cell>
-          </tr>
-        </template>
-      </Table.Root>
     </div>
 
     <h5 class="mb-s">

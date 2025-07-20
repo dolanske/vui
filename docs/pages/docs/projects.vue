@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Card, Flex } from '@dolanske/vui'
+import { Card, Flex } from '@dolanske/vui'
 
 const projects = [
   {

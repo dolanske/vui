@@ -55,8 +55,9 @@ const sortStateBind = computed(() => {
             square
             variant="gray"
             @click="props.header.sortToggle"
-          />
-          <component :is="sortStateBind?.icon" />
+          >
+            <component :is="sortStateBind?.icon" />
+          </Button>
           <template #tooltip>
             {{ sortStateBind?.tooltipText }}
           </template>

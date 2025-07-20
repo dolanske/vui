@@ -100,9 +100,9 @@
           vertical-align: middle;
           display: inline-flex;
 
-          &.icon .vui-button-slot svg {
-            width: 22px !important;
-            height: 22px !important;
+          .vui-button-slot svg {
+            width: 24px !important;
+            height: 24px !important;
 
             path {
               color: var(--color-text-light);
