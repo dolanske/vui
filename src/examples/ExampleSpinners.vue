@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { IconMinus, IconPause, IconPlay, IconPlus } from '@iconify-prerendered/vue-ph'
 import { ref, watch } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Checkbox from '../components/Checkbox/Checkbox.vue'
@@ -21,7 +22,10 @@ watch(paused, () => fakeProgress.value = 0)
     <h3 class="mb-l">
       <Flex y-center gap="m">
         Loading
-        <Button square :icon="paused ? 'ph:play' : 'ph:pause'" size="s" plain @click="paused = !paused" />
+        <Button square size="s" plain @click="paused = !paused">
+          <IconPlay v-if="paused" />
+          <IconPause v-else />
+        </Button>
       </Flex>
     </h3>
     <table>
@@ -46,9 +50,13 @@ watch(paused, () => fakeProgress.value = 0)
           <th>Progress bar</th>
           <td class="w-80">
             <Flex gap="s" y-center>
-              <Button square icon="ph:minus" size="s" @click="progress -= 5" />
+              <Button square size="s" @click="progress -= 5">
+                <IconMinus />
+              </Button>
               <Progress v-model="progress" class="w-full" />
-              <Button square icon="ph:plus" size="s" @click="progress += 5" />
+              <Button square size="s" @click="progress += 5">
+                <IconPlus />
+              </Button>
             </Flex>
           </td>
         </tr>

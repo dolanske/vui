@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Header } from './table'
-import { computed } from 'vue'
+import { IconArrowsDownUp, IconSortAscending, IconSortDescending } from '@iconify-prerendered/vue-ph'
+import { computed, markRaw } from 'vue'
 import Button from '../Button/Button.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
 
@@ -24,15 +25,15 @@ const sortStateBind = computed(() => {
     return
   switch (props.header.sortKey) {
     case 'asc': return {
-      icon: 'ph:sort-ascending',
+      icon: markRaw(IconSortAscending),
       tooltipText: 'Ascending',
     }
     case 'desc': return {
-      icon: 'ph:sort-descending',
+      icon: markRaw(IconSortDescending),
       tooltipText: 'Descending',
     }
     default: return {
-      icon: 'ph:arrows-down-up',
+      icon: markRaw(IconArrowsDownUp),
       tooltipText: 'Sort column',
     }
   }
@@ -48,7 +49,6 @@ const sortStateBind = computed(() => {
       <template v-if="props.sort && props.header">
         <Tooltip placement="top">
           <Button
-            :icon="sortStateBind?.icon"
             class="vui-table-sort-button"
             size="s"
             :plain="!!!props.header.sortKey"
@@ -56,6 +56,7 @@ const sortStateBind = computed(() => {
             variant="gray"
             @click="props.header.sortToggle"
           />
+          <component :is="sortStateBind?.icon" />
           <template #tooltip>
             {{ sortStateBind?.tooltipText }}
           </template>

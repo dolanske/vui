@@ -26,7 +26,7 @@ interface StrippedItem {
 const data = ref<StrippedItem[]>([])
 
 onBeforeMount(async () => {
-  data.value = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population')
+  data.value = await fetch('https://datausa.io/api/data?drilldowns=State&measures=Population')
     .then(response => response.json())
     .then(({ data }: { data: Item[] }) => {
       return data.map(row => ({
