@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconCaretDown } from '@iconify-prerendered/vue-ph'
 import BreadcrumbItem from '../components/Breadcrumbs/BreadcrumbItem.vue'
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs.vue'
 import Button from '../components/Button/Button.vue'
@@ -33,7 +33,7 @@ import Button from '../components/Button/Button.vue'
                 <Button size="s">
                   Switch
                   <template #end>
-                    <Icon icon="ph:caret-down" />
+                    <IconCaretDown />
                   </template>
                 </Button>
               </BreadcrumbItem>

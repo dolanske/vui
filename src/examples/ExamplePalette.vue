@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconMoon, IconSun } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Grid from '../components/Grid/Grid.vue'
@@ -33,7 +33,7 @@ import ExampleColor from './shared/ExampleColor.vue'
           <h5>Light</h5>
           <Button :disabled="theme === 'light'" variant="gray" data-title-top="Switch theme" @click="setColorTheme('light')">
             <template #start>
-              <Icon icon="ph:sun" />
+              <IconSun />
             </template>
             Use
           </Button>
@@ -85,7 +85,7 @@ import ExampleColor from './shared/ExampleColor.vue'
           <h5>Dark</h5>
           <Button :disabled="theme === 'dark'" variant="gray" data-title-top="Switch theme" @click="setColorTheme('dark')">
             <template #start>
-              <Icon icon="ph:moon" />
+              <IconMoon />
             </template>
             Use
           </Button>

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconX } from '@iconify-prerendered/vue-ph'
 import Alert from '../components/Alert/Alert.vue'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
@@ -64,7 +64,7 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
                 <p>Unfortunately we can't help you.</p>
                 <Button>
                   <template #start>
-                    <Icon icon="ph:x" />
+                    <IconX />
                   </template>
                   Ignore
                 </Button>

@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { InputProps } from './Input.vue'
-import { Icon } from '@iconify/vue'
+import { IconFile, IconTarget } from '@iconify-prerendered/vue-ph'
 import { useEventListener } from '@vueuse/core'
 import { onMounted, ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
@@ -50,11 +50,11 @@ onMounted(() => {
         <slot :dragging>
           <Flex x-center gap="xs" y-center>
             <template v-if="dragging">
-              <Icon icon="ph:target" />
+              <IconTarget />
               Drop it
             </template>
             <template v-else>
-              <Icon icon="ph:file" />
+              <IconFile />
               Click or drag files over here
             </template>
           </Flex>

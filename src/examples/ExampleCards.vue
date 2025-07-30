@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { IconX } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import Card from '../components/Card/Card.vue'
 import Flex from '../components/Flex/Flex.vue'
@@ -27,7 +28,9 @@ import Grid from '../components/Grid/Grid.vue'
               <h4>Hello</h4>
             </template>
             <template #header-end>
-              <Button icon="ph:x" plain size="s" />
+              <Button plain size="s">
+                <IconX />
+              </Button>
             </template>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
           </Card>
@@ -57,7 +60,9 @@ import Grid from '../components/Grid/Grid.vue'
               <h4>Hello</h4>
             </template>
             <template #header-end>
-              <Button icon="ph:x" plain size="s" />
+              <Button plain size="s">
+                <IconX />
+              </Button>
             </template>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
             <template #footer>
@@ -76,7 +81,9 @@ import Grid from '../components/Grid/Grid.vue'
             <h4>Hello</h4>
           </template>
           <template #header-end>
-            <Button icon="ph:x" plain size="s" />
+            <Button plain size="s">
+              <IconX />
+            </Button>
           </template>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci eligendi quos inventore voluptas ab saepe fugit deleniti ipsam exercitationem impedit quod rem ipsum laborum, quis quam error ipsa corrupti. Dolorem!</p>
           <template #footer>

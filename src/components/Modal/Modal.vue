@@ -2,6 +2,7 @@
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
+import { IconX } from '@iconify-prerendered/vue-ph'
 import { useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import Button from '../Button/Button.vue'
@@ -81,9 +82,10 @@ whenever(escape, tryClose)
                 class="vui-modal-close"
                 plain
                 square
-                icon="ph:x"
                 @click="emit('close')"
-              />
+              >
+                <IconX />
+              </Button>
             </template>
             <template v-if="$slots.default" #default>
               <div>

@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { IconHouse, IconPhone, IconSidebarSimple, IconSignOut, IconUser, IconX } from '@iconify-prerendered/vue-ph'
 import { useStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import Avatar from '../components/Avatar/Avatar.vue'
@@ -33,20 +34,31 @@ const s3 = ref(true)
                 <h3>ABC</h3>
               </Flex>
             </template>
-            <DropdownItem icon="ph:house">
+            <DropdownItem>
+              <template #icon>
+                <IconHouse />
+              </template>
               Home
             </DropdownItem>
-            <DropdownItem icon="ph:user">
+            <DropdownItem>
+              <template #icon>
+                <IconUser />
+              </template>
               About
             </DropdownItem>
-            <DropdownItem icon="ph:phone">
+            <DropdownItem>
+              <template #icon>
+                <IconPhone />
+              </template>
               Contact
             </DropdownItem>
             <template #footer>
               <Flex y-center>
                 <Avatar size="m" />
                 <span class="flex-1">dolanske</span>
-                <Button plain size="s" icon="ph:sign-out" />
+                <Button plain size="s">
+                  <IconSignOut />
+                </Button>
               </Flex>
             </template>
           </Sidebar>
@@ -74,22 +86,35 @@ const s3 = ref(true)
                 <h3 class="flex-1">
                   ABC
                 </h3>
-                <Button plain size="s" icon="ph:x" @click="close" />
+                <Button plain size="s" @click="close">
+                  <IconX />
+                </Button>
               </Flex>
             </template>
-            <DropdownItem icon="ph:house">
+            <DropdownItem>
+              <template #icon>
+                <IconHouse />
+              </template>
               Outside
             </DropdownItem>
-            <DropdownItem icon="ph:user">
+            <DropdownItem>
+              <template #icon>
+                <IconUser />
+              </template>
               About You
             </DropdownItem>
-            <DropdownItem icon="ph:phone">
+            <DropdownItem>
+              <template #icon>
+                <IconPhone />
+              </template>
               No contact
             </DropdownItem>
           </Sidebar>
           <main class="p-l">
             <Flex y-center class="mb-m">
-              <Button plain size="s" icon="ph:sidebar-simple" @click="s1 = !s1" />
+              <Button plain size="s" @click="s1 = !s1">
+                <IconSidebarSimple />
+              </Button>
               <h4>
                 My page
               </h4>
@@ -121,25 +146,38 @@ const s3 = ref(true)
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
               </Flex>
             </template>
-            <DropdownItem icon="ph:house">
+            <DropdownItem>
+              <template #icon>
+                <IconHouse />
+              </template>
               Home
             </DropdownItem>
-            <DropdownItem icon="ph:user">
+            <DropdownItem>
+              <template #icon>
+                <IconUser />
+              </template>
               About
             </DropdownItem>
-            <DropdownItem icon="ph:phone">
+            <DropdownItem>
+              <template #icon>
+                <IconPhone />
+              </template>
               Contact
             </DropdownItem>
 
             <template #footer="{ close }">
               <Flex x-center>
-                <Button plain icon="ph:x" @click="close" />
+                <Button plain @click="close">
+                  <IconX />
+                </Button>
               </Flex>
             </template>
           </Sidebar>
           <main class="p-l">
             <Flex y-center class="mb-m">
-              <Button plain size="s" icon="ph:sidebar-simple" @click="s2 = !s2" />
+              <Button plain size="s" @click="s2 = !s2">
+                <IconSidebarSimple />
+              </Button>
               <h4>
                 My page
               </h4>
@@ -168,25 +206,38 @@ const s3 = ref(true)
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
               </Flex>
             </template>
-            <DropdownItem icon="ph:house">
+            <DropdownItem>
+              <template #icon>
+                <IconHouse />
+              </template>
               Home
             </DropdownItem>
-            <DropdownItem icon="ph:user">
+            <DropdownItem>
+              <template #icon>
+                <IconUser />
+              </template>
               About
             </DropdownItem>
-            <DropdownItem icon="ph:phone">
+            <DropdownItem>
+              <template #icon>
+                <IconPhone />
+              </template>
               Contact
             </DropdownItem>
 
             <template #footer="{ close }">
               <Flex x-center>
-                <Button plain icon="ph:x" @click="close" />
+                <Button plain @click="close">
+                  <IconX />
+                </Button>
               </Flex>
             </template>
           </Sidebar>
           <main class="p-l">
             <Flex y-center class="mb-m">
-              <Button plain size="s" icon="ph:sidebar-simple" @click="s3 = !s3" />
+              <Button plain size="s" @click="s3 = !s3">
+                <IconSidebarSimple />
+              </Button>
               <h4>
                 My page
               </h4>
@@ -213,13 +264,22 @@ const s3 = ref(true)
             <template #header>
               <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
-            <DropdownItem icon="ph:house">
+            <DropdownItem>
+              <template #icon>
+                <IconHouse />
+              </template>
               Home
             </DropdownItem>
-            <DropdownItem icon="ph:user">
+            <DropdownItem>
+              <template #icon>
+                <IconUser />
+              </template>
               About
             </DropdownItem>
-            <DropdownItem icon="ph:phone">
+            <DropdownItem>
+              <template #icon>
+                <IconPhone />
+              </template>
               Contact
             </DropdownItem>
           </Sidebar>
@@ -239,13 +299,22 @@ const s3 = ref(true)
             <template #header>
               <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
-            <DropdownItem icon="ph:house">
+            <DropdownItem>
+              <template #icon>
+                <IconHouse />
+              </template>
               Home
             </DropdownItem>
-            <DropdownItem icon="ph:user">
+            <DropdownItem>
+              <template #icon>
+                <IconUser />
+              </template>
               About
             </DropdownItem>
-            <DropdownItem icon="ph:phone">
+            <DropdownItem>
+              <template #icon>
+                <IconPhone />
+              </template>
               Contact
             </DropdownItem>
           </Sidebar>

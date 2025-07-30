@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { VueDatePickerProps } from '@vuepic/vue-datepicker'
-import { Icon } from '@iconify/vue'
+import { IconCalendarBlank, IconCaretDown, IconCaretLeft, IconCaretRight, IconCaretUp, IconClock, IconX } from '@iconify-prerendered/vue-ph'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import { useAttrs } from 'vue'
 import { theme } from '../../shared/theme'
@@ -17,7 +17,6 @@ const props = withDefaults(defineProps<VueDatePickerProps & {
   expand: false,
 })
 
-const ICON_SIZE = 18
 const attrs = useAttrs()
 </script>
 
@@ -34,28 +33,28 @@ const attrs = useAttrs()
   >
     <!-- Icon slots -->
     <template #input-icon>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:calendar-blank" />
+      <IconCalendarBlank />
     </template>
     <template #calendar-icon>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:calendar-blank" />
+      <IconCalendarBlank />
     </template>
     <template #clear-icon>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:x" />
+      <IconX />
     </template>
     <template #clock-icon>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:clock" />
+      <IconClock />
     </template>
     <template #arrow-left>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-left" />
+      <IconCaretLeft />
     </template>
     <template #arrow-right>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-right" />
+      <IconCaretRight />
     </template>
     <template #arrow-up>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-up" />
+      <IconCaretUp />
     </template>
     <template #arrow-down>
-      <Icon :width="ICON_SIZE" :height="ICON_SIZE" icon="ph:caret-down" />
+      <IconCaretDown />
     </template>
 
     <!-- Content slots -->

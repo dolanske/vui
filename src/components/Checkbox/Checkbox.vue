@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import { IconCheckSquareFill, IconSquare } from '@iconify-prerendered/vue-ph'
 import { useId } from 'vue'
 import './checkbox.scss'
 
 interface Props {
   label?: string
-  iconOn?: string
-  iconOff?: string
   disabled?: boolean
   checked?: boolean
   accent?: boolean
@@ -14,8 +12,6 @@ interface Props {
 
 const {
   label,
-  iconOn = 'ph:check-square-fill',
-  iconOff = 'ph:square',
   disabled,
   checked: checkedProp,
   accent,
@@ -43,7 +39,12 @@ const id = useId()
     >
     <label :for="id">
       <span class="vui-checkbox-icon">
-        <Icon :icon="checked ? iconOn : iconOff" />
+        <slot v-if="checked" name="icon-on">
+          <IconCheckSquareFill />
+        </slot>
+        <slot v-else name="icon-off">
+          <IconSquare />
+        </slot>
       </span>
       <p v-if="label || slots.default" class="vui-checkbox-content">
         <slot>{{ label }}</slot>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
+import { IconCaretDown } from '@iconify-prerendered/vue-ph'
 import { useResizeObserver } from '@vueuse/core'
 import { onBeforeMount, onMounted, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import './accordion.scss'
@@ -82,7 +82,7 @@ onMounted(() => {
       <slot name="header">
         {{ props.label }}
       </slot>
-      <Icon v-if="!props.unstyled" icon="ph:caret-down" />
+      <IconCaretDown v-if="!props.unstyled" />
     </button>
 
     <div
