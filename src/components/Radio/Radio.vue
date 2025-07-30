@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconCircle, IconRadioButtonFill } from '@iconify-prerendered/vue-ph'
 import { computed, useId } from 'vue'
 import './radio.scss'
 
@@ -27,7 +27,8 @@ const isChecked = computed(() => value === checked.value)
     <input :id v-model="checked" type="radio" :value :checked="isChecked" :disabled>
     <label :for="id">
       <span class="vui-radio-icon">
-        <Icon :icon="isChecked ? 'ph:radio-button-fill' : 'ph:circle'" />
+        <IconCircle v-if="!isChecked" />
+        <IconRadioButtonFill v-else />
       </span>
       <p v-if="!slots.default" class="vui-radio-content">{{ label || value }}</p>
       <div v-else class="vui-radio-content">

@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { Variants } from '../Button/Button.vue'
 import type { Pagination } from './pagination'
+import { IconCaretDoubleLeft, IconCaretDoubleRight, IconCaretLeft, IconCaretRight } from '@iconify-prerendered/vue-ph'
 import { computed } from 'vue'
 import Button from '../Button/Button.vue'
 import Flex from '../Flex/Flex.vue'
@@ -41,7 +42,9 @@ function setPrev() {
   <Flex inline class="vui-pagination" gap="xxs">
     <slot name="start">
       <Tooltip v-if="props.firstLast">
-        <Button plain :disabled="props.pagination.startPage === props.pagination.currentPage" square icon="ph:caret-double-left" @click="emit('change', props.pagination.startPage)" />
+        <Button plain :disabled="props.pagination.startPage === props.pagination.currentPage" square @click="emit('change', props.pagination.startPage)">
+          <IconCaretDoubleLeft />
+        </Button>
         <template #tooltip>
           <p>First page</p>
         </template>
@@ -50,7 +53,9 @@ function setPrev() {
 
     <slot name="prev" :disabled="canPrevPage" :set-page="setPrev">
       <Tooltip v-if="props.prevNext">
-        <Button plain :disabled="!canPrevPage" square icon="ph:caret-left" @click="setPrev" />
+        <Button plain :disabled="!canPrevPage" square @click="setPrev">
+          <IconCaretLeft />
+        </Button>
         <template #tooltip>
           <p>Previous page</p>
         </template>
@@ -73,7 +78,9 @@ function setPrev() {
     </template>
     <slot name="next" :disabled="canNextPage" :set-page="setNext">
       <Tooltip v-if="props.prevNext">
-        <Button plain :disabled="!canNextPage" square icon="ph:caret-right" @click="setNext" />
+        <Button plain :disabled="!canNextPage" square @click="setNext">
+          <IconCaretRight />
+        </Button>
         <template #tooltip>
           <p>Next page</p>
         </template>
@@ -82,7 +89,9 @@ function setPrev() {
 
     <slot name="end">
       <Tooltip v-if="props.firstLast">
-        <Button plain :disabled="props.pagination.endPage === props.pagination.currentPage" square icon="ph:caret-double-right" @click="emit('change', props.pagination.endPage)" />
+        <Button plain :disabled="props.pagination.endPage === props.pagination.currentPage" square @click="emit('change', props.pagination.endPage)">
+          <IconCaretDoubleRight />
+        </Button>
         <template #tooltip>
           <p>Last page</p>
         </template>

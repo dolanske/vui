@@ -1,12 +1,21 @@
 <script setup lang="ts">
+import type { Placement } from '../../shared/types'
 import Button from '../Button/Button.vue'
 import { toasts } from './toast'
 import './toast.scss'
+
+interface Props {
+  placement?: Placement
+}
+
+const {
+  placement = 'bottom-end',
+} = defineProps<Props>()
 </script>
 
 <template>
   <Teleport to="body">
-    <div class="vui-toast-wrapper">
+    <div class="vui-toast-wrapper" :class="placement">
       <TransitionGroup name="toast" tag="ul" class="vui-toast-list">
         <li v-for="[toastId, toast] in toasts" :key="toastId" class="vui-toast-item">
           <div class="vui-toast-item-content">

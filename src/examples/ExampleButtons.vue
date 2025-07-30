@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { Icon } from '@iconify/vue'
+import { IconArrowLeft, IconArrowRight, IconCaretDown, IconInfo, IconTextAUnderline, IconTextBBold, IconTextBold, IconTextItalic } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import ButtonGroup from '../components/ButtonGroup/ButtonGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
@@ -78,7 +78,9 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           <th>Square + icon</th>
           <td>
             <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" />
+              <Button v-for="btn in variants" :key="btn" :variant="btn" square>
+                <IconInfo />
+              </Button>
             </Flex>
           </td>
         </tr>
@@ -86,7 +88,9 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           <th>Square + icon + small</th>
           <td>
             <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" size="s" />
+              <Button v-for="btn in variants" :key="btn" :variant="btn" square size="s">
+                <IconInfo />
+              </Button>
             </Flex>
           </td>
         </tr>
@@ -94,7 +98,9 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           <th>Square + icon + large</th>
           <td>
             <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn" square icon="ph:info" size="l" />
+              <Button v-for="btn in variants" :key="btn" :variant="btn" square size="l">
+                <IconInfo />
+              </Button>
             </Flex>
           </td>
         </tr>
@@ -102,7 +108,9 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           <th>Loading</th>
           <td>
             <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn" loading size="l" />
+              <Button v-for="btn in variants" :key="btn" :variant="btn" loading size="l">
+                Button
+              </Button>
             </Flex>
           </td>
         </tr>
@@ -112,11 +120,11 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
             <Flex gap="s">
               <Button v-for="btn in variants" :key="btn" :variant="btn">
                 <template #start>
-                  <Icon icon="ph:arrow-left" />
+                  <IconArrowLeft />
                 </template>
                 Prev
                 <template #end>
-                  <Icon icon="ph:arrow-right" />
+                  <IconArrowRight />
                 </template>
               </Button>
             </Flex>
@@ -130,14 +138,24 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
                 <Button :variant="btn">
                   Hello
                 </Button>
-                <Button :variant="btn" icon="ph:caret-down" />
+                <Button :variant="btn">
+                  <IconCaretDown />
+                </Button>
               </ButtonGroup>
 
               <ButtonGroup>
-                <Button square icon="ph:text-b-bold" active />
-                <Button square icon="ph:text-bold" />
-                <Button square icon="ph:text-italic" />
-                <Button square icon="ph:text-a-underline" />
+                <Button square active>
+                  <IconTextBBold />
+                </Button>
+                <Button square>
+                  <IconTextBold />
+                </Button>
+                <Button square>
+                  <IconTextItalic />
+                </Button>
+                <Button square>
+                  <IconTextAUnderline />
+                </Button>
               </ButtonGroup>
             </Flex>
           </td>

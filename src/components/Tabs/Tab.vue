@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-
 export interface TabProps {
   disabled?: boolean
   value: string
-  icon?: string
 }
 
 const props = defineProps<TabProps>()
@@ -18,7 +15,6 @@ const props = defineProps<TabProps>()
     :name="value"
   >
     <slot>
-      <Icon v-if="props.icon" :icon="props.icon" />
       {{ props.value }}
     </slot>
   </button>

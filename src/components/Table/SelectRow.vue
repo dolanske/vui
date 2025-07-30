@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { BaseRow, TableSelectionProvide } from './table'
+import { IconCheckSquareFill, IconSquare } from '@iconify-prerendered/vue-ph'
 import { computed, inject } from 'vue'
 import { isObjectInSet } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
@@ -23,8 +24,10 @@ const isSelected = computed(() => isObjectInSet(selectedRows.value, props.row))
     <Button
       square
       plain
-      :icon="isSelected ? 'ph:check-square-fill' : 'ph:square'"
       @click="selectRow(props.row)"
-    />
+    >
+      <IconCheckSquareFill v-if="isSelected" />
+      <IconSquare v-else />
+    </Button>
   </td>
 </template>

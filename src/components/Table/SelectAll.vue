@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { TableSelectionProvide } from './table'
+import { IconCheckSquareFill, IconSquare } from '@iconify-prerendered/vue-ph'
 import { inject } from 'vue'
 import Button from '../Button/Button.vue'
 import { TableSelectionProvideSymbol } from './table'
@@ -16,8 +17,10 @@ const {
     <Button
       square
       plain
-      :icon="isSelectedAll ? 'ph:check-square-fill' : 'ph:square'"
       @click="selectAllRows()"
-    />
+    >
+      <IconCheckSquareFill v-if="isSelectedAll" />
+      <IconSquare v-else />
+    </Button>
   </th>
 </template>

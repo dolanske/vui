@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
-import { Icon } from '@iconify/vue'
+import { IconUser } from '@iconify-prerendered/vue-ph'
 import { computed, ref } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import { Size } from '../../shared/types'
@@ -57,7 +57,9 @@ const aR = computed(() => {
       <template v-if="showFallback">
         {{ fallback }}
       </template>
-      <Icon v-else :icon="icon ?? 'ph:user'" />
+      <slot v-else name="icon">
+        <IconUser />
+      </slot>
     </strong>
   </div>
 </template>
