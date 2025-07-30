@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
 import { computed, ref } from 'vue'
+import { searchString } from '../../shared/helpers'
 import Flex from '../Flex/Flex.vue'
 import Input from '../Input/Input.vue'
-import Modal from '../Modal/Modal.vue'
-import { searchString } from '../../shared/helpers'
 import Kbd from '../Kbd/Kbd.vue'
+import Modal from '../Modal/Modal.vue'
 
 export interface Command {
   title: string
@@ -34,7 +34,7 @@ const results = computed(() => {
   // TODO
   return props.commands.filter(item => searchString(
     [item.title, item.description, item.group, item.href],
-    searchValue.value
+    searchValue.value,
   ))
 })
 </script>
@@ -48,7 +48,11 @@ const results = computed(() => {
           focus
           expand
           :placeholder="props.placeholder"
-        />
+        >
+          <template #end>
+            <IconX />
+          </template>
+        </Input>
       </div>
     </template>
     <template #footer>
@@ -63,8 +67,10 @@ const results = computed(() => {
       </Flex>
     </template>
     <ul>
-      <li v-for="result in results">
-        <span>{{ result }}</span>
+      <li v-for="result in results" :key="result.title">
+        <button>
+          {{ result.title }}
+        </button>
       </li>
       <!-- <pre>{{ searchValue }}</pre> -->
     </ul>
