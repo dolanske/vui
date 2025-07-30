@@ -1,0 +1,40 @@
+.vui-commands {
+  .vui-card .vui-card-header {
+    background: var(--color-bg-medium);
+
+    // TODO: set to hopefully change the input height + v
+    // --interactive-element-height: 42px;
+
+    .vui-input {
+      --input-height: 42px;
+    }
+
+    .vui-input-style {
+      background: var(--color-bg);
+    }
+  }
+
+  .vui-commands-list {
+    list-style: none;
+    max-height: 600px;
+    overflow-y: auto;
+    // margin: -2px;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    li {
+      width: 100%;
+
+      button {
+        display: block;
+        padding: var(--space-m);
+        border: 1px solid var(--color-border);
+        width: 100%;
+        text-align: left;
+        border-radius: var(--border-radius-s);
+      }
+    }
+  }
+}

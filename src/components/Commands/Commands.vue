@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue'
+import { IconArrowDown, IconArrowUp, IconKeyReturn, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, ref } from 'vue'
 import { searchString } from '../../shared/helpers'
+import Button from '../Button/Button.vue'
 import Flex from '../Flex/Flex.vue'
 import Input from '../Input/Input.vue'
 import Kbd from '../Kbd/Kbd.vue'
 import Modal from '../Modal/Modal.vue'
+import './commands.scss'
 
 export interface Command {
   title: string
@@ -40,7 +42,7 @@ const results = computed(() => {
 </script>
 
 <template>
-  <Modal :open="props.open" hide-close-button :card="{ separators: true }">
+  <Modal :open="props.open" hide-close-button :card="{ separators: true }" class="vui-commands">
     <template #header>
       <div class="py-xs">
         <Input
@@ -50,23 +52,30 @@ const results = computed(() => {
           :placeholder="props.placeholder"
         >
           <template #end>
-            <IconX />
+            <Button v-if="searchValue" plain square @click="searchValue = ''">
+              <IconX />
+            </Button>
           </template>
         </Input>
       </div>
     </template>
     <template #footer>
-      <Flex gap="xs">
+      <Flex gap="xs" y-center>
         <span class="text-color-lighter">Move</span>
         <Kbd>
-          <Icon icon="ph:arrow-up" />
+          <IconArrowUp />
         </Kbd>
         <Kbd>
-          <Icon icon="ph:arrow-down" />
+          <IconArrowDown />
+        </Kbd>
+
+        <span class="text-color-lighter">Select</span>
+        <Kbd>
+          <IconKeyReturn />
         </Kbd>
       </Flex>
     </template>
-    <ul>
+    <ul class="vui-commands-list" tabindex="-1">
       <li v-for="result in results" :key="result.title">
         <button>
           {{ result.title }}

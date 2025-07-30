@@ -70,6 +70,10 @@ const padding = computed(() => {
       '--button-height': height,
       '--button-padding': padding,
     }"
+    v-bind="{
+      ...(target && { target }),
+      ...(href && { href }),
+    }"
   >
     <Spinner v-if="!isNil(loading)" size="s" />
     <div class="vui-button-slot">
