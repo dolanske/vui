@@ -1,13 +1,19 @@
 <!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import type { Command } from '../components/Commands/Commands.vue'
+import { IconCommand } from '@iconify-prerendered/vue-ph'
+import { ref } from 'vue'
 import Commands from '../components/Commands/Commands.vue'
+
+const open = ref(true)
 
 const commands: Command[] = [
   {
     title: 'Test brop',
     description: 'Test command we are testing',
     group: 'Test group',
+    shortcut: 'Ctrl+K',
+    icon: IconCommand(),
     handler: () => {
       console.log('Command used')
     },
@@ -80,5 +86,5 @@ const commands: Command[] = [
 </script>
 
 <template>
-  <Commands open :commands />
+  <Commands :open :commands @close="open = false" />
 </template>

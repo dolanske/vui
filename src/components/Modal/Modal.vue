@@ -42,6 +42,10 @@ export interface ModalProps {
   hideCloseButton?: boolean
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const {
   size = 'm',
   card = {},

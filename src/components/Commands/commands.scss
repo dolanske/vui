@@ -1,6 +1,7 @@
 .vui-commands {
   .vui-card .vui-card-header {
     background: var(--color-bg-medium);
+    padding: var(--space-xxs) var(--space-s);
 
     // TODO: set to hopefully change the input height + v
     // --interactive-element-height: 42px;
@@ -9,9 +10,17 @@
       --input-height: 42px;
     }
 
+    .vui-button {
+      --interactive-el-height: 42px !important;
+    }
+
     .vui-input-style {
       background: var(--color-bg);
     }
+  }
+
+  .vui-card .vui-card-footer {
+    padding: var(--space-s);
   }
 
   .vui-commands-list {
@@ -19,21 +28,60 @@
     max-height: 600px;
     overflow-y: auto;
     // margin: -2px;
-    padding: 2px;
+    // padding: 2px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    // gap: var(--space-xs);
 
     li {
+      scroll-margin: 2px;
       width: 100%;
 
+      &:hover,
+      &.vui-commands-list-item-focused {
+        button {
+          background-color: var(--color-bg-raised);
+
+          &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-accent);
+          }
+        }
+      }
+
       button {
-        display: block;
-        padding: var(--space-m);
-        border: 1px solid var(--color-border);
-        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         text-align: left;
-        border-radius: var(--border-radius-s);
+        padding: 14px var(--space-s);
+        width: 100%;
+        position: relative;
+        transition: var(--transition-fast);
+        border-bottom: 1px solid var(--color-border);
+
+        .vui-commands-list-item-icon {
+          font-size: var(--font-size-l);
+
+          &:first-child {
+            width: 32px;
+          }
+        }
+
+        .vui-command-body {
+          flex: 1;
+
+          p {
+            margin-top: 1px;
+            font-size: var(--font-size-s);
+            color: var(--color-text-lighter);
+          }
+        }
       }
     }
   }
