@@ -23,15 +23,35 @@
     padding: var(--space-s);
   }
 
+  .vui-card .vui-card-content {
+    max-height: 60dvh;
+    overflow-y: auto;
+  }
+
+  .vui-commands-empty {
+    padding: var(--space-xl);
+
+    p {
+      text-align: center;
+      color: var(--color-text-light);
+    }
+  }
+
+  .vui-commands-group-title {
+    display: block;
+    padding: var(--space-s) var(--space-m);
+    background-color: var(--color-bg-lowered);
+    color: var(--color-text-light);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-semibold);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .vui-commands-list {
     list-style: none;
-    max-height: 600px;
-    overflow-y: auto;
-    // margin: -2px;
-    // padding: 2px;
     display: flex;
     flex-direction: column;
-    // gap: var(--space-xs);
 
     li {
       scroll-margin: 2px;
@@ -59,25 +79,23 @@
         justify-content: flex-start;
         align-items: center;
         text-align: left;
-        padding: 14px var(--space-s);
+        padding: 0 var(--space-m);
+        height: 64px;
         width: 100%;
         position: relative;
         transition: var(--transition-fast);
         border-bottom: 1px solid var(--color-border);
+        gap: var(--space-m);
 
         .vui-commands-list-item-icon {
           font-size: var(--font-size-l);
-
-          &:first-child {
-            width: 32px;
-          }
+          color: var(--color-text-lighter);
         }
 
         .vui-command-body {
           flex: 1;
 
           p {
-            margin-top: 1px;
             font-size: var(--font-size-s);
             color: var(--color-text-lighter);
           }

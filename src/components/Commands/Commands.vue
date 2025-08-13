@@ -11,6 +11,16 @@ import Kbd from '../Kbd/Kbd.vue'
 import Modal from '../Modal/Modal.vue'
 import './commands.scss'
 
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: 'Write a command..',
+})
+
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
+
+const EMPTY_GROUP_KEY = '##ungrouped##'
+
 // TODO: add layers and browsing through them
 // A layer is a group of commands that are related to a specific command and are displayed when this command is entered
 
@@ -32,22 +42,49 @@ interface Props {
   commands: Command[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  placeholder: 'Write a command..',
-})
-
-const emit = defineEmits<{
-  (e: 'close'): void
-}>()
-
 const searchValue = ref(props.search)
 
 const results = computed(() => {
-  // TODO
-  return props.commands.filter(item => searchString(
-    [item.title, item.description, item.group, item.href],
-    searchValue.value,
-  ))
+  return props.commands
+    .filter(item => searchString(
+      [item.title, item.description, item.group, item.href],
+      searchValue.value,
+    ))
+})
+
+// Group results for rendering
+const groupedResults = computed<Record<string, Command[]> | null>(() => {
+  if (results.value.length === 0) {
+    return null
+  }
+
+  const grouped = Object.groupBy(results.value, (item) => {
+    return item.group ?? EMPTY_GROUP_KEY
+  })
+
+  return Object.fromEntries(
+    Object.entries(grouped).sort(([a], [b]) => a.localeCompare(b)),
+  ) as Record<string, Command[]>
+})
+
+// Precompute group offsets for O(1) global index calculation in template
+const groupOffsets = computed<number[]>(() => {
+  if (!groupedResults.value)
+    return []
+  const offsets: number[] = []
+  let acc = 0
+  for (const group of Object.values(groupedResults.value as Record<string, Command[]>)) {
+    offsets.push(acc)
+    acc += group.length
+  }
+  return offsets
+})
+
+// Flattened list in the displayed order for navigation/selection
+const flattenedResults = computed<Command[]>(() => {
+  if (!groupedResults.value)
+    return []
+  return Object.values(groupedResults.value as Record<string, Command[]>).flat()
 })
 
 const keys = useMagicKeys()
@@ -75,11 +112,11 @@ whenever(keys.ArrowUp, () => {
     focusedIndex.value--
   }
   else {
-    focusedIndex.value = results.value.length - 1
+    focusedIndex.value = flattenedResults.value.length - 1
   }
 })
 whenever(keys.ArrowDown, () => {
-  if (focusedIndex.value < results.value.length - 1) {
+  if (focusedIndex.value < flattenedResults.value.length - 1) {
     focusedIndex.value++
   }
   else {
@@ -96,7 +133,7 @@ watch(focusedIndex, (value) => {
 })
 
 whenever(keys.Enter, () => {
-  handleSelect(results.value[focusedIndex.value])
+  handleSelect(flattenedResults.value[focusedIndex.value])
 })
 
 function handleSelect(result: Command) {
@@ -152,31 +189,42 @@ whenever(keys.Escape, () => {
         </Kbd>
       </Flex>
     </template>
-    <ul class="vui-commands-list" tabindex="-1">
-      <li
-        v-for="(result, index) in results"
-        :key="result.title"
-        :data-index="index"
-        :class="{ 'vui-commands-list-item-focused': focusedIndex === index }"
-        @click="handleSelect(result)"
-      >
-        <button>
-          <div class="vui-commands-list-item-icon">
-            <component :is="result.icon" />
-          </div>
-          <div class="vui-command-body">
-            <span>
-              {{ result.title }}
-            </span>
-            <p v-if="result.description">
-              {{ result.description }}
-            </p>
-          </div>
-          <Flex v-if="result.shortcut" gap="xxs">
-            <Kbd v-for="shortcut in result.shortcut.split('+')" :key="shortcut" class="vui-commands-list-item-shortcut" :keys="shortcut" />
-          </Flex>
-        </button>
-      </li>
-    </ul>
+
+    <div v-if="!groupedResults" class="vui-commands-empty">
+      <p>No results found</p>
+    </div>
+
+    <div v-for="(group, groupKey, groupIndex) in groupedResults" v-else :key="groupKey" class="vui-commands-group">
+      <span v-if="groupKey !== EMPTY_GROUP_KEY" class="vui-commands-group-title">
+        {{ groupKey }}
+      </span>
+
+      <ul class="vui-commands-list" tabindex="-1">
+        <li
+          v-for="(result, index) in group"
+          :key="result.title"
+          :data-index="groupOffsets[groupIndex] + index"
+          :class="{ 'vui-commands-list-item-focused': focusedIndex === groupOffsets[groupIndex] + index }"
+          @click="handleSelect(result)"
+        >
+          <button>
+            <div class="vui-commands-list-item-icon">
+              <component :is="result.icon" />
+            </div>
+            <div class="vui-command-body">
+              <span>
+                {{ result.title }}
+              </span>
+              <p v-if="result.description">
+                {{ result.description }}
+              </p>
+            </div>
+            <Flex v-if="result.shortcut" gap="xxs">
+              <Kbd v-for="shortcut in result.shortcut.split('+')" :key="shortcut" class="vui-commands-list-item-shortcut" :keys="shortcut" />
+            </Flex>
+          </button>
+        </li>
+      </ul>
+    </div>
   </Modal>
 </template>

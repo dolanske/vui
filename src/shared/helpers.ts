@@ -12,12 +12,12 @@ export function createArray(length: number, startOffset: number = 0): number[] {
 // word against the string
 export function searchString(match: MaybeArray<string | number | null | undefined>, input?: string): boolean {
   if (!input)
-      return true
+    return true
 
   if (!match)
     return false
 
-  const joint: string = Array.isArray(match) 
+  const joint: string = Array.isArray(match)
     ? match.filter(Boolean).join(' ')
     : match.toString()
 

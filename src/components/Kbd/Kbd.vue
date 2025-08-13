@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import './kbd.scss'
 
 interface Props {
@@ -34,7 +34,6 @@ whenever(() => props.keys, (value) => {
     emits('trigger')
   })
 })
-
 
 const isActive = computed(() => {
   if (!props.highlight || !props.keys)
