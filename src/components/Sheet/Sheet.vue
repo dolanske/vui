@@ -1,10 +1,11 @@
 <script setup lang='ts'>
+import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
 import { computed } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
-import Divider from '../Divider/Divider.vue'
+import Card from '../Card/Card.vue'
 import './sheet.scss'
 
 interface Props {
@@ -21,15 +22,18 @@ interface Props {
    */
   size?: number | string
   /**
-   * Wether to show a divider between header and content
+   * Modal wraps a floating card. You can optinally pass in any props you'd pass
+   * into the <Card /> component.
    */
-  separator?: boolean
+  card?: CardProps
 }
 
 const {
   position = 'right',
   size = 398,
-  separator,
+  card = {
+    separators: false,
+  },
   open = false,
 } = defineProps<Props>()
 
@@ -61,26 +65,27 @@ const baseTransform = computed(() => {
   <Teleport to="body">
     <Transition appear name="sheet">
       <Backdrop v-if="open" @close="emit('close')">
-        <div v-if="open" class="vui-sheet" :class="[`vui-sheet-position-${position}`]" :style>
-          <div class="vui-sheet-header">
+        <Card
+          v-if="open"
+          class="vui-sheet"
+          :class="[`vui-sheet-position-${position}`]" :style
+          v-bind="card"
+        >
+          <template v-if="$slots.header" #header>
             <slot name="header" :close="() => emit('close')" />
+          </template>
+          <template #header-end>
             <Button plain square @click="emit('close')">
               <IconX />
             </Button>
-          </div>
-
-          <Divider v-if="separator && $slots.header" :size="1" />
-
-          <div v-if="$slots.default" class="vui-sheet-content">
+          </template>
+          <template #default>
             <slot :close="() => emit('close')" />
-          </div>
-
-          <Divider v-if="separator && $slots.footer" :size="1" />
-
-          <div class="vui-sheet-footer">
+          </template>
+          <template #footer>
             <slot name="footer" :close="() => emit('close')" />
-          </div>
-        </div>
+          </template>
+        </Card>
       </Backdrop>
     </Transition>
   </Teleport>
