@@ -18,14 +18,18 @@
   width: 224px;
 
   &.disabled {
-    .vui-input label {
-      color: var(--input-color-text-lighter);
-    }
+    .vui-input {
+      label {
+        color: var(--input-color-text-lighter);
+      }
 
-    input,
-    textarea {
-      cursor: not-allowed;
-      resize: none !important;
+      input,
+      textarea,
+      .vui-input-style {
+        cursor: not-allowed;
+        resize: none !important;
+        border-color: var(--input-color-border-weak);
+      }
     }
   }
 
@@ -44,9 +48,7 @@
     input,
     textarea,
     .vui-input-style {
-      // pointer-events: none;
       color: var(--input-color-text-light);
-      border-color: var(--input-color-border-weak);
       resize: none !important;
     }
   }
