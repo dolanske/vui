@@ -73,13 +73,14 @@ export function setCharAt(str: string, char: string | number, index: number): st
  *
  */
 export function formatUnitValue(value: string | number, unit: string = 'px'): string {
-  return typeof value === 'number'
-    ? `${value}${unit}`
-  // If last value of string is NOT a number, do not add "px" at the end
-  // eslint-disable-next-line unicorn/prefer-number-properties
-    : isNaN(Number(value[value.length - 1]))
-      ? value
-      : `${value}${unit}`
+  if (typeof value === 'number') {
+    return `${value}${unit}`
+  }
+
+  // Check if the string ends with a known unit (e.g., px, em, rem, %, vh, etc.)
+  const hasUnit = /[a-z%]+$/i.test(value.trim())
+
+  return hasUnit ? value.trim() : `${value.trim()}${unit}`
 }
 
 export function clamp(min: number, max: number, value: number): number {

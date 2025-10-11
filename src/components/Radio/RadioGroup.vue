@@ -21,14 +21,16 @@ enforceSlotType(flattened, 'Radio')
 </script>
 
 <template>
-  <Flex v-bind="flexProps">
-    <Component
-      :is="vnode"
-      v-for="vnode of flattened"
-      :key="vnode.props.value"
-      v-bind="vnode.props"
-      v-model="checked"
-      :class="{ disabled: disabled || vnode.props.disabled }"
-    />
-  </Flex>
+  <fieldset>
+    <Flex v-bind="flexProps">
+      <Component
+        :is="vnode"
+        v-for="vnode of flattened"
+        :key="vnode.props.value"
+        v-bind="vnode.props"
+        v-model="checked"
+        :class="{ disabled: disabled || vnode.props.disabled }"
+      />
+    </Flex>
+  </fieldset>
 </template>
