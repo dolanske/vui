@@ -1,6 +1,6 @@
 <!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
-import { IconCaretDown, IconCaretUp, IconCheckBold, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
+import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
