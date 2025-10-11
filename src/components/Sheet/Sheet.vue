@@ -82,7 +82,7 @@ const baseTransform = computed(() => {
           <template #default>
             <slot :close="() => emit('close')" />
           </template>
-          <template #footer>
+          <template v-if="$slots.footer" #footer>
             <slot name="footer" :close="() => emit('close')" />
           </template>
         </Card>

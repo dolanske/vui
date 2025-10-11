@@ -31,7 +31,7 @@ const option = ref([options[0]])
               <Button @click="open1 = !open1">
                 Open
               </Button>
-              <Sheet :open="open1" :position="option[0].value" separator @close="open1 = false">
+              <Sheet :open="open1" :position="option[0].value" :card="{ separators: true }" @close="open1 = false">
                 <template #header>
                   <h2>Hello </h2>
                 </template>
