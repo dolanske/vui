@@ -32,19 +32,23 @@ function computeUnderlinePosition() {
   if (tabsRef.value && underlineRef.value) {
     const activeBounds = tabsRef.value.querySelector('.vui-tab.active')?.getBoundingClientRect()
     const parentBounds = tabsRef.value.getBoundingClientRect()
-    if (!activeBounds || !parentBounds)
-      return
-
-    underlineRef.value.style.width = `${activeBounds.width}px`
-    underlineRef.value.style.left = `${activeBounds.left - parentBounds.left}px`
+    if (!activeBounds || !parentBounds) {
+      underlineRef.value.style.width = '0px'
+    }
+    else {
+      underlineRef.value.style.width = `${activeBounds.width}px`
+      underlineRef.value.style.left = `${activeBounds.left - parentBounds.left}px`
+    }
   }
 }
+
+const flattened = useFlattenedSlot<TabProps>(slots.default)
 
 onMounted(() => {
   useResizeObserver(tabsRef, computeUnderlinePosition)
 
   watch(
-    [active, () => expand],
+    [active, () => expand, flattened],
     computeUnderlinePosition,
     {
       immediate: true,
@@ -52,8 +56,6 @@ onMounted(() => {
     },
   )
 })
-
-const flattened = useFlattenedSlot<TabProps>(slots.default)
 
 enforceSlotType(flattened, 'Tab')
 </script>

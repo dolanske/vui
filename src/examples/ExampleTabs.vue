@@ -134,6 +134,9 @@ const activeDynamic = ref(dynamicTabs.value[0])
               <Button @click="dynamicTabs.shift()">
                 Remove
               </Button>
+              <Button @click="activeDynamic = ''">
+                Remove Active
+              </Button>
             </Flex>
             <Tabs v-model="activeDynamic">
               <Tab v-for="tab in dynamicTabs" :key="tab" :value="tab" />
