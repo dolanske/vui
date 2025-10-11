@@ -9,7 +9,6 @@
   border-radius: var(--border-radius-m);
   font-size: var(--font-size-m);
   cursor: default;
-  // transition: var(--transition-fast);
   padding-inline: var(--space-s);
   white-space: nowrap;
   margin-bottom: 4px;
@@ -77,8 +76,11 @@
     flex-wrap: nowrap;
   }
 
-  &.selected,
   &:hover {
     background-color: var(--color-button-gray);
+  }
+
+  &.selected {
+    background-color: var(--color-button-gray-hover);
   }
 }

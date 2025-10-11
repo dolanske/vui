@@ -53,7 +53,7 @@ const padding = computed(() => {
     case Size.s: return '4px'
     case Size.l: return '18px'
     case Size.m:
-    default: return '8px'
+    default: return '10px'
   }
 })
 </script>

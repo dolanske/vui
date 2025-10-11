@@ -197,9 +197,9 @@ const id = useId()
           }"
         >
           {{ option.label }}
-          <template #icon>
+          <!-- <template #icon>
             <IconCheckBold v-if="selected?.find(v => v.value === option.value)" />
-          </template>
+          </template> -->
         </DropdownItem>
       </template>
     </Dropdown>

@@ -16,7 +16,8 @@ f.vui-dropdown-trigger-wrap {
   align-items: center;
   justify-content: flex-start;
   padding-block: var(--space-xs);
-  padding-inline: calc(var(--space-xs) + 8px);
+  padding-inline: 8px;
+  // padding-inline: calc(var(--space-xs) + 8px);
   font-size: var(--font-size-xs);
   text-transform: uppercase;
   font-weight: var(--font-weight-semibold);
