@@ -35,6 +35,14 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
           </td>
         </tr>
         <tr>
+          <th>Filled strong</th>
+          <td>
+            <Flex column>
+              <Alert v-for="variant in variants" :key="variant" :variant title="Warranty discounts 2025" filled-strong description="We'd like to get in touch about your car's extended warranty." />
+            </Flex>
+          </td>
+        </tr>
+        <tr>
           <th>Title + description</th>
           <td>
             <Flex column>
