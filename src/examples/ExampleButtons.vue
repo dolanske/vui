@@ -18,7 +18,7 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           <th>Base</th>
           <td>
             <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn">
+              <Button v-for="btn in variants" :key="btn" :variant="btn" href="https://dolansky.dev/" target="_blank">
                 Button
               </Button>
             </Flex>

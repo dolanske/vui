@@ -9,22 +9,19 @@ import './button.scss'
 export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
 
 interface Props {
-  // Provide URL to turn button into anchor
-  // href?: string
-  // target?: string
-
-  // State props
+  /**
+   * Allows rendering the button as a HTML anchor element.
+   */
+  href?: string
+  /**
+   * Display a spinner.
+   */
   loading?: boolean
-
   size?: Sizes
   expand?: boolean
   square?: boolean
-  // icon?: string
-
   variant?: Variants
   outline?: boolean
-  // dashed?: boolean
-  // outlineDashed?: boolean
   disabled?: boolean
   plain?: boolean
 }
@@ -35,8 +32,7 @@ const {
   expand,
   size = 'm',
   variant = 'gray',
-  // icon,
-  // dashed,
+  href,
 } = defineProps<Props>()
 
 const height = computed(() => {
@@ -59,10 +55,12 @@ const padding = computed(() => {
 </script>
 
 <template>
-  <button
+  <component
+    :is="href ? 'a' : 'button'"
     class="vui-button"
     :class="[{ loading, expand, disabled, plain, square, outline }, `vui-button-variant-${variant}`, `vui-button-size-${size}`]"
     :disabled
+    :href
     role="button"
     :style="{
       '--button-height': height,
@@ -79,5 +77,5 @@ const padding = computed(() => {
         <slot name="end" />
       </div>
     </div>
-  </button>
+  </component>
 </template>
