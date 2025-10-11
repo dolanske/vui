@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3005,
     },
+    assetsInclude: ['**/*.woff2'],
     test: {
       environment: 'jsdom',
     },

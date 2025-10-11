@@ -21,8 +21,8 @@ const {
   <div
     class="vui-card" :class="{
       separators,
-      'header-separator': headerSeparator,
-      'footer-separator': footerSeparator,
+      'header-separator': separators || headerSeparator,
+      'footer-separator': separators || footerSeparator,
       'no-padding': !padding,
     }"
   >

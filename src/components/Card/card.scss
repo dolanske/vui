@@ -13,22 +13,28 @@
     }
   }
 
-  &:not(.separators) {
-    // &:not(.header-separator) .vui-card-content:first-child {
-    //   padding-bottom: var(--space-xs);
-    // }
-
-    &.header-separator {
-      .vui-card-content:not(:first-child) {
-        padding-top: var(--space-m);
-        // padding-block: var(--space-m);
-      }
+  &.header-separator {
+    .vui-card-content:not(:first-child) {
+      padding-top: var(--space-m);
+      // padding-block: var(--space-m);
     }
+  }
 
-    &.footer-separator {
-      .vui-card-content {
-        padding-bottom: var(--space-m);
-      }
+  &.footer-separator {
+    .vui-card-content {
+      padding-bottom: var(--space-m);
+    }
+  }
+
+  &:not(&.header-separator) {
+    .vui-card-header + .vui-card-content {
+      padding-top: 0;
+    }
+  }
+
+  &:not(&.footer-separator) {
+    .vui-card-content:has(+ .vui-card-footer) {
+      padding-bottom: 0;
     }
   }
 
