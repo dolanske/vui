@@ -113,7 +113,10 @@ const persistentSidebarLinks = computed(() => {
     <Sidebar class="app-sidebar" :width="212">
       <template #header>
         <Flex class="mb-s" y-center>
-          <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
+          <NuxtLink to="/">
+            <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
+          </NuxtLink>
+
           <h5>VUI</h5>
           <div class="flex-1" />
           <Button square outline>

@@ -112,14 +112,14 @@ const textAlignmentClasses = [
 
     <TokenItem
       name="Five line truncation"
-      class-name="text-overflow-5"
-      indicator-class-name="text-overflow-5"
+      class-name="text-overflow-4"
+      indicator-class-name="text-overflow-4"
     >
       <template #text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore magni itaque impedit quas facilis dolorum quo ab earum, praesentium non rem ipsa ullam autem consequatur. Nihil, tempora. Nam, adipisci fugit.
       </template>
       <template #value>
-        .text-overflow-5
+        .text-overflow-4
       </template>
     </TokenItem>
 
