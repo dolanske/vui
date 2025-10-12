@@ -66,7 +66,6 @@ const baseTransform = computed(() => {
     <Transition appear name="sheet">
       <Backdrop v-if="open" @close="emit('close')">
         <Card
-          v-if="open"
           class="vui-sheet"
           :class="[`vui-sheet-position-${position}`]" :style
           v-bind="card"

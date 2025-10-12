@@ -48,7 +48,7 @@ onMounted(() => {
   useResizeObserver(tabsRef, computeUnderlinePosition)
 
   watch(
-    [active, () => expand, flattened],
+    [active, () => expand, () => flattened.value.length],
     computeUnderlinePosition,
     {
       immediate: true,
