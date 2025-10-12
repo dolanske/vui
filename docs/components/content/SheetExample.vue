@@ -15,7 +15,6 @@ const isOpen = ref(false)
 
         <Sheet
           :open="isOpen"
-          separator
           @close="isOpen = false"
         >
           <template #header>

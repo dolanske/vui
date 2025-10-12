@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button, Dropdown, DropdownItem, DropdownTitle, Flex } from '@dolanske/vui'
-import { Icon } from '@iconify/vue/dist/iconify.js'
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>

@@ -80,7 +80,7 @@ p {
 
 code {
   display: inline-block;
-  font-family: var(--global-font-mono);
+  font-family: var(--font-mono);
   border-radius: var(--border-radius-s);
   background-color: var(--color-bg-raised);
   color: var(--color-text);
@@ -112,7 +112,7 @@ blockquote {
 }
 
 pre {
-  font-family: var(--global-font-mono);
+  font-family: var(--font-mono);
   font-size: var(--font-size-s);
   font-weight: var(--font-weight);
   line-height: var(--line-height-base);
@@ -139,7 +139,7 @@ pre {
 
   &[data-lang]::after {
     content: attr(data-lang);
-    font-family: var(--global-font);
+    font-family: var(--font);
     display: block;
     position: absolute;
     font-weight: var(--font-weight-medium);

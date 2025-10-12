@@ -9,9 +9,11 @@ body {
   font-size: 63.5%;
   font-size: 1.4rem;
   background-color: var(--color-bg);
+}
 
-  --global-font: 'Inter', sans-serif;
-  --global-font-mono: 'Geist mono', monospace;
+:root {
+  --font: 'Inter', sans-serif;
+  --font-mono: 'Geist Mono';
 }
 
 body {

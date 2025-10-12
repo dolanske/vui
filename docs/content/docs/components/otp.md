@@ -2,7 +2,7 @@
 
 A One-Time Password (OTP) input component that provides a user-friendly way to enter verification codes. It supports both numeric and alphanumeric inputs, with features like paste support and redacted display.
 
-::otp-example
+::one-time-password-example
 
 ```vue
 <script setup>
@@ -17,6 +17,9 @@ const otpValue = ref('')
     <OTPItem :i="0" />
     <OTPItem :i="1" />
     <OTPItem :i="2" />
+    <div class="px-m y-center">
+      -
+    </div>
     <OTPItem :i="3" />
     <OTPItem :i="4" />
     <OTPItem :i="5" />

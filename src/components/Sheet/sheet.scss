@@ -5,9 +5,10 @@
   max-height: 100%;
   height: 100%;
   position: absolute;
-  // background-color: var(--color-bg);
-  // border-color: var(--color-border);
-  // height: 100dvh;
+  overflow: hidden;
+  border-radius: 0;
+  border: none;
+
   & > .vui-card-content {
     flex: 1 1 0%;
     overflow-y: auto;

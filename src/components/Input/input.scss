@@ -96,7 +96,7 @@
     ::placeholder {
       font-weight: var(--font-weight);
       color: var(--color-text-lighter);
-      font-family: var(--global-font);
+      font-family: var(--font);
     }
 
     .vui-input-style,
@@ -141,7 +141,7 @@
     input,
     textarea {
       color: var(--color-text);
-      font-family: var(--global-font);
+      font-family: var(--font);
       // padding-inline: 3px;
     }
 
