@@ -162,8 +162,8 @@ export const zIndexTokens = [
 ]
 
 export const transitionTokens = [
-  { name: 'Fast', token: '--transition-fast', value: '0.0625s all ease-in-out', description: 'Used for interactive element hover states' },
-  { name: 'Default', token: '--transition', value: '0.125s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Used for appear animations of display elements' },
+  { name: 'Fast', token: '--transition-fast', value: '0.05s all ease-in-out', description: 'Used for interactive element hover states' },
+  { name: 'Default', token: '--transition', value: '0.11s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Used for appear animations of display elements' },
   { name: 'Slow', token: '--transition-slow', value: '0.25s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Slower transitions for large elements' },
 ]
 
