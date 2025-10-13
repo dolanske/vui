@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Button, defineTable, DropdownItem, Table } from '@dolanske/vui'
+import { Icon } from '@iconify/vue'
 
 const data = [
   { id: 1, name: 'John', status: 'Active' },
@@ -32,7 +33,9 @@ const { headers, rows } = defineTable(data)
               <template #context>
                 <Dropdown>
                   <template #trigger="{ toggle }">
-                    <Button icon="ph:dots-three" square size="s" plain @click="toggle" />
+                    <Button square size="s" plain @click="toggle">
+                      <Icon icon="ph:dots-three-outline-fill" />
+                    </Button>
                   </template>
                   <DropdownItem>
                     Rename

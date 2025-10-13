@@ -1,4 +1,4 @@
-# Guide
+# Installation
 
 VUI is a modern Vue 3 component library designed for building beautiful and accessible user interfaces. It provides a comprehensive set of pre-built components with consistent styling, heavy theming support, and TypeScript integration.
 

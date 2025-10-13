@@ -45,6 +45,11 @@ td:first-child code {
   margin: 0 !important;
 }
 
+article {
+  z-index: 1;
+  position: relative;
+}
+
 .typeset {
   h1,
   h2,
