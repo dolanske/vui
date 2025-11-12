@@ -216,8 +216,8 @@
       display: block;
       width: 100%;
       border: none;
-      height: calc(var(--input-height) - 1px);
-      line-height: calc(var(--input-height) - 1px);
+      height: calc(var(--input-height) - 2px);
+      line-height: calc(var(--input-height) - 2px);
       background: transparent;
       outline: none;
       font-size: var(--font-size-m);
