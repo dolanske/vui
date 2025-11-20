@@ -15,7 +15,9 @@ import { Button, Card } from '@dolanske/vui'
       <strong class="text-bold text-xl">Separators</strong>
     </template>
     <template #header-end>
-      <Button plain size="s" square icon="ph:x" />
+      <Button plain size="s" square>
+        <IconX />
+      </Button>
     </template>
     <p class="m-0">
       This card has separators and a header-end slot. All the cool stuff.

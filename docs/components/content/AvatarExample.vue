@@ -8,8 +8,10 @@ import { Avatar, Flex } from '@dolanske/vui'
       <Flex x-center y-center>
         <Avatar />
         <Avatar>JD</Avatar>
+        <Avatar>
+          <Icon name="ph:person" />
+        </Avatar>
         <Avatar url="https://github.com/dolanske.png" />
-        <Avatar icon="ph:users" />
 
         <Divider vertical />
 

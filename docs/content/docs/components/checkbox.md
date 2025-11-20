@@ -16,12 +16,13 @@ const checked = ref(true)
   <Checkbox v-model="checked" label="Basic checkbox" />
   <Checkbox v-model="checked" label="Disabled checkbox" disabled />
   <Checkbox v-model="checked" label="Checked checkbox" checked />
-  <Checkbox
-    v-model="checked"
-    icon-on="ph:toggle-left"
-    icon-off="ph:toggle-right-fill"
-    accent
-  >
+  <Checkbox v-model="checked" accent>
+    <template #icon-on>
+      <IconToggleLeft />
+    </template>
+    <template #icon-off>
+      <IconToggleRightFill />
+    </template>
     <template #default>
       Custom icons with <code>accent</code> color
     </template>
@@ -33,14 +34,12 @@ const checked = ref(true)
 
 ### Props
 
-| Name       | Default                  | Type                                                                          |
-| ---------- | ------------------------ | ----------------------------------------------------------------------------- |
-| `label`    | —                        | `string` <br> Text label for the checkbox                                     |
-| `iconOn`   | `'ph:check-square-fill'` | `string` <br> Icon to display when checkbox is checked (uses Iconify icons)   |
-| `iconOff`  | `'ph:square'`            | `string` <br> Icon to display when checkbox is unchecked (uses Iconify icons) |
-| `disabled` | `false`                  | `boolean` <br> Disables the checkbox                                          |
-| `checked`  | —                        | `boolean` <br> Controls the checked state (for controlled usage)              |
-| `accent`   | `false`                  | `boolean` <br> Uses accent color for the checkbox                             |
+| Name       | Default | Type                                                             |
+| ---------- | ------- | ---------------------------------------------------------------- |
+| `label`    | —       | `string` <br> Text label for the checkbox                        |
+| `disabled` | `false` | `boolean` <br> Disables the checkbox                             |
+| `checked`  | —       | `boolean` <br> Controls the checked state (for controlled usage) |
+| `accent`   | `false` | `boolean` <br> Uses accent color for the checkbox                |
 
 ### Events
 
@@ -50,6 +49,8 @@ const checked = ref(true)
 
 ### Slots
 
-| Name      | Accepts | Description                                                                   |
-| --------- | ------- | ----------------------------------------------------------------------------- |
-| `default` | `any`   | Content to be displayed as the label (overrides the `label` prop if provided) |
+| Name       | Accepts                  | Description                                                                   |
+| ---------- | ------------------------ | ----------------------------------------------------------------------------- |
+| `default`  | `any`                    | Content to be displayed as the label (overrides the `label` prop if provided) |
+| `icon-on`  | `'ph:check-square-fill'` | Slot which renders when the component is checked                              |
+| `icon-off` | `'ph:square'`            | Slot which renders when the component is not checked                          |

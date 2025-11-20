@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     provider: 'google',
     families: [
       { name: 'Inter', weights: [300, 400, 500, 600, 700, 800, 900] },
-      { name: 'Geist Mono', weights: [400, 600] },
+      { name: 'Geist Mono', weights: [400] },
     ],
   },
   modules: [

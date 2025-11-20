@@ -39,7 +39,6 @@ import { Alert } from '@dolanske/vui'
 | Name          | Default   | Type                                                                                           |
 | ------------- | --------- | ---------------------------------------------------------------------------------------------- |
 | `variant`     | `neutral` | `neutral` `info` `success` `warning` `danger` <br> The visual style of the alert               |
-| `icon`        | —         | `string` <br> Override the variant's default icon                                              |
 | `title`       | —         | `string` <br> Optional title for the alert. When provided, uses a different styling than slots |
 | `filled`      | —         | `boolean` <br> When true, uses a stronger color variant with colored background                |
 | `description` | —         | `string` <br> Optional description text for the alert                                          |
@@ -54,7 +53,7 @@ Please note. Unless you're using the `description` prop, the Alert component doe
 
 ### Examples
 
-#### Custom Icon, Title and Description
+#### Custom Title and Description
 
 ::alert-custom-example
 
@@ -66,7 +65,6 @@ import { Alert } from '@dolanske/vui'
 <template>
   <Alert
     variant="info"
-    icon="ph:info"
     title="System Update"
     description="A new version of the system is available. Please update to the latest version to ensure optimal performance and security."
   />

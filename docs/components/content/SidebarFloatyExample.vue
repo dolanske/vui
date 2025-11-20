@@ -10,13 +10,22 @@ import { DropdownItem, Sidebar } from '@dolanske/vui'
           <template #header>
             <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="" style="filter: invert(1);">
           </template>
-          <DropdownItem icon="ph:house">
+          <DropdownItem>
+            <template #icon>
+              <Icon name="ph:house" />
+            </template>
             Home
           </DropdownItem>
-          <DropdownItem icon="ph:user">
+          <DropdownItem>
+            <template #icon>
+              <Icon name="ph:user" />
+            </template>
             About
           </DropdownItem>
-          <DropdownItem icon="ph:phone">
+          <DropdownItem>
+            <template #icon>
+              <Icon name="ph:phone" />
+            </template>
             Contact
           </DropdownItem>
         </Sidebar>

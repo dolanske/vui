@@ -7,7 +7,6 @@ import { Alert } from '@dolanske/vui'
     <template #component>
       <Alert
         variant="info"
-        icon="ph:info"
         title="System Update"
         description="A new version of the system is available. Please update to the latest version to ensure optimal performance and security."
       />

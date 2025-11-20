@@ -75,7 +75,7 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
         With Icon
       </strong>
       <Tooltip>
-        <Icon :size="24" name="ph:info" />
+        <IconInfo :size="24" />
         <template #tooltip>
           <p>Additional information</p>
         </template>

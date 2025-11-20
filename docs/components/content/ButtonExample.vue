@@ -12,9 +12,6 @@ import { Button, Flex } from '@dolanske/vui'
         <Button variant="gray" class="mb-xs">
           Secondary Button
         </Button>
-        <Button variant="fill" icon="mdi:plus" class="mb-xs">
-          With Icon
-        </Button>
         <Button variant="fill" loading class="mb-xs">
           Loading
         </Button>

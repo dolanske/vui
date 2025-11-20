@@ -1,6 +1,6 @@
 # Dropdown
 
-A dropdown menu component that provides a flexible way to display a list of options or actions. It supports various features like icons, hints, titles and custom content.
+A dropdown menu component that provides a flexible way to display a list of options or actions. It supports various features like positions, hints, titles and custom content.
 
 ::dropdown-example
 
@@ -26,14 +26,20 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
     <DropdownItem>
       New user
       <template #hint>
-        <Icon icon="ph:command" />
+        <IconCommand />
         + C
       </template>
     </DropdownItem>
-    <DropdownItem icon-end="ph:caret-right">
+    <DropdownItem>
       Update
+      <template #icon-end>
+        <IconCaretRight />
+      </template>
     </DropdownItem>
-    <DropdownItem disabled icon="ph:x">
+    <DropdownItem disabled>
+      <template #icon>
+        <IconX />
+      </template>
       Delete
     </DropdownItem>
   </Dropdown>
@@ -91,18 +97,27 @@ import { DropdownItem } from '@dolanske/vui'
 </script>
 
 <template>
-  <DropdownItem icon-end="ph:plus">
+  <DropdownItem>
     Create
+    <template #icon-end>
+      <IconPlus />
+    </template>
   </DropdownItem>
-  <DropdownItem icon="ph:user">
+  <DropdownItem>
+    <template #icon>
+      <IconUser />
+    </template>
     Update
     <template #hint>
-      <Icon name="ph:command" />
+      <IconCommand />
       + U
     </template>
   </DropdownItem>
-  <DropdownItem disabled icon-end="ph:trash">
+  <DropdownItem disabled>
     Delete
+    <template #icon-end>
+      <IconTrash />
+    </template>
   </DropdownItem>
 </template>
 ```
@@ -111,11 +126,9 @@ import { DropdownItem } from '@dolanske/vui'
 
 ##### Props
 
-| Name       | Default | Type                                                   |
-| ---------- | ------- | ------------------------------------------------------ |
-| `disabled` | `false` | `boolean` <br> Whether the item is disabled            |
-| `icon`     | -       | `string` <br> Icon to display at the start of the item |
-| `iconEnd`  | -       | `string` <br> Icon to display at the end of the item   |
+| Name       | Default | Type                                        |
+| ---------- | ------- | ------------------------------------------- |
+| `disabled` | `false` | `boolean` <br> Whether the item is disabled |
 
 ##### Slots
 
@@ -141,7 +154,7 @@ A title or header section in the dropdown menu which also divides the dropdown i
   <DropdownTitle class="w-100">
     Manage
     <template #end>
-      <Icon name="ph:plus" />
+      <IconPlus />
     </template>
   </DropdownTitle>
 </template>

@@ -1,6 +1,5 @@
 <script setup>
 import { Dropzone, Flex } from '@dolanske/vui'
-import { Icon } from '@iconify/vue'
 
 function handleFiles(_files) {
   // Handle files here
@@ -14,7 +13,7 @@ function handleFiles(_files) {
         <Dropzone expand @files="handleFiles">
           <template #default="{ dragging }">
             <Flex x-center gap="s">
-              <Icon :icon="dragging ? 'ph:target' : 'ph:upload'" />
+              <Icon :name="dragging ? 'ph:target' : 'ph:upload'" />
               <span>{{ dragging ? 'Drop files here' : 'Upload your files' }}</span>
             </Flex>
           </template>

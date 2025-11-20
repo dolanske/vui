@@ -11,7 +11,10 @@ This is useful for providing additional context or labels for accessibility purp
 
 ```vue
 <template>
-  <Button square varian="fill" icon="ph:menu">
+  <Button square varian="fill">
+    <template #start>
+      <IconNaviagation />
+    </template>
     <span class="visually-hidden">Open navigation menu</span>
   </Button>
 </template>

@@ -16,9 +16,6 @@ import { Button } from '@dolanske/vui'
   <Button variant="gray" class="mb-xs">
     Secondary Button
   </Button>
-  <Button variant="fill" icon="mdi:plus" class="mb-xs">
-    With Icon
-  </Button>
   <Button variant="fill" loading class="mb-xs">
     Loading
   </Button>
@@ -35,7 +32,6 @@ import { Button } from '@dolanske/vui'
 | `size`     | `'m'`    | `s` `m` `l` <br> Controls the size of the button                                       |
 | `expand`   | `false`  | `boolean` <br> Makes the button expand to full width                                   |
 | `square`   | `false`  | `boolean` <br> Makes the button square instead of rectangular                          |
-| `icon`     | —        | `string` <br> Icon name from Iconify to display in the button                          |
 | `variant`  | `'gray'` | `fill` `danger` `success` `link` `accent` `gray` <br> Controls the button's appearance |
 | `outline`  | `false`  | `boolean` <br> Makes the button outlined instead of filled                             |
 | `disabled` | `false`  | `boolean` <br> Disables the button                                                     |
@@ -67,11 +63,11 @@ import { Button } from '@dolanske/vui'
 <template>
   <Button variant="fill">
     <template #start>
-      <Icon name="ph:plus" />
+      <IconPlus />
     </template>
     Add Item
     <template #end>
-      <Icon name="ph:caret-down" />
+      <IconCaretDown />
     </template>
   </Button>
 </template>
@@ -95,14 +91,24 @@ import { Button, ButtonGroup } from '@dolanske/vui'
     <Button outline>
       Hello
     </Button>
-    <Button outline icon="ph:caret-down" />
+    <Button outline>
+      <IconCaretDown />
+    </Button>
   </ButtonGroup>
 
   <ButtonGroup>
-    <Button square icon="ph:text-b-bold" active />
-    <Button square icon="ph:text-bold" />
-    <Button square icon="ph:text-italic" />
-    <Button square icon="ph:text-a-underline" />
+    <Button square active>
+      <IconTextBBold />
+    </Button>
+    <Button square>
+      <IconTextBold />
+    </Button>
+    <Button square>
+      <IconTextItalic />
+    </Button>
+    <Button square>
+      <IconTextAUnderline />
+    </Button>
   </ButtonGroup>
 </template>
 ```

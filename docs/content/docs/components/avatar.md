@@ -12,8 +12,10 @@ import { Avatar } from '@dolanske/vui'
 <template>
   <Avatar />
   <Avatar>JD</Avatar>
+  <Avatar>
+    <IconPerson />
+  </Avatar>
   <Avatar url="https://github.com/dolanske.png" />
-  <Avatar icon="ph:users" />
   <Avatar size="s" />
   <Avatar size="m" />
   <Avatar size="l" />
@@ -31,7 +33,6 @@ import { Avatar } from '@dolanske/vui'
 | `radius`   | `999`    | `xs` `s` `m` `l` `number` <br> The roundness of the avatar. The default is a circle         |
 | `url`      | —        | `string` <br> URL of the avatar image to display                                            |
 | `fallback` | —        | `string` <br> Text to show when the image fails to load                                     |
-| `icon`     | —        | `string` <br> Icon to display when no image or fallback is provided (defaults to 'ph:user') |
 | `alt`      | `avatar` | `string` <br> Alt text for the avatar image                                                 |
 
 ### Slots

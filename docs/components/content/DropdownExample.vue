@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Button, Dropdown, DropdownItem, DropdownTitle, Flex } from '@dolanske/vui'
-import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -23,15 +22,21 @@ import { Icon } from '@iconify/vue'
           <DropdownItem>
             New user
             <template #hint>
-              <Icon icon="ph:command" />
+              <Icon name="ph:command" />
               + C
             </template>
           </DropdownItem>
-          <DropdownItem icon-end="ph:caret-right">
+          <DropdownItem>
             Update
+            <template #icon-end>
+              <Icon name="ph:arrow-up-right" />
+            </template>
           </DropdownItem>
-          <DropdownItem disabled icon="ph:x">
+          <DropdownItem disabled>
             Delete
+            <template #icon-end>
+              <Icon name="ph:trash" />
+            </template>
           </DropdownItem>
         </Dropdown>
       </Flex>

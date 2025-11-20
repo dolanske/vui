@@ -67,7 +67,8 @@ import { Accordion, Button } from '@dolanske/vui'
     <template #trigger="{ isOpen, toggle }">
       <Button @click="toggle">
         Details
-        <Icon class="ml-m" :name="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
+        <IconCaretUp v-if="isOpen" />
+        <IconCaretDown v-else />
       </Button>
     </template>
     <p class="m-0">
