@@ -5,7 +5,6 @@
   --button-font-size-l: 1.4rem;
 
   &.disabled {
-    // color: var(--color-text-lighter) !important;
     cursor: not-allowed !important;
     filter: saturate(75%) opacity(50%);
 
@@ -55,6 +54,10 @@
     font-size: var(--button-font-size-l);
   }
 
+  &.vui-button-size-xl {
+    font-size: var(--button-font-size-xl);
+  }
+
   svg path {
     transition: var(--transition-fast);
   }
@@ -78,10 +81,12 @@
   // Default gray
 
   .vui-button-slot {
-    display: flex;
-    place-items: center;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    align-items: center;
     transition: var(--transition-fast);
     opacity: 1;
+    width: 100%;
     font-weight: var(--font-weight-medium);
   }
 
@@ -93,10 +98,12 @@
 
   .vui-button-slot-start {
     margin-right: 6px;
+    justify-self: flex-start;
   }
 
   .vui-button-slot-end {
     margin-left: 6px;
+    justify-self: flex-end;
   }
 
   .vui-spinner {
