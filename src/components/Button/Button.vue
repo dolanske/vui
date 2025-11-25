@@ -4,8 +4,12 @@ import { computed, defineComponent, h } from 'vue'
 import { isNil } from '../../shared/helpers'
 import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
+import "./button.scss"
 
 export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
+
+// There was an issue with swapping between <a> and <button> so in order to fix
+// that, we omit Vue's template and use the h function to create the element
 
 export default defineComponent({
   name: 'VuiButton',
@@ -30,7 +34,7 @@ export default defineComponent({
     const height = computed(() => {
       switch (props.size) {
         case Size.s: return '28px'
-        case Size.l: return '42px'
+        case Size.l: return '44px'
         case Size.m:
         default: return 'var(--interactive-el-height)'
       }
@@ -73,9 +77,12 @@ export default defineComponent({
         [
           !isNil(props.loading) ? h(Spinner, { size: 's' }) : null,
           h('div', { class: 'vui-button-slot' }, [
-            slots.start?.() ? h('div', { class: 'vui-button-slot-start' }, slots.start()) : null,
-            slots.default?.(),
-            slots.end?.() ? h('div', { class: 'vui-button-slot-end' }, slots.end()) : null,
+            h('div', { class: 'vui-button-slot-start' }, slots?.start?.()),
+            // Keep empty div even if slots aren't populated. This will force
+            // start / end slots to be in their correct positions even if
+            // default slot is not populated
+            slots.default ? slots.default() : h('div', { class: 'flex-1' }),
+            h('div', { class: 'vui-button-slot-end' }, slots?.end?.()),
           ]),
         ],
       )
