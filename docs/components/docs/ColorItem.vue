@@ -12,7 +12,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const parsedToken = computed(() => {
-  // Remove dark / light prefix when copying
+  // console.log(props.token, removeColorPrefix(props.token))
   return removeColorPrefix(props.token)
 })
 </script>
