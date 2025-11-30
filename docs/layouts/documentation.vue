@@ -106,6 +106,18 @@ const persistentSidebarLinks = computed(() => {
   const links = [...globalLinks]
   return subPagesToRender.value ? links : links.concat(documentationTabs)
 })
+
+// Fetch the latest version from the npm registry
+const version = ref('unknown')
+onBeforeMount(async () => {
+  version.value = await $fetch("https://registry.npmjs.org/@dolanske/vui")
+    .then((res: any) => {
+      return res['dist-tags']?.latest;
+    })
+    .catch(() => {
+      return 'unknown'
+    })
+})
 </script>
 
 <template>
@@ -137,7 +149,7 @@ const persistentSidebarLinks = computed(() => {
             <Icon name="ph:github-logo" />
           </Button>
           <div class="flex-1" />
-          <span class="text-s color-text-lightest">VUI 1.4.7</span>
+          <span class="text-s color-text-lightest">{{ version }}</span>
         </Flex>
       </template>
 
