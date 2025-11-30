@@ -36,12 +36,13 @@ import { Alert } from '@dolanske/vui'
 
 ### Props
 
-| Name          | Default   | Type                                                                                           |
-| ------------- | --------- | ---------------------------------------------------------------------------------------------- |
-| `variant`     | `neutral` | `neutral` `info` `success` `warning` `danger` <br> The visual style of the alert               |
-| `title`       | —         | `string` <br> Optional title for the alert. When provided, uses a different styling than slots |
-| `filled`      | —         | `boolean` <br> When true, uses a stronger color variant with colored background                |
-| `description` | —         | `string` <br> Optional description text for the alert                                          |
+| Name            | Default   | Type                                                                                           |
+| --------------- | --------- | ---------------------------------------------------------------------------------------------- |
+| `variant`       | `neutral` | `neutral` `info` `success` `warning` `danger` <br> The visual style of the alert               |
+| `title`         | —         | `string` <br> Optional title for the alert. When provided, uses a different styling than slots |
+| `filled`        | —         | `boolean` <br> When true, uses a stronger color variant with colored background                |
+| `filled-strong` | —         | `boolean` <br> When true, uses a high visibility colored background                            |
+| `description`   | —         | `string` <br> Optional description text for the alert                                          |
 
 ### Slots
 
