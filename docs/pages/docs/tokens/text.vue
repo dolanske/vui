@@ -62,8 +62,10 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
             </Button>
           </CopyClipboard>
         </template>
-        <pre class="m-0"
-          :style="{ height: '64px', padding: '0 16px', display: 'flex', alignItems: 'center', margin: 0 }">The
+        <pre
+          class="m-0"
+          :style="{ height: '64px', padding: '0 16px', display: 'flex', alignItems: 'center', margin: 0 }"
+        >The
           quick brown fox jumps over the lazy dog.</pre>
       </Card>
     </Grid>
@@ -84,8 +86,10 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
     </p>
 
     <div class="mb-xl">
-      <TokenItem v-for="item in fontSizeClasses" :key="item.token" :name="item.name" :size="item.size"
-        :class-name="item.token" prefix="" />
+      <TokenItem
+        v-for="item in fontSizeClasses" :key="item.token" :name="item.name" :size="item.size"
+        :class-name="item.token" prefix=""
+      />
     </div>
 
     <h2>Font weight</h2>
@@ -95,8 +99,10 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
     </p>
 
     <div class="mb-xl">
-      <TokenItem v-for="item in fontWeightClasses" :key="item.token" :name="item.name" :class-name="item.token"
-        prefix="" :indicator-style="{ fontWeight: item.weight, fontSize: '2rem' }">
+      <TokenItem
+        v-for="item in fontWeightClasses" :key="item.token" :name="item.name" :class-name="item.token"
+        prefix="" :indicator-style="{ fontWeight: item.weight, fontSize: '2rem' }"
+      >
         <template #text>
           Red fox
         </template>
@@ -114,8 +120,10 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
       <code>base</code> or <code>title</code> line heights.
     </p>
 
-    <TokenItem v-for="item in lineHeightTokens" :key="item.token" :name="item.name" :class-name="item.token"
-      :indicator-style="{ lineHeight: item.height, width: '256px' }" prefix="">
+    <TokenItem
+      v-for="item in lineHeightTokens" :key="item.token" :name="item.name" :class-name="item.token"
+      :indicator-style="{ lineHeight: item.height, width: '256px' }" prefix=""
+    >
       <template #text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </template>

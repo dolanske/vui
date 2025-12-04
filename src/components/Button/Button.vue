@@ -4,7 +4,7 @@ import { computed, defineComponent, h } from 'vue'
 import { isNil } from '../../shared/helpers'
 import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
-import "./button.scss"
+import './button.scss'
 
 export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
 
@@ -81,7 +81,7 @@ export default defineComponent({
             // Keep empty div even if slots aren't populated. This will force
             // start / end slots to be in their correct positions even if
             // default slot is not populated
-            slots.default ? slots.default() : h('div', { class: 'flex-1' }),
+            h('div', { class: 'vui-button-slot-default' }, slots.default?.()),
             h('div', { class: 'vui-button-slot-end' }, slots?.end?.()),
           ]),
         ],

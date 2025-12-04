@@ -88,12 +88,19 @@
     opacity: 1;
     width: 100%;
     font-weight: var(--font-weight-medium);
+    justify-items: center;
   }
 
   .vui-button-slot-start,
+  .vui-button-slot-default,
   .vui-button-slot-end {
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .vui-button-slot-default {
+    flex: 1;
   }
 
   .vui-button-slot-start {

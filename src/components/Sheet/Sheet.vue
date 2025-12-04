@@ -43,7 +43,7 @@ const TRANSITION_OFFSET = 16
 
 const style = computed(() => {
   if (position === 'left' || position === 'right') {
-    return { width: formatUnitValue(size) }
+    return { maxWidth: formatUnitValue(size) }
   }
 
   return undefined

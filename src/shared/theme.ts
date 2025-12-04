@@ -10,6 +10,7 @@ const themeImpl = useColorMode({
     // TODO: add black theme
     // TODO: add high contrast light & dark theme
   },
+  initialValue: 'auto',
 })
 
 export const theme = readonly(themeImpl)

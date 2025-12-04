@@ -110,9 +110,9 @@ const persistentSidebarLinks = computed(() => {
 // Fetch the latest version from the npm registry
 const version = ref('unknown')
 onBeforeMount(async () => {
-  version.value = await $fetch("https://registry.npmjs.org/@dolanske/vui")
+  version.value = await $fetch('https://registry.npmjs.org/@dolanske/vui')
     .then((res: any) => {
-      return res['dist-tags']?.latest;
+      return res['dist-tags']?.latest
     })
     .catch(() => {
       return 'unknown'

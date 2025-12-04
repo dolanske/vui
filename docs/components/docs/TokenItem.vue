@@ -30,7 +30,7 @@ interface Props {
   prefix?: string
 }
 
-const { copyable = true, indicator = true, prefix = ".", ...props } = defineProps<Props>()
+const { copyable = true, indicator = true, prefix = '.', ...props } = defineProps<Props>()
 
 const computedStyle = computed(() => {
   const baseStyle = props.size ? { fontSize: props.size } : {}
