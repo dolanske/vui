@@ -44,6 +44,16 @@
     min-width: var(--button-height);
     min-height: var(--button-height);
     padding: 0;
+
+    // Only allow default slot in square mode
+    .vui-button-slot {
+      display: flex;
+
+      .vui-button-slot-end,
+      .vui-button-slot-start {
+        display: none;
+      }
+    }
   }
 
   &.dashed {

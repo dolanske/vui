@@ -21,6 +21,9 @@ export default defineComponent({
       default: 'm',
     },
     expand: Boolean,
+    /**
+     * Using square prop will hide the `start` and `end` slots
+     */
     square: Boolean,
     variant: {
       type: String as () => Variants,
