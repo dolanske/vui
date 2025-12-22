@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleSheets from './examples/ExampleSheets.vue'
 import ExampleSkeletons from './examples/ExampleSkeletons.vue'
 import { setColorTheme } from './shared/theme'
 
@@ -11,6 +12,7 @@ setColorTheme('dark')
     <div class="container">
       <ExampleButtons />
       <ExampleSkeletons />
+      <ExampleSheets />
       <!-- <ExampleSheets /> -->
     <!-- <h1>Hi</h1>
     <div class="container container-l p-xl">
@@ -23,3 +25,9 @@ setColorTheme('dark')
     </div>
   </main>
 </template>
+
+<style>
+  .red {
+  background: red !important;
+}
+</style>

@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
@@ -59,6 +59,8 @@ const baseTransform = computed(() => {
     default: return `translate(${TRANSITION_OFFSET}px, 0)`
   }
 })
+
+const attrs = useAttrs()
 </script>
 
 <template>
@@ -68,7 +70,7 @@ const baseTransform = computed(() => {
         <Card
           class="vui-sheet"
           :class="[`vui-sheet-position-${position}`]" :style
-          v-bind="card"
+          v-bind="{ ...card, ...attrs }"
         >
           <template v-if="$slots.header" #header>
             <slot name="header" :close="() => emit('close')" />
