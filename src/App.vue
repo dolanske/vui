@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleSheets from './examples/ExampleSheets.vue'
-import ExampleSkeletons from './examples/ExampleSkeletons.vue'
+import ExampleTooltips from './examples/ExampleTooltips.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -11,8 +11,9 @@ setColorTheme('dark')
   <main vaul-drawer-wrapper>
     <div class="container">
       <ExampleButtons />
-      <ExampleSkeletons />
-      <ExampleSheets />
+      <!-- <ExampleSkeletons /> -->
+      <!-- <ExampleSheets /> -->
+      <ExampleTooltips />
       <!-- <ExampleSheets /> -->
     <!-- <h1>Hi</h1>
     <div class="container container-l p-xl">

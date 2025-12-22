@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { computed, ref, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useAttrs, useId, useTemplateRef, watch } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 
@@ -15,10 +15,16 @@ interface Props {
   delay?: number
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const {
   placement,
   delay = 0,
 } = defineProps<Props>()
+
+const attrs = useAttrs()
 
 const popoutAnchorRef = useTemplateRef('popoutAnchor')
 // Track if user is hovering the anchor
@@ -65,7 +71,7 @@ const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement 
   >
     <slot />
   </div>
-  <Popout :id :visible="showTooltip" :anchor class="vui-tooltip" :placement>
+  <Popout :id :visible="showTooltip" :anchor class="vui-tooltip" v-bind="attrs" :placement>
     <slot name="tooltip" />
   </Popout>
 </template>
