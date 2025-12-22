@@ -2,7 +2,7 @@
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
-import { computed, onMounted, useId } from 'vue'
+import { computed, onMounted, useAttrs, useId } from 'vue'
 import './drawer.scss'
 
 interface Props {
@@ -36,6 +36,10 @@ interface Props {
   portalProps?: DrawerPortalProps
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const {
   title,
   containerClass,
@@ -47,6 +51,8 @@ const {
 } = defineProps<Props>()
 
 const emit = defineEmits<{ close: [] }>()
+
+const attrs = useAttrs()
 
 const mW = computed(() => {
   if (typeof containerSize === 'string') {
@@ -82,7 +88,7 @@ onMounted(() => {
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
-      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }">
+      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }" v-bind="attrs">
         <div :key="mW" class="vui-drawer-container container" :class="containerClass" :style="{ 'max-width': mW }">
           <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}

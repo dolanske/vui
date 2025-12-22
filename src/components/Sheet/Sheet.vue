@@ -8,6 +8,23 @@ import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import './sheet.scss'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
+const {
+  position = 'right',
+  size = 398,
+  card = {
+    separators: false,
+  },
+  open = false,
+} = defineProps<Props>()
+
+const emit = defineEmits<{ close: [] }>()
+
+const attrs = useAttrs()
+
 interface Props {
   /**
    * Controls the visibility of the sheet
@@ -27,17 +44,6 @@ interface Props {
    */
   card?: CardProps
 }
-
-const {
-  position = 'right',
-  size = 398,
-  card = {
-    separators: false,
-  },
-  open = false,
-} = defineProps<Props>()
-
-const emit = defineEmits<{ close: [] }>()
 
 const TRANSITION_OFFSET = 16
 
@@ -59,8 +65,6 @@ const baseTransform = computed(() => {
     default: return `translate(${TRANSITION_OFFSET}px, 0)`
   }
 })
-
-const attrs = useAttrs()
 </script>
 
 <template>

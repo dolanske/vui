@@ -36,6 +36,10 @@ export interface ModalProps {
   canDismiss?: boolean
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const {
   size = 'm',
   card = {},

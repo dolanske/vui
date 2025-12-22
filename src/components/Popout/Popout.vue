@@ -2,7 +2,7 @@
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { toRef, useTemplateRef, watch } from 'vue'
+import { toRef, useAttrs, useTemplateRef, watch } from 'vue'
 import { getPlacementAnimationName } from '../../shared/helpers'
 import './popout.scss'
 
@@ -25,6 +25,10 @@ export interface Props {
   visible: boolean
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<Props>(), {
   offset: 8,
   placement: 'top',
@@ -33,6 +37,9 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   clickOutside: []
 }>()
+
+const attrs = useAttrs()
+
 const popoutRef = useTemplateRef('popout')
 const anchorRef = toRef(props.anchor)
 
@@ -67,6 +74,7 @@ onClickOutside(popoutRef, () => emit('clickOutside'))
       ref="popout"
       :style="floatingStyles"
       class="vui-popout"
+      v-bind="attrs"
     >
       <slot />
     </div>
