@@ -24,7 +24,7 @@ interface Props {
   /**
    * Vertical alignment of the ivon
    */
-  iconAlign?: 'top' | 'center' | 'bottom'
+  iconAlign?: 'start' | 'center' | 'end'
 }
 
 const {
