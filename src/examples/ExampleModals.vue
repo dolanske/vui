@@ -32,7 +32,7 @@ function setSize(s: any) {
             <Button @click="open = !open">
               Open
             </Button>
-            <Modal :open="open" @close="open = false">
+            <Modal :open="open" transition-name="none" @close="open = false">
               <template #header>
                 <h4>Modal </h4>
               </template>

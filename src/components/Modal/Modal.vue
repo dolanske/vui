@@ -2,7 +2,7 @@
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
@@ -34,6 +34,12 @@ export interface ModalProps {
    * Wether modal can be closed by clicking the X button
    */
   canDismiss?: boolean
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition
+   */
+  transitionName?: string | 'disabled'
 }
 
 defineOptions({
@@ -47,6 +53,7 @@ const {
   centered,
   canDismiss = true,
   open = false,
+  transitionName = 'modal',
 } = defineProps<ModalProps>()
 
 const emit = defineEmits<{ close: [] }>()
@@ -58,11 +65,18 @@ function tryClose() {
     emit('close')
   }
 }
+
+const transition = computed(() => {
+  if (transitionName === 'none')
+    return undefined
+
+  return transitionName
+})
 </script>
 
 <template>
   <Teleport to="body">
-    <Transition appear name="modal">
+    <Transition appear :name="transition">
       <Backdrop v-if="open" :class="{ 'p-0': size === 'screen' }" @close="tryClose">
         <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable: scrollable || size === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
           <Card v-bind="card">

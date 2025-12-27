@@ -118,6 +118,8 @@ function handlePaste(e: any) {
     <input
       ref="inputRef"
       type="text"
+      :inputmode="mode === 'num' ? 'numeric' : 'text'"
+      autocomplete="one-time-code"
       class="vui-otp-input"
       contenteditable="true"
       @keydown="updateValue"

@@ -2,7 +2,7 @@
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { toRef, useAttrs, useTemplateRef, watch } from 'vue'
+import { computed, toRef, useAttrs, useTemplateRef, watch } from 'vue'
 import { getPlacementAnimationName } from '../../shared/helpers'
 import './popout.scss'
 
@@ -23,6 +23,12 @@ export interface Props {
    * Set the visibility of the dropdown
    */
   visible: boolean
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition
+   */
+  transitionName?: string | 'disabled'
 }
 
 defineOptions({
@@ -64,11 +70,19 @@ watch(() => props.anchor, (value) => {
 })
 
 onClickOutside(popoutRef, () => emit('clickOutside'))
+
+const transition = computed(() => {
+  if (props.transitionName === 'none')
+    return undefined
+  else if (props.transitionName)
+    return props.transitionName
+  return getPlacementAnimationName(props.placement)
+})
 </script>
 
 <template>
   <!-- <Teleport to="#app"> -->
-  <Transition :name="getPlacementAnimationName(props.placement)">
+  <Transition :name="transition">
     <div
       v-if="props.visible"
       ref="popout"

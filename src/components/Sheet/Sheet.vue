@@ -19,6 +19,7 @@ const {
     separators: false,
   },
   open = false,
+  transitionName = 'sheet',
 } = defineProps<Props>()
 
 const emit = defineEmits<{ close: [] }>()
@@ -43,6 +44,12 @@ interface Props {
    * into the <Card /> component.
    */
   card?: CardProps
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition
+   */
+  transitionName?: string | 'disabled'
 }
 
 const TRANSITION_OFFSET = 16
@@ -65,11 +72,18 @@ const baseTransform = computed(() => {
     default: return `translate(${TRANSITION_OFFSET}px, 0)`
   }
 })
+
+const transition = computed(() => {
+  if (transitionName === 'none')
+    return undefined
+
+  return transitionName
+})
 </script>
 
 <template>
   <Teleport to="body">
-    <Transition appear name="sheet">
+    <Transition appear :name="transition">
       <Backdrop v-if="open" @close="emit('close')">
         <Card
           class="vui-sheet"
