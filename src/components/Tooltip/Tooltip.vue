@@ -13,6 +13,10 @@ interface Props {
    * Amount of time user should hover the anchor until the tooltip shows up
    */
   delay?: number
+  /**
+   * If set to true, tooltip will not be rendered
+   */
+  disabled?: boolean
 }
 
 defineOptions({
@@ -22,6 +26,7 @@ defineOptions({
 const {
   placement,
   delay = 0,
+  disabled,
 } = defineProps<Props>()
 
 const attrs = useAttrs()
@@ -59,6 +64,13 @@ watch(hoverAnchor, (isHovering) => {
 
 const id = useId()
 const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement | null)
+
+function setHoverState(state: boolean) {
+  if (disabled)
+    return
+
+  hoverAnchor.value = state
+}
 </script>
 
 <template>
@@ -66,8 +78,8 @@ const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement 
     ref="popoutAnchor"
     class="popout-anchor"
     :aria-describedby="id"
-    @mouseenter="hoverAnchor = true"
-    @mouseleave="hoverAnchor = false"
+    @mouseenter="setHoverState(true)"
+    @mouseleave="setHoverState(false)"
   >
     <slot />
   </div>

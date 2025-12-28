@@ -22,7 +22,7 @@ interface Props {
    */
   description?: string
   /**
-   * Vertical alignment of the ivon
+   * Vertical alignment of the icon
    */
   iconAlign?: 'start' | 'center' | 'end'
 }

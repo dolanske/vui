@@ -22,12 +22,13 @@ import { Button, CopyClipboard } from '@dolanske/vui'
 
 ### Props
 
-| Name                | Default | Type                                                                                                                  |
-| ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
-| `text`              | -       | `string` <br> The text to copy to the clipboard                                                                       |
-| `confirm`           | `false` | `string` `boolean` <br> Whether to show a confirmation tooltip. If set to string, uses it as the confirmation message |
-| `confirm-time`      | `1500`  | `number` <br> How long the confirmation tooltip should be visible in milliseconds                                     |
-| `confirm-placement` | `top`   | `Placement` <br> Position of the confirmation tooltip (from `@floating-ui/vue` library)                               |
+| Name                | Default | Type                                                                                                                                                                                    |
+| ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`              | -       | `string` <br> The text to copy to the clipboard                                                                                                                                         |
+| `confirm`           | `false` | `string` `boolean` <br> Whether to show a confirmation tooltip. If set to string, uses it as the confirmation message                                                                   |
+| `confirm-time`      | `1500`  | `number` <br> How long the confirmation tooltip should be visible in milliseconds                                                                                                       |
+| `confirm-placement` | `top`   | `Placement` <br> Position of the confirmation tooltip (from `@floating-ui/vue` library)                                                                                                 |
+| `transition-name`   | `fade`  | `string` `none` <br> Allows you to change or disable the vue transition for the confirmation tooltip. By default, a `fade` animation with direction depending on the placement is used. |
 
 ## Slots
 

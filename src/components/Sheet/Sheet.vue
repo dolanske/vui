@@ -49,7 +49,7 @@ interface Props {
    *
    * Setting the value to `none` will not apply any transition
    */
-  transitionName?: string | 'disabled'
+  transitionName?: string | 'none'
 }
 
 const TRANSITION_OFFSET = 16

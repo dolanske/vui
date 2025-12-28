@@ -43,6 +43,7 @@ import { Alert } from '@dolanske/vui'
 | `filled`        | —         | `boolean` <br> When true, uses a stronger color variant with colored background                |
 | `filled-strong` | —         | `boolean` <br> When true, uses a high visibility colored background                            |
 | `description`   | —         | `string` <br> Optional description text for the alert                                          |
+| `icon-align` | `center` | `start` `center` `end` <br> Controls the vertical alignment of the alert icon
 
 ### Slots
 

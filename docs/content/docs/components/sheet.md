@@ -40,12 +40,13 @@ const isOpen = ref(false)
 
 ### Props
 
-| Name       | Default | Type                                                                                         |
-| ---------- | ------- | -------------------------------------------------------------------------------------------- |
-| `open`     | `false` | `boolean`<br>Controls the visibility of the sheet                                            |
-| `position` | `right` | `left` `right` `top` `bottom`<br>Controls the position of the sheet                          |
-| `size`     | `398`   | `number` `string`<br>Sets the width of the sheet (for left/right) or height (for top/bottom) |
-| `card`     | -       | `CardProps`<br>Props to pass to the underlying [Card](/docs/components/card) component       |
+| Name              | Default | Type                                                                                                                                                                           |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `open`            | `false` | `boolean`<br>Controls the visibility of the sheet                                                                                                                              |
+| `position`        | `right` | `left` `right` `top` `bottom`<br>Controls the position of the sheet                                                                                                            |
+| `size`            | `398`   | `number` `string`<br>Sets the width of the sheet (for left/right) or height (for top/bottom)                                                                                   |
+| `card`            | -       | `CardProps`<br>Props to pass to the underlying [Card](/docs/components/card) component                                                                                         |
+| `transition-name` | `sheet` | `string` `none` <br> Allows you to change or disable the vue transition for the sheet appear.By default, a `fade` animation with direction depending on the placement is used. |
 
 ### Events
 

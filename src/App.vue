@@ -4,7 +4,7 @@ import Alert from './components/Alert/Alert.vue'
 import Flex from './components/Flex/Flex.vue'
 import OTP from './components/OTP/OTP.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
-import ExamplePopouts from './examples/ExamplePopouts.vue'
+import ExampleTooltips from './examples/ExampleTooltips.vue'
 
 // import ExampleButtons from './examples/ExampleButtons.vue'
 import { setColorTheme } from './shared/theme'
@@ -48,7 +48,7 @@ const otpValue = ref('')
         </Alert>
       </Flex>
 
-      <ExamplePopouts />
+      <ExampleTooltips />
     </div>
   </main>
 </template>

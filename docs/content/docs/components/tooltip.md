@@ -110,6 +110,7 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 | ----------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `placement` | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
 | `delay`     | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                      |
+| `disabled`  | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                  |
 
 ### Slots
 
