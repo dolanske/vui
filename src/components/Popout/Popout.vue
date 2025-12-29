@@ -2,7 +2,7 @@
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { computed, toRef, useAttrs, useTemplateRef, watch } from 'vue'
+import { computed, useAttrs, useTemplateRef } from 'vue'
 import { getPlacementAnimationName } from '../../shared/helpers'
 import './popout.scss'
 
@@ -47,9 +47,9 @@ const emit = defineEmits<{
 const attrs = useAttrs()
 
 const popoutRef = useTemplateRef('popout')
-const anchorRef = toRef(props.anchor)
+const anchorRef = computed(() => props.anchor)
 
-const { floatingStyles, update } = useFloating(anchorRef, popoutRef, {
+const { floatingStyles } = useFloating(anchorRef, popoutRef, {
   whileElementsMounted: autoUpdate,
   strategy: 'fixed',
   transform: false,
@@ -61,15 +61,11 @@ const { floatingStyles, update } = useFloating(anchorRef, popoutRef, {
   ],
 })
 
-// Make sure to update the popout when the anchor is mounted
-watch(() => props.anchor, (value) => {
-  if (value) {
-    anchorRef.value = value
-    update()
-  }
+onClickOutside(popoutRef, () => {
+  emit('clickOutside')
+}, {
+  ignore: [anchorRef],
 })
-
-onClickOutside(popoutRef, () => emit('clickOutside'))
 
 const transition = computed(() => {
   if (props.transitionName === 'none')
