@@ -29,6 +29,12 @@ export interface Props {
    * Setting the value to `none` will not apply any transition
    */
   transitionName?: string | 'none'
+  /**
+   * Whether the Popout should by default be teleported to the `body`.
+   *
+   * @default true
+   */
+  teleport?: boolean
 }
 
 defineOptions({
@@ -38,6 +44,7 @@ defineOptions({
 const props = withDefaults(defineProps<Props>(), {
   offset: 8,
   placement: 'top',
+  teleport: true,
 })
 
 const emit = defineEmits<{
@@ -77,7 +84,7 @@ const transition = computed(() => {
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport to="body" :disabled="props.teleport !== true">
     <Transition :name="transition">
       <div
         v-if="props.visible"
