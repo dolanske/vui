@@ -33,7 +33,7 @@ const open = ref(false)
   </div>
 </template>
 
-<style scoped>
+<style>
 .test-popout {
   max-width: 256px;
   padding: var(--space-xl);

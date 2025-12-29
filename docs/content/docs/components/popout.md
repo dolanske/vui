@@ -2,6 +2,8 @@
 
 A flexible popout component that can be used to create tooltips, dropdowns, or any other floating content. It uses the Floating UI library for positioning and provides smooth animations.
 
+> Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
+
 ::popout-example
 
 ```vue

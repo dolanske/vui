@@ -2,6 +2,8 @@
 
 A dropdown menu component that provides a flexible way to display a list of options or actions. It supports various features like positions, hints, titles and custom content.
 
+> Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
+
 ::dropdown-example
 
 ```vue

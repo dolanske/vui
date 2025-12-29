@@ -81,17 +81,17 @@ const transition = computed(() => {
 </script>
 
 <template>
-  <!-- <Teleport to="#app"> -->
-  <Transition :name="transition">
-    <div
-      v-if="props.visible"
-      ref="popout"
-      :style="floatingStyles"
-      class="vui-popout"
-      v-bind="attrs"
-    >
-      <slot />
-    </div>
-  </Transition>
-  <!-- </Teleport> -->
+  <Teleport to="body">
+    <Transition :name="transition">
+      <div
+        v-if="props.visible"
+        ref="popout"
+        :style="floatingStyles"
+        class="vui-popout"
+        v-bind="attrs"
+      >
+        <slot />
+      </div>
+    </Transition>
+  </Teleport>
 </template>

@@ -109,6 +109,10 @@ blockquote {
   padding-left: var(--space-l);
   border-left: 3px solid var(--color-border);
   line-height: var(--line-height-base);
+
+  p:first-child {
+    margin-top: 0 !important;
+  }
 }
 
 pre {
