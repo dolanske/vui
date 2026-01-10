@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InputProps } from './Input.vue'
-import { computed, useId } from 'vue'
+import { computed, useId, useTemplateRef, watchEffect } from 'vue'
 import '../Input/input.scss'
 
 type Props = Omit<InputProps, 'type'> & {
@@ -25,6 +25,7 @@ const {
   disabled,
   rows = 5,
   cols,
+  focus,
 } = defineProps<Props>()
 
 const model = defineModel<string>({
@@ -43,6 +44,19 @@ const id = useId()
 
 const r = computed(() => resize === true ? 'both' : (resize || 'initial'))
 const fS = computed(() => autoResize ? 'content' : 'auto')
+
+const textareaRef = useTemplateRef('textarea')
+
+watchEffect(() => {
+  if (focus)
+    textareaRef.value?.focus({ preventScroll: true })
+})
+
+defineExpose({
+  focus: () => {
+    textareaRef.value?.focus({ preventScroll: true })
+  },
+})
 </script>
 
 <template>
@@ -55,6 +69,7 @@ const fS = computed(() => autoResize ? 'content' : 'auto')
       </p>
       <textarea
         :id
+        ref="textarea"
         v-model="model"
         :readonly
         name="id"
