@@ -2,7 +2,7 @@
 import type { VNode } from 'vue'
 import { IconArrowDown, IconArrowUp, IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, useTemplateRef, watch } from 'vue'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Flex from '../Flex/Flex.vue'
@@ -148,6 +148,14 @@ function handleSelect(result: Command) {
 whenever(keys.Escape, () => {
   emit('close')
 })
+
+// Reset seach & refocus input when opened
+const search = useTemplateRef('searchRef')
+
+function resetSearch() {
+  searchValue.value = ''
+  search.value?.focus()
+}
 </script>
 
 <template>
@@ -155,13 +163,14 @@ whenever(keys.Escape, () => {
     <template #header>
       <div class="py-xs">
         <Input
+          ref="searchRef"
           v-model="searchValue"
           focus
           expand
           :placeholder="props.placeholder"
         >
           <template #end>
-            <Button v-if="searchValue" plain square @click="searchValue = ''">
+            <Button v-if="searchValue" plain square @click="resetSearch">
               <IconX />
             </Button>
           </template>
