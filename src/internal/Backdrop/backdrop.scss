@@ -1,8 +1,6 @@
-:root {
-  --backdrop-offset: 64px;
-}
-
 .vui-backdrop {
+  --backdrop-offset: 64px;
+
   z-index: var(--z-overlay);
   position: fixed;
   display: block;

@@ -2,6 +2,7 @@
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
+import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import Button from '../Button/Button.vue'
@@ -34,6 +35,11 @@ export interface ModalProps {
    * Wether modal can be closed by clicking the X button
    */
   canDismiss?: boolean
+
+  /**
+   * Hides the X button in the top right of the modal. The modal can still be closed by other means.
+   */
+  hideCloseButton?: boolean
   /**
    * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
    *
@@ -52,6 +58,7 @@ const {
   scrollable,
   centered,
   canDismiss = true,
+  hideCloseButton = false,
   open = false,
   transitionName = 'modal',
 } = defineProps<ModalProps>()
@@ -65,6 +72,10 @@ function tryClose() {
     emit('close')
   }
 }
+
+const { escape } = useMagicKeys()
+
+whenever(escape, tryClose)
 
 const transition = computed(() => {
   if (transitionName === 'none')
@@ -83,7 +94,7 @@ const transition = computed(() => {
             <template v-if="$slots.header" #header>
               <slot name="header" :close="() => emit('close')" />
             </template>
-            <template #header-end>
+            <template v-if="!hideCloseButton" #header-end>
               <Button
                 v-if="canDismiss"
                 class="vui-modal-close"

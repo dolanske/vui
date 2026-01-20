@@ -1,0 +1,110 @@
+.vui-commands {
+  .vui-card .vui-card-header {
+    background: var(--color-bg-medium);
+    padding: var(--space-xxs) var(--space-s);
+
+    // TODO: set to hopefully change the input height + v
+    // --interactive-element-height: 42px;
+
+    .vui-input {
+      --input-height: 42px;
+    }
+
+    .vui-button {
+      --interactive-el-height: 42px !important;
+    }
+
+    .vui-input-style {
+      background: var(--color-bg);
+    }
+  }
+
+  .vui-card .vui-card-footer {
+    padding: var(--space-s);
+  }
+
+  .vui-card .vui-card-content {
+    max-height: 60dvh;
+    overflow-y: auto;
+    padding-block: 0 !important;
+    margin-bottom: -1px;
+  }
+
+  .vui-commands-empty {
+    padding: var(--space-xl);
+
+    p {
+      text-align: center;
+      color: var(--color-text-light);
+    }
+  }
+
+  .vui-commands-group-title {
+    display: block;
+    padding: var(--space-s) var(--space-m);
+    background-color: var(--color-bg-lowered);
+    color: var(--color-text-light);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-semibold);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .vui-commands-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    li {
+      scroll-margin: 2px;
+      width: 100%;
+
+      &:hover,
+      &.vui-commands-list-item-focused {
+        button {
+          background-color: var(--color-bg-raised);
+
+          &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--color-accent);
+          }
+        }
+      }
+
+      button {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        padding: 0 var(--space-m);
+        height: 64px;
+        width: 100%;
+        position: relative;
+        transition: var(--transition-fast);
+        border-bottom: 1px solid var(--color-border);
+        gap: var(--space-m);
+
+        .vui-commands-list-item-icon {
+          display: flex;
+          align-items: center;
+          font-size: var(--font-size-l);
+          color: var(--color-text-light);
+        }
+
+        .vui-command-body {
+          flex: 1;
+
+          p {
+            font-size: var(--font-size-s);
+            color: var(--color-text-lighter);
+          }
+        }
+      }
+    }
+  }
+}
