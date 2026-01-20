@@ -6,13 +6,13 @@
     <template #component>
       <div class="counter-examples">
         <p>
-          Inbox <span class="counter">3</span>
+          Inbox <span class="counter" :style="{ fontSize: 'var(--font-size-s)' }">3</span>
         </p>
         <p>
-          Notifications <span class="counter">12</span>
+          Notifications <span class="counter" :style="{ fontSize: 'var(--font-size-s)' }">12</span>
         </p>
         <p>
-          New Messages <span class="counter">99+</span>
+          New Messages <span class="counter" :style="{ fontSize: 'var(--font-size-s)' }">99+</span>
         </p>
         <div class="menu-item">
           <span>Settings</span>

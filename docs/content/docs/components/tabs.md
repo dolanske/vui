@@ -1,6 +1,6 @@
 # Tabs
 
-A tabs component that allows users to switch between different views or sections of content. It supports various styling options, icons, and can be used with or without a filled background.
+A tabs component that allows users to switch between different views or sections of content. It supports two styl
 
 ::tabs-example
 
@@ -52,7 +52,6 @@ const activeTab = ref('tab1')
 | `disabled` | `false` | `boolean` <br> Whether the tab is disabled         |
 | `value`    | —       | `string` <br> The value of the tab                 |
 | `label`    | —       | `string` <br> The label text to display in the tab |
-| `icon`     | —       | `string` <br> Icon to display in the tab           |
 
 ### Events
 

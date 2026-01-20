@@ -162,8 +162,8 @@ export const zIndexTokens = [
 ]
 
 export const transitionTokens = [
-  { name: 'Fast', token: '--transition-fast', value: '0.0625s all ease-in-out', description: 'Used for interactive element hover states' },
-  { name: 'Default', token: '--transition', value: '0.125s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Used for appear animations of display elements' },
+  { name: 'Fast', token: '--transition-fast', value: '0.05s all ease-in-out', description: 'Used for interactive element hover states' },
+  { name: 'Default', token: '--transition', value: '0.11s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Used for appear animations of display elements' },
   { name: 'Slow', token: '--transition-slow', value: '0.25s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Slower transitions for large elements' },
 ]
 
@@ -337,7 +337,7 @@ export const paddingClasses = [
 export const tokenPages = [
   { label: 'Getting started', path: '/docs/tokens' },
   { label: 'Colors', path: '/docs/tokens/colors' },
-  { label: 'Themes', path: '/docs/tokens/theming' },
+  { label: 'Theming', path: '/docs/tokens/theming' },
   { label: 'Text & Font', path: '/docs/tokens/text' },
   { label: 'Spacing', path: '/docs/tokens/spacing' },
   { label: 'Transitions', path: '/docs/tokens/transitions' },
@@ -365,7 +365,7 @@ export const componentPages = [
 
 export const globalLinks = [
   { path: '/', label: 'Home' },
-  { path: '/docs', label: 'Guide' },
+  { path: '/docs', label: 'Installation' },
   { path: '/docs/projects', label: 'Projects' },
 ]
 

@@ -11,7 +11,13 @@ const prechecked = ref(true)
         <Checkbox label="Basic checkbox" />
         <Checkbox label="Disabled checkbox" disabled />
         <Checkbox v-model="prechecked" label="Checked checkbox" checked />
-        <Checkbox icon-on="ph:toggle-left" icon-off="ph:toggle-right-fill" accent>
+        <Checkbox accent>
+          <template #icon-on>
+            <Icon name="ph:toggle-left" />
+          </template>
+          <template #icon-off>
+            <Icon name="ph:toggle-right-fill" />
+          </template>
           <template #default>
             Custom icons with <code>accent</code> color
           </template>

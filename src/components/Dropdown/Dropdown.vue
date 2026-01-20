@@ -1,7 +1,6 @@
 <script setup lang='ts'>
-import type { MaybeElement } from '@vueuse/core'
 import type { Placement } from '../../shared/types'
-import { onClickOutside, useMagicKeys, whenever } from '@vueuse/core'
+import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
@@ -39,7 +38,7 @@ const emit = defineEmits<{
 }>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
-const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
+// const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
 
 const showMenu = ref(false)
 
@@ -55,12 +54,11 @@ function toggle() {
   showMenu.value = !showMenu.value
 }
 
-onClickOutside(dropdownRef, (event) => {
-  // Hide dropdown when it is clicked outside EXCEPT when we click the trigger,
-  // as that is either by the slot itself
-  if (!anchorRef.value?.contains(event.target as Node | null))
-    showMenu.value = false
-})
+// onClickOutside(dropdownRef, () => {
+//   showMenu.value = false
+// }, {
+//   ignore: [anchorRef],
+// })
 
 const anchorWidth = computed(() => {
   if (!expand || !window)
@@ -90,6 +88,16 @@ onMounted(() => {
   if (expand && minWidth !== 156)
     console.warn('[Dropdown] Dropdown: minWidth prop is ignored when expand is set to true')
 })
+
+function handleContentClick(event: MouseEvent) {
+  const target = event.target as HTMLElement
+
+  // Check if the click was on a DropdownItem or inside one
+  // We use a CSS class selector to identify "closable" items
+  if (target.closest('.vui-dropdown-item')) {
+    close()
+  }
+}
 </script>
 
 <template>
@@ -105,7 +113,6 @@ onMounted(() => {
   </div>
 
   <Popout
-    ref="dropdown"
     :visible="showMenu"
     :anchor="anchorRef"
     class="vui-dropdown"
@@ -114,6 +121,8 @@ onMounted(() => {
       minWidth: expand ? w : mW,
       maxHeight: formatUnitValue(maxHeight),
     }"
+    @click-outside="close"
+    @click="handleContentClick"
   >
     <slot :open :close :toggle :is-open="showMenu" />
   </Popout>

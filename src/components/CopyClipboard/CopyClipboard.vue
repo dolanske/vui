@@ -25,6 +25,12 @@ interface Props {
    * Tooltip position. Default is top
    */
   confirmPlacement?: Placement
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition
+   */
+  transitionName?: string | 'none'
 }
 
 const {
@@ -32,6 +38,7 @@ const {
   confirm,
   confirmTime = 1500,
   confirmPlacement = 'top',
+  transitionName,
 } = defineProps<Props>()
 
 const {
@@ -75,6 +82,14 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
     flip(),
   ],
 })
+
+const transition = computed(() => {
+  if (transitionName === 'none')
+    return undefined
+  else if (transitionName)
+    return transitionName
+  return getPlacementAnimationName(confirmPlacement)
+})
 </script>
 
 <template>
@@ -82,7 +97,7 @@ const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
     <slot :copy :copied />
   </div>
 
-  <Transition :name="getPlacementAnimationName(confirmPlacement)" mode="in-out">
+  <Transition :name="transition" mode="in-out">
     <div v-if="copied && (!!parsedConfirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
       <slot name="confirm">
         <template v-if="typeof parsedConfirm === 'string'">

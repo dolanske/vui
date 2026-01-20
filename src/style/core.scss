@@ -5,7 +5,6 @@
 // To overwrite any of these styles, simply create a style file and import it
 // after this one
 @use './reset.scss';
-@use './fonts.scss';
 @use './theme.scss';
 
 :root {
@@ -42,12 +41,12 @@
   --space-xxl: 48px;
   --space-xxxl: 64px;
 
-  --transition-fast: 0.0625s all ease-in-out;
-  --transition: 0.125s all cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-fast: 0.05s all ease-in-out;
+  --transition: 0.11s all cubic-bezier(0.65, 0, 0.35, 1);
   --transition-slow: 0.25s all cubic-bezier(0.65, 0, 0.35, 1);
 
-  --global-font: 'Inter', sans-serif;
-  --global-font-mono: 'Geist Mono', 'Courier New', 'Courier', monospace;
+  --font: 'Inter', sans-serif;
+  --font-mono: 'Geist Mono', 'Courier New', 'Courier', monospace;
 
   --font-weight-light: 300;
   --font-weight: 400;
@@ -85,7 +84,7 @@
 }
 
 :root {
-  font-family: var(--global-font);
+  font-family: var(--font);
   font-size: 63.5%;
   line-height: var(--line-height-base);
   position: relative;

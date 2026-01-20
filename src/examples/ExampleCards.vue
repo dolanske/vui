@@ -76,7 +76,7 @@ import Grid from '../components/Grid/Grid.vue'
           </Card>
         </div>
 
-        <Card :header-separator="false" footer-separator>
+        <Card footer-separator>
           <template #header>
             <h4>Hello</h4>
           </template>

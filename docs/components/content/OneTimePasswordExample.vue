@@ -13,6 +13,9 @@ const otpValue = ref('')
           <OTPItem :i="0" />
           <OTPItem :i="1" />
           <OTPItem :i="2" />
+          <div class="px-m y-center">
+            -
+          </div>
           <OTPItem :i="3" />
           <OTPItem :i="4" />
           <OTPItem :i="5" />

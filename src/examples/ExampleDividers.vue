@@ -25,9 +25,9 @@ import Flex from '../components/Flex/Flex.vue'
       </p>
       <Flex class="mb-xl">
         <span>One</span>
-        <Divider vertical :size="16" />
+        <Divider vertical :size="40" />
         <span>Two</span>
-        <Divider vertical :size="16" />
+        <Divider vertical :size="40" />
         <span>Three</span>
       </Flex>
       <p>Dividers also accept a slot. This is rendered in the center, overlaying the divider. For instance an icon or an avatar, but it can be any component.</p>

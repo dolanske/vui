@@ -25,6 +25,7 @@ pre {
   border: none;
   background-color: var(--color-bg-lowered);
   line-height: var(--line-height-base);
+  font-weight: 400;
 }
 
 p {
@@ -42,6 +43,11 @@ td code {
 
 td:first-child code {
   margin: 0 !important;
+}
+
+article {
+  z-index: 1;
+  position: relative;
 }
 
 .typeset {

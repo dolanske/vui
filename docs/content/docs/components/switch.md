@@ -18,7 +18,7 @@ const enabled = ref(false)
   <Switch v-model="enabled" label="Accent switch" accent />
   <Switch v-model="enabled">
     <div class="flex items-center gap-sm">
-      <Icon name="ph:bell" />
+      <IconBell />
       <span>Enable notifications</span>
     </div>
   </Switch>

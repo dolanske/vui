@@ -13,26 +13,39 @@ const isOpen = ref(true)
           <template #header>
             <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="" style="filter: invert(1);">
           </template>
-          <DropdownItem icon="ph:house">
+          <DropdownItem>
+            <template #icon>
+              <Icon name="ph:house" />
+            </template>
             Home
           </DropdownItem>
-          <DropdownItem icon="ph:user">
+          <DropdownItem>
+            <template #icon>
+              <Icon name="ph:user" />
+            </template>
             About
           </DropdownItem>
-          <DropdownItem icon="ph:phone">
+          <DropdownItem>
+            <template #icon>
+              <Icon name="ph:phone" />
+            </template>
             Contact
           </DropdownItem>
           <template #footer>
             <Flex y-center x-centerd>
               <Avatar v-show="isOpen" size="m" />
               <span v-show="isOpen" class="flex-1">dolanske</span>
-              <Button plain size="s" icon="ph:sign-out" />
+              <Button plain size="s">
+                <Icon name="ph:logout" />
+              </Button>
             </Flex>
           </template>
         </Sidebar>
         <main class="p-xl">
           <Flex y-center class="mb-l">
-            <Button plain size="s" icon="ph:sidebar-simple" @click="isOpen = !isOpen" />
+            <Button plain size="s" @click="isOpen = !isOpen">
+              <Icon name="ph:sidebar-simple" />
+            </Button>
             <h4 style="margin: 0;">
               My page
             </h4>

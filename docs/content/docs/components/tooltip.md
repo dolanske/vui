@@ -2,6 +2,8 @@
 
 The Tooltip component displays additional information when hovering over an element. It's commonly used to provide context or explanations for UI elements.
 
+> Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
+
 ::tooltip-example
 
 ```vue
@@ -75,7 +77,7 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
         With Icon
       </strong>
       <Tooltip>
-        <Icon :size="24" name="ph:info" />
+        <IconInfo :size="24" />
         <template #tooltip>
           <p>Additional information</p>
         </template>
@@ -110,6 +112,7 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 | ----------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `placement` | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
 | `delay`     | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                      |
+| `disabled`  | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                  |
 
 ### Slots
 

@@ -36,14 +36,15 @@ const isOpen = ref(false)
 
 ## Props
 
-| Name         | Default | Type                                                                                   |
-| ------------ | ------- | -------------------------------------------------------------------------------------- |
-| `open`       | `false` | `boolean`<br>Controls the visibility of the modal                                      |
-| `size`       | `'m'`   | `xs` `s` `m` `l` `xl` `screen` `screen` <br> Controls the width of the modal           |
-| `card`       | -       | `CardProps`<br>Props to pass to the underlying [Card](/docs/components/card) component |
-| `scrollable` | `false` | `boolean`<br>Makes the modal content scrollable instead of the modal itself            |
-| `centered`   | `false` | `boolean`<br>Centers the modal vertically on the screen                                |
-| `canDismiss` | `true`  | `boolean`<br>Whether the modal can be closed by clicking the X button                  |
+| Name              | Default | Type                                                                                                                                                          |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`            | `false` | `boolean`<br>Controls the visibility of the modal                                                                                                             |
+| `size`            | `'m'`   | `xs` `s` `m` `l` `xl` `screen` `screen` <br> Controls the width of the modal                                                                                  |
+| `card`            | -       | `CardProps`<br>Props to pass to the underlying [Card](/docs/components/card) component                                                                        |
+| `scrollable`      | `false` | `boolean`<br>Makes the modal content scrollable instead of the modal itself                                                                                   |
+| `centered`        | `false` | `boolean`<br>Centers the modal vertically on the screen                                                                                                       |
+| `canDismiss`      | `true`  | `boolean`<br>Whether the modal can be closed by clicking the X button                                                                                         |
+| `transition-name` | `modal` | `string` `none` <br> Allows you to change or disable the vue transition for the modal appear. By default, a `fade` animation with a bit of scaling is applied |
 
 ## Events
 

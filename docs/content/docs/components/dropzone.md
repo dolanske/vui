@@ -17,7 +17,8 @@ function handleFiles(_files) {
   <Dropzone expand @files="handleFiles">
     <template #default="{ dragging }">
       <Flex x-center gap="s">
-        <Icon :icon="dragging ? 'ph:target' : 'ph:upload'" />
+        <IconTarget v-if="dragging" />
+        <IconUpload v-else />
         <span>{{ dragging ? 'Drop files here' : 'Upload your files' }}</span>
       </Flex>
     </template>

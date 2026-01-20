@@ -2,6 +2,8 @@
 
 A flexible popout component that can be used to create tooltips, dropdowns, or any other floating content. It uses the Floating UI library for positioning and provides smooth animations.
 
+> Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
+
 ::popout-example
 
 ```vue
@@ -36,12 +38,13 @@ const anchorRef = ref(null)
 
 ### Props
 
-| Name        | Default | Type                                                                       |
-| ----------- | ------- | -------------------------------------------------------------------------- |
-| `anchor`    | —       | `HTMLElement` <br> Reference to the HTML element the Popout is anchored to |
-| `placement` | `top`   | `string` <br> Position of the popout relative to the anchor                |
-| `offset`    | `8`     | `number` <br> Distance between the anchor and the popout in pixels         |
-| `visible`   | —       | `boolean` <br> Whether the popout is visible                               |
+| Name              | Default | Type                                                                                                                                                                             |
+| ----------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `anchor`          | —       | `HTMLElement` <br> Reference to the HTML element the Popout is anchored to                                                                                                       |
+| `placement`       | `top`   | `string` <br> Position of the popout relative to the anchor                                                                                                                      |
+| `offset`          | `8`     | `number` <br> Distance between the anchor and the popout in pixels                                                                                                               |
+| `visible`         | —       | `boolean` <br> Whether the popout is visible                                                                                                                                     |
+| `transition-name` | `modal` | `string` `none` <br> Allows you to change or disable the vue transition for the popout appear. By default, a `fade` animation with direction depending on the placement is used. |
 
 ### Events
 

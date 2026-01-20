@@ -74,19 +74,27 @@ export function setCharAt(str: string, char: string | number, index: number): st
   return str.substring(0, index) + char + str.substring(index + 1)
 }
 
+const unitRegex = /^(?:\d+(?:\.\d+)?|\.\d+)(?:px|em|rem|vh|vw|vmin|vmax|ch|ex|cm|mm|in|pt|pc|%)$/
+const variableRegex = /^(?:--[\w-]+|var\(--[\w-]+(?:\s*,[^)]+)?\))$/
+
+// Checks whether string is a valid CSS value unit or a CSS variable
+export function isCssValue(value: string): boolean {
+  return unitRegex.test(value) || variableRegex.test(value)
+}
+
 /**
  * Takes in a value and if it is a number, appends "px" to it, otherwise returns
  * the original value.
  *
  */
 export function formatUnitValue(value: string | number, unit: string = 'px'): string {
-  return typeof value === 'number'
-    ? `${value}${unit}`
-  // If last value of string is NOT a number, do not add "px" at the end
-  // eslint-disable-next-line unicorn/prefer-number-properties
-    : isNaN(Number(value[value.length - 1]))
-      ? value
-      : `${value}${unit}`
+  if (typeof value === 'number') {
+    return `${value}${unit}`
+  }
+
+  const trimmedValue = value.trim()
+
+  return isCssValue(trimmedValue) ? trimmedValue : `${trimmedValue}${unit}`
 }
 
 export function clamp(min: number, max: number, value: number): number {

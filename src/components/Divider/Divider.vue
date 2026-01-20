@@ -18,7 +18,7 @@ const {
 } = defineProps<Props>()
 
 const h = computed(() => formatUnitValue(size))
-const w = computed(() => vertical ? h.value : 'initial')
+const w = computed(() => vertical ? 'inherit' : '100%')
 const m = computed(() => formatUnitValue(margin))
 </script>
 

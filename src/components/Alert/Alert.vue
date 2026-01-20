@@ -13,7 +13,18 @@ interface Props {
    * Use strong color
    */
   filled?: boolean
+  /**
+   * Fill with a strong saturated color
+   */
+  filledStrong?: boolean
+  /**
+   * Additional text rendered under the title
+   */
   description?: string
+  /**
+   * Vertical alignment of the icon
+   */
+  iconAlign?: 'start' | 'center' | 'end'
 }
 
 const {
@@ -21,11 +32,17 @@ const {
   title,
   description,
   filled,
+  filledStrong,
+  iconAlign = 'center',
 } = defineProps<Props>()
 </script>
 
 <template>
-  <div class="vui-alert" :class="[{ filled }, `vui-alert-variant-${variant}`]">
+  <div
+    class="vui-alert"
+    :class="[{ filled, 'filled-strong': filledStrong }, `vui-alert-variant-${variant}`]"
+    :style="{ alignItems: iconAlign }"
+  >
     <slot name="icon">
       <IconInfo v-if="variant === 'info'" class="vui-alert-icon" />
       <IconCheckCircle v-else-if="variant === 'success'" class="vui-alert-icon" />

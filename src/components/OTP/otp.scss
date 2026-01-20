@@ -80,5 +80,6 @@
     opacity: 0;
     background: transparent;
     z-index: var(--z-mask);
+    user-select: none;
   }
 }

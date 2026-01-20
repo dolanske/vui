@@ -2,7 +2,7 @@
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { toRef, useTemplateRef, watch } from 'vue'
+import { computed, useAttrs, useTemplateRef } from 'vue'
 import { getPlacementAnimationName } from '../../shared/helpers'
 import './popout.scss'
 
@@ -23,20 +23,40 @@ export interface Props {
    * Set the visibility of the dropdown
    */
   visible: boolean
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition
+   */
+  transitionName?: string | 'none'
+  /**
+   * Whether the Popout should by default be teleported to the `body`.
+   *
+   * @default true
+   */
+  teleport?: boolean
 }
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const props = withDefaults(defineProps<Props>(), {
   offset: 8,
   placement: 'top',
+  teleport: true,
 })
 
 const emit = defineEmits<{
   clickOutside: []
 }>()
-const popoutRef = useTemplateRef('popout')
-const anchorRef = toRef(props.anchor)
 
-const { floatingStyles, update } = useFloating(anchorRef, popoutRef, {
+const attrs = useAttrs()
+
+const popoutRef = useTemplateRef('popout')
+const anchorRef = computed(() => props.anchor)
+
+const { floatingStyles } = useFloating(anchorRef, popoutRef, {
   whileElementsMounted: autoUpdate,
   strategy: 'fixed',
   transform: false,
@@ -48,28 +68,33 @@ const { floatingStyles, update } = useFloating(anchorRef, popoutRef, {
   ],
 })
 
-// Make sure to update the popout when the anchor is mounted
-watch(() => props.anchor, (value) => {
-  if (value) {
-    anchorRef.value = value
-    update()
-  }
+onClickOutside(popoutRef, () => {
+  emit('clickOutside')
+}, {
+  ignore: [anchorRef],
 })
 
-onClickOutside(popoutRef, () => emit('clickOutside'))
+const transition = computed(() => {
+  if (props.transitionName === 'none')
+    return undefined
+  else if (props.transitionName)
+    return props.transitionName
+  return getPlacementAnimationName(props.placement)
+})
 </script>
 
 <template>
-  <!-- <Teleport to="#app"> -->
-  <Transition :name="getPlacementAnimationName(props.placement)">
-    <div
-      v-if="props.visible"
-      ref="popout"
-      :style="floatingStyles"
-      class="vui-popout"
-    >
-      <slot />
-    </div>
-  </Transition>
-  <!-- </Teleport> -->
+  <Teleport to="body" :disabled="props.teleport !== true">
+    <Transition :name="transition">
+      <div
+        v-if="props.visible"
+        ref="popout"
+        :style="floatingStyles"
+        class="vui-popout"
+        v-bind="attrs"
+      >
+        <slot />
+      </div>
+    </Transition>
+  </Teleport>
 </template>

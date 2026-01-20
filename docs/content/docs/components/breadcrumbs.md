@@ -78,26 +78,25 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 ```vue
 <script setup>
 import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
-import { Icon } from '@iconify/vue'
 </script>
 
 <template>
   <Breadcrumbs>
     <BreadcrumbItem href="#">
       <Flex y-center>
-        <Icon icon="mdi:home" />
+        <IconHome />
         Home
       </Flex>
     </BreadcrumbItem>
     <BreadcrumbItem href="#">
       <Flex y-center>
-        <Icon icon="mdi:package" />
+        <IconPackage />
         Products
       </Flex>
     </BreadcrumbItem>
     <BreadcrumbItem>
       <Flex y-center>
-        <Icon icon="mdi:laptop" />
+        <IconLaptop />
         Electronics
       </Flex>
     </BreadcrumbItem>

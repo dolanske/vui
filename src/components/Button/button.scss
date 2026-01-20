@@ -5,7 +5,6 @@
   --button-font-size-l: 1.4rem;
 
   &.disabled {
-    // color: var(--color-text-lighter) !important;
     cursor: not-allowed !important;
     filter: saturate(75%) opacity(50%);
 
@@ -45,6 +44,16 @@
     min-width: var(--button-height);
     min-height: var(--button-height);
     padding: 0;
+
+    // Only allow default slot in square mode
+    .vui-button-slot {
+      display: flex;
+
+      .vui-button-slot-end,
+      .vui-button-slot-start {
+        display: none;
+      }
+    }
   }
 
   &.dashed {
@@ -53,6 +62,10 @@
 
   &.vui-button-size-l {
     font-size: var(--button-font-size-l);
+  }
+
+  &.vui-button-size-xl {
+    font-size: var(--button-font-size-xl);
   }
 
   svg path {
@@ -73,29 +86,41 @@
   background-color: transparent;
   color: var(--color-text);
   font-weight: var(--font-weight-medium);
+  text-decoration: none;
 
   // Default gray
 
   .vui-button-slot {
-    display: flex;
-    place-items: center;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    align-items: center;
     transition: var(--transition-fast);
     opacity: 1;
+    width: 100%;
     font-weight: var(--font-weight-medium);
+    justify-items: center;
   }
 
   .vui-button-slot-start,
+  .vui-button-slot-default,
   .vui-button-slot-end {
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .vui-button-slot-default {
+    flex: 1;
   }
 
   .vui-button-slot-start {
     margin-right: 6px;
+    justify-self: flex-start;
   }
 
   .vui-button-slot-end {
     margin-left: 6px;
+    justify-self: flex-end;
   }
 
   .vui-spinner {

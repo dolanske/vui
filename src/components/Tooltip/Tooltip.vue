@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { computed, ref, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useAttrs, useId, useTemplateRef, watch } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 
@@ -13,12 +13,23 @@ interface Props {
    * Amount of time user should hover the anchor until the tooltip shows up
    */
   delay?: number
+  /**
+   * If set to true, tooltip will not be rendered
+   */
+  disabled?: boolean
 }
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const {
   placement,
   delay = 0,
+  disabled,
 } = defineProps<Props>()
+
+const attrs = useAttrs()
 
 const popoutAnchorRef = useTemplateRef('popoutAnchor')
 // Track if user is hovering the anchor
@@ -53,6 +64,13 @@ watch(hoverAnchor, (isHovering) => {
 
 const id = useId()
 const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement | null)
+
+function setHoverState(state: boolean) {
+  if (disabled)
+    return
+
+  hoverAnchor.value = state
+}
 </script>
 
 <template>
@@ -60,12 +78,12 @@ const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement 
     ref="popoutAnchor"
     class="popout-anchor"
     :aria-describedby="id"
-    @mouseenter="hoverAnchor = true"
-    @mouseleave="hoverAnchor = false"
+    @mouseenter="setHoverState(true)"
+    @mouseleave="setHoverState(false)"
   >
     <slot />
   </div>
-  <Popout :id :visible="showTooltip" :anchor class="vui-tooltip" :placement>
+  <Popout :id :visible="showTooltip" :anchor class="vui-tooltip" v-bind="attrs" :placement>
     <slot name="tooltip" />
   </Popout>
 </template>

@@ -33,12 +33,12 @@ function computeUnderlinePosition() {
     const activeBounds = tabsRef.value.querySelector('.vui-tab.active')?.getBoundingClientRect()
     const parentBounds = tabsRef.value.getBoundingClientRect()
     if (!activeBounds || !parentBounds) {
-      underlineRef.value.style.width = `0px`
-      return
+      underlineRef.value.style.width = '0px'
     }
-
-    underlineRef.value.style.width = `${activeBounds.width}px`
-    underlineRef.value.style.left = `${activeBounds.left - parentBounds.left}px`
+    else {
+      underlineRef.value.style.width = `${activeBounds.width}px`
+      underlineRef.value.style.left = `${activeBounds.left - parentBounds.left}px`
+    }
   }
 }
 
@@ -48,7 +48,7 @@ onMounted(() => {
   useResizeObserver(tabsRef, computeUnderlinePosition)
 
   watch(
-    [active, () => expand, flattened],
+    [active, () => expand, () => flattened.value.length],
     computeUnderlinePosition,
     {
       immediate: true,

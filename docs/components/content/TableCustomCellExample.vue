@@ -21,7 +21,9 @@ const { headers, rows } = defineTable(data)
             <Table.Cell>
               {{ row.id }}
               <template #context>
-                <Button icon="ph:copy" square size="s" plain />
+                <Button square size="s" plain>
+                  <Icon name="ph:copy" />
+                </Button>
               </template>
             </Table.Cell>
             <Table.Cell>
@@ -32,7 +34,9 @@ const { headers, rows } = defineTable(data)
               <template #context>
                 <Dropdown>
                   <template #trigger="{ toggle }">
-                    <Button icon="ph:dots-three" square size="s" plain @click="toggle" />
+                    <Button square size="s" plain @click="toggle">
+                      <Icon name="ph:dots-three-outline-fill" />
+                    </Button>
                   </template>
                   <DropdownItem>
                     Rename

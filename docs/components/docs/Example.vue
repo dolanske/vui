@@ -36,6 +36,11 @@ const tab = ref('Component')
 .example-root {
   position: relative;
   // overflow: hidden;
+
+  .vui-sidebar-layout {
+    overflow: hidden;
+    border-radius: var(--border-radius-m);
+  }
 }
 
 .example-component,

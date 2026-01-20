@@ -16,7 +16,7 @@ Available tooltip positions:
   position: relative;
 
   &:before {
-    font-family: var(--global-font);
+    font-family: var(--font);
     font-weight: var(--font-weight-regular);
     background-color: var(--color-button-gray);
     color: var(--color-text) !important;

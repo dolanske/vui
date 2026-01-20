@@ -25,12 +25,38 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
           </td>
         </tr>
         <tr>
+          <th>Icon alignment</th>
+          <td>
+            <Flex column gap="m" class="mb-xxl">
+              <Alert icon-align="start">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eligendi aliquid voluptas illum, dicta suscipit excepturi aspernatur voluptatibus possimus laborum blanditiis! Voluptas velit enim illo iste fugit ex veniam necessitatibus.</p>
+              </Alert>
+
+              <Alert icon-align="center">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eligendi aliquid voluptas illum, dicta suscipit excepturi aspernatur voluptatibus possimus laborum blanditiis! Voluptas velit enim illo iste fugit ex veniam necessitatibus.</p>
+              </Alert>
+
+              <Alert icon-align="end">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eligendi aliquid voluptas illum, dicta suscipit excepturi aspernatur voluptatibus possimus laborum blanditiis! Voluptas velit enim illo iste fugit ex veniam necessitatibus.</p>
+              </Alert>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
           <th>Filled</th>
           <td>
             <Flex column>
               <Alert v-for="variant in variants" :key="variant" :variant filled>
                 We'd like to get in touch about your car's extended warranty.
               </Alert>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Filled strong</th>
+          <td>
+            <Flex column>
+              <Alert v-for="variant in variants" :key="variant" :variant title="Warranty discounts 2025" filled-strong description="We'd like to get in touch about your car's extended warranty." />
             </Flex>
           </td>
         </tr>

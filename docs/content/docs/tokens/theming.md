@@ -8,7 +8,7 @@ Here's a simple example of how to re-map some of the existing CSS variables:
 :root {
   --light-color-accent: rgb(247, 63, 31);
   --dark-color-accent: rgb(165, 47, 27);
-}
+}
 ```
 
 Under the hood, VUI automatically sets the correct CSS variable based on the active theme:
@@ -20,7 +20,7 @@ Under the hood, VUI automatically sets the correct CSS variable based on the act
 
 :root.dark {
   --color-accent: var(--dark-color-accent);
-}
+}
 ```
 
 Since VUI supports custom themes, you can use VueUse's `useColorMode` to define your own themes. For example, if you want to add a `dark-contrast` theme, you can implement it by adding a new class to the `:root` selector:
@@ -28,5 +28,5 @@ Since VUI supports custom themes, you can use VueUse's `useColorMode` to define 
 ```css
 :root.dark-contrast {
   --color-accent: rgb(255, 0, 0);
-}
+}
 ```

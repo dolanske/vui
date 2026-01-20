@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { BreadcrumbItem, Breadcrumbs, Flex } from '@dolanske/vui'
-import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -10,19 +9,19 @@ import { Icon } from '@iconify/vue'
         <Breadcrumbs>
           <BreadcrumbItem href="#">
             <Flex y-center>
-              <Icon icon="mdi:home" />
+              <Icon name="mdi:home" />
               Home
             </Flex>
           </BreadcrumbItem>
           <BreadcrumbItem href="#">
             <Flex y-center>
-              <Icon icon="mdi:package" />
+              <Icon name="mdi:package" />
               Products
             </Flex>
           </BreadcrumbItem>
           <BreadcrumbItem>
             <Flex y-center>
-              <Icon icon="mdi:laptop" />
+              <Icon name="mdi:laptop" />
               Electronics
             </Flex>
           </BreadcrumbItem>

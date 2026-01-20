@@ -27,9 +27,10 @@ interface Props {
   indicatorClassName?: string
   copyable?: boolean
   indicator?: boolean
+  prefix?: string
 }
 
-const { copyable = true, indicator = true, ...props } = defineProps<Props>()
+const { copyable = true, indicator = true, prefix = '.', ...props } = defineProps<Props>()
 
 const computedStyle = computed(() => {
   const baseStyle = props.size ? { fontSize: props.size } : {}
@@ -60,7 +61,7 @@ const computedStyle = computed(() => {
           <template #start>
             <Badge>
               <slot name="badge-prefix">
-                {{ `.` }}
+                {{ prefix }}
               </slot>{{ props.className }}
             </Badge>
           </template>

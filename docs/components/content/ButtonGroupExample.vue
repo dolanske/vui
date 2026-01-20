@@ -10,14 +10,24 @@ import { Button, ButtonGroup, Flex } from '@dolanske/vui'
           <Button outline>
             Hello
           </Button>
-          <Button outline icon="ph:caret-down" />
+          <Button outline>
+            <Icon name="ph:caret-down" />
+          </Button>
         </ButtonGroup>
 
         <ButtonGroup>
-          <Button square icon="ph:text-b-bold" active />
-          <Button square icon="ph:text-bold" />
-          <Button square icon="ph:text-italic" />
-          <Button square icon="ph:text-a-underline" />
+          <Button square active>
+            <Icon name="ph:text-b-bold" />
+          </Button>
+          <Button square>
+            <Icon name="ph:text-bold" />
+          </Button>
+          <Button square>
+            <Icon name="ph:text-italic" />
+          </Button>
+          <Button square>
+            <Icon name="ph:text-a-underline" />
+          </Button>
         </ButtonGroup>
       </Flex>
     </template>

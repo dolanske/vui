@@ -4,7 +4,7 @@ VUI comes with some [pre-defined HTML styles](https://github.com/dolanske/vui/bl
 
 When you use an `article` element or apply the `.typeset` class, these base styles are enhanced with additional spacing and layout rules to create a more polished reading experience for content-heavy pages.
 
-Below is a **generated** example article meant to showcase VUI's typography setup:
+Below is a <mark>generated sample article</mark> meant to showcase VUI's typography defaults:
 
 ---
 
@@ -140,7 +140,7 @@ Establish your design system early:
   --color-secondary: #7c3aed;
   --spacing-unit: 4px;
   --border-radius: 6px;
-}
+}
 ```
 
 ### Best Practices

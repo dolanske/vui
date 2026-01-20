@@ -18,8 +18,32 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           <th>Base</th>
           <td>
             <Flex gap="s">
-              <Button v-for="btn in variants" :key="btn" :variant="btn">
+              <Button v-for="btn in variants" :key="btn" :variant="btn" href="https://dolansky.dev/" target="_blank">
                 Button
+              </Button>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Only start slot</th>
+          <td>
+            <Flex gap="s">
+              <Button v-for="btn in variants" :key="btn" :variant="btn" href="https://dolansky.dev/" target="_blank">
+                <template #start>
+                  <IconArrowLeft />
+                </template>
+              </Button>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Only end slot</th>
+          <td>
+            <Flex gap="s">
+              <Button v-for="btn in variants" :key="btn" :variant="btn" href="https://dolansky.dev/" target="_blank">
+                <template #end>
+                  <IconArrowRight />
+                </template>
               </Button>
             </Flex>
           </td>
@@ -138,7 +162,7 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
                 <Button :variant="btn">
                   Hello
                 </Button>
-                <Button :variant="btn">
+                <Button :variant="btn" square>
                   <IconCaretDown />
                 </Button>
               </ButtonGroup>

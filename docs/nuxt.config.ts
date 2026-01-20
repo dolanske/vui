@@ -12,15 +12,15 @@ export default defineNuxtConfig({
   css: [
     '~/assets/index.scss',
   ],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler', // or "modern"
-        },
-      },
-    },
-  },
+  // vite: {
+  //   css: {
+  //     preprocessorOptions: {
+  //       scss: {
+  //         api: 'modern-compiler',
+  //       },
+  //     },
+  //   },
+  // },
   content: {
     build: {
       markdown: {
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     provider: 'google',
     families: [
       { name: 'Inter', weights: [300, 400, 500, 600, 700, 800, 900] },
-      { name: 'Geist Mono', weights: [400, 600] },
+      { name: 'Geist Mono', weights: [400] },
     ],
   },
   modules: [

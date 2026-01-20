@@ -199,7 +199,9 @@ const { headers, rows } = defineTable(data)
         <Table.Cell v-for="header in headers" :key="header.label">
           {{ row[header.label as keyof typeof row] }}
           <template #context>
-            <Button icon="ph:dots-three" plain square />
+            <Button plain square>
+              <IconDotsThree />
+            </Button>
           </template>
         </Table.Cell>
       </tr>

@@ -14,8 +14,9 @@ import Skeleton from '../components/Skeleton/Skeleton.vue'
           <th>No defaults <br> Width, height, roundness must be specified</th>
           <td>
             <Flex gap="s">
+              <Skeleton :width="80" :height="48" />
               <Skeleton :width="80" :height="48" :radius="8" />
-              <Skeleton :width="48" :height="48" :radius="8" />
+              <Skeleton :width="48" :height="48" radius="16px" />
               <Skeleton :width="48" circle />
             </Flex>
           </td>

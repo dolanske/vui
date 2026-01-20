@@ -3,7 +3,6 @@ import type { Sizes } from '../../shared/types'
 import { IconUser } from '@iconify-prerendered/vue-ph'
 import { computed, ref } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
-import { Size } from '../../shared/types'
 import './avatar.scss'
 
 interface Props {
@@ -16,7 +15,8 @@ interface Props {
 }
 
 const {
-  size = Size.m,
+  // eslint-disable-next-line vue/require-valid-default-prop
+  size = 'm',
   url,
   fallback,
   alt = 'avatar',
