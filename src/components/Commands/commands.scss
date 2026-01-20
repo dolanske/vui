@@ -26,6 +26,8 @@
   .vui-card .vui-card-content {
     max-height: 60dvh;
     overflow-y: auto;
+    padding-block: 0 !important;
+    margin-bottom: -1px;
   }
 
   .vui-commands-empty {
