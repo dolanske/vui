@@ -1,3 +1,4 @@
+import type { Command } from './components/Commands/Commands.vue'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
@@ -10,6 +11,7 @@ import ButtonGroup from './components/ButtonGroup/ButtonGroup.vue'
 import Calendar from './components/Calendar/Calendar.vue'
 import Card from './components/Card/Card.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
+import Commands from './components/Commands/Commands.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
 import Divider from './components/Divider/Divider.vue'
 import Drawer from './components/Drawer/Drawer.vue'
@@ -70,6 +72,8 @@ export {
   Card,
   Checkbox,
   Color,
+  type Command,
+  Commands,
   Confirm,
   CopyClipboard,
   Counter,
