@@ -17,18 +17,18 @@ import Button from '../components/Button/Button.vue'
           <th>Base with links</th>
           <td>
             <Breadcrumbs>
-              <BreadcrumbItem label="Home" href="#" />
+              <BreadcrumbItem label="Home" />
               <BreadcrumbItem label="About" href="#" />
-              <BreadcrumbItem label="You" />
+              <BreadcrumbItem label="You" href="#" />
             </Breadcrumbs>
           </td>
         </tr>
         <tr>
-          <th>With components</th>
+          <th>With components and buttons</th>
           <td>
             <Breadcrumbs>
-              <BreadcrumbItem label="Home" href="#" />
-              <BreadcrumbItem label="About" href="#" />
+              <BreadcrumbItem label="Home" @click="console.log('bro')" />
+              <BreadcrumbItem label="About" @click="console.log('bro')" />
               <BreadcrumbItem>
                 <Button size="s">
                   Switch

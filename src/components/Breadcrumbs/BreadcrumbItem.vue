@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { useAttrs } from 'vue'
 import '../Button/button.scss'
 
 export interface BreadcrumbItemProps {
@@ -6,19 +7,29 @@ export interface BreadcrumbItemProps {
   href?: string
 }
 
+defineOptions({ inheritAttrs: false })
+
 const props = defineProps<BreadcrumbItemProps>()
+
+const attrs = useAttrs()
 </script>
 
 <template>
   <li>
-    <a v-if="props.href" :href="props.href" class="vui-breadcrumb-link">
+    <component
+      :is="props.href ? 'a' : 'button'"
+      v-if="props.href || attrs.onClick"
+      :href="props.href"
+      class="vui-breadcrumb-link"
+      v-bind="attrs"
+    >
       <slot>
         {{ props.label }}
       </slot>
-    </a>
+    </component>
 
     <slot v-else>
-      <span class="vui-breadcrumb-text-simple">
+      <span class="vui-breadcrumb-text-simple" v-bind="attrs">
         {{ props.label }}
       </span>
     </slot>

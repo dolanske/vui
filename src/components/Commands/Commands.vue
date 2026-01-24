@@ -159,7 +159,13 @@ function resetSearch() {
 </script>
 
 <template>
-  <Modal :open="props.open" hide-close-button :card="{ separators: true, padding: false }" class="vui-commands">
+  <Modal
+    :open="props.open"
+    hide-close-button
+    :card="{ separators: true, padding: false }"
+    class="vui-commands"
+    @close="emit('close')"
+  >
     <template #header>
       <div class="py-xs">
         <Input
