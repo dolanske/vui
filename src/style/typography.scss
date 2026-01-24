@@ -48,12 +48,6 @@ p {
   font-size: var(--font-size-m);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight);
-
-  & > * {
-    line-height: inherit;
-    font-size: inherit;
-  }
-
   a {
     color: var(--color-text);
     text-decoration: underline;
@@ -75,6 +69,13 @@ p {
 
   u {
     text-decoration: line-through;
+  }
+}
+
+p {
+  & > * {
+    line-height: inherit;
+    font-size: inherit;
   }
 }
 
