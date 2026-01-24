@@ -23,11 +23,19 @@
     &:not(:last-child) {
       margin-right: 0px;
     }
+
+    &:only-child {
+      border-radius: var(--border-radius-s) !important;
+    }
   }
 
   &.vertical {
     .vui-button {
       width: 100%;
+
+      &:only-child {
+        border-radius: var(--border-radius-s) !important;
+      }
 
       &:not(:first-child, :last-child) {
         border-radius: 0;

@@ -181,6 +181,12 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
                   <IconTextAUnderline />
                 </Button>
               </ButtonGroup>
+
+              <ButtonGroup>
+                <Button square active size="s">
+                  <IconTextBBold />
+                </Button>
+              </ButtonGroup>
             </Flex>
           </td>
         </tr>
