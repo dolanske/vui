@@ -2,6 +2,7 @@
   position: fixed;
   width: 100%;
   max-width: 392px;
+  z-index: 9999;
 
   // Bottom placements
   &.bottom {

@@ -137,6 +137,7 @@
       color: var(--color-text);
       background-color: var(--color-bg-red-raised);
 
+      .iconify,
       svg,
       path {
         color: var(--color-text);
@@ -158,6 +159,7 @@
       color: var(--color-text);
       background-color: var(--color-bg-green-raised);
 
+      .iconify,
       svg,
       path {
         color: var(--color-text);
@@ -179,6 +181,7 @@
       color: var(--color-text);
       background-color: var(--color-button-gray);
 
+      .iconify,
       svg,
       path {
         color: var(--color-text);
@@ -204,6 +207,7 @@
         --spinner-color: var(--color-text-invert);
       }
 
+      .iconify,
       svg,
       path {
         color: var(--color-text-invert);
@@ -216,6 +220,7 @@
       &:hover {
         color: var(--color-text-invert);
 
+        .iconify,
         svg,
         path {
           color: var(--color-text-invert);
@@ -230,6 +235,7 @@
       &.plain {
         color: var(--color-text-invert);
 
+        .iconify,
         svg,
         path {
           color: var(--color-text-invert);
@@ -243,6 +249,7 @@
       color: var(--color-text);
       background-color: var(--color-bg-accent-raised);
 
+      .iconify,
       svg,
       path {
         color: var(--color-text);
@@ -278,6 +285,7 @@
       &:not(.plain):not(.outline) {
         color: var(--color-text-invert);
 
+        .iconify,
         svg,
         path {
           color: var(--color-text-invert);
@@ -287,6 +295,7 @@
       &.outline:hover {
         color: var(--color-text-invert);
 
+        .iconify,
         svg,
         path {
           color: var(--color-text-invert);
@@ -298,6 +307,7 @@
       &:not(.plain):not(.outline) {
         color: var(--color-text-invert);
 
+        .iconify,
         svg,
         path {
           color: var(--color-text-invert);
@@ -307,6 +317,7 @@
       &.outline:hover {
         color: var(--color-text-invert);
 
+        .iconify,
         svg,
         path {
           color: var(--color-text-invert);

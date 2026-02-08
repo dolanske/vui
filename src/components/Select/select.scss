@@ -4,6 +4,8 @@
     min-width: 96px;
 
     &.expand {
+      width: 100%;
+
       .vui-dropdown-trigger-wrap,
       .vui-dropdown-trigger-content {
         width: 100%;

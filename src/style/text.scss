@@ -9,20 +9,20 @@ $sizes: 'xxs', 'xs', 's', 'ms', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl';
 $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
 
 .text-color {
-  color: var(--color-text);
+  color: var(--color-text) !important;
 }
 
 .text-color-accent {
-  color: var(--color-accent);
+  color: var(--color-accent) !important;
 }
 
 .text-color-invert {
-  color: var(--color-text-invert);
+  color: var(--color-text-invert) !important;
 }
 
 @each $color in $colors {
   .text-color-#{$color} {
-    color: var(--color-text-#{$color});
+    color: var(--color-text-#{$color}) !important;
   }
 }
 
@@ -100,4 +100,21 @@ $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 .ws-nowrap {
   white-space: nowrap;
+}
+
+.vui-label {
+  display: block;
+  text-align: left;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-m);
+  color: var(--color-text);
+}
+
+.vui-hint {
+  margin-bottom: var(--space-xs);
+  margin-top: -4px;
+  color: var(--color-text-lighter);
+  font-size: var(--font-size-s);
+  display: block;
+  text-align: left;
 }

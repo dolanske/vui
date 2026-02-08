@@ -48,6 +48,7 @@ p {
   font-size: var(--font-size-m);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight);
+
   a {
     color: var(--color-text);
     text-decoration: underline;
@@ -69,13 +70,6 @@ p {
 
   u {
     text-decoration: line-through;
-  }
-}
-
-p {
-  & > * {
-    line-height: inherit;
-    font-size: inherit;
   }
 }
 
@@ -104,6 +98,32 @@ p {
   font-size: var(--font-size-m);
 }
 
+small {
+  font-size: var(--font-size-s);
+}
+
+sub,
+sup {
+  font-size: 0.8em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+mark {
+  background-color: var(--color-bg-highlighted, rgba(255, 235, 59, 0.3));
+  padding: 2px 4px;
+  border-radius: var(--border-radius-s);
+}
+
 blockquote {
   display: block;
   padding-block: var(--space-s);
@@ -111,8 +131,12 @@ blockquote {
   border-left: 3px solid var(--color-border);
   line-height: var(--line-height-base);
 
-  p:first-child {
-    margin-top: 0 !important;
+  & > * {
+    margin-top: var(--space-s) !important;
+
+    &:first-child {
+      margin-top: 0 !important;
+    }
   }
 }
 
@@ -328,15 +352,19 @@ article {
 
 article,
 .typeset {
+  & > :first-child {
+    margin-top: 0 !important;
+  }
+
   ol,
   ul {
     ol,
     ul {
-      margin-block: var(--space-l) !important;
+      margin-block: var(--space-m) !important;
     }
 
     li {
-      margin-bottom: var(--space-m);
+      margin-bottom: var(--space-s);
       font-size: var(--font-size-m);
       position: relative;
       padding-left: 28px;
@@ -349,7 +377,7 @@ article,
       &:before {
         content: '';
         position: absolute;
-        top: 5px;
+        top: 6px;
         left: 12px;
       }
 
@@ -392,10 +420,10 @@ article,
   h5,
   h6 {
     &:not(:first-child) {
-      margin-top: var(--space-xxl);
+      margin-top: var(--space-xl);
     }
 
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-s);
   }
 
   span,
@@ -412,11 +440,20 @@ article,
   ul,
   blockquote,
   p {
-    margin-top: var(--space-l);
+    margin-top: var(--space-m);
 
-    // &:first-child {
-    //   margin-top: 0;
-    // }
+    &:only-child {
+      margin-top: 0;
+    }
+  }
+
+  // Remove margin-top from first children within containers to avoid double spacing
+  li > :first-child,
+  blockquote > :first-child,
+  dd > :first-child,
+  td > :first-child,
+  th > :first-child {
+    margin-top: 0;
   }
 
   hr {

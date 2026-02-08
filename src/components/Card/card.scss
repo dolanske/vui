@@ -46,13 +46,17 @@
     background-color: var(--color-bg);
     border-top-left-radius: var(--border-radius-m);
     border-top-right-radius: var(--border-radius-m);
+    position: relative;
   }
 
   .vui-card-content {
     padding: var(--space-m);
+    position: relative;
   }
 
   .vui-card-footer {
+    position: relative;
+
     padding: var(--space-s) var(--space-m);
     background-color: var(--color-bg);
     border-bottom-left-radius: var(--border-radius-m);
