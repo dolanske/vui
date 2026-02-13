@@ -81,7 +81,6 @@
     svg {
       min-width: 16px;
       min-height: 16px;
-      // font-size: var(--font-size-l);
     }
 
     .vui-input-hint {
@@ -246,19 +245,6 @@
     text-align: left;
     font-size: var(--font-size-xs);
     color: var(--input-color-text-lighter);
-  }
-
-  .vui-input-errors {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding-top: 6px;
-
-    li {
-      display: block;
-      font-size: var(--font-size-s);
-      color: var(--color-text-red);
-    }
   }
 
   &.vui-dropzone {

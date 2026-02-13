@@ -42,7 +42,7 @@ function setPrev() {
   <Flex inline class="vui-pagination" gap="xxs">
     <slot name="start">
       <Tooltip v-if="props.firstLast">
-        <Button plain :disabled="props.pagination.startPage === props.pagination.currentPage" square @click="emit('change', props.pagination.startPage)">
+        <Button plain :disabled="props.pagination.startPage === props.pagination.currentPage" square @click="emit('change', 1)">
           <IconCaretDoubleLeft />
         </Button>
         <template #tooltip>
@@ -89,7 +89,7 @@ function setPrev() {
 
     <slot name="end">
       <Tooltip v-if="props.firstLast">
-        <Button plain :disabled="props.pagination.endPage === props.pagination.currentPage" square @click="emit('change', props.pagination.endPage)">
+        <Button plain :disabled="props.pagination.endPage === props.pagination.currentPage" square @click="emit('change', props.pagination.totalPages)">
           <IconCaretDoubleRight />
         </Button>
         <template #tooltip>

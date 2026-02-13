@@ -77,7 +77,7 @@ const {
 
 // Example
 //
-const testData = ['Jan', 'Andrew', 'Kasper', 'Anton', 'Felix', 'Daniel', 'Gabriel', 'Ayalga', 'Floris']
+const testData = ['Jan', 'Andrew', 'Kasper', 'Anton', 'Felix', 'Daniel', 'Gabriel', 'Ayalga', 'Floris', 'Jonathan', 'Amon', 'Gertrude', 'Maurice', 'Keneddy']
 const page = ref(1)
 const paginationExample = computed(() => paginate(testData.length, page.value, 2))
 const exampleToRender = computed(() => testData.slice(paginationExample.value.startIndex, paginationExample.value.endIndex + 1))

@@ -1,9 +1,5 @@
 // Base style definitions
 
-// Definitions should be self contained. No element should ever expect there
-// will be more. Anything like margins and actual article spacings should be
-// defined within the <article> element
-
 h1,
 h2,
 h3,
@@ -18,23 +14,18 @@ h6 {
 h1 {
   font-size: var(--font-size-xxxxl);
 }
-
 h2 {
   font-size: var(--font-size-xxxl);
 }
-
 h3 {
   font-size: var(--font-size-xxl);
 }
-
 h4 {
   font-size: var(--font-size-xl);
 }
-
 h5 {
   font-size: var(--font-size-l);
 }
-
 h6 {
   font-size: var(--font-size-m);
 }
@@ -64,11 +55,17 @@ p {
     font-weight: var(--font-weight-bold);
   }
 
-  i {
+  i,
+  em {
     font-style: italic;
   }
 
   u {
+    text-decoration: underline;
+  }
+
+  s,
+  del {
     text-decoration: line-through;
   }
 }
@@ -89,6 +86,7 @@ code {
 }
 
 hr {
+  border: 0;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -113,7 +111,6 @@ sup {
 sub {
   bottom: -0.25em;
 }
-
 sup {
   top: -0.5em;
 }
@@ -188,66 +185,10 @@ pre {
 table {
   text-indent: 0;
   border-collapse: separate;
+  border-spacing: 0;
   overflow-x: auto;
   max-width: 100%;
-
-  // TODO: add alternating row colors
-
-  // TODO add only separating header and body with a border, not between rows
-
-  // &.bg-dark {
-  //   background-color: var(--color-bg-lowered);
-  // }
-
-  // &.bg-light {
-  //   background-color: var(--color-bg-lighter);
-  // }
-
-  // &.no-borders {
-  //   th,
-  //   td {
-  //     border: 0 !important;
-  //   }
-  // }
-
-  thead {
-    th {
-      border-bottom: 1px solid var(--color-border);
-      border-top: 1px solid var(--color-border);
-      white-space: nowrap;
-
-      &:first-child {
-        border-top-left-radius: var(--border-radius-s);
-        border-bottom-left-radius: 0 !important;
-      }
-
-      &:last-child {
-        border-top-right-radius: var(--border-radius-s);
-        border-bottom-right-radius: 0 !important;
-      }
-    }
-  }
-
-  tbody {
-    th {
-      border-radius: 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    &:first-child tr:first-child {
-      td {
-        border-top: 1px solid var(--color-border);
-
-        &:first-child {
-          border-top-left-radius: var(--border-radius-s);
-        }
-
-        &:last-child {
-          border-top-right-radius: var(--border-radius-s);
-        }
-      }
-    }
-  }
+  width: 100%;
 
   th,
   td {
@@ -259,60 +200,92 @@ table {
     line-height: var(--line-height-base);
     font-variant-numeric: tabular-nums;
     vertical-align: top;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 
     &:first-child {
       border-left: 1px solid var(--color-border);
     }
-
-    border-right: 1px solid var(--color-border);
   }
 
   th {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
     text-transform: uppercase;
+    background-color: var(--color-bg-lowered);
   }
 
-  tr {
+  thead tr:first-child,
+  tbody:first-child tr:first-child {
+    th,
+    td {
+      border-top: 1px solid var(--color-border);
+
+      &:first-child {
+        border-top-left-radius: var(--border-radius-s);
+        border-bottom-left-radius: 0;
+      }
+
+      &:last-child {
+        border-top-right-radius: var(--border-radius-s);
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  tr:last-child {
+    th,
+    td {
+      &:first-child {
+        border-bottom-left-radius: var(--border-radius-s);
+      }
+      &:last-child {
+        border-bottom-right-radius: var(--border-radius-s);
+      }
+    }
+  }
+
+  &.vui-table-inline {
+    width: auto;
+  }
+
+  &.vui-table-alternating {
+    // Horizontal table
+    &:has(thead) {
+      tbody tr:nth-child(even) td,
+      tbody tr:nth-child(even) th {
+        background-color: var(--color-bg-medium);
+      }
+    }
+
+    // Vertical table
+    &:not(:has(thead)) {
+      td:nth-child(even) {
+        background-color: var(--color-bg-medium);
+      }
+    }
+  }
+
+  &.vui-table-no-borders {
+    thead th,
     td {
       border-bottom: 1px solid var(--color-border);
-      font-weight: var(--font-weight);
-    }
 
-    &:first-child {
-      th {
-        border-top: 1px solid var(--color-border);
-
-        &:first-child {
-          border-top-left-radius: var(--border-radius-s);
-        }
-
-        &:last-child {
-          border-top-right-radius: var(--border-radius-s);
-        }
+      &:not(:last-child) {
+        border-right: none;
       }
     }
 
-    &:last-child {
-      th {
-        &:first-child {
-          border-bottom-left-radius: var(--border-radius-s);
-        }
+    tr:not(:last-child) td {
+      border-bottom: none;
+    }
 
-        &:last-child {
-          border-bottom-right-radius: var(--border-radius-s);
-        }
-      }
+    tbody th {
+      border-right: 1px solid var(--color-border) !important;
+    }
 
-      td {
-        &:first-child {
-          border-bottom-left-radius: var(--border-radius-s);
-        }
-
-        &:last-child {
-          border-bottom-right-radius: var(--border-radius-s);
-        }
-      }
+    tbody tr:not(:last-child) th {
+      border-bottom: none;
     }
   }
 }
@@ -322,11 +295,14 @@ dl {
   grid-template-columns: repeat(auto-fit, minmax(9ch, max-content));
   column-gap: var(--space-l);
 
+  padding: var(--space-m);
+  border-radius: var(--border-radius-m);
+  border: 1px solid var(--color-border);
+
   dt,
   dd {
     padding-inline: var(--space-m);
     margin-bottom: var(--space-l);
-
     &:last-of-type {
       margin-bottom: 0;
     }
@@ -334,7 +310,7 @@ dl {
 
   dt {
     padding-left: 0;
-    color: var(--color-text-lighter);
+    color: var(--color-text-light);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-m);
     grid-column-start: 1;
@@ -360,76 +336,85 @@ article,
   ul {
     ol,
     ul {
-      margin-block: var(--space-m) !important;
+      margin-top: var(--space-s) !important;
+      margin-bottom: var(--space-m);
     }
 
     li {
       margin-bottom: var(--space-s);
-      font-size: var(--font-size-m);
       position: relative;
       padding-left: 28px;
-      line-height: var(--line-height-base);
-
-      & > ul {
-        margin-top: 0;
-      }
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: 6px;
-        left: 12px;
-      }
 
       &:last-of-type {
-        margin: 0;
+        margin-bottom: 0;
       }
     }
   }
 
-  ul {
-    li {
-      &:before {
-        width: 6px;
-        height: 6px;
-        border-radius: 100%;
-        background-color: var(--color-text-lighter);
-      }
-    }
+  ul > li::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background-color: var(--color-text-lighter);
   }
 
   ol {
     counter-reset: ol;
-    li {
+    & > li::before {
       counter-increment: ol;
-
-      &:before {
-        content: counter(ol) '.';
-        top: 0;
-        left: 8px;
-        text-align: left;
-        color: var(--color-text-light);
-      }
+      content: counter(ol) '.';
+      position: absolute;
+      top: 0;
+      left: 8px;
+      color: var(--color-text-light);
     }
   }
 
+  // Heading Logic
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    &:not(:first-child) {
-      margin-top: var(--space-xl);
+    margin-top: var(--space-xxl);
+    margin-bottom: var(--space-s);
+
+    // If a heading is immediately followed by another heading,
+    // the second one uses regular spacing instead of the large chunk gap
+    & + h1,
+    & + h2,
+    & + h3,
+    & + h4,
+    & + h5,
+    & + h6 {
+      margin-top: var(--space-m) !important;
     }
 
-    margin-bottom: var(--space-s);
-  }
+    a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
 
-  span,
-  strong,
-  p {
-    font-size: var(--font-size-m);
+      &:hover:before {
+        opacity: 1;
+      }
+
+      &:before {
+        content: '#';
+        opacity: 0;
+        transition: var(--transition-fast);
+        position: absolute;
+        right: calc(100% + 4px);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-accent);
+      }
+    }
   }
 
   dl,
@@ -441,13 +426,11 @@ article,
   blockquote,
   p {
     margin-top: var(--space-m);
-
     &:only-child {
       margin-top: 0;
     }
   }
 
-  // Remove margin-top from first children within containers to avoid double spacing
   li > :first-child,
   blockquote > :first-child,
   dd > :first-child,
@@ -470,7 +453,6 @@ article,
     img {
       margin-bottom: var(--space-xs);
     }
-
     figcaption {
       text-align: center;
       font-size: var(--font-size-s);

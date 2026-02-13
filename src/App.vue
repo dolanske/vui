@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import ExampleBreadcrumbs from './examples/ExampleBreadcrumbs.vue'
-import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleTables from './examples/ExampleTables.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -9,8 +8,7 @@ setColorTheme('dark')
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleBreadcrumbs />
-      <ExampleButtons />
+      <ExampleTables />
     </div>
   </main>
 </template>
