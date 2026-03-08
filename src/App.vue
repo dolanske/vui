@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import Select from './components/Select/Select.vue'
 import ExampleDrawers from './examples/ExampleDrawers.vue'
+import ExampleDropdowns from './examples/ExampleDropdowns.vue'
 import { setColorTheme } from './shared/theme'
 
-setColorTheme('dark')
+setColorTheme('light')
 
 const options = [
   { value: 0, label: 'Jan' },
@@ -33,6 +34,7 @@ const options = [
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
 
       <ExampleDrawers />
+      <ExampleDropdowns />
     </div>
   </main>
 </template>

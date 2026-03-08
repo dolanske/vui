@@ -1,6 +1,5 @@
 .vui-drawer-content {
-  background-color: var(--color-bg-raised);
-  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-medium);
   border-top-left-radius: var(--border-radius-l);
   border-top-right-radius: var(--border-radius-l);
   padding-top: 30px;
@@ -8,7 +7,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0px -12px 48px 24px var(--color-bg-lowered);
   z-index: 9999999;
 
   &.hide-handle:before {
@@ -56,7 +55,7 @@
       right: 0;
       bottom: 100%;
       z-index: -1;
-      background-color: var(--color-bg-raised);
+      background-color: var(--color-bg-medium);
     }
 
     &.sticky {
@@ -65,4 +64,8 @@
       top: 2px;
     }
   }
+}
+
+:root.light .vui-drawer-content {
+  box-shadow: 0px -12px 48px 24px color-mix(in srgb, var(--color-text) 35%, transparent);
 }

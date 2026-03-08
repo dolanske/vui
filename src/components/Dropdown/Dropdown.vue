@@ -126,6 +126,7 @@ function handleContentClick(event: MouseEvent) {
     v-if="isMobile && !noMobileDrawer"
     :open="showMenu"
     @close="close"
+    @click="handleContentClick"
   >
     <slot :open :close :toggle :is-open="showMenu" />
   </Drawer>
