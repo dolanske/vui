@@ -6,14 +6,6 @@
 
 ---
 
-## TODO
+## Documentation
 
-- [ ] Bump target from ES2022 whenever vite-plugin-dts is fixed
-- [ ] Carousel (slider)
-- [ ] CodeBlock
-  - [ ] Code highlighting
-  - [ ] Copy code
-  - [ ] Type, padding, etc
-  - [ ] Use this https://shiki.style/guide/install
-- [ ] Command menu
-- [ ] Documentation site using my own template
+[Right here](https://dolanske.github.io/vui/)
