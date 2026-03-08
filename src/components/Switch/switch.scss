@@ -16,6 +16,7 @@
     .vui-switch-icon {
       opacity: 0.5;
       cursor: not-allowed;
+      filter: grayscale(100%);
     }
 
     input + label .vui-switch-content {

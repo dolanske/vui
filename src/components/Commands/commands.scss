@@ -99,6 +99,10 @@
         .vui-command-body {
           flex: 1;
 
+          span {
+            color: var(--color-text);
+          }
+
           p {
             font-size: var(--font-size-s);
             color: var(--color-text-lighter);

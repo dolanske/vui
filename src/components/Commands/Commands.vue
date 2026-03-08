@@ -115,6 +115,7 @@ whenever(keys.ArrowUp, () => {
     focusedIndex.value = flattenedResults.value.length - 1
   }
 })
+
 whenever(keys.ArrowDown, () => {
   if (focusedIndex.value < flattenedResults.value.length - 1) {
     focusedIndex.value++
