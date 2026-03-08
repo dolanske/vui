@@ -1,4 +1,5 @@
 import type { Command } from './components/Commands/Commands.vue'
+import type { Sizes, Space, SpaceSize } from './shared/types'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
@@ -53,6 +54,7 @@ import { pushToast, removeToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
+import { vuiBreakpoints } from './shared/breakpoints'
 import { searchString } from './shared/helpers'
 import { setColorTheme, theme } from './shared/theme'
 import './style.scss'
@@ -107,7 +109,10 @@ export {
   setColorTheme,
   Sheet,
   Sidebar,
+  type Sizes,
   Skeleton,
+  type Space,
+  type SpaceSize,
   Spinner,
   Switch,
   Tab,
@@ -117,4 +122,5 @@ export {
   theme,
   Toasts,
   Tooltip,
+  vuiBreakpoints,
 }

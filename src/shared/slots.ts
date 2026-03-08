@@ -55,7 +55,7 @@ export function enforceSlotType(vnodes: ShallowRef<VNodesProps<any>>, name: stri
   watchEffect(() => {
     // @ts-expect-error Accessing internals
     if (vnodes.value.some(item => item.type.__name !== name)) {
-      throw new Error(`You can only pass \`<${name} />\` components as children.`)
+      throw new TypeError(`You can only pass \`<${name} />\` components as children.`)
     }
   })
 }

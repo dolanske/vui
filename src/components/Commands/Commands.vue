@@ -3,9 +3,11 @@ import type { VNode } from 'vue'
 import { IconArrowDown, IconArrowUp, IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, ref, useTemplateRef, watch } from 'vue'
+import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Flex from '../Flex/Flex.vue'
+
 import Input from '../Input/Input.vue'
 import Kbd from '../Kbd/Kbd.vue'
 import Modal from '../Modal/Modal.vue'
@@ -157,6 +159,8 @@ function resetSearch() {
   searchValue.value = ''
   search.value?.focus()
 }
+
+const isMobile = useBreakpoint(Breakpoints.Mobile)
 </script>
 
 <template>
@@ -168,7 +172,7 @@ function resetSearch() {
     @close="emit('close')"
   >
     <template #header>
-      <div class="py-xs">
+      <Flex class="py-xs">
         <Input
           ref="searchRef"
           v-model="searchValue"
@@ -182,7 +186,11 @@ function resetSearch() {
             </Button>
           </template>
         </Input>
-      </div>
+
+        <Button v-if="isMobile" @click="emit('close')">
+          Cancel
+        </Button>
+      </Flex>
     </template>
     <template #footer>
       <Flex gap="xs" y-center>

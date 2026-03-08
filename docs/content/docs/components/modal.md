@@ -44,7 +44,9 @@ const isOpen = ref(false)
 | `scrollable`      | `false` | `boolean`<br>Makes the modal content scrollable instead of the modal itself                                                                                   |
 | `centered`        | `false` | `boolean`<br>Centers the modal vertically on the screen                                                                                                       |
 | `canDismiss`      | `true`  | `boolean`<br>Whether the modal can be closed by clicking the X button                                                                                         |
+| `hideCloseButton` | `false` | `boolean`<br>Hides the X button in the top right of the modal. The modal can still be closed by other means                                                   |
 | `transition-name` | `modal` | `string` `none` <br> Allows you to change or disable the vue transition for the modal appear. By default, a `fade` animation with a bit of scaling is applied |
+| `disableMobileFs` | `false` | `boolean`<br>Disables the default behavior where the modal becomes fullscreen on mobile. The breakpoint can be configured via `vuiBreakpoints`                |
 
 ## Events
 

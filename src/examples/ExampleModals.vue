@@ -6,6 +6,7 @@ import Flex from '../components/Flex/Flex.vue'
 import Modal from '../components/Modal/Modal.vue'
 
 const open = ref(false)
+const openBreakpoints = ref(false)
 const open2 = ref(false)
 const open3 = ref(false)
 const open4 = ref(false)
@@ -33,6 +34,25 @@ function setSize(s: any) {
               Open
             </Button>
             <Modal :open="open" transition-name="none" @close="open = false">
+              <template #header>
+                <h4>Modal </h4>
+              </template>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad harum id, distinctio voluptatum repellat eveniet repellendus saepe velit rem illo facere aspernatur iste nam, quasi dolores expedita consectetur enim autem?</p>
+              <template #footer="{ close }">
+                <Button @click="close">
+                  Close
+                </Button>
+              </template>
+            </Modal>
+          </td>
+        </tr>
+        <tr>
+          <th>Base without breakpoints</th>
+          <td>
+            <Button @click="openBreakpoints = !openBreakpoints">
+              Open
+            </Button>
+            <Modal :open="openBreakpoints" transition-name="none" disable-mobile-fs @close="openBreakpoints = false">
               <template #header>
                 <h4>Modal </h4>
               </template>

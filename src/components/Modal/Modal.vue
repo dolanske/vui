@@ -5,6 +5,7 @@ import { IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
+import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import './modal.scss'
@@ -35,7 +36,6 @@ export interface ModalProps {
    * Wether modal can be closed by clicking the X button
    */
   canDismiss?: boolean
-
   /**
    * Hides the X button in the top right of the modal. The modal can still be closed by other means.
    */
@@ -46,6 +46,12 @@ export interface ModalProps {
    * Setting the value to `none` will not apply any transition
    */
   transitionName?: string | 'none'
+  /**
+   * On mobile, the modal automatically becomes fullscreen. You can configure this
+   * breakpoint by setting a custom `vuiBreakpoints` mobile variable. This
+   * setting disables the default behavior.
+   */
+  disableMobileFs?: boolean
 }
 
 defineOptions({
@@ -61,6 +67,7 @@ const {
   hideCloseButton = false,
   open = false,
   transitionName = 'modal',
+  disableMobileFs = false,
 } = defineProps<ModalProps>()
 
 const emit = defineEmits<{ close: [] }>()
@@ -83,13 +90,24 @@ const transition = computed(() => {
 
   return transitionName
 })
+
+// Automatically change modal to fullscreen on mobile
+const isMobile = useBreakpoint(Breakpoints.Mobile)
+
+const realSize = computed(() => {
+  if (isMobile.value && !disableMobileFs) {
+    return 'screen'
+  }
+
+  return size
+})
 </script>
 
 <template>
   <Teleport to="body">
     <Transition appear :name="transition">
-      <Backdrop v-if="open" :class="{ 'p-0': size === 'screen' }" @close="tryClose">
-        <div class="vui-modal" :class="[`vui-modal-size-${size}`, { scrollable: scrollable || size === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
+      <Backdrop v-if="open" :class="{ 'p-0': realSize === 'screen' }" @close="tryClose">
+        <div class="vui-modal" :class="[`vui-modal-size-${realSize}`, { scrollable: scrollable || realSize === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
               <slot name="header" :close="() => emit('close')" />
