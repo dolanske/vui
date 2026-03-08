@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { createReusableTemplate, useMagicKeys, whenever } from '@vueuse/core'
+import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { formatUnitValue } from '../../shared/helpers'
