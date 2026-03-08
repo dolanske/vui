@@ -21,7 +21,6 @@ export interface Props {
    * Sets the width of the dropdown to the width of its anchor
    */
   expand?: boolean
-
   /**
    * Set he max height of the dropdown element before it starts scrolling
    */

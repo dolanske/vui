@@ -145,7 +145,6 @@ const id = useId()
       ref="dropdown"
       :expand
       :no-mobile-drawer="noMobileDrawer"
-      :drawer-title="label ?? placeholder ?? 'Select'"
       @close="triggerRef?.focus({ preventScroll: true })"
     >
       <template #trigger="{ toggle, isOpen }">
