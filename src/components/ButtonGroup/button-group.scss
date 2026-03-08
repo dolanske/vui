@@ -5,54 +5,72 @@
     &:hover {
       z-index: var(--z-active);
     }
+  }
 
-    &:not(:first-child, :last-child) {
-      border-radius: 0;
+  &:not(.vertical) {
+    > :not(:last-child) {
+      &.vui-button,
+      > .vui-button {
+        margin-right: 0;
+      }
     }
 
-    &:first-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    > :first-child:not(:only-child) {
+      &.vui-button,
+      > .vui-button {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
     }
 
-    &:last-child {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    > :last-child:not(:only-child) {
+      &.vui-button,
+      > .vui-button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
     }
 
-    &:not(:last-child) {
-      margin-right: 0px;
-    }
-
-    &:only-child {
-      border-radius: var(--border-radius-s) !important;
+    > :not(:first-child, :last-child) {
+      &.vui-button,
+      > .vui-button {
+        border-radius: 0;
+      }
     }
   }
 
   &.vertical {
     .vui-button {
       width: 100%;
+    }
 
-      &:only-child {
-        border-radius: var(--border-radius-s) !important;
+    > :not(:last-child) {
+      &.vui-button,
+      > .vui-button {
+        margin-bottom: 0;
       }
+    }
 
-      &:not(:first-child, :last-child) {
-        border-radius: 0;
-      }
-
-      &:first-child {
+    > :first-child:not(:only-child) {
+      &.vui-button,
+      > .vui-button {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
+    }
 
-      &:last-child {
+    > :last-child:not(:only-child) {
+      &.vui-button,
+      > .vui-button {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
+    }
 
-      &:not(:last-child) {
-        margin-bottom: 0px;
+    > :not(:first-child, :last-child) {
+      &.vui-button,
+      > .vui-button {
+        border-radius: 0;
       }
     }
   }

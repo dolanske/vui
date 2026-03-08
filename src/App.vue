@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Select from './components/Select/Select.vue'
+import ExampleButtons from './examples/ExampleButtons.vue'
 import ExampleDrawers from './examples/ExampleDrawers.vue'
 import ExampleDropdowns from './examples/ExampleDropdowns.vue'
 import { setColorTheme } from './shared/theme'
@@ -33,6 +34,7 @@ const options = [
     <div class="container container-m pt-xxl">
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
 
+      <ExampleButtons />
       <ExampleDrawers />
       <ExampleDropdowns />
     </div>

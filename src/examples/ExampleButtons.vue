@@ -3,6 +3,7 @@ import { IconArrowLeft, IconArrowRight, IconCaretDown, IconInfo, IconTextAUnderl
 import Button from '../components/Button/Button.vue'
 import ButtonGroup from '../components/ButtonGroup/ButtonGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
+import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as const
 </script>
@@ -168,6 +169,33 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
               </ButtonGroup>
 
               <ButtonGroup>
+                <Tooltip>
+                  <Button square active>
+                    <IconTextBBold />
+                  </Button>
+                  <template #tooltip>
+                    Test
+                  </template>
+                </Tooltip>
+                <Tooltip>
+                  <Button square active>
+                    <IconTextItalic />
+                  </Button>
+                  <template #tooltip>
+                    Test
+                  </template>
+                </Tooltip>
+                <Tooltip>
+                  <Button square active>
+                    <IconTextAUnderline />
+                  </Button>
+                  <template #tooltip>
+                    Test
+                  </template>
+                </Tooltip>
+              </ButtonGroup>
+
+              <ButtonGroup vertical>
                 <Button square active>
                   <IconTextBBold />
                 </Button>
