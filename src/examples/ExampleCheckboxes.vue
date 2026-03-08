@@ -50,7 +50,11 @@ import Switch from '../components/Switch/Switch.vue'
             <tr>
               <th>Base</th>
               <td>
-                <Switch label="Just click me" />
+                <Switch class="mb-m" label="Just click me" />
+                <Switch class="mb-m" hint="Get the hint bro">
+                  <p>This is a long switch label inside a component bro check it out</p>
+                </Switch>
+                <Switch reversed label="I am reversed" hint="And this is a hint bro" />
               </td>
             </tr>
             <tr>

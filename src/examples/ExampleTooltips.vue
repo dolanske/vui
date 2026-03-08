@@ -34,10 +34,32 @@ import Tooltip from '../components/Tooltip/Tooltip.vue'
           </td>
         </tr>
         <tr>
-          <th>Hover delay</th>
+          <th>Enter delay</th>
           <td>
-            <Tooltip :delay="500">
-              <span>Hover me</span>
+            <Tooltip :enter-delay="500">
+              <span>Hover me (500ms open delay)</span>
+              <template #tooltip>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </template>
+            </Tooltip>
+          </td>
+        </tr>
+        <tr>
+          <th>Leave delay</th>
+          <td>
+            <Tooltip :leave-delay="500">
+              <span>Hover me (500ms close delay)</span>
+              <template #tooltip>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </template>
+            </Tooltip>
+          </td>
+        </tr>
+        <tr>
+          <th>Both delays</th>
+          <td>
+            <Tooltip :enter-delay="300" :leave-delay="600">
+              <span>Hover me (300ms open / 600ms close)</span>
               <template #tooltip>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
               </template>

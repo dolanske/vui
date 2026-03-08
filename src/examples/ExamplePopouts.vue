@@ -6,6 +6,8 @@ import Popout from '../components/Popout/Popout.vue'
 
 const anchRef = useTemplateRef('anch')
 const open = ref(false)
+const anchDelayRef = useTemplateRef('anchDelay')
+const openDelay = ref(false)
 </script>
 
 <template>
@@ -29,6 +31,19 @@ const open = ref(false)
     <Popout :visible="open" :anchor="anchRef" class="test-popout" :offset="32" placement="bottom-start" @click-outside="open = false">
       <h3>Popout content</h3>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem facere eligendi ex, alias itaque molestiae, vero animi, vitae vel fuga corporis aut consectetur temporibus ipsum placeat dolores perferendis. Deleniti, et!</p>
+    </Popout>
+
+    <h4 class="mt-xl mb-m">
+      With enter &amp; leave delay
+    </h4>
+    <Flex>
+      <Button ref="anchDelay" class="mb-xxs" @click="openDelay = !openDelay">
+        Open popout (300ms open / 600ms close)
+      </Button>
+    </Flex>
+    <Popout :visible="openDelay" :anchor="anchDelayRef" class="test-popout" placement="bottom-start" :enter-delay="300" :leave-delay="600" @click-outside="openDelay = false">
+      <h3>Delayed popout</h3>
+      <p>This popout opens after 300ms and closes after 600ms.</p>
     </Popout>
   </div>
 </template>

@@ -62,12 +62,24 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 
     <div>
       <strong class="text-m mb-s block text-semibold">
-        With Delay
+        With Enter Delay
       </strong>
-      <Tooltip delay="500">
+      <Tooltip enter-delay="500">
         <Button>Hover me (500ms delay)</Button>
         <template #tooltip>
           <p>This tooltip appears after 500ms</p>
+        </template>
+      </Tooltip>
+    </div>
+
+    <div>
+      <strong class="text-m mb-s block text-semibold">
+        With Leave Delay
+      </strong>
+      <Tooltip leave-delay="500">
+        <Button>Hover me (closes after 500ms)</Button>
+        <template #tooltip>
+          <p>This tooltip stays for 500ms after you stop hovering</p>
         </template>
       </Tooltip>
     </div>
@@ -110,9 +122,10 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 
 | Name        | Default | Type                                                                                                                                                                                    |
 | ----------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `placement` | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
-| `delay`     | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                      |
-| `disabled`  | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                  |
+| `placement`   | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
+| `enter-delay` | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                       |
+| `leave-delay` | `0`     | `number` <br> The delay in milliseconds before hiding the tooltip after the cursor leaves                                                                                                |
+| `disabled`    | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                   |
 
 ### Slots
 

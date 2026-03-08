@@ -35,10 +35,11 @@ let id = 0
 
 // function toast(type: ToastType, title: string, options?: ToastOptions): Toast {
 export function pushToast(title: string, options?: ToastOptions): Toast {
-  const parsedOptions = Object.assign({
+  const parsedOptions = {
     persist: false,
     timeout: 7000,
-  }, options)
+    ...options,
+  }
 
   const newToast = {
     id,

@@ -1,19 +1,17 @@
 <script setup lang='ts'>
-import type { VueDatePickerProps } from '@vuepic/vue-datepicker'
+import type { RootProps } from '@vuepic/vue-datepicker'
 import { IconCalendarBlank, IconCaretDown, IconCaretLeft, IconCaretRight, IconCaretUp, IconClock, IconX } from '@iconify-prerendered/vue-ph'
-import VueDatePicker from '@vuepic/vue-datepicker'
+import { VueDatePicker } from '@vuepic/vue-datepicker'
 import { useAttrs } from 'vue'
 import { theme } from '../../shared/theme'
 import '@vuepic/vue-datepicker/dist/main.css'
 import './calendar.scss'
 
-const props = withDefaults(defineProps<VueDatePickerProps & {
+const props = withDefaults(defineProps<RootProps & {
   expand?: boolean
 }>(), {
   autoApply: true,
-  autoPosition: true,
-  format: 'dd/MM/yyyy HH:mm',
-  monthNameFormat: 'long',
+  formats: () => ({ input: 'dd/MM/yyyy HH:mm', month: 'MMMM' }),
   expand: false,
 })
 

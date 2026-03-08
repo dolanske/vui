@@ -1,6 +1,9 @@
 import type { Placement } from '@floating-ui/vue'
 import type { MaybeArray } from './types'
 
+const whitespaceRegex = /\s+/
+const rgbNumberRegex = /\d+/g
+
 export function createArray(length: number, startOffset: number = 0): number[] {
   return Array
     .from({ length })
@@ -21,7 +24,7 @@ export function searchString(match: MaybeArray<string | number | null | undefine
     ? match.filter(Boolean).join(' ')
     : match.toString()
 
-  const split = input.trim().split(/\s+/)
+  const split = input.trim().split(whitespaceRegex)
   // NOTE: should this be every or some?
   return split.every(s => joint.toLowerCase().includes(s.toLowerCase()))
 }
@@ -48,7 +51,7 @@ export function calculateColorLightness(r: number, g: number, b: number): 'dark'
  * 'rgb(12,16,24)' --> [12, 16, 24]
  */
 export function stringRgbToValues(rgbString: string): [number, number, number] {
-  return rgbString.match(/\d+/g)!.map(Number) as any as [number, number, number]
+  return rgbString.match(rgbNumberRegex)!.map(Number) as any as [number, number, number]
 }
 
 // export function rgbToHex(r: number, g: number, b: number): string {

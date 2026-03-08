@@ -24,6 +24,24 @@
     }
   }
 
+  &.reversed {
+    width: 100%;
+
+    input + label {
+      grid-template-columns: 1fr 44px;
+
+      .vui-switch-icon {
+        order: 1;
+      }
+    }
+  }
+
+  .vui-hint {
+    display: block;
+    margin-top: var(--space-xxs);
+    margin-bottom: 0;
+  }
+
   .vui-switch-icon {
     width: 44px;
     height: var(--switch-size);
@@ -69,8 +87,10 @@
         display: block;
 
         &:is(p) {
-          height: var(--switch-size);
-          line-height: var(--switch-size);
+          height: auto;
+          line-height: var(--line-height-base);
+          // height: var(--switch-size);
+          // line-height: var(--switch-size);
           font-size: var(--font-size-m);
         }
       }

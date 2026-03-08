@@ -2,7 +2,7 @@
 import type { Placement, PopoutMaybeElement } from '../../shared/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { computed, useAttrs, useTemplateRef } from 'vue'
+import { computed, ref, useAttrs, useTemplateRef, watch } from 'vue'
 import { getPlacementAnimationName } from '../../shared/helpers'
 import './popout.scss'
 
@@ -35,6 +35,14 @@ export interface Props {
    * @default true
    */
   teleport?: boolean
+  /**
+   * Delay in milliseconds before the popout becomes visible after `visible` turns true
+   */
+  enterDelay?: number
+  /**
+   * Delay in milliseconds before the popout hides after `visible` turns false
+   */
+  leaveDelay?: number
 }
 
 defineOptions({
@@ -81,13 +89,43 @@ const transition = computed(() => {
     return props.transitionName
   return getPlacementAnimationName(props.placement)
 })
+
+const delayedVisible = ref(props.visible)
+let enterTimeoutId: ReturnType<typeof setTimeout>
+let leaveTimeoutId: ReturnType<typeof setTimeout>
+
+watch(() => props.visible, (isVisible) => {
+  if (isVisible) {
+    clearTimeout(leaveTimeoutId)
+    if (!props.enterDelay || props.enterDelay <= 0) {
+      delayedVisible.value = true
+      return
+    }
+    clearTimeout(enterTimeoutId)
+    enterTimeoutId = setTimeout(() => {
+      if (props.visible)
+        delayedVisible.value = true
+    }, props.enterDelay)
+  }
+  else {
+    clearTimeout(enterTimeoutId)
+    if (!props.leaveDelay || props.leaveDelay <= 0) {
+      delayedVisible.value = false
+      return
+    }
+    leaveTimeoutId = setTimeout(() => {
+      if (!props.visible)
+        delayedVisible.value = false
+    }, props.leaveDelay)
+  }
+})
 </script>
 
 <template>
   <Teleport to="body" :disabled="props.teleport !== true">
     <Transition :name="transition">
       <div
-        v-if="props.visible"
+        v-if="delayedVisible"
         ref="popout"
         :style="floatingStyles"
         class="vui-popout"

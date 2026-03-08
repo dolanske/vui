@@ -46,14 +46,15 @@ export function defineTable<const Dataset extends any[]>(
 
   //
   // Reactive options + defaults
-  const options = ref(Object.assign({
+  const options = ref({
     pagination: {
       enabled: false,
       perPage: 10,
       maxPages: 3,
     },
     select: false,
-  }, tableOptions) as DeepRequired<TableOptionsInput>)
+    ...tableOptions,
+  } as DeepRequired<TableOptionsInput>)
 
   //
   // Pagination

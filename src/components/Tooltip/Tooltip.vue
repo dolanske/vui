@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { computed, ref, useAttrs, useId, useTemplateRef, watch } from 'vue'
+import { computed, ref, useAttrs, useId, useTemplateRef } from 'vue'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 
@@ -12,7 +12,11 @@ interface Props {
   /**
    * Amount of time user should hover the anchor until the tooltip shows up
    */
-  delay?: number
+  enterDelay?: number
+  /**
+   * Amount of time after the cursor leaves before the tooltip is hidden
+   */
+  leaveDelay?: number
   /**
    * If set to true, tooltip will not be rendered
    */
@@ -25,7 +29,8 @@ defineOptions({
 
 const {
   placement,
-  delay = 0,
+  enterDelay,
+  leaveDelay,
   disabled,
 } = defineProps<Props>()
 
@@ -34,33 +39,6 @@ const attrs = useAttrs()
 const popoutAnchorRef = useTemplateRef('popoutAnchor')
 // Track if user is hovering the anchor
 const hoverAnchor = ref(false)
-
-// Display tooltip
-const showTooltip = ref(false)
-
-let timeoutId: NodeJS.Timeout
-watch(hoverAnchor, (isHovering) => {
-  if (isHovering) {
-    if (!delay || delay <= 0) {
-      showTooltip.value = true
-      return
-    }
-
-    clearTimeout(timeoutId)
-
-    timeoutId = setTimeout(() => {
-      // Need to reference the ref itself as this will execute without the
-      // outside scope (as far as I know tbh)
-      if (hoverAnchor.value) {
-        showTooltip.value = true
-      }
-    }, delay)
-  }
-  else {
-    clearTimeout(timeoutId)
-    showTooltip.value = false
-  }
-})
 
 const id = useId()
 const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement | null)
@@ -83,7 +61,7 @@ function setHoverState(state: boolean) {
   >
     <slot />
   </div>
-  <Popout :id :visible="showTooltip" :anchor class="vui-tooltip" v-bind="attrs" :placement>
+  <Popout :id :visible="hoverAnchor" :anchor :enter-delay="enterDelay" :leave-delay="leaveDelay" class="vui-tooltip" v-bind="attrs" :placement>
     <slot name="tooltip" />
   </Popout>
 </template>

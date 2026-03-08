@@ -45,6 +45,8 @@ const anchorRef = ref(null)
 | `offset`          | `8`     | `number` <br> Distance between the anchor and the popout in pixels                                                                                                               |
 | `visible`         | —       | `boolean` <br> Whether the popout is visible                                                                                                                                     |
 | `transition-name` | `modal` | `string` `none` <br> Allows you to change or disable the vue transition for the popout appear. By default, a `fade` animation with direction depending on the placement is used. |
+| `enter-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout becomes visible after `visible` turns true                                                                                 |
+| `leave-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout hides after `visible` turns false                                                                                          |
 
 ### Events
 

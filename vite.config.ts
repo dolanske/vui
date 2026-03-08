@@ -20,13 +20,6 @@ export default defineConfig(({ mode }) => {
     test: {
       environment: 'jsdom',
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler',
-        },
-      },
-    },
     plugins: [
       vue(),
       // Only generate type definitions for library builds

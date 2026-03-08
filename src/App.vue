@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import ExampleTables from './examples/ExampleTables.vue'
+// import ExamplePopouts from './examples/ExamplePopouts.vue'
+// import ExampleTooltips from './examples/ExampleTooltips.vue'
+import ExampleCalendars from './examples/ExampleCalendars.vue'
+import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -8,7 +11,8 @@ setColorTheme('dark')
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleTables />
+      <ExampleCalendars />
+      <ExampleCheckboxes />
     </div>
   </main>
 </template>

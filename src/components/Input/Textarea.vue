@@ -20,7 +20,7 @@ const {
   modelValue = '',
   readonly,
   resize = 'vertical',
-  autoResize,
+  // autoResize,
   errors = [] as string[],
   disabled,
   rows = 5,
@@ -43,7 +43,7 @@ const model = defineModel<string>({
 const id = useId()
 
 const r = computed(() => resize === true ? 'both' : (resize || 'initial'))
-const fS = computed(() => autoResize ? 'content' : 'auto')
+// const fS = computed(() => autoResize ? 'content' : 'auto')
 
 const textareaRef = useTemplateRef('textarea')
 
@@ -81,8 +81,8 @@ defineExpose({
         :cols="cols"
         :style="{
           resize: r,
-          // @ts-expect-error Early-adoption CSS attribute
-          fieldSizing: fS,
+          // TODO: Enable when baseline is fixed (Firefox is missing)
+          // fieldSizing: fS,
           // Add 1 to the width to account for the border
           ...(cols ? { width: `${cols + 1}ch` } : {}),
         }"
