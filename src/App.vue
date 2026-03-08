@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import ExampleInputs from './examples/ExampleInputs.vue'
 import ExampleModals from './examples/ExampleModals.vue'
 import ExamplePopouts from './examples/ExamplePopouts.vue'
-import ExampleTables from './examples/ExampleTables.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -12,7 +12,7 @@ setColorTheme('dark')
     <div class="container container-m pt-xxl">
       <ExampleModals />
       <ExamplePopouts />
-      <ExampleTables />
+      <ExampleInputs />
     </div>
   </main>
 </template>

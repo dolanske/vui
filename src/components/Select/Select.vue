@@ -1,5 +1,6 @@
 <!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
+import type { Sizes } from '../../shared/types'
 import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 import { searchString } from '../../shared/helpers'
@@ -30,6 +31,7 @@ type Props = {
   showClear?: boolean
   disabled?: boolean
   errors?: string[]
+  size?: Sizes
 }
 
 const {
@@ -45,7 +47,16 @@ const {
   showClear,
   disabled,
   errors = [] as string[],
+  size = 'm',
 } = defineProps<Props>()
+
+const sizeStyle = computed(() => {
+  switch (size) {
+    case 's': return { '--input-height': '28px', '--input-padding': '4px' }
+    case 'l': return { '--input-height': '44px', '--input-padding': '16px' }
+    default: return {}
+  }
+})
 
 const selected = defineModel<SelectOption[] | undefined>()
 const triggerRef = useTemplateRef('trigger')
@@ -127,7 +138,7 @@ const id = useId()
 </script>
 
 <template>
-  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }">
+  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }" :style="sizeStyle">
     <Dropdown ref="dropdown" :expand @close="triggerRef?.focus({ preventScroll: true })">
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">

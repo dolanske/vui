@@ -163,8 +163,8 @@ const selected2 = ref([])
     </h6>
     <Grid gap="xl" :columns="3">
       <Select expand :options="longOptions" label="Base, single, search, showClear" search show-clear />
-      <Select expand :options="options" label="Base readonly" readonly />
-      <Select expand :options="options" label="Base disabled" disabled placeholder="Custom placeholder bro" />
+      <Select expand :options="options" label="Base readonly & small" size="s" readonly />
+      <Select expand :options="options" label="Base disabled & large" size="l" disabled placeholder="Custom placeholder bro" />
       <Select :options="options" label="Required (single)" expand required />
       <Select :options="options" label="Base + errors" expand :errors="['Hello bro']" />
       <Select v-model="selected" :options="options" label="Base multi" expand :single="false" />
