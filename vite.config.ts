@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
         ? []
         : [dts({
             tsconfigPath: './tsconfig.app.json',
+            exclude: ['src/App.vue', 'src/main.ts', 'src/examples/**', 'src/style.scss'],
           })]),
     ],
     build: {

@@ -1,8 +1,10 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
-import { useMagicKeys, whenever } from '@vueuse/core'
+import { createReusableTemplate, useMagicKeys, whenever } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { formatUnitValue } from '../../shared/helpers'
+import Drawer from '../Drawer/Drawer.vue'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
 
@@ -24,6 +26,14 @@ export interface Props {
    * Set he max height of the dropdown element before it starts scrolling
    */
   maxHeight?: number | string
+  /**
+   * Disable mobile drawer behavior, always use the floating dropdown.
+   */
+  noMobileDrawer?: boolean
+  /**
+   * Title passed to the Drawer on mobile.
+   */
+  drawerTitle?: string
 }
 
 const {
@@ -31,6 +41,8 @@ const {
   maxHeight = 356,
   expand,
   minWidth = 156,
+  noMobileDrawer = false,
+  drawerTitle,
 } = defineProps<Props>()
 
 const emit = defineEmits<{
@@ -76,6 +88,8 @@ defineExpose({
 const mW = computed(() => formatUnitValue(minWidth))
 const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 
+const isMobile = useBreakpoint(Breakpoints.Mobile)
+
 const { escape } = useMagicKeys()
 whenever(escape, close)
 
@@ -98,9 +112,15 @@ function handleContentClick(event: MouseEvent) {
     close()
   }
 }
+
+const [DefineContent, ReuseContent] = createReusableTemplate()
 </script>
 
 <template>
+  <DefineContent>
+    <slot :open :close :toggle :is-open="showMenu" />
+  </DefineContent>
+
   <div
     ref="anchor"
     class="vui-dropdown-trigger-wrap"
@@ -112,7 +132,19 @@ function handleContentClick(event: MouseEvent) {
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>
 
+  <!-- Mobile: Drawer -->
+  <Drawer
+    v-if="isMobile && !noMobileDrawer"
+    :open="showMenu"
+    :title="drawerTitle"
+    @close="close"
+  >
+    <ReuseContent />
+  </Drawer>
+
+  <!-- Desktop: Popout -->
   <Popout
+    v-else
     :visible="showMenu"
     :anchor="anchorRef"
     class="vui-dropdown"
@@ -124,6 +156,6 @@ function handleContentClick(event: MouseEvent) {
     @click-outside="close"
     @click="handleContentClick"
   >
-    <slot :open :close :toggle :is-open="showMenu" />
+    <ReuseContent />
   </Popout>
 </template>

@@ -117,7 +117,9 @@ const stackedModal2Open = ref(false)
         </Tooltip>
         <Dropdown>
           <template #trigger="{ toggle }">
-            <Button @click="toggle">Dropdown inside modal</Button>
+            <Button @click="toggle">
+              Dropdown inside modal
+            </Button>
           </template>
           <DropdownItem>Option A</DropdownItem>
           <DropdownItem>Option B</DropdownItem>

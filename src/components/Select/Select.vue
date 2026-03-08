@@ -32,6 +32,7 @@ type Props = {
   disabled?: boolean
   errors?: string[]
   size?: Sizes
+  noMobileDrawer?: boolean
 }
 
 const {
@@ -48,6 +49,7 @@ const {
   disabled,
   errors = [] as string[],
   size = 'm',
+  noMobileDrawer = false,
 } = defineProps<Props>()
 
 const sizeStyle = computed(() => {
@@ -139,7 +141,13 @@ const id = useId()
 
 <template>
   <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }" :style="sizeStyle">
-    <Dropdown ref="dropdown" :expand @close="triggerRef?.focus({ preventScroll: true })">
+    <Dropdown
+      ref="dropdown"
+      :expand
+      :no-mobile-drawer="noMobileDrawer"
+      :drawer-title="label ?? placeholder ?? 'Select'"
+      @close="triggerRef?.focus({ preventScroll: true })"
+    >
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" :for="id">{{ label }}</label>
@@ -208,9 +216,6 @@ const id = useId()
           }"
         >
           {{ option.label }}
-          <!-- <template #icon>
-            <IconCheckBold v-if="selected?.find(v => v.value === option.value)" />
-          </template> -->
         </DropdownItem>
       </template>
     </Dropdown>
