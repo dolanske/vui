@@ -30,7 +30,7 @@ const options = [
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <Select no-mobile-drawer expand :options="options" label="Base, single, search, showClear" search show-clear />
+      <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
 
       <ExampleDrawers />
     </div>

@@ -30,10 +30,6 @@ export interface Props {
    * Disable mobile drawer behavior, always use the floating dropdown.
    */
   noMobileDrawer?: boolean
-  /**
-   * Title passed to the Drawer on mobile.
-   */
-  drawerTitle?: string
 }
 
 const {
@@ -42,7 +38,6 @@ const {
   expand,
   minWidth = 156,
   noMobileDrawer = false,
-  drawerTitle,
 } = defineProps<Props>()
 
 const emit = defineEmits<{
@@ -112,15 +107,9 @@ function handleContentClick(event: MouseEvent) {
     close()
   }
 }
-
-const [DefineContent, ReuseContent] = createReusableTemplate()
 </script>
 
 <template>
-  <DefineContent>
-    <slot :open :close :toggle :is-open="showMenu" />
-  </DefineContent>
-
   <div
     ref="anchor"
     class="vui-dropdown-trigger-wrap"
@@ -136,10 +125,9 @@ const [DefineContent, ReuseContent] = createReusableTemplate()
   <Drawer
     v-if="isMobile && !noMobileDrawer"
     :open="showMenu"
-    :title="drawerTitle"
     @close="close"
   >
-    <ReuseContent />
+    <slot :open :close :toggle :is-open="showMenu" />
   </Drawer>
 
   <!-- Desktop: Popout -->
@@ -156,6 +144,6 @@ const [DefineContent, ReuseContent] = createReusableTemplate()
     @click-outside="close"
     @click="handleContentClick"
   >
-    <ReuseContent />
+    <slot :open :close :toggle :is-open="showMenu" />
   </Popout>
 </template>
