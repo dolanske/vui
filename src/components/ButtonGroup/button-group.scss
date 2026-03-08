@@ -7,17 +7,21 @@
     }
   }
 
+  // Positional selectors handle buttons that are unwrapped, wrapped once
+  // (e.g. inside a Tooltip), or wrapped twice (e.g. CopyClipboard + Tooltip).
   &:not(.vertical) {
     > :not(:last-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         margin-right: 0;
       }
     }
 
     > :first-child:not(:only-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
@@ -25,7 +29,8 @@
 
     > :last-child:not(:only-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
@@ -33,7 +38,8 @@
 
     > :not(:first-child, :last-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         border-radius: 0;
       }
     }
@@ -46,14 +52,16 @@
 
     > :not(:last-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         margin-bottom: 0;
       }
     }
 
     > :first-child:not(:only-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
@@ -61,7 +69,8 @@
 
     > :last-child:not(:only-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
@@ -69,7 +78,8 @@
 
     > :not(:first-child, :last-child) {
       &.vui-button,
-      > .vui-button {
+      > .vui-button,
+      > * > .vui-button {
         border-radius: 0;
       }
     }

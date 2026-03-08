@@ -70,8 +70,9 @@ onMounted(() => {
 
 const anchorRef = useTemplateRef('anchor')
 const tooltipRef = useTemplateRef('tooltip')
+const anchorEl = computed(() => anchorRef.value?.firstElementChild as HTMLElement | null ?? null)
 
-const { floatingStyles } = useFloating(anchorRef, tooltipRef, {
+const { floatingStyles } = useFloating(anchorEl, tooltipRef, {
   whileElementsMounted: autoUpdate,
   transform: false,
   strategy: 'fixed',

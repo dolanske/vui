@@ -2,6 +2,9 @@
 import { IconArrowLeft, IconArrowRight, IconCaretDown, IconInfo, IconTextAUnderline, IconTextBBold, IconTextBold, IconTextItalic } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import ButtonGroup from '../components/ButtonGroup/ButtonGroup.vue'
+import CopyClipboard from '../components/CopyClipboard/CopyClipboard.vue'
+import Dropdown from '../components/Dropdown/Dropdown.vue'
+import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Tooltip from '../components/Tooltip/Tooltip.vue'
 
@@ -174,23 +177,25 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
                     <IconTextBBold />
                   </Button>
                   <template #tooltip>
-                    Test
+                    Bold
                   </template>
                 </Tooltip>
-                <Tooltip>
-                  <Button square active>
-                    <IconTextItalic />
-                  </Button>
-                  <template #tooltip>
-                    Test
-                  </template>
-                </Tooltip>
+                <CopyClipboard text="Hello from ButtonGroup!" confirm="Copied!">
+                  <Tooltip>
+                    <Button square>
+                      <IconTextItalic />
+                    </Button>
+                    <template #tooltip>
+                      Click to copy
+                    </template>
+                  </Tooltip>
+                </CopyClipboard>
                 <Tooltip>
                   <Button square active>
                     <IconTextAUnderline />
                   </Button>
                   <template #tooltip>
-                    Test
+                    Underline
                   </template>
                 </Tooltip>
               </ButtonGroup>
@@ -205,15 +210,36 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
                 <Button square>
                   <IconTextItalic />
                 </Button>
-                <Button square>
-                  <IconTextAUnderline />
-                </Button>
+                <Dropdown placement="bottom-end">
+                  <template #trigger="{ toggle }">
+                    <Button square @click="toggle">
+                      <IconCaretDown />
+                    </Button>
+                  </template>
+                  <DropdownItem>Deploy to staging</DropdownItem>
+                  <DropdownItem>Deploy to production</DropdownItem>
+                  <DropdownItem>Rollback</DropdownItem>
+                </Dropdown>
               </ButtonGroup>
 
               <ButtonGroup>
                 <Button square active size="s">
                   <IconTextBBold />
                 </Button>
+              </ButtonGroup>
+
+              <ButtonGroup>
+                <Button>Deploy</Button>
+                <Dropdown placement="bottom-end">
+                  <template #trigger="{ toggle }">
+                    <Button square @click="toggle">
+                      <IconCaretDown />
+                    </Button>
+                  </template>
+                  <DropdownItem>Deploy to staging</DropdownItem>
+                  <DropdownItem>Deploy to production</DropdownItem>
+                  <DropdownItem>Rollback</DropdownItem>
+                </Dropdown>
               </ButtonGroup>
             </Flex>
           </td>
