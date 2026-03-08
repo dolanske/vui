@@ -121,7 +121,6 @@ function handlePaste(e: any) {
       :inputmode="mode === 'num' ? 'numeric' : 'text'"
       autocomplete="one-time-code"
       class="vui-otp-input"
-      contenteditable="true"
       @keydown="updateValue"
       @blur="cursorIndex = -1"
       @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"

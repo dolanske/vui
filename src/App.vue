@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import ExampleCommands from './examples/ExampleCommands.vue'
 import ExampleModals from './examples/ExampleModals.vue'
+import ExamplePopouts from './examples/ExamplePopouts.vue'
+import ExampleTables from './examples/ExampleTables.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -10,7 +11,8 @@ setColorTheme('dark')
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
       <ExampleModals />
-      <ExampleCommands />
+      <ExamplePopouts />
+      <ExampleTables />
     </div>
   </main>
 </template>

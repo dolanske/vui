@@ -4,6 +4,7 @@ import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useAttrs, useTemplateRef, watch } from 'vue'
 import { getPlacementAnimationName } from '../../shared/helpers'
+import { useLayer } from '../../shared/layerManager'
 import './popout.scss'
 
 export interface Props {
@@ -70,9 +71,9 @@ const { floatingStyles } = useFloating(anchorRef, popoutRef, {
   transform: false,
   placement: props.placement,
   middleware: [
-    shift({ padding: 8 }),
-    flip(),
     offset(props.offset),
+    flip(),
+    shift({ padding: 8 }),
   ],
 })
 
@@ -90,9 +91,18 @@ const transition = computed(() => {
   return getPlacementAnimationName(props.placement)
 })
 
+const { layerIndex, openLayer, closeLayer } = useLayer()
+
 const delayedVisible = ref(props.visible)
 let enterTimeoutId: ReturnType<typeof setTimeout>
 let leaveTimeoutId: ReturnType<typeof setTimeout>
+
+watch(delayedVisible, (isVisible) => {
+  if (isVisible)
+    openLayer()
+  else
+    closeLayer()
+}, { immediate: true })
 
 watch(() => props.visible, (isVisible) => {
   if (isVisible) {
@@ -127,7 +137,7 @@ watch(() => props.visible, (isVisible) => {
       <div
         v-if="delayedVisible"
         ref="popout"
-        :style="floatingStyles"
+        :style="[floatingStyles, { zIndex: layerIndex }]"
         class="vui-popout"
         v-bind="attrs"
       >

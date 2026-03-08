@@ -312,7 +312,14 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
               <td>NY</td>
               <td>10001</td>
               <td>USA</td>
-              <td>Active</td>
+              <Tooltip>
+                <td>
+                  Active
+                </td>
+                <template #tooltip>
+                  <p>Bro is active I guess then xd</p>
+                </template>
+              </Tooltip>
             </tr>
             <tr>
               <td>002</td>

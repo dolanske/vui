@@ -1,7 +1,7 @@
 .vui-backdrop {
   --backdrop-offset: 64px;
 
-  z-index: var(--z-overlay);
+  z-index: var(--layer-z, var(--z-overlay));
   position: fixed;
   display: block;
   width: 100dvw;
@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   padding: var(--backdrop-offset);
-  overflow-y: auto;
+  overflow: hidden auto;
 
   &:after {
     content: '';
