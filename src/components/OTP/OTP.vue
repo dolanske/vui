@@ -95,21 +95,42 @@ function updateValue(e: KeyboardEvent) {
   }
 }
 
-function handlePaste(e: any) {
+function handlePaste(e: ClipboardEvent) {
+  e.preventDefault()
   const clipboard = e.clipboardData?.getData('text/plain')
   if (clipboard) {
-    const clipboardTrim = clipboard.trim().slice(0, maxLen.value - cursorIndex.value)
+    const clipboardTrim = clipboard.trim().slice(0, maxLen.value)
 
     if (!pattern.value.test(clipboardTrim)) {
       return
     }
 
-    const currentTrimStart = otpValue.value.slice(0, cursorIndex.value)
-    const currentTrimEnd = otpValue.value.slice(cursorIndex.value + clipboardTrim.length)
-    const newValue = (currentTrimStart + clipboardTrim + currentTrimEnd).trim()
-    setOtpValue(newValue)
-    cursorIndex.value = Math.min(newValue.length, maxLen.value - 1)
+    setOtpValue(clipboardTrim)
+    cursorIndex.value = Math.min(clipboardTrim.length, maxLen.value - 1)
   }
+}
+
+function handleInput(e: Event) {
+  const inputEvent = e as InputEvent
+  // Regular typing and deletions are handled by @keydown — skip them here
+  if (inputEvent.inputType === 'insertText' || inputEvent.inputType?.startsWith('delete')) {
+    return
+  }
+  // Handles SMS autofill / password manager autofill (fires 'input', not 'paste')
+  const value = (e.target as HTMLInputElement).value
+  if (!value) {
+    return
+  }
+  const trimmed = value.trim().slice(0, maxLen.value)
+  if (!pattern.value.test(trimmed)) {
+    // Reset the hidden input to prevent stale value
+    if (input.value) {
+      input.value.value = otpValue.value
+    }
+    return
+  }
+  setOtpValue(trimmed)
+  cursorIndex.value = Math.min(trimmed.length, maxLen.value - 1)
 }
 </script>
 
@@ -122,6 +143,7 @@ function handlePaste(e: any) {
       autocomplete="one-time-code"
       class="vui-otp-input"
       @keydown="updateValue"
+      @input="handleInput"
       @blur="cursorIndex = -1"
       @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"
       @paste="handlePaste"
