@@ -76,10 +76,15 @@
   .vui-otp-input {
     position: absolute;
     inset: 0;
-    outline-width: 0px;
-    opacity: 0;
+    border: none;
+    outline: none;
+    color: transparent;
     background: transparent;
     z-index: var(--z-mask);
     caret-color: transparent;
+
+    &::selection {
+      background: transparent;
+    }
   }
 }

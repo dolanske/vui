@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Select from './components/Select/Select.vue'
-import ExampleButtons from './examples/ExampleButtons.vue'
-import ExampleDrawers from './examples/ExampleDrawers.vue'
-import ExampleDropdowns from './examples/ExampleDropdowns.vue'
+import ExampleInputs from './examples/ExampleInputs.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('light')
@@ -33,10 +31,7 @@ const options = [
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
-
-      <ExampleButtons />
-      <ExampleDrawers />
-      <ExampleDropdowns />
+      <ExampleInputs />
     </div>
   </main>
 </template>
