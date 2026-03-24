@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
+import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { formatUnitValue } from '../../shared/helpers'
@@ -20,6 +21,8 @@ const {
   },
   open = false,
   transitionName = 'sheet',
+  canDismiss = true,
+  hideCloseButton = false,
 } = defineProps<Props>()
 
 const emit = defineEmits<{ close: [] }>()
@@ -45,12 +48,30 @@ interface Props {
    */
   card?: CardProps
   /**
+   * Wether sheet can be closed by pressing Escape or by clicking the backdrop. If you want to disable the "X" close button, combine this setting with `hideCloseButton`.
+   */
+  canDismiss?: boolean
+  /**
+   * Hides the X button in the top right of the sheet. The sheet can still be closed by other means.
+   */
+  hideCloseButton?: boolean
+  /**
    * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
    *
    * Setting the value to `none` will not apply any transition
    */
   transitionName?: string | 'none'
 }
+
+function tryClose() {
+  if (canDismiss) {
+    emit('close')
+  }
+}
+
+const { escape } = useMagicKeys()
+
+whenever(escape, tryClose)
 
 const TRANSITION_OFFSET = 16
 
@@ -84,7 +105,7 @@ const transition = computed(() => {
 <template>
   <Teleport to="body">
     <Transition appear :name="transition">
-      <Backdrop v-if="open" @close="emit('close')">
+      <Backdrop v-if="open" @close="tryClose">
         <Card
           class="vui-sheet"
           :class="[`vui-sheet-position-${position}`]" :style
@@ -93,7 +114,7 @@ const transition = computed(() => {
           <template v-if="$slots.header" #header>
             <slot name="header" :close="() => emit('close')" />
           </template>
-          <template #header-end>
+          <template v-if="!hideCloseButton" #header-end>
             <Button plain square @click="emit('close')">
               <IconX />
             </Button>

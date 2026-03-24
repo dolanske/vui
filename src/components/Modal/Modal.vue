@@ -33,7 +33,7 @@ export interface ModalProps {
    */
   centered?: boolean
   /**
-   * Wether modal can be closed by clicking the X button
+   * Wether modal can be closed by pressing Escape or by clicking the backdrop. If you want to disable the "X" close button, combine this setting with `hideCloseButton`.
    */
   canDismiss?: boolean
   /**
@@ -117,7 +117,7 @@ const realSize = computed(() => {
               <slot name="header" :close="() => emit('close')" />
             </template>
             <template v-if="!hideCloseButton" #header-end>
-              <Button v-if="canDismiss" class="vui-modal-close" plain square @click="emit('close')">
+              <Button class="vui-modal-close" plain square @click="emit('close')">
                 <IconX />
               </Button>
             </template>
