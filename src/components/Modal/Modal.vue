@@ -107,19 +107,17 @@ const realSize = computed(() => {
   <Teleport to="body">
     <Transition appear :name="transition">
       <Backdrop v-if="open" :class="{ 'p-0': realSize === 'screen' }" @close="tryClose">
-        <div class="vui-modal" :class="[`vui-modal-size-${realSize}`, { scrollable: scrollable || realSize === 'screen', centered }]" v-bind="attrs" @click.self="tryClose">
+        <div
+          class="vui-modal"
+          :class="[`vui-modal-size-${realSize}`, { scrollable: scrollable || realSize === 'screen', centered }]"
+          v-bind="attrs"
+        >
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
               <slot name="header" :close="() => emit('close')" />
             </template>
             <template v-if="!hideCloseButton" #header-end>
-              <Button
-                v-if="canDismiss"
-                class="vui-modal-close"
-                plain
-                square
-                @click="emit('close')"
-              >
+              <Button v-if="canDismiss" class="vui-modal-close" plain square @click="emit('close')">
                 <IconX />
               </Button>
             </template>

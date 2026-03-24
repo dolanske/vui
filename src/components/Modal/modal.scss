@@ -3,6 +3,7 @@
   margin-inline: auto;
   height: 100%;
   position: relative;
+  pointer-events: none;
 
   &.centered {
     display: flex;
@@ -52,5 +53,6 @@
     width: 100%;
     margin-bottom: var(--backdrop-offset);
     box-shadow: var(--box-shadow-strong);
+    pointer-events: auto;
   }
 }

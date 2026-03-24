@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Select from './components/Select/Select.vue'
-import ExampleInputs from './examples/ExampleInputs.vue'
+import ExampleModals from './examples/ExampleModals.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('light')
@@ -31,7 +31,7 @@ const options = [
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
-      <ExampleInputs />
+      <ExampleModals />
     </div>
   </main>
 </template>
