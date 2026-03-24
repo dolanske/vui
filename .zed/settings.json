@@ -1,0 +1,157 @@
+{
+  "tab_size": 2,
+  "format_on_save": "on",
+  "prettier": {
+    "allowed": false
+  },
+  "language_servers": ["!prettier", "..."],
+  "languages": {
+    "JavaScript": {
+      "language_servers": ["eslint"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "TypeScript": {
+      "language_servers": ["eslint", "typescript-language-server"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "TSX": {
+      "language_servers": ["eslint", "typescript-language-server"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "Vue.js": {
+      "language_servers": ["emmet-language-server", "typescript-language-server", "vue-language-server", "..."],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "JSONC": {
+      "language_servers": ["eslint", "json-language-server"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "JSON": {
+      "language_servers": ["eslint", "json-language-server"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "Markdown": {
+      "language_servers": ["eslint", "marksman"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "HTML": {
+      "language_servers": ["emmet-language-server", "eslint", "vscode-html-language-server"],
+      "formatter": [
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "CSS": {
+      "language_servers": ["emmet-language-server", "eslint", "vscode-css-language-server"],
+      "use_on_type_format": true,
+      "formatter": [
+        { "language_server": { "name": "vscode-css-language-server" } },
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    },
+    "SCSS": {
+      "language_servers": ["emmet-language-server", "eslint", "vscode-css-language-server", "some-sass-lsp", "!scss-lsp"],
+      "use_on_type_format": true,
+      "formatter": [
+        { "language_server": { "name": "vscode-css-language-server" } },
+        { "code_action": "source.fixAll.eslint" }
+      ]
+    }
+  },
+  "lsp": {
+    "emmet-language-server": {
+      "binary": {
+        "path": "node_modules/.bin/emmet-language-server",
+        "arguments": ["--stdio"]
+      }
+    },
+    "some-sass-lsp": {
+      "settings": {
+        "somesass": {
+          "diagnostics": {
+            "enabled": false
+          }
+        }
+      }
+    },
+    "vscode-css-language-server": {
+      "binary": {
+        "path": "node_modules/.bin/vscode-css-language-server",
+        "arguments": ["--stdio"]
+      },
+      "settings": {
+        "css": {
+          "lint": {
+            "compatibleVendorPrefixes": "warning",
+            "duplicateProperties": "warning",
+            "emptyRules": "warning",
+            "importStatement": "warning",
+            "unknownProperties": "warning",
+            "unknownVendorSpecificProperties": "warning",
+            "propertyIgnoredDueToDisplay": "warning",
+            "ieHack": "warning",
+            "zeroUnits": "warning",
+            "fontFaceProperties": "warning",
+            "hexColorLength": "warning",
+            "unknownAtRules": "warning"
+          },
+          "validate": true
+        },
+        "scss": {
+          "lint": {
+            "compatibleVendorPrefixes": "warning",
+            "duplicateProperties": "warning",
+            "emptyRules": "warning",
+            "importStatement": "warning",
+            "unknownProperties": "warning",
+            "unknownVendorSpecificProperties": "warning",
+            "propertyIgnoredDueToDisplay": "warning",
+            "ieHack": "warning",
+            "zeroUnits": "warning",
+            "fontFaceProperties": "warning",
+            "hexColorLength": "warning",
+            "unknownAtRules": "warning"
+          },
+          "validate": true
+        }
+      }
+    },
+    "eslint": {
+      "settings": {
+        "workingDirectory": {
+          "mode": "auto"
+        },
+        "validate": "on",
+        "experimental": {
+          "useFlatConfig": false
+        },
+        "probe": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "html",
+          "markdown",
+          "json",
+          "jsonc",
+          "css",
+          "scss"
+        ]
+      }
+    }
+  }
+}
