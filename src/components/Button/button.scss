@@ -115,20 +115,18 @@
   }
 
   .vui-button-slot-start {
-    margin-right: 6px;
     justify-self: flex-start;
 
-    &:empty {
-      display: contents;
+    &:not(:empty) {
+      margin-right: 8px;
     }
   }
 
   .vui-button-slot-end {
-    margin-left: 6px;
     justify-self: flex-end;
 
-    &:empty {
-      display: contents;
+    &:not(:empty) {
+      margin-left: 8px;
     }
   }
 

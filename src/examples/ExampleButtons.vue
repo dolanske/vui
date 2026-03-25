@@ -29,6 +29,46 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           </td>
         </tr>
         <tr>
+          <th>Expanded</th>
+          <td>
+            <Flex gap="s" column>
+              <Button expand>
+                Center
+              </Button>
+              <Button expand>
+                <template #start>
+                  Start
+                </template>
+              </Button>
+              <Button expand>
+                <template #end>
+                  End
+                </template>
+              </Button>
+              <Button expand>
+                <template #start>
+                  Start
+                </template>
+                <template #end>
+                  End
+                </template>
+              </Button>
+              <Button expand>
+                <template #start>
+                  Start
+                </template>
+                Center
+              </Button>
+              <Button expand>
+                Center
+                <template #end>
+                  End
+                </template>
+              </Button>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
           <th>Only start slot</th>
           <td>
             <Flex gap="s">
