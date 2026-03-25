@@ -45,7 +45,7 @@ export default defineComponent({
 
     const padding = computed(() => {
       switch (props.size) {
-        case Size.s: return '4px'
+        case Size.s: return '6px'
         case Size.l: return '16px'
         case Size.m:
         default: return '8px'
