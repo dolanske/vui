@@ -120,12 +120,12 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 
 ### Props
 
-| Name        | Default | Type                                                                                                                                                                                    |
-| ----------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name          | Default | Type                                                                                                                                                                                    |
+| ------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `placement`   | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
-| `enter-delay` | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                       |
-| `leave-delay` | `0`     | `number` <br> The delay in milliseconds before hiding the tooltip after the cursor leaves                                                                                                |
-| `disabled`    | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                   |
+| `enter-delay` | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                      |
+| `leave-delay` | `0`     | `number` <br> The delay in milliseconds before hiding the tooltip after the cursor leaves                                                                                               |
+| `disabled`    | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                  |
 
 ### Slots
 

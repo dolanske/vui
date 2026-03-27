@@ -2,6 +2,8 @@
 
 A horizontally scrollable container for displaying a row of items. It supports drag-to-scroll, mouse wheel scrolling, scroll shadow indicators, and an integrated Sheet for showing expanded content. Items placed within the carousel should have a `min-width` set to prevent flex from fitting everything without overflowing.
 
+> When using the Carousel, you should set `:draggable="false"` on child elements to avoid conflicts with the native drag behavior during drag-to-scroll.
+
 ::carousel-example
 
 ```vue
@@ -48,16 +50,12 @@ import { Button, Card, Carousel, Flex } from '@dolanske/vui'
 
 ::
 
-### Important Note
-
-When using the Carousel, you should set `:draggable="false"` on child elements to avoid conflicts with the native drag behavior during drag-to-scroll.
-
 ### Props
 
-| Name         | Default | Type                                                                                                 |
-| ------------ | ------- | ---------------------------------------------------------------------------------------------------- |
+| Name         | Default | Type                                                                                                |
+| ------------ | ------- | --------------------------------------------------------------------------------------------------- |
 | `gap`        | `'s'`   | `s` `m` `l` `number` <br> Controls the spacing between carousel items. Uses Flex gap under the hood |
-| `sheetWidth` | —       | `number` <br> Sets the width of the integrated Sheet panel                                           |
+| `sheetWidth` | —       | `number` <br> Sets the width of the integrated Sheet panel                                          |
 
 ### Events
 
@@ -65,14 +63,14 @@ The Carousel does not emit events directly. The integrated Sheet is controlled i
 
 ### Slots
 
-| Name            | Props                     | Description                                                                                                          |
-| --------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `default`       | —                         | The carousel items. Each child should have a `min-width` set                                                         |
-| `header`        | `{ toggle: () => void }`  | Content displayed above the carousel track. Receives `toggle` to open/close the sheet                                |
-| `footer`        | `{ toggle: () => void }`  | Content displayed below the carousel track. Receives `toggle` to open/close the sheet                                |
-| `sheet-header`  | `{ close: () => void }`   | Header content for the integrated Sheet                                                                              |
-| `sheet-content` | —                         | Content for the integrated Sheet. If not provided, the Sheet will display the same content as the default slot        |
-| `sheet-footer`  | `{ close: () => void }`   | Footer content for the integrated Sheet                                                                              |
+| Name            | Props                    | Description                                                                                                    |
+| --------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `default`       | —                        | The carousel items. Each child should have a `min-width` set                                                   |
+| `header`        | `{ toggle: () => void }` | Content displayed above the carousel track. Receives `toggle` to open/close the sheet                          |
+| `footer`        | `{ toggle: () => void }` | Content displayed below the carousel track. Receives `toggle` to open/close the sheet                          |
+| `sheet-header`  | `{ close: () => void }`  | Header content for the integrated Sheet                                                                        |
+| `sheet-content` | —                        | Content for the integrated Sheet. If not provided, the Sheet will display the same content as the default slot |
+| `sheet-footer`  | `{ close: () => void }`  | Footer content for the integrated Sheet                                                                        |
 
 ### Features
 

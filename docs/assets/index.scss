@@ -1,7 +1,5 @@
 @use 'sass:meta';
 
-@import url(@dolanske/vui/style);
-
 @include meta.load-css('overrides.scss');
 
 html,

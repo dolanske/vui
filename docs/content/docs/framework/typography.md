@@ -140,7 +140,8 @@ Establish your design system early:
   --color-secondary: #7c3aed;
   --spacing-unit: 4px;
   --border-radius: 6px;
-}
+}
+
 ```
 
 ### Best Practices

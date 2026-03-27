@@ -40,18 +40,15 @@ import { Button, Card, Carousel, Flex } from '@dolanske/vui'
                 background: `hsl(${i * 40 % 360}, 55%, 48%)`,
               }"
             />
-            <strong style="display: block;">{{ album.title }}</strong>
+            <strong style="display: block;margin-bottom:0.5rem;">{{ album.title }}</strong>
             <small style="opacity: 0.6;">{{ album.artist }}</small>
           </Card>
 
-          <template #sheet-header="{ close }">
+          <template #sheet-header>
             <Flex x-between y-center>
               <h4 style="margin: 0;">
                 All Albums
               </h4>
-              <Button plain size="s" @click="close">
-                <Icon name="ph:x" />
-              </Button>
             </Flex>
           </template>
 

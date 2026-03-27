@@ -8,6 +8,7 @@ A versatile input component that supports various input types, validation, and c
 <script setup>
 import { Input } from '@dolanske/vui'
 import { ref } from 'vue'
+
 const email = ref()
 </script>
 

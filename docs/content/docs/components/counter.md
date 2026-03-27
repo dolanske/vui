@@ -8,6 +8,7 @@ A specialized input component for numeric values that includes increment and dec
 <script setup>
 import { Counter } from '@dolanske/vui'
 import { ref } from 'vue'
+
 const count = ref(0)
 </script>
 

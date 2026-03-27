@@ -8,6 +8,7 @@ A specialized input component for password fields that includes a toggle button 
 <script setup>
 import { Password } from '@dolanske/vui'
 import { ref } from 'vue'
+
 const password = ref('')
 </script>
 

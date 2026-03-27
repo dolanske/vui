@@ -1,26 +1,24 @@
-// import fs from 'node:fs'
-// import path from 'node:path'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   app: {
     baseURL: '/vui/',
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
   css: [
+    '@dolanske/vui/style',
     '~/assets/index.scss',
   ],
-  // vite: {
-  //   css: {
-  //     preprocessorOptions: {
-  //       scss: {
-  //         api: 'modern-compiler',
-  //       },
-  //     },
-  //   },
-  // },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
+  },
   content: {
     build: {
       markdown: {
@@ -34,13 +32,9 @@ export default defineNuxtConfig({
       },
     },
   },
-  // nitro: {
-  //   prerender: {
-  //     routes: prerenderRoutes(),
-  //     failOnError: false,
-  //     crawlLinks: true,
-  //   },
-  // },
+  routeRules: {
+    '/**': { prerender: true },
+  },
   fonts: {
     provider: 'google',
     families: [
@@ -56,12 +50,3 @@ export default defineNuxtConfig({
     './modules/vui-global-register',
   ],
 })
-
-// function prerenderRoutes() {
-//   const contentDir = path.resolve(__dirname, 'content') // adjust if needed
-//   const files = fs.readdirSync(contentDir)
-
-//   return files
-//     .filter(f => f.endsWith('.md'))
-//     .map(f => `/${f.replace(/\.md$/, '')}`)
-// }
