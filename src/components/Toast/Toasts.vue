@@ -17,22 +17,24 @@ const {
   <Teleport to="body">
     <div class="vui-toast-wrapper" :class="placement">
       <TransitionGroup name="toast" tag="ul" class="vui-toast-list">
-        <li v-for="[toastId, toast] in toasts" :key="toastId" class="vui-toast-item">
-          <div class="vui-toast-item-content">
-            <strong>{{ toast.title }}</strong>
-            <p v-if="toast.description">
-              {{ toast.description }}
-            </p>
-            <Component
-              :is="toast.body"
-              v-if="toast.body"
-              v-bind="{ data: toast.bodyProps, toastId }"
-            />
-          </div>
-          <Button v-if="toast.action" @click="toast.action.handler(toast.id)">
-            {{ toast.action.label }}
-          </Button>
-        </li>
+        <template v-for="[toastId, toast] in toasts" :key="toastId">
+          <Component
+            :is="toast.body"
+            v-if="toast.body"
+            v-bind="{ data: toast.bodyProps, toastId }"
+          />
+          <li v-else class="vui-toast-item">
+            <div class="vui-toast-item-content">
+              <strong>{{ toast.title }}</strong>
+              <p v-if="toast.description">
+                {{ toast.description }}
+              </p>
+            </div>
+            <Button v-if="toast.action" size="s" @click="toast.action.handler(toast.id)">
+              {{ toast.action.label }}
+            </Button>
+          </li>
+        </template>
       </TransitionGroup>
     </div>
   </Teleport>

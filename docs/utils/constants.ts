@@ -99,6 +99,7 @@ export const componentList = [
   { name: 'Button', path: '/docs/components/button', tags: ['group'], description: 'Interactive element for triggering actions or events' },
   { name: 'Calendar', path: '/docs/components/calendar', tags: ['date', 'picker'], description: 'Date selection and display component with month view' },
   { name: 'Card', path: '/docs/components/card', description: 'Container component for grouping related content' },
+  { name: 'Carousel', path: '/docs/components/carousel', description: 'Scrollable container for displaying multiple items horizontally' },
   { name: 'Checkbox', path: '/docs/components/checkbox', description: 'Binary input control for selecting multiple options' },
   { name: 'Copy Clipboard', path: '/docs/components/copy-clipboard', description: 'Button that copies text to clipboard with feedback' },
   { name: 'Divider', path: '/docs/components/divider', description: 'Visual separator between content sections' },

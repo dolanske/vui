@@ -199,6 +199,22 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
           </td>
         </tr>
         <tr>
+          <th>Icon + text + small</th>
+          <td>
+            <Flex gap="s">
+              <Button v-for="btn in variants" :key="btn" :variant="btn" size="s">
+                <template #start>
+                  <IconArrowLeft />
+                </template>
+                Prev
+                <template #end>
+                  <IconArrowRight />
+                </template>
+              </Button>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
           <td>Button group</td>
           <td>
             <Flex gap="s" wrap>

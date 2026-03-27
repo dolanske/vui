@@ -130,6 +130,16 @@
     }
   }
 
+  &.vui-button-size-s {
+    .vui-button-slot-start:not(:empty) {
+      margin-right: 4px;
+    }
+
+    .vui-button-slot-end:not(:empty) {
+      margin-left: 4px;
+    }
+  }
+
   .vui-spinner {
     transition: var(--transition-fast);
     opacity: 0;

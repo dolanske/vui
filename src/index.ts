@@ -11,6 +11,7 @@ import Button from './components/Button/Button.vue'
 import ButtonGroup from './components/ButtonGroup/ButtonGroup.vue'
 import Calendar from './components/Calendar/Calendar.vue'
 import Card from './components/Card/Card.vue'
+import Carousel from './components/Carousel/Carousel.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
 import Commands from './components/Commands/Commands.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
@@ -72,6 +73,7 @@ export {
   ButtonGroup,
   Calendar,
   Card,
+  Carousel,
   Checkbox,
   Color,
   type Command,

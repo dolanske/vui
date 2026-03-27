@@ -1,0 +1,62 @@
+.carousel {
+  --gutter-size: 8px;
+
+  .carousel-track {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: calc(100% - var(--gutter-size));
+      top: 0;
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    &.shadow-left::before {
+      opacity: 1;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.16), transparent);
+      left: 0;
+    }
+
+    &.shadow-right::after {
+      opacity: 1;
+      right: 0;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.16), transparent);
+    }
+  }
+
+  .carousel-content {
+    max-width: 100%;
+    overflow-x: auto;
+    cursor: grab;
+    user-select: none;
+    scrollbar-width: thin;
+    overscroll-behavior-x: contain;
+
+    // Scrollbar gutter so it doesn't overflow content
+    padding-bottom: var(--gutter-size);
+
+    &.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+    }
+  }
+}
+
+:root.light {
+  .carousel .carousel-track {
+    &.shadow-left::before {
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.075), transparent);
+    }
+
+    &.shadow-right::after {
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.075), transparent);
+    }
+  }
+}
