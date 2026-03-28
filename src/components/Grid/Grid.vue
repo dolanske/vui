@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Space } from '../../shared/types'
+import type { Spaces } from '../../shared/types'
 import { computed } from 'vue'
 import { createArray, formatUnitValue } from '../../shared/helpers'
 
@@ -9,7 +9,7 @@ import { createArray, formatUnitValue } from '../../shared/helpers'
 
 interface Props {
   inline?: boolean
-  gap?: Space | number
+  gap?: Spaces | number
   rows?: number | string
   columns?: number | string
   // areas?: string[]

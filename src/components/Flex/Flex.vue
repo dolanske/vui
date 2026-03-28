@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Space } from '../../shared/types'
+import type { Spaces } from '../../shared/types'
 import { computed } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 
@@ -13,7 +13,7 @@ export interface FlexProps {
   rowReverse?: boolean
   columnReverse?: boolean
 
-  gap?: Space | number
+  gap?: Spaces | number
 
   // NOTE: Add more if needed
   xStart?: boolean

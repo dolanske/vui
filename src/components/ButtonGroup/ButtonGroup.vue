@@ -1,11 +1,11 @@
 <script setup lang='ts'>
-import type { Space } from '../../shared/types'
+import type { Spaces } from '../../shared/types'
 import Flex from '../Flex/Flex.vue'
 import './button-group.scss'
 
 interface Props {
   vertical?: boolean
-  gap?: Space | number
+  gap?: Spaces | number
 }
 
 const {

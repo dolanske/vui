@@ -1,5 +1,5 @@
 import type { Command } from './components/Commands/Commands.vue'
-import type { Sizes, Space, SpaceSize } from './shared/types'
+import type { Sizes, Spaces, SpaceSize } from './shared/types'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
@@ -113,7 +113,7 @@ export {
   Sidebar,
   type Sizes,
   Skeleton,
-  type Space,
+  type Spaces as Space,
   type SpaceSize,
   Spinner,
   Switch,

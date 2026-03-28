@@ -52,10 +52,12 @@ import { Button, Card, Carousel, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name         | Default | Type                                                                                                |
-| ------------ | ------- | --------------------------------------------------------------------------------------------------- |
-| `gap`        | `'s'`   | `s` `m` `l` `number` <br> Controls the spacing between carousel items. Uses Flex gap under the hood |
-| `sheetWidth` | —       | `number` <br> Sets the width of the integrated Sheet panel                                          |
+| Name            | Default | Type                                                                                                                             |
+| --------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `gap`           | `'s'`   | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Controls the spacing between carousel items. Uses Flex gap under the hood |
+| `sheetWidth`    | —       | `number` <br> Sets the width of the integrated Sheet panel                                                                       |
+| `hideScrollbar` | —       | `boolean` <br> Hides the horizontal scrollbar and removes scrollbar gutter padding                                               |
+| `hideShadows`   | —       | `boolean` <br> Hides the left & right scroll shadow indicators                                                                   |
 
 ### Events
 

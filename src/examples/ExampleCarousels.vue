@@ -64,7 +64,7 @@ const activeGap = ref<typeof gaps[number]>('s')
 
         <!-- Gap sizes -->
         <tr>
-          <th>Gap sizes</th>
+          <th>Gap sizes and hidden scrollbar</th>
           <td>
             <Flex gap="s" class="mb-s">
               <Button
@@ -77,7 +77,7 @@ const activeGap = ref<typeof gaps[number]>('s')
                 {{ g }}
               </Button>
             </Flex>
-            <Carousel :gap="activeGap" style="max-width: 480px">
+            <Carousel :gap="activeGap" style="max-width: 480px" hide-scrollbar>
               <div
                 v-for="item in items"
                 :key="item.id"
@@ -103,9 +103,9 @@ const activeGap = ref<typeof gaps[number]>('s')
 
         <!-- With Card items + header/footer slots -->
         <tr>
-          <th>Header &amp; footer slots <br><small class="text-color-lighter">with "See all" sheet</small></th>
+          <th>Header &amp; footer slots <br><small class="text-color-lighter">with "See all" sheet</small> and no shadows</th>
           <td style="max-width: 520px">
-            <Carousel :sheet-width="400">
+            <Carousel :sheet-width="400" hide-shadows>
               <template #header="{ toggle }">
                 <Flex x-between y-center class="mb-s">
                   <strong>Albums</strong>

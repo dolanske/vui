@@ -1,6 +1,27 @@
 .carousel {
   --gutter-size: 8px;
 
+  &.hide-scrollbar {
+    --gutter-size: 0px;
+
+    .carousel-content {
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  &.hide-shadows {
+    .carousel-track {
+      &::before,
+      &::after {
+        display: none !important;
+      }
+    }
+  }
+
   .carousel-track {
     position: relative;
 
@@ -15,7 +36,7 @@
       z-index: 5;
       pointer-events: none;
       opacity: 0;
-      transition: opacity var(--transition);
+      transition: var(--transition);
     }
 
     &.shadow-left::before {
@@ -52,11 +73,11 @@
 :root.light {
   .carousel .carousel-track {
     &.shadow-left::before {
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.075), transparent);
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.12), transparent);
     }
 
     &.shadow-right::after {
-      background: linear-gradient(to left, rgba(0, 0, 0, 0.075), transparent);
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.12), transparent);
     }
   }
 }

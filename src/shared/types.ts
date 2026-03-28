@@ -17,7 +17,7 @@ export type PopoutMaybeElement<T> = T | ComponentPublicInstance | null | undefin
 
 export type Placement = 'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'
 
-export type Space = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'
+export type Spaces = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'
 
 export enum SpaceSize {
   xxs = 'xxs',

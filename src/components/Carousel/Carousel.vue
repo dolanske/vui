@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Spaces } from '../../shared/types'
 import { useEventListener, useScroll } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
@@ -9,6 +9,8 @@ import './carousel.scss'
 const {
   gap = 's' as const,
   sheetWidth,
+  hideScrollbar,
+  hideShadows,
 } = defineProps<Props>()
 
 /**
@@ -21,11 +23,19 @@ interface Props {
   /**
    * We use flex to gap items.
    */
-  gap?: Sizes | number
+  gap?: Spaces | number
   /**
    * Sets the sheet width
    */
   sheetWidth?: number
+  /**
+   * Hides the horizontal scrollbar and removes scrollbar gutter padding
+   */
+  hideScrollbar?: boolean
+  /**
+   * Hides the left & right shadows which indicate option to scroll
+   */
+  hideShadows?: boolean
 }
 
 const showSheet = ref(false)
@@ -123,7 +133,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="carousel">
+  <div class="carousel" :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows }">
     <!-- Header slot -->
     <slot name="header" :toggle />
 
