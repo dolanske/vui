@@ -3,12 +3,10 @@ import type { Spaces } from '../../shared/types'
 import { useEventListener, useScroll } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
-import Sheet from '../Sheet/Sheet.vue'
 import './carousel.scss'
 
 const {
   gap = 's' as const,
-  sheetWidth,
   hideScrollbar,
   hideShadows,
 } = defineProps<Props>()
@@ -25,10 +23,6 @@ interface Props {
    */
   gap?: Spaces | number
   /**
-   * Sets the sheet width
-   */
-  sheetWidth?: number
-  /**
    * Hides the horizontal scrollbar and removes scrollbar gutter padding
    */
   hideScrollbar?: boolean
@@ -38,13 +32,8 @@ interface Props {
   hideShadows?: boolean
 }
 
-const showSheet = ref(false)
 const carouselRef = useTemplateRef<InstanceType<typeof Flex>>('carouselWrap')
 const carouselEl = computed(() => carouselRef.value?.$el as HTMLElement | undefined)
-
-function toggle() {
-  showSheet.value = !showSheet.value
-}
 
 // Drag-to-scroll state
 const isDragging = ref(false)
@@ -134,10 +123,6 @@ onMounted(() => {
 
 <template>
   <div class="carousel" :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows }">
-    <!-- Header slot -->
-    <slot name="header" :toggle />
-
-    <!-- Scrollable carousel -->
     <div
       class="carousel-track"
       :class="{
@@ -154,22 +139,5 @@ onMounted(() => {
         <slot />
       </Flex>
     </div>
-
-    <Sheet :open="showSheet" :size="sheetWidth" @close="showSheet = false">
-      <template #header="{ close }">
-        <slot name="sheet-header" :close />
-      </template>
-      <!-- Sheet content, can render for example more items than the default slot -->
-      <slot name="sheet-content">
-        <!-- If sheet content not provided, it will display children passed in the default slot -->
-        <slot />
-      </slot>
-      <template #footer="{ close }">
-        <slot name="sheet-footer" :close />
-      </template>
-    </Sheet>
-
-    <!-- Footer slot -->
-    <slot name="footer" :toggle />
   </div>
 </template>
