@@ -69,8 +69,7 @@ $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
   text-align: right;
 }
 
-// Line truncating
-
+// Line clamping
 $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 @each $line in $lines {
@@ -85,7 +84,6 @@ $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 }
 
 // White space
-
 .ws-wrap {
   white-space: wrap;
 }
@@ -100,36 +98,4 @@ $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
 .ws-nowrap {
   white-space: nowrap;
-}
-
-// Some default styles
-
-.vui-label {
-  display: block;
-  text-align: left;
-  margin-bottom: var(--space-xs);
-  font-size: var(--font-size-m);
-  color: var(--color-text);
-}
-
-.vui-hint {
-  margin-bottom: var(--space-xs);
-  margin-top: -4px;
-  color: var(--color-text-lighter);
-  font-size: var(--font-size-s);
-  display: block;
-  text-align: left;
-}
-
-.vui-input-errors {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-top: 6px;
-
-  li {
-    display: block;
-    font-size: var(--font-size-s);
-    color: var(--color-text-red);
-  }
 }

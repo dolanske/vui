@@ -1,22 +1,9 @@
 .vui-commands {
+  --vui-commands-input-size: 56px;
+
   .vui-card .vui-card-header {
-    background: var(--color-bg-medium);
-    padding: var(--space-xxs) var(--space-s);
-
-    // TODO: set to hopefully change the input height + v
-    // --interactive-element-height: 42px;
-
-    .vui-input {
-      --input-height: 42px;
-    }
-
-    .vui-button {
-      --interactive-el-height: 42px !important;
-    }
-
-    .vui-input-style {
-      background: var(--color-bg);
-    }
+    padding: 0;
+    background-color: var(--color-bg-medium);
   }
 
   .vui-card .vui-card-footer {
@@ -24,10 +11,70 @@
   }
 
   .vui-card .vui-card-content {
-    max-height: 60dvh;
+    max-height: 612px;
     overflow-y: auto;
-    padding-block: 0 !important;
-    margin-bottom: -1px;
+    padding-block: var(--space-s) !important;
+  }
+
+  .vui-commands-input {
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+    border-top-left-radius: var(--border-radius-m);
+    border-top-right-radius: var(--border-radius-m);
+    margin-bottom: var(--space-xs);
+
+    .vui-commands-input-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+
+      & > svg {
+        font-size: 22px;
+        color: var(--color-text-lighter);
+      }
+    }
+
+    .vui-flex {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+    }
+
+    input {
+      font-family: var(--font);
+      font-size: var(--font-size-m);
+      color: var(--color-text);
+      width: 100%;
+      height: var(--vui-commands-input-size);
+      line-height: var(--vui-commands-input-size);
+      border: none;
+      background-color: transparent;
+      padding-left: 48px;
+      padding-right: 128px;
+      border-radius: var(--border-radius-m);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .vui-commands-group-buttons {
+    padding-inline: calc(var(--space-s));
+    margin-bottom: var(--space-xs);
+
+    button {
+      border-radius: 999px;
+      padding: 0;
+    }
+
+    .carousel .carousel-content {
+      cursor: default;
+      padding: 2px;
+    }
   }
 
   .vui-commands-empty {
@@ -39,21 +86,37 @@
     }
   }
 
+  .vui-commands-group {
+    &:first-child .vui-commands-group-title {
+      margin-top: 0;
+    }
+  }
+
   .vui-commands-group-title {
     display: block;
-    padding: var(--space-s) var(--space-m);
-    background-color: var(--color-bg-lowered);
-    color: var(--color-text-light);
-    font-size: var(--font-size-xs);
+    padding-inline: var(--space-xs);
+    margin-top: var(--space-m);
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-lighter);
+    font-size: var(--font-size-xxs);
     text-transform: uppercase;
     font-weight: var(--font-weight-semibold);
-    border-bottom: 1px solid var(--color-border);
   }
 
   .vui-commands-list {
     list-style: none;
     display: flex;
     flex-direction: column;
+    border-radius: var(--border-radius-m);
+    border: 1px solid var(--color-border-weak);
+    margin-inline: var(--space-xs);
+    margin-bottom: var(--space-m);
+    background-color: var(--color-bg-medium);
+    overflow: hidden;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     li {
       scroll-margin: 2px;
@@ -61,32 +124,28 @@
 
       &:hover,
       &.vui-commands-list-item-focused {
-        button {
+        .vui-commands-list-item {
           background-color: var(--color-bg-raised);
 
-          &:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background-color: var(--color-accent);
+          .vui-commands-list-item-icon {
+            color: var(--color-accent);
           }
         }
       }
 
-      button {
+      &:last-child .vui-commands-list-item {
+        border-bottom: none;
+      }
+
+      .vui-commands-list-item {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         text-align: left;
         padding: 0 var(--space-m);
-        height: 64px;
+        height: 56px;
         width: 100%;
         position: relative;
-        transition: var(--transition-fast);
-        border-bottom: 1px solid var(--color-border);
         gap: var(--space-m);
 
         .vui-commands-list-item-icon {

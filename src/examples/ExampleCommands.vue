@@ -1,7 +1,7 @@
 <!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import type { Command } from '../components/Commands/Commands.vue'
-import { IconCommand, IconFile, IconGear, IconPlus, IconSun } from '@iconify-prerendered/vue-ph'
+import { IconCommand, IconFile, IconFolder, IconGear, IconLinkBold, IconPlus, IconSun } from '@iconify-prerendered/vue-ph'
 import { ref } from 'vue'
 import Commands from '../components/Commands/Commands.vue'
 
@@ -126,5 +126,14 @@ const commands: Command[] = [
 </script>
 
 <template>
-  <Commands :open :commands @close="open = false" />
+  <Commands :open :commands @close="open = false">
+    <template #icon="{ command }">
+      <IconLinkBold v-if="command.group === 'Navigation'" />
+      <IconFolder v-else />
+    </template>
+
+    <template #command="{ command }">
+      <span>{{ command.title }}</span>
+    </template>
+  </Commands>
 </template>

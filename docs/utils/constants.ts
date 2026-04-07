@@ -101,6 +101,7 @@ export const componentList = [
   { name: 'Card', path: '/docs/components/card', description: 'Container component for grouping related content' },
   { name: 'Carousel', path: '/docs/components/carousel', description: 'Scrollable container for displaying multiple items horizontally' },
   { name: 'Checkbox', path: '/docs/components/checkbox', description: 'Binary input control for selecting multiple options' },
+  { name: 'Commands', path: '/docs/components/commands', description: 'Searchable command palette with keyboard navigation and grouping' },
   { name: 'Copy Clipboard', path: '/docs/components/copy-clipboard', description: 'Button that copies text to clipboard with feedback' },
   { name: 'Divider', path: '/docs/components/divider', description: 'Visual separator between content sections' },
   { name: 'Drawer', path: '/docs/components/drawer', description: 'Sliding panel that appears from screen edges' },

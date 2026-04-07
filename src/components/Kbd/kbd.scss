@@ -2,18 +2,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
+  height: 22px;
   border-radius: var(--border-radius-xs);
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-xs);
   padding: 0 4px;
   transition: var(--transition-fast);
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   background-color: var(--color-button-gray);
-  color: var(--color-text-accent);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border);
 
   &.active {
     transform: translateY(2px);
     color: var(--color-text-invert);
     background-color: var(--color-button-fill);
   }
+}
+
+:root.dark .vui-kbd {
+  background-color: var(--color-bg-raised);
 }

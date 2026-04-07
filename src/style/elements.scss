@@ -1,0 +1,30 @@
+// Input elements default styling
+.vui-label {
+  display: block;
+  text-align: left;
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-m);
+  color: var(--color-text);
+}
+
+.vui-hint {
+  margin-bottom: var(--space-xs);
+  margin-top: -4px;
+  color: var(--color-text-lighter);
+  font-size: var(--font-size-s);
+  display: block;
+  text-align: left;
+}
+
+.vui-input-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 6px;
+
+  li {
+    display: block;
+    font-size: var(--font-size-s);
+    color: var(--color-text-red);
+  }
+}

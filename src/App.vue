@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Select from './components/Select/Select.vue'
-import ExampleCarousels from './examples/ExampleCarousels.vue'
+import ExampleCommands from './examples/ExampleCommands.vue'
 import { setColorTheme } from './shared/theme'
 
-setColorTheme('light')
+setColorTheme('dark')
 
 const options = [
   { value: 0, label: 'Jan' },
@@ -31,7 +31,7 @@ const options = [
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
-      <ExampleCarousels />
+      <ExampleCommands />
     </div>
   </main>
 </template>

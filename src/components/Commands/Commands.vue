@@ -1,16 +1,17 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue'
-import { IconArrowDown, IconArrowUp, IconX } from '@iconify-prerendered/vue-ph'
+import { IconArrowDown, IconArrowUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, ref, useTemplateRef, watch } from 'vue'
+import { computed, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { searchString } from '../../shared/helpers'
+import Badge from '../Badge/Badge.vue'
 import Button from '../Button/Button.vue'
+import Carousel from '../Carousel/Carousel.vue'
 import Flex from '../Flex/Flex.vue'
-
-import Input from '../Input/Input.vue'
 import Kbd from '../Kbd/Kbd.vue'
 import Modal from '../Modal/Modal.vue'
+import Spinner from '../Spinner/Spinner.vue'
 import './commands.scss'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,9 +23,6 @@ const emit = defineEmits<{
 }>()
 
 const EMPTY_GROUP_KEY = '##ungrouped##'
-
-// TODO: add layers and browsing through them
-// A layer is a group of commands that are related to a specific command and are displayed when this command is entered
 
 export interface Command {
   title: string
@@ -39,15 +37,25 @@ export interface Command {
 
 interface Props {
   open: boolean
-  search?: string
   placeholder?: string
   commands: Command[]
+  loading?: boolean
 }
 
-const searchValue = ref(props.search)
+const searchValue = defineModel<string>('search', { default: '' })
+
+// For simplicity, groups are stored and handled as their labels. This way we
+// can omit keys when creating them
+const activeGroup = defineModel<string | null>('group', { default: 'All' })
 
 const results = computed(() => {
   return props.commands
+    .filter((item) => {
+      if (activeGroup.value && activeGroup.value !== 'All') {
+        return (item.group ?? EMPTY_GROUP_KEY) === activeGroup.value
+      }
+      return true
+    })
     .filter(item => searchString(
       [item.title, item.description, item.group, item.href],
       searchValue.value,
@@ -67,6 +75,27 @@ const groupedResults = computed<Record<string, Command[]> | null>(() => {
   return Object.fromEntries(
     Object.entries(grouped).sort(([a], [b]) => a.localeCompare(b)),
   ) as Record<string, Command[]>
+})
+
+const groupButtons = computed(() => {
+  const groups = new Set<string>()
+
+  for (const command of props.commands) {
+    groups.add(command.group ?? EMPTY_GROUP_KEY)
+  }
+
+  const sortedGroups = [...groups].toSorted((a, b) => {
+    if (a === EMPTY_GROUP_KEY)
+      return 1
+    if (b === EMPTY_GROUP_KEY)
+      return -1
+
+    return a.localeCompare(b)
+  })
+
+  sortedGroups.unshift('All')
+
+  return sortedGroups
 })
 
 // Precompute group offsets for O(1) global index calculation in template
@@ -92,13 +121,12 @@ const flattenedResults = computed<Command[]>(() => {
 const keys = useMagicKeys()
 const focusedIndex = ref(0)
 
-// Register shortcut watchers
-watch(() => props.commands.length, () => {
+// Register shortcut watchers if commands have any
+watchEffect(() => {
   for (const command of props.commands) {
-    if (command.shortcut) {
-      whenever(keys[command.shortcut], () => {
-        handleSelect(command)
-      })
+    if (command.shortcut && keys[command.shortcut].value) {
+      handleSelect(command)
+      break
     }
   }
 })
@@ -172,45 +200,60 @@ const isMobile = useBreakpoint(Breakpoints.Mobile)
     @close="emit('close')"
   >
     <template #header>
-      <Flex class="py-xs">
-        <Input
-          ref="searchRef"
-          v-model="searchValue"
-          focus
-          expand
-          :placeholder="props.placeholder"
-        >
-          <template #end>
-            <Button v-if="searchValue" plain square @click="resetSearch">
-              <IconX />
-            </Button>
-          </template>
-        </Input>
+      <div class="vui-commands-input">
+        <div class="vui-commands-input-icon">
+          <Spinner v-if="loading" size="s" />
+          <IconMagnifyingGlass v-else />
+        </div>
 
-        <Button v-if="isMobile" @click="emit('close')">
-          Cancel
-        </Button>
-      </Flex>
+        <input ref="searchRef" v-model="searchValue" type="text" autofocus :placeholder="props.placeholder">
+
+        <Flex :gap="2">
+          <Button v-if="searchValue" size="s" square @click="resetSearch">
+            <IconX class="text-color-light" />
+          </Button>
+
+          <Button v-if="isMobile" size="s" @click="emit('close')">
+            Close
+          </Button>
+        </Flex>
+      </div>
+
+      <div class="vui-commands-group-buttons">
+        <Carousel gap="xs">
+          <button
+            v-for="group in groupButtons"
+            :key="group"
+            :tabindex="0"
+            @click="activeGroup = group"
+          >
+            <Badge
+              :variant="group === activeGroup ? 'accent' : 'neutral'"
+              role="button"
+            >
+              {{ group === EMPTY_GROUP_KEY ? 'Other' : group }}
+            </Badge>
+          </button>
+        </Carousel>
+      </div>
     </template>
     <template #footer>
-      <Flex gap="xs" y-center>
-        <span class="text-color-lighter">Move</span>
+      <Flex gap="xxs" y-center>
         <Kbd>
           <IconArrowUp />
         </Kbd>
         <Kbd>
           <IconArrowDown />
         </Kbd>
-        <div />
-        <span class="text-color-lighter">Select</span>
+        <span class="text-color-lighter mr-s">Move</span>
         <Kbd>
           Enter
         </Kbd>
-        <div />
-        <span class="text-color-lighter">Close</span>
+        <span class="text-color-lighter mr-s">Select</span>
         <Kbd>
           Esc
         </Kbd>
+        <span class="text-color-lighter">Close</span>
       </Flex>
     </template>
 
@@ -218,37 +261,43 @@ const isMobile = useBreakpoint(Breakpoints.Mobile)
       <p>No results found</p>
     </div>
 
-    <div v-for="(group, groupKey, groupIndex) in groupedResults" v-else :key="groupKey" class="vui-commands-group">
-      <span v-if="groupKey !== EMPTY_GROUP_KEY" class="vui-commands-group-title">
-        {{ groupKey }}
-      </span>
+    <slot v-else :commands="groupedResults">
+      <div v-for="(group, groupKey, groupIndex) in groupedResults" :key="groupKey" class="vui-commands-group">
+        <span v-if="groupKey !== EMPTY_GROUP_KEY && activeGroup === 'All'" class="vui-commands-group-title">
+          {{ groupKey }}
+        </span>
 
-      <ul class="vui-commands-list" tabindex="-1">
-        <li
-          v-for="(result, index) in group"
-          :key="result.title"
-          :data-index="groupOffsets[groupIndex] + index"
-          :class="{ 'vui-commands-list-item-focused': focusedIndex === groupOffsets[groupIndex] + index }"
-          @click="handleSelect(result)"
-        >
-          <button>
-            <div class="vui-commands-list-item-icon">
-              <component :is="result.icon" />
-            </div>
-            <div class="vui-command-body">
-              <span>
-                {{ result.title }}
-              </span>
-              <p v-if="result.description">
-                {{ result.description }}
-              </p>
-            </div>
-            <Flex v-if="result.shortcut" gap="xxs">
-              <Kbd v-for="shortcut in result.shortcut.split('+')" :key="shortcut" class="vui-commands-list-item-shortcut" :keys="shortcut" />
-            </Flex>
-          </button>
-        </li>
-      </ul>
-    </div>
+        <ul class="vui-commands-list" tabindex="-1">
+          <li
+            v-for="(result, index) in group"
+            :key="result.title"
+            :data-index="groupOffsets[groupIndex] + index"
+            :class="{ 'vui-commands-list-item-focused': focusedIndex === groupOffsets[groupIndex] + index }"
+            @click="handleSelect(result)"
+          >
+            <slot :command="result" :group="groupKey" name="command">
+              <button class="vui-commands-list-item">
+                <div v-if="result.icon || $slots.icon" class="vui-commands-list-item-icon">
+                  <slot :command="result" name="icon">
+                    <component :is="result.icon" />
+                  </slot>
+                </div>
+                <div class="vui-command-body">
+                  <span>
+                    {{ result.title }}
+                  </span>
+                  <p v-if="result.description" class="text-overflow-1">
+                    {{ result.description }}
+                  </p>
+                </div>
+                <Flex v-if="result.shortcut" gap="xxs">
+                  <Kbd v-for="shortcut in result.shortcut.split('+')" :key="shortcut" class="vui-commands-list-item-shortcut" :keys="shortcut" />
+                </Flex>
+              </button>
+            </slot>
+          </li>
+        </ul>
+      </div>
+    </slot>
   </Modal>
 </template>

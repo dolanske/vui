@@ -41,9 +41,9 @@ The Carousel does not emit any events.
 
 ### Slots
 
-| Name      | Props | Description                                                                      |
-| --------- | ----- | -------------------------------------------------------------------------------- |
-| `default` | —     | The carousel items. Each child should have a `min-width` set                     |
+| Name      | Props | Description                                                  |
+| --------- | ----- | ------------------------------------------------------------ |
+| `default` | —     | The carousel items. Each child should have a `min-width` set |
 
 ### Features
 
