@@ -188,6 +188,12 @@ function resetSearch() {
   search.value?.focus()
 }
 
+watchEffect(() => {
+  if (props.open) {
+    resetSearch()
+  }
+})
+
 const isMobile = useBreakpoint(Breakpoints.Mobile)
 </script>
 
