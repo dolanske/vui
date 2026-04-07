@@ -43,9 +43,32 @@ function setSize(s: any) {
                 Full
               </Button>
             </Flex>
-            <Drawer :open title="Hello" :container-size="size" @close="open = false">
+            <Drawer
+              :open
+              title="Hello"
+              :container-size="size"
+              @close="open = false"
+            >
               <h2>Hello</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate laudantium maiores? Nesciunt harum doloribus accusantium architecto, quod rem porro iusto, quia dicta ex sapiente nulla earum voluptatibus, dolor veritatis?</p>
+              <Flex column gap="l">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, temporibus soluta. Maxime doloremque saepe hic voluptatum earum ipsam debitis consectetur quibusdam tempora omnis praesentium, inventore in distinctio non accusantium asperiores?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos accusamus earum saepe, molestiae labore ad voluptate impedit mollitia cumque optio ut nobis quam odit quae? Similique aliquam quia a dolore!</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit deserunt sed quasi animi accusantium sapiente dolore nisi? Laborum cum aliquam reiciendis maiores recusandae sint! Porro voluptates quod ea dolore quasi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam nemo fugit sequi assumenda illo veritatis eveniet pariatur laudantium, cupiditate, amet, nesciunt molestias nihil alias. Nemo iure eius pariatur eos corrupti.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita officia fugit, repellat mollitia vero modi impedit enim distinctio incidunt earum quibusdam a, magnam provident minus quo veritatis similique aliquid molestias.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate laudantium maiores? Nesciunt harum doloribus accusantium architecto, quod rem porro iusto, quia dicta ex sapiente nulla earum voluptatibus, dolor veritatis?</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem amet qui expedita suscipit eum? Culpa et repellat, dicta perspiciatis laboriosam atque eaque animi possimus, sit fugit fuga? Unde, aspernatur quibusdam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, temporibus soluta. Maxime doloremque saepe hic voluptatum earum ipsam debitis consectetur quibusdam tempora omnis praesentium, inventore in distinctio non accusantium asperiores?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos accusamus earum saepe, molestiae labore ad voluptate impedit mollitia cumque optio ut nobis quam odit quae? Similique aliquam quia a dolore!</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit deserunt sed quasi animi accusantium sapiente dolore nisi? Laborum cum aliquam reiciendis maiores recusandae sint! Porro voluptates quod ea dolore quasi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam nemo fugit sequi assumenda illo veritatis eveniet pariatur laudantium, cupiditate, amet, nesciunt molestias nihil alias. Nemo iure eius pariatur eos corrupti.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita officia fugit, repellat mollitia vero modi impedit enim distinctio incidunt earum quibusdam a, magnam provident minus quo veritatis similique aliquid molestias.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, temporibus soluta. Maxime doloremque saepe hic voluptatum earum ipsam debitis consectetur quibusdam tempora omnis praesentium, inventore in distinctio non accusantium asperiores?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos accusamus earum saepe, molestiae labore ad voluptate impedit mollitia cumque optio ut nobis quam odit quae? Similique aliquam quia a dolore!</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit deserunt sed quasi animi accusantium sapiente dolore nisi? Laborum cum aliquam reiciendis maiores recusandae sint! Porro voluptates quod ea dolore quasi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam nemo fugit sequi assumenda illo veritatis eveniet pariatur laudantium, cupiditate, amet, nesciunt molestias nihil alias. Nemo iure eius pariatur eos corrupti.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita officia fugit, repellat mollitia vero modi impedit enim distinctio incidunt earum quibusdam a, magnam provident minus quo veritatis similique aliquid molestias.</p>
+              </Flex>
             </Drawer>
           </td>
         </tr>

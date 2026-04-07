@@ -2,8 +2,13 @@
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../shared/types'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTitle } from 'vaul-vue'
-import { computed, onMounted, useAttrs, useId } from 'vue'
+import { computed, onMounted, useAttrs, useId, watchEffect } from 'vue'
+import { useLayer } from '../../shared/layerManager'
 import './drawer.scss'
+
+// FIXME: figure out overflow with snap points
+
+// TODO: maybe have content suspend in absolute?prolly wont work
 
 interface Props {
   /**
@@ -76,6 +81,17 @@ onMounted(() => {
     console.error('Your root component is missing \'vaul-drawer-wrapper\' attribute. \n Without it the <Drawer /> component will not be functional.')
   }
 })
+
+const { layerIndex, openLayer, closeLayer } = useLayer()
+
+watchEffect(() => {
+  if (open) {
+    openLayer()
+  }
+  else {
+    closeLayer()
+  }
+})
 </script>
 
 <template>
@@ -88,8 +104,14 @@ onMounted(() => {
   >
     <DrawerPortal v-bind="portalProps">
       <DrawerOverlay class="vui-drawer-overlay" />
-      <DrawerContent class="vui-drawer-content" :class="{ 'hide-handle': handle === false }" v-bind="attrs">
-        <div :key="mW" class="vui-drawer-container container" :class="containerClass" :style="{ 'max-width': mW }">
+      <DrawerContent
+        class="vui-drawer-content"
+        :class="{ 'hide-handle': handle === false }"
+        v-bind="attrs"
+        :style="{ zIndex: layerIndex }"
+        :aria-describedby="undefined"
+      >
+        <div :key="mW" class="vui-drawer-container container" :class="containerClass" :style="{ 'max-width': mW }" data-vaul-no-drag>
           <DrawerTitle class="visually-hidden" :name="id">
             {{ title }}
           </DrawerTitle>
@@ -100,9 +122,9 @@ onMounted(() => {
   </DrawerRoot>
 </template>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 :global(body) {
   transition: var(--transition-fast);
   background-color: var(--color-bg);
 }
-</style>
+</style> -->
