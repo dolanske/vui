@@ -135,9 +135,5 @@ const commands: Command[] = [
       <IconLinkBold v-if="command.group === 'Navigation'" />
       <IconFolder v-else />
     </template>
-
-    <template #command="{ command }">
-      <span>{{ command.title }}</span>
-    </template>
   </Commands>
 </template>
