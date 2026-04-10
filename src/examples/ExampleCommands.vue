@@ -3,9 +3,10 @@
 import type { Command } from '../components/Commands/Commands.vue'
 import { IconCommand, IconFile, IconFolder, IconGear, IconLinkBold, IconPlus, IconSun } from '@iconify-prerendered/vue-ph'
 import { ref } from 'vue'
+import Button from '../components/Button/Button.vue'
 import Commands from '../components/Commands/Commands.vue'
 
-const open = ref(true)
+const open = ref(false)
 
 const commands: Command[] = [
   {
@@ -126,6 +127,9 @@ const commands: Command[] = [
 </script>
 
 <template>
+  <Button @click="open = !open">
+    Toggle
+  </Button>
   <Commands :open :commands @close="open = false">
     <template #icon="{ command }">
       <IconLinkBold v-if="command.group === 'Navigation'" />
