@@ -2,7 +2,7 @@
 import type { VNode } from 'vue'
 import { IconArrowDown, IconArrowUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, ref, useTemplateRef, watch, watchEffect } from 'vue'
+import { computed, nextTick, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { searchString } from '../../shared/helpers'
 import Badge from '../Badge/Badge.vue'
@@ -185,14 +185,20 @@ const search = useTemplateRef('searchRef')
 
 function resetSearch() {
   searchValue.value = ''
-  search.value?.focus()
+  search.value?.focus({ preventScroll: true })
 }
 
-watchEffect(() => {
-  if (props.open) {
-    resetSearch()
-  }
-})
+watch(
+  () => props.open,
+  async (open) => {
+    if (!open)
+      return
+
+    await nextTick()
+    requestAnimationFrame(resetSearch)
+  },
+  { flush: 'post' },
+)
 
 const isMobile = useBreakpoint(Breakpoints.Mobile)
 </script>
