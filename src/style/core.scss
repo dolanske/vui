@@ -21,7 +21,8 @@
   --border-radius-s: 5px;
   --border-radius-m: 8px;
   --border-radius-l: 12px;
-  --border-radius-pill: 99px;
+  // Try to guess the biggest rounded element that we might show in the UI
+  --border-radius-pill: 164px;
 
   --font-size-xxs: 1.1rem;
   --font-size-xs: 1.175rem;
@@ -72,7 +73,7 @@
   --z-toast: 9000;
   --z-modal: 600;
 
-  --interactive-el-height: 36px;
+  --interactive-el-height: 34px;
 }
 
 // Disable motion for users who have requested it

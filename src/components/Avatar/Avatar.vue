@@ -11,7 +11,7 @@ interface Props {
   fallback?: string
   icon?: string
   alt?: string
-  radius?: Sizes | 'xs' | number
+  radius?: Sizes | 'xs' | 'pill' | number
 }
 
 const {
@@ -20,7 +20,7 @@ const {
   url,
   fallback,
   alt = 'avatar',
-  radius = 999,
+  radius = 'pill',
 } = defineProps<Props>()
 
 const showFallback = ref(false)

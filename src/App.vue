@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Select from './components/Select/Select.vue'
-import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
+import ExampleAvatars from './examples/ExampleAvatars.vue'
 import ExampleCommands from './examples/ExampleCommands.vue'
 import { setColorTheme } from './shared/theme'
 
@@ -33,7 +33,7 @@ const options = [
     <div class="container container-m pt-xxl">
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
       <ExampleCommands />
-      <ExampleCheckboxes />
+      <ExampleAvatars />
 
       <input type="range" class="vui-range mt-xxl">
     </div>
