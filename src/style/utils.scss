@@ -18,7 +18,7 @@ mark {
   background-color: var(--color-text-yellow);
   color: var(--color-text-invert);
   padding: 1px;
-  border-radius: 2px;
+  border-radius: var(--border-radius-xs);
 }
 
 .counter {
@@ -27,7 +27,7 @@ mark {
   justify-content: center;
   min-width: 20px;
   height: 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-pill);
   font-size: var(--font-size-xs);
   color: var(--color-text);
   background-color: var(--color-button-gray-hover);

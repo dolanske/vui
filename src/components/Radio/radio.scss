@@ -45,7 +45,7 @@
 
     &:focus-visible + label .vui-radio-icon {
       outline: 2px solid var(--color-text);
-      border-radius: 999px;
+      border-radius: var(--border-radius-pill);
     }
 
     & + label {

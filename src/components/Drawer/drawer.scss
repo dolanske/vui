@@ -45,7 +45,7 @@
     width: 56px;
     height: 6px;
     top: 11px;
-    border-radius: 3px;
+    border-radius: var(--border-radius-xs);
     background-color: var(--color-border-strong);
     transition: var(--transition-fast);
   }

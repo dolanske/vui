@@ -46,7 +46,7 @@
   .vui-switch-icon {
     width: 44px;
     height: var(--switch-size);
-    border-radius: 22px;
+    border-radius: var(--border-radius-pill);
     background-color: var(--color-bg-raised);
     position: relative;
     cursor: default;
@@ -58,7 +58,7 @@
       top: 2px;
       width: 20px;
       height: 20px;
-      border-radius: 100%;
+      border-radius: var(--border-radius-pill);
       background-color: var(--color-text-lighter);
       transition: var(--transition);
     }

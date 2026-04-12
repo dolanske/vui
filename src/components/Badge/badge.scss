@@ -8,7 +8,7 @@
   place-items: center;
   padding-inline: var(--vui-badge-padding-inline);
   padding-block: var(--vui-badge-padding-block);
-  border-radius: 999px;
+  border-radius: var(--border-radius-pill);
   font-size: var(--vui-badge-font-size);
   color: var(--color-text);
   border: 1px solid transparent;

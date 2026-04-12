@@ -16,6 +16,14 @@
   text-align: left;
 }
 
+.vui-input-limit {
+  display: block;
+  margin-top: 6px;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--input-color-text-lighter);
+}
+
 .vui-input-errors {
   display: flex;
   flex-direction: column;
