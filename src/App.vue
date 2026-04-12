@@ -34,6 +34,8 @@ const options = [
       <Select expand :options="options" label="Base, single, search, showClear" search show-clear />
       <ExampleCommands />
       <ExampleCheckboxes />
+
+      <input type="range" class="vui-range mt-xxl">
     </div>
   </main>
 </template>

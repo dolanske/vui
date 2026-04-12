@@ -21,7 +21,7 @@
   margin-top: 6px;
   text-align: left;
   font-size: var(--font-size-xs);
-  color: var(--input-color-text-lighter);
+  color: var(--color-text-lighter);
 }
 
 .vui-input-errors {
@@ -34,5 +34,44 @@
     display: block;
     font-size: var(--font-size-s);
     color: var(--color-text-red);
+  }
+}
+
+.vui-range:is(input[type='range']) {
+  appearance: none;
+  display: block;
+  height: 20px;
+  border-radius: var(--border-radius-pill);
+  overflow: hidden;
+  background-color: transparent;
+
+  // Track - WebKit uses linear-gradient to fake progress fill via --range-progress custom property
+  &::-webkit-slider-runnable-track {
+    background: linear-gradient(
+      to right,
+      var(--color-accent) 0%,
+      var(--color-accent) var(--range-progress, 0%),
+      var(--color-border-strong) var(--range-progress, 0%),
+      var(--color-border-strong) 100%
+    );
+    border-radius: var(--border-radius-pill);
+  }
+  &::-moz-range-track {
+    background-color: var(--color-border-strong);
+    border-radius: var(--border-radius-pill);
+  }
+
+  // Thumb
+  &::-webkit-slider-thumb,
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: none;
+    background-color: var(--color-text-light);
+  }
+
+  // Progress fill (Firefox only; use linear-gradient on track for Chrome/Safari)
+  &::-moz-range-progress {
+    background-color: var(--color-accent);
+    border-radius: var(--border-radius-pill);
   }
 }
