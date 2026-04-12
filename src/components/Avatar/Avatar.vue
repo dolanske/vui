@@ -26,7 +26,8 @@ const {
 const showFallback = ref(false)
 
 const aR = computed(() => {
-  if (typeof radius === 'number')
+  // Only apply custom radius if it's a number and greater than 164px to prevent breaking the avatar shape
+  if (typeof radius === 'number' && radius > 164)
     return radius
 
   return `var(--border-radius-${radius})`
