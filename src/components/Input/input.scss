@@ -10,8 +10,8 @@
   --input-color-border-weak: var(--color-border-weak);
 
   --input-height: var(--interactive-el-height);
-  --input-padding: 8px;
-  --textarea-padding: 8px;
+  --input-padding: var(--space-xs);
+  --textarea-padding: var(--space-xs);
 
   //
 

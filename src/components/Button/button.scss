@@ -1,8 +1,8 @@
 .vui-button {
   --button-height: var(--interactive-el-height);
-  --button-padding: 8px;
+  --button-padding: var(--space-xs);
   --button-font-size: var(--font-size-s);
-  --button-font-size-l: 1.4rem;
+  --button-font-size-l: var(--font-size-l);
 
   &.disabled {
     cursor: not-allowed !important;
