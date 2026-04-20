@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   icon: {
+    provider: 'none',
+    mode: 'svg',
+    clientBundle: {
+      scan: true,
+      sizeLimitKb: 256,
+    },
     serverBundle: {
       collections: ['ph'],
     },
