@@ -28,7 +28,7 @@
       </div>
 
       <CopyClipboard :text="item.token" confirm="Copied!">
-        <Button plain expand>
+        <Button plain>
           <template #start>
             <Badge>
               {{ item.token }}

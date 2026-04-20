@@ -93,7 +93,7 @@ const aW = computed(() => props.wrap
     ? 'wrap-reverse'
     : 'nowrap')
 
-const aH = computed(() => props.expand ? '100%' : 'auto')
+const aH = computed(() => props.expand ? '100%' : 'fit-content')
 </script>
 
 <template>

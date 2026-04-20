@@ -47,9 +47,11 @@ import { Alert } from '@dolanske/vui'
 
 ### Slots
 
-| Name      | Accepts | Description                   |
-| --------- | ------- | ----------------------------- |
-| `default` | `any`   | The main content of the alert |
+| Name      | Accepts | Description                                        |
+| --------- | ------- | -------------------------------------------------- |
+| `default` | `any`   | The main content of the alert                      |
+| `icon`    | `any`   | Custom icon that replaces the default variant icon |
+| `end`     | `any`   | Optional content rendered at the end of the alert  |
 
 Please note. Unless you're using the `description` prop, the Alert component does not style the default slot at all. If you are passing in simple text, please wrap it in a `<p>` for consistent typography.
 

@@ -25,7 +25,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
         </template>
         <template #header-end>
           <CopyClipboard text="--font" confirm="Copied!">
-            <Button plain expand>
+            <Button plain>
               <template #start>
                 <Badge>
                   --font
@@ -49,8 +49,8 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
           </h6>
         </template>
         <template #header-end>
-          <CopyClipboard text="--font" confirm="Copied!">
-            <Button plain expand>
+          <CopyClipboard text="--font-mono" confirm="Copied!">
+            <Button plain>
               <template #start>
                 <Badge>
                   --font-mono
@@ -65,8 +65,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
         <pre
           class="m-0"
           :style="{ height: '64px', padding: '0 16px', display: 'flex', alignItems: 'center', margin: 0 }"
-        >The
-          quick brown fox jumps over the lazy dog.</pre>
+        >The quick brown fox jumps over the lazy dog.</pre>
       </Card>
     </Grid>
 
@@ -115,7 +114,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
     <h2>Line height</h2>
 
     <p class="mb-xl">
-      Line height is divided into only three categories, to keep things consistent. In most cases, you should be using
+      Line height is divided into four categories. To keep things consistent, in most cases you should be using
       the
       <code>base</code> or <code>title</code> line heights.
     </p>

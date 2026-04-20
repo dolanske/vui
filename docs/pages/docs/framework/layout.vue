@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { Flex, Tooltip } from '@dolanske/vui'
 import TokenItem from '~/components/docs/TokenItem.vue'
 import { containerClasses, displayClasses, heightClasses, widthClasses } from '~/utils/constants'
+import { getContainerPercent } from '~/utils/format'
 </script>
 
 <template>
@@ -26,22 +28,29 @@ import { containerClasses, displayClasses, heightClasses, widthClasses } from '~
       :indicator-style="{ width: 0 }"
     >
       <template #indicator>
-        <span class="text-xl"> {{ item.value }}</span>
+        <Tooltip>
+          <Flex y-center style="height:32px">
+            <div class="size-indicator-wrap container">
+              <div class="size-indicator" :style="{ width: getContainerPercent(item.value) }" />
+            </div>
+          </Flex>
+          <template #tooltip>
+            <p style="max-width:292px">
+              On a <code>1920px</code> screen, the container will take up <code>{{ getContainerPercent(item.value) }}</code> of the available width.
+            </p>
+          </template>
+        </Tooltip>
       </template>
     </TokenItem>
-
-    <blockquote class="mb-xl">
-      <strong>Note:</strong> The <code>.container</code> class is required to make other container sizes work.
-    </blockquote>
 
     <h2 class="mb-l">
       Width
     </h2>
     <p class="mb-xl">
-      Width utility classes control element width using percentage values. These classes are generated in increments of 5% from 10% to 100%, plus some additional utility classes.
+      Width utility classes control element width using percentage values. These classes are generated in increments of 5% from 0% to 100%, plus an additional utility class.
     </p>
     <p class="mb-xl">
-      <strong>Pattern:</strong> <code>.w-{percentage}</code> where percentage ranges from 10 to 100 in increments of 5.
+      <strong>Pattern:</strong> <code>.w-{percentage}</code> where percentage ranges from 0 to 100 in increments of 5.
     </p>
 
     <TokenItem
@@ -51,7 +60,7 @@ import { containerClasses, displayClasses, heightClasses, widthClasses } from '~
       :class-name="item.className"
     >
       <template #indicator>
-        <div class="size-indicator-wrap updated-horizontal-indicator">
+        <div class="size-indicator-wrap container left">
           <div class="size-indicator" :style="{ width: item.value }" />
         </div>
       </template>
@@ -61,10 +70,10 @@ import { containerClasses, displayClasses, heightClasses, widthClasses } from '~
       Height
     </h2>
     <p class="mb-xl">
-      Height utility classes control element height using percentage values. These classes follow the same pattern as width classes, generated in increments of 5% from 10% to 100%.
+      Height utility classes control element height using percentage values. These classes follow the same pattern as width classes, generated in increments of 5% from 0% to 100%.
     </p>
     <p class="mb-xl">
-      <strong>Pattern:</strong> <code>.h-{percentage}</code> where percentage ranges from 10 to 100 in increments of 5.
+      <strong>Pattern:</strong> <code>.h-{percentage}</code> where percentage ranges from 0 to 100 in increments of 5.
     </p>
 
     <TokenItem
@@ -74,8 +83,8 @@ import { containerClasses, displayClasses, heightClasses, widthClasses } from '~
       :class-name="item.className"
     >
       <template #indicator>
-        <div class="size-indicator-wrap updated-vertical-indicator">
-          <div class="size-indicator" :style="{ height: item.value }" />
+        <div class="vertical-size-indicator-wrap">
+          <div class="vertical-size-indicator" :style="{ height: item.value }" />
         </div>
       </template>
     </TokenItem>
@@ -125,52 +134,6 @@ import { containerClasses, displayClasses, heightClasses, widthClasses } from '~
 </template>
 
 <style scoped lang="scss">
-.updated-vertical-indicator,
-.updated-horizontal-indicator {
-  width: 100%;
-  height: 32px;
-  padding-inline: var(--space-xs);
-  background-color: var(--color-bg-medium);
-  border-radius: var(--border-radius-s);
-
-  .size-indicator {
-    border-color: var(--color-accent);
-
-    &::before,
-    &:after {
-      background-color: var(--color-accent);
-    }
-  }
-}
-
-.updated-vertical-indicator {
-  justify-content: center;
-  width: 48px;
-  height: 56px;
-  align-items: flex-end;
-  padding-block: var(--space-xs);
-
-  .size-indicator {
-    width: 1px;
-    border-bottom: unset;
-    border-right: 1px solid var(--color-accent);
-
-    &::before,
-    &:after {
-      top: 0;
-      width: 12px;
-      height: 1px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    &:after {
-      top: unset;
-      bottom: 0;
-    }
-  }
-}
-
 .flex-indicator {
   height: 8px;
   min-width: 24px;
@@ -183,8 +146,8 @@ import { containerClasses, displayClasses, heightClasses, widthClasses } from '~
 }
 
 .inline-code {
-  font-size: var(--font-size-xs);
-  padding: 1px;
+  font-size: var(--font-size-xxs);
+  padding: 1px 2px;
   min-height: unset;
 }
 </style>

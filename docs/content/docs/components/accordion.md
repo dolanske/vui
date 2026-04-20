@@ -20,11 +20,12 @@ import { Accordion } from '@dolanske/vui'
 
 ### Props
 
-| Name    | Default | Type                                                                                                    |
-| ------- | ------- | ------------------------------------------------------------------------------------------------------- |
-| `open`  | —       | `boolean` <br> Controls whether the accordion is open from the outside                                  |
-| `label` | —       | `string` <br> If provided, the accordion will display the text in the header                            |
-| `card`  | —       | `boolean` <br> If set as true, the accordion will look like the [card component](/docs/components/card) |
+| Name       | Default | Type                                                                                                    |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `open`     | —       | `boolean` <br> Controls whether the accordion is open from the outside                                  |
+| `label`    | —       | `string` <br> If provided, the accordion will display the text in the header                            |
+| `card`     | —       | `boolean` <br> If set as true, the accordion will look like the [card component](/docs/components/card) |
+| `unstyled` | `false` | `boolean` <br> Removes default styling and allows fully custom trigger/content styling                  |
 
 ### Events
 

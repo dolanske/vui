@@ -24,9 +24,9 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 
 #### Breadcrumbs
 
-| Name        | Default            | Type                                                                                      |
-| ----------- | ------------------ | ----------------------------------------------------------------------------------------- |
-| `separator` | `'ph:caret-right'` | `string` <br> Icon name from Iconify or text to use as separator between breadcrumb items |
+| Name        | Default | Type                                                                                                           |
+| ----------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| `separator` | —       | `string` <br> Custom separator text/symbol between breadcrumb items. If omitted, a default caret icon is shown |
 
 #### BreadcrumbItem
 

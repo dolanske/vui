@@ -39,11 +39,11 @@ const isOpen = ref(false)
 | Name              | Default | Type                                                                                                                                                          |
 | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `open`            | `false` | `boolean`<br>Controls the visibility of the modal                                                                                                             |
-| `size`            | `'m'`   | `xs` `s` `m` `l` `xl` `screen` `screen` <br> Controls the width of the modal                                                                                  |
+| `size`            | `'m'`   | `xs` `s` `m` `l` `xl` `screen` <br> Controls the width of the modal                                                                                           |
 | `card`            | -       | `CardProps`<br>Props to pass to the underlying [Card](/docs/components/card) component                                                                        |
 | `scrollable`      | `false` | `boolean`<br>Makes the modal content scrollable instead of the modal itself                                                                                   |
 | `centered`        | `false` | `boolean`<br>Centers the modal vertically on the screen                                                                                                       |
-| `canDismiss`      | `true`  | `boolean`<br>Whether the modal can be closed by clicking the X button                                                                                         |
+| `canDismiss`      | `true`  | `boolean`<br>Whether the modal can be dismissed via Escape key or backdrop click                                                                              |
 | `hideCloseButton` | `false` | `boolean`<br>Hides the X button in the top right of the modal. The modal can still be closed by other means                                                   |
 | `transition-name` | `modal` | `string` `none` <br> Allows you to change or disable the vue transition for the modal appear. By default, a `fade` animation with a bit of scaling is applied |
 | `disableMobileFs` | `false` | `boolean`<br>Disables the default behavior where the modal becomes fullscreen on mobile. The breakpoint can be configured via `vuiBreakpoints`                |

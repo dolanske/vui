@@ -31,7 +31,7 @@ const parsedToken = computed(() => {
     </div>
 
     <CopyClipboard :text="parsedToken" confirm="Copied!">
-      <Button plain expand>
+      <Button plain>
         <template #start>
           <Badge>
             {{ parsedToken }}

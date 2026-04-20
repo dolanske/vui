@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { formatUnitValue } from '../../shared/helpers'
@@ -68,10 +67,6 @@ function tryClose() {
     emit('close')
   }
 }
-
-const { escape } = useMagicKeys()
-
-whenever(escape, tryClose)
 
 const TRANSITION_OFFSET = 16
 

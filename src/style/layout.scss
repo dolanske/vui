@@ -1,34 +1,41 @@
 // Container layout styling
 $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
 
-.container {
+@each $container in $containers {
+  .container-#{$container} {
+    display: block;
+    margin-inline: auto;
+    width: 100%;
+    padding-inline: var(--space-m);
+    max-width: var(--container-l);
+    max-width: var(--container-#{$container});
+  }
+}
+
+.container-full {
   display: block;
-  margin-inline: auto;
   width: 100%;
   padding-inline: var(--space-m);
-  max-width: var(--container-l);
-
-  @each $container in $containers {
-    &.container-#{$container} {
-      max-width: var(--container-#{$container});
-    }
-  }
-
-  &.container-full {
-    max-width: 100%;
-  }
 }
 
 $sizes: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
 
 @each $size in $sizes {
   $extra: '%';
+  $width-value: #{$size + $extra};
+  $height-value: #{$size + $extra};
+
+  @if $size == 0 {
+    $width-value: #{$size + $extra} !important;
+    $height-value: #{$size + $extra} !important;
+  }
+
   .w-#{$size} {
-    width: #{$size + $extra} !important;
+    width: $width-value;
   }
 
   .h-#{$size} {
-    height: #{$size + $extra} !important;
+    height: $height-value;
   }
 }
 
@@ -110,62 +117,69 @@ $sizes: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90
 $sizes: 0, 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
 
 @each $size in $sizes {
+  $space-value: var(--space-#{$size});
+  $space-value-important: $space-value;
+
+  @if $size == 0 {
+    $space-value-important: $space-value !important;
+  }
+
   // Margin
   .mb-#{$size} {
-    margin-bottom: var(--space-#{$size});
+    margin-bottom: $space-value-important;
   }
 
   .mr-#{$size} {
-    margin-right: var(--space-#{$size});
+    margin-right: $space-value-important;
   }
 
   .ml-#{$size} {
-    margin-left: var(--space-#{$size});
+    margin-left: $space-value-important;
   }
 
   .mt-#{$size} {
-    margin-top: var(--space-#{$size});
+    margin-top: $space-value-important;
   }
 
   .mx-#{$size} {
-    margin-inline: var(--space-#{$size});
+    margin-inline: $space-value-important;
   }
 
   .my-#{$size} {
-    margin-block: var(--space-#{$size});
+    margin-block: $space-value-important;
   }
 
   .m-#{$size} {
-    margin: var(--space-#{$size});
+    margin: $space-value-important;
   }
 
   // Padding
   .pb-#{$size} {
-    padding-bottom: var(--space-#{$size});
+    padding-bottom: $space-value-important;
   }
 
   .pr-#{$size} {
-    padding-right: var(--space-#{$size});
+    padding-right: $space-value-important;
   }
 
   .pl-#{$size} {
-    padding-left: var(--space-#{$size});
+    padding-left: $space-value-important;
   }
 
   .pt-#{$size} {
-    padding-top: var(--space-#{$size});
+    padding-top: $space-value-important;
   }
 
   .px-#{$size} {
-    padding-inline: var(--space-#{$size});
+    padding-inline: $space-value-important;
   }
 
   .py-#{$size} {
-    padding-block: var(--space-#{$size});
+    padding-block: $space-value-important;
   }
 
   .p-#{$size} {
-    padding: var(--space-#{$size});
+    padding: $space-value-important;
   }
 }
 

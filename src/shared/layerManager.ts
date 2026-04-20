@@ -1,7 +1,8 @@
+import type { Ref } from 'vue'
 import { onUnmounted, ref } from 'vue'
 
 interface UseLayer {
-  layerIndex: ReturnType<typeof ref<number>>
+  layerIndex: Ref<number>
   openLayer: () => void
   closeLayer: () => void
 }
@@ -29,6 +30,10 @@ function release(z: number): void {
   }
 }
 
+export function isTopLayer(z: number): boolean {
+  return stack.length > 0 && stack.at(-1) === z
+}
+
 /**
  * Provides a reactive z-index that participates in the global layer stack.
  * Each floating element (Modal, Sheet, Popout, Tooltip, …) should call this
@@ -36,7 +41,7 @@ function release(z: number): void {
  * it hides.  The layer is automatically released when the component unmounts.
  */
 export function useLayer(): UseLayer {
-  const layerIndex = ref(BASE_Z)
+  const layerIndex = ref<number>(BASE_Z)
   let claimed: number | null = null
 
   function openLayer(): void {

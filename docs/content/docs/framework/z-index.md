@@ -2,12 +2,15 @@
 
 Classes for controlling the z-index stacking order of elements.
 
-| Class     | Description           | Z-Index Value |
-| --------- | --------------------- | ------------- |
-| `.z-0`    | Base layer            | `0`           |
-| `.z-10`   | Low elevation         | `10`          |
-| `.z-20`   | Medium-low elevation  | `20`          |
-| `.z-30`   | Medium elevation      | `30`          |
-| `.z-40`   | Medium-high elevation | `40`          |
-| `.z-50`   | High elevation        | `50`          |
-| `.z-auto` | Auto stacking         | `auto`        |
+| Class        | Description          | Z-Index Value |
+| ------------ | -------------------- | ------------- |
+| `.z-behind`  | Layer behind content | `-1`          |
+| `.z-default` | Base layer           | `1`           |
+| `.z-active`  | Active elements      | `50`          |
+| `.z-mask`    | Masks/backdrops      | `75`          |
+| `.z-sticky`  | Sticky content       | `100`         |
+| `.z-nav`     | Navigation           | `200`         |
+| `.z-overlay` | Overlay content      | `300`         |
+| `.z-popout`  | Popouts/dropdowns    | `400`         |
+| `.z-toast`   | Toast notifications  | `500`         |
+| `.z-modal`   | Modal dialogs        | `600`         |

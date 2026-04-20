@@ -42,24 +42,28 @@ The drawer component requires a root element with the `vaul-drawer-wrapper` attr
 
 ### Props
 
-| Name             | Default | Type                                                                                                                                                                                                                   |
-| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `open`           | `false` | `boolean` <br> Controls the visibility of the drawer                                                                                                                                                                   |
-| `title`          | —       | `string` <br> Title for accessibility                                                                                                                                                                                  |
-| `containerClass` | —       | `string` `object` `array` <br> CSS class applied to the container of the drawer content                                                                                                                                |
-| `containerSize`  | `m`     | `s` `m` `l` `xl` `full` `number` <br> Size of the container or max-width in pixels                                                                                                                                     |
-| `handle`         | `true`  | `boolean` <br> Whether to display the handle symbol at the top of the drawer                                                                                                                                           |
-| `rootProps`      | —       | `DrawerRootProps` <br> Props to pass to the underlying Vaul root component. [Type definitions](https://github.com/unovue/vaul-vue/blob/1b1f6dfdba6a775410508884097443d35c9a8690/packages/vaul-vue/src/controls.ts#L24) |
-| `portalProps`    | —       | `DrawerPortalProps` <br> Props to pass to the underlying Vaul portal component. [Type definitions](https://reka-ui.com/docs/components/dialog#portal)                                                                  |
+| Name              | Default | Type                                                                                                                                                                                                                   |
+| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`            | `false` | `boolean` <br> Controls the visibility of the drawer                                                                                                                                                                   |
+| `title`           | —       | `string` <br> Title for accessibility                                                                                                                                                                                  |
+| `containerClass`  | —       | `string` `object` `array` <br> CSS class applied to the container of the drawer content                                                                                                                                |
+| `containerSize`   | `m`     | `s` `m` `l` `xl` `full` `number` <br> Size of the container or max-width in pixels                                                                                                                                     |
+| `handle`          | `true`  | `boolean` <br> Whether to display the handle symbol at the top of the drawer                                                                                                                                           |
+| `nested`          | `false` | `boolean` <br> Uses Vaul's nested drawer root. Required when rendering a drawer inside another drawer                                                                                                                  |
+| `activeSnapPoint` | —       | `number` `string` `null` <br> Active snap point in controlled mode (`v-model:activeSnapPoint`)                                                                                                                         |
+| `rootProps`       | —       | `DrawerRootProps` <br> Props to pass to the underlying Vaul root component. [Type definitions](https://github.com/unovue/vaul-vue/blob/1b1f6dfdba6a775410508884097443d35c9a8690/packages/vaul-vue/src/controls.ts#L24) |
+| `portalProps`     | —       | `DrawerPortalProps` <br> Props to pass to the underlying Vaul portal component. [Type definitions](https://reka-ui.com/docs/components/dialog#portal)                                                                  |
 
 ### Events
 
-| Name    | Payload | Description                       |
-| ------- | ------- | --------------------------------- |
-| `close` | -       | Emitted when the drawer is closed |
+| Name                     | Payload                  | Description                                |
+| ------------------------ | ------------------------ | ------------------------------------------ |
+| `close`                  | -                        | Emitted when the drawer is closed          |
+| `update:activeSnapPoint` | `number` `string` `null` | Emitted when the active snap point changes |
 
 ### Slots
 
-| Name      | Accepts | Description               |
-| --------- | ------- | ------------------------- |
-| `default` | `any`   | The content of the drawer |
+| Name      | Accepts | Description                                           |
+| --------- | ------- | ----------------------------------------------------- |
+| `header`  | `any`   | Optional header content rendered above drawer content |
+| `default` | `any`   | The content of the drawer                             |

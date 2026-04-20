@@ -99,3 +99,20 @@ $lines: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 .ws-nowrap {
   white-space: nowrap;
 }
+
+// Line height
+.line-height-tight {
+  line-height: var(--line-height-tight);
+}
+
+.line-height-title {
+  line-height: var(--line-height-title);
+}
+
+.line-height-base {
+  line-height: var(--line-height-base);
+}
+
+.line-height-loose {
+  line-height: var(--line-height-loose);
+}

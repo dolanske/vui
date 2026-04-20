@@ -58,6 +58,22 @@ const textAlignmentClasses = [
       </template>
     </TokenItem>
 
+    <h2 class="mb-xl">
+      Line height
+    </h2>
+
+    <TokenItem
+      v-for="item in lineHeightTokens" :key="item.token" :name="item.name" :class-name="item.token"
+      :indicator-style="{ lineHeight: item.height, width: '256px' }" prefix=""
+    >
+      <template #text>
+        Both the dog and the fox jumped over a large fallen tree.
+      </template>
+      <template #value>
+        {{ item.height }}
+      </template>
+    </TokenItem>
+
     <h2>
       Text utilities
     </h2>

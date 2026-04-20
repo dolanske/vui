@@ -2,6 +2,8 @@
 
 A powerful data display component that provides sorting, pagination, row selection, and custom cell content. It's built with composable parts and the `defineTable` composable to create complex interactive data tables. It is also the only component which should be imported as a namespace and not as separate atomic components.
 
+If you have tables with a lot of horizontal content, wrap them in a `.vui-table-overflow` class seamless vertical scrollbar setup.
+
 ::table-example
 
 ```vue

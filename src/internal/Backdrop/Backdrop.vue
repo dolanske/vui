@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { useLayer } from '../../shared/layerManager'
+import { isTopLayer, useLayer } from '../../shared/layerManager'
 import './backdrop.scss'
 
 const emits = defineEmits<{
@@ -22,11 +22,12 @@ function handleClick(e: MouseEvent) {
   if (e.target === e.currentTarget && mouseDownOnBackdrop.value) {
     emits('close')
   }
+
   mouseDownOnBackdrop.value = false
 }
 
 function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape') {
+  if (e.key === 'Escape' && isTopLayer(layerIndex.value)) {
     emits('close')
   }
 }

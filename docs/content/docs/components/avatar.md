@@ -30,7 +30,7 @@ import { Avatar } from '@dolanske/vui'
 | Name       | Default  | Type                                                                                        |
 | ---------- | -------- | ------------------------------------------------------------------------------------------- |
 | `size`     | `m`      | `s` `m` `l` `number` <br> The size of the avatar. Can be a predefined size or custom number |
-| `radius`   | `999`    | `xs` `s` `m` `l` `number` <br> The roundness of the avatar. The default is a circle         |
+| `radius`   | `pill`   | `xs` `s` `m` `l` `pill` `number` <br> The roundness of the avatar. The default is a circle  |
 | `url`      | —        | `string` <br> URL of the avatar image to display                                            |
 | `fallback` | —        | `string` <br> Text to show when the image fails to load                                     |
 | `alt`      | `avatar` | `string` <br> Alt text for the avatar image                                                 |

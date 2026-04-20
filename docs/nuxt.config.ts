@@ -15,15 +15,16 @@ export default defineNuxtConfig({
     '@dolanske/vui/style',
     '~/assets/index.scss',
   ],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler',
-        },
-      },
-    },
-  },
+  // vite: {
+  //   css: {
+  //     preprocessorOptions: {
+  //       scss: {
+  //         api
+  //         api: 'modern-compiler',
+  //       },
+  //     },
+  //   },
+  // },
   content: {
     build: {
       markdown: {

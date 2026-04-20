@@ -24,4 +24,4 @@ import { Flex, Spinner } from '@dolanske/vui'
 
 | Name   | Default | Type                                     |
 | ------ | ------- | ---------------------------------------- |
-| `size` | `m`     | `s` `m` `l` <br> The size of the spinner |
+| `size` | `s`     | `s` `m` `l` <br> The size of the spinner |

@@ -168,6 +168,10 @@ whenever(keys.Enter, () => {
 })
 
 function handleSelect(result: Command) {
+  if (!props.open) {
+    return
+  }
+
   if (result.handler) {
     result.handler()
   }

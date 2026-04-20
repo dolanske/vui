@@ -34,6 +34,9 @@
   --font-size-xxxl: 3.4rem;
   --font-size-xxxxl: 4.8rem;
 
+  // Internal value to make m-0 and p-0 work
+  --space-0: 0;
+
   --space-xxs: 4px;
   --space-xs: 8px;
   --space-s: 12px;
@@ -58,9 +61,10 @@
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
-  --line-height-tight: 1.125em;
+  --line-height-tight: 1.05em;
   --line-height-title: 1.25em;
   --line-height-base: 1.4em;
+  --line-height-loose: 1.65em;
 
   --z-behind: -1;
   --z-default: 1;

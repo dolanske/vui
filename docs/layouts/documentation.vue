@@ -200,18 +200,22 @@ onBeforeMount(async () => {
 
         <Grid v-if="prevAndNext" :columns="2" class="docs-bottom-navigation">
           <Button v-if="prevAndNext.prev" expand size="l" outline @click="pushPage(prevAndNext.prev.path)">
-            <Flex column gap="xs">
-              <Icon name="ph:arrow-left" size="18" />
-              <p>{{ prevAndNext.prev.label }}</p>
-            </Flex>
+            <template #start>
+              <Flex column gap="xs">
+                <Icon name="ph:arrow-left" size="18" />
+                <p>{{ prevAndNext.prev.label }}</p>
+              </Flex>
+            </template>
           </Button>
           <div v-else />
 
           <Button v-if="prevAndNext.next" expand size="l" outline @click="pushPage(prevAndNext.next.path)">
-            <Flex column gap="xs" y-end>
-              <Icon name="ph:arrow-right" size="18" />
-              <p>{{ prevAndNext.next.label }}</p>
-            </Flex>
+            <template #end>
+              <Flex column gap="xs" y-end>
+                <Icon name="ph:arrow-right" size="18" />
+                <p>{{ prevAndNext.next.label }}</p>
+              </Flex>
+            </template>
           </Button>
           <div v-else />
         </Grid>

@@ -97,7 +97,7 @@ function replaceSize(className: string, size: string) {
       <template #actions>
         <Dropdown :max-height="512">
           <template #trigger="{ toggle }">
-            <Button plain expand @click="toggle">
+            <Button plain @click="toggle">
               <template #start>
                 <Badge>
                   .{{ item.className }}
@@ -148,7 +148,7 @@ function replaceSize(className: string, size: string) {
       <template #actions>
         <Dropdown :max-height="512">
           <template #trigger="{ toggle }">
-            <Button plain expand @click="toggle">
+            <Button plain @click="toggle">
               <template #start>
                 <Badge>
                   .{{ item.className }}

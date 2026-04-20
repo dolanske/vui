@@ -57,7 +57,7 @@ const computedStyle = computed(() => {
 
     <slot name="actions">
       <CopyClipboard v-if="copyable" :text="props.className" confirm="Copied!">
-        <Button plain expand>
+        <Button plain>
           <template #start>
             <Badge>
               <slot name="badge-prefix">

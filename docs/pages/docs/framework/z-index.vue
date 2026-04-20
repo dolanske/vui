@@ -21,7 +21,7 @@
       </div>
 
       <CopyClipboard :text="item.className" confirm="Copied!">
-        <Button plain expand>
+        <Button plain>
           <template #start>
             <Badge>
               .{{ item.className }}

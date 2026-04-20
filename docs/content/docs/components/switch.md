@@ -29,12 +29,14 @@ const enabled = ref(false)
 
 ### Props
 
-| Name         | Default | Type                                           |
-| ------------ | ------- | ---------------------------------------------- |
-| `modelValue` | —       | `boolean` <br> The current state of the switch |
-| `label`      | —       | `string` <br> The label text for the switch    |
-| `disabled`   | `false` | `boolean` <br> Whether the switch is disabled  |
-| `accent`     | `false` | `boolean` <br> Whether to use the accent color |
+| Name         | Default | Type                                                   |
+| ------------ | ------- | ------------------------------------------------------ |
+| `modelValue` | —       | `boolean` <br> The current state of the switch         |
+| `label`      | —       | `string` <br> The label text for the switch            |
+| `disabled`   | `false` | `boolean` <br> Whether the switch is disabled          |
+| `accent`     | `false` | `boolean` <br> Whether to use the accent color         |
+| `reversed`   | `false` | `boolean` <br> Reverses the switch and label positions |
+| `hint`       | —       | `string` <br> Helper text displayed below the switch   |
 
 ### Events
 

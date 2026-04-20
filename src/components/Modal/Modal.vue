@@ -2,7 +2,6 @@
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, useAttrs } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
@@ -79,10 +78,6 @@ function tryClose() {
     emit('close')
   }
 }
-
-const { escape } = useMagicKeys()
-
-whenever(escape, tryClose)
 
 const transition = computed(() => {
   if (transitionName === 'none')

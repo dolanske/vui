@@ -11,6 +11,8 @@ const open2 = ref(false)
 const open3 = ref(false)
 const open4 = ref(false)
 const open5 = ref(false)
+const openNested = ref(false)
+const openNestedInner = ref(false)
 
 const size = ref<Sizes | 'screen'>('s')
 function setSize(s: any) {
@@ -126,6 +128,39 @@ function setSize(s: any) {
               <p class="text-xxxxl">
                 Non dismissable modal means that it can only be closed via a provided button. Like a confirmation etc. No chance of closing it by clicking the x buttton, pressing escape or clicking the backdrop. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas nisi eos dolores ipsa perspiciatis ullam voluptates quos. Recusandae quod atque, laudantium quis, ad quaerat cumque vero quibusdam facilis, blanditiis eius.
               </p>
+              <template #footer="{ close }">
+                <Button @click="close">
+                  Close
+                </Button>
+              </template>
+            </Modal>
+          </td>
+        </tr>
+        <tr>
+          <th>Nested</th>
+          <td>
+            <Button @click="openNested = true">
+              Open
+            </Button>
+            <Modal :open="openNested" @close="openNested = false">
+              <template #header>
+                <h4>Outer Modal</h4>
+              </template>
+              <p>This is the outer modal. Click the button below to open a nested modal on top.</p>
+              <Button @click="openNestedInner = true">
+                Open inner modal
+              </Button>
+              <Modal :open="openNestedInner" @close="openNestedInner = false">
+                <template #header>
+                  <h4>Inner Modal</h4>
+                </template>
+                <p>This is the inner modal. Pressing Escape should only close this one.</p>
+                <template #footer="{ close }">
+                  <Button @click="close">
+                    Close
+                  </Button>
+                </template>
+              </Modal>
               <template #footer="{ close }">
                 <Button @click="close">
                   Close

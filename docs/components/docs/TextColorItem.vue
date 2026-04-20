@@ -24,7 +24,7 @@ const props = defineProps<Props>()
     </div>
 
     <CopyClipboard :text="props.token" confirm="Copied!">
-      <Button plain expand>
+      <Button plain>
         <template #start>
           <Badge>
             .{{ props.token }}

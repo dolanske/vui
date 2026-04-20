@@ -48,7 +48,7 @@ const commands = [
 <template>
   <DocsExample full>
     <template #component>
-      <Flex x-center y-center style="padding: var(--space-xl);">
+      <Flex x-center y-center style="padding: var(--space-xl);" expand>
         <Button @click="isOpen = true">
           Open Commands
         </Button>

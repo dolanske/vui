@@ -36,6 +36,7 @@ import { Button } from '@dolanske/vui'
 | `outline`  | `false`  | `boolean` <br> Makes the button outlined instead of filled                             |
 | `disabled` | `false`  | `boolean` <br> Disables the button                                                     |
 | `plain`    | `false`  | `boolean` <br> Removes background and border, keeping only the text                    |
+| `href`     | —        | `string` <br> URL to navigate to. When provided, renders as an anchor (`a`) element    |
 
 ### Slots
 

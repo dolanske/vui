@@ -22,7 +22,9 @@ const router = useRouter()
         <template #start>
           <Icon :name="item.icon" />
         </template>
-        {{ item.label }}
+        <span class="text-size-s">
+          {{ item.label }}
+        </span>
       </Button>
     </Flex>
 

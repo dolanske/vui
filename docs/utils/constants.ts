@@ -1,4 +1,5 @@
 export const sizeTokens = [
+  { token: '--space-0', size: '0px', name: 'No space' },
   { token: '--space-xxs', size: '4px', name: 'XXS space ' },
   { token: '--space-xs', size: '8px', name: 'XS space ' },
   { token: '--space-s', size: '12px', name: 'S space ' },
@@ -7,6 +8,28 @@ export const sizeTokens = [
   { token: '--space-xl', size: '34px', name: 'XL space ' },
   { token: '--space-xxl', size: '48px', name: 'XXL space ' },
   { token: '--space-xxxl', size: '64px', name: 'XXXL space ' },
+]
+
+export const containerTokens = [
+  { name: 'Extra small container', token: '--container-xs', size: '360px' },
+  { name: 'Small container', token: '--container-s', size: '498px' },
+  { name: 'Medium container', token: '--container-m', size: '856px' },
+  { name: 'Large container', token: '--container-l', size: '1140px' },
+  { name: 'Extra large container', token: '--container-xl', size: '1540px' },
+  { name: 'Extra extra large container', token: '--container-xxl', size: '1920px' },
+]
+
+export const borderRadiusTokens = [
+  { name: 'Extra small radius', token: '--border-radius-xs', size: '3px' },
+  { name: 'Small radius', token: '--border-radius-s', size: '5px' },
+  { name: 'Medium radius', token: '--border-radius-m', size: '8px' },
+  { name: 'Large radius', token: '--border-radius-l', size: '12px' },
+  { name: 'Pill radius', token: '--border-radius-pill', size: '164px' },
+]
+
+export const interactiveElementHeightTokens = [
+  { name: 'Default interactive element', token: '--interactive-el-height', size: '34px' },
+  { name: 'Small interactive element', token: '--interactive-el-height-s', size: '24px' },
 ]
 
 export const fontSizeTokens = [
@@ -51,8 +74,8 @@ export const darkThemeTokens = [
   { name: 'Border Strong', token: '--dark-color-border-strong', rgb: 'rgb(54, 54, 54)', hex: '#363636' },
   { name: 'Border Weak', token: '--dark-color-border-weak', rgb: 'rgb(36, 36, 36)', hex: '#242424' },
   { name: 'Accent', token: '--dark-color-accent', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
-  { name: 'Background Accent Raised', token: '--dark-color-bg-accent-raised', rgb: 'Inferred from the accent color. 40% darker', hex: null },
-  { name: 'Background Accent Lowered', token: '--dark-color-bg-accent-lowered', rgb: 'Inferred from the accent color. 55% darker', hex: null },
+  { name: 'Background Accent Raised', token: '--dark-color-bg-accent-raised', rgb: 'hsla(from var(--dark-color-accent) h s l / 0.6)', hex: null },
+  { name: 'Background Accent Lowered', token: '--dark-color-bg-accent-lowered', rgb: 'hsla(from var(--dark-color-accent) h s l / 0.45)', hex: null },
 ]
 
 export const lightThemeTokens = [
@@ -85,8 +108,8 @@ export const lightThemeTokens = [
   { name: 'Border Strong', token: '--light-color-border-strong', rgb: 'rgb(152, 152, 152)', hex: '#989898' },
   { name: 'Border Weak', token: '--light-color-border-weak', rgb: 'rgb(224, 224, 224)', hex: '#E0E0E0' },
   { name: 'Accent', token: '--light-color-accent', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
-  { name: 'Background Accent Raised', token: '--light-color-bg-accent-raised', rgb: 'Inferred from the accent color. 25% darker', hex: null },
-  { name: 'Background Accent Lowered', token: '--light-color-bg-accent-lowered', rgb: 'Inferred from the accent color. 40% darker', hex: null },
+  { name: 'Background Accent Raised', token: '--light-color-bg-accent-raised', rgb: 'hsla(from var(--light-color-accent) h s l / 0.75)', hex: null },
+  { name: 'Background Accent Lowered', token: '--light-color-bg-accent-lowered', rgb: 'hsla(from var(--light-color-accent) h s l / 0.6)', hex: null },
 ]
 
 export const componentList = [
@@ -135,9 +158,10 @@ export const componentList = [
 ]
 
 export const lineHeightTokens = [
-  { name: 'Tight', token: '--line-height-tight', height: '1.125em' },
+  { name: 'Tight', token: '--line-height-tight', height: '1.05em' },
   { name: 'Title', token: '--line-height-title', height: '1.25em' },
   { name: 'Base', token: '--line-height-base', height: '1.4em' },
+  { name: 'Loose', token: '--line-height-loose', height: '1.65em' },
 ]
 
 export const fontWeightTokens = [
@@ -159,7 +183,7 @@ export const zIndexTokens = [
   { name: 'Nav', token: '--z-nav', value: '200', description: 'Navigation elements that should stay above content' },
   { name: 'Overlay', token: '--z-overlay', value: '300', description: 'Full-screen overlays that cover the entire viewport' },
   { name: 'Popout', token: '--z-popout', value: '400', description: 'Floating elements like dropdowns and tooltips' },
-  { name: 'Toast', token: '--z-toast', value: '500', description: 'Temporary notifications that appear above other UI' },
+  { name: 'Toast', token: '--z-toast', value: '9000', description: 'Temporary notifications that appear above other UI' },
   { name: 'Modal', token: '--z-modal', value: '600', description: 'Dialog boxes that require user attention' },
 ]
 
@@ -167,6 +191,16 @@ export const transitionTokens = [
   { name: 'Fast', token: '--transition-fast', value: '0.05s all ease-in-out', description: 'Used for interactive element hover states' },
   { name: 'Default', token: '--transition', value: '0.11s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Used for appear animations of display elements' },
   { name: 'Slow', token: '--transition-slow', value: '0.25s all cubic-bezier(0.65, 0, 0.35, 1)', description: 'Slower transitions for large elements' },
+]
+
+export const lightShadowTokens = [
+  { name: 'Default shadow', token: '--light-box-shadow', value: '0 2px 12px rgba(8, 8, 8, 0.085)' },
+  { name: 'Strong shadow', token: '--light-box-shadow-strong', value: '0 4px 15px rgba(8, 8, 8, 0.2)' },
+]
+
+export const darkShadowTokens = [
+  { name: 'Default shadow', token: '--dark-box-shadow', value: '0 2px 12px rgba(8, 8, 8, 0.3)' },
+  { name: 'Strong shadow', token: '--dark-box-shadow-strong', value: '0 4px 15px rgba(8, 8, 8, 0.4)' },
 ]
 
 // CSS framework classes
@@ -223,7 +257,7 @@ export const zIndexClasses = [
   { name: 'Nav', className: 'z-nav', value: '200', description: 'Navigation elements that should stay above content' },
   { name: 'Overlay', className: 'z-overlay', value: '300', description: 'Full-screen overlays that cover the entire viewport' },
   { name: 'Popout', className: 'z-popout', value: '400', description: 'Floating elements like dropdowns and tooltips' },
-  { name: 'Toast', className: 'z-toast', value: '500', description: 'Temporary notifications that appear above other UI' },
+  { name: 'Toast', className: 'z-toast', value: '9000', description: 'Temporary notifications that appear above other UI' },
   { name: 'Modal', className: 'z-modal', value: '600', description: 'Dialog boxes that require user attention' },
 ]
 
@@ -239,12 +273,13 @@ export const spaceClasses = [
 ]
 
 export const containerClasses = [
-  { name: 'Extra small container', className: 'container-xs', description: 'Extra small container', maxWidth: 'var(--container-xs)', value: '480px' },
-  { name: 'Small container', className: 'container-s', description: 'Small container', maxWidth: 'var(--container-s)', value: '640px' },
-  { name: 'Medium container', className: 'container-m', description: 'Medium container', maxWidth: 'var(--container-m)', value: '768px' },
-  { name: 'Default container', className: 'container', description: 'Default container with auto margins and padding. This class is required to make other container sizes work.', maxWidth: 'var(--container-l)', value: '1200px' },
-  { name: 'Extra large container', className: 'container-xl', description: 'Extra large container', maxWidth: 'var(--container-xl)', value: '1400px' },
-  { name: 'Extra extra large container', className: 'container-xxl', description: 'Extra extra large container', maxWidth: 'var(--container-xxl)', value: '1600px' },
+  { name: 'Extra small container', className: 'container-xs', description: 'Extra small container', maxWidth: 'var(--container-xs)', value: '360px' },
+  { name: 'Small container', className: 'container-s', description: 'Small container', maxWidth: 'var(--container-s)', value: '498px' },
+  { name: 'Medium container', className: 'container-m', description: 'Medium container', maxWidth: 'var(--container-m)', value: '856px' },
+  { name: 'Large container', className: 'container-l', description: 'Large container', maxWidth: 'var(--container-l)', value: '1140px' },
+  { name: 'Default container', className: 'container', description: 'Default container with auto margins and padding. This class is required to make other container sizes work.', maxWidth: 'var(--container-l)', value: '1140px' },
+  { name: 'Extra large container', className: 'container-xl', description: 'Extra large container', maxWidth: 'var(--container-xl)', value: '1540px' },
+  { name: 'Extra extra large container', className: 'container-xxl', description: 'Extra extra large container', maxWidth: 'var(--container-xxl)', value: '1920px' },
   { name: 'Full width container', className: 'container-full', description: 'Full width container', maxWidth: '-', value: '100%' },
 ]
 
@@ -342,6 +377,9 @@ export const tokenPages = [
   { label: 'Theming', path: '/docs/tokens/theming' },
   { label: 'Text & Font', path: '/docs/tokens/text' },
   { label: 'Spacing', path: '/docs/tokens/spacing' },
+  { label: 'Layout', path: '/docs/tokens/layout' },
+  { label: 'Border radius', path: '/docs/tokens/border-radius' },
+  { label: 'Shadows', path: '/docs/tokens/shadows' },
   { label: 'Transitions', path: '/docs/tokens/transitions' },
   { label: 'Z-index', path: '/docs/tokens/z-index' },
 ]
