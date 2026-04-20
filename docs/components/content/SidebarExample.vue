@@ -36,7 +36,7 @@ const isOpen = ref(true)
               <Avatar v-show="isOpen" size="m" />
               <span v-show="isOpen" class="flex-1">dolanske</span>
               <Button plain size="s">
-                <Icon name="ph:logout" />
+                <Icon name="ph:sign-out" />
               </Button>
             </Flex>
           </template>
