@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Button, Card, Flex } from '@dolanske/vui'
+import Commands from '~/components/Commands.vue'
 
 const router = useRouter()
 </script>
@@ -46,6 +47,10 @@ const router = useRouter()
         </Button>
       </Flex>
     </Card>
+
+    <Flex x-center>
+      <Commands large />
+    </Flex>
 
     <a href="https://dolansky.dev/" target="_blank" class="author">
       <img src="/jdlogo.svg" alt="">

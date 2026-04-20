@@ -28,6 +28,7 @@ export interface Command {
   title: string
   description?: string
   group?: string
+  keywords?: string[]
   // Icon component
   icon?: VNode
   shortcut?: string
@@ -57,7 +58,7 @@ const results = computed(() => {
       return true
     })
     .filter(item => searchString(
-      [item.title, item.description, item.group, item.href],
+      [item.title, item.description, ...(item.keywords ?? [])],
       searchValue.value,
     ))
 })

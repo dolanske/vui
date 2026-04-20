@@ -49,6 +49,7 @@ export default defineNuxtConfig({
         'ph:upload',
         'ph:user',
         'ph:x',
+        'ph:compass',
       ],
       scan: true,
       sizeLimitKb: 256,

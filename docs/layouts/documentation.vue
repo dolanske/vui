@@ -131,9 +131,7 @@ onBeforeMount(async () => {
 
           <h5>VUI</h5>
           <div class="flex-1" />
-          <Button square outline>
-            <Icon name="ph:magnifying-glass" />
-          </Button>
+          <Commands />
         </Flex>
         <hr>
       </template>
