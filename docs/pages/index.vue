@@ -31,26 +31,30 @@ const router = useRouter()
 
     <Card separators class="p-xl mb-m">
       <p class="text-center mb-xl text-xl">
-        Homegrown Vue component library for me!! (and you)
+        Homegrown component library & design system
       </p>
 
       <Flex x-center>
-        <Button variant="gray" outline size="l" class="btn-cta" @click="router.push('/docs/projects')">
+        <!-- <Button variant="gray" outline size="l" class="btn-cta" @click="router.push('/docs/projects')">
           Examples
-        </Button>
+        </Button> -->
 
-        <Button variant="fill" size="l" class="btn-cta" @click="router.push('/docs')">
+        <Commands class="btn-cta" large />
+
+        <Button variant="accent" size="l" class="btn-cta" @click="router.push('/docs')">
           Get started
-          <template #end>
+          <!-- <template #end>
             <Icon name="ph:arrow-right" />
-          </template>
+          </template> -->
         </Button>
       </Flex>
-    </Card>
 
-    <Flex x-center>
-      <Commands large />
-    </Flex>
+      <Flex x-center class="mt-l">
+        <RouterLink to="/docs/projects" class="btn-project">
+          Projects built on top of VUI
+        </RouterLink>
+      </Flex>
+    </Card>
 
     <a href="https://dolansky.dev/" target="_blank" class="author">
       <img src="/jdlogo.svg" alt="">
@@ -59,7 +63,7 @@ const router = useRouter()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .author {
   display: flex;
   align-items: center;
@@ -76,6 +80,21 @@ const router = useRouter()
 
   img {
     width: 24px;
+  }
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.btn-project {
+  font-size: var(--font-size-xs);
+  text-decoration: underline;
+  color: var(--color-text-light);
+
+  &:hover {
+    color: var(--color-accent);
+    text-decoration: none;
   }
 }
 
@@ -98,6 +117,10 @@ const router = useRouter()
   margin-bottom: calc(var(--space-xl) - 12px);
   position: relative;
   z-index: 4;
+
+  --bg: var(--color-bg);
+  --stripe-width: 4px;
+  --stripe-gap: 24px;
 
   h1 {
     font-size: 16rem;
@@ -123,15 +146,21 @@ const router = useRouter()
     z-index: 2;
     background-image: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0) 4.55%,
-      #000000 4.55%,
-      #000000 50%,
-      rgba(0, 0, 0, 0) 50%,
-      rgba(0, 0, 0, 0) 54.55%,
-      #000000 54.55%,
-      #000000 100%
+      rgba(0, 0, 0, 0) var(--stripe-width),
+      var(--bg) var(--stripe-width),
+      var(--bg) calc(var(--stripe-gap) / 2),
+      rgba(0, 0, 0, 0) calc(var(--stripe-gap) / 2),
+      rgba(0, 0, 0, 0) calc((var(--stripe-gap) / 2) + var(--stripe-width)),
+      var(--bg) calc((var(--stripe-gap) / 2) + var(--stripe-width)),
+      var(--bg) var(--stripe-gap)
     );
-    background-size: 22px 22px;
+    background-size: var(--stripe-gap) var(--stripe-gap);
   }
+}
+
+:root.light .d-landing {
+  filter: saturate(300%);
+  --stripe-width: 6px;
+  --stripe-gap: 26px;
 }
 </style>

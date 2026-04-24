@@ -48,9 +48,13 @@ const isMac = import.meta.client && /Mac/i.test(navigator.platform)
 </script>
 
 <template>
-  <Tooltip>
-    <Button square outline :size="props.large ? 'l' : 'm'" @click="open = !open">
-      <Icon name="ph:magnifying-glass" />
+  <Tooltip :disabled="props.large">
+    <Button :square="!props.large" outline :size="props.large ? 'l' : 'm'" v-bind="$attrs" @click="open = !open">
+      {{ props.large ? 'Search' : '' }}
+      <template #start>
+        <Icon v-if="props.large" name="ph:magnifying-glass" />
+      </template>
+      <Icon v-if="!props.large" name="ph:magnifying-glass" />
     </Button>
     <template #tooltip>
       <p>
