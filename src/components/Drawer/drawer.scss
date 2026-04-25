@@ -24,6 +24,12 @@
   }
 
   &.vaul-dragging {
+    // Suppress the max-height transition while dragging so the container
+    // always fills the visible drawer area with no in-between exposed zone.
+    .vui-drawer-container {
+      transition: none;
+    }
+
     &:before {
       background-color: var(--color-text-lighter);
     }

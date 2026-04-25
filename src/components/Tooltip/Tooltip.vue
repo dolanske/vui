@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
 import { computed, ref, useAttrs, useId, useTemplateRef } from 'vue'
+import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 
@@ -43,8 +44,10 @@ const hoverAnchor = ref(false)
 const id = useId()
 const anchor = computed(() => popoutAnchorRef.value?.children[0] as HTMLElement | null)
 
+const isTablet = useBreakpoint(Breakpoints.Tablet)
+
 function setHoverState(state: boolean) {
-  if (disabled)
+  if (disabled || isTablet.value)
     return
 
   hoverAnchor.value = state
