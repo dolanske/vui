@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { formatUnitValue } from '../../shared/helpers'
 import Drawer from '../Drawer/Drawer.vue'
@@ -44,7 +44,7 @@ const emit = defineEmits<{
 }>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
-// const dropdownRef = useTemplateRef<MaybeElement>('dropdown')
+const popoutComponentRef = useTemplateRef<{ el: HTMLElement | null }>('popoutEl')
 
 const showMenu = ref(false)
 
@@ -87,10 +87,31 @@ const isMobile = useBreakpoint(Breakpoints.Mobile)
 const { escape } = useMagicKeys()
 whenever(escape, close)
 
+// We want to make sure that after opening, focus is transferred to the first
+// focusable element within Popout. And when focus is lost, we move back to the
+// trigger element. Big win for accessibility and keyboard navigation bro
+const FOCUSABLE_SELECTOR = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
 watch(showMenu, (v) => {
-  if (!v)
+  if (!v) {
     emit('close')
+  }
+  else {
+    nextTick(() => {
+      popoutComponentRef.value?.el
+        ?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)
+        ?.focus()
+    })
+  }
 })
+
+function onPopoutFocusout(event: FocusEvent) {
+  const relatedTarget = event.relatedTarget as HTMLElement | null
+  const currentTarget = event.currentTarget as HTMLElement
+  if (!currentTarget.contains(relatedTarget)) {
+    close()
+  }
+}
 
 onMounted(() => {
   if (expand && minWidth !== 156)
@@ -133,6 +154,7 @@ function handleContentClick(event: MouseEvent) {
   <!-- Desktop: Popout -->
   <Popout
     v-else
+    ref="popoutEl"
     :visible="showMenu"
     :anchor="anchorRef"
     class="vui-dropdown"
@@ -143,6 +165,7 @@ function handleContentClick(event: MouseEvent) {
     }"
     @click-outside="close"
     @click="handleContentClick"
+    @focusout="onPopoutFocusout"
   >
     <slot :open :close :toggle :is-open="showMenu" />
   </Popout>

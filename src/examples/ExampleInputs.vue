@@ -86,22 +86,28 @@ const selected2 = ref([])
           <IconPhone />
         </template>
         <template #end>
-          <Button>Clear</Button>
+          <Button size="s">
+            Clear
+          </Button>
         </template>
       </Input>
       <Input label="Two buttons" placeholder="Some stuff">
         <template #start>
-          <Button square>
+          <Button square size="s">
             <IconEye />
           </Button>
         </template>
         <template #end>
-          <Button>Clear</Button>
+          <Button size="s">
+            Clear
+          </Button>
         </template>
       </Input>
       <Input label="Icon and button" placeholder="Some stuff">
         <template #start>
-          <Button>Start</Button>
+          <Button size="s">
+            Start
+          </Button>
         </template>
         <template #end>
           <IconPhone />

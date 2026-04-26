@@ -100,7 +100,7 @@
 
     .vui-input-style,
     textarea {
-      display: block;
+      // display: block;
       border-radius: var(--border-radius-s);
       border: 1px solid var(--input-color-border);
       background: transparent;
@@ -124,15 +124,11 @@
         border: 1px solid var(--color-border);
 
         &:first-child {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-          margin-left: calc(calc(var(--input-padding) + 1px) * -1);
+          margin-left: calc(calc(var(--input-padding) - 2px) * -1);
         }
 
         &:last-child {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          margin-right: calc(calc(var(--input-padding) + 1px) * -1);
+          margin-right: calc(calc(var(--input-padding) - 2px) * -1);
         }
       }
     }
@@ -156,7 +152,7 @@
       display: block;
       /* width: 100%; */
       height: 20px;
-      border-radius: 9999px;
+      border-radius: var(--border-radius-pill);
       overflow: hidden;
       background-color: transparent;
 
@@ -169,11 +165,11 @@
           var(--color-border-strong) var(--range-progress, 0%),
           var(--color-border-strong) 100%
         );
-        border-radius: 100px;
+        border-radius: var(--border-radius-pill);
       }
       &::-moz-range-track {
         background-color: var(--color-border-strong);
-        border-radius: 100px;
+        border-radius: var(--border-radius-pill);
       }
 
       // Thumb
@@ -187,7 +183,7 @@
       // Progress fill (Firefox only; use linear-gradient on track for Chrome/Safari)
       &::-moz-range-progress {
         background-color: var(--color-accent);
-        border-radius: 100px;
+        border-radius: var(--border-radius-pill);
       }
     }
 
@@ -200,7 +196,7 @@
       opacity: 0;
 
       &:focus + label .vui-input-color-indicator {
-        outline: 2px solid var(--color-text);
+        outline: var(--outline);
       }
 
       & + label {
@@ -213,13 +209,13 @@
           border-radius: var(--border-radius-s);
 
           &:focus {
-            outline: 2px solid var(--color-text);
+            outline: var(--outline);
           }
         }
 
         .vui-input-color-indicator {
           position: absolute;
-          inset: 4px;
+          inset: 2px;
           right: unset;
           width: calc(var(--input-height) - 8px);
           background-color: var(--color-border);

@@ -73,7 +73,7 @@
     opacity: 0;
 
     &:focus-visible + label .vui-switch-icon {
-      outline: 2px solid var(--color-text);
+      outline: var(--outline);
     }
 
     & + label {
