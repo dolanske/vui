@@ -13,6 +13,36 @@ const sizes = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'] as const
             {{ size.toUpperCase() }}
           </div>
         </Flex>
+
+        <Flex center gap="m" expand>
+          <div class="example center-chip">
+            CENTER
+          </div>
+          <div class="example center-chip">
+            BOTH AXES
+          </div>
+        </Flex>
+
+        <table>
+          <tbody>
+            <tr>
+              <th>Shorthand</th>
+              <td>
+                <Flex>
+                  <code>center</code>
+                </Flex>
+              </td>
+            </tr>
+            <tr>
+              <th>Cross axis</th>
+              <td>
+                <Flex>
+                  <code>y-start</code><code>y-end</code><code>y-center</code><code>y-baseline</code><code>y-stretch</code>
+                </Flex>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </Flex>
     </template>
     <template #code>
@@ -30,5 +60,9 @@ const sizes = ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'] as const
   border-radius: var(--border-radius-m);
   background-color: var(--color-border);
   text-align: center;
+}
+
+.center-chip {
+  max-width: 160px;
 }
 </style>

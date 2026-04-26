@@ -11,12 +11,12 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 <template>
   <Divider />
-  <Divider :size="5" />
+  <Divider :size="2" type="dashed" />
   <Flex>
     <span>One</span>
     <Divider vertical height="16px" />
     <span>Two</span>
-    <Divider vertical height="16px" />
+    <Divider vertical height="24px" :size="4" />
     <span>Three</span>
   </Flex>
   <Divider>
@@ -29,12 +29,12 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name       | Default | Type                                                                       |
-| ---------- | ------- | -------------------------------------------------------------------------- |
-| `size`     | `1`     | `number` `string` <br> Divider line thickness                              |
-| `type`     | `solid` | `'solid' \| 'dashed' \| 'dotted'` <br> Divider line style                |
-| `vertical` | `false` | `boolean` <br> Makes the divider vertical instead of horizontal            |
-| `height`   | `100%`  | `number` `string` <br> Height for vertical divider (required if vertical) |
+| Name       | Default | Type                                                                                    |
+| ---------- | ------- | --------------------------------------------------------------------------------------- |
+| `size`     | `1`     | `number` `string` <br> Divider line thickness                                           |
+| `type`     | `solid` | `'solid' \| 'dashed' \| 'dotted'` <br> Divider line style                               |
+| `vertical` | `false` | `boolean` <br> Makes the divider vertical instead of horizontal                         |
+| `height`   | `100%`  | `number` `string` <br> Height for a vertical divider. Pass it when `vertical` is `true` |
 
 ### Slots
 

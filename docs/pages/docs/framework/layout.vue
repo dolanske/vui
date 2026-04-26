@@ -130,6 +130,8 @@ import { getContainerPercent } from '~/utils/format'
         The highlighted element has a <code class="inline-code">flex: 1</code> applied to it. This makes the element grow to fill available space in a flex container.
       </template>
     </TokenItem>
+
+    <p>When needed, you can use the `no-shrink` class to prevent an element from shrinking in a flex container.</p>
   </div>
 </template>
 

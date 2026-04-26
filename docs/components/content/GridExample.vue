@@ -7,7 +7,7 @@ import { Flex, Grid } from '@dolanske/vui'
     <template #component>
       <Flex column gap="m">
         <!-- Basic 3-column grid -->
-        <Grid :columns="3" gap="m" class="w-100">
+        <Grid :columns="3" gap="m" center class="w-100">
           <div class="example">
             Item 1
           </div>
@@ -47,6 +47,25 @@ import { Flex, Grid } from '@dolanske/vui'
             Bottom Right
           </div>
         </Grid>
+
+        <!-- Dense auto placement -->
+        <Grid :columns="3" auto-flow-dense gap="m" class="w-100">
+          <div class="example example-wide">
+            Wide
+          </div>
+          <div class="example">
+            2
+          </div>
+          <div class="example example-tall">
+            Tall
+          </div>
+          <div class="example">
+            4
+          </div>
+          <div class="example">
+            5
+          </div>
+        </Grid>
       </Flex>
     </template>
     <template #code>
@@ -61,10 +80,18 @@ import { Flex, Grid } from '@dolanske/vui'
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 56px;
   line-height: 24px;
   border-radius: var(--border-radius-m);
   background-color: var(--color-border);
   text-align: center;
+}
+
+.example-wide {
+  grid-column: span 2;
+}
+
+.example-tall {
+  grid-row: span 2;
 }
 </style>
