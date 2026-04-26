@@ -1,0 +1,9 @@
+:where(.vui-flex) {
+  display: var(--vui-flex-display, flex);
+  flex-wrap: var(--vui-flex-wrap, nowrap);
+  flex-direction: var(--vui-flex-direction, row);
+  justify-content: var(--vui-flex-justify, flex-start);
+  align-items: var(--vui-flex-align, flex-start);
+  gap: var(--vui-flex-gap, var(--space-s));
+  width: var(--vui-flex-width, auto);
+}

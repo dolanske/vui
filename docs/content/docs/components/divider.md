@@ -1,6 +1,6 @@
 # Divider
 
-A divider component that creates a horizontal or vertical line to separate content. It can be customized with different sizes, thicknesses, and can include content in the middle.
+A divider component that creates a horizontal or vertical line to separate content. It supports line thickness, style type, and can include content in the middle.
 
 ::divider-example
 
@@ -11,12 +11,12 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 <template>
   <Divider />
-  <Divider :thickness="5" :size="64" />
+  <Divider :size="5" />
   <Flex>
     <span>One</span>
-    <Divider vertical :size="16" />
+    <Divider vertical height="16px" />
     <span>Two</span>
-    <Divider vertical :size="16" />
+    <Divider vertical height="16px" />
     <span>Three</span>
   </Flex>
   <Divider>
@@ -29,12 +29,12 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name        | Default | Type                                                                                     |
-| ----------- | ------- | ---------------------------------------------------------------------------------------- |
-| `thickness` | `1`     | `number` <br> Thickness of the divider line in pixels                                    |
-| `size`      | `32`    | `number` `string` <br> Length of the divider (width for horizontal, height for vertical) |
-| `vertical`  | `false` | `boolean` <br> Makes the divider vertical instead of horizontal                          |
-| `margin`    | `0`     | `string` `number` <br> Margin around the divider (can be any valid CSS margin value)     |
+| Name       | Default | Type                                                                       |
+| ---------- | ------- | -------------------------------------------------------------------------- |
+| `size`     | `1`     | `number` `string` <br> Divider line thickness                              |
+| `type`     | `solid` | `'solid' \| 'dashed' \| 'dotted'` <br> Divider line style                |
+| `vertical` | `false` | `boolean` <br> Makes the divider vertical instead of horizontal            |
+| `height`   | `100%`  | `number` `string` <br> Height for vertical divider (required if vertical) |
 
 ### Slots
 

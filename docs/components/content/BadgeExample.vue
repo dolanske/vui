@@ -12,13 +12,13 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] a
           Badge
         </Badge>
       </Flex>
-      <Divider :size="48" />
+      <Divider class="my-xl" />
       <Flex x-center>
         <Badge v-for="variant in variants" :key="variant" :variant>
           Badge
         </Badge>
       </Flex>
-      <Divider :size="48" />
+      <Divider class="my-xl" />
       <Flex x-center>
         <Badge v-for="variant in variants" :key="variant" :variant outline>
           Badge

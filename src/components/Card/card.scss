@@ -47,6 +47,7 @@
     border-top-left-radius: var(--border-radius-m);
     border-top-right-radius: var(--border-radius-m);
     position: relative;
+    gap: var(--space-s);
   }
 
   .vui-card-content {

@@ -27,7 +27,7 @@ const isNonDismissableOpen = ref(false)
             </flex>
           </template>
         </Modal>
-        <Divider vertical />
+        <Divider vertical height="24px" />
         <Button @click="isScrollableOpen = true">
           Scrollable Modal
         </Button>
@@ -71,7 +71,7 @@ const isNonDismissableOpen = ref(false)
             </p>
           </div>
         </Modal>
-        <Divider vertical />
+        <Divider vertical height="24px" />
         <Button @click="isNonDismissableOpen = true">
           Non dismissable Modal
         </Button>

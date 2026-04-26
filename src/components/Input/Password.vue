@@ -26,6 +26,7 @@ const show = ref(showPassword)
     <template #end>
       <Button
         square
+        size="s"
         :aria-label="show ? 'Hide' : 'Reveal'"
         @click="show = !show"
       >

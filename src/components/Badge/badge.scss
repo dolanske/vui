@@ -13,6 +13,7 @@
   color: var(--color-text);
   border: 1px solid transparent;
   min-height: 24px;
+  flex-shrink: 0;
 
   svg,
   path {

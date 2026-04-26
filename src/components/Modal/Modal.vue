@@ -2,7 +2,7 @@
 import type { Sizes } from '../../shared/types'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { computed, useAttrs } from 'vue'
+import { computed, ref, useAttrs, watch } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import Button from '../Button/Button.vue'
@@ -72,6 +72,7 @@ const {
 const emit = defineEmits<{ close: [] }>()
 
 const attrs = useAttrs()
+const rendered = ref(open)
 
 function tryClose() {
   if (canDismiss) {
@@ -79,11 +80,14 @@ function tryClose() {
   }
 }
 
-const transition = computed(() => {
-  if (transitionName === 'none')
-    return undefined
+function handleAfterLeave() {
+  rendered.value = false
+}
 
-  return transitionName
+watch(() => open, (isOpen) => {
+  if (isOpen) {
+    rendered.value = true
+  }
 })
 
 // Automatically change modal to fullscreen on mobile
@@ -100,9 +104,15 @@ const realSize = computed(() => {
 
 <template>
   <Teleport to="body">
-    <Transition appear :name="transition">
-      <Backdrop v-if="open" :class="{ 'p-0': realSize === 'screen' }" @close="tryClose">
+    <Backdrop v-if="rendered" :class="{ 'p-0': realSize === 'screen' }" @close="tryClose">
+      <Transition
+        appear
+        :name="transitionName === 'none' ? undefined : transitionName"
+        :css="transitionName !== 'none'"
+        @after-leave="handleAfterLeave"
+      >
         <div
+          v-if="open"
           class="vui-modal"
           :class="[`vui-modal-size-${realSize}`, { scrollable: scrollable || realSize === 'screen', centered }]"
           v-bind="attrs"
@@ -112,7 +122,7 @@ const realSize = computed(() => {
               <slot name="header" :close="() => emit('close')" />
             </template>
             <template v-if="!hideCloseButton" #header-end>
-              <Button class="vui-modal-close" plain square @click="emit('close')">
+              <Button class="vui-modal-close" plain square size="s" @click="emit('close')">
                 <IconX />
               </Button>
             </template>
@@ -126,8 +136,8 @@ const realSize = computed(() => {
             </template>
           </Card>
         </div>
-      </Backdrop>
-    </Transition>
+      </Transition>
+    </Backdrop>
   </Teleport>
 </template>
 

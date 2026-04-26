@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { computed, useAttrs } from 'vue'
+import { computed, ref, useAttrs, watch } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
 import { formatUnitValue } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
@@ -27,6 +27,7 @@ const {
 const emit = defineEmits<{ close: [] }>()
 
 const attrs = useAttrs()
+const rendered = ref(open)
 
 interface Props {
   /**
@@ -68,6 +69,16 @@ function tryClose() {
   }
 }
 
+function handleAfterLeave() {
+  rendered.value = false
+}
+
+watch(() => open, (isOpen) => {
+  if (isOpen) {
+    rendered.value = true
+  }
+})
+
 const TRANSITION_OFFSET = 16
 
 const style = computed(() => {
@@ -88,47 +99,53 @@ const baseTransform = computed(() => {
     default: return `translate(${TRANSITION_OFFSET}px, 0)`
   }
 })
-
-const transition = computed(() => {
-  if (transitionName === 'none')
-    return undefined
-
-  return transitionName
-})
 </script>
 
 <template>
   <Teleport to="body">
-    <Transition appear :name="transition">
-      <Backdrop v-if="open" @close="tryClose">
-        <Card
-          class="vui-sheet"
-          :class="[`vui-sheet-position-${position}`]" :style
-          v-bind="{ ...card, ...attrs }"
-        >
-          <template v-if="$slots.header" #header>
-            <slot name="header" :close="() => emit('close')" />
-          </template>
-          <template v-if="!hideCloseButton" #header-end>
-            <Button plain square @click="emit('close')">
-              <IconX />
-            </Button>
-          </template>
-          <template #default>
-            <slot :close="() => emit('close')" />
-          </template>
-          <template v-if="$slots.footer" #footer>
-            <slot name="footer" :close="() => emit('close')" />
-          </template>
-        </Card>
-      </Backdrop>
-    </Transition>
+    <Backdrop v-if="rendered" @close="tryClose">
+      <Transition
+        appear
+        :name="transitionName === 'none' ? undefined : transitionName"
+        :css="transitionName !== 'none'"
+        @after-leave="handleAfterLeave"
+      >
+        <div v-if="open" class="vui-sheet-shell">
+          <Card
+            class="vui-sheet"
+            :class="[`vui-sheet-position-${position}`]" :style
+            v-bind="{ ...card, ...attrs }"
+          >
+            <template v-if="$slots.header" #header>
+              <slot name="header" :close="() => emit('close')" />
+            </template>
+            <template v-if="!hideCloseButton" #header-end>
+              <Button plain square size="s" @click="emit('close')">
+                <IconX />
+              </Button>
+            </template>
+            <template #default>
+              <slot :close="() => emit('close')" />
+            </template>
+            <template v-if="$slots.footer" #footer>
+              <slot name="footer" :close="() => emit('close')" />
+            </template>
+          </Card>
+        </div>
+      </Transition>
+    </Backdrop>
   </Teleport>
 </template>
 
 <style scoped lang="scss">
 .vui-backdrop {
   padding: 0;
+}
+
+.vui-sheet-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .sheet-enter-active,

@@ -9,3 +9,11 @@
 ## Documentation
 
 [Right here](https://dolanske.github.io/vui/)
+
+---
+
+## TODO
+
+- [] Migrate Hivecom divider
+- [] Fix inputs
+- [] Make inputs button slots just always use `s` sized buttons + change how they look. they should be "within"

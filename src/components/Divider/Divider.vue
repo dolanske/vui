@@ -3,34 +3,44 @@ import { computed } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
 import './divider.scss'
 
-interface Props {
-  thickness?: number
+interface BaseProps {
   size?: number | string
-  vertical?: boolean
-  margin?: string | number
+  type?: 'solid' | 'dashed' | 'dotted'
 }
 
+type Props = BaseProps & (
+  | {
+    vertical: true
+    height: number | string
+  }
+  | {
+    vertical?: false
+    height?: never
+  }
+)
+
 const {
-  thickness = 1,
-  size = 32,
+  size,
+  height,
   vertical,
-  margin = '0',
+  type = 'solid',
 } = defineProps<Props>()
 
-const h = computed(() => formatUnitValue(size))
-const w = computed(() => vertical ? 'inherit' : '100%')
-const m = computed(() => formatUnitValue(margin))
+const s = computed(() => size === undefined ? undefined : formatUnitValue(size))
+const h = computed(() => height === undefined ? undefined : formatUnitValue(height))
 </script>
 
 <template>
   <div
-    class="vui-divider" :class="{ vertical }" :style="{
-      margin: m,
-      width: w,
-      height: h,
+    class="vui-divider"
+    :class="{ vertical }"
+    :style="{
+      '--vui-divider-size': s,
+      '--vui-divider-height': vertical ? h : undefined,
+      '--vui-divider-type': type,
     }"
   >
-    <hr :style="{ [vertical ? 'borderRightWidth' : 'borderBottomWidth']: `${thickness}px` }">
+    <hr>
     <div v-if="$slots.default" class="vui-divider-slot">
       <slot />
     </div>
