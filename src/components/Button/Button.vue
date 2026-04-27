@@ -76,6 +76,7 @@ export default defineComponent({
             '--button-height': height.value,
             '--button-padding': padding.value,
           },
+          inert: props.loading,
         },
         [
           !isNil(props.loading) ? h(Spinner, { size: 's' }) : null,

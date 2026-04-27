@@ -8,8 +8,10 @@
   justify-content: center;
   position: relative;
   flex-shrink: 0;
+  width: 100%;
 
   &.vertical {
+    width: unset;
     height: var(--vui-divider-height, 100%);
   }
 

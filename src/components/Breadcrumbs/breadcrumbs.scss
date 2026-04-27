@@ -23,6 +23,10 @@
       text-decoration: none;
       padding-inline: 0;
 
+      &:is(a) {
+        cursor: pointer;
+      }
+
       &:hover {
         text-decoration: underline;
       }

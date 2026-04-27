@@ -88,6 +88,7 @@
   color: var(--color-text);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
+  cursor: pointer;
 
   // Default gray
 
@@ -288,7 +289,6 @@
     color: var(--color-text);
     background: transparent;
     text-underline-offset: 4px;
-    cursor: pointer;
 
     &:not(:disabled).active,
     &:not(:disabled):hover {

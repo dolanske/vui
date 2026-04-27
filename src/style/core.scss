@@ -118,6 +118,9 @@
     box-sizing: border-box;
     outline: none;
 
+    scrollbar-width: thin;
+    scrollbar-color: gray transparent;
+
     &:focus-visible {
       outline: var(--outline);
     }
