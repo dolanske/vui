@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "1.11.0",
+  "version": "1.11.2",
   "private": false,
   "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
@@ -20,7 +20,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/vui.js"
     },
     "./style": {
@@ -33,7 +33,7 @@
   "module": "./dist/vui.js",
   "browser": "./dist/vui.js",
   "unpkg": "./dist/vui.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "files": [
     "./dist/*",
     "LICENSE",
