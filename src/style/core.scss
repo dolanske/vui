@@ -77,8 +77,11 @@
   --z-toast: 9000;
   --z-modal: 600;
 
+  --outline: 2px solid var(--color-text-light);
+
+  --interactive-el-height-s: 28px;
   --interactive-el-height: 34px;
-  --interactive-el-height-s: 24px;
+  --interactive-el-height-l: 42px;
 }
 
 // Disable motion for users who have requested it
@@ -116,7 +119,7 @@
     outline: none;
 
     &:focus-visible {
-      outline: 2px solid var(--color-text);
+      outline: var(--outline);
     }
   }
 }

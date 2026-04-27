@@ -130,6 +130,18 @@ import { getContainerPercent } from '~/utils/format'
         The highlighted element has a <code class="inline-code">flex: 1</code> applied to it. This makes the element grow to fill available space in a flex container.
       </template>
     </TokenItem>
+
+    <TokenItem name="Flex shrink" class-name="no-shrink">
+      <template #indicator>
+        <Flex gap="m" y-center>
+          <div class="flex-indicator round no-shrink" />
+          <div class="flex-indicator w-100" />
+        </Flex>
+      </template>
+      <template #value>
+        Prevents element from shrinking when flex contains a lot of content.
+      </template>
+    </TokenItem>
   </div>
 </template>
 
@@ -139,6 +151,12 @@ import { getContainerPercent } from '~/utils/format'
   min-width: 24px;
   background-color: var(--color-border-strong);
   border-radius: 999px;
+
+  &.round {
+    height: 24px;
+    background-color: var(--color-accent);
+    border-radius: 99px;
+  }
 
   &.flex-1 {
     background-color: var(--color-accent);

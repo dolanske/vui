@@ -1,6 +1,6 @@
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s ease-in-out;
+  transition: var(--transition);
   will-change: opacity;
 }
 
@@ -8,8 +8,6 @@
 .fade-leave-to {
   opacity: 0;
 }
-
-// Positioned fade-ins
 
 // Defaults
 .fade-top-enter-active,

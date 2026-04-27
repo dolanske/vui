@@ -44,6 +44,7 @@
     min-width: var(--button-height);
     min-height: var(--button-height);
     padding: 0;
+    flex-shrink: 0;
 
     // Only allow default slot in square mode
     .vui-button-slot {

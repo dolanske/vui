@@ -2,46 +2,70 @@
 import type { Spaces } from '../../shared/types'
 import { computed } from 'vue'
 import { formatUnitValue } from '../../shared/helpers'
+import './flex.scss'
 
 export interface FlexProps {
+  /** Render as inline flex container. */
   inline?: boolean
+  /** Allow items to wrap onto multiple lines. */
   wrap?: boolean
+  /** Wrap items in reverse order. */
   wrapReverse?: boolean
 
+  /** Set main axis direction to row. */
   row?: boolean
+  /** Set main axis direction to column. */
   column?: boolean
+  /** Set main axis direction to row-reverse. */
   rowReverse?: boolean
+  /** Set main axis direction to column-reverse. */
   columnReverse?: boolean
 
+  /** Space between children. */
   gap?: Spaces | number
 
-  // NOTE: Add more if needed
+  /** Center content on both axes. */
+  center?: boolean
+  /** Align items to the start on main axis. */
   xStart?: boolean
+  /** Align items to the end on main axis. */
   xEnd?: boolean
+  /** Center items on main axis. */
   xCenter?: boolean
+  /** Distribute items with space-between on main axis. */
   xBetween?: boolean
+  /** Distribute items with space-around on main axis. */
   xAround?: boolean
+  /** Distribute items with space-evenly on main axis. */
   xEvenly?: boolean
 
-  // NOTE: Add more if needed
+  /** Center items on cross axis. */
   yCenter?: boolean
+  /** Align items to start on cross axis. */
   yStart?: boolean
+  /** Align items to end on cross axis. */
   yEnd?: boolean
+  /** Align items to text baseline on cross axis. */
   yBaseline?: boolean
+  /** Stretch items on cross axis. */
+  yStretch?: boolean
 
+  /** Expand width to 100%. */
   expand?: boolean
 }
 
 const props = withDefaults(defineProps<FlexProps>(), {
-  // eslint-disable-next-line vue/require-valid-default-prop
-  gap: 's',
+  gap: undefined,
 })
 
 // Flex gap
-const ag = computed(() => typeof props.gap === 'number'
-  ? formatUnitValue(props.gap)
-  : `var(--space-${props.gap})`,
-)
+const ag = computed(() => {
+  return typeof props.gap === 'number'
+    ? formatUnitValue(props.gap)
+    : props.gap
+      ? `var(--space-${props.gap})`
+      : undefined
+})
 
 // Flex direction
 const ad = computed(() => {
@@ -53,7 +77,7 @@ const ad = computed(() => {
     return 'row-reverse'
   else if (props.columnReverse)
     return 'column-reverse'
-  else return 'row'
+  return undefined
 })
 
 // Justify content
@@ -62,7 +86,7 @@ const aj = computed(() => {
     return 'flex-start'
   else if (props.xEnd)
     return 'flex-end'
-  else if (props.xCenter)
+  else if (props.xCenter || props.center)
     return 'center'
   else if (props.xBetween)
     return 'space-between'
@@ -70,7 +94,7 @@ const aj = computed(() => {
     return 'space-evenly'
   else if (props.xAround)
     return 'space-around'
-  else return 'flex-start'
+  return undefined
 })
 
 // Align items
@@ -79,37 +103,39 @@ const aA = computed(() => {
     return 'flex-start'
   else if (props.yEnd)
     return 'flex-end'
-  else if (props.yCenter)
+  else if (props.yCenter || props.center)
     return 'center'
+  else if (props.yStretch)
+    return 'stretch'
   else if (props.yBaseline)
     return 'baseline'
-  return 'flex-start'
+  return undefined
 })
 
-const aY = computed(() => props.inline ? 'inline-flex' : 'flex')
+const aY = computed(() => props.inline ? 'inline-flex' : undefined)
 const aW = computed(() => props.wrap
   ? 'wrap'
   : props.wrapReverse
     ? 'wrap-reverse'
-    : 'nowrap')
+    : undefined)
 
 const aH = computed(() => props.expand
   ? '100%'
   : props.inline
     ? 'fit-content'
-    : 'auto')
+    : undefined)
 </script>
 
 <template>
   <div
     class="vui-flex" :style="{
-      display: aY,
-      flexWrap: aW,
-      flexDirection: ad,
-      justifyContent: aj,
-      gap: ag,
-      alignItems: aA,
-      width: aH,
+      '--vui-flex-display': aY,
+      '--vui-flex-wrap': aW,
+      '--vui-flex-direction': ad,
+      '--vui-flex-justify': aj,
+      '--vui-flex-gap': ag,
+      '--vui-flex-align': aA,
+      '--vui-flex-width': aH,
     }"
   >
     <slot />

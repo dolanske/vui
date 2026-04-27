@@ -44,7 +44,7 @@
     opacity: 0;
 
     &:focus-visible + label .vui-radio-icon {
-      outline: 2px solid var(--color-text);
+      outline: var(--outline);
       border-radius: var(--border-radius-pill);
     }
 

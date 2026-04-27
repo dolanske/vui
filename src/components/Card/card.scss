@@ -1,4 +1,6 @@
 .vui-card {
+  --vui-card-header-align: initial;
+
   display: block;
   width: 100%;
   background-color: var(--color-bg);
@@ -40,13 +42,14 @@
 
   .vui-card-header {
     display: flex;
-    align-items: baseline;
+    align-items: var(--vui-card-header-align, baseline);
     justify-content: space-between;
     padding: var(--space-s) var(--space-m);
     background-color: var(--color-bg);
     border-top-left-radius: var(--border-radius-m);
     border-top-right-radius: var(--border-radius-m);
     position: relative;
+    gap: var(--space-s);
   }
 
   .vui-card-content {

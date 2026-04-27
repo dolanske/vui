@@ -36,8 +36,8 @@ export default defineComponent({
   setup(props, { slots }) {
     const height = computed(() => {
       switch (props.size) {
-        case Size.s: return '28px'
-        case Size.l: return '44px'
+        case Size.s: return 'var(--interactive-el-height-s)'
+        case Size.l: return 'var(--interactive-el-height-l)'
         case Size.m:
         default: return 'var(--interactive-el-height)'
       }

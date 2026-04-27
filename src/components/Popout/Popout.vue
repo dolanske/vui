@@ -104,6 +104,10 @@ watch(delayedVisible, (isVisible) => {
     closeLayer()
 }, { immediate: true })
 
+defineExpose({
+  get el() { return popoutRef.value },
+})
+
 watch(() => props.visible, (isVisible) => {
   if (isVisible) {
     clearTimeout(leaveTimeoutId)

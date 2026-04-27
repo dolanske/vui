@@ -6,6 +6,7 @@ import { useColorMode } from '@vueuse/core'
 const route = useRoute()
 const router = useRouter()
 const colorMode = useColorMode()
+const mainScrollEl = ref<HTMLElement | null>(null)
 
 type AvailableTabs = 'Style tokens' | 'CSS framework' | 'Components'
 
@@ -41,6 +42,16 @@ watch(() => route.fullPath, (currentPath) => {
   }
 }, {
   immediate: true,
+  flush: 'post',
+})
+
+// Docs layout scrolls inside <main>, so reset that container on every route
+// navigation instead of relying on window/router scroll restoration.
+watch(() => route.fullPath, () => {
+  nextTick(() => {
+    mainScrollEl.value?.scrollTo({ left: 0, top: 0, behavior: 'auto' })
+  })
+}, {
   flush: 'post',
 })
 
@@ -98,7 +109,6 @@ const breadcrumbItems = computed(() => {
 })
 
 function pushPage(page: string) {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
   router.push(page)
 }
 
@@ -158,7 +168,7 @@ onBeforeMount(async () => {
         </DropdownItem>
       </NuxtLink>
 
-      <Divider v-show="subPagesToRender" />
+      <Divider v-show="subPagesToRender" class="mt-s mb-m" />
 
       <span class="pl-xs text-xs block mb-s text-semibold">
         {{ currentTab }}
@@ -175,7 +185,7 @@ onBeforeMount(async () => {
       </DropdownItem>
     </Sidebar>
 
-    <main>
+    <main ref="mainScrollEl">
       <div class="container container-m">
         <Tabs v-model="currentTab" expand class="docs-tabs">
           <Tab v-for="item in documentationTabs" :key="item.label" :value="item.label">

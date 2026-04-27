@@ -13,7 +13,7 @@ import { Avatar, Flex } from '@dolanske/vui'
         </Avatar>
         <Avatar url="https://github.com/dolanske.png" />
 
-        <Divider vertical />
+        <Divider vertical height="24px" />
 
         <Avatar size="s" />
         <Avatar size="m" />

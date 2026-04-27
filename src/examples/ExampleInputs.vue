@@ -86,22 +86,28 @@ const selected2 = ref([])
           <IconPhone />
         </template>
         <template #end>
-          <Button>Clear</Button>
+          <Button size="s">
+            Clear
+          </Button>
         </template>
       </Input>
       <Input label="Two buttons" placeholder="Some stuff">
         <template #start>
-          <Button square>
+          <Button square size="s">
             <IconEye />
           </Button>
         </template>
         <template #end>
-          <Button>Clear</Button>
+          <Button size="s">
+            Clear
+          </Button>
         </template>
       </Input>
       <Input label="Icon and button" placeholder="Some stuff">
         <template #start>
-          <Button>Start</Button>
+          <Button size="s">
+            Start
+          </Button>
         </template>
         <template #end>
           <IconPhone />
@@ -109,7 +115,7 @@ const selected2 = ref([])
       </Input>
     </Grid>
 
-    <Divider :size="48" />
+    <Divider class="my-xl" />
 
     <h6 class="mb-l">
       Default input types
@@ -131,7 +137,7 @@ const selected2 = ref([])
       <Counter label="Counter" hint="It counts!!" />
     </Grid>
 
-    <Divider :size="48" />
+    <Divider class="my-xl" />
 
     <h6 class="mb-l">
       Textarea
@@ -148,7 +154,7 @@ const selected2 = ref([])
       <Textarea expand label="Disabled" disabled />
     </Grid>
 
-    <Divider :size="48" />
+    <Divider class="my-xl" />
 
     <h6 class="mb-l">
       Dropzone
@@ -156,7 +162,7 @@ const selected2 = ref([])
 
     <Dropzone expand />
 
-    <Divider :size="48" />
+    <Divider class="my-xl" />
 
     <h6 class="mb-l">
       Select
@@ -189,7 +195,7 @@ const selected2 = ref([])
     <div class="inline-block">
       <Select :options="longOptions" label="Short" show-clear />
     </div>
-    <Divider :size="48" />
+    <Divider class="my-xl" />
     <h6 class="mb-l">
       OTP
     </h6>

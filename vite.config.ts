@@ -1,9 +1,9 @@
 /// <reference types="vitest" />
+
 import path, { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-
 import dts from 'vite-plugin-dts'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -27,6 +27,8 @@ export default defineConfig(({ mode }) => {
         ? []
         : [dts({
             tsconfigPath: './tsconfig.app.json',
+            entryRoot: 'src',
+            outDir: 'dist',
             exclude: ['src/App.vue', 'src/main.ts', 'src/examples/**', 'src/style.scss'],
           })]),
     ],

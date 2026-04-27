@@ -32,11 +32,11 @@ const count = defineModel<number>({
 <template>
   <Input v-bind="inputProps" v-model.number="count" type="number">
     <template #end>
-      <ButtonGroup>
-        <Button v-if="!hideDecrement" key="decrease" :disabled="!decrementEnabled" :style="{ 'border-top-left-radius': 0, 'border-bottom-left-radius': 0, 'marginRight': '-1px' }" @click="count -= decrementBy">
+      <ButtonGroup :gap="2">
+        <Button v-if="!hideDecrement" key="decrease" square size="s" :disabled="!decrementEnabled" @click="count -= decrementBy">
           <IconMinus /> {{ decrementBy > 1 ? decrementBy : '' }}
         </Button>
-        <Button v-if="!hideIncrement" key="increase" :disabled="!incrementEnabled" @click="count += incrementBy">
+        <Button v-if="!hideIncrement" key="increase" square size="s" :disabled="!incrementEnabled" @click="count += incrementBy">
           <IconPlus /> {{ incrementBy > 1 ? incrementBy : '' }}
         </Button>
       </ButtonGroup>
