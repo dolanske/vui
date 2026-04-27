@@ -5,7 +5,7 @@ const projects = [
   {
     title: 'Hivecom',
     description: 'Community hub for my online friends built with nuxt, supabase and VUI. It features a fully fleshed out community management system with user management, roles, announcements, events, discord & steam integrations and so much more.',
-    url: 'https://dev.hivecom.net/',
+    url: 'https://hivecom.net/',
     logo: 'hivecom.svg',
     tags: ['Marketing', 'Admin', 'CMS'],
   },

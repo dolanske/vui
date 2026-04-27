@@ -161,7 +161,7 @@ onBeforeMount(async () => {
           <Button size="s" square variant="fill" @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">
             <Icon :name="colorMode === 'dark' ? 'ph:sun' : 'ph:moon'" />
           </Button>
-          <Button size="s" square variant="fill">
+          <Button size="s" square variant="fill" href="https://github.com/dolanske/vui" target="_blank">
             <Icon name="ph:github-logo" />
           </Button>
           <div class="flex-1" />
