@@ -1,3 +1,51 @@
+import { readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const docsContentRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), 'content/docs')
+
+function collectMarkdownRoutes(directory: string, rootDirectory = directory): string[] {
+  const entries = readdirSync(directory, { withFileTypes: true })
+
+  return entries.flatMap((entry) => {
+    const absolutePath = resolve(directory, entry.name)
+
+    if (entry.isDirectory()) {
+      return collectMarkdownRoutes(absolutePath, rootDirectory)
+    }
+
+    if (!entry.isFile() || !entry.name.endsWith('.md')) {
+      return []
+    }
+
+    const relativePath = absolutePath
+      .slice(rootDirectory.length + 1)
+      .replaceAll('\\', '/')
+
+    const normalizedPath = relativePath
+      .replace(/\.md$/, '')
+      .replace(/\/index$/, '')
+
+    // Root markdown pages are rendered by /docs/index.vue.
+    if (!normalizedPath.includes('/')) {
+      return ['/docs']
+    }
+
+    const routePath = `/docs/${normalizedPath}`
+
+    return [routePath.replace(/\/+/g, '/').replace(/\/$/, '') || '/docs']
+  })
+}
+
+const prerenderRoutes = Array.from(new Set([
+  '/docs',
+  '/docs/components',
+  '/docs/framework',
+  '/docs/projects',
+  '/docs/tokens',
+  ...collectMarkdownRoutes(docsContentRoot),
+]))
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   icon: {
@@ -89,6 +137,12 @@ export default defineNuxtConfig({
           },
         },
       },
+    },
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: prerenderRoutes,
     },
   },
   routeRules: {
