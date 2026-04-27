@@ -1,5 +1,5 @@
 import type { ShallowRef, VNode } from 'vue'
-import { computed, Fragment, shallowRef, watchEffect } from 'vue'
+import { computed, Fragment, watchPostEffect } from 'vue'
 
 type VNodesProps<T extends object> = Array<VNode & { props: T }>
 
@@ -9,8 +9,6 @@ type VNodesProps<T extends object> = Array<VNode & { props: T }>
  * @returns Computed array of flattened VNodes
  */
 export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | undefined): ShallowRef<VNodesProps<T>> {
-  const rawChildren = shallowRef<VNodesProps<T>>([])
-
   // Flatten VNodes recursively (handles Fragments)
   function flatten(vnodes: VNode[]): VNodesProps<T> {
     const result: VNode[] = []
@@ -34,13 +32,7 @@ export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | unde
     return result as VNodesProps<T>
   }
 
-  // Re-compute children whenever slot content changes
-  watchEffect(() => {
-    const content = slotFn?.() ?? []
-    rawChildren.value = flatten(content)
-  })
-
-  return computed(() => rawChildren.value)
+  return computed(() => flatten(slotFn?.() ?? []))
 }
 
 /**
@@ -52,7 +44,7 @@ export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | unde
  * @param name Expected name of the components
  */
 export function enforceSlotType(vnodes: ShallowRef<VNodesProps<any>>, name: string): void {
-  watchEffect(() => {
+  watchPostEffect(() => {
     // @ts-expect-error Accessing internals
     if (vnodes.value.some(item => item.type.__name !== name)) {
       throw new TypeError(`You can only pass \`<${name} />\` components as children.`)

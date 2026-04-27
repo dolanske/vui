@@ -7,3 +7,7 @@ export function getContainerPercent(size: string) {
   // relation to 1920px screen
   return `${Math.round((Number(size.replace('px', '')) / 1920) * 100)}%`
 }
+
+export function normalizePath(path: string) {
+  return path !== '/' ? path.replace(/\/+$/, '') : path
+}

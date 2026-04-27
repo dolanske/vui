@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ExampleCards from './examples/ExampleCards.vue'
+import ExampleAccordions from './examples/ExampleAccordions.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -8,7 +8,7 @@ setColorTheme('dark')
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleCards />
+      <ExampleAccordions />
     </div>
   </main>
 </template>

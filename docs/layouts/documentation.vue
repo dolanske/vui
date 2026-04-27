@@ -2,6 +2,7 @@
 import type { LinkItem } from '~/types/shared'
 import { BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
+import { normalizePath } from '~/utils/format'
 
 const route = useRoute()
 const router = useRouter()
@@ -66,7 +67,8 @@ const prevAndNext = computed(() => {
   if (!subPagesToRender.value)
     return null
 
-  const indexOfActive = subPagesToRender.value.findIndex(item => route.path === item.path)
+  const activePath = normalizePath(route.path)
+  const indexOfActive = subPagesToRender.value.findIndex(item => activePath === normalizePath(item.path))
 
   if (indexOfActive === -1)
     return null
@@ -79,9 +81,15 @@ const prevAndNext = computed(() => {
 
 // Reset to default route when main context changes
 watch(subPagesToRender, (pages) => {
-  if (pages) {
-    router.push(pages[0].path)
-  }
+  if (!pages)
+    return
+
+  const activePath = normalizePath(route.path)
+  const isInsideCurrentSection = pages.some(page => normalizePath(page.path) === activePath)
+
+  // Only redirect to a section root when switching contexts from a non-section route.
+  if (!isInsideCurrentSection)
+    router.replace(pages[0].path)
 })
 
 // Bredcrumbs
