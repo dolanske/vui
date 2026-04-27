@@ -9,11 +9,4 @@
 
 ## Documentation
 
-[Right here](https://dolanske.github.io/vui/)
-
----
-
-## TODO
-
-- [] Migrate Hivecom divider
-- [] Update docs
+[Visit the docs here <](https://dolanske.github.io/vui/)
