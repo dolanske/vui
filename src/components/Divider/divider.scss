@@ -1,4 +1,8 @@
 .vui-divider {
+  --vui-divider-size: initial;
+  --vui-divider-height: initial;
+  --vui-divider-type: initial;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +30,7 @@
     width: 100%;
     height: var(--vui-divider-size, 1px);
     border: none;
-    margin: 0;
+    margin: 0 !important;
     border-bottom-color: var(--color-border);
     border-bottom-style: var(--vui-divider-type, solid);
     border-bottom-width: var(--vui-divider-size, 1px);

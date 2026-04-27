@@ -158,7 +158,7 @@ onBeforeMount(async () => {
         </DropdownItem>
       </NuxtLink>
 
-      <Divider v-show="subPagesToRender" />
+      <Divider v-show="subPagesToRender" class="mt-s mb-m" />
 
       <span class="pl-xs text-xs block mb-s text-semibold">
         {{ currentTab }}

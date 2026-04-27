@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ExampleButtons from './examples/ExampleButtons.vue'
+import ExampleCards from './examples/ExampleCards.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -8,7 +8,7 @@ setColorTheme('dark')
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleButtons />
+      <ExampleCards />
     </div>
   </main>
 </template>

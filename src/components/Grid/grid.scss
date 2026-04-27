@@ -1,4 +1,13 @@
 :where(.vui-grid) {
+  --vui-grid-display: initial;
+  --vui-grid-gap: initial;
+  --vui-grid-columns: initial;
+  --vui-grid-rows: initial;
+  --vui-grid-align: initial;
+  --vui-grid-justify: initial;
+  --vui-grid-flow: initial;
+  --vui-grid-width: initial;
+
   display: var(--vui-grid-display, grid);
   gap: var(--vui-grid-gap, var(--space-s));
   grid-template-columns: var(--vui-grid-columns, none);

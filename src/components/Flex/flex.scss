@@ -1,4 +1,12 @@
 :where(.vui-flex) {
+  --vui-flex-display: initial;
+  --vui-flex-wrap: initial;
+  --vui-flex-direction: initial;
+  --vui-flex-justify: initial;
+  --vui-flex-align: initial;
+  --vui-flex-gap: initial;
+  --vui-flex-width: initial;
+
   display: var(--vui-flex-display, flex);
   flex-wrap: var(--vui-flex-wrap, nowrap);
   flex-direction: var(--vui-flex-direction, row);

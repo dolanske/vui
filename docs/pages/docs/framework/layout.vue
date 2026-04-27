@@ -131,7 +131,17 @@ import { getContainerPercent } from '~/utils/format'
       </template>
     </TokenItem>
 
-    <p>When needed, you can use the `no-shrink` class to prevent an element from shrinking in a flex container.</p>
+    <TokenItem name="Flex shrink" class-name="no-shrink">
+      <template #indicator>
+        <Flex gap="m" y-center>
+          <div class="flex-indicator round no-shrink" />
+          <div class="flex-indicator w-100" />
+        </Flex>
+      </template>
+      <template #value>
+        Prevents element form shrinking when flex contains a lot of content.
+      </template>
+    </TokenItem>
   </div>
 </template>
 
@@ -141,6 +151,12 @@ import { getContainerPercent } from '~/utils/format'
   min-width: 24px;
   background-color: var(--color-border-strong);
   border-radius: 999px;
+
+  &.round {
+    height: 24px;
+    background-color: var(--color-accent);
+    border-radius: 99px;
+  }
 
   &.flex-1 {
     background-color: var(--color-accent);

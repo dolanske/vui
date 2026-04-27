@@ -28,7 +28,7 @@ import Grid from '../components/Grid/Grid.vue'
               <h4>Hello</h4>
             </template>
             <template #header-end>
-              <Button plain size="s">
+              <Button plain size="s" square>
                 <IconX />
               </Button>
             </template>
@@ -60,7 +60,7 @@ import Grid from '../components/Grid/Grid.vue'
               <h4>Hello</h4>
             </template>
             <template #header-end>
-              <Button plain size="s">
+              <Button plain size="s" square>
                 <IconX />
               </Button>
             </template>
@@ -81,7 +81,7 @@ import Grid from '../components/Grid/Grid.vue'
             <h4>Hello</h4>
           </template>
           <template #header-end>
-            <Button plain size="s">
+            <Button plain size="s" square>
               <IconX />
             </Button>
           </template>

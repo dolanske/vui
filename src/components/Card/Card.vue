@@ -7,6 +7,7 @@ export interface Props {
   headerSeparator?: boolean
   footerSeparator?: boolean
   padding?: boolean
+  headerAlign?: 'start' | 'center' | 'end' | 'baseline'
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   separators,
   headerSeparator,
   footerSeparator,
+  headerAlign,
 } = defineProps<Props>()
 </script>
 
@@ -24,6 +26,9 @@ const {
       'header-separator': separators || headerSeparator,
       'footer-separator': separators || footerSeparator,
       'no-padding': !padding,
+    }"
+    :style="{
+      '--vui-card-header-align': headerAlign,
     }"
   >
     <div v-if="$slots.header || $slots['header-end']" class="vui-card-header">
