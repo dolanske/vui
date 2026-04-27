@@ -139,7 +139,7 @@ import { getContainerPercent } from '~/utils/format'
         </Flex>
       </template>
       <template #value>
-        Prevents element form shrinking when flex contains a lot of content.
+        Prevents element from shrinking when flex contains a lot of content.
       </template>
     </TokenItem>
   </div>

@@ -5,8 +5,8 @@ import { Button, Card, Flex } from '@dolanske/vui'
 <template>
   <DocsExample>
     <template #component>
-      <Flex x-center>
-        <Card separators>
+      <Flex x-center column gap="m" class="w-100">
+        <Card separators class="w-100">
           <template #header>
             <strong class="text-bold text-xl">Separators</strong>
           </template>
@@ -28,6 +28,21 @@ import { Button, Card, Flex } from '@dolanske/vui'
               </Button>
             </Flex>
           </template>
+        </Card>
+
+        <Card header-align="center" class="w-100" separators>
+          <template #header>
+            <strong class="text-bold text-xl mb-s block">Centered Header</strong>
+            <p>Use <code>header-align</code> to vertically align header content. This is useful when you the header contains more than just the card title.</p>
+          </template>
+          <template #header-end>
+            <Button plain size="s" square>
+              <Icon name="ph:x" />
+            </Button>
+          </template>
+          <p class="m-0">
+            Hello I'm a description and completely unrelated to this example.
+          </p>
         </Card>
       </Flex>
     </template>
