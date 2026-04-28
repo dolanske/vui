@@ -7,14 +7,14 @@ const projects = [
     description: 'Community hub for my online friends built with nuxt, supabase and VUI. It features a fully fleshed out community management system with user management, roles, announcements, events, discord & steam integrations and so much more.',
     url: 'https://hivecom.net/',
     logo: 'hivecom.svg',
-    tags: ['Marketing', 'Admin', 'CMS'],
+    tags: ['Marketing', 'Management UI'],
   },
   {
     title: 'VUI docs',
     description: 'The website you\'re currently viewing has been created using the VUI component library.',
-    url: '/',
+    url: 'https://dolanske.github.io/vui',
     logo: 'vui.svg',
-    tags: ['Documentation', 'CMS'],
+    tags: ['Documentation'],
   },
 ] as const
 </script>
@@ -78,7 +78,6 @@ const projects = [
     .vui-card {
       border-color: var(--color-border-strong);
       background-color: var(--color-bg-lowered);
-      cursor: default;
     }
   }
 
