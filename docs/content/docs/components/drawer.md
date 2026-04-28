@@ -53,6 +53,7 @@ The drawer component requires a root element with the `vaul-drawer-wrapper` attr
 | `activeSnapPoint` | —       | `number` `string` `null` <br> Active snap point in controlled mode (`v-model:activeSnapPoint`)                                                                                                                         |
 | `rootProps`       | —       | `DrawerRootProps` <br> Props to pass to the underlying Vaul root component. [Type definitions](https://github.com/unovue/vaul-vue/blob/1b1f6dfdba6a775410508884097443d35c9a8690/packages/vaul-vue/src/controls.ts#L24) |
 | `portalProps`     | —       | `DrawerPortalProps` <br> Props to pass to the underlying Vaul portal component. [Type definitions](https://reka-ui.com/docs/components/dialog#portal)                                                                  |
+| `overlay`         | `true`  | `boolean` <br> Whether to render the drawer backdrop                                                                                                                                                                   |
 
 ### Events
 

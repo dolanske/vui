@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import ExampleDropdowns from './examples/ExampleDropdowns.vue'
+import ExampleDrawers from './examples/ExampleDrawers.vue'
 import { setColorTheme } from './shared/theme'
 
-setColorTheme('light')
+setColorTheme('dark')
 </script>
 
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleDropdowns />
+      <ExampleDrawers />
     </div>
   </main>
 </template>

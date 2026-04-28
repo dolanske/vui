@@ -49,6 +49,7 @@ function setSize(s: any) {
               :open
               title="Hello"
               :container-size="size"
+              overlay
               @close="open = false"
             >
               <h2>Hello</h2>

@@ -44,7 +44,14 @@ interface Props {
    * Control the underlying Vaul root component
    */
   rootProps?: DrawerRootProps
+  /**
+   * Control Vaul's portal component
+   */
   portalProps?: DrawerPortalProps
+  /**
+   * Whether to render the drawer backdrop
+   */
+  overlay?: boolean
 }
 
 defineOptions({
@@ -61,6 +68,7 @@ const {
   open = false,
   nested = false,
   activeSnapPoint,
+  overlay = true,
 } = defineProps<Props>()
 
 const emit = defineEmits<{
@@ -69,24 +77,7 @@ const emit = defineEmits<{
 }>()
 
 const attrs = useAttrs()
-
-// const mW = computed(() => {
-//   if (typeof containerSize === 'string') {
-//     if (containerSize === 'full') {
-//       return '100%'
-//     }
-//     else {
-//       return getComputedStyle(document.documentElement)
-//         .getPropertyValue(`--container-${containerSize}`)
-//     }
-//   }
-//   else {
-//     return `${containerSize}px`
-//   }
-// })
-
 const id = useId()
-
 const hasSnapPoints = computed(() => !!(rootProps?.snapPoints?.length))
 
 // Track active snap point so the container max-height can match the currently
@@ -239,7 +230,7 @@ watchEffect(() => {
     @update:active-snap-point="handleSnapPointUpdate"
   >
     <DrawerPortal v-bind="portalProps">
-      <DrawerOverlay class="vui-drawer-overlay" />
+      <DrawerOverlay v-if="overlay" class="vui-drawer-overlay" />
       <DrawerContent
         class="vui-drawer-content"
         :class="{ 'hide-handle': handle === false, 'has-snap-points': hasSnapPoints }"

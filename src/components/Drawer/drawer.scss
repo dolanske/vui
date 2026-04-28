@@ -1,6 +1,7 @@
 .vui-drawer-content {
-  // Changing this variable keeps padding-top and the JS max-height calc in sync.
   --vui-drawer-top-offset: 28px;
+  --vui-drawer-shadow-open: 0px -12px 48px 24px var(--color-bg-lowered);
+  --vui-drawer-shadow-closed: 0px 0px 0px 0px transparent;
 
   background-color: var(--color-bg-medium);
   border-top-left-radius: var(--border-radius-l);
@@ -10,7 +11,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: 0px -12px 48px 24px var(--color-bg-lowered);
+  box-shadow: var(--vui-drawer-shadow-closed);
+
+  will-change: box-shadow;
+  transition: var(--transition-fast);
+
+  &[data-state='open'] {
+    box-shadow: var(--vui-drawer-shadow-open);
+  }
+
+  &[data-state='closed'] {
+    box-shadow: var(--vui-drawer-shadow-closed);
+  }
 
   // Vaul positions snap points via translateY on an element assumed to be
   // 100dvh tall. Without an explicit height the element shrinks to content
@@ -90,8 +102,21 @@
   }
 }
 
+.vui-drawer-overlay {
+  --vui-drawer-overlay-max-opacity: 75%;
+  --vui-drawer-overlay-color: initial;
+
+  position: fixed;
+  inset: 0;
+  background-color: color-mix(
+    in srgb,
+    var(--vui-drawer-overlay-color, var(--color-bg-raised)) var(--vui-drawer-overlay-max-opacity),
+    transparent
+  );
+}
+
 :root.light .vui-drawer-content {
-  box-shadow: 0px -12px 48px 24px color-mix(in srgb, var(--color-text) 35%, transparent);
+  --vui-drawer-shadow-open: 0px -12px 48px 24px color-mix(in srgb, var(--color-text-light) 35%, transparent);
 }
 
 // Vaul's ::after has height: 200% which blocks touch events on overflowed
