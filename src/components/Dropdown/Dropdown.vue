@@ -108,9 +108,24 @@ watch(showMenu, (v) => {
 function onPopoutFocusout(event: FocusEvent) {
   const relatedTarget = event.relatedTarget as HTMLElement | null
   const currentTarget = event.currentTarget as HTMLElement
+
+  if (!relatedTarget)
+    return
+
   if (!currentTarget.contains(relatedTarget)) {
-    close()
+    anchorRef.value?.focus()
   }
+}
+
+function onTriggerClickCapture(event: MouseEvent) {
+  // Prevent trigger-level toggle handlers from re-opening due to event order
+  // when the menu is already visible.
+  if (!showMenu.value)
+    return
+
+  event.preventDefault()
+  event.stopPropagation()
+  close()
 }
 
 onMounted(() => {
@@ -137,6 +152,7 @@ function handleContentClick(event: MouseEvent) {
     :aria-expanded="showMenu"
     :aria-haspopup="true"
     name="Dropdown menu"
+    @click.capture="onTriggerClickCapture"
   >
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
   </div>

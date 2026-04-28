@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
+import ExampleDropdowns from './examples/ExampleDropdowns.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('light')
@@ -8,7 +8,7 @@ setColorTheme('light')
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleCheckboxes />
+      <ExampleDropdowns />
     </div>
   </main>
 </template>
