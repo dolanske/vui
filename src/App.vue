@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import ExampleAccordions from './examples/ExampleAccordions.vue'
+import ExampleCheckboxes from './examples/ExampleCheckboxes.vue'
 import { setColorTheme } from './shared/theme'
 
-setColorTheme('dark')
+setColorTheme('light')
 </script>
 
 <template>
   <main vaul-drawer-wrapper>
     <div class="container container-m pt-xxl">
-      <ExampleAccordions />
+      <ExampleCheckboxes />
     </div>
   </main>
 </template>

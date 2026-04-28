@@ -1,9 +1,11 @@
 .vui-switch {
-  --switch-size: 24px;
+  --vui-switch-size: 24px;
+  --vui-switch-indicator-offset: 6px;
+  --vui-switch-align: center;
 
   &.checked {
     .vui-switch-icon .vui-switch-indicator {
-      left: calc(100% - 24px);
+      left: calc(100% - var(--vui-switch-size) + calc(var(--vui-switch-indicator-offset) / 2));
       background-color: var(--color-text);
     }
 
@@ -45,7 +47,7 @@
 
   .vui-switch-icon {
     width: 44px;
-    height: var(--switch-size);
+    height: var(--vui-switch-size);
     border-radius: var(--border-radius-pill);
     background-color: var(--color-bg-raised);
     position: relative;
@@ -54,10 +56,10 @@
     .vui-switch-indicator {
       display: block;
       position: absolute;
-      left: 2px;
-      top: 2px;
-      width: 20px;
-      height: 20px;
+      left: calc(var(--vui-switch-indicator-offset) / 2);
+      top: calc(var(--vui-switch-indicator-offset) / 2);
+      width: calc(var(--vui-switch-size) - var(--vui-switch-indicator-offset));
+      height: calc(var(--vui-switch-size) - var(--vui-switch-indicator-offset));
       border-radius: var(--border-radius-pill);
       background-color: var(--color-text-lighter);
       transition: var(--transition);
@@ -79,6 +81,7 @@
     & + label {
       display: grid;
       grid-template-columns: 44px 1fr;
+      align-items: var(--vui-switch-align, center);
       gap: 10px;
       font-size: var(--font-size-m);
       color: var(--color-text);
@@ -91,8 +94,8 @@
         &:is(p) {
           height: auto;
           line-height: var(--line-height-base);
-          // height: var(--switch-size);
-          // line-height: var(--switch-size);
+          height: var(--vui-switch-size);
+          line-height: var(--vui-switch-size);
           font-size: var(--font-size-m);
         }
       }
