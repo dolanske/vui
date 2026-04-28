@@ -118,8 +118,8 @@ function onPopoutFocusout(event: FocusEvent) {
 }
 
 function onTriggerClickCapture(event: MouseEvent) {
-  // Prevent trigger-level toggle handlers from re-opening due to event order
-  // when the menu is already visible.
+  // Ensures that clicking trigger while dropdown is open does not reopen it
+  // immediately but closes it properly
   if (!showMenu.value)
     return
 
