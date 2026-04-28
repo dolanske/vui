@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "1.11.5",
+  "version": "1.11.6",
   "private": false,
   "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
@@ -16,7 +16,9 @@
     "vue3",
     "component",
     "component library",
-    "vue3 components"
+    "vue3 components",
+    "design system",
+    "ui library"
   ],
   "exports": {
     ".": {
