@@ -32,7 +32,20 @@ type Props = {
   disabled?: boolean
   errors?: string[]
   size?: Sizes
+  /**
+   * Set he max height of the dropdown element before it starts scrolling
+   */
+  maxHeight?: number | string
+  /**
+   * Disable mobile drawer behavior, always use the floating dropdown.
+   */
   noMobileDrawer?: boolean
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition. This is useful when using viewTransitions to prevent conflicts between default animation and the view transition
+   */
+  transitionName?: string | 'none'
 }
 
 const {
@@ -50,6 +63,8 @@ const {
   errors = [] as string[],
   size = 'm',
   noMobileDrawer = false,
+  transitionName,
+  maxHeight,
 } = defineProps<Props>()
 
 const sizeStyle = computed(() => {
@@ -144,6 +159,8 @@ const id = useId()
     <Dropdown
       ref="dropdown"
       :expand
+      :max-height
+      :transition-name
       :no-mobile-drawer="noMobileDrawer"
       @close="triggerRef?.focus({ preventScroll: true })"
     >

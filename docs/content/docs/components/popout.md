@@ -44,7 +44,7 @@ const anchorRef = ref(null)
 | `placement`       | `top`   | `string` <br> Position of the popout relative to the anchor                                                                                    |
 | `offset`          | `8`     | `number` <br> Distance between the anchor and the popout in pixels                                                                             |
 | `visible`         | —       | `boolean` <br> Whether the popout is visible                                                                                                   |
-| `transition-name` | —       | `string` `none` <br> Allows you to change or disable the vue transition for the popout appear. By default, placement-based transition is used. |
+| `transition-name` | —       | `string` `none` <br> Allows you to change or disable the Vue transition for the popout appear. By default, placement-based transition is used. Set to `none` when using the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) to prevent the default animation from conflicting with your view transition. |
 | `teleport`        | `true`  | `boolean` <br> Whether the popout is teleported to `body`                                                                                      |
 | `enter-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout becomes visible after `visible` turns true                                               |
 | `leave-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout hides after `visible` turns false                                                        |

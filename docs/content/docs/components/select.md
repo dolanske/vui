@@ -51,7 +51,9 @@ const options = [
 | `size`             | `m`     | `s` `m` `l` <br> Controls the input height and padding                            |
 | `showClear`        | `false` | `boolean` <br> Shows a clear button when there is a selected value                |
 | `maxActiveOptions` | —       | `number` <br> Maximum number of options that can be selected (multiple mode only) |
+| `maxHeight`        | —       | `number` `string` <br> Maximum height of the dropdown before it starts scrolling  |
 | `noMobileDrawer`   | `false` | `boolean` <br> Disables mobile drawer behavior in the underlying dropdown         |
+| `transition-name`  | —       | `string` `none` <br> Allows you to change or disable the Vue transition for dropdown appear. By default, placement-based transition is used. Set to `none` when using the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) to prevent the default animation from conflicting with your view transition. |
 
 ### Events
 

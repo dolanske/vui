@@ -27,7 +27,7 @@ export interface Props {
   /**
    * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
    *
-   * Setting the value to `none` will not apply any transition
+   * Setting the value to `none` will not apply any transition. This is useful when using viewTransitions to prevent conflicts between default animation and the view transition
    */
   transitionName?: string | 'none'
   /**
@@ -137,7 +137,7 @@ watch(() => props.visible, (isVisible) => {
 
 <template>
   <Teleport to="body" :disabled="props.teleport !== true">
-    <Transition :name="transition">
+    <Transition :name="transition" :css="transitionName !== 'none'">
       <div
         v-if="delayedVisible"
         ref="popout"

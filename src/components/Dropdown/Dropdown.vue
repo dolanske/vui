@@ -29,6 +29,12 @@ export interface Props {
    * Disable mobile drawer behavior, always use the floating dropdown.
    */
   noMobileDrawer?: boolean
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition. This is useful when using viewTransitions to prevent conflicts between default animation and the view transition
+   */
+  transitionName?: string | 'none'
 }
 
 const {
@@ -37,6 +43,7 @@ const {
   expand,
   minWidth = 156,
   noMobileDrawer = false,
+  transitionName,
 } = defineProps<Props>()
 
 const emit = defineEmits<{
@@ -179,6 +186,7 @@ function handleContentClick(event: MouseEvent) {
       minWidth: expand ? w : mW,
       maxHeight: formatUnitValue(maxHeight),
     }"
+    :transition-name
     @click-outside="close"
     @click="handleContentClick"
     @focusout="onPopoutFocusout"

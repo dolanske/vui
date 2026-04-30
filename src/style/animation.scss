@@ -20,6 +20,7 @@
 .fade-left-leave-active {
   transition: var(--transition);
   transition-property: transform, opacity;
+  will-change: transform, opacity;
 }
 
 // Specifics

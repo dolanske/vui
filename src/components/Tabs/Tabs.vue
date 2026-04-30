@@ -9,12 +9,19 @@ interface Props {
   variant?: 'default' | 'filled'
   expand?: boolean
   disabled?: boolean
+  /**
+   * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
+   *
+   * Setting the value to `none` will not apply any transition. This is useful when using the View Transitions API to prevent conflicts between the default animation and the view transition.
+   */
+  transitionName?: string | 'none'
 }
 
 const {
   expand,
   disabled,
   variant = 'default',
+  transitionName = 'fade',
 } = defineProps<Props>()
 
 const slots = defineSlots()
@@ -85,7 +92,7 @@ enforceSlotType(flattened, 'Tab')
       <slot name="end" />
     </template>
 
-    <Transition name="fade" appear>
+    <Transition :name="transitionName === 'none' ? undefined : transitionName" :css="transitionName !== 'none'" appear>
       <div v-if="active" ref="underline" class="vui-tab-underline" />
     </Transition>
   </div>

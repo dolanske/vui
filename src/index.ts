@@ -55,9 +55,10 @@ import { pushToast, removeToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
-import { vuiBreakpoints } from './shared/breakpoints'
+import { useBreakpoint, vuiBreakpoints } from './shared/breakpoints'
 import { searchString } from './shared/helpers'
 import { setColorTheme, theme } from './shared/theme'
+import { useViewTransition } from './shared/viewTransition'
 import './style.scss'
 
 export {
@@ -124,5 +125,7 @@ export {
   theme,
   Toasts,
   Tooltip,
+  useBreakpoint,
+  useViewTransition,
   vuiBreakpoints,
 }

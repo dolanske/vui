@@ -42,7 +42,7 @@ export interface ModalProps {
   /**
    * By default, elements with transition already use a default fade transition. This can be replaced by a custom vue transition class name.
    *
-   * Setting the value to `none` will not apply any transition
+   * Setting the value to `none` will not apply any transition. This is useful when using the View Transitions API to prevent conflicts between the default animation and the view transition.
    */
   transitionName?: string | 'none'
   /**

@@ -4,6 +4,7 @@
   height: 100%;
   position: relative;
   pointer-events: none;
+  view-transition-name: none;
 
   &.centered {
     display: flex;
