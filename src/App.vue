@@ -5,6 +5,7 @@ import Button from './components/Button/Button.vue'
 import Card from './components/Card/Card.vue'
 import Flex from './components/Flex/Flex.vue'
 import Modal from './components/Modal/Modal.vue'
+import ExampleAvatars from './examples/ExampleAvatars.vue'
 import { setColorTheme } from './shared/theme'
 import { useViewTransition } from './shared/viewTransition'
 
@@ -27,7 +28,7 @@ function closeProfile() {
 </script>
 
 <template>
-  <main vaul-drawer-wrapper>
+  <main vaul-drawer-wrapper class="container-l">
     <div class="container container-m pt-xxl">
       <Card class="profile-preview" @click="openProfile">
         <Flex y-start gap="m">
@@ -82,6 +83,8 @@ function closeProfile() {
         </template>
       </Modal>
     </div>
+
+    <ExampleAvatars />
   </main>
 </template>
 

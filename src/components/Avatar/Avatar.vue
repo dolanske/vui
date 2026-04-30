@@ -24,11 +24,12 @@ const {
 } = defineProps<Props>()
 
 const showFallback = ref(false)
+const PILL_RADIUS_THRESHOLD = 164
 
+const aS = computed(() => typeof size === 'number' ? formatUnitValue(size) : undefined)
 const aR = computed(() => {
-  // Only apply custom radius if it's a number and greater than 164px to prevent breaking the avatar shape
-  if (typeof radius === 'number' && radius > 164)
-    return radius
+  if (typeof radius === 'number')
+    return radius > PILL_RADIUS_THRESHOLD ? formatUnitValue(radius) : 'var(--border-radius-pill)'
 
   return `var(--border-radius-${radius})`
 })
@@ -39,10 +40,8 @@ const aR = computed(() => {
     class="vui-avatar"
     :class="[`vui-avatar-size-${typeof size === 'number' ? 'l' : size}`]"
     :style="{
-      ...(typeof size === 'number' && {
-        '--avatar-size': formatUnitValue(size),
-      }),
-      borderRadius: aR,
+      '--vui-avatar-size': aS,
+      '--vui-avatar-border-radius': aR,
     }"
   >
     <span v-if="$slots.default">

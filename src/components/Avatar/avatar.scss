@@ -1,41 +1,43 @@
-.vui-avatar {
-  --avatar-size: 36px;
+:where(.vui-avatar) {
+  --vui-avatar-size: var(--interactive-el-height);
+  --vui-avatar-font-size: var(--font-size-s);
+  --vui-avatar-border-radius: 100%;
 
   &.vui-avatar-size-s {
-    --avatar-size: 28px;
+    --vui-avatar-size: 28px;
+    --vui-avatar-font-size: var(--font-size-xs);
+  }
 
-    strong {
-      font-size: var(--font-size-xs);
-    }
+  &.vui-avatar-size-m {
+    --vui-avatar-size: var(--interactive-el-height);
+    --vui-avatar-font-size: var(--font-size-s);
   }
 
   &.vui-avatar-size-l {
-    --avatar-size: 48px;
-
-    strong {
-      font-size: var(--font-size-l);
-    }
+    --vui-avatar-size: 48px;
+    --vui-avatar-font-size: var(--font-size-m);
   }
 
-  width: var(--avatar-size);
-  height: var(--avatar-size);
-  border-radius: 100%;
+  width: var(--vui-avatar-size, var(--interactive-el-height));
+  height: var(--vui-avatar-size, var(--interactive-el-height));
+  border-radius: var(--vui-avatar-border-radius, 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background-color: var(--color-bg-raised);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   flex-shrink: 0;
+  font-size: var(--vui-avatar-font-size, var(--font-size-s));
 
-  svg {
+  svg,
+  .iconify {
     color: var(--color-text-light);
     font-size: inherit;
   }
 
-  strong {
-    display: block;
-    font-size: var(--font-size-m);
+  & > * {
+    font-size: inherit;
     line-height: 1;
   }
 
