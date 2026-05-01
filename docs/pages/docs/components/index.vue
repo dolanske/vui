@@ -27,7 +27,7 @@ const filteredComponents = computed(() => {
           <Icon name="ph:magnifying-glass" />
         </template>
         <template #end>
-          <Button v-if="search" plain square @click="search = ''">
+          <Button v-if="search" plain square size="s" @click="search = ''">
             <Icon name="ph:x" />
           </Button>
         </template>

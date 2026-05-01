@@ -35,10 +35,6 @@ import { Carousel } from '@dolanske/vui'
 | `hideScrollbar` | —       | `boolean` <br> Hides the horizontal scrollbar and removes scrollbar gutter padding                                               |
 | `hideShadows`   | —       | `boolean` <br> Hides the left & right scroll shadow indicators                                                                   |
 
-### Events
-
-The Carousel does not emit any events.
-
 ### Slots
 
 | Name      | Props | Description                                                  |

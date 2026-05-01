@@ -31,6 +31,7 @@ import Password from './components/Input/Password.vue'
 import Textarea from './components/Input/Textarea.vue'
 import Kbd from './components/Kbd/Kbd.vue'
 import KbdGroup from './components/Kbd/KbdGroup.vue'
+import Marquee from './components/Marquee/Marquee.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Modal from './components/Modal/Modal.vue'
 import OTP from './components/OTP/OTP.vue'
@@ -95,6 +96,7 @@ export {
   Input,
   Kbd,
   KbdGroup,
+  Marquee,
   Modal,
   OTP,
   OTPItem,
