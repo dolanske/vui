@@ -84,4 +84,21 @@
       }
     }
   }
+
+  // Collapse double border between adjacent outline buttons when gap is 0
+  &.gap-zero:not(.vertical) > :not(:last-child) {
+    &.vui-button.outline,
+    > .vui-button.outline,
+    > * > .vui-button.outline {
+      margin-right: -1px;
+    }
+  }
+
+  &.gap-zero.vertical > :not(:last-child) {
+    &.vui-button.outline,
+    > .vui-button.outline,
+    > * > .vui-button.outline {
+      margin-bottom: -1px;
+    }
+  }
 }

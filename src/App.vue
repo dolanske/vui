@@ -5,7 +5,7 @@ import Button from './components/Button/Button.vue'
 import Card from './components/Card/Card.vue'
 import Flex from './components/Flex/Flex.vue'
 import Modal from './components/Modal/Modal.vue'
-import ExampleAvatars from './examples/ExampleAvatars.vue'
+import ExampleButtons from './examples/ExampleButtons.vue'
 import { setColorTheme } from './shared/theme'
 import { useViewTransition } from './shared/viewTransition'
 
@@ -84,7 +84,7 @@ function closeProfile() {
       </Modal>
     </div>
 
-    <ExampleAvatars />
+    <ExampleButtons />
   </main>
 </template>
 

@@ -300,6 +300,87 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
             </Flex>
           </td>
         </tr>
+        <tr>
+          <td>Button groups outline</td>
+          <td>
+            <Flex gap="s" wrap>
+              <ButtonGroup v-for="btn in variants" :key="btn">
+                <Button outline :variant="btn">
+                  Hello
+                </Button>
+                <Button outline :variant="btn" square>
+                  <IconCaretDown />
+                </Button>
+              </ButtonGroup>
+
+              <ButtonGroup>
+                <Tooltip>
+                  <Button outline square active>
+                    <IconTextBBold />
+                  </Button>
+                  <template #tooltip>
+                    Bold
+                  </template>
+                </Tooltip>
+                <CopyClipboard text="Hello from ButtonGroup!" confirm="Copied!">
+                  <Tooltip>
+                    <Button outline square>
+                      <IconTextItalic />
+                    </Button>
+                    <template #tooltip>
+                      Click to copy
+                    </template>
+                  </Tooltip>
+                </CopyClipboard>
+                <Tooltip>
+                  <Button outline square active>
+                    <IconTextAUnderline />
+                  </Button>
+                  <template #tooltip>
+                    Underline
+                  </template>
+                </Tooltip>
+              </ButtonGroup>
+
+              <ButtonGroup vertical>
+                <Button outline square active>
+                  <IconTextBBold />
+                </Button>
+                <Button outline square>
+                  <IconTextBold />
+                </Button>
+                <Button outline square>
+                  <IconTextItalic />
+                </Button>
+                <Dropdown placement="bottom-end">
+                  <template #trigger="{ toggle }">
+                    <Button outline square @click="toggle">
+                      <IconCaretDown />
+                    </Button>
+                  </template>
+                  <DropdownItem>Deploy to staging</DropdownItem>
+                  <DropdownItem>Deploy to production</DropdownItem>
+                  <DropdownItem>Rollback</DropdownItem>
+                </Dropdown>
+              </ButtonGroup>
+              <ButtonGroup>
+                <Button outline>
+                  Deploy
+                </Button>
+                <Dropdown placement="bottom-end">
+                  <template #trigger="{ toggle }">
+                    <Button outline square @click="toggle">
+                      <IconCaretDown />
+                    </Button>
+                  </template>
+                  <DropdownItem>Deploy to staging</DropdownItem>
+                  <DropdownItem>Deploy to production</DropdownItem>
+                  <DropdownItem>Rollback</DropdownItem>
+                </Dropdown>
+              </ButtonGroup>
+            </Flex>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

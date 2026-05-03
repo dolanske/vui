@@ -4,6 +4,7 @@ import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
 import Avatar from './components/Avatar/Avatar.vue'
+import AvatarGroup from './components/Avatar/AvatarGroup.vue'
 import Badge from './components/Badge/Badge.vue'
 import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem.vue'
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.vue'
@@ -67,6 +68,7 @@ export {
   AccordionGroup,
   Alert,
   Avatar,
+  AvatarGroup,
   Backdrop,
   Badge,
   BreadcrumbItem,

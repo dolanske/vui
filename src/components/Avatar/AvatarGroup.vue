@@ -91,6 +91,8 @@ const formatted = computed(() => {
 
 <style>
 .vui-avatar-group {
+  --vui-avatar-group-border: var(--color-bg);
+
   &.cluster {
     gap: 0 !important;
 
@@ -112,7 +114,7 @@ const formatted = computed(() => {
 
       &:is(.vui-avatar),
       .vui-avatar {
-        border: 3px solid var(--color-bg) !important;
+        border: 3px solid var(--vui-avatar-group-border) !important;
       }
     }
   }

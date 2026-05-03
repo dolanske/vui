@@ -6,26 +6,26 @@ import { Button, ButtonGroup, Flex } from '@dolanske/vui'
   <DocsExample>
     <template #component>
       <Flex x-center wrap>
-        <ButtonGroup>
-          <Button outline>
+        <ButtonGroup :gap="2">
+          <Button size="s">
             Hello
           </Button>
-          <Button outline>
+          <Button size="s">
             <Icon name="ph:caret-down" />
           </Button>
         </ButtonGroup>
 
         <ButtonGroup>
-          <Button square active>
+          <Button outline square active>
             <Icon name="ph:text-b-bold" />
           </Button>
-          <Button square>
+          <Button outline square>
             <Icon name="ph:text-bold" />
           </Button>
-          <Button square>
+          <Button outline square>
             <Icon name="ph:text-italic" />
           </Button>
-          <Button square>
+          <Button outline square>
             <Icon name="ph:text-a-underline" />
           </Button>
         </ButtonGroup>
