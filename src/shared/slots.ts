@@ -2,13 +2,38 @@ import type { ShallowRef, VNode } from 'vue'
 import { computed, Fragment, watchPostEffect } from 'vue'
 
 type VNodesProps<T extends object> = Array<VNode & { props: T }>
+type SlotFn = () => VNode[] | VNode | undefined
+
+function getTopLevelSlotNodes(slotFn?: SlotFn): VNode[] {
+  const nodes = slotFn?.()
+
+  if (!nodes)
+    return []
+
+  const topLevelNodes = Array.isArray(nodes) ? nodes : [nodes]
+  const result: VNode[] = []
+
+  const unwrapTopLevelFragments = (vnodes: VNode[]): void => {
+    vnodes.forEach((vnode) => {
+      if (vnode.type === Fragment && Array.isArray(vnode.children)) {
+        unwrapTopLevelFragments(vnode.children as VNode[])
+      }
+      else {
+        result.push(vnode)
+      }
+    })
+  }
+
+  unwrapTopLevelFragments(topLevelNodes)
+  return result
+}
 
 /**
  * Flattens slot children and keeps them in sync reactively.
+ *
  * @param slotFn The slot function (e.g., slots.default)
- * @returns Computed array of flattened VNodes
  */
-export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | undefined): ShallowRef<VNodesProps<T>> {
+export function useFlattenedSlot<T extends object>(slotFn?: SlotFn): ShallowRef<VNodesProps<T>> {
   // Flatten VNodes recursively (handles Fragments)
   function flatten(vnodes: VNode[]): VNodesProps<T> {
     const result: VNode[] = []
@@ -32,7 +57,16 @@ export function useFlattenedSlot<T extends object>(slotFn?: () => VNode[] | unde
     return result as VNodesProps<T>
   }
 
-  return computed(() => flatten(slotFn?.() ?? []))
+  return computed(() => flatten(getTopLevelSlotNodes(slotFn)))
+}
+
+/**
+ * Returns a computed array of top-level VNodes from the provided slot function
+ *
+ * @param slotFn The slot function (e.g., slots.default)
+ */
+export function useTopLevelSlots(slotFn?: SlotFn): ShallowRef<VNodesProps<any>> {
+  return computed(() => getTopLevelSlotNodes(slotFn) as VNodesProps<any>)
 }
 
 /**

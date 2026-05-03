@@ -1,4 +1,4 @@
-:where(.vui-avatar) {
+.vui-avatar {
   --vui-avatar-size: var(--interactive-el-height);
   --vui-avatar-font-size: var(--font-size-s);
   --vui-avatar-border-radius: 100%;
@@ -28,7 +28,8 @@
   background-color: var(--color-bg-raised);
   font-weight: var(--font-weight-medium);
   flex-shrink: 0;
-  font-size: var(--vui-avatar-font-size, var(--font-size-s));
+  font-size: var(--vui-avatar-font-size, var(--font-size-s)) !important;
+  color: var(--color-text-light);
 
   svg,
   .iconify {
@@ -39,6 +40,7 @@
   & > * {
     font-size: inherit;
     line-height: 1;
+    color: inherit;
   }
 
   img {

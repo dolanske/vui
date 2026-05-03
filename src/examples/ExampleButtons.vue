@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { IconArrowLeft, IconArrowRight, IconCaretDown, IconInfo, IconTextAUnderline, IconTextBBold, IconTextBold, IconTextItalic } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
-import ButtonGroup from '../components/ButtonGroup/ButtonGroup.vue'
+import ButtonGroup from '../components/Button/ButtonGroup.vue'
 import CopyClipboard from '../components/CopyClipboard/CopyClipboard.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'

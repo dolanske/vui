@@ -2,7 +2,7 @@
 import type { InputProps } from './Input.vue'
 import { IconMinus, IconPlus } from '@iconify-prerendered/vue-ph'
 import Button from '../Button/Button.vue'
-import ButtonGroup from '../ButtonGroup/ButtonGroup.vue'
+import ButtonGroup from '../Button/ButtonGroup.vue'
 import Input from './Input.vue'
 
 type Props = Omit<InputProps, 'type'> & {

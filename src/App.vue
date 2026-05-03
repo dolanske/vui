@@ -28,8 +28,8 @@ function closeProfile() {
 </script>
 
 <template>
-  <main vaul-drawer-wrapper class="container-l">
-    <div class="container container-m pt-xxl">
+  <main vaul-drawer-wrapper class="container-m">
+    <div class="pt-xxl mb-xl">
       <Card class="profile-preview" @click="openProfile">
         <Flex y-start gap="m">
           <Avatar
@@ -89,11 +89,6 @@ function closeProfile() {
 </template>
 
 <style>
-.profile-preview {
-  max-width: 420px;
-  cursor: pointer;
-}
-
 ::view-transition-old(profile-avatar),
 ::view-transition-new(profile-avatar),
 ::view-transition-old(profile-description),
