@@ -40,3 +40,7 @@ VUI supports treeshaking, so you will be importing only the components you are u
 import { Badge, Button, Input, Textarea } from '@dolanske/vui'
 </script>
 ```
+
+## Demo
+
+[Checkout vui single-page demo](/demo)

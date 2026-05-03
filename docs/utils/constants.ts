@@ -409,6 +409,7 @@ export const componentPages = [
 export const globalLinks = [
   { path: '/', label: 'Home' },
   { path: '/docs', label: 'Installation' },
+  { path: '/demo', label: 'Demo' },
   { path: '/docs/projects', label: 'Projects' },
 ]
 
