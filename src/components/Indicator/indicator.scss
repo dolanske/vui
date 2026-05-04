@@ -1,0 +1,10 @@
+.vui-indicator {
+  --vui-indicator-size: 8px;
+  --vui-indicator-color: var(--color-text-lighter);
+
+  width: var(--vui-indicator-size);
+  height: var(--vui-indicator-size);
+  background-color: var(--vui-indicator-color);
+}
+
+// Specific component positions

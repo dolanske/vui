@@ -7,17 +7,17 @@
   position: relative;
 
   &.vui-tabs-variant-filled {
-    background-color: var(--color-bg-raised);
-    border-bottom: none;
+    background-color: var(--color-bg-lowered);
     z-index: var(--z-default);
     border-radius: var(--border-radius-m);
     padding-inline: 4px;
+    border-bottom: none;
 
     .vui-tab-underline {
-      border-bottom: none;
-      background-color: var(--color-bg-lowered);
-      top: 3px;
-      bottom: 3px;
+      background-color: var(--color-bg-raised);
+      border: 1px solid var(--color-border);
+      top: 4px;
+      bottom: 4px;
       z-index: var(--z-behind);
       border-radius: var(--border-radius-m);
     }
@@ -82,6 +82,11 @@
 
 :root.light {
   .vui-tabs.vui-tabs-variant-filled {
-    background-color: var(--color-bg-medium);
+    background-color: var(--color-bg-raised);
+
+    .vui-tab-underline {
+      background-color: var(--color-bg-lowered);
+      border-color: var(--color-border-weak);
+    }
   }
 }

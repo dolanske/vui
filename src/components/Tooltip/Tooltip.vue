@@ -19,7 +19,7 @@ interface Props {
    */
   leaveDelay?: number
   /**
-   * If set to true, tooltip will not be rendered
+   * If set to true, tooltip will not be rendered on hover. Trigger stays
    */
   disabled?: boolean
 }

@@ -16,8 +16,9 @@ interface ViewTransitionComposable {
  * A generic composable for running View Transitions.
  *
  * In order to setup view transitions, we need to provide `transition-name` in
- * CSS to the components we want to transition and then apply before & after
- * styles to them via the selector
+ * CSS to the components we want to transition and then apply old & new
+ * styles to them via the following selectors. At minimum, you should provide
+ * the animation-duration
  *
  * ```css
  * ::view-transition-old(<transition-name>) {}

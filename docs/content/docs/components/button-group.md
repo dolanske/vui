@@ -11,7 +11,7 @@ import { Button, ButtonGroup } from '@dolanske/vui'
 
 <template>
   <ButtonGroup>
-    <Button outline>
+    <Button outline :gap="2">
       Hello
     </Button>
     <Button outline>

@@ -25,6 +25,12 @@ interface Props {
    * Vertical alignment of the icon
    */
   iconAlign?: 'start' | 'center' | 'end'
+  /**
+   * Hides the icon completely. If you hide the icon, make sure you're using
+   * `filled` variant, otherwise the alert will be missing the relevant
+   * color-coding.
+   */
+  hideIcon?: boolean
 }
 
 const {
@@ -34,6 +40,7 @@ const {
   filled,
   filledStrong,
   iconAlign = 'center',
+  hideIcon = false,
 } = defineProps<Props>()
 </script>
 
@@ -44,11 +51,13 @@ const {
     :style="{ alignItems: iconAlign }"
   >
     <slot name="icon">
-      <IconInfo v-if="variant === 'info'" class="vui-alert-icon" />
-      <IconCheckCircle v-else-if="variant === 'success'" class="vui-alert-icon" />
-      <IconWarning v-else-if="variant === 'warning'" class="vui-alert-icon" />
-      <IconWarningDiamond v-else-if="variant === 'danger'" class="vui-alert-icon" />
-      <IconChatTeardrop v-else class="vui-alert-icon" />
+      <template v-if="!hideIcon">
+        <IconInfo v-if="variant === 'info'" class="vui-alert-icon" />
+        <IconCheckCircle v-else-if="variant === 'success'" class="vui-alert-icon" />
+        <IconWarning v-else-if="variant === 'warning'" class="vui-alert-icon" />
+        <IconWarningDiamond v-else-if="variant === 'danger'" class="vui-alert-icon" />
+        <IconChatTeardrop v-else class="vui-alert-icon" />
+      </template>
     </slot>
     <div v-if="$slots.default && !title" class="vui-alert-content">
       <slot />

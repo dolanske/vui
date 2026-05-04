@@ -23,7 +23,6 @@
     strong {
       display: block;
       font-size: var(--font-size-m);
-      margin-bottom: 2px;
     }
 
     p {
@@ -54,10 +53,12 @@
     &.filled-strong {
       background-color: var(--color-text);
       color: var(--color-text-invert);
+      color: contrast-color(var(--color-text));
 
       .vui-alert-default-content *,
       .vui-alert-icon path {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-text));
       }
     }
   }
@@ -74,10 +75,12 @@
     &.filled-strong {
       background-color: var(--color-bg-blue-raised);
       color: var(--color-text);
+      color: contrast-color(var(--color-bg-blue-raised));
 
       .vui-alert-default-content *,
       .vui-alert-icon path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-blue-raised));
       }
     }
   }
@@ -94,10 +97,12 @@
     &.filled-strong {
       background-color: var(--color-bg-green-raised);
       color: var(--color-text);
+      color: contrast-color(var(--color-bg-green-raised));
 
       .vui-alert-default-content *,
       .vui-alert-icon path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-green-raised));
       }
     }
   }
@@ -114,10 +119,12 @@
     &.filled-strong {
       background-color: var(--color-bg-yellow-raised);
       color: var(--color-text);
+      color: contrast-color(var(--color-bg-yellow-raised));
 
       .vui-alert-default-content *,
       .vui-alert-icon path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-yellow-raised));
       }
     }
   }
@@ -134,10 +141,12 @@
     &.filled-strong {
       background-color: var(--color-bg-red-raised);
       color: var(--color-text);
+      color: contrast-color(var(--color-bg-red-raised));
 
       .vui-alert-default-content *,
       .vui-alert-icon path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-red-raised));
       }
     }
   }
@@ -175,6 +184,24 @@
         .vui-alert-default-content *,
         .vui-alert-icon path {
           color: var(--color-text-invert);
+        }
+
+        color: contrast-color(var(--color-bg-green-raised));
+      }
+
+      &.vui-alert-variant-danger {
+        color: contrast-color(var(--color-bg-red-raised));
+
+        .vui-alert-default-content *,
+        .vui-alert-icon path {
+          color: contrast-color(var(--color-bg-red-raised));
+        }
+      }
+
+      &.vui-alert-variant-success {
+        .vui-alert-default-content *,
+        .vui-alert-icon path {
+          color: contrast-color(var(--color-bg-green-raised));
         }
       }
     }

@@ -155,11 +155,13 @@
     &:not(.plain):not(.outline) {
       color: var(--color-text);
       background-color: var(--color-bg-red-raised);
+      color: contrast-color(var(--color-bg-red-raised));
 
       .iconify,
       svg,
       path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-red-raised));
       }
     }
 
@@ -177,11 +179,13 @@
     &:not(.plain):not(.outline) {
       color: var(--color-text);
       background-color: var(--color-bg-green-raised);
+      color: contrast-color(var(--color-bg-green-raised));
 
       .iconify,
       svg,
       path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-green-raised));
       }
     }
 
@@ -199,11 +203,13 @@
     &:not(.plain):not(.outline) {
       color: var(--color-text);
       background-color: var(--color-button-gray);
+      color: contrast-color(var(--color-button-gray));
 
       .iconify,
       svg,
       path {
         color: var(--color-text);
+        color: contrast-color(var(--color-button-gray));
       }
     }
 
@@ -221,15 +227,18 @@
     &:not(.plain):not(.outline) {
       color: var(--color-text-invert);
       background-color: var(--color-button-fill);
+      color: contrast-color(var(--color-button-fill));
 
       .vui-spinner {
         --spinner-color: var(--color-text-invert);
+        --spinner-color: contrast-color(var(--color-button-fill));
       }
 
       .iconify,
       svg,
       path {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-button-fill));
       }
     }
 
@@ -238,11 +247,13 @@
 
       &:hover {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-button-fill-hover));
 
         .iconify,
         svg,
         path {
           color: var(--color-text-invert);
+          color: contrast-color(var(--color-button-fill-hover));
         }
       }
     }
@@ -253,11 +264,13 @@
 
       &.plain {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-button-fill-hover));
 
         .iconify,
         svg,
         path {
           color: var(--color-text-invert);
+          color: contrast-color(var(--color-button-fill-hover));
         }
       }
     }
@@ -267,11 +280,13 @@
     &:not(.plain):not(.outline) {
       color: var(--color-text);
       background-color: var(--color-bg-accent-raised);
+      color: contrast-color(var(--color-bg-accent-raised));
 
       .iconify,
       svg,
       path {
         color: var(--color-text);
+        color: contrast-color(var(--color-bg-accent-raised));
       }
     }
 
@@ -302,21 +317,25 @@
     &.vui-button-variant-danger {
       &:not(.plain):not(.outline) {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-bg-red-raised));
 
         .iconify,
         svg,
         path {
           color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-red-raised));
         }
       }
 
       &.outline:hover {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-bg-red-lowered));
 
         .iconify,
         svg,
         path {
           color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-red-lowered));
         }
       }
     }
@@ -324,21 +343,25 @@
     &.vui-button-variant-success {
       &:not(.plain):not(.outline) {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-bg-green-raised));
 
         .iconify,
         svg,
         path {
           color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-green-raised));
         }
       }
 
       &.outline:hover {
         color: var(--color-text-invert);
+        color: contrast-color(var(--color-bg-green-lowered));
 
         .iconify,
         svg,
         path {
           color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-green-lowered));
         }
       }
     }

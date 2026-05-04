@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import { IconCircle, IconCircleFill } from '@iconify-prerendered/vue-ph'
 import { ref, useTemplateRef } from 'vue'
+import Avatar from '../components/Avatar/Avatar.vue'
+import Badge from '../components/Badge/Badge.vue'
 import Button from '../components/Button/Button.vue'
+import Divider from '../components/Divider/Divider.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Modal from '../components/Modal/Modal.vue'
 import Popout from '../components/Popout/Popout.vue'
+import PopoutHover from '../components/Popout/PopoutHover.vue'
 import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 const anchRef = useTemplateRef('anch')
@@ -27,6 +32,38 @@ const stackedModal2Open = ref(false)
 <template>
   <div class="mb-xxl">
     <h3 class="mb-l">
+      Popout hover
+    </h3>
+
+    <p>Similarly to tooltip, popout can be triggered by hover events and allow interacting with content inside</p>
+
+    <PopoutHover class="test-popout">
+      <template #trigger>
+        <Badge variant="success">
+          <IconCircleFill size="12px" />
+          Online
+        </Badge>
+      </template>
+      <Flex y-start>
+        <Avatar size="l" url="https://github.com/dolanske.png" />
+        <div>
+          <span class="text-bold text-l block mb-xxs">dolanske</span>
+          <p class="block mb-s">
+            Lorem ipsum dolor sit!!
+          </p>
+
+          <Button size="s" variant="danger">
+            Delete
+          </Button>
+        </div>
+      </Flex>
+      <!-- <h3>Popout hover content</h3> -->
+      <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem facere eligendi ex, alias itaque molestiae, vero animi, vitae vel fuga corporis aut consectetur temporibus ipsum placeat dolores perferendis. Deleniti, et!</p> -->
+    </PopoutHover>
+
+    <Divider class="mt-l" />
+
+    <h3 class="mb-l mt-xl">
       Popout
     </h3>
 
@@ -47,6 +84,8 @@ const stackedModal2Open = ref(false)
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem facere eligendi ex, alias itaque molestiae, vero animi, vitae vel fuga corporis aut consectetur temporibus ipsum placeat dolores perferendis. Deleniti, et!</p>
     </Popout>
 
+    <Divider class="mt-l" />
+
     <h4 class="mt-xl mb-m">
       With enter &amp; leave delay
     </h4>
@@ -59,6 +98,8 @@ const stackedModal2Open = ref(false)
       <h3>Delayed popout</h3>
       <p>This popout opens after 300ms and closes after 600ms.</p>
     </Popout>
+
+    <Divider class="mt-l" />
 
     <h4 class="mt-xl mb-s">
       Layer ordering — Popout then Modal
@@ -88,6 +129,8 @@ const stackedModal2Open = ref(false)
         </Button>
       </template>
     </Modal>
+
+    <Divider class="mt-l" />
 
     <h4 class="mt-xl mb-s">
       Tooltip inside a Modal — no overflow or scrollbar
@@ -133,6 +176,8 @@ const stackedModal2Open = ref(false)
       </template>
     </Modal>
 
+    <Divider class="mt-l" />
+
     <h4 class="mt-xl mb-s">
       Stacked Modals
     </h4>
@@ -170,6 +215,6 @@ const stackedModal2Open = ref(false)
 <style>
 .test-popout {
   max-width: 256px;
-  padding: var(--space-xl);
+  padding: var(--space-m);
 }
 </style>
