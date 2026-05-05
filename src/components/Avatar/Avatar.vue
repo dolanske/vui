@@ -61,5 +61,8 @@ const aR = computed(() => {
         <IconUser />
       </slot>
     </strong>
+    <div v-if="$slots.overlay" class="vui-avatar-overlay">
+      <slot name="overlay" />
+    </div>
   </div>
 </template>

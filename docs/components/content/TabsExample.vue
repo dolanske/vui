@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { Button, Tab, Tabs } from '@dolanske/vui'
+import { Button, Switch, Tab, Tabs } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const activeTab = ref('tab1')
+const filled = ref(false)
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <Tabs v-model="activeTab" class="mb-m">
+      <Tabs v-model="activeTab" class="example-tabs" :variant="filled ? 'filled' : 'default'">
         <Tab value="tab1">
           Tab 1
         </Tab>
@@ -20,12 +21,7 @@ const activeTab = ref('tab1')
         </Tab>
 
         <template #end>
-          <Button size="s">
-            <template #start>
-              <Icon name="ph:plus" />
-            </template>
-            Export
-          </Button>
+          <Switch v-model="filled" label="Filled" />
         </template>
       </Tabs>
 
@@ -46,3 +42,21 @@ const activeTab = ref('tab1')
     </template>
   </DocsExample>
 </template>
+
+<style lang="scss">
+.example-tabs {
+  margin-bottom: var(--space-m);
+
+  &.vui-tabs-variant-filled {
+    background-color: var(--color-bg);
+
+    .vui-switch .vui-switch-icon {
+      background-color: var(--color-bg-raised) !important;
+    }
+  }
+}
+
+:root .example-tabs.vui-tabs-variant-filled .vui-switch .vui-switch-icon {
+  background-color: var(--color-bg-lowered);
+}
+</style>

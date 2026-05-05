@@ -6,6 +6,7 @@ import Alert from './components/Alert/Alert.vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import AvatarGroup from './components/Avatar/AvatarGroup.vue'
 import Badge from './components/Badge/Badge.vue'
+import BadgeGroup from './components/Badge/BadgeGroup.vue'
 import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem.vue'
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.vue'
 import Button from './components/Button/Button.vue'
@@ -23,6 +24,7 @@ import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
 import Flex from './components/Flex/Flex.vue'
 import Grid from './components/Grid/Grid.vue'
+import Indicator from './components/Indicator/Indicator.vue'
 import Color from './components/Input/Color.vue'
 import Counter from './components/Input/Counter.vue'
 import Dropzone from './components/Input/Dropzone.vue'
@@ -40,6 +42,7 @@ import OTPItem from './components/OTP/OTPItem.vue'
 import { paginate } from './components/Pagination/pagination'
 import Pagination from './components/Pagination/Pagination.vue'
 import Popout from './components/Popout/Popout.vue'
+import PopoutHover from './components/Popout/PopoutHover.vue'
 import Progress from './components/Progress/Progress.vue'
 import Radio from './components/Radio/Radio.vue'
 import RadioGroup from './components/Radio/RadioGroup.vue'
@@ -71,6 +74,7 @@ export {
   AvatarGroup,
   Backdrop,
   Badge,
+  BadgeGroup,
   BreadcrumbItem,
   Breadcrumbs,
   Button,
@@ -95,6 +99,7 @@ export {
   File,
   Flex,
   Grid,
+  Indicator,
   Input,
   Kbd,
   KbdGroup,
@@ -106,6 +111,7 @@ export {
   Pagination,
   Password,
   Popout,
+  PopoutHover,
   Progress,
   pushToast,
   Radio,
@@ -118,7 +124,7 @@ export {
   Sidebar,
   type Sizes,
   Skeleton,
-  type Spaces as Space,
+  type Spaces,
   type SpaceSize,
   Spinner,
   Switch,

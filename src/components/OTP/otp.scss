@@ -77,7 +77,7 @@
     position: absolute;
     inset: 0;
     border: none;
-    outline: none;
+    outline: none !important;
     color: transparent;
     background: transparent;
     z-index: var(--z-mask);

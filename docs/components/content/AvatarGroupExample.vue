@@ -12,21 +12,9 @@ const avatars = [
 <template>
   <DocsExample>
     <template #component>
-      <Flex column gap="m" x-start class="groups">
-        <AvatarGroup>
-          <Avatar v-for="avatar in avatars" :key="avatar.name" :url="avatar.url" />
-        </AvatarGroup>
-
-        <AvatarGroup cluster>
-          <Avatar v-for="avatar in avatars" :key="avatar.name" :url="avatar.url" />
-        </AvatarGroup>
-
-        <AvatarGroup :limit="2" limit-size="m" cluster>
-          <Avatar v-for="avatar in avatars" :key="avatar.name" size="m" :url="avatar.url" />
-        </AvatarGroup>
-
-        <AvatarGroup :limit="2" limit-size="m" cluster column>
-          <Avatar v-for="avatar in avatars" :key="avatar.name" size="m" :url="avatar.url" />
+      <Flex gap="m" x-center y-center class="groups">
+        <AvatarGroup :limit="3" limit-size="l" cluster>
+          <Avatar v-for="avatar in avatars" :key="avatar.name" size="l" :url="avatar.url" />
         </AvatarGroup>
       </Flex>
     </template>
@@ -36,15 +24,14 @@ const avatars = [
   </DocsExample>
 </template>
 
-<style lang="scss" scoped>
-:deep(img) {
-  margin: 0 !important;
-  border-radius: 0 !important;
-}
-</style>
+<style lang="scss">
+.groups {
+  .vui-avatar-group {
+    --vui-avatar-group-border: var(--color-bg-lowered);
+  }
 
-<style>
-.groups .vui-avatar {
-  --vui-avatar-group-border: var(--color-bg-lowered) !important;
+  img {
+    border-radius: var(--border-radius-pill);
+  }
 }
 </style>

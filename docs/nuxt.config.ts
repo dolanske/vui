@@ -99,6 +99,7 @@ export default defineNuxtConfig({
         'ph:user',
         'ph:x',
         'ph:compass',
+        'ph:circle',
       ],
       scan: true,
       sizeLimitKb: 256,

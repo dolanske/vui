@@ -10,66 +10,22 @@ import { Badge } from '@dolanske/vui'
 </script>
 
 <template>
-  <div class="flex gap-xs">
-    <Badge>Default</Badge>
-    <Badge variant="success">
-      Success
-    </Badge>
-    <Badge variant="warning">
-      Warning
-    </Badge>
-    <Badge variant="danger">
-      Danger
-    </Badge>
-    <Badge variant="info">
-      Info
-    </Badge>
-    <Badge variant="accent">
-      Accent
-    </Badge>
-  </div>
-
-  <div class="flex gap-xs mt-xs">
-    <Badge outline>
-      Default
-    </Badge>
-    <Badge variant="success" outline>
-      Success
-    </Badge>
-    <Badge variant="warning" outline>
-      Warning
-    </Badge>
-    <Badge variant="danger" outline>
-      Danger
-    </Badge>
-    <Badge variant="info" outline>
-      Info
-    </Badge>
-    <Badge variant="accent" outline>
-      Accent
-    </Badge>
-  </div>
-
-  <div class="flex gap-xs mt-xs">
-    <Badge filled>
-      Default
-    </Badge>
-    <Badge variant="success" filled>
-      Success
-    </Badge>
-    <Badge variant="warning" filled>
-      Warning
-    </Badge>
-    <Badge variant="danger" filled>
-      Danger
-    </Badge>
-    <Badge variant="info" filled>
-      Info
-    </Badge>
-    <Badge variant="accent" filled>
-      Accent
-    </Badge>
-  </div>
+  <Badge size="s" variant="info">
+    New
+  </Badge>
+  <Badge>
+    Overview
+  </Badge>
+  <Badge variant="success" outline>
+    <Icon name="ph:bell" />
+    Subscribed
+  </Badge>
+  <Badge circle filled variant="warning">
+    12
+  </Badge>
+  <Badge size="l" variant="accent">
+    Admin
+  </Badge>
 </template>
 ```
 
@@ -82,6 +38,8 @@ import { Badge } from '@dolanske/vui'
 | `variant` | `neutral` | `neutral` `danger` `warning` `success` `info` `accent` <br> The visual style of the badge |
 | `outline` | `false`   | `boolean` <br> Whether to show the badge with an outline style                            |
 | `filled`  | `false`   | `boolean` <br> Whether to show the badge with a filled background                         |
+| `size`    | `m`       | `s` `m` `l` <br> Controls the size of the badge                                           |
+| `circle`  | `false`   | `boolean` <br> Renders the badge as a circle. Useful for numeric counters or status dots  |
 
 ### Slots
 

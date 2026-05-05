@@ -116,16 +116,17 @@ export const componentList = [
   { name: 'Accordion', path: '/docs/components/accordion', tags: ['group'], keywords: ['collapse', 'expand', 'toggle', 'section'], description: 'Expandable content sections that can be toggled open and closed' },
   { name: 'Accordion Group', path: '/docs/components/accordion-group', tags: ['group'], keywords: ['collapse', 'expand', 'exclusive', 'multiple'], description: 'Group of accordions that can be toggled open and closed individually or each at a time' },
   { name: 'Alert', path: '/docs/components/alert', keywords: ['notification', 'warning', 'error', 'message'], description: 'Displays important messages or notifications to users' },
-  { name: 'Avatar', path: '/docs/components/avatar', keywords: ['user', 'profile', 'image', 'photo'], description: 'Circular image component for user profiles or icons' },
-  { name: 'Avatar Group', path: '/docs/components/avatar-group', keywords: ['avatar', 'group', 'cluster'], description: 'Group multiple Avatar components together in a cluster' },
-  { name: 'Badge', path: '/docs/components/badge', keywords: ['label', 'tag', 'count', 'status'], description: 'Small visual indicator for status, counts, or labels' },
+  { name: 'Avatar', path: '/docs/components/avatar', keywords: ['user', 'profile', 'image', 'photo'], description: 'Circular image component for user profiles or icons', status: 'update' },
+  { name: 'Avatar Group', path: '/docs/components/avatar-group', keywords: ['avatar', 'group', 'cluster'], description: 'Group multiple Avatar components together in a cluster', status: 'new' },
+  { name: 'Badge', path: '/docs/components/badge', keywords: ['label', 'tag', 'count', 'status'], description: 'Small visual indicator for status, counts, or labels', status: 'update' },
+  { name: 'Badge Group', path: '/docs/components/badge-group', tags: ['group'], keywords: ['badge', 'group', 'label', 'cluster'], description: 'Groups multiple Badge components together with merged or spaced borders', status: 'new' },
   { name: 'Breadcrumbs', path: '/docs/components/breadcrumbs', tags: ['item'], keywords: ['navigation', 'path', 'hierarchy', 'trail'], description: 'Navigation aid showing current page location in hierarchy' },
   { name: 'Button', path: '/docs/components/button', keywords: ['click', 'action', 'submit', 'trigger'], description: 'Interactive element for triggering actions or events' },
   { name: 'Button Group', path: '/docs/components/button-group', keywords: ['button', 'group', 'toolbar', 'cluster'], description: 'Groups multiple buttons together with joined borders for a unified appearance' },
   { name: 'Calendar', path: '/docs/components/calendar', tags: ['date', 'picker'], keywords: ['date', 'picker', 'month', 'schedule'], description: 'Date selection and display component with month view' },
   { name: 'Card', path: '/docs/components/card', keywords: ['container', 'panel', 'content', 'box'], description: 'Container component for grouping related content' },
   { name: 'Carousel', path: '/docs/components/carousel', keywords: ['slider', 'gallery', 'scroll', 'slideshow'], description: 'Scrollable container for displaying multiple items horizontally' },
-  { name: 'Marquee', path: '/docs/components/marquee', keywords: ['scroll', 'stagger', 'animation', 'text'], description: 'Animated scrolling text or content' },
+  { name: 'Marquee', path: '/docs/components/marquee', keywords: ['scroll', 'stagger', 'animation', 'text'], description: 'Animated scrolling text or content', status: 'new' },
   { name: 'Checkbox', path: '/docs/components/checkbox', keywords: ['check', 'select', 'form', 'boolean'], description: 'Binary input control for selecting multiple options' },
   { name: 'Commands', path: '/docs/components/commands', keywords: ['search', 'palette', 'keyboard', 'shortcuts'], description: 'Searchable command palette with keyboard navigation and grouping' },
   { name: 'Copy Clipboard', path: '/docs/components/copy-clipboard', keywords: ['copy', 'paste', 'clipboard', 'text'], description: 'Button that copies text to clipboard with feedback' },
@@ -134,6 +135,7 @@ export const componentList = [
   { name: 'Dropdown', path: '/docs/components/dropdown', tags: ['item', 'title'], keywords: ['menu', 'options', 'list', 'popup'], description: 'Menu that appears when clicking a trigger element' },
   { name: 'Flex', path: '/docs/components/flex', keywords: ['flexbox', 'layout', 'row', 'column'], description: 'Flexbox-based layout component for one-dimensional layouts' },
   { name: 'Grid', path: '/docs/components/grid', keywords: ['columns', 'layout', 'rows', 'responsive'], description: 'Grid-based layout component for two-dimensional layouts' },
+  { name: 'Indicator', path: '/docs/components/indicator', keywords: ['status', 'dot', 'online', 'badge', 'presence'], description: 'Small dot indicator for displaying status, presence, or alerts', status: 'new' },
   { name: 'Input', path: '/docs/components/input', keywords: ['text', 'field', 'form', 'entry'], description: 'Standard text input field for single-line text entry' },
   { name: 'Color', path: '/docs/components/color', keywords: ['picker', 'hex', 'rgb', 'hue'], description: 'Color picker input for selecting colors' },
   { name: 'Counter', path: '/docs/components/counter', keywords: ['character', 'limit', 'count', 'input'], description: 'Input field with character count and limit functionality' },
@@ -146,6 +148,7 @@ export const componentList = [
   { name: 'OTP', path: '/docs/components/otp', tags: ['group'], keywords: ['code', 'verification', 'pin', 'auth'], description: 'One-time password input with multiple fields' },
   { name: 'Pagination', path: '/docs/components/pagination', keywords: ['pages', 'navigation', 'next', 'list'], description: 'Navigation for splitting content into pages' },
   { name: 'Popout', path: '/docs/components/popout', keywords: ['popup', 'floating', 'overlay', 'anchor'], description: 'Floating element that appears relative to a trigger' },
+  { name: 'Popout Hover', path: '/docs/components/popout-hover', keywords: ['popup', 'hover', 'floating', 'interactive', 'tooltip'], description: 'Floating interactive popout triggered by hover or focus events', status: 'new' },
   { name: 'Progress', path: '/docs/components/progress', keywords: ['loading', 'bar', 'percentage', 'status'], description: 'Visual indicator for task completion or loading state' },
   { name: 'Radio', path: '/docs/components/radio', tags: ['group'], keywords: ['option', 'single', 'select', 'form'], description: 'Input control for selecting a single option' },
   { name: 'Select', path: '/docs/components/select', keywords: ['dropdown', 'options', 'choice', 'form'], description: 'Dropdown for selecting from a list of options' },
@@ -155,10 +158,10 @@ export const componentList = [
   { name: 'Spinner', path: '/docs/components/spinner', keywords: ['loading', 'busy', 'indicator', 'animated'], description: 'Animated loading indicator' },
   { name: 'Switch', path: '/docs/components/switch', keywords: ['toggle', 'on', 'off', 'boolean'], description: 'Toggle switch for binary options' },
   { name: 'Table', path: '/docs/components/table', tags: ['cell', 'head', 'header', 'row', 'select'], keywords: ['data', 'rows', 'columns', 'grid'], description: 'Data display component with rows and columns' },
-  { name: 'Tabs', path: '/docs/components/tabs', tags: ['group'], keywords: ['navigation', 'sections', 'panel', 'tabbed'], description: 'Container for organizing content into tabbed sections' },
+  { name: 'Tabs', path: '/docs/components/tabs', tags: ['group'], keywords: ['navigation', 'sections', 'panel', 'tabbed'], description: 'Container for organizing content into tabbed sections', status: 'update' },
   { name: 'Toast', path: '/docs/components/toast', keywords: ['notification', 'message', 'alert', 'snackbar'], description: 'Temporary notification message that appears and disappears' },
   { name: 'Tooltip', path: '/docs/components/tooltip', keywords: ['hint', 'hover', 'info', 'popup'], description: 'Small popup that appears when hovering over an element' },
-]
+] as const
 
 export const lineHeightTokens = [
   { name: 'Tight', token: '--line-height-tight', height: '1.05em' },
@@ -403,6 +406,7 @@ export const componentPages = [
   ...componentList.map(component => ({
     label: component.name,
     path: component.path,
+    status: 'status' in component ? component.status : undefined,
   })),
 ]
 

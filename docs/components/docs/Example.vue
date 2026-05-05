@@ -10,20 +10,20 @@ defineSlots<{
   code: () => VNode
 }>()
 
-const tab = ref('Component')
+const tab = ref('Preview')
 </script>
 
 <template>
   <div class="mt-l example-root">
     <Tabs v-model="tab" class="mb-m">
-      <Tab value="Component">
-        Component
+      <Tab value="Preview">
+        Preview
       </Tab>
       <Tab value="Code">
         Code
       </Tab>
     </Tabs>
-    <div v-if="tab === 'Component'" class="example-component" :class="{ full: props.full }">
+    <div v-if="tab === 'Preview'" class="example-component" :class="{ full: props.full }">
       <slot name="component" />
     </div>
     <div v-else-if="tab === 'Code'" class="example-code">

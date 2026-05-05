@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
+import { capitalize } from 'vue'
 import { normalizePath } from '~/utils/format'
 
 const route = useRoute()
@@ -140,7 +141,7 @@ onBeforeMount(async () => {
 
 <template>
   <div class="vui-sidebar-layout" vaul-drawer-wrapper>
-    <Sidebar class="app-sidebar" :width="212">
+    <Sidebar class="app-sidebar" :width="232">
       <template #header>
         <Flex class="mb-s" y-center>
           <NuxtLink to="/">
@@ -171,7 +172,7 @@ onBeforeMount(async () => {
 
       <!-- Always-present pages -->
       <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path" @click="currentTab = ''">
-        <DropdownItem :class="{ active: route.fullPath.endsWith(link.path) }">
+        <DropdownItem :class="{ active: route.path.endsWith(link.path) }">
           {{ link.label }}
         </DropdownItem>
       </NuxtLink>
@@ -190,6 +191,20 @@ onBeforeMount(async () => {
         @click="pushPage(subPage.path)"
       >
         {{ subPage.label }}
+
+        <template #hint>
+          <Badge v-if="subPage?.status === 'new'" size="s" outline variant="accent">
+            New
+          </Badge>
+          <Tooltip v-else-if="subPage?.status === 'update'">
+            <Badge size="s" circle>
+              <Icon name="ph:circle" />
+            </Badge>
+            <template #tooltip>
+              <p>Updated</p>
+            </template>
+          </Tooltip>
+        </template>
       </DropdownItem>
     </Sidebar>
 

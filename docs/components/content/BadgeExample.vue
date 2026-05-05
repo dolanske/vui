@@ -1,27 +1,28 @@
 <script setup lang="ts">
 import { Badge } from '@dolanske/vui'
 
-const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] as const
+// const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] as const
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <Flex x-center>
-        <Badge v-for="variant in variants" :key="variant" :variant filled>
-          Badge
+      <Flex x-center y-center>
+        <Badge size="s" variant="info">
+          New
         </Badge>
-      </Flex>
-      <Divider class="my-xl" />
-      <Flex x-center>
-        <Badge v-for="variant in variants" :key="variant" :variant>
-          Badge
+        <Badge>
+          Overview
         </Badge>
-      </Flex>
-      <Divider class="my-xl" />
-      <Flex x-center>
-        <Badge v-for="variant in variants" :key="variant" :variant outline>
-          Badge
+        <Badge variant="success" outline>
+          <Icon name="ph:bell" />
+          Subscribed
+        </Badge>
+        <Badge circle filled variant="warning">
+          12
+        </Badge>
+        <Badge size="l" variant="accent">
+          Admin
         </Badge>
       </Flex>
     </template>

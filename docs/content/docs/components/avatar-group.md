@@ -17,24 +17,8 @@ const avatars = [
 </script>
 
 <template>
-  <!-- Default -->
-  <AvatarGroup>
-    <Avatar v-for="avatar in avatars" :key="avatar.name" :url="avatar.url" />
-  </AvatarGroup>
-
-  <!-- Cluster mode -->
-  <AvatarGroup cluster>
-    <Avatar v-for="avatar in avatars" :key="avatar.name" :url="avatar.url" />
-  </AvatarGroup>
-
-  <!-- Cluster with limit -->
-  <AvatarGroup :limit="2" limit-size="m" cluster>
-    <Avatar v-for="avatar in avatars" :key="avatar.name" size="m" :url="avatar.url" />
-  </AvatarGroup>
-
-  <!-- Cluster with limit, vertical -->
-  <AvatarGroup :limit="2" limit-size="m" cluster column>
-    <Avatar v-for="avatar in avatars" :key="avatar.name" size="m" :url="avatar.url" />
+  <AvatarGroup :limit="3" limit-size="l" cluster>
+    <Avatar v-for="avatar in avatars" :key="avatar.name" size="l" :url="avatar.url" />
   </AvatarGroup>
 </template>
 ```

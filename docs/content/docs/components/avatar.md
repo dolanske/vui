@@ -12,14 +12,10 @@ import { Avatar } from '@dolanske/vui'
 <template>
   <Avatar />
   <Avatar>JD</Avatar>
-  <Avatar>
-    <IconPerson />
+  <Avatar url="https://github.com/dolanske.png" size="l" />
+  <Avatar :size="80">
+    <Icon name="ph:person" />
   </Avatar>
-  <Avatar url="https://github.com/dolanske.png" />
-  <Avatar size="s" />
-  <Avatar size="m" />
-  <Avatar size="l" />
-  <Avatar :size="80" />
 </template>
 ```
 
@@ -37,6 +33,8 @@ import { Avatar } from '@dolanske/vui'
 
 ### Slots
 
-| Name      | Accepts | Description                             |
-| --------- | ------- | --------------------------------------- |
-| `default` | `any`   | Content to display instead of the image |
+| Name      | Accepts | Description                                                                                         |
+| --------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `default` | `any`   | Content to display inside the avatar (e.g. initials or text). Takes priority over `url` and `icon`  |
+| `icon`    | `any`   | Custom icon to show as the fallback when no `url` or `default` slot content is provided             |
+| `overlay` | `any`   | Content rendered as an absolute overlay on top of the avatar (e.g. an `Indicator` or action button) |

@@ -15,13 +15,6 @@ const enabled = ref(false)
 <template>
   <Switch v-model="enabled" label="Enable feature" />
   <Switch v-model="enabled" label="Disabled switch" disabled />
-  <Switch v-model="enabled" label="Accent switch" accent />
-  <Switch v-model="enabled">
-    <div class="flex items-center gap-sm">
-      <IconBell />
-      <span>Enable notifications</span>
-    </div>
-  </Switch>
 </template>
 ```
 

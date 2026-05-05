@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconCircle, IconCircleFill } from '@iconify-prerendered/vue-ph'
+import { IconCircleFill } from '@iconify-prerendered/vue-ph'
 import { ref, useTemplateRef } from 'vue'
 import Avatar from '../components/Avatar/Avatar.vue'
 import Badge from '../components/Badge/Badge.vue'

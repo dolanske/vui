@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { Sizes } from '../../shared/types'
 import { computed } from 'vue'
-
-// Simple indicator dot which can be attached to a button, badge, DropdownItem, Avatar
+import './indicator.scss'
 
 interface Props {
   variant?: 'alert' | 'online' | 'offline' | 'away'
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
   size?: Sizes
   outline?: boolean
+  ripple?: boolean
 }
 
 const props = defineProps<Props>()
@@ -22,7 +22,7 @@ const color = computed(() => {
     case 'offline':
       return 'var(--color-text-lighter)'
     case 'away':
-      return 'var(--color-text-warning)'
+      return 'var(--color-text-yellow)'
     default:
       return 'var(--color-text-lighter)'
   }
@@ -44,10 +44,12 @@ const size = computed(() => {
 <template>
   <div
     class="vui-indicator"
-    :class="`vui-position-${props.position}`"
+    :class="[`position-${props.position}`, { outline: props.outline, ripple: props.ripple }]"
     :style="{
       '--vui-indicator-color': color,
       '--vui-indicator-size': size,
     }"
-  />
+  >
+    <slot />
+  </div>
 </template>

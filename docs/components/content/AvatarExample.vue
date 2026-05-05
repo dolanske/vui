@@ -8,17 +8,10 @@ import { Avatar, Flex } from '@dolanske/vui'
       <Flex x-center y-center>
         <Avatar />
         <Avatar>JD</Avatar>
-        <Avatar>
+        <Avatar url="https://github.com/dolanske.png" size="l" />
+        <Avatar :size="80">
           <Icon name="ph:person" />
         </Avatar>
-        <Avatar url="https://github.com/dolanske.png" />
-
-        <Divider vertical height="24px" />
-
-        <Avatar size="s" />
-        <Avatar size="m" />
-        <Avatar size="l" />
-        <Avatar :size="80" />
       </Flex>
     </template>
     <template #code>
@@ -29,7 +22,6 @@ import { Avatar, Flex } from '@dolanske/vui'
 
 <style lang="scss" scoped>
 :deep(img) {
-  margin: 0 !important;
-  border-radius: 0 !important;
+  border-radius: var(--border-radius-pill);
 }
 </style>

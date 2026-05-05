@@ -1,6 +1,9 @@
 <script setup lang='ts'>
+import { IconHeadphones, IconMicrophone } from '@iconify-prerendered/vue-ph'
 import Badge from '../components/Badge/Badge.vue'
+import BadgeGroup from '../components/Badge/BadgeGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
+import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 const sizes = ['s', 'm', 'l'] as const
 const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] as const
@@ -11,6 +14,51 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] a
     <h3 class="mb-l">
       Badges
     </h3>
+    <table class="mb-m">
+      <tbody>
+        <tr>
+          <th width="25%">
+            Badge group outline
+          </th>
+          <td>
+            <Flex gap="l">
+              <BadgeGroup :gap="2">
+                <Tooltip>
+                  <Badge filled circle>
+                    <IconHeadphones />
+                  </Badge>
+                  <template #tooltip>
+                    <p>Mute sound</p>
+                  </template>
+                </Tooltip>
+                <Badge filled circle>
+                  <IconMicrophone />
+                </Badge>
+              </BadgeGroup>
+
+              <BadgeGroup :gap="2">
+                <Badge variant="success">
+                  Success
+                </Badge>
+                <Badge variant="danger">
+                  Fail
+                </Badge>
+              </BadgeGroup>
+
+              <BadgeGroup>
+                <Badge variant="warning" outline>
+                  Offline
+                </Badge>
+                <Badge variant="warning" outline circle>
+                  5
+                </Badge>
+              </BadgeGroup>
+            </Flex>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <template v-for="size in sizes" :key="size">
       <table class="mb-m">
         <tbody>

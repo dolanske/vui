@@ -1,7 +1,8 @@
 <script setup lang='ts'>
-import { IconArrowLeft, IconArrowRight, IconCaretDown, IconInfo, IconTextAUnderline, IconTextBBold, IconTextBold, IconTextItalic } from '@iconify-prerendered/vue-ph'
+import { IconArrowLeft, IconArrowRight, IconCalendarDot, IconCaretDown, IconInfo, IconTextAUnderline, IconTextBBold, IconTextBold, IconTextItalic } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import ButtonGroup from '../components/Button/ButtonGroup.vue'
+import Calendar from '../components/Calendar/Calendar.vue'
 import CopyClipboard from '../components/CopyClipboard/CopyClipboard.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'
@@ -296,6 +297,30 @@ const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as cons
                   <DropdownItem>Deploy to production</DropdownItem>
                   <DropdownItem>Rollback</DropdownItem>
                 </Dropdown>
+              </ButtonGroup>
+
+              <ButtonGroup :gap="2">
+                <Dropdown placement="bottom-end">
+                  <template #trigger="{ toggle }">
+                    <Button @click="toggle">
+                      Calendar
+                    </Button>
+                  </template>
+                  <DropdownItem>Today</DropdownItem>
+                  <DropdownItem>Tomorrow</DropdownItem>
+                </Dropdown>
+                <Calendar>
+                  <template #trigger>
+                    <Tooltip placement="top">
+                      <Button square variant="gray">
+                        <IconCalendarDot />
+                      </Button>
+                      <template #tooltip>
+                        <p>Pick exact range</p>
+                      </template>
+                    </Tooltip>
+                  </template>
+                </Calendar>
               </ButtonGroup>
             </Flex>
           </td>

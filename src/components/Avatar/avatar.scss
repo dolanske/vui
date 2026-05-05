@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  position: relative;
   background-color: var(--color-bg-raised);
   font-weight: var(--font-weight-medium);
   flex-shrink: 0;
@@ -44,11 +44,28 @@
   }
 
   img {
+    position: relative;
+    z-index: 1;
     display: block;
     height: 100%;
     width: 100%;
     object-position: center;
     object-fit: cover;
+    border-radius: var(--vui-avatar-border-radius, 100%);
+  }
+
+  strong {
+    position: relative;
+    z-index: 1;
+  }
+
+  .vui-avatar-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   img[src=''] {

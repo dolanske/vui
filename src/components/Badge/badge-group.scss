@@ -1,0 +1,51 @@
+.vui-badge-group {
+  // Positional selectors handle badges that are unwrapped, wrapped once
+  // (e.g. inside a Tooltip), or wrapped multiple times (e.g. Calendar trigger).
+  > :not(:last-child) {
+    &.vui-badge,
+    > .vui-badge,
+    > * > .vui-badge,
+    .vui-badge {
+      margin-right: 0;
+    }
+  }
+
+  > :first-child:not(:only-child) {
+    &.vui-badge,
+    > .vui-badge,
+    > * > .vui-badge,
+    .vui-badge {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  > :last-child:not(:only-child) {
+    &.vui-badge,
+    > .vui-badge,
+    > * > .vui-badge,
+    .vui-badge {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  > :not(:first-child, :last-child) {
+    &.vui-badge,
+    > .vui-badge,
+    > * > .vui-badge,
+    .vui-badge {
+      border-radius: 0;
+    }
+  }
+
+  // Collapse double border between adjacent outline badges when gap is 0
+  &.gap-zero > :not(:last-child) {
+    &.vui-badge.outline,
+    > .vui-badge.outline,
+    > * > .vui-badge.outline,
+    .vui-badge.outline {
+      margin-right: -1px;
+    }
+  }
+}

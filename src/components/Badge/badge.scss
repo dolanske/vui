@@ -17,6 +17,7 @@
   line-height: var(--vui-badge-height);
   flex-shrink: 0;
   text-box-trim: trim-both;
+  position: relative;
 
   svg,
   path {
@@ -33,6 +34,13 @@
   }
 
   &.vui-badge-variant-neutral {
+    color: var(--color-text);
+
+    svg,
+    path {
+      color: var(--color-text);
+    }
+
     &:not(.outline) {
       background-color: var(--color-bg-raised);
 
@@ -41,14 +49,18 @@
         color: var(--color-text-invert);
         color: contrast-color(var(--color-text));
         border-color: transparent;
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+          color: contrast-color(var(--color-text));
+        }
       }
     }
 
     &.outline {
       border: 1px solid var(--color-border-strong);
     }
-
-    color: var(--color-text);
   }
 
   &.vui-badge-variant-info {
