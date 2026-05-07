@@ -150,13 +150,14 @@ The `defineTable` composable returns an object with the following reactive prope
 
 ##### Methods
 
-| Name            | Type                                                       | Description                              |
-| --------------- | ---------------------------------------------------------- | ---------------------------------------- |
-| `setSort`       | `(key: string, type: 'asc' \| 'desc' \| 'toggle') => void` | Set sorting for a specific column key    |
-| `clearSort`     | `() => void`                                               | Clear current sorting                    |
-| `setPage`       | `(page: number) => void`                                   | Navigate to a specific page (1-indexed)  |
-| `selectRow`     | `(row: T) => void`                                         | Toggle selection state of a specific row |
-| `selectAllRows` | `() => void`                                               | Toggle selection of all rows             |
+| Name               | Type                                                       | Description                              |
+| ------------------ | ---------------------------------------------------------- | ---------------------------------------- |
+| `setSort`          | `(key: string, type: 'asc' \| 'desc' \| 'toggle') => void` | Set sorting for a specific column key    |
+| `clearSort`        | `() => void`                                               | Clear current sorting                    |
+| `setPage`          | `(page: number) => void`                                   | Navigate to a specific page (1-indexed)  |
+| `selectRow`        | `(row: T) => void`                                         | Toggle selection state of a specific row |
+| `selectAllRows`    | `() => void`                                               | Toggle selection of all rows             |
+| `deselectAllArows` | `() => void`                                               | Clear selection                          |
 
 ##### Properties
 
