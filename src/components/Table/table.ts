@@ -212,12 +212,12 @@ export function defineTable<const Dataset extends any[]>(
       selectedRows.value = new Set()
     }
     else {
-      const data = new Set<BaseRow>()
-      for (const item of $data.value) {
-        data.add(item)
-      }
-      selectedRows.value = new Set(data)
+      selectedRows.value = new Set(...$data.value)
     }
+  }
+
+  function deselectAllRows(): void {
+    selectedRows.value = new Set()
   }
 
   provide(TableSelectionProvideSymbol, {
@@ -244,5 +244,6 @@ export function defineTable<const Dataset extends any[]>(
     selectRow,
     selectAllRows,
     isSelectedAll,
+    deselectAllRows,
   }
 }
