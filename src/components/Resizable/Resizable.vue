@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core'
+import { useElementBounding, useEventListener, useStorage } from '@vueuse/core'
 import { ref, useTemplateRef, watch } from 'vue'
+import { clamp } from '../../shared/helpers'
 import { useTopLevelSlots } from '../../shared/slots'
 import './resizable.scss'
 
+// TODO
+// 2. Support for `Panel` and prop handling
+// 3. Invisible divider (only shows up on hover)
+
 interface Props {
+  /**
+   * Enable vertical layout
+   */
   vertical?: boolean
-  persist?: boolean
+  /**
+   * If provided, it enables local persistence of panel sizes
+   */
+  storageKey?: string
 }
 
 interface PanelProps {
@@ -22,23 +33,24 @@ const slots = defineSlots<{
 const root = useTemplateRef('resizableRef')
 const panels = useTopLevelSlots(slots.default)
 
-// When applying defaults, set `flex: <value> 1 0px;
-// While moving, set overflow hidden & pointer events none
-
 interface PanelState {
   size: number
   isResizing: boolean
 }
 
 const focusedPanelIndex = ref(-1)
-const panelState = ref<PanelState[]>([])
 
-// Initialize panels
+const panelState = props.storageKey
+  ? useStorage<PanelState[]>(props.storageKey, [])
+  : ref<PanelState[]>([])
+
+const { left, right, width, top, bottom } = useElementBounding(root)
+
+// Set initial panel sizes on mount or when panels change
 watch(panels, (items) => {
-  // Initialize from localStorage state if persist is enabled
-  if (props.persist && panelState.value.length) {
+  // If numbers of panels is the same as the stored state, do nothing (e.g. on remount)
+  if (panelState.value.length === items.length)
     return
-  }
 
   panelState.value = items.map(() => ({
     size: 100 / items.length,
@@ -46,33 +58,54 @@ watch(panels, (items) => {
   }))
 }, { immediate: true })
 
-useEventListener(root, 'mousedown', (event) => {
+// Returns the index of the currently focused handle
+function getFocusedHandle(event: MouseEvent | KeyboardEvent) {
   const handle = (event.target as HTMLElement).closest('.vui-resizable-handle')
   if (!handle)
     return
 
-  const index = Number(handle.getAttributeNode('data-handle-index')?.value)
+  if (handle.closest('.vui-resizable') !== root.value)
+    return
+
+  return Number(handle.getAttributeNode('data-handle-index')?.value)
+}
+
+function applyResize(index: number, deltaSize: number, baseSize: number, nextBaseSize: number) {
+  panelState.value[index].size = clamp(0, 100, baseSize + deltaSize)
+  panelState.value[index + 1].size = clamp(0, 100, nextBaseSize - deltaSize)
+}
+
+// Controls via mouse drag
+useEventListener(root, 'mousedown', (event) => {
+  const index = getFocusedHandle(event)
+
   if (index === undefined)
     return
 
   panelState.value[index].isResizing = true
 
-  const rect = root.value!.getBoundingClientRect()
-  const startX = Math.max(rect.left, Math.min(rect.right, event.clientX))
+  const startPos = clamp(
+    props.vertical ? top.value : left.value,
+    props.vertical ? bottom.value : right.value,
+    props.vertical ? event.clientY : event.clientX,
+  )
+
   const startSize = panelState.value[index].size
   const nextStartSize = panelState.value[index + 1].size
 
   const onMouseMove = (event: MouseEvent) => {
-    const clampedClientX = Math.max(rect.left, Math.min(rect.right, event.clientX))
-    const deltaX = clampedClientX - startX
-    const containerWidth = rect.width
-    if (!containerWidth)
+    const clampedClientPos = clamp(
+      props.vertical ? top.value : left.value,
+      props.vertical ? bottom.value : right.value,
+      props.vertical ? event.clientY : event.clientX,
+    )
+
+    const delta = clampedClientPos - startPos
+
+    if (!width.value)
       return
 
-    const deltaSize = (deltaX / containerWidth) * 100
-
-    panelState.value[index].size = Math.max(0, Math.min(100, startSize + deltaSize))
-    panelState.value[index + 1].size = Math.max(0, Math.min(100, nextStartSize - deltaSize))
+    applyResize(index, (delta / width.value) * 100, startSize, nextStartSize)
   }
 
   const onMouseUp = () => {
@@ -84,6 +117,34 @@ useEventListener(root, 'mousedown', (event) => {
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseup', onMouseUp)
 })
+
+// Controls via keyboard when handle is focused
+useEventListener(root, 'keydown', (event) => {
+  const index = getFocusedHandle(event)
+
+  if (index === undefined)
+    return
+
+  // Control with arrow keys: left/right for horizontal, up/down for vertical but not at once
+  if (((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !props.vertical) || ((event.key === 'ArrowUp' || event.key === 'ArrowDown') && props.vertical)) {
+    event.preventDefault()
+    const MOVE_BY = 5
+    const delta = (event.key === 'ArrowLeft' || event.key === 'ArrowUp') ? -MOVE_BY : MOVE_BY
+    applyResize(index, delta, panelState.value[index].size, panelState.value[index + 1].size)
+  }
+})
+
+// Reset to default size on double click
+function resetSize(index: number) {
+  // Get width of both current and the next panel.
+  const current = panelState.value[index]
+  const next = panelState.value[index + 1]
+
+  // Set their width so they're both equal
+  const newSize = (current.size + next.size) / 2
+  panelState.value[index].size = newSize
+  panelState.value[index + 1].size = newSize
+}
 </script>
 
 <template>
@@ -102,6 +163,7 @@ useEventListener(root, 'mousedown', (event) => {
         v-if="index < panels.length - 1"
         :data-handle-index="index"
         class="vui-resizable-handle"
+        @dblclick="resetSize(index)"
         @focus="focusedPanelIndex = index"
         @blur="focusedPanelIndex = -1"
       />

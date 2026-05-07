@@ -12,13 +12,20 @@ import Resizable from '../components/Resizable/Resizable.vue'
 
     <Card :padding="false">
       <Resizable>
-        <Flex
-          v-for="item in 3"
-          :key="item"
-          class="example-panel" x-center y-center
-        >
-          <p>Panel {{ item }}</p>
+        <Flex class="example-panel" x-center y-center>
+          <p>Panel 1</p>
         </Flex>
+        <Flex class="example-panel" x-center y-center>
+          <p>Panel 2</p>
+        </Flex>
+        <Resizable class="example-panel" vertical>
+          <Flex class="h-100" x-center y-center>
+            <p>Panel 3</p>
+          </Flex>
+          <Flex class="h-100" x-center y-center>
+            <p>Panel 4</p>
+          </Flex>
+        </Resizable>
       </Resizable>
     </Card>
   </div>

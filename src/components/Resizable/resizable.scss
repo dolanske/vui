@@ -1,18 +1,39 @@
-// TODO: vertical
-
 .vui-resizable {
   display: flex;
   flex-direction: row;
   gap: 0;
   align-items: stretch;
 
-  .vui-resizable-panel {
+  &.vertical {
+    flex-direction: column;
+
+    & > .vui-resizable-handle {
+      cursor: ns-resize;
+      height: 1px;
+      width: 100%;
+
+      &:after {
+        left: 50%;
+        top: -2px;
+        transform: translateX(-50%);
+        width: 32px;
+        height: unset;
+        bottom: -2px;
+      }
+
+      &:before {
+        inset: -6px 0;
+      }
+    }
+  }
+
+  & > .vui-resizable-panel {
     display: block;
     z-index: 1;
     overflow: hidden;
   }
 
-  .vui-resizable-handle {
+  & > .vui-resizable-handle {
     width: 1px;
     position: relative;
     // height: 100%;
