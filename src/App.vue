@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ExampleBadges from './examples/ExampleBadges.vue'
+import ExampleResizeable from './examples/ExampleResizeable.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -7,6 +7,6 @@ setColorTheme('dark')
 
 <template>
   <main vaul-drawer-wrapper class="container-m py-xxxl">
-    <ExampleBadges />
+    <ExampleResizeable />
   </main>
 </template>

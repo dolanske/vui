@@ -2,7 +2,7 @@ import type { ShallowRef, VNode } from 'vue'
 import { computed, Fragment, watchPostEffect } from 'vue'
 
 type VNodesProps<T extends object> = Array<VNode & { props: T }>
-type SlotFn = () => VNode[] | VNode | undefined
+type SlotFn = (props?: any) => VNode[] | VNode | undefined
 
 function getTopLevelSlotNodes(slotFn?: SlotFn): VNode[] {
   const nodes = slotFn?.()

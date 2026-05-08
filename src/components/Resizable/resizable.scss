@@ -1,0 +1,74 @@
+.vui-resizable {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: stretch;
+
+  &.vertical {
+    flex-direction: column;
+
+    & > .vui-resizable-handle {
+      cursor: ns-resize;
+      height: 1px;
+      width: 100%;
+
+      &:after {
+        left: 50%;
+        top: -2px;
+        transform: translateX(-50%);
+        width: 32px;
+        height: unset;
+        bottom: -2px;
+      }
+
+      &:before {
+        inset: -6px 0;
+      }
+    }
+  }
+
+  & > .vui-resizable-panel {
+    display: block;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  & > .vui-resizable-handle {
+    width: 1px;
+    position: relative;
+    background-color: var(--color-border);
+    align-self: stretch;
+    z-index: 2;
+    cursor: ew-resize;
+
+    &:focus-within,
+    &:hover {
+      background-color: var(--color-border-strong);
+
+      &:after {
+        background-color: var(--color-border-strong);
+      }
+    }
+
+    // Hover area
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: 0 -6px;
+    }
+
+    // Handle
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -2px;
+      right: -2px;
+      height: 32px;
+      border-radius: var(--border-radius-pill);
+      background-color: var(--color-border);
+    }
+  }
+}
