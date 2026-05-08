@@ -38,6 +38,7 @@ import Marquee from './components/Marquee/Marquee.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Modal from './components/Modal/Modal.vue'
 import OTP from './components/OTP/OTP.vue'
+import Overflow from './components/Overflow/Overflow.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
 import { paginate } from './components/Pagination/pagination'
 import Pagination from './components/Pagination/Pagination.vue'
@@ -107,6 +108,7 @@ export {
   Modal,
   OTP,
   OTPItem,
+  Overflow,
   paginate,
   Pagination,
   Password,

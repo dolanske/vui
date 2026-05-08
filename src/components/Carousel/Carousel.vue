@@ -3,6 +3,7 @@ import type { Spaces } from '../../shared/types'
 import { useEventListener, useScroll } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'
+import '../Overflow/overflow.scss'
 import './carousel.scss'
 
 const {
@@ -35,6 +36,8 @@ interface Props {
 const carouselRef = useTemplateRef<InstanceType<typeof Flex>>('carouselWrap')
 const carouselEl = computed(() => carouselRef.value?.$el as HTMLElement | undefined)
 
+const { x } = useScroll(carouselEl)
+
 // Drag-to-scroll state
 const isDragging = ref(false)
 const hasDragged = ref(false)
@@ -43,8 +46,6 @@ const scrollStartX = ref(0)
 
 // How many pixels the pointer must move before it's considered a drag and not a click
 const DRAG_THRESHOLD = 6
-
-const { x } = useScroll(carouselEl)
 
 useEventListener(carouselEl, 'pointerdown', (e: PointerEvent) => {
   // Only handle left mouse button (or touch/pen)
@@ -122,17 +123,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="carousel" :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows }">
-    <div
-      class="carousel-track"
-      :class="{
-        'shadow-left': x > 0,
-        'shadow-right': carouselEl && x < carouselEl.scrollWidth - carouselEl.clientWidth,
-      }"
-    >
+  <div
+    class="overflow is-horizontal carousel"
+    :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows }"
+  >
+    <div class="overflow-track">
+      <div class="overflow-shadow overflow-shadow-left" :class="{ visible: x > 0 }" />
+      <div
+        class="overflow-shadow overflow-shadow-right"
+        :class="{ visible: carouselEl && x < carouselEl.scrollWidth - carouselEl.clientWidth }"
+      />
       <Flex
         ref="carouselWrap"
-        class="carousel-content"
+        class="overflow-content"
         :class="{ 'is-dragging': isDragging }"
         :gap
       >
