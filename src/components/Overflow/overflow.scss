@@ -1,6 +1,6 @@
 .overflow {
   --vui-overflow-gutter-size: 8px;
-  --vui-overflow-shadow-size: 16px;
+  --vui-overflow-shadow-size: 32px;
   --vui-overflow-shadow-color: var(--color-bg);
 
   &.hide-scrollbar {
@@ -80,12 +80,34 @@
     overscroll-behavior-x: contain;
   }
 
+  &.is-horizontal .overflow-content > * {
+    min-width: max-content;
+  }
+
   &.is-vertical .overflow-content {
     overflow-y: auto;
   }
 
   &.is-horizontal.is-vertical .overflow-content {
     overflow: auto;
+  }
+
+  &.is-snap {
+    &.is-horizontal .overflow-content {
+      scroll-snap-type: x mandatory;
+
+      > * {
+        scroll-snap-align: start;
+      }
+    }
+
+    &.is-vertical .overflow-content {
+      scroll-snap-type: y mandatory;
+
+      > * {
+        scroll-snap-align: start;
+      }
+    }
   }
 }
 

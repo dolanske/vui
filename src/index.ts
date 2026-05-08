@@ -38,8 +38,9 @@ import Marquee from './components/Marquee/Marquee.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Modal from './components/Modal/Modal.vue'
 import OTP from './components/OTP/OTP.vue'
-import Overflow from './components/Overflow/Overflow.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
+import Overflow from './components/Overflow/Overflow.vue'
+
 import { paginate } from './components/Pagination/pagination'
 import Pagination from './components/Pagination/Pagination.vue'
 import Popout from './components/Popout/Popout.vue'
@@ -47,6 +48,7 @@ import PopoutHover from './components/Popout/PopoutHover.vue'
 import Progress from './components/Progress/Progress.vue'
 import Radio from './components/Radio/Radio.vue'
 import RadioGroup from './components/Radio/RadioGroup.vue'
+import Resizable from './components/Resizable/Resizable.vue'
 import Select from './components/Select/Select.vue'
 import Sheet from './components/Sheet/Sheet.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
@@ -119,6 +121,7 @@ export {
   Radio,
   RadioGroup,
   removeToast,
+  Resizable,
   searchString,
   Select,
   setColorTheme,
@@ -140,4 +143,5 @@ export {
   useBreakpoint,
   useViewTransition,
   vuiBreakpoints,
+
 }

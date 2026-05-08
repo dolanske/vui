@@ -16,4 +16,8 @@
   justify-items: var(--vui-grid-justify, stretch);
   grid-auto-flow: var(--vui-grid-flow, row);
   width: var(--vui-grid-width, auto);
+
+  > * {
+    min-width: 0;
+  }
 }

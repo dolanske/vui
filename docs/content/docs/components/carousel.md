@@ -34,15 +34,10 @@ import { Carousel } from '@dolanske/vui'
 | `gap`           | `'s'`   | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Controls the spacing between carousel items. Uses Flex gap under the hood |
 | `hideScrollbar` | —       | `boolean` <br> Hides the horizontal scrollbar and removes scrollbar gutter padding                                               |
 | `hideShadows`   | —       | `boolean` <br> Hides the left & right scroll shadow indicators                                                                   |
+| `snap`          | —       | `boolean` <br> Enables scroll-snap so items snap into place when scrolling stops                                                 |
 
 ### Slots
 
 | Name      | Props | Description                                                  |
 | --------- | ----- | ------------------------------------------------------------ |
 | `default` | —     | The carousel items. Each child should have a `min-width` set |
-
-### Features
-
-- **Drag to scroll** — Click and drag horizontally to scroll through items. A threshold prevents accidental drags from triggering on simple clicks.
-- **Wheel scrolling** — Vertical mouse wheel input is converted to horizontal scrolling within the carousel.
-- **Scroll shadows** — Gradient shadow indicators appear on the left and right edges when there is more content to scroll to in that direction.

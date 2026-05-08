@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import { Button, Card, Carousel, Flex } from '@dolanske/vui'
+import { Card, Carousel } from '@dolanske/vui'
 </script>
 
 <template>
   <DocsExample full>
     <template #component>
       <div style="padding: var(--space-xl) var(--space-xxl);">
-        <Carousel :sheet-width="400">
-          <template #header="{ toggle }">
-            <Flex x-between y-center class="mb-s">
-              <strong>Featured Albums</strong>
-              <Button size="s" plain @click="toggle">
-                See all
-              </Button>
-            </Flex>
-          </template>
-
+        <Carousel class="example-carousel" hide-scrollbar>
           <Card
             v-for="(album, i) in [
               { title: 'Midnight Drive', artist: 'The Neon Owls' },
@@ -43,48 +34,6 @@ import { Button, Card, Carousel, Flex } from '@dolanske/vui'
             <strong style="display: block;margin-bottom:0.5rem;">{{ album.title }}</strong>
             <small style="opacity: 0.6;">{{ album.artist }}</small>
           </Card>
-
-          <template #sheet-header>
-            <Flex x-between y-center>
-              <h4 style="margin: 0;">
-                All Albums
-              </h4>
-            </Flex>
-          </template>
-
-          <template #sheet-content>
-            <Flex column gap="s">
-              <Flex
-                v-for="(album, i) in [
-                  { title: 'Midnight Drive', artist: 'The Neon Owls' },
-                  { title: 'Glass Mountains', artist: 'Vera Lune' },
-                  { title: 'Parallel Lines', artist: 'Static People' },
-                  { title: 'Ocean Protocol', artist: 'Deep Format' },
-                  { title: 'Soft Machine', artist: 'Elliot Marsh' },
-                  { title: 'Northern Lights', artist: 'Aurora Band' },
-                  { title: 'City Silence', artist: 'Mono Block' },
-                  { title: 'The Long Way', artist: 'Drift & Co.' },
-                ]"
-                :key="album.title"
-                y-center
-                gap="m"
-              >
-                <div
-                  :style="{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '6px',
-                    flexShrink: 0,
-                    background: `hsl(${i * 40 % 360}, 55%, 48%)`,
-                  }"
-                />
-                <div>
-                  <strong style="display: block;">{{ album.title }}</strong>
-                  <small style="opacity: 0.6;">{{ album.artist }}</small>
-                </div>
-              </Flex>
-            </Flex>
-          </template>
         </Carousel>
       </div>
     </template>
@@ -93,3 +42,9 @@ import { Button, Card, Carousel, Flex } from '@dolanske/vui'
     </template>
   </DocsExample>
 </template>
+
+<style>
+.example-carousel {
+  --vui-overflow-shadow-color: var(--color-bg-lowered);
+}
+</style>

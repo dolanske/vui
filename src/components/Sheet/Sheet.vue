@@ -146,6 +146,7 @@ const baseTransform = computed(() => {
   position: relative;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .sheet-enter-active,

@@ -42,7 +42,7 @@
 
   .vui-card-header {
     display: flex;
-    align-items: var(--vui-card-header-align, baseline);
+    align-items: var(--vui-card-header-align, center);
     justify-content: space-between;
     padding: var(--space-s) var(--space-m);
     background-color: var(--color-bg);

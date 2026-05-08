@@ -10,6 +10,7 @@ const {
   gap = 's' as const,
   hideScrollbar,
   hideShadows,
+  snap,
 } = defineProps<Props>()
 
 /**
@@ -31,6 +32,10 @@ interface Props {
    * Hides the left & right shadows which indicate option to scroll
    */
   hideShadows?: boolean
+  /**
+   * Enables scroll-snap so items snap into place when scrolling stops
+   */
+  snap?: boolean
 }
 
 const carouselRef = useTemplateRef<InstanceType<typeof Flex>>('carouselWrap')
@@ -56,8 +61,9 @@ useEventListener(carouselEl, 'pointerdown', (e: PointerEvent) => {
   if (!el)
     return
 
-  isDragging.value = true
+  // Reset any stale drag state from a previous interaction where click never fired
   hasDragged.value = false
+  isDragging.value = true
   dragStartX.value = e.clientX
   // Read scrollLeft directly - more reliable than the reactive x ref
   scrollStartX.value = el.scrollLeft
@@ -125,7 +131,7 @@ onMounted(() => {
 <template>
   <div
     class="overflow is-horizontal carousel"
-    :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows }"
+    :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows, 'is-snap': snap }"
   >
     <div class="overflow-track">
       <div class="overflow-shadow overflow-shadow-left" :class="{ visible: x > 0 }" />

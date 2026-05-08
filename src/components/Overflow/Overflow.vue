@@ -5,9 +5,9 @@ import './overflow.scss'
 
 interface Props {
   /**
-   * Use vertical scrolling instead of horizontal
+   * Use horizontal scrolling instead of vertical
    */
-  vertical?: boolean
+  horizontal?: boolean
   /**
    * Hides the scrollbar and removes the scrollbar gutter padding
    */
@@ -16,29 +16,34 @@ interface Props {
    * Hides shadows indicating scrolling context
    */
   hideShadows?: boolean
+  /**
+   * Enables scroll-snap so items snap into place when scrolling stops
+   */
+  snap?: boolean
 }
 
 const {
-  vertical,
+  horizontal,
   hideScrollbar,
   hideShadows,
+  snap,
 } = defineProps<Props>()
 
 const contentRef = useTemplateRef<HTMLElement>('content')
 
 const { x, y } = useScroll(contentRef)
 
-const showShadowLeft = computed(() => !vertical && x.value > 0)
+const showShadowLeft = computed(() => horizontal && x.value > 0)
 const showShadowRight = computed(() => {
-  if (vertical || !contentRef.value)
+  if (!horizontal || !contentRef.value)
     return false
-  return x.value < contentRef.value.scrollWidth - contentRef.value.clientWidth
+  return x.value < contentRef.value.scrollWidth - contentRef.value.clientWidth - 1
 })
-const showShadowTop = computed(() => vertical && y.value > 0)
+const showShadowTop = computed(() => !horizontal && y.value > 0)
 const showShadowBottom = computed(() => {
-  if (!vertical || !contentRef.value)
+  if (horizontal || !contentRef.value)
     return false
-  return y.value < contentRef.value.scrollHeight - contentRef.value.clientHeight
+  return y.value < contentRef.value.scrollHeight - contentRef.value.clientHeight - 1
 })
 </script>
 
@@ -48,8 +53,9 @@ const showShadowBottom = computed(() => {
     :class="{
       'hide-scrollbar': hideScrollbar,
       'hide-shadows': hideShadows,
-      'is-horizontal': !vertical,
-      'is-vertical': vertical,
+      'is-horizontal': horizontal,
+      'is-vertical': !horizontal,
+      'is-snap': snap,
     }"
   >
     <div class="overflow-track">

@@ -24,9 +24,9 @@ const activeGap = ref<typeof gaps[number]>('s')
       <tbody>
         <!-- Base usage -->
         <tr>
-          <th>Base</th>
+          <th>Base + snap</th>
           <td>
-            <Carousel style="max-width: 480px">
+            <Carousel class="example-carousel" style="max-width: 480px" snap>
               <div
                 v-for="item in items"
                 :key="item.id"
@@ -65,7 +65,7 @@ const activeGap = ref<typeof gaps[number]>('s')
                 {{ g }}
               </Button>
             </Flex>
-            <Carousel :gap="activeGap" style="max-width: 480px" hide-scrollbar hide-shadows>
+            <Carousel class="example-carousel" :gap="activeGap" style="max-width: 480px" hide-scrollbar hide-shadows>
               <div
                 v-for="item in items"
                 :key="item.id"

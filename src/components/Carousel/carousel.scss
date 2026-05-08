@@ -8,4 +8,12 @@
       scroll-behavior: auto;
     }
   }
+
+  &.is-snap .overflow-content {
+    scroll-snap-type: x mandatory;
+
+    > * {
+      scroll-snap-align: start;
+    }
+  }
 }
