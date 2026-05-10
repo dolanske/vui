@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import ExampleCarousels from './examples/ExampleCarousels.vue'
-import ExampleOverflows from './examples/ExampleOverflows.vue'
-import ExampleSheets from './examples/ExampleSheets.vue'
+import ExampleAlerts from './examples/ExampleAlerts.vue'
+import ExampleBadges from './examples/ExampleBadges.vue'
+import ExampleButtons from './examples/ExampleButtons.vue'
+import ExamplePalette from './examples/ExamplePalette.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('dark')
@@ -9,8 +10,9 @@ setColorTheme('dark')
 
 <template>
   <main vaul-drawer-wrapper class="container-m py-xxxl">
-    <ExampleCarousels />
-    <ExampleOverflows />
-    <ExampleSheets />
+    <ExamplePalette />
+    <ExampleButtons />
+    <ExampleBadges />
+    <ExampleAlerts />
   </main>
 </template>

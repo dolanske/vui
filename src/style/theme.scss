@@ -1,95 +1,95 @@
 // Light theme
 :root {
-  --light-color-bg: rgb(246, 246, 246);
-  --light-color-bg-medium: rgb(236, 236, 236);
-  --light-color-bg-raised: rgb(222, 222, 222);
-  --light-color-bg-lowered: rgb(255, 255, 255);
+  --light-color-bg: oklch(97.31% 0 none);
+  --light-color-bg-medium: oklch(94.31% 0 none);
+  --light-color-bg-raised: oklch(90.06% 0 none);
+  --light-color-bg-lowered: oklch(100% 0 none);
 
-  --light-color-text: rgb(8, 8, 8);
-  --light-color-text-light: rgb(64, 64, 64);
-  --light-color-text-lighter: rgb(92, 92, 92);
-  --light-color-text-lightest: rgb(128, 128, 128);
-  --light-color-text-invert: rgb(248, 248, 248);
+  --light-color-text: oklch(13.44% 0 none);
+  --light-color-text-light: oklch(37.15% 0 none);
+  --light-color-text-lighter: oklch(47.48% 0 none);
+  --light-color-text-lightest: oklch(59.99% 0 none);
+  --light-color-text-invert: oklch(97.91% 0 none);
 
-  --light-color-button-gray: rgb(224, 224, 224);
-  --light-color-button-gray-hover: rgb(198, 198, 198);
+  --light-color-button-gray: oklch(90.67% 0 none);
+  --light-color-button-gray-hover: oklch(82.66% 0 none);
 
-  --light-color-button-fill: rgb(12, 12, 12);
-  --light-color-button-fill-hover: rgb(52, 52, 52);
+  --light-color-button-fill: oklch(15.43% 0 none);
+  --light-color-button-fill-hover: oklch(32.5% 0 none);
 
-  --light-color-text-red: rgb(209, 60, 52);
-  --light-color-bg-red-lowered: rgb(172, 45, 45);
-  --light-color-bg-red-raised: rgb(220, 38, 38);
+  --light-color-text-red: oklch(57.65% 0.1872 27.72deg);
+  --light-color-bg-red-lowered: oklch(49.65% 0.1638 25.47deg);
+  --light-color-bg-red-raised: oklch(57.71% 0.2152 27.33deg);
 
-  --light-color-text-green: rgb(77, 160, 29);
-  --light-color-bg-green-lowered: rgb(42, 114, 19);
-  --light-color-bg-green-raised: rgb(61, 146, 35);
+  --light-color-text-green: oklch(62.92% 0.1787 137.15deg);
+  --light-color-bg-green-lowered: oklch(48.78% 0.1444 139.65deg);
+  --light-color-bg-green-raised: oklch(58.54% 0.1663 139.54deg);
 
-  --light-color-text-yellow: rgb(176, 129, 15);
-  --light-color-bg-yellow-lowered: rgb(230, 205, 137);
-  --light-color-bg-yellow-raised: rgb(253, 200, 86);
+  --light-color-text-yellow: oklch(63.3% 0.127 81.99deg);
+  --light-color-bg-yellow-lowered: oklch(85.39% 0.091 90.1deg);
+  --light-color-bg-yellow-raised: oklch(85.94% 0.1422 83.7deg);
 
-  --light-color-text-blue: rgb(85, 141, 245);
-  --light-color-bg-blue-lowered: rgb(196, 214, 255);
-  --light-color-bg-blue-raised: rgb(136, 178, 255);
+  --light-color-text-blue: oklch(65.53% 0.1662 261.63deg);
+  --light-color-bg-blue-lowered: oklch(87.6% 0.0602 266.48deg);
+  --light-color-bg-blue-raised: oklch(76.4% 0.1203 261.1deg);
 
-  --light-color-border: rgb(200, 200, 200);
-  --light-color-border-strong: rgb(152, 152, 152);
-  --light-color-border-weak: rgb(224, 224, 224);
+  --light-color-border: oklch(83.28% 0 none);
+  --light-color-border-strong: oklch(67.97% 0 none);
+  --light-color-border-weak: oklch(90.67% 0 none);
 
-  --light-color-accent: rgb(193, 118, 255);
-  --light-color-bg-accent-lowered: hsla(from var(--light-color-accent) h s l / 0.6);
-  --light-color-bg-accent-raised: hsla(from var(--light-color-accent) h s l / 0.75);
+  --light-color-accent: oklch(70.31% 0.2018 307.26deg);
+  --light-color-bg-accent-lowered: oklch(83.5% 0.07 307.26deg);
+  --light-color-bg-accent-raised: oklch(87.5% 0.055 307.26deg);
 
-  --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.085);
-  --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);
+  --light-box-shadow: 0 2px 12px oklch(13.44% 0 none / 0.085);
+  --light-box-shadow-strong: 0 4px 15px oklch(13.44% 0 none / 0.2);
 }
 
 // Dark theme
 :root {
-  --dark-color-bg: rgb(17, 17, 17);
-  --dark-color-bg-medium: rgb(22, 22, 22);
-  --dark-color-bg-raised: rgb(28, 28, 28);
-  --dark-color-bg-lowered: rgb(12, 12, 12);
+  --dark-color-bg: oklch(17.76% 0 none);
+  --dark-color-bg-medium: oklch(20.02% 0 none);
+  --dark-color-bg-raised: oklch(22.64% 0 none);
+  --dark-color-bg-lowered: oklch(15.43% 0 none);
 
-  --dark-color-text: rgb(231, 231, 231);
-  --dark-color-text-light: rgb(180, 180, 180);
-  --dark-color-text-lighter: rgb(90, 90, 90);
-  --dark-color-text-lightest: rgb(65, 65, 65);
-  --dark-color-text-invert: rgb(17, 17, 17);
+  --dark-color-text: oklch(92.8% 0 none);
+  --dark-color-text-light: oklch(76.99% 0 none);
+  --dark-color-text-lighter: oklch(46.76% 0 none);
+  --dark-color-text-lightest: oklch(37.53% 0 none);
+  --dark-color-text-invert: oklch(17.76% 0 none);
 
-  --dark-color-button-gray: rgb(46, 46, 46);
-  --dark-color-button-gray-hover: rgb(38, 38, 38);
+  --dark-color-button-gray: oklch(30.12% 0 none);
+  --dark-color-button-gray-hover: oklch(26.86% 0 none);
 
-  --dark-color-button-fill: rgb(250, 250, 250);
-  --dark-color-button-fill-hover: rgb(210, 210, 210);
+  --dark-color-button-fill: oklch(98.51% 0 none);
+  --dark-color-button-fill-hover: oklch(86.38% 0 none);
 
-  --dark-color-text-red: rgb(243, 78, 70);
-  --dark-color-bg-red-lowered: rgb(104, 24, 24);
-  --dark-color-bg-red-raised: rgb(127, 29, 29);
+  --dark-color-text-red: oklch(65.35% 0.2027 27.06deg);
+  --dark-color-bg-red-lowered: oklch(34.57% 0.1132 25.37deg);
+  --dark-color-bg-red-raised: oklch(39.58% 0.1331 25.72deg);
 
-  --dark-color-text-green: rgb(106, 207, 48);
-  --dark-color-bg-green-lowered: rgb(40, 95, 8);
-  --dark-color-bg-green-raised: rgb(26, 122, 13);
+  --dark-color-text-green: oklch(76.4% 0.2109 136.9deg);
+  --dark-color-bg-green-lowered: oklch(43.12% 0.1267 137.53deg);
+  --dark-color-bg-green-raised: oklch(50.61% 0.162 141.65deg);
 
-  --dark-color-text-yellow: rgb(255, 193, 7);
-  --dark-color-bg-yellow-lowered: rgb(78, 52, 0);
-  --dark-color-bg-yellow-raised: rgb(152, 104, 0);
+  --dark-color-text-yellow: oklch(84.42% 0.1722 84.93deg);
+  --dark-color-bg-yellow-lowered: oklch(34.67% 0.0723 77.94deg);
+  --dark-color-bg-yellow-raised: oklch(55.37% 0.1158 77.03deg);
 
-  --dark-color-text-blue: rgb(85, 141, 245);
-  --dark-color-bg-blue-lowered: rgb(13, 32, 74);
-  --dark-color-bg-blue-raised: rgb(26, 59, 119);
+  --dark-color-text-blue: oklch(65.53% 0.1662 261.63deg);
+  --dark-color-bg-blue-lowered: oklch(25.61% 0.0822 263.41deg);
+  --dark-color-bg-blue-raised: oklch(36.4% 0.11 261.17deg);
 
-  --dark-color-border: rgb(40, 40, 40);
-  --dark-color-border-strong: rgb(54, 54, 54);
-  --dark-color-border-weak: rgb(36, 36, 36);
+  --dark-color-border: oklch(27.68% 0 none);
+  --dark-color-border-strong: oklch(33.29% 0 none);
+  --dark-color-border-weak: oklch(26.03% 0 none);
 
-  --dark-color-accent: rgb(193, 118, 255);
-  --dark-color-bg-accent-lowered: hsla(from var(--dark-color-accent) h s l / 0.45);
-  --dark-color-bg-accent-raised: hsla(from var(--dark-color-accent) h s l / 0.6);
+  --dark-color-accent: oklch(70.31% 0.2018 307.26deg);
+  --dark-color-bg-accent-lowered: oklch(40% 0.11 307.26deg);
+  --dark-color-bg-accent-raised: oklch(46% 0.095 307.26deg);
 
-  --dark-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.3);
-  --dark-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
+  --dark-box-shadow: 0 2px 12px oklch(13.44% 0 none / 0.3);
+  --dark-box-shadow-strong: 0 4px 15px oklch(13.44% 0 none / 0.4);
 }
 
 :root.light {
