@@ -65,7 +65,7 @@ const attrs = useAttrs()
 const popoutRef = useTemplateRef('popout')
 const anchorRef = computed(() => props.anchor)
 
-const { floatingStyles } = useFloating(anchorRef, popoutRef, {
+const { floatingStyles, placement: computedPlacement } = useFloating(anchorRef, popoutRef, {
   whileElementsMounted: autoUpdate,
   strategy: 'fixed',
   transform: false,
@@ -88,7 +88,7 @@ const transition = computed(() => {
     return undefined
   else if (props.transitionName)
     return props.transitionName
-  return getPlacementAnimationName(props.placement)
+  return getPlacementAnimationName(computedPlacement.value)
 })
 
 const { layerIndex, openLayer, closeLayer } = useLayer()

@@ -1,24 +1,4 @@
 .vui-clipboard-copy-wrap {
-  display: contents;
-}
-
-.vui-clipboard-tooltip {
-  padding: 6px 8px;
-  border-radius: var(--border-radius-s);
-  background-color: var(--color-bg-raised);
-  font-size: var(--font-size-m);
-  color: var(--color-text);
-  box-shadow: var(--box-shadow);
-  z-index: var(--z-popout);
-
-  svg path {
-    color: var(--color-text);
-  }
-}
-
-:root.light {
-  .vui-clipboard-tooltip {
-    background-color: var(--color-bg);
-    box-shadow: var(--box-shadow-strong);
-  }
+  display: inline-block;
+  width: fit-content;
 }

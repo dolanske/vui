@@ -22,7 +22,7 @@ import Flex from '../components/Flex/Flex.vue'
         <tr>
           <th>Custom slot & confirmation</th>
           <td>
-            <CopyClipboard text="Copy me!" confirm transition-name="none">
+            <CopyClipboard text="Copy me!" confirm>
               <Button>Copy me!</Button>
             </CopyClipboard>
           </td>

@@ -1,12 +1,11 @@
 <script setup lang='ts'>
-import type { Placement } from '@floating-ui/vue'
-import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
-import { IconCheckBold } from '@iconify-prerendered/vue-ph'
+import type { Placement } from '../../shared/types'
 import { useClipboard } from '@vueuse/core'
 import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
-import { getPlacementAnimationName, isNil } from '../../shared/helpers'
-import Flex from '../Flex/Flex.vue'
+import { isNil } from '../../shared/helpers'
+import Popout from '../Popout/Popout.vue'
 import './copy-clipboard.scss'
+import '../Tooltip/tooltip.scss'
 
 interface Props {
   /**
@@ -69,46 +68,27 @@ onMounted(() => {
 })
 
 const anchorRef = useTemplateRef('anchor')
-const tooltipRef = useTemplateRef('tooltip')
-const anchorEl = computed(() => anchorRef.value?.firstElementChild as HTMLElement | null ?? null)
-
-const { floatingStyles } = useFloating(anchorEl, tooltipRef, {
-  whileElementsMounted: autoUpdate,
-  transform: false,
-  strategy: 'fixed',
-  placement: confirmPlacement,
-  middleware: [
-    offset(8),
-    shift(),
-    flip(),
-  ],
-})
-
-const transition = computed(() => {
-  if (transitionName === 'none')
-    return undefined
-  else if (transitionName)
-    return transitionName
-  return getPlacementAnimationName(confirmPlacement)
-})
+const anchorEl = computed(() => anchorRef.value)
 </script>
 
 <template>
   <div ref="anchor" class="vui-clipboard-copy-wrap" role="button" @click="copy(text)">
     <slot :copy :copied />
   </div>
-
-  <Transition :name="transition" :css="transitionName !== 'none'" mode="in-out">
-    <div v-if="copied && (!!parsedConfirm || $slots.confirm)" ref="tooltip" class="vui-clipboard-tooltip" :style="floatingStyles">
-      <slot name="confirm">
-        <template v-if="typeof parsedConfirm === 'string'">
-          {{ parsedConfirm }}
-        </template>
-        <Flex v-else y-center x-center gap="xs">
-          <IconCheckBold />
-          Copied to clipboard
-        </Flex>
-      </slot>
-    </div>
-  </Transition>
+  <Popout
+    :anchor="anchorEl"
+    :visible="copied && (!!parsedConfirm || !!$slots.confirm)"
+    :placement="confirmPlacement"
+    :transition-name="transitionName"
+    class="vui-tooltip"
+  >
+    <slot name="confirm">
+      <template v-if="typeof parsedConfirm === 'string'">
+        {{ parsedConfirm }}
+      </template>
+      <p v-else>
+        Copied to clipboard
+      </p>
+    </slot>
+  </Popout>
 </template>

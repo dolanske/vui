@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import ExampleTables from './examples/ExampleTables.vue'
+import ExampleCopyClipboard from './examples/ExampleCopyClipboard.vue'
+import ExamplePopouts from './examples/ExamplePopouts.vue'
 import { setColorTheme } from './shared/theme'
 
 setColorTheme('light')
@@ -7,6 +8,7 @@ setColorTheme('light')
 
 <template>
   <main vaul-drawer-wrapper class="container-m py-xxxl">
-    <ExampleTables />
+    <ExampleCopyClipboard />
+    <ExamplePopouts />
   </main>
 </template>

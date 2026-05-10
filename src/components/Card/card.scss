@@ -8,39 +8,39 @@
   border: 1px solid var(--color-border);
 
   &.no-padding {
-    .vui-card-header,
-    .vui-card-content,
-    .vui-card-footer {
+    & > .vui-card-header,
+    & > .vui-card-content,
+    & > .vui-card-footer {
       padding: 0;
     }
   }
 
   &.header-separator {
-    .vui-card-content:not(:first-child) {
+    & > .vui-card-content:not(:first-child) {
       padding-top: var(--space-m);
       // padding-block: var(--space-m);
     }
   }
 
   &.footer-separator {
-    .vui-card-content {
+    & > .vui-card-content {
       padding-bottom: var(--space-m);
     }
   }
 
   &:not(&.header-separator) {
-    .vui-card-header + .vui-card-content {
+    & > .vui-card-header + .vui-card-content {
       padding-top: 0;
     }
   }
 
   &:not(&.footer-separator) {
-    .vui-card-content:has(+ .vui-card-footer) {
+    & > .vui-card-content:has(+ .vui-card-footer) {
       padding-bottom: 0;
     }
   }
 
-  .vui-card-header {
+  & > .vui-card-header {
     display: flex;
     align-items: var(--vui-card-header-align, center);
     justify-content: space-between;
@@ -52,12 +52,12 @@
     gap: var(--space-s);
   }
 
-  .vui-card-content {
+  & > .vui-card-content {
     padding: var(--space-m);
     position: relative;
   }
 
-  .vui-card-footer {
+  & > .vui-card-footer {
     position: relative;
 
     padding: var(--space-s) var(--space-m);
