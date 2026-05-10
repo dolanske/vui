@@ -200,11 +200,11 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
       </ul>
     </div>
 
-    <Divider :size="40" class="w-40" />
+    <Divider class="my-l w-40" />
 
     <p>The <code>defineTable</code> hook can also be used with other UI components. Not just tables. That's why all the table interactivity is not within the component, but in a hook. It's very flexible and allows custom functionality.</p>
 
-    <Divider :size="40" />
+    <Divider class="my-l w-40" />
 
     <h5 class="mb-s">
       Responsitivity

@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import ExampleCarousels from './examples/ExampleCarousels.vue'
-import ExampleOverflows from './examples/ExampleOverflows.vue'
-import ExampleSheets from './examples/ExampleSheets.vue'
+import ExampleTables from './examples/ExampleTables.vue'
 import { setColorTheme } from './shared/theme'
 
-setColorTheme('dark')
+setColorTheme('light')
 </script>
 
 <template>
   <main vaul-drawer-wrapper class="container-m py-xxxl">
-    <ExampleCarousels />
-    <ExampleOverflows />
-    <ExampleSheets />
+    <ExampleTables />
   </main>
 </template>

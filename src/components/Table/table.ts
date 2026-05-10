@@ -212,7 +212,7 @@ export function defineTable<const Dataset extends any[]>(
       selectedRows.value = new Set()
     }
     else {
-      selectedRows.value = new Set(...$data.value)
+      selectedRows.value = new Set($data.value)
     }
   }
 
