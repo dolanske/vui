@@ -9,7 +9,7 @@ const props = defineProps<{ error: NuxtError }>()
   <Flex class="error-page" y-center x-center>
     <Card header-align="start">
       <template #header>
-        <Badge v-if="props.error.statusCode" variant="danger" @click="$router.back()">
+        <Badge v-if="props.error.statusCode" variant="danger" @click="$router.go(-1)">
           {{ props.error.statusCode }}
         </Badge>
         <h1>

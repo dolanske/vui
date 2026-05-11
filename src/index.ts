@@ -1,4 +1,6 @@
 import type { Command } from './components/Commands/Commands.vue'
+import type { SelectOption } from './components/Select/Select.vue'
+import type { Breakpoints } from './shared/breakpoints'
 import type { Sizes, Spaces, SpaceSize } from './shared/types'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
@@ -40,7 +42,6 @@ import Modal from './components/Modal/Modal.vue'
 import OTP from './components/OTP/OTP.vue'
 import OTPItem from './components/OTP/OTPItem.vue'
 import Overflow from './components/Overflow/Overflow.vue'
-
 import { paginate } from './components/Pagination/pagination'
 import Pagination from './components/Pagination/Pagination.vue'
 import Popout from './components/Popout/Popout.vue'
@@ -80,6 +81,7 @@ export {
   BadgeGroup,
   BreadcrumbItem,
   Breadcrumbs,
+  type Breakpoints,
   Button,
   ButtonGroup,
   Calendar,
@@ -124,6 +126,7 @@ export {
   Resizable,
   searchString,
   Select,
+  type SelectOption,
   setColorTheme,
   Sheet,
   Sidebar,

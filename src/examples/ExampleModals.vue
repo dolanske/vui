@@ -30,7 +30,7 @@ function setSize(s: any) {
     <table>
       <tbody>
         <tr>
-          <th>Base</th>
+          <th>Base + no transition</th>
           <td>
             <Button @click="open = !open">
               Open

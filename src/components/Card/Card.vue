@@ -8,6 +8,8 @@ export interface Props {
   footerSeparator?: boolean
   padding?: boolean
   headerAlign?: 'start' | 'center' | 'end' | 'baseline'
+  centered?: boolean
+  borderStyle?: 'solid' | 'dashed' | 'dotted' | (string & {})
 }
 
 const {
@@ -16,6 +18,8 @@ const {
   headerSeparator,
   footerSeparator,
   headerAlign,
+  centered,
+  borderStyle = 'solid',
 } = defineProps<Props>()
 </script>
 
@@ -26,9 +30,12 @@ const {
       'header-separator': separators || headerSeparator,
       'footer-separator': separators || footerSeparator,
       'no-padding': !padding,
+      centered,
+
     }"
     :style="{
       '--vui-card-header-align': headerAlign,
+      '--vui-card-border-style': borderStyle,
     }"
   >
     <div v-if="$slots.header || $slots['header-end']" class="vui-card-header">
@@ -38,13 +45,13 @@ const {
       <slot name="header-end" />
     </div>
 
-    <Divider v-if="(separators || headerSeparator) && ($slots.header || $slots['header-end'])" :size="1" />
+    <Divider v-if="(separators || headerSeparator) && ($slots.header || $slots['header-end'])" :type="borderStyle" :size="1" />
 
     <div v-if="$slots.default" class="vui-card-content">
       <slot />
     </div>
 
-    <Divider v-if="(separators || footerSeparator) && $slots.footer" :size="1" />
+    <Divider v-if="(separators || footerSeparator) && $slots.footer" :type="borderStyle" :size="1" />
 
     <div v-if="$slots.footer" class="vui-card-footer">
       <slot name="footer" />

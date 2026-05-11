@@ -38,7 +38,7 @@ const avatars = [
 
 ### Slots
 
-| Name        | Accepts                 | Description                                                                                         |
-| ----------- | ----------------------- | --------------------------------------------------------------------------------------------------- |
-| `default`   | `any`                   | One or more `Avatar` components (or elements wrapping them) to display in the group                 |
-| `remaining` | `{ remaining: number }` | Scoped slot to customize the overflow counter. Receives the number of hidden avatars as `remaining` |
+| Name        | Accepts | Props                   | Description                                                                         |
+| ----------- | ------- | ----------------------- | ----------------------------------------------------------------------------------- |
+| `default`   | `any`   | -                       | One or more `Avatar` components (or elements wrapping them) to display in the group |
+| `remaining` | `any`   | `{ remaining: number }` | Scoped slot to customize the overflow counter                                       |

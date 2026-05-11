@@ -4,10 +4,10 @@ VUI is a modern Vue 3 component library designed for building beautiful and acce
 
 VUI's core functionality is divided into three categories.
 
-- [Style tokens](/docs/tokens)
+- [Tokens](/docs/tokens)
   - Offers heavy customization of the framework & UI components
-- [CSS framework](/docs/framework)
-  - Quick style change on the fly. VUI should not be used with any CSS framework
+- [Classes](/docs/classes)
+  - Quick style change on the fly. VUI should not be used with a CSS framework
 - [Components](/docs/components)
   - The UI components
 

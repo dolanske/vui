@@ -393,14 +393,21 @@ export const tokenPages = [
 ]
 
 export const frameworkPages = [
-  { label: 'Getting started', path: '/docs/framework', keywords: ['install', 'setup', 'introduction', 'start'] },
-  { label: 'Colors', path: '/docs/framework/colors', keywords: ['color', 'palette', 'text', 'background'] },
-  { label: 'Text & font', path: '/docs/framework/text', keywords: ['text', 'font', 'size', 'weight', 'alignment', 'truncate', 'white space'] },
-  { label: 'Typography', path: '/docs/framework/typography', keywords: ['heading', 'paragraph', 'display', 'prose', 'article', 'post'] },
-  { label: 'Spacing', path: '/docs/framework/spacing', keywords: ['margin', 'padding', 'gap', 'space'] },
-  { label: 'Layout', path: '/docs/framework/layout', keywords: ['flex', 'grid', 'container', 'width', 'height', 'display', 'flex'] },
-  { label: 'Z-index', path: '/docs/framework/z-index', keywords: ['layer', 'stacking', 'order', 'depth'] },
-  { label: 'Utilities', path: '/docs/framework/utilities', keywords: ['visuall hidden', 'mark', 'marker', 'counter', 'tooltip'] },
+  { label: 'Getting started', path: '/docs/classes', keywords: ['install', 'setup', 'introduction', 'start'] },
+  { label: 'Colors', path: '/docs/classes/colors', keywords: ['color', 'palette', 'text', 'background'] },
+  { label: 'Text & font', path: '/docs/classes/text', keywords: ['text', 'font', 'size', 'weight', 'alignment', 'truncate', 'white space'] },
+  { label: 'Typography', path: '/docs/classes/typography', keywords: ['heading', 'paragraph', 'display', 'prose', 'article', 'post'] },
+  { label: 'Spacing', path: '/docs/classes/spacing', keywords: ['margin', 'padding', 'gap', 'space'] },
+  { label: 'Layout', path: '/docs/classes/layout', keywords: ['flex', 'grid', 'container', 'width', 'height', 'display', 'flex'] },
+  { label: 'Z-index', path: '/docs/classes/z-index', keywords: ['layer', 'stacking', 'order', 'depth'] },
+  { label: 'Utilities', path: '/docs/classes/utilities', keywords: ['visuall hidden', 'mark', 'marker', 'counter', 'tooltip'] },
+]
+
+export const libraryPages = [
+  { label: 'Getting started', path: '/docs/library', keywords: ['methods', 'helpers', 'composables'] },
+  { label: 'useViewTransition', path: '/docs/library/use-view-transition', keywords: ['animation', 'view transition', 'transition'] },
+  { label: 'searchString', path: '/docs/library/search-string', keywords: ['text', 'search', 'iteration'] },
+  { label: 'useBreakpoint', path: '/docs/library/use-breakpoint', keywords: ['responsive', 'breakpoints', 'mobile'] },
 ]
 
 export const componentPages = [
@@ -420,7 +427,8 @@ export const globalLinks = [
 ]
 
 export const documentationTabs = [
-  { label: 'Style tokens', icon: 'ph:brackets-curly', path: '/docs/tokens' },
-  { label: 'CSS framework', icon: 'ph:file-css', path: '/docs/framework' },
+  { label: 'Tokens', icon: 'ph:cube', path: '/docs/tokens' },
+  { label: 'Classes', icon: 'ph:file-css', path: '/docs/classes' },
   { label: 'Components', icon: 'ph:rectangle-dashed', path: '/docs/components' },
+  { label: 'Library', icon: 'ph:brackets-curly', path: '/docs/library' },
 ]

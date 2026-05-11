@@ -1,11 +1,23 @@
 .vui-card {
   --vui-card-header-align: initial;
+  --vui-card-border-style: initial;
 
   display: block;
   width: 100%;
   background-color: var(--color-bg);
   border-radius: var(--border-radius-m);
-  border: 1px solid var(--color-border);
+  border: 1px var(--vui-card-border-style, 'solid') var(--color-border);
+
+  &.centered {
+    & > .vui-card-header,
+    & > .vui-card-content,
+    & > .vui-card-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
 
   &.no-padding {
     & > .vui-card-header,
@@ -18,7 +30,6 @@
   &.header-separator {
     & > .vui-card-content:not(:first-child) {
       padding-top: var(--space-m);
-      // padding-block: var(--space-m);
     }
   }
 

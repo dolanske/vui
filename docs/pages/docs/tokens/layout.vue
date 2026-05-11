@@ -17,7 +17,7 @@ import { getContainerPercent } from '~/utils/format'
     </h2>
 
     <p class="mb-xl">
-      Container tokens define the maximum widths used by the framework <NuxtLink to="/docs/framework/layout">
+      Container tokens define the maximum widths used by the framework <NuxtLink to="/docs/classes/layout">
         layout utilities
       </NuxtLink>. They let you keep page widths consistent without hard-coding values into components.
     </p>

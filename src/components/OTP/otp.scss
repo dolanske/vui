@@ -1,4 +1,6 @@
 .vui-otp {
+  --vui-otp-background-color: var(--color-bg-lowered);
+
   display: inline-block;
   position: relative;
 
@@ -18,6 +20,8 @@
       font-size: var(--font-size-m);
       outline: 0 solid var(--color-text-light);
       transition: var(--transition-fast);
+      background-color: var(--);
+      background-color: var(--vui-otp-background-color);
 
       .blinker {
         display: block;

@@ -41,7 +41,7 @@ function collectMarkdownRoutes(directory: string, rootDirectory = directory): st
 const prerenderRoutes = Array.from(new Set([
   '/docs',
   '/docs/components',
-  '/docs/framework',
+  '/docs/classes',
   '/docs/projects',
   '/docs/tokens',
   ...collectMarkdownRoutes(docsContentRoot),
@@ -66,6 +66,9 @@ export default defineNuxtConfig({
         'ph:brackets-curly',
         'ph:caret-down',
         'ph:caret-up',
+        'ph:caret-left',
+        'ph:caret-right',
+        'ph:cube',
         'ph:check-square-fill',
         'ph:command',
         'ph:copy',

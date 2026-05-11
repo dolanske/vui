@@ -12,7 +12,7 @@ import Grid from '../components/Grid/Grid.vue'
       Cards
     </h3>
 
-    <Grid :columns="2" gap="xl">
+    <Grid :columns="2" gap="xl" class="mb-l">
       <Flex column gap="xl">
         <div>
           <strong class="block mb-s">Base</strong>
@@ -97,5 +97,19 @@ import Grid from '../components/Grid/Grid.vue'
         </Card>
       </Flex>
     </Grid>
+
+    <div>
+      <Card centered border-style="dashed">
+        <h5 class="mb-xxs">
+          No options found
+        </h5>
+        <p class="mb-s">
+          Maybe what you're looking for is elsewhere?
+        </p>
+        <Button>
+          Go back
+        </Button>
+      </Card>
+    </div>
   </div>
 </template>

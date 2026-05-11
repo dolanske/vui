@@ -5,11 +5,15 @@ import { computed, ref } from 'vue'
 export enum Breakpoints {
   Mobile = 'mobile',
   Tablet = 'tablet',
+  SmallDesktop = 'smallDesktop',
+  Desktop = 'desktop',
 }
 
 export const vuiBreakpoints = ref<Record<Breakpoints, number>>({
   mobile: 572,
   tablet: 768,
+  smallDesktop: 1228,
+  desktop: 1920,
 })
 
 const { width } = useWindowSize()

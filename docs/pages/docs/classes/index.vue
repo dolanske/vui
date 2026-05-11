@@ -3,16 +3,16 @@
 
 <template>
   <div>
-    <h1>CSS framework</h1>
+    <h1>Classes</h1>
     <p>
-      The VUI CSS framework provides essential utility classes for common styling needs.
+      VUI provides essential utility classes for common styling needs.
       It's designed to eliminate the need for external CSS frameworks like Tailwind CSS by
       providing the bare minimum utilities you need in 99% of cases.
     </p>
 
     <h3>When to use</h3>
     <p>
-      Use the CSS framework <strong>sparsely</strong> in these scenarios:
+      Use the CSS classes <strong>sparsely</strong> in these scenarios:
     </p>
     <ul>
       <li><strong>Components aren't sufficient:</strong> When the component library can't achieve your styling needs</li>

@@ -13,7 +13,7 @@ const avatars = [
   <DocsExample>
     <template #component>
       <Card :padding="false">
-        <Overflow class="p-m" hide-scrollbar>
+        <Overflow class="p-m">
           <div style="height:200px">
             <Card v-for="item in avatars" :key="item.name" class="p-s mb-m">
               <Flex y-center>

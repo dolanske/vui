@@ -43,6 +43,8 @@ interface Props {
   loading?: boolean
 }
 
+const isMobile = useBreakpoint(Breakpoints.Mobile)
+
 const searchValue = defineModel<string>('search', { default: '' })
 
 // For simplicity, groups are stored and handled as their labels. This way we
@@ -190,7 +192,10 @@ const search = useTemplateRef('searchRef')
 
 function resetSearch() {
   searchValue.value = ''
-  search.value?.focus({ preventScroll: true })
+
+  if (!isMobile.value) {
+    search.value?.focus({ preventScroll: true })
+  }
 }
 
 watch(
@@ -204,8 +209,6 @@ watch(
   },
   { flush: 'post' },
 )
-
-const isMobile = useBreakpoint(Breakpoints.Mobile)
 </script>
 
 <template>
@@ -237,7 +240,7 @@ const isMobile = useBreakpoint(Breakpoints.Mobile)
       </div>
 
       <div class="vui-commands-group-buttons">
-        <Carousel gap="xs">
+        <Carousel gap="xs" hide-scrollbar>
           <button
             v-for="group in groupButtons"
             :key="group"

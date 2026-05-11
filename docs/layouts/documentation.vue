@@ -2,7 +2,8 @@
 import type { LinkItem } from '~/types/shared'
 import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Overflow, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
-import { capitalize } from 'vue'
+import { Transition } from 'vue'
+import { libraryPages } from '~/utils/constants'
 import { normalizePath } from '~/utils/format'
 
 const route = useRoute()
@@ -10,23 +11,25 @@ const router = useRouter()
 const colorMode = useColorMode()
 const mainScrollEl = ref<HTMLElement | null>(null)
 
-type AvailableTabs = 'Style tokens' | 'CSS framework' | 'Components'
+type AvailableTabs = 'Tokens' | 'Classes' | 'Components' | 'Library'
 
 const currentTab = ref<AvailableTabs | ''>('')
 
 const subPages: Record<AvailableTabs, LinkItem[]> = {
-  'Style tokens': tokenPages,
-  'CSS framework': frameworkPages,
-  'Components': componentPages,
+  Tokens: tokenPages,
+  Classes: frameworkPages,
+  Components: componentPages,
+  Library: libraryPages,
 }
 
 // When mounting, we need to first keep tabs in sync with the URL. So loop over
 // states and set the active tab to the correct one
 watch(() => route.fullPath, (currentPath) => {
   // The root page is always the first one in the list
-  const tokensPath = subPages['Style tokens'][0]
-  const cssFrameworkPath = subPages['CSS framework'][0]
+  const tokensPath = subPages.Tokens[0]
+  const cssFrameworkPath = subPages.Classes[0]
   const componentsPath = subPages.Components[0]
+  const libraryPath = subPages.Library[0]
   // const currentPath = route.fullPath
 
   // Root docs page is active, so set active tab to nothing
@@ -34,13 +37,16 @@ watch(() => route.fullPath, (currentPath) => {
     currentTab.value = ''
   }
   else if (currentPath.includes(tokensPath.path)) {
-    currentTab.value = 'Style tokens'
+    currentTab.value = 'Tokens'
   }
   else if (currentPath.includes(cssFrameworkPath.path)) {
-    currentTab.value = 'CSS framework'
+    currentTab.value = 'Classes'
   }
   else if (currentPath.includes(componentsPath.path)) {
     currentTab.value = 'Components'
+  }
+  else if (currentPath.includes(libraryPath.path)) {
+    currentTab.value = 'Library'
   }
 }, {
   immediate: true,
@@ -148,7 +154,7 @@ onBeforeMount(async () => {
             <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
           </NuxtLink>
 
-          <h5>VUI</h5>
+          <h5>VUI.</h5>
           <div class="flex-1" />
           <Commands />
         </Flex>
@@ -216,7 +222,6 @@ onBeforeMount(async () => {
             {{ item.label }}
           </Tab>
         </Tabs>
-
         <Breadcrumbs class="app-breadcrumbs">
           <BreadcrumbItem v-for="item in breadcrumbItems" :key="item.path">
             <Button variant="link" @click="pushPage(item.path)">
@@ -233,7 +238,7 @@ onBeforeMount(async () => {
           <Button v-if="prevAndNext.prev" expand size="l" outline @click="pushPage(prevAndNext.prev.path)">
             <template #start>
               <Flex column gap="xs">
-                <Icon name="ph:arrow-left" size="18" />
+                <Icon name="ph:caret-left" size="18" />
                 <p>{{ prevAndNext.prev.label }}</p>
               </Flex>
             </template>
@@ -243,7 +248,7 @@ onBeforeMount(async () => {
           <Button v-if="prevAndNext.next" expand size="l" outline @click="pushPage(prevAndNext.next.path)">
             <template #end>
               <Flex column gap="xs" y-end>
-                <Icon name="ph:arrow-right" size="18" />
+                <Icon name="ph:caret-right" size="18" />
                 <p>{{ prevAndNext.next.label }}</p>
               </Flex>
             </template>
@@ -263,9 +268,15 @@ onBeforeMount(async () => {
 .vui-logo-image {
   width: 32px;
   height: 32px;
+  margin-block: 3px;
 }
 
 .app-sidebar {
+  .vui-divider {
+    width: auto;
+    margin-inline: calc(var(--space-s) * -1);
+  }
+
   .vui-dropdown-item {
     margin: 0;
     --interactive-el-height: 32px;
@@ -284,6 +295,10 @@ onBeforeMount(async () => {
         color: var(--color-accent) !important;
       }
     }
+  }
+
+  .vui-sidebar {
+    background-color: var(--color-bg-medium);
   }
 }
 

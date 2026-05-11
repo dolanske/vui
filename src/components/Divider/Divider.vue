@@ -5,7 +5,7 @@ import './divider.scss'
 
 interface BaseProps {
   size?: number | string
-  type?: 'solid' | 'dashed' | 'dotted'
+  type?: 'solid' | 'dashed' | 'dotted' | (string & {})
 }
 
 type Props = BaseProps & (

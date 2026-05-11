@@ -48,7 +48,7 @@ export default defineComponent({
         case Size.s: return '6px'
         case Size.l: return '16px'
         case Size.m:
-        default: return '8px'
+        default: return '10px'
       }
     })
 

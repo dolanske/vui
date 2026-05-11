@@ -9,6 +9,8 @@
   --input-color-border-strong: var(--color-border-strong);
   --input-color-border-weak: var(--color-border-weak);
 
+  --input-background-color: var(--color-bg-raised);
+
   --input-height: var(--interactive-el-height);
   --input-padding: var(--space-xs);
   --textarea-padding: var(--space-xs);
@@ -103,7 +105,7 @@
       // display: block;
       border-radius: var(--border-radius-s);
       border: 1px solid var(--input-color-border);
-      background: transparent;
+      background: var(--input-background-color);
       height: var(--input-height);
       line-height: var(--input-height);
       color: var(--color-text-lighter);
@@ -154,7 +156,7 @@
       height: 20px;
       border-radius: var(--border-radius-pill);
       overflow: hidden;
-      background-color: transparent;
+      background-color: var(--input-background-color);
 
       // Track - WebKit uses linear-gradient to fake progress fill via --range-progress custom property
       &::-webkit-slider-runnable-track {
@@ -309,4 +311,8 @@
       }
     }
   }
+}
+
+:root.light .vui-input-container {
+  --input-background-color: var(--color-bg-lowered);
 }

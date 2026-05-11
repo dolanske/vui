@@ -22,7 +22,7 @@ const commands = computed(() => {
     { title: 'Author', description: 'Who made this thing?', href: 'https://dolansky.dev/', group: 'Navigation' },
     { title: 'Components', handler: createHandler('/docs/components'), group: 'Navigation' },
     { title: 'Tokens', handler: createHandler('/docs/tokens'), group: 'Navigation' },
-    { title: 'CSS Framework', handler: createHandler('/docs/framework'), group: 'Navigation' },
+    { title: 'Classes', handler: createHandler('/docs/classes'), group: 'Navigation' },
   ]
 
   const tokenCommands = tokenPages.map(({ label, path, keywords }) => ({ title: label, handler: createHandler(path), group: 'Tokens', keywords }))
