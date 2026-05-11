@@ -122,7 +122,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      title: 'VUI Docs',
+      title: 'VUI Documentation',
       titleTemplate: '%s | VUI',
       meta: [
         { name: 'description', content: 'Homegrown Vue component library and design system documentation.' },

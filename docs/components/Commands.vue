@@ -27,7 +27,7 @@ const commands = computed(() => {
 
   const tokenCommands = tokenPages.map(({ label, path, keywords }) => ({ title: label, handler: createHandler(path), group: 'Tokens', keywords }))
   const frameworkCommands = frameworkPages.map(({ label, path, keywords }) => ({ title: label, handler: createHandler(path), group: 'Framework', keywords }))
-  const componentCommands = componentList.map(({ name, path, keywords }) => ({ title: name, handler: createHandler(path), group: 'Components', keywords }))
+  const componentCommands = componentList.map(({ name, path, keywords }) => ({ title: name, handler: createHandler(path), group: 'Components', keywords } as any))
 
   return [
     ...tokenCommands,

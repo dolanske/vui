@@ -34,6 +34,7 @@ const routeLabel = computed(() => {
   return cleanedPath
     .split('/')
     .map(toTitleCase)
+    .reverse()
     .join(' / ')
 })
 
