@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Card, Grid, Input, searchString } from '@dolanske/vui'
+import { Button, Card, Flex, Grid, Input, searchString } from '@dolanske/vui'
 import NoResults from '~/components/list/NoResults.vue'
 
 const search = ref('')
@@ -9,7 +9,7 @@ const filteredComponents = computed(() => {
     return componentList
 
   return componentList.filter((component) => {
-    return searchString([component.name, ...(component.tags ?? [])], search.value)
+    return searchString([component.name, ...(component.keywords ?? [])], search.value)
   })
 })
 </script>
@@ -41,7 +41,17 @@ const filteredComponents = computed(() => {
         :href="component.path"
       >
         <Card style="height: 100%;" class="component-card">
-          <Icon name="ph:shapes" size="24" />
+          <Flex x-between y-center>
+            <Icon name="ph:shapes" size="24" />
+            <template v-if="'status' in component">
+              <Badge v-if="component.status === 'new'" outline variant="accent">
+                New
+              </Badge>
+              <Badge v-else-if="component.status === 'update'" outline>
+                Updated
+              </Badge>
+            </template>
+          </Flex>
           <h5 class="text-xxl">
             {{ component.name }}
           </h5>

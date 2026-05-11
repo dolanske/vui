@@ -191,8 +191,8 @@ export const zIndexTokens = [
   { name: 'Nav', token: '--z-nav', value: '200', description: 'Navigation elements that should stay above content' },
   { name: 'Overlay', token: '--z-overlay', value: '300', description: 'Full-screen overlays that cover the entire viewport' },
   { name: 'Popout', token: '--z-popout', value: '400', description: 'Floating elements like dropdowns and tooltips' },
-  { name: 'Toast', token: '--z-toast', value: '9000', description: 'Temporary notifications that appear above other UI' },
   { name: 'Modal', token: '--z-modal', value: '600', description: 'Dialog boxes that require user attention' },
+  { name: 'Toast', token: '--z-toast', value: '9000', description: 'Temporary notifications that appear above any other UI' },
 ]
 
 export const transitionTokens = [
@@ -265,8 +265,8 @@ export const zIndexClasses = [
   { name: 'Nav', className: 'z-nav', value: '200', description: 'Navigation elements that should stay above content' },
   { name: 'Overlay', className: 'z-overlay', value: '300', description: 'Full-screen overlays that cover the entire viewport' },
   { name: 'Popout', className: 'z-popout', value: '400', description: 'Floating elements like dropdowns and tooltips' },
-  { name: 'Toast', className: 'z-toast', value: '9000', description: 'Temporary notifications that appear above other UI' },
   { name: 'Modal', className: 'z-modal', value: '600', description: 'Dialog boxes that require user attention' },
+  { name: 'Toast', className: 'z-toast', value: '9000', description: 'Temporary notifications that appear above any other UI' },
 ]
 
 export const spaceClasses = [

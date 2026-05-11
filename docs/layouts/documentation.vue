@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Overflow, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
 import { capitalize } from 'vue'
 import { normalizePath } from '~/utils/format'
@@ -152,11 +152,20 @@ onBeforeMount(async () => {
           <div class="flex-1" />
           <Commands />
         </Flex>
-        <hr>
+        <Divider class="my-xs" />
+
+        <!-- Always-present pages -->
+        <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path" @click="currentTab = ''">
+          <DropdownItem :class="{ active: route.path.endsWith(link.path) }">
+            {{ link.label }}
+          </DropdownItem>
+        </NuxtLink>
+
+        <Divider v-show="subPagesToRender" class="my-xs" />
       </template>
 
       <template #footer>
-        <hr>
+        <Divider class="my-xs" />
         <!-- Bind color for these specific styles -->
         <Flex y-center gap="xs" :style="{ '--color-text-light': 'var(--color-text-invert)' }">
           <Button size="s" square variant="fill" @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">
@@ -169,15 +178,6 @@ onBeforeMount(async () => {
           <span class="text-s color-text-lightest">{{ version }}</span>
         </Flex>
       </template>
-
-      <!-- Always-present pages -->
-      <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path" @click="currentTab = ''">
-        <DropdownItem :class="{ active: route.path.endsWith(link.path) }">
-          {{ link.label }}
-        </DropdownItem>
-      </NuxtLink>
-
-      <Divider v-show="subPagesToRender" class="mt-s mb-m" />
 
       <span class="pl-xs text-xs block mb-s text-semibold">
         {{ currentTab }}
