@@ -128,7 +128,7 @@ export const componentList = [
   { name: 'Carousel', path: '/docs/components/carousel', keywords: ['slider', 'gallery', 'scroll', 'slideshow'], description: 'Scrollable container for displaying multiple items horizontally', status: 'update' },
   { name: 'Marquee', path: '/docs/components/marquee', keywords: ['scroll', 'stagger', 'animation', 'text'], description: 'Animated scrolling text or content', status: 'new' },
   { name: 'Checkbox', path: '/docs/components/checkbox', keywords: ['check', 'select', 'form', 'boolean'], description: 'Binary input control for selecting multiple options' },
-  { name: 'Commands', path: '/docs/components/commands', keywords: ['search', 'palette', 'keyboard', 'shortcuts'], description: 'Searchable command palette with keyboard navigation and grouping' },
+  { name: 'Commands', path: '/docs/components/commands', keywords: ['search', 'palette', 'keyboard', 'shortcuts'], description: 'Searchable command palette with keyboard navigation and grouping', status: 'update' },
   { name: 'Copy Clipboard', path: '/docs/components/copy-clipboard', keywords: ['copy', 'paste', 'clipboard', 'text'], description: 'Button that copies text to clipboard with feedback' },
   { name: 'Divider', path: '/docs/components/divider', keywords: ['separator', 'line', 'rule', 'hr'], description: 'Visual separator between content sections' },
   { name: 'Drawer', path: '/docs/components/drawer', keywords: ['panel', 'sidebar', 'overlay', 'slide'], description: 'Sliding panel that appears from screen edges' },

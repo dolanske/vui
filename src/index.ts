@@ -1,7 +1,7 @@
 import type { Command } from './components/Commands/Commands.vue'
 import type { SelectOption } from './components/Select/Select.vue'
 import type { Breakpoints } from './shared/breakpoints'
-import type { Sizes, Spaces, SpaceSize } from './shared/types'
+import type { Size, Sizes, Spaces, SpaceSize } from './shared/types'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
@@ -130,6 +130,7 @@ export {
   setColorTheme,
   Sheet,
   Sidebar,
+  type Size,
   type Sizes,
   Skeleton,
   type Spaces,
@@ -146,5 +147,4 @@ export {
   useBreakpoint,
   useViewTransition,
   vuiBreakpoints,
-
 }

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { Button, Commands, Flex } from '@dolanske/vui'
+import { Button, Commands, Flex, Switch } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
+const isCompact = ref(false)
 
 const commands = [
   {
@@ -50,9 +51,11 @@ const commands = [
     <template #component>
       <Flex x-center y-center style="padding: var(--space-xl);" expand>
         <Button @click="isOpen = true">
-          Open Commands
+          Open
         </Button>
+        <Switch v-model="isCompact" label="Compact" />
         <Commands
+          :compact="isCompact"
           :open="isOpen"
           :commands="commands"
           @close="isOpen = false"

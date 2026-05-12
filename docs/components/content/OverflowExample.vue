@@ -15,7 +15,7 @@ const avatars = [
       <Card :padding="false">
         <Overflow class="p-m">
           <div style="height:200px">
-            <Card v-for="item in avatars" :key="item.name" class="p-s mb-m">
+            <Card v-for="item in avatars" :key="item.name" class="mb-m">
               <Flex y-center>
                 <Avatar :url="item.url" />
                 <strong class="text-l">{{ item.name }}</strong>

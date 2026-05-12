@@ -1,6 +1,38 @@
 .vui-commands {
   --vui-commands-input-size: 56px;
 
+  &.compact {
+    --vui-commands-input-size: 44px;
+
+    .vui-commands-input,
+    .vui-commands-group-buttons {
+      border-bottom: none;
+      margin-bottom: var(--space-xxs);
+    }
+
+    .vui-commands-list {
+      li {
+        .vui-commands-list-item {
+          height: 38px;
+          padding-inline: var(--space-s);
+          gap: var(--space-s);
+
+          span {
+            font-size: var(--font-size-s);
+          }
+
+          p {
+            display: none;
+          }
+
+          .vui-commands-list-item-icon {
+            font-size: var(--font-size-m);
+          }
+        }
+      }
+    }
+  }
+
   .vui-card .vui-card-header {
     padding: 0;
     background-color: var(--color-bg-medium);
@@ -63,15 +95,23 @@
   }
 
   .vui-commands-group-buttons {
-    padding-inline: calc(var(--space-s));
+    padding-inline: calc(var(--space-xs));
     margin-bottom: var(--space-xs);
+
+    .vui-badge {
+      border: 1px solid transparent;
+    }
+
+    .vui-badge:not(.vui-badge-variant-accent) {
+      border-color: var(--color-border-weak);
+    }
 
     button {
       border-radius: var(--border-radius-pill);
       padding: 0;
     }
 
-    .carousel .carousel-content {
+    .overflow .overflow-content {
       cursor: default;
       padding: 2px;
     }
@@ -143,7 +183,7 @@
         justify-content: flex-start;
         align-items: center;
         text-align: left;
-        padding: 0 var(--space-m);
+        padding-inline: var(--space-m);
         height: 56px;
         width: 100%;
         position: relative;

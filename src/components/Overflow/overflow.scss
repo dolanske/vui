@@ -73,6 +73,13 @@
     scrollbar-width: thin;
   }
 
+  &.is-horizontal {
+    // Prevent the carousel from growing beyond its flex/grid cell.
+    // Without this, flex items default to min-width: auto and never shrink,
+    // so overflow-x on the inner content never triggers.
+    min-width: 0;
+  }
+
   &.is-horizontal .overflow-content {
     max-width: 100%;
     overflow-x: auto;

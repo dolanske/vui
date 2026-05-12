@@ -37,10 +37,27 @@ export interface Command {
 }
 
 interface Props {
+  /**
+   * Controls whether the commands modal is visible
+   */
   open: boolean
+  /**
+   * Placeholder text shown in the search input
+   */
   placeholder?: string
+  /**
+   * List of commands to display and search through
+   */
   commands: Command[]
+  /**
+   * Shows a spinner in place of the search icon while true. Useful if external
+   * async data related to commands is loading.
+   */
   loading?: boolean
+  /**
+   * Renders the commands palette in a compact layout
+   */
+  compact?: boolean
 }
 
 const isMobile = useBreakpoint(Breakpoints.Mobile)
@@ -217,6 +234,8 @@ watch(
     hide-close-button
     :card="{ separators: true, padding: false }"
     class="vui-commands"
+    :class="{ compact: props.compact }"
+    :size="props.compact ? 's' : 'm'"
     @close="emit('close')"
   >
     <template #header>
@@ -240,7 +259,7 @@ watch(
       </div>
 
       <div class="vui-commands-group-buttons">
-        <Carousel gap="xs" hide-scrollbar>
+        <Carousel :gap="props.compact ? 'xxs' : 'xs'" hide-scrollbar hide-shadows>
           <button
             v-for="group in groupButtons"
             :key="group"
@@ -257,8 +276,8 @@ watch(
         </Carousel>
       </div>
     </template>
-    <template #footer>
-      <Flex gap="xxs" y-center>
+    <template v-if="!props.compact" #footer>
+      <Flex gap="xxs" y-center tabindex="-1">
         <Kbd>
           <IconArrowUp />
         </Kbd>
@@ -282,12 +301,12 @@ watch(
     </div>
 
     <slot v-else :commands="groupedResults">
-      <div v-for="(group, groupKey, groupIndex) in groupedResults" :key="groupKey" class="vui-commands-group">
+      <div v-for="(group, groupKey, groupIndex) in groupedResults" :key="groupKey" class="vui-commands-group" tabindex="-1">
         <span v-if="groupKey !== EMPTY_GROUP_KEY && activeGroup === 'All'" class="vui-commands-group-title">
           {{ groupKey }}
         </span>
 
-        <ul class="vui-commands-list" tabindex="-1">
+        <ul class="vui-commands-list">
           <li
             v-for="(result, index) in group"
             :key="result.title"

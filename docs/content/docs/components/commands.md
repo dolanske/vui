@@ -10,40 +10,24 @@ import { Button, Commands } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
+const isCompact = ref(false)
 
 const commands = [
   {
     title: 'Create New Project',
     description: 'Start a new project from scratch',
     group: 'File',
-    handler: () => {},
+    handler: () => createProjectPage(),
   },
-  {
-    title: 'Open Settings',
-    description: 'Access application settings and preferences',
-    group: 'Navigation',
-    handler: () => {},
-  },
-  {
-    title: 'Toggle Dark Mode',
-    description: 'Switch between light and dark themes',
-    group: 'Appearance',
-    handler: () => {},
-  },
-  {
-    title: 'Show Shortcuts',
-    description: 'Display all available keyboard shortcuts',
-    group: 'Help',
-    shortcut: 'Ctrl+/',
-    handler: () => {},
-  },
+  // [...]
 ]
 </script>
 
 <template>
   <Button @click="isOpen = true">
-    Open Commands
+    Open
   </Button>
+  <Switch v-model="isCompact" label="Compact" />
   <Commands
     :open="isOpen"
     :commands="commands"
@@ -59,6 +43,7 @@ const commands = [
 | Name          | Default               | Type                                                            |
 | ------------- | --------------------- | --------------------------------------------------------------- |
 | `open`        | —                     | `boolean` <br> Controls the visibility of the command palette   |
+| `compact`     | —                     | `boolean` <br> Renders compact command palette                  |
 | `commands`    | —                     | `Command[]` <br> Array of command objects to display and search |
 | `placeholder` | `'Write a command..'` | `string` <br> Placeholder text for the search input             |
 | `loading`     | —                     | `boolean` <br> Replaces the search icon with a spinner          |
