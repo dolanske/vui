@@ -63,7 +63,7 @@ const textAlignmentClasses = [
     </h2>
 
     <TokenItem
-      v-for="item in lineHeightTokens" :key="item.token" :name="item.name" :class-name="item.token"
+      v-for="item in lineHeightClasses" :key="item.token" :name="item.name" :class-name="item.token"
       :indicator-style="{ lineHeight: item.height, width: '256px' }" prefix=""
     >
       <template #text>

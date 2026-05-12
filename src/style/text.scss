@@ -6,7 +6,7 @@ $sizes: 'xxs', 'xs', 's', 'ms', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl';
   }
 }
 
-$colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue';
+$colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue', 'purple';
 
 .text-color {
   color: var(--color-text) !important;

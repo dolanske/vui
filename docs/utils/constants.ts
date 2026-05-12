@@ -73,9 +73,12 @@ export const darkThemeTokens = [
   { name: 'Border', token: '--dark-color-border', rgb: 'rgb(40, 40, 40)', hex: '#282828' },
   { name: 'Border Strong', token: '--dark-color-border-strong', rgb: 'rgb(54, 54, 54)', hex: '#363636' },
   { name: 'Border Weak', token: '--dark-color-border-weak', rgb: 'rgb(36, 36, 36)', hex: '#242424' },
-  { name: 'Accent', token: '--dark-color-accent', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
-  { name: 'Background Accent Raised', token: '--dark-color-bg-accent-raised', rgb: 'hsla(from var(--dark-color-accent) h s l / 0.6)', hex: null },
-  { name: 'Background Accent Lowered', token: '--dark-color-bg-accent-lowered', rgb: 'hsla(from var(--dark-color-accent) h s l / 0.45)', hex: null },
+  { name: 'Accent', token: '--dark-color-accent', rgb: 'rgb(253, 115, 29)', hex: '#FD731D' },
+  { name: 'Background Accent Raised', token: '--dark-color-bg-accent-raised', rgb: 'rgb(127, 52, 10)', hex: '#7F340A' },
+  { name: 'Background Accent Lowered', token: '--dark-color-bg-accent-lowered', rgb: 'rgb(70, 28, 5)', hex: '#461C05' },
+  { name: 'Purple', token: '--dark-color-purple', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
+  { name: 'Background Purple Raised', token: '--dark-color-bg-purple-raised', rgb: 'rgb(98, 44, 158)', hex: '#622C9E' },
+  { name: 'Background Purple Lowered', token: '--dark-color-bg-purple-lowered', rgb: 'rgb(72, 28, 118)', hex: '#481C76' },
 ]
 
 export const lightThemeTokens = [
@@ -92,24 +95,27 @@ export const lightThemeTokens = [
   { name: 'Button Gray Hover', token: '--light-color-button-gray-hover', rgb: 'rgb(198, 198, 198)', hex: '#C6C6C6' },
   { name: 'Button Fill', token: '--light-color-button-fill', rgb: 'rgb(12, 12, 12)', hex: '#0C0C0C' },
   { name: 'Button Fill Hover', token: '--light-color-button-fill-hover', rgb: 'rgb(52, 52, 52)', hex: '#343434' },
-  { name: 'Text Red', token: '--light-color-text-red', rgb: 'rgb(209, 60, 52)', hex: '#D13C34' },
+  { name: 'Text Red', token: '--light-color-text-red', rgb: 'rgb(215, 18, 5)', hex: '#D71205' },
   { name: 'Background Red Lowered', token: '--light-color-bg-red-lowered', rgb: 'rgb(172, 45, 45)', hex: '#AC2D2D' },
   { name: 'Background Red Raised', token: '--light-color-bg-red-raised', rgb: 'rgb(220, 38, 38)', hex: '#DC2626' },
-  { name: 'Text Green', token: '--light-color-text-green', rgb: 'rgb(77, 160, 29)', hex: '#4DA01D' },
+  { name: 'Text Green', token: '--light-color-text-green', rgb: 'rgb(22, 163, 40)', hex: '#16A328' },
   { name: 'Background Green Lowered', token: '--light-color-bg-green-lowered', rgb: 'rgb(42, 114, 19)', hex: '#2A7213' },
   { name: 'Background Green Raised', token: '--light-color-bg-green-raised', rgb: 'rgb(61, 146, 35)', hex: '#3D9223' },
-  { name: 'Text Yellow', token: '--light-color-text-yellow', rgb: 'rgb(176, 129, 15)', hex: '#B0810F' },
+  { name: 'Text Yellow', token: '--light-color-text-yellow', rgb: 'rgb(185, 115, 0)', hex: '#B97300' },
   { name: 'Background Yellow Lowered', token: '--light-color-bg-yellow-lowered', rgb: 'rgb(230, 205, 137)', hex: '#E6CD89' },
   { name: 'Background Yellow Raised', token: '--light-color-bg-yellow-raised', rgb: 'rgb(253, 200, 86)', hex: '#FDC856' },
-  { name: 'Text Blue', token: '--light-color-text-blue', rgb: 'rgb(85, 141, 245)', hex: '#558DF5' },
+  { name: 'Text Blue', token: '--light-color-text-blue', rgb: 'rgb(59, 130, 246)', hex: '#3B82F6' },
   { name: 'Background Blue Lowered', token: '--light-color-bg-blue-lowered', rgb: 'rgb(196, 214, 255)', hex: '#C4D6FF' },
   { name: 'Background Blue Raised', token: '--light-color-bg-blue-raised', rgb: 'rgb(136, 178, 255)', hex: '#88B2FF' },
   { name: 'Border', token: '--light-color-border', rgb: 'rgb(200, 200, 200)', hex: '#C8C8C8' },
   { name: 'Border Strong', token: '--light-color-border-strong', rgb: 'rgb(152, 152, 152)', hex: '#989898' },
   { name: 'Border Weak', token: '--light-color-border-weak', rgb: 'rgb(224, 224, 224)', hex: '#E0E0E0' },
-  { name: 'Accent', token: '--light-color-accent', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
-  { name: 'Background Accent Raised', token: '--light-color-bg-accent-raised', rgb: 'hsla(from var(--light-color-accent) h s l / 0.75)', hex: null },
-  { name: 'Background Accent Lowered', token: '--light-color-bg-accent-lowered', rgb: 'hsla(from var(--light-color-accent) h s l / 0.6)', hex: null },
+  { name: 'Accent', token: '--light-color-accent', rgb: 'rgb(245, 109, 24)', hex: '#F56D18' },
+  { name: 'Background Accent Raised', token: '--light-color-bg-accent-raised', rgb: 'rgb(252, 190, 140)', hex: '#FCBE8C' },
+  { name: 'Background Accent Lowered', token: '--light-color-bg-accent-lowered', rgb: 'rgb(255, 225, 200)', hex: '#FFE1C8' },
+  { name: 'Purple', token: '--light-color-purple', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
+  { name: 'Background Purple Raised', token: '--light-color-bg-purple-raised', rgb: 'rgb(211, 169, 242)', hex: '#D3A9F2' },
+  { name: 'Background Purple Lowered', token: '--light-color-bg-purple-lowered', rgb: 'rgb(243, 228, 255)', hex: '#F3E4FF' },
 ]
 
 export const componentList = [
@@ -215,9 +221,9 @@ export const darkShadowTokens = [
 // Generated from tokens
 
 export const lightTextClasses = lightThemeTokens
-  .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
+  .filter(token => token.token.includes('text') || token.token.endsWith('accent') || token.token.endsWith('purple'))
   .map(token => ({
-    token: token.token.replace('--light-color-', '').replace('-', '-color-'),
+    token: token.token.replace('--light-color-', '').replace(/^text(-|$)/, 'text-color$1').replace(/^(?!text)(.+)$/, 'text-color-$1'),
     name: token.name,
     cssVariable: token.token,
     hex: token.hex,
@@ -225,9 +231,9 @@ export const lightTextClasses = lightThemeTokens
   }))
 
 export const darkTextClasses = darkThemeTokens
-  .filter(token => token.token.includes('text') || token.token.endsWith('accent'))
+  .filter(token => token.token.includes('text') || token.token.endsWith('accent') || token.token.endsWith('purple'))
   .map(token => ({
-    token: token.token.replace('--dark-color-', '').replace('-', '-color-'),
+    token: token.token.replace('--dark-color-', '').replace(/^text(-|$)/, 'text-color$1').replace(/^(?!text)(.+)$/, 'text-color-$1'),
     name: token.name,
     cssVariable: token.token,
     hex: token.hex,
@@ -244,6 +250,13 @@ export const fontSizeClasses = [
   { name: 'XXL size', className: 'text-xxl', token: '--font-size-xxl', size: '2.6rem' },
   { name: 'XXXL size', className: 'text-xxxl', token: '--font-size-xxxl', size: '3.4rem' },
   { name: 'XXXXL size', className: 'text-xxxxl', token: '--font-size-xxxxl', size: '4.8rem' },
+]
+
+export const lineHeightClasses = [
+  { name: 'Tight', token: '.line-height-tight', height: '1.05em' },
+  { name: 'Title', token: '.line-height-title', height: '1.25em' },
+  { name: 'Base', token: '.line-height-base', height: '1.4em' },
+  { name: 'Loose', token: '.line-height-loose', height: '1.65em' },
 ]
 
 export const fontWeightClasses = [
@@ -422,7 +435,6 @@ export const componentPages = [
 export const globalLinks = [
   { path: '/', label: 'Home' },
   { path: '/docs', label: 'Installation' },
-  { path: '/demo', label: 'Demo' },
   { path: '/docs/projects', label: 'Projects' },
 ]
 

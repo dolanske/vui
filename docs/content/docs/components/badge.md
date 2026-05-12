@@ -35,7 +35,7 @@ import { Badge } from '@dolanske/vui'
 
 | Name      | Default   | Type                                                                                      |
 | --------- | --------- | ----------------------------------------------------------------------------------------- |
-| `variant` | `neutral` | `neutral` `danger` `warning` `success` `info` `accent` <br> The visual style of the badge |
+| `variant` | `neutral` | `neutral` `danger` `warning` `success` `info` `accent` `note` <br> The visual style of the badge |
 | `outline` | `false`   | `boolean` <br> Whether to show the badge with an outline style                            |
 | `filled`  | `false`   | `boolean` <br> Whether to show the badge with a filled background                         |
 | `size`    | `m`       | `s` `m` `l` <br> Controls the size of the badge                                           |
