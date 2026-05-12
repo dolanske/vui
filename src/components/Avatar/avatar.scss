@@ -2,6 +2,8 @@
   --vui-avatar-size: var(--interactive-el-height);
   --vui-avatar-font-size: var(--font-size-s);
   --vui-avatar-border-radius: 100%;
+  --vui-avatar-background-color: initial;
+  --vui-avatar-color: initial;
 
   &.vui-avatar-size-s {
     --vui-avatar-size: 28px;
@@ -25,15 +27,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: var(--color-bg-raised);
+  background-color: var(--vui-avatar-background-color, var(--color-bg-raised));
   font-weight: var(--font-weight-medium);
   flex-shrink: 0;
   font-size: var(--vui-avatar-font-size, var(--font-size-s)) !important;
-  color: var(--color-text-light);
+  color: var(--vui-avatar-color, var(--color-text-light));
 
   svg,
   .iconify {
-    color: var(--color-text-light);
+    color: var(--vui-avatar-color, var(--color-text-light));
     font-size: inherit;
   }
 

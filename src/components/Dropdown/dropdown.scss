@@ -1,11 +1,15 @@
-f.vui-dropdown-trigger-wrap {
-  // width: fit-content;
+.vui-dropdown-trigger-wrap {
+  width: fit-content;
   position: relative;
-  display: contents;
+  // display: contents;
 }
 
 .vui-dropdown {
-  min-width: 156px;
+  --vui-dropdown-min-width: initial;
+  --vui-dropdown-max-height: initial;
+
+  min-width: var(--vui-dropdown-min-width, 128px);
+  max-height: var(--vui-dropdown-max-height, none);
   border-radius: var(--border-radius-m);
   padding: 4px;
   overflow-y: auto;

@@ -1,5 +1,5 @@
-.vui-checkbox {
-  --checkbox-size: 24px;
+﻿.vui-checkbox {
+  --vui-checkbox-size: 24px;
 
   &.checked {
     .vui-checkbox-icon svg {
@@ -24,8 +24,8 @@
   }
 
   .vui-checkbox-icon {
-    width: var(--checkbox-size);
-    height: var(--checkbox-size);
+    width: var(--vui-checkbox-size);
+    height: var(--vui-checkbox-size);
 
     svg {
       width: 100%;
@@ -64,7 +64,7 @@
         &:is(p) {
           display: flex;
           align-items: center;
-          min-height: var(--checkbox-size);
+          min-height: var(--vui-checkbox-size);
           font-size: var(--font-size-m);
           align-self: flex-start;
         }

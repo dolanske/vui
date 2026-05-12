@@ -1,19 +1,19 @@
-.vui-input-container {
+﻿.vui-input-container {
   // Each component should have its own specification as it allows more granual
   // modification via CSS variables if needed
-  --input-color-text-red: var(--color-text-red);
-  --input-color-text: var(--color-text);
-  --input-color-text-light: var(--color-text-light);
-  --input-color-text-lighter: var(--color-text-lighter);
-  --input-color-border: var(--color-border);
-  --input-color-border-strong: var(--color-border-strong);
-  --input-color-border-weak: var(--color-border-weak);
+  --vui-input-color-text-red: var(--color-text-red);
+  --vui-input-color-text: var(--color-text);
+  --vui-input-color-text-light: var(--color-text-light);
+  --vui-input-color-text-lighter: var(--color-text-lighter);
+  --vui-input-color-border: var(--color-border);
+  --vui-input-color-border-strong: var(--color-border-strong);
+  --vui-input-color-border-weak: var(--color-border-weak);
 
-  --input-background-color: var(--color-bg-raised);
+  --vui-input-background-color: var(--color-bg-raised);
 
-  --input-height: var(--interactive-el-height);
-  --input-padding: var(--space-xs);
-  --textarea-padding: var(--space-xs);
+  --vui-input-height: var(--interactive-el-height);
+  --vui-input-padding: var(--space-xs);
+  --vui-textarea-padding: var(--space-xs);
 
   //
 
@@ -22,7 +22,7 @@
   &.disabled {
     .vui-input {
       label {
-        color: var(--input-color-text-lighter);
+        color: var(--vui-input-color-text-lighter);
       }
 
       input,
@@ -30,7 +30,7 @@
       .vui-input-style {
         cursor: not-allowed;
         resize: none !important;
-        border-color: var(--input-color-border-weak);
+        border-color: var(--vui-input-color-border-weak);
       }
     }
   }
@@ -42,7 +42,7 @@
   &.required .vui-input > label:after {
     content: '*';
     padding-left: 2px;
-    color: var(--input-color-text-red);
+    color: var(--vui-input-color-text-red);
     font-size: var(--font-size-l);
   }
 
@@ -50,7 +50,7 @@
     input,
     textarea,
     .vui-input-style {
-      color: var(--input-color-text-light);
+      color: var(--vui-input-color-text-light);
       resize: none !important;
     }
   }
@@ -77,7 +77,7 @@
       text-align: left;
       margin-bottom: 8px;
       font-size: var(--font-size-m);
-      color: var(--input-color-text);
+      color: var(--vui-input-color-text);
     }
 
     svg {
@@ -88,7 +88,7 @@
     .vui-input-hint {
       margin-bottom: 8px;
       margin-top: -4px;
-      color: var(--input-color-text-lighter);
+      color: var(--vui-input-color-text-lighter);
       font-size: var(--font-size-s);
       display: block;
       text-align: left;
@@ -104,16 +104,16 @@
     textarea {
       // display: block;
       border-radius: var(--border-radius-s);
-      border: 1px solid var(--input-color-border);
-      background: var(--input-background-color);
-      height: var(--input-height);
-      line-height: var(--input-height);
+      border: 1px solid var(--vui-input-color-border);
+      background: var(--vui-input-background-color);
+      height: var(--vui-input-height);
+      line-height: var(--vui-input-height);
       color: var(--color-text-lighter);
       outline: none;
       font-size: var(--font-size-m);
       width: 100%;
       transition: var(--transition-fast);
-      padding-inline: var(--input-padding);
+      padding-inline: var(--vui-input-padding);
       z-index: var(--z-default);
 
       &:has(input:focus),
@@ -126,11 +126,11 @@
         border: 1px solid var(--color-border);
 
         &:first-child {
-          margin-left: calc(calc(var(--input-padding) - 2px) * -1);
+          margin-left: calc(calc(var(--vui-input-padding) - 2px) * -1);
         }
 
         &:last-child {
-          margin-right: calc(calc(var(--input-padding) - 2px) * -1);
+          margin-right: calc(calc(var(--vui-input-padding) - 2px) * -1);
         }
       }
     }
@@ -156,7 +156,7 @@
       height: 20px;
       border-radius: var(--border-radius-pill);
       overflow: hidden;
-      background-color: var(--input-background-color);
+      background-color: var(--vui-input-background-color);
 
       // Track - WebKit uses linear-gradient to fake progress fill via --range-progress custom property
       &::-webkit-slider-runnable-track {
@@ -204,7 +204,7 @@
       & + label {
         position: relative;
         margin: 0;
-        padding-left: var(--input-height);
+        padding-left: var(--vui-input-height);
 
         input {
           padding-inline: var(--space-xs);
@@ -219,7 +219,7 @@
           position: absolute;
           inset: 2px;
           right: unset;
-          width: calc(var(--input-height) - 8px);
+          width: calc(var(--vui-input-height) - 8px);
           background-color: var(--color-border);
           border-radius: var(--border-radius-s);
           font-size: var(--font-size-l);
@@ -246,8 +246,8 @@
       display: block;
       width: 100%;
       border: none;
-      height: calc(var(--input-height) - 2px);
-      line-height: calc(var(--input-height) - 2px);
+      height: calc(var(--vui-input-height) - 2px);
+      line-height: calc(var(--vui-input-height) - 2px);
       background: transparent;
       outline: none;
       font-size: var(--font-size-m);
@@ -265,7 +265,7 @@
       // 5lh = 5 lines of height
       // min-height: 5lh;
       field-sizing: content;
-      padding: var(--textarea-padding);
+      padding: var(--vui-textarea-padding);
       transition: none;
     }
   }
@@ -314,5 +314,5 @@
 }
 
 :root.light .vui-input-container {
-  --input-background-color: var(--color-bg-lowered);
+  --vui-input-background-color: var(--color-bg-lowered);
 }

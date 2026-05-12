@@ -1,9 +1,16 @@
 .vui-tooltip {
-  padding: var(--space-xs) var(--space-s);
-  max-width: 512px;
-  background-color: var(--color-bg-raised);
-  font-size: var(--font-size-m);
+  --vui-tooltip-padding-block: var(--space-xs);
+  --vui-tooltip-padding-inline: var(--space-s);
+  --vui-tooltip-max-width: 512px;
+  --vui-tooltip-background-color: var(--color-bg-raised);
+  --vui-tooltip-font-size: var(--font-size-m);
+  --vui-tooltip-color: var(--color-text);
+
+  padding: var(--vui-tooltip-padding-block) var(--vui-tooltip-padding-inline);
+  max-width: var(--vui-tooltip-max-width);
+  background-color: var(--vui-tooltip-background-color);
+  font-size: var(--vui-tooltip-font-size);
   font-weight: var(--font-weight);
-  color: var(--color-text);
+  color: var(--vui-tooltip-color);
   text-transform: none;
 }

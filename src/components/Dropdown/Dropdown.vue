@@ -183,8 +183,8 @@ function handleContentClick(event: MouseEvent) {
     class="vui-dropdown"
     :placement
     :style="{
-      minWidth: expand ? w : mW,
-      maxHeight: formatUnitValue(maxHeight),
+      '--vui-dropdown-min-width': expand ? w : mW,
+      '--vui-dropdown-max-height': formatUnitValue(maxHeight),
     }"
     :transition-name
     @click-outside="close"

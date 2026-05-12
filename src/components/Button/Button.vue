@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 import type { Sizes } from '../../shared/types'
 import { computed, defineComponent, h } from 'vue'
 import { isNil } from '../../shared/helpers'
@@ -73,8 +73,8 @@ export default defineComponent({
           href: props.href,
           role: 'button',
           style: {
-            '--button-height': height.value,
-            '--button-padding': padding.value,
+            '--vui-button-height': height.value,
+            '--vui-button-padding': padding.value,
           },
           inert: props.loading,
         },

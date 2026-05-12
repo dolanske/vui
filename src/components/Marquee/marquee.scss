@@ -1,4 +1,6 @@
 .marquee-wrap {
+  --vui-marquee-gap: initial;
+
   display: block;
   width: 100%;
   overflow: hidden;
@@ -14,6 +16,7 @@
 .marquee-content {
   display: flex;
   flex-shrink: 0;
+  gap: var(--vui-marquee-gap, 0);
 
   * {
     white-space: nowrap;

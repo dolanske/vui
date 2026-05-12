@@ -1,7 +1,10 @@
 .vui-sheet {
+  --vui-sheet-inline-offset: 24px;
+  --vui-sheet-max-height: 35dvh;
+
   display: flex;
   flex-direction: column;
-  inline-size: calc(100% - 24px);
+  inline-size: calc(100% - var(--vui-sheet-inline-offset));
   max-height: 100%;
   height: 100%;
   position: absolute;
@@ -50,7 +53,7 @@
 
   &.vui-sheet-position-top,
   &.vui-sheet-position-bottom {
-    max-height: 35dvh;
+    max-height: var(--vui-sheet-max-height);
     width: 100%;
   }
 }

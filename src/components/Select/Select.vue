@@ -1,4 +1,4 @@
-<!-- eslint-disable ts/consistent-type-definitions -->
+﻿<!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
 import type { Sizes } from '../../shared/types'
 import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
@@ -70,8 +70,8 @@ const {
 
 const sizeStyle = computed(() => {
   switch (size) {
-    case 's': return { '--input-height': '28px', '--input-padding': '4px' }
-    case 'l': return { '--input-height': '44px', '--input-padding': '16px' }
+    case 's': return { '--vui-input-height': '28px', '--vui-input-padding': '4px' }
+    case 'l': return { '--vui-input-height': '44px', '--vui-input-padding': '16px' }
     default: return {}
   }
 })

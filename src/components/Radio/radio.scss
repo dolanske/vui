@@ -1,5 +1,5 @@
-.vui-radio {
-  --radio-size: 24px;
+﻿.vui-radio {
+  --vui-radio-size: 24px;
 
   &.checked {
     .vui-radio-icon svg {
@@ -25,8 +25,8 @@
 
   .vui-radio-icon {
     cursor: pointer;
-    width: var(--radio-size);
-    height: var(--radio-size);
+    width: var(--vui-radio-size);
+    height: var(--vui-radio-size);
 
     svg {
       width: 100%;
@@ -62,9 +62,9 @@
         &:is(p) {
           display: flex;
           align-items: center;
-          min-height: var(--radio-size);
+          min-height: var(--vui-radio-size);
           font-size: var(--font-size-m);
-          // line-height: var(--radio-size);
+          // line-height: var(--vui-radio-size);
         }
       }
     }

@@ -3,6 +3,8 @@
   --vui-card-border-style: initial;
   --vui-card-border-color: inherit;
   --vui-card-background-color: inherit;
+  --vui-card-padding-block: inherit;
+  --vui-card-padding-inline: inherit;
 
   display: block;
   width: 100%;
@@ -11,6 +13,9 @@
   border-width: 1px;
   border-style: var(--vui-card-border-style, 'solid');
   border-color: var(--vui-card-border-color, var(--color-border));
+
+  & > .vui-divider {
+  }
 
   &.centered {
     & > .vui-card-header,
@@ -33,13 +38,13 @@
 
   &.header-separator {
     & > .vui-card-content:not(:first-child) {
-      padding-top: var(--space-m);
+      padding-top: var(--vui-card-padding-block, var(--space-m));
     }
   }
 
   &.footer-separator {
     & > .vui-card-content {
-      padding-bottom: var(--space-m);
+      padding-bottom: var(--vui-card-padding-block, var(--space-m));
     }
   }
 
@@ -59,7 +64,8 @@
     display: flex;
     align-items: var(--vui-card-header-align, center);
     justify-content: space-between;
-    padding: var(--space-s) var(--space-m);
+    padding-block: var(--vui-card-padding-block, var(--space-s));
+    padding-inline: var(--vui-card-padding-inline, var(--space-m));
     background-color: var(--vui-card-background-color, var(--color-bg));
     border-top-left-radius: var(--border-radius-m);
     border-top-right-radius: var(--border-radius-m);
@@ -68,14 +74,15 @@
   }
 
   & > .vui-card-content {
-    padding: var(--space-m);
+    padding-block: var(--vui-card-padding-block, var(--space-m));
+    padding-inline: var(--vui-card-padding-inline, var(--space-m));
     position: relative;
   }
 
   & > .vui-card-footer {
     position: relative;
-
-    padding: var(--space-s) var(--space-m);
+    padding-block: var(--vui-card-padding-block, var(--space-s));
+    padding-inline: var(--vui-card-padding-inline, var(--space-m));
     background-color: var(--vui-card-background-color, var(--color-bg));
     border-bottom-left-radius: var(--border-radius-m);
     border-bottom-right-radius: var(--border-radius-m);

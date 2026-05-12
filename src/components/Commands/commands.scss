@@ -1,5 +1,6 @@
 .vui-commands {
   --vui-commands-input-size: 56px;
+  --vui-commands-max-height: initial;
 
   &.compact {
     --vui-commands-input-size: 44px;
@@ -43,7 +44,7 @@
   }
 
   .vui-card .vui-card-content {
-    max-height: 612px;
+    max-height: var(--vui-commands-max-height, 612px);
     overflow-y: auto;
     padding-block: var(--space-s) !important;
   }

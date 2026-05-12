@@ -2,6 +2,8 @@
   --vui-divider-size: initial;
   --vui-divider-height: initial;
   --vui-divider-type: initial;
+  --vui-divider-color: initial;
+  --vui-divider-slot-outline-color: initial;
 
   display: flex;
   align-items: center;
@@ -20,7 +22,7 @@
     transform: translateX(-50%);
     height: 100%;
     width: var(--vui-divider-size, 1px);
-    border-right-color: var(--color-border);
+    border-right-color: var(--vui-divider-color, var(--color-border));
     border-right-style: var(--vui-divider-type, solid);
     border-right-width: var(--vui-divider-size, 1px);
     align-self: stretch;
@@ -33,7 +35,7 @@
     height: var(--vui-divider-size, 1px);
     border: none;
     margin: 0 !important;
-    border-bottom-color: var(--color-border);
+    border-bottom-color: var(--vui-divider-color, var(--color-border));
     border-bottom-style: var(--vui-divider-type, solid);
     border-bottom-width: var(--vui-divider-size, 1px);
   }
@@ -45,8 +47,8 @@
     transform: translate(-50%, -50%);
 
     & > *:first-child {
-      outline: 3px solid var(--color-bg);
-      background-color: var(--color-bg);
+      outline: 3px solid var(--vui-divider-slot-outline-color, var(--color-bg));
+      background-color: var(--vui-divider-slot-outline-color, var(--color-bg));
     }
   }
 }

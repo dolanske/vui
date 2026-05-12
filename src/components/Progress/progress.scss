@@ -1,11 +1,13 @@
 .vui-progress {
   --vui-progress-height: 3px;
+  --vui-progress-color: var(--color-text-lighter);
+  --vui-progress-track-color: initial;
 
   display: block;
   width: 100%;
   position: relative;
   border-radius: var(--border-radius-pill);
-  background-color: var(--color-bg-raised);
+  background-color: var(--vui-progress-track-color, var(--color-bg-raised));
   overflow: hidden;
   height: var(--vui-progress-height);
 
@@ -36,7 +38,7 @@
     right: unset;
     width: 0;
     border-radius: var(--border-radius-pill);
-    background-color: var(--color-text-lighter);
+    background-color: var(--vui-progress-color);
     transition: var(--transition-slow);
   }
 }

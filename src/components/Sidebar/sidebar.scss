@@ -1,4 +1,4 @@
-// TODO: flesh out better
+﻿// TODO: flesh out better
 .vui-sidebar-layout {
   display: flex;
   flex-wrap: nowrap;
@@ -21,11 +21,13 @@
 
 .vui-sidebar {
   --vui-sidebar-float-offset: 8px;
+  --vui-sidebar-width: initial;
+
   display: flex;
   height: 100%;
   flex-direction: column;
   gap: var(--space-sm);
-  width: 224px;
+  width: var(--vui-sidebar-width, 224px);
   position: absolute;
   top: 0;
   z-index: var(--z-nav);
@@ -102,9 +104,9 @@
 
     .vui-dropdown-item,
     .vui-button {
-      --button-height: 40px;
-      width: var(--button-height) !important;
-      height: var(--button-height) !important;
+      --vui-button-height: 40px;
+      width: var(--vui-button-height) !important;
+      height: var(--vui-button-height) !important;
       justify-content: center;
       align-items: center;
 

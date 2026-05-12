@@ -1,4 +1,8 @@
 .vui-modal {
+  --vui-modal-max-width-s: initial;
+  --vui-modal-max-width-m: initial;
+  --vui-modal-max-width-l: initial;
+
   width: 100%;
   margin-inline: auto;
   height: 100%;
@@ -9,18 +13,20 @@
   &.centered {
     display: flex;
     align-items: center;
+    height: auto;
+    min-height: 100%;
   }
 
   &.vui-modal-size-s {
-    max-width: 440px;
+    max-width: var(--vui-modal-max-width-s, 440px);
   }
 
   &.vui-modal-size-m {
-    max-width: 620px;
+    max-width: var(--vui-modal-max-width-m, 620px);
   }
 
   &.vui-modal-size-l {
-    max-width: 728px;
+    max-width: var(--vui-modal-max-width-l, 728px);
   }
 
   &.vui-modal-size-screen {

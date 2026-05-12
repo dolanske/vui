@@ -1,75 +1,78 @@
-.vui-toast-wrapper {
+﻿.vui-toast-wrapper {
+  --vui-toast-offset: 32px;
+  --vui-toast-max-width: 392px;
+
   position: fixed;
   width: 100%;
-  max-width: 392px;
+  max-width: var(--vui-toast-max-width);
   z-index: 9999;
 
   // Bottom placements
   &.bottom {
-    bottom: 32px;
+    bottom: var(--vui-toast-offset);
     left: 50%;
     transform: translateX(-50%);
   }
 
   &.bottom-start {
-    bottom: 32px;
-    left: 32px;
+    bottom: var(--vui-toast-offset);
+    left: var(--vui-toast-offset);
   }
 
   &.bottom-end {
-    bottom: 32px;
-    right: 32px;
+    bottom: var(--vui-toast-offset);
+    right: var(--vui-toast-offset);
   }
 
   // Top placements
   &.top {
-    top: 32px;
+    top: var(--vui-toast-offset);
     left: 50%;
     transform: translateX(-50%);
   }
 
   &.top-start {
-    top: 32px;
-    left: 32px;
+    top: var(--vui-toast-offset);
+    left: var(--vui-toast-offset);
   }
 
   &.top-end {
-    top: 32px;
-    right: 32px;
+    top: var(--vui-toast-offset);
+    right: var(--vui-toast-offset);
   }
 
   // Right placements
   &.right {
-    right: 32px;
+    right: var(--vui-toast-offset);
     top: 50%;
     transform: translateY(-50%);
   }
 
   &.right-start {
-    right: 32px;
-    top: 32px;
+    right: var(--vui-toast-offset);
+    top: var(--vui-toast-offset);
   }
 
   &.right-end {
-    right: 32px;
-    bottom: 32px;
+    right: var(--vui-toast-offset);
+    bottom: var(--vui-toast-offset);
   }
 
   // Left placements
   &.left {
-    left: 32px;
+    left: var(--vui-toast-offset);
     top: 50%;
     transform: translateY(-50%);
   }
 
   &.left-start {
-    left: 32px;
-    top: 32px;
+    left: var(--vui-toast-offset);
+    top: var(--vui-toast-offset);
   }
 
   &.left-end {
-    left: 32px;
-    bottom: 32px;
+    left: var(--vui-toast-offset);
+    bottom: var(--vui-toast-offset);
   }
 
   .vui-toast-list {

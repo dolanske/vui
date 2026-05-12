@@ -1,9 +1,10 @@
-.vui-spinner {
-  --spinner-color: var(--color-accent);
+﻿.vui-spinner {
+  --vui-spinner-color: var(--color-accent);
+  --vui-spinner-border-width: 3px;
 
   aspect-ratio: 1;
   border-radius: var(--border-radius-pill);
-  border: 3px solid var(--spinner-color);
+  border: var(--vui-spinner-border-width) solid var(--vui-spinner-color);
   animation:
     l20-1 0.8s infinite linear alternate,
     l20-2 1.6s infinite linear;

@@ -1,4 +1,4 @@
-.vui-table-overflow {
+﻿.vui-table-overflow {
   display: block;
   max-width: 100%;
   overflow-x: auto;
@@ -6,6 +6,8 @@
 }
 
 .vui-table-container {
+  --vui-checkbox-cell-width: calc(calc(var(--space-xs) * 2) + 32px);
+
   display: block;
   width: 100%;
   border-radius: var(--border-radius-m);
@@ -83,10 +85,9 @@
 
       // Fixed width, only houses a checkbox component
       &.vui-table-interactive-cell {
-        --checkbox-cell-width: calc(calc(var(--space-xs) * 2) + 32px);
-        width: var(--checkbox-cell-width);
-        min-width: var(--checkbox-cell-width);
-        max-width: var(--checkbox-cell-width);
+        width: var(--vui-checkbox-cell-width);
+        min-width: var(--vui-checkbox-cell-width);
+        max-width: var(--vui-checkbox-cell-width);
         height: auto;
         padding-inline: var(--space-xs);
         padding-block: 0;

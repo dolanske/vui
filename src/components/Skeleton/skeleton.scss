@@ -1,6 +1,8 @@
 .vui-skeleton {
+  --vui-skeleton-color: var(--color-border);
+
   animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  background-color: var(--color-border);
+  background-color: var(--vui-skeleton-color);
 
   @keyframes pulse {
     0%,
