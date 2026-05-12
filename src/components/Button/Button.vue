@@ -6,7 +6,7 @@ import { Size } from '../../shared/types'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'gray'
+export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'note' | 'gray'
 
 // There was an issue with swapping between <a> and <button> so in order to fix
 // that, we omit Vue's template and use the h function to create the element

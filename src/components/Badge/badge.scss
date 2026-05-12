@@ -24,9 +24,7 @@
     color: var(--color-text);
   }
 
-  &.filled {
-    font-weight: 500;
-  }
+  font-weight: 500;
 
   &.circle {
     justify-content: center;
@@ -72,17 +70,17 @@
     }
 
     &:not(.outline) {
-      background-color: hsla(from var(--color-bg-blue-raised) h s l / 0.2);
+      background-color: var(--color-bg-blue-lowered);
 
       &.filled {
-        background-color: var(--color-text-blue);
+        background-color: var(--color-bg-blue-raised);
         color: var(--color-text-invert);
-        color: contrast-color(var(--color-text-blue));
+        color: contrast-color(var(--color-bg-blue-raised));
 
         svg,
         path {
           color: var(--color-text-invert);
-          color: contrast-color(var(--color-text-blue));
+          color: contrast-color(var(--color-bg-blue-raised));
         }
       }
     }
@@ -101,17 +99,17 @@
     }
 
     &:not(.outline) {
-      background-color: hsla(from var(--color-bg-green-raised) h s l / 0.15);
+      background-color: var(--color-bg-green-lowered);
 
       &.filled {
-        background-color: var(--color-text-green);
+        background-color: var(--color-bg-green-raised);
         color: var(--color-text-invert);
-        color: contrast-color(var(--color-text-green));
+        color: contrast-color(var(--color-bg-green-raised));
 
         svg,
         path {
           color: var(--color-text-invert);
-          color: contrast-color(var(--color-text-green));
+          color: contrast-color(var(--color-bg-green-raised));
         }
       }
     }
@@ -130,17 +128,17 @@
     }
 
     &:not(.outline) {
-      background-color: hsla(from var(--color-bg-yellow-raised) h s l / 0.15);
+      background-color: var(--color-bg-yellow-lowered);
 
       &.filled {
-        background-color: var(--color-text-yellow);
+        background-color: var(--color-bg-yellow-raised);
         color: var(--color-text-invert);
-        color: contrast-color(var(--color-text-yellow));
+        color: contrast-color(var(--color-bg-yellow-raised));
 
         svg,
         path {
           color: var(--color-text-invert);
-          color: contrast-color(var(--color-text-yellow));
+          color: contrast-color(var(--color-bg-yellow-raised));
         }
       }
     }
@@ -159,17 +157,17 @@
     }
 
     &:not(.outline) {
-      background-color: hsla(from var(--color-bg-red-raised) h s l / 0.15);
+      background-color: var(--color-bg-red-lowered);
 
       &.filled {
-        background-color: var(--color-text-red);
+        background-color: var(--color-bg-red-raised);
         color: var(--color-text-invert);
-        color: contrast-color(var(--color-text-red));
+        color: contrast-color(var(--color-bg-red-raised));
 
         svg,
         path {
-          color: var(--color-text-yellow);
-          color: contrast-color(var(--color-text-red));
+          color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-red-raised));
         }
       }
     }
@@ -190,17 +188,17 @@
     }
 
     &:not(.outline) {
-      background-color: hsla(from var(--color-bg-accent-raised) h s l / 0.15);
+      background-color: var(--color-bg-accent-lowered);
 
       &.filled {
-        background-color: var(--color-accent);
+        background-color: var(--color-bg-accent-raised);
         color: var(--color-text-invert);
-        color: contrast-color(var(--color-accent));
+        color: contrast-color(var(--color-bg-accent-raised));
 
         svg,
         path {
           color: var(--color-text-invert);
-          color: contrast-color(var(--color-accent));
+          color: contrast-color(var(--color-bg-accent-raised));
         }
       }
     }
@@ -209,50 +207,38 @@
       border-color: var(--color-accent);
     }
   }
+
+  &.vui-badge-variant-note {
+    color: var(--color-purple);
+
+    svg,
+    path {
+      color: var(--color-purple);
+    }
+
+    &:not(.outline) {
+      background-color: var(--color-bg-purple-lowered);
+
+      &.filled {
+        background-color: var(--color-bg-purple-raised);
+        color: var(--color-text-invert);
+        color: contrast-color(var(--color-bg-purple-raised));
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-purple-raised));
+        }
+      }
+    }
+
+    &.outline {
+      border-color: var(--color-purple);
+    }
+  }
 }
 
 :root.light {
-  .vui-badge.vui-badge-variant-accent:not(.outline).filled,
-  .vui-badge.vui-badge-variant-warning:not(.outline).filled {
-    color: var(--color-text);
-    color: contrast-color(var(--color-bg-yellow-raised));
-
-    svg,
-    path {
-      color: var(--color-text);
-      color: contrast-color(var(--color-bg-yellow-raised));
-    }
-  }
-
-  .vui-badge.vui-badge-variant-accent:not(.outline).filled {
-    color: contrast-color(var(--color-accent));
-
-    svg,
-    path {
-      color: contrast-color(var(--color-accent));
-    }
-  }
-
-  .vui-badge.vui-badge-variant-success:not(.filled, .outline) {
-    background-color: hsla(from var(--color-text-green) h s l / 0.15);
-  }
-
-  .vui-badge.vui-badge-variant-warning:not(.outline).filled {
-    background-color: var(--color-bg-yellow-raised);
-  }
-
-  .vui-badge.vui-badge-variant-success:not(.outline).filled {
-    color: var(--color-text-invert);
-    background-color: var(--color-text-green);
-    color: contrast-color(var(--color-text-green));
-
-    svg,
-    path {
-      color: var(--color-text-invert);
-      color: contrast-color(var(--color-text-green));
-    }
-  }
-
   .vui-badge:not(.filled) {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   }

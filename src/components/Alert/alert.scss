@@ -69,7 +69,7 @@
     }
 
     &.filled {
-      background-color: hsla(from var(--color-bg-blue-lowered) h s l / 0.5);
+      background-color: var(--color-bg-blue-lowered);
     }
 
     &.filled-strong {
@@ -91,7 +91,7 @@
     }
 
     &.filled {
-      background-color: hsla(from var(--color-bg-green-lowered) h s l / 0.4);
+      background-color: var(--color-bg-green-lowered);
     }
 
     &.filled-strong {
@@ -113,7 +113,7 @@
     }
 
     &.filled {
-      background-color: hsla(from var(--color-bg-yellow-lowered) h s l / 0.6);
+      background-color: var(--color-bg-yellow-lowered);
     }
 
     &.filled-strong {
@@ -135,7 +135,7 @@
     }
 
     &.filled {
-      background-color: hsla(from var(--color-bg-red-lowered) h s l / 0.5);
+      background-color: var(--color-bg-red-lowered);
     }
 
     &.filled-strong {
@@ -162,19 +162,19 @@
       }
 
       &.vui-alert-variant-danger {
-        background-color: hsla(from var(--color-bg-red-raised) h s l / 0.15);
+        background-color: var(--color-bg-red-lowered);
       }
 
       &.vui-alert-variant-warning {
-        background-color: hsla(from var(--color-bg-yellow-raised) h s l / 0.2);
+        background-color: var(--color-bg-yellow-lowered);
       }
 
       &.vui-alert-variant-success {
-        background-color: hsla(from var(--color-bg-green-raised) h s l / 0.15);
+        background-color: var(--color-bg-green-lowered);
       }
 
       &.vui-alert-variant-info {
-        background-color: hsla(from var(--color-bg-blue-raised) h s l / 0.15);
+        background-color: var(--color-bg-blue-lowered);
       }
     }
 
