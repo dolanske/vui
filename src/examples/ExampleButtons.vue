@@ -9,7 +9,7 @@ import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Tooltip from '../components/Tooltip/Tooltip.vue'
 
-const variants = ['gray', 'fill', 'danger', 'success', 'link', 'accent'] as const
+const variants = ['accent', 'gray', 'fill', 'danger', 'success', 'link', 'note'] as const
 </script>
 
 <template>

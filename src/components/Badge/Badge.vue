@@ -5,7 +5,7 @@ import { Size } from '../../shared/types'
 import './badge.scss'
 
 interface Props {
-  variant?: 'neutral' | 'danger' | 'warning' | 'success' | 'info' | 'accent'
+  variant?: 'neutral' | 'danger' | 'warning' | 'success' | 'info' | 'accent' | 'note'
   outline?: boolean
   filled?: boolean
   size?: Sizes

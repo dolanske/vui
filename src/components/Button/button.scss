@@ -170,7 +170,7 @@
     }
 
     &:not(.plain):not(.disabled):hover {
-      background-color: var(--color-bg-red-lowered);
+      background-color: color-mix(in oklch, var(--color-bg-red-raised) 70%, transparent);
     }
 
     &.plain:hover:not(.disabled) {
@@ -197,7 +197,7 @@
     }
 
     &:not(.plain):not(.disabled):hover {
-      background-color: var(--color-bg-green-lowered);
+      background-color: color-mix(in oklch, var(--color-bg-green-raised) 70%, transparent);
     }
 
     &.plain:hover:not(.disabled) {
@@ -301,7 +301,34 @@
     }
 
     &:not(.plain):not(.disabled):hover {
-      background-color: var(--color-bg-accent-lowered);
+      background-color: color-mix(in oklch, var(--color-bg-accent-raised) 70%, transparent);
+    }
+
+    &.plain:hover:not(.disabled) {
+      background-color: var(--color-bg-raised);
+    }
+  }
+
+  &.vui-button-variant-note {
+    &:not(.plain):not(.outline) {
+      color: var(--color-text);
+      background-color: var(--color-bg-purple-raised);
+      color: contrast-color(var(--color-bg-purple-raised));
+
+      .iconify,
+      svg,
+      path {
+        color: var(--color-text);
+        color: contrast-color(var(--color-bg-purple-raised));
+      }
+    }
+
+    &.outline {
+      border-color: var(--color-purple);
+    }
+
+    &:not(.plain):not(.disabled):hover {
+      background-color: color-mix(in oklch, var(--color-bg-purple-raised) 70%, transparent);
     }
 
     &.plain:hover:not(.disabled) {

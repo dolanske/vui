@@ -1,12 +1,13 @@
 <script setup lang='ts'>
 import { IconHeadphones, IconMicrophone } from '@iconify-prerendered/vue-ph'
+import { capitalize } from 'vue'
 import Badge from '../components/Badge/Badge.vue'
 import BadgeGroup from '../components/Badge/BadgeGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 const sizes = ['s', 'm', 'l'] as const
-const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] as const
+const variants = ['accent', 'neutral', 'danger', 'warning', 'success', 'info', 'note'] as const
 </script>
 
 <template>
@@ -69,7 +70,7 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] a
             <td>
               <Flex>
                 <Badge v-for="variant in variants" :key="variant" :size :variant>
-                  Badge
+                  {{ capitalize(variant) }}
                 </Badge>
               </Flex>
             </td>
@@ -81,7 +82,7 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] a
             <td>
               <Flex>
                 <Badge v-for="variant in variants" :key="variant" :size :variant outline>
-                  Badge
+                  {{ capitalize(variant) }}
                 </Badge>
               </Flex>
             </td>
@@ -93,7 +94,7 @@ const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] a
             <td>
               <Flex>
                 <Badge v-for="variant in variants" :key="variant" :size :variant filled>
-                  Badge
+                  {{ capitalize(variant) }}
                 </Badge>
               </Flex>
             </td>

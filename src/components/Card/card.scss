@@ -1,12 +1,16 @@
 .vui-card {
   --vui-card-header-align: initial;
   --vui-card-border-style: initial;
+  --vui-card-border-color: inherit;
+  --vui-card-background-color: inherit;
 
   display: block;
   width: 100%;
-  background-color: var(--color-bg);
+  background-color: var(--vui-card-background-color, var(--color-bg));
   border-radius: var(--border-radius-m);
-  border: 1px var(--vui-card-border-style, 'solid') var(--color-border);
+  border-width: 1px;
+  border-style: var(--vui-card-border-style, 'solid');
+  border-color: var(--vui-card-border-color, var(--color-border));
 
   &.centered {
     & > .vui-card-header,
@@ -56,7 +60,7 @@
     align-items: var(--vui-card-header-align, center);
     justify-content: space-between;
     padding: var(--space-s) var(--space-m);
-    background-color: var(--color-bg);
+    background-color: var(--vui-card-background-color, var(--color-bg));
     border-top-left-radius: var(--border-radius-m);
     border-top-right-radius: var(--border-radius-m);
     position: relative;
@@ -72,7 +76,7 @@
     position: relative;
 
     padding: var(--space-s) var(--space-m);
-    background-color: var(--color-bg);
+    background-color: var(--vui-card-background-color, var(--color-bg));
     border-bottom-left-radius: var(--border-radius-m);
     border-bottom-right-radius: var(--border-radius-m);
   }

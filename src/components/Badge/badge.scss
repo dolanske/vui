@@ -24,9 +24,7 @@
     color: var(--color-text);
   }
 
-  &.filled {
-    font-weight: 500;
-  }
+  font-weight: 500;
 
   &.circle {
     justify-content: center;
@@ -207,6 +205,35 @@
 
     &.outline {
       border-color: var(--color-accent);
+    }
+  }
+
+  &.vui-badge-variant-note {
+    color: var(--color-purple);
+
+    svg,
+    path {
+      color: var(--color-purple);
+    }
+
+    &:not(.outline) {
+      background-color: var(--color-bg-purple-lowered);
+
+      &.filled {
+        background-color: var(--color-bg-purple-raised);
+        color: var(--color-text-invert);
+        color: contrast-color(var(--color-bg-purple-raised));
+
+        svg,
+        path {
+          color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-purple-raised));
+        }
+      }
+    }
+
+    &.outline {
+      border-color: var(--color-purple);
     }
   }
 }
