@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import ExampleModals from './examples/ExampleModals.vue'
+import ExampleBadges from './examples/ExampleBadges.vue'
+import ExampleCommands from './examples/ExampleCommands.vue'
 import { setColorTheme } from './shared/theme'
 
-setColorTheme('light')
+setColorTheme('dark')
 </script>
 
 <template>
   <main vaul-drawer-wrapper class="container-m py-xxxl">
-    <ExampleModals />
+    <ExampleBadges />
+    <ExampleCommands />
   </main>
 </template>

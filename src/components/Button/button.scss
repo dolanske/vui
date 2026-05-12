@@ -177,8 +177,8 @@
 
   &.vui-button-variant-success {
     &:not(.plain):not(.outline) {
-      color: var(--color-text);
       background-color: var(--color-bg-green-raised);
+      color: var(--color-text);
       color: contrast-color(var(--color-bg-green-raised));
 
       .iconify,

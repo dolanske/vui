@@ -3,6 +3,7 @@
 import type { Sizes } from '../../shared/types'
 import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
+import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { searchString } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
@@ -152,6 +153,7 @@ function clearValue() {
 }
 
 const id = useId()
+const isMobile = useBreakpoint(Breakpoints.Mobile)
 </script>
 
 <template>
@@ -204,7 +206,7 @@ const id = useId()
           <Input
             v-model="searchStr"
             placeholder="Search..."
-            :focus="isOpen"
+            :focus="isOpen && !isMobile"
             expand
           >
             <template #start>
