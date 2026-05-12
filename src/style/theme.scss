@@ -17,29 +17,29 @@
   --light-color-button-fill: rgb(12, 12, 12);
   --light-color-button-fill-hover: rgb(52, 52, 52);
 
-  --light-color-text-red: rgb(209, 60, 52);
-  --light-color-bg-red-lowered: rgb(172, 45, 45);
-  --light-color-bg-red-raised: rgb(220, 38, 38);
+  --light-color-text-red: rgb(212, 32, 20);
+  --light-color-bg-red-lowered: rgb(255, 225, 218);
+  --light-color-bg-red-raised: rgb(241, 172, 162);
 
-  --light-color-text-green: rgb(77, 160, 29);
-  --light-color-bg-green-lowered: rgb(42, 114, 19);
-  --light-color-bg-green-raised: rgb(61, 146, 35);
+  --light-color-text-green: rgb(22, 163, 40);
+  --light-color-bg-green-lowered: rgb(218, 252, 218);
+  --light-color-bg-green-raised: rgb(152, 230, 160);
 
-  --light-color-text-yellow: rgb(176, 129, 15);
-  --light-color-bg-yellow-lowered: rgb(230, 205, 137);
-  --light-color-bg-yellow-raised: rgb(253, 200, 86);
+  --light-color-text-yellow: rgb(161, 107, 10);
+  --light-color-bg-yellow-lowered: rgb(255, 247, 205);
+  --light-color-bg-yellow-raised: rgb(240, 211, 115);
 
-  --light-color-text-blue: rgb(85, 141, 245);
-  --light-color-bg-blue-lowered: rgb(196, 214, 255);
-  --light-color-bg-blue-raised: rgb(136, 178, 255);
+  --light-color-text-blue: rgb(59, 130, 246);
+  --light-color-bg-blue-lowered: rgb(219, 234, 254);
+  --light-color-bg-blue-raised: rgb(134, 184, 240);
 
   --light-color-border: rgb(200, 200, 200);
   --light-color-border-strong: rgb(152, 152, 152);
   --light-color-border-weak: rgb(224, 224, 224);
 
   --light-color-accent: rgb(193, 118, 255);
-  --light-color-bg-accent-lowered: hsla(from var(--light-color-accent) h s l / 0.6);
-  --light-color-bg-accent-raised: hsla(from var(--light-color-accent) h s l / 0.75);
+  --light-color-bg-accent-lowered: rgb(243, 228, 255);
+  --light-color-bg-accent-raised: rgb(211, 169, 242);
 
   --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.085);
   --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);
@@ -85,8 +85,8 @@
   --dark-color-border-weak: rgb(36, 36, 36);
 
   --dark-color-accent: rgb(193, 118, 255);
-  --dark-color-bg-accent-lowered: hsla(from var(--dark-color-accent) h s l / 0.45);
-  --dark-color-bg-accent-raised: hsla(from var(--dark-color-accent) h s l / 0.6);
+  --dark-color-bg-accent-lowered: rgb(72, 28, 118);
+  --dark-color-bg-accent-raised: rgb(98, 44, 158);
 
   --dark-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.3);
   --dark-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);

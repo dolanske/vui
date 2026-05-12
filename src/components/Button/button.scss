@@ -166,12 +166,15 @@
     }
 
     &.outline {
-      border-color: var(--color-bg-red-lowered);
+      border-color: var(--color-text-red);
     }
 
-    &:not(.plain):not(.disabled):not(.plain):hover,
-    &:hover:not(.disabled) {
+    &:not(.plain):not(.disabled):hover {
       background-color: var(--color-bg-red-lowered);
+    }
+
+    &.plain:hover:not(.disabled) {
+      background-color: var(--color-bg-raised);
     }
   }
 
@@ -190,12 +193,15 @@
     }
 
     &.outline {
-      border-color: var(--color-bg-green-lowered);
+      border-color: var(--color-text-green);
     }
 
-    &:not(.plain):not(.disabled):not(.plain):hover,
-    &:hover:not(.disabled) {
+    &:not(.plain):not(.disabled):hover {
       background-color: var(--color-bg-green-lowered);
+    }
+
+    &.plain:hover:not(.disabled) {
+      background-color: var(--color-bg-raised);
     }
   }
 
@@ -291,12 +297,15 @@
     }
 
     &.outline {
-      border-color: var(--color-bg-accent-lowered);
+      border-color: var(--color-accent);
     }
 
-    &:not(.plain):not(.disabled):not(.plain):hover,
-    &:hover:not(.disabled) {
+    &:not(.plain):not(.disabled):hover {
       background-color: var(--color-bg-accent-lowered);
+    }
+
+    &.plain:hover:not(.disabled) {
+      background-color: var(--color-bg-raised);
     }
   }
 
