@@ -8,7 +8,8 @@
     cursor: not-allowed !important;
     filter: saturate(75%) opacity(50%);
 
-    svg path {
+    svg path,
+    .iconify {
       color: var(--color-text-light) !important;
     }
   }
@@ -32,7 +33,8 @@
     padding: 0;
   }
 
-  .vui-button-slot svg {
+  .vui-button-slot svg,
+  .vui-button-slot .iconify {
     display: block;
     color: var(--color-text);
     width: 17px;

@@ -63,7 +63,8 @@
     gap: var(--space-xs);
     border-radius: var(--border-radius-m);
 
-    svg {
+    svg,
+    .iconify {
       width: 20px;
       height: 20px;
       color: var(--color-text-light);

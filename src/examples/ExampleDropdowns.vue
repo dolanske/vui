@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IconArrowRight, IconCommand, IconTrash, IconUser, IconX } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
+import Divider from '../components/Divider/Divider.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import DropdownTitle from '../components/Dropdown/DropdownTitle.vue'
@@ -91,7 +92,8 @@ const placements = ['top', 'bottom', 'left', 'right'] as const
               </DropdownItem>
               <DropdownItem>Cancel</DropdownItem>
 
-              <DropdownTitle>Yourself</DropdownTitle>
+              <Divider />
+
               <DropdownItem disabled>
                 <template #icon>
                   <IconX />

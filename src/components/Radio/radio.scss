@@ -2,11 +2,13 @@
   --vui-radio-size: 24px;
 
   &.checked {
-    .vui-radio-icon svg {
+    .vui-radio-icon svg,
+    .vui-radio-icon .iconify {
       color: var(--color-text);
     }
 
-    &.accent .vui-radio-icon svg {
+    &.accent .vui-radio-icon svg,
+    &.accent .vui-radio-icon .iconify {
       color: var(--color-accent);
     }
   }
@@ -28,7 +30,8 @@
     width: var(--vui-radio-size);
     height: var(--vui-radio-size);
 
-    svg {
+    svg,
+    .iconify {
       width: 100%;
       height: 100%;
       color: var(--color-text);
@@ -72,7 +75,8 @@
 }
 
 :root.light {
-  .vui-radio.checked.accent .vui-radio-icon svg {
+  .vui-radio.checked.accent .vui-radio-icon svg,
+  .vui-radio.checked.accent .vui-radio-icon .iconify {
     color: var(--color-accent);
   }
 }

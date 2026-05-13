@@ -26,7 +26,8 @@
     }
 
     .vui-dropdown-item-slot,
-    .vui-dropdown-item-icon svg path {
+    .vui-dropdown-item-icon svg path,
+    .vui-dropdown-item-icon .iconify {
       color: var(--color-text-lighter) !important;
     }
 
@@ -44,9 +45,11 @@
     align-items: center;
     justify-content: center;
 
-    svg {
+    svg,
+    .iconify {
       width: 16px;
       height: 16px;
+      color: var(--color-text-light);
 
       path {
         color: var(--color-text-light);
@@ -63,7 +66,8 @@
     // white-space: nowrap;
     color: var(--color-text-lighter);
 
-    svg {
+    svg,
+    .iconify {
       color: var(--color-text-lighter);
     }
   }

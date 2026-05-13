@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Card, ContextMenu, DropdownItem, DropdownTitle, Flex } from '@dolanske/vui'
+import { Card, ContextMenu, DropdownItem, Flex } from '@dolanske/vui'
 </script>
 
 <template>

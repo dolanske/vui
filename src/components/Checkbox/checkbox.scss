@@ -2,11 +2,13 @@
   --vui-checkbox-size: 24px;
 
   &.checked {
-    .vui-checkbox-icon svg {
+    .vui-checkbox-icon svg,
+    .vui-checkbox-icon .iconify {
       color: var(--color-text);
     }
 
-    &.accent .vui-checkbox-icon svg {
+    &.accent .vui-checkbox-icon svg,
+    &.accent .vui-checkbox-icon .iconify {
       color: var(--color-accent) !important;
     }
   }
@@ -27,7 +29,8 @@
     width: var(--vui-checkbox-size);
     height: var(--vui-checkbox-size);
 
-    svg {
+    svg,
+    .iconify {
       width: 100%;
       height: 100%;
       color: var(--color-text);
@@ -74,7 +77,8 @@
 }
 
 :root.light {
-  .vui-checkbox.checked.accent .vui-checkbox-icon svg {
+  .vui-checkbox.checked.accent .vui-checkbox-icon svg,
+  .vui-checkbox.checked.accent .vui-checkbox-icon .iconify {
     color: var(--color-accent) !important;
   }
 }

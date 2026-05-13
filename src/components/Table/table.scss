@@ -93,7 +93,8 @@
         padding-block: 0;
         vertical-align: middle;
 
-        &.selected .vui-button.icon .vui-button-slot svg path {
+        &.selected .vui-button.icon .vui-button-slot svg path,
+        &.selected .vui-button.icon .vui-button-slot .iconify {
           color: var(--color-text) !important;
         }
 
@@ -101,9 +102,11 @@
           vertical-align: middle;
           display: inline-flex;
 
-          .vui-button-slot svg {
+          .vui-button-slot svg,
+          .vui-button-slot .iconify {
             width: 24px !important;
             height: 24px !important;
+            color: var(--color-text-light);
 
             path {
               color: var(--color-text-light);
@@ -135,7 +138,8 @@
         align-items: center;
         gap: var(--space-xs);
 
-        .vui-table-sort-button:not(.active) svg path {
+        .vui-table-sort-button:not(.active) svg path,
+        .vui-table-sort-button:not(.active) .iconify {
           color: var(--color-text-light);
         }
       }

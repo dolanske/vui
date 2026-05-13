@@ -10,9 +10,9 @@ const isNonDismissableOpen = ref(false)
 <template>
   <DocsExample>
     <template #component>
-      <Flex :gap="0" x-center>
-        <Button @click="isOpen = true">
-          Basic Modal
+      <Flex gap="s" x-center>
+        <Button plain @click="isOpen = true">
+          Basic
         </Button>
         <Modal :open="isOpen" size="m" :card="{ separators: true }" @close="isOpen = false">
           <template #header>
@@ -27,9 +27,8 @@ const isNonDismissableOpen = ref(false)
             </flex>
           </template>
         </Modal>
-        <Divider vertical height="24px" />
-        <Button @click="isScrollableOpen = true">
-          Scrollable Modal
+        <Button plain @click="isScrollableOpen = true">
+          Scrollable
         </Button>
         <Modal :open="isScrollableOpen" :card="{ separators: true }" scrollable @close="isScrollableOpen = false">
           <template #header>
@@ -71,9 +70,8 @@ const isNonDismissableOpen = ref(false)
             </p>
           </div>
         </Modal>
-        <Divider vertical height="24px" />
-        <Button @click="isNonDismissableOpen = true">
-          Non dismissable Modal
+        <Button plain @click="isNonDismissableOpen = true">
+          Non dismissable
         </Button>
         <Modal :open="isNonDismissableOpen" :card="{ separators: true }" :can-dismiss="false" @close="isNonDismissableOpen = false">
           <template #header>

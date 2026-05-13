@@ -20,6 +20,7 @@
   position: relative;
 
   svg,
+  .iconify,
   path {
     color: var(--color-text);
   }
@@ -35,6 +36,7 @@
     color: var(--color-text);
 
     svg,
+    .iconify,
     path {
       color: var(--color-text);
     }
@@ -49,6 +51,7 @@
         border-color: transparent;
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-text));
@@ -65,6 +68,7 @@
     color: var(--color-text-blue);
 
     svg,
+    .iconify,
     path {
       color: var(--color-text-blue);
     }
@@ -78,6 +82,7 @@
         color: contrast-color(var(--color-bg-blue-raised));
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-blue-raised));
@@ -94,6 +99,7 @@
     color: var(--color-text-green);
 
     svg,
+    .iconify,
     path {
       color: var(--color-text-green);
     }
@@ -107,6 +113,7 @@
         color: contrast-color(var(--color-bg-green-raised));
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-green-raised));
@@ -123,6 +130,7 @@
     color: var(--color-text-yellow);
 
     svg,
+    .iconify,
     path {
       color: var(--color-text-yellow);
     }
@@ -136,6 +144,7 @@
         color: contrast-color(var(--color-bg-yellow-raised));
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-yellow-raised));
@@ -152,6 +161,7 @@
     color: var(--color-text-red);
 
     svg,
+    .iconify,
     path {
       color: var(--color-text-red);
     }
@@ -165,6 +175,7 @@
         color: contrast-color(var(--color-bg-red-raised));
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-red-raised));
@@ -183,6 +194,7 @@
     color: var(--color-accent);
 
     svg,
+    .iconify,
     path {
       color: var(--color-accent);
     }
@@ -196,6 +208,7 @@
         color: contrast-color(var(--color-bg-accent-raised));
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-accent-raised));
@@ -212,6 +225,7 @@
     color: var(--color-purple);
 
     svg,
+    .iconify,
     path {
       color: var(--color-purple);
     }
@@ -225,6 +239,7 @@
         color: contrast-color(var(--color-bg-purple-raised));
 
         svg,
+        .iconify,
         path {
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-purple-raised));

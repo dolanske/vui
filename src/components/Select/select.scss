@@ -53,7 +53,8 @@
       & > button {
         margin-right: -6px;
 
-        .vui-button-slot svg {
+        .vui-button-slot svg,
+        .vui-button-slot .iconify {
           color: var(--color-text-light);
         }
       }
