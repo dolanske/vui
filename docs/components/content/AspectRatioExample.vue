@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { AspectRatio, Flex } from '@dolanske/vui'
+
+const { app } = useRuntimeConfig()
+const exampleImg = `${app.baseURL}example.jpg`
 </script>
 
 <template>
@@ -7,7 +10,7 @@ import { AspectRatio, Flex } from '@dolanske/vui'
     <template #component>
       <Flex gap="l" column>
         <AspectRatio :ratio="16 / 9">
-          <NuxtImg src="/vui/example.jpg" alt="16 / 9" />
+          <img :src="exampleImg" alt="16 / 9">
         </AspectRatio>
       </Flex>
     </template>
