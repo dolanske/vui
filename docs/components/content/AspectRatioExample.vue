@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { AspectRatio, Flex } from '@dolanske/vui'
-
-const { app } = useRuntimeConfig()
-const exampleImg = `${app.baseURL}example.jpg`
+import exampleImg from '~/assets/example.jpg'
 </script>
 
 <template>
