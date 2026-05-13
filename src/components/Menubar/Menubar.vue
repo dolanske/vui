@@ -1,21 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useFlattenedSlot } from '../../shared/slots'
+import type { FlexProps } from '../Flex/Flex.vue'
+import type { MenubarContext } from './menubar'
+import { provide, ref } from 'vue'
 import Flex from '../Flex/Flex.vue'
+import { MENUBAR_KEY } from './menubar'
 
-const slots = defineSlots()
-// 1. Mention only s sized plain button should be preferably used
+const props = withDefaults(defineProps<FlexProps>(), {
+  gap: 's',
+})
 
-const isMenuOpen = ref(false)
-const flattened = useFlattenedSlot<ButtonProps>(slots.default)
+const openIndex = ref<number | null>(null)
+let counter = 0
+
+function register() {
+  return counter++
+}
+
+function open(index: number) {
+  openIndex.value = index
+}
+
+function close() {
+  openIndex.value = null
+}
+
+provide<MenubarContext>(MENUBAR_KEY, { openIndex, register, open, close })
 </script>
 
 <template>
-  <Flex gap="xs">
-    <Component
-      :is="slot"
-      v-for="slot in flattened"
-      :key="slot.key"
-    />
+  <Flex v-bind="props">
+    <slot />
   </Flex>
 </template>

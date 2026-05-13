@@ -3,15 +3,23 @@ import './dropdown-item.scss'
 
 interface Props {
   disabled?: boolean
+  size?: 's' | 'm'
 }
 
 const props = defineProps<Props>()
 </script>
 
 <template>
-  <button class="vui-dropdown-item" :class="{ disabled: props.disabled }" :disabled="props.disabled">
+  <button
+    class="vui-dropdown-item"
+    :class="{
+      disabled: props.disabled,
+      [`vui-dropdown-item-size-${props.size}`]: props.size,
+    }"
+    :disabled="props.disabled"
+  >
     <!-- This should always be here to offset items which dont have icons -->
-    <div v-if="$slots.icon" class="vui-dropdown-item-icon">
+    <div class="vui-dropdown-item-icon">
       <slot name="icon" />
     </div>
 

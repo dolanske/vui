@@ -80,7 +80,7 @@ function replaceSize(className: string, size: string) {
       Margin
     </h2>
     <p class="mb-xl">
-      Margin utility classes using the spacing tokens. Available sizes: <code>0</code>, <code>xxs</code>, <code>xs</code>, <code>s</code>, <code>m</code>, <code>l</code>, <code>xl</code>, <code>xxl</code>, <code>xxxl</code>.
+      Margin utility classes using the spacing tokens. <br> Available sizes: <code>0</code>, <code>xxxs</code>,<code>xxs</code>, <code>xs</code>, <code>s</code>, <code>m</code>, <code>l</code>, <code>xl</code>, <code>xxl</code>, <code>xxxl</code>.
     </p>
 
     <TokenItem
@@ -131,7 +131,7 @@ function replaceSize(className: string, size: string) {
       Padding
     </h2>
     <p class="mb-xl">
-      Padding utility classes using the spacing tokens. Available sizes: <code>0</code>, <code>xxs</code>, <code>xs</code>, <code>s</code>, <code>m</code>, <code>l</code>, <code>xl</code>, <code>xxl</code>, <code>xxxl</code>.
+      Padding utility classes using the spacing tokens. <br> Available sizes: <code>0</code>, <code>xxxs</code>, <code>xxs</code>, <code>xs</code>, <code>s</code>, <code>m</code>, <code>l</code>, <code>xl</code>, <code>xxl</code>, <code>xxxl</code>.
     </p>
 
     <TokenItem

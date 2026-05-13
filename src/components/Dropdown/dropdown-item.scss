@@ -11,7 +11,6 @@
   cursor: pointer;
   padding-inline: var(--space-s);
   white-space: nowrap;
-  margin-bottom: 2px;
   position: relative;
 
   &:last-child {
@@ -44,6 +43,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:empty {
+      display: none;
+    }
 
     svg,
     .iconify {
@@ -87,5 +90,11 @@
 
   &.selected {
     background-color: var(--color-button-gray-hover);
+  }
+
+  &.vui-dropdown-item-size-s {
+    height: var(--interactive-el-height-s);
+    font-size: var(--font-size-s);
+    // padding-inline: var(--space-xs);
   }
 }

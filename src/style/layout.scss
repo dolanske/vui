@@ -119,7 +119,7 @@ $sizes: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90
 }
 
 // Generate layout classes from size styles
-$sizes: 0, 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
+$sizes: 0, 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
 
 @each $size in $sizes {
   $space-value: var(--space-#{$size});

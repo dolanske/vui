@@ -133,6 +133,7 @@ import { DropdownItem } from '@dolanske/vui'
 | Name       | Default | Type                                        |
 | ---------- | ------- | ------------------------------------------- |
 | `disabled` | `false` | `boolean` <br> Whether the item is disabled |
+| `size`     | —       | `'s'` `'m'` <br> Size of the dropdown item |
 
 ##### Slots
 

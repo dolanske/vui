@@ -39,6 +39,8 @@ import Textarea from './components/Input/Textarea.vue'
 import Kbd from './components/Kbd/Kbd.vue'
 import KbdGroup from './components/Kbd/KbdGroup.vue'
 import Marquee from './components/Marquee/Marquee.vue'
+import Menubar from './components/Menubar/Menubar.vue'
+import MenuItem from './components/Menubar/MenuItem.vue'
 import Confirm from './components/Modal/Confirm.vue'
 import Modal from './components/Modal/Modal.vue'
 import OTP from './components/OTP/OTP.vue'
@@ -113,6 +115,8 @@ export {
   Kbd,
   KbdGroup,
   Marquee,
+  Menubar,
+  MenuItem,
   Modal,
   OTP,
   OTPItem,

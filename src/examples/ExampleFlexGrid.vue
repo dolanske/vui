@@ -22,7 +22,7 @@ const cols = ref(3)
           <th>Flex + gaps <br> (gap can either be set as a size or a number)</th>
           <td class="w-85">
             <Flex gap="l" column>
-              <Flex v-for="size in ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'] as const" :key="size" expand :gap="size">
+              <Flex v-for="size in ['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'] as const" :key="size" expand :gap="size">
                 <div v-for="key in 3" :key class="example flex-1">
                   {{ size.toUpperCase() }}
                 </div>

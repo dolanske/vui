@@ -11,6 +11,26 @@
   min-width: var(--vui-dropdown-min-width, 128px);
   max-height: var(--vui-dropdown-max-height, none);
   border-radius: var(--border-radius-m);
-  padding: 4px;
+  padding: var(--space-xxs);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxxs);
+
+  .vui-divider {
+    width: auto;
+    margin-inline: calc(var(--space-xxs) * -1);
+    margin-block: var(--space-xxxs);
+  }
+
+  &:has(.vui-dropdown-item-icon:not(:empty)) {
+    .vui-dropdown-item {
+      padding-left: var(--space-xs);
+    }
+
+    .vui-dropdown-item-icon {
+      display: flex !important;
+      margin-right: calc(var(--space-xs) / 2);
+    }
+  }
 }

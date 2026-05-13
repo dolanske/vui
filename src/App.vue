@@ -2,6 +2,7 @@
 import { ref, watchEffect } from 'vue'
 import Switch from './components/Switch/Switch.vue'
 import ExampleDropdowns from './examples/ExampleDropdowns.vue'
+import ExampleMenubar from './examples/ExampleMenubar.vue'
 import { setColorTheme } from './shared/theme'
 
 const isLight = ref(false)
@@ -14,5 +15,6 @@ watchEffect(() => {
   <main vaul-drawer-wrapper class="container-m py-xxxl">
     <Switch v-model="isLight" class="mb-xxl" label="Light theme" />
     <ExampleDropdowns />
+    <ExampleMenubar />
   </main>
 </template>

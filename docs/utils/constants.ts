@@ -1,5 +1,6 @@
 export const sizeTokens = [
   { token: '--space-0', size: '0px', name: 'No space' },
+  { token: '--space-xxxs', size: '2px', name: 'XXXS space ' },
   { token: '--space-xxs', size: '4px', name: 'XXS space ' },
   { token: '--space-xs', size: '8px', name: 'XS space ' },
   { token: '--space-s', size: '12px', name: 'S space ' },
@@ -140,7 +141,7 @@ export const componentList = [
   { name: 'Copy Clipboard', path: '/docs/components/copy-clipboard', keywords: ['copy', 'paste', 'clipboard', 'text'], description: 'Button that copies text to clipboard with feedback' },
   { name: 'Divider', path: '/docs/components/divider', keywords: ['separator', 'line', 'rule', 'hr'], description: 'Visual separator between content sections' },
   { name: 'Drawer', path: '/docs/components/drawer', keywords: ['panel', 'sidebar', 'overlay', 'slide'], description: 'Sliding panel that appears from screen edges' },
-  { name: 'Dropdown', path: '/docs/components/dropdown', tags: ['item', 'title'], keywords: ['menu', 'options', 'list', 'popup'], description: 'Menu that appears when clicking a trigger element' },
+  { name: 'Dropdown', path: '/docs/components/dropdown', tags: ['item', 'title'], keywords: ['menu', 'options', 'list', 'popup'], description: 'Menu that appears when clicking a trigger element', status: 'update' },
   { name: 'Flex', path: '/docs/components/flex', keywords: ['flexbox', 'layout', 'row', 'column'], description: 'Flexbox-based layout component for one-dimensional layouts' },
   { name: 'Grid', path: '/docs/components/grid', keywords: ['columns', 'layout', 'rows', 'responsive'], description: 'Grid-based layout component for two-dimensional layouts' },
   { name: 'Indicator', path: '/docs/components/indicator', keywords: ['status', 'dot', 'online', 'badge', 'presence'], description: 'Small dot indicator for displaying status, presence, or alerts' },
@@ -152,6 +153,7 @@ export const componentList = [
   { name: 'Password', path: '/docs/components/password', keywords: ['secure', 'hidden', 'reveal', 'auth'], description: 'Secure text input with show/hide password toggle' },
   { name: 'Textarea', path: '/docs/components/textarea', keywords: ['multiline', 'text', 'form', 'input'], description: 'Multi-line text input for longer content' },
   { name: 'Kbd', path: '/docs/components/kbd', tags: ['group'], keywords: ['keyboard', 'shortcut', 'key', 'hotkey'], description: 'Keyboard key visualization component' },
+  { name: 'Menubar', path: '/docs/components/menubar', tags: ['item'], keywords: ['menu', 'toolbar', 'navigation', 'file', 'edit'], description: 'Horizontal menu bar with labeled triggers that open floating menus on click', status: 'new' },
   { name: 'Modal', path: '/docs/components/modal', keywords: ['dialog', 'popup', 'overlay', 'window'], description: 'Dialog box that appears on top of main content' },
   { name: 'Overflow', path: '/docs/components/overflow', keywords: ['scroll', 'container', 'shadow', 'clip'], description: 'Scrollable container with gradient shadow indicators for overflowing content', status: 'new' },
   { name: 'OTP', path: '/docs/components/otp', tags: ['group'], keywords: ['code', 'verification', 'pin', 'auth'], description: 'One-time password input with multiple fields' },
@@ -285,6 +287,7 @@ export const zIndexClasses = [
 ]
 
 export const spaceClasses = [
+  { name: 'XXXS space', className: 'space-xxxs', size: '2px' },
   { name: 'XXS space', className: 'space-xxs', size: '4px' },
   { name: 'XS space', className: 'space-xs', size: '8px' },
   { name: 'S space', className: 'space-s', size: '12px' },

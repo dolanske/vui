@@ -58,57 +58,113 @@ const placements = ['top', 'bottom', 'left', 'right'] as const
         <tr>
           <th>Complex</th>
           <td>
-            <Dropdown>
-              <template #trigger="{ toggle }">
-                <Button class="btn btn-primary" @click="toggle">
-                  Dropdown
-                </Button>
-              </template>
-
-              <DropdownTitle>
-                Actions
-                <template #end>
-                  3
-                </template>
-              </DropdownTitle>
-
-              <DropdownItem>
-                <template #icon>
-                  <IconUser />
+            <Flex>
+              <Dropdown>
+                <template #trigger="{ toggle }">
+                  <Button class="btn btn-primary" @click="toggle">
+                    Dropdown
+                  </Button>
                 </template>
 
-                New user
-                <template #hint>
-                  <IconCommand />
-                  + C
+                <DropdownTitle>
+                  Actions
+                  <template #end>
+                    3
+                  </template>
+                </DropdownTitle>
+
+                <DropdownItem>
+                  <template #icon>
+                    <IconUser />
+                  </template>
+
+                  New user
+                  <template #hint>
+                    <IconCommand />
+                    + C
+                  </template>
+                </DropdownItem>
+                <DropdownItem>
+                  <template #icon>
+                    <IconArrowRight />
+                  </template>
+
+                  Update
+                </DropdownItem>
+                <DropdownItem>Cancel</DropdownItem>
+
+                <Divider />
+
+                <DropdownItem disabled>
+                  <template #icon>
+                    <IconX />
+                  </template>
+
+                  Disabled option
+                </DropdownItem>
+                <DropdownItem>
+                  <template #icon>
+                    <IconTrash />
+                  </template>
+
+                  Delete
+                </DropdownItem>
+              </Dropdown>
+
+              <Dropdown>
+                <template #trigger="{ toggle }">
+                  <Button class="btn btn-primary" @click="toggle">
+                    Small
+                  </Button>
                 </template>
-              </DropdownItem>
-              <DropdownItem>
-                <template #icon>
-                  <IconArrowRight />
-                </template>
 
-                Update
-              </DropdownItem>
-              <DropdownItem>Cancel</DropdownItem>
+                <DropdownTitle>
+                  Actions
+                  <template #end>
+                    3
+                  </template>
+                </DropdownTitle>
 
-              <Divider />
+                <DropdownItem size="s">
+                  <template #icon>
+                    <IconUser />
+                  </template>
 
-              <DropdownItem disabled>
-                <template #icon>
-                  <IconX />
-                </template>
+                  New user
+                  <template #hint>
+                    <IconCommand />
+                    + C
+                  </template>
+                </DropdownItem>
+                <DropdownItem size="s">
+                  <template #icon>
+                    <IconArrowRight />
+                  </template>
 
-                Disabled option
-              </DropdownItem>
-              <DropdownItem>
-                <template #icon>
-                  <IconTrash />
-                </template>
+                  Update
+                </DropdownItem>
+                <DropdownItem size="s">
+                  Cancel
+                </DropdownItem>
 
-                Delete
-              </DropdownItem>
-            </Dropdown>
+                <Divider />
+
+                <DropdownItem disabled size="s">
+                  <template #icon>
+                    <IconX />
+                  </template>
+
+                  Disabled option
+                </DropdownItem>
+                <DropdownItem size="s">
+                  <template #icon>
+                    <IconTrash />
+                  </template>
+
+                  Delete
+                </DropdownItem>
+              </Dropdown>
+            </Flex>
           </td>
         </tr>
         <tr>
