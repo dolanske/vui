@@ -69,19 +69,19 @@
   --dark-color-button-fill-hover: rgb(210, 210, 210);
 
   --dark-color-text-red: rgb(243, 78, 70);
-  --dark-color-bg-red-lowered: oklch(from var(--dark-color-text-red) 0.4 calc(c * 0.75) h / 0.3);
+  --dark-color-bg-red-lowered: oklch(from var(--dark-color-text-red) 0.4 calc(c * 0.75) h / 0.2);
   --dark-color-bg-red-raised: oklch(from var(--dark-color-text-red) 0.48 calc(c * 0.85) h / 0.6);
 
   --dark-color-text-green: rgb(106, 207, 48);
-  --dark-color-bg-green-lowered: oklch(from var(--dark-color-text-green) 0.4 calc(c * 0.75) h / 0.3);
+  --dark-color-bg-green-lowered: oklch(from var(--dark-color-text-green) 0.4 calc(c * 0.75) h / 0.2);
   --dark-color-bg-green-raised: oklch(from var(--dark-color-text-green) 0.48 calc(c * 0.85) h / 0.6);
 
   --dark-color-text-yellow: rgb(255, 193, 7);
-  --dark-color-bg-yellow-lowered: oklch(from var(--dark-color-text-yellow) 0.4 calc(c * 0.75) h / 0.3);
+  --dark-color-bg-yellow-lowered: oklch(from var(--dark-color-text-yellow) 0.4 calc(c * 0.75) h / 0.2);
   --dark-color-bg-yellow-raised: oklch(from var(--dark-color-text-yellow) 0.55 calc(c * 0.9) h / 0.7);
 
   --dark-color-text-blue: rgb(85, 141, 245);
-  --dark-color-bg-blue-lowered: oklch(from var(--dark-color-text-blue) 0.4 calc(c * 0.75) h / 0.3);
+  --dark-color-bg-blue-lowered: oklch(from var(--dark-color-text-blue) 0.4 calc(c * 0.75) h / 0.2);
   --dark-color-bg-blue-raised: oklch(from var(--dark-color-text-blue) 0.48 calc(c * 0.85) h / 0.6);
 
   --dark-color-border: rgb(40, 40, 40);
@@ -89,7 +89,7 @@
   --dark-color-border-weak: rgb(36, 36, 36);
 
   --dark-color-accent: #fd731d;
-  --dark-color-bg-accent-lowered: oklch(from var(--dark-color-accent) 0.4 calc(c * 0.75) h / 0.3);
+  --dark-color-bg-accent-lowered: oklch(from var(--dark-color-accent) 0.4 calc(c * 0.75) h / 0.2);
   --dark-color-bg-accent-raised: oklch(from var(--dark-color-accent) 0.48 calc(c * 0.85) h / 0.6);
 
   --dark-color-purple: rgb(193, 118, 255);
@@ -97,7 +97,7 @@
   --dark-color-bg-purple-raised: rgb(98, 44, 158);
 
   --dark-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.3);
-  --dark-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.4);
+  --dark-box-shadow-strong: 0 8px 16px rgba(8, 8, 8, 0.8);
 }
 
 :root.light {

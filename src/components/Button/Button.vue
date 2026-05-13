@@ -1,4 +1,4 @@
-﻿<script lang="ts">
+<script lang="ts">
 import type { Sizes } from '../../shared/types'
 import { computed, defineComponent, h } from 'vue'
 import { isNil } from '../../shared/helpers'

@@ -1,4 +1,4 @@
-﻿<!-- eslint-disable ts/consistent-type-definitions -->
+<!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
 import type { Sizes } from '../../shared/types'
 import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'

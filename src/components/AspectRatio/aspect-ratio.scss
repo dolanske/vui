@@ -1,0 +1,26 @@
+.vui-aspect-ratio {
+  --vui-aspect-ratio-value: 0%;
+  --vui-aspect-ratio-radius: inherit;
+  --vui-aspect-ratio-fit: inherit;
+  --vui-aspect-ratio-position: inherit;
+
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-bottom: var(--vui-aspect-ratio-value);
+  overflow: hidden;
+  border-radius: var(--vui-aspect-ratio-radius, var(--border-radius-m));
+
+  .vui-aspect-ratio-content {
+    position: absolute;
+    inset: 0;
+
+    video,
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: var(--vui-aspect-ratio-fit, cover);
+      object-position: var(--vui-aspect-ratio-position, center);
+    }
+  }
+}

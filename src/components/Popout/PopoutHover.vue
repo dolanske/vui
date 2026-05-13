@@ -29,7 +29,7 @@ const visible = ref(false)
 function handleFocusOut(event: FocusEvent) {
   const relatedTarget = event.relatedTarget as Node | null
 
-  if (relatedTarget && popout.value?.el?.contains(relatedTarget))
+  if (relatedTarget && popout.value?.el()?.contains(relatedTarget))
     return
 
   visible.value = false

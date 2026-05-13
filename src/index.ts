@@ -5,6 +5,7 @@ import type { Size, Sizes, Spaces, SpaceSize } from './shared/types'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
+import AspectRatio from './components/AspectRatio/AspectRatio.vue'
 import Avatar from './components/Avatar/Avatar.vue'
 import AvatarGroup from './components/Avatar/AvatarGroup.vue'
 import Badge from './components/Badge/Badge.vue'
@@ -18,6 +19,7 @@ import Card from './components/Card/Card.vue'
 import Carousel from './components/Carousel/Carousel.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
 import Commands from './components/Commands/Commands.vue'
+import ContextMenu from './components/ContextMenu/ContextMenu.vue'
 import CopyClipboard from './components/CopyClipboard/CopyClipboard.vue'
 import Divider from './components/Divider/Divider.vue'
 import Drawer from './components/Drawer/Drawer.vue'
@@ -74,6 +76,7 @@ export {
   Accordion,
   AccordionGroup,
   Alert,
+  AspectRatio,
   Avatar,
   AvatarGroup,
   Backdrop,
@@ -92,6 +95,7 @@ export {
   type Command,
   Commands,
   Confirm,
+  ContextMenu,
   CopyClipboard,
   Counter,
   defineTable,

@@ -1,0 +1,42 @@
+.vui-dropdown-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-block: var(--space-xs);
+  padding-inline: 8px;
+  // padding-inline: calc(var(--space-xs) + 8px);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 1px solid var(--color-border);
+  margin-inline: -4px;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  gap: var(--space-m);
+  justify-content: space-between;
+  background-color: var(--color-bg-medium);
+  z-index: var(--z-popout);
+
+  &.sticky {
+    position: sticky;
+    top: -4px;
+  }
+
+  &:not(:first-child) {
+    margin-top: 4px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .vui-dropdown-title-end {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight);
+    color: var(--color-text-lighter);
+  }
+}
+
+:root.light {
+  .vui-dropdown-title {
+    background-color: var(--color-bg);
+  }
+}

@@ -1,0 +1,10 @@
+.vui-context-menu {
+  width: fit-content;
+  position: relative;
+
+  .vui-context-menu-anchor {
+    position: absolute;
+    pointer-events: none;
+    will-change: left, top;
+  }
+}

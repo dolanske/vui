@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import './dropdown-title.scss'
+
 const { sticky } = defineProps<{
   sticky?: boolean
 }>()

@@ -105,7 +105,8 @@ watch(delayedVisible, (isVisible) => {
 }, { immediate: true })
 
 defineExpose({
-  get el() { return popoutRef.value },
+  el: () => popoutRef.value,
+  layerIndex: () => layerIndex.value,
 })
 
 watch(() => props.visible, (isVisible) => {
