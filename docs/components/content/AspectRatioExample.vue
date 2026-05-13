@@ -7,7 +7,7 @@ import { AspectRatio, Flex } from '@dolanske/vui'
     <template #component>
       <Flex gap="l" column>
         <AspectRatio :ratio="16 / 9">
-          <NuxtImg src="/example.jpg" alt="16 / 9" />
+          <NuxtImg src="/vui/example.jpg" alt="16 / 9" />
         </AspectRatio>
       </Flex>
     </template>
