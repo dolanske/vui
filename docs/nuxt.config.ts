@@ -103,6 +103,7 @@ export default defineNuxtConfig({
         'ph:x',
         'ph:compass',
         'ph:circle',
+        'ph:warning-circle',
       ],
       scan: true,
       sizeLimitKb: 256,

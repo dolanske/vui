@@ -64,3 +64,9 @@ function increment() {
     </template>
   </DocsExample>
 </template>
+
+<style scoped>
+h5 {
+  margin-top: 0;
+}
+</style>

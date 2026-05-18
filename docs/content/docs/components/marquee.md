@@ -47,3 +47,11 @@ import { Flex, Marquee } from '@dolanske/vui'
 | Name      | Accepts | Description                                                                                        |
 | --------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `default` | `any`   | The content to scroll. Items should use `white-space: nowrap` to prevent wrapping during animation |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                 | Default   | Description                         |
+| --------------------- | --------- | ----------------------------------- |
+| `--vui-marquee-gap`   | `0`       | Gap between repeated content items  |

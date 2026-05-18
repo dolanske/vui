@@ -51,6 +51,10 @@ td:first-child code {
 article {
   z-index: 1;
   position: relative;
+
+  a:hover > code {
+    color: var(--color-accent);
+  }
 }
 
 .typeset {

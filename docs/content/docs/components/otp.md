@@ -42,3 +42,11 @@ const otpValue = ref('')
 | ---------- | -------- | -------------------------------------- |
 | `change`   | `string` | Emitted when the OTP value changes     |
 | `complete` | `string` | Emitted when all OTP fields are filled |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                         | Default                    | Description            |
+| ----------------------------- | -------------------------- | ---------------------- |
+| `--vui-otp-background-color`  | [`var(--color-bg-lowered)`](/docs/tokens/colors)  | Input cell background  |

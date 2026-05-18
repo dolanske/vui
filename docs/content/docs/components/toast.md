@@ -143,3 +143,12 @@ function showCustomToast() {
 ```
 
 ::
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                    | Default  | Description                   |
+| ------------------------ | -------- | ----------------------------- |
+| `--vui-toast-offset`     | `32px`   | Distance from screen edge     |
+| `--vui-toast-max-width`  | `392px`  | Max toast container width     |

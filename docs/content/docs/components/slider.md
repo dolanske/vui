@@ -2,7 +2,7 @@
 
 A draggable input for selecting a numeric value within a defined range. Supports stepped increments, keyboard navigation, and a range mode for selecting a lower and upper bound simultaneously.
 
-By default, slider does not round up the output.
+By default, slider rounds output values to integers.
 
 ::slider-example
 
@@ -28,7 +28,8 @@ const value = ref(40)
 | `min`   | `0`     | `number` <br> Minimum output value                              |
 | `max`   | `100`   | `number` <br> Maximum output value                              |
 | `steps` | —       | `number` <br> Number of equal divisions between `min` and `max` |
-| `range` | `false` | `boolean` <br> Enables range mode with a start and end handle   |
+| `range`    | `false` | `boolean` <br> Enables range mode with a start and end handle                                             |
+| `round`    | `true`  | `boolean \| number` <br> Round output values. `true` rounds to an integer, a number specifies decimal places, `false` disables rounding |
 
 ### Models
 
@@ -59,3 +60,18 @@ const end = ref(80)
 ```
 
 ::
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                                | Default                                                   | Description            |
+| ------------------------------------ | --------------------------------------------------------- | ---------------------- |
+| `--vui-slider-height`                | `4px`                                                     | Track height           |
+| `--vui-slider-background`            | [`var(--color-border)`](/docs/tokens/colors)              | Track background color |
+| `--vui-slider-indicator`             | [`var(--color-accent)`](/docs/tokens/colors)              | Fill indicator color   |
+| `--vui-slider-handle-size`           | `20px`                                                    | Handle diameter        |
+| `--vui-slider-handle-rounding`       | [`var(--border-radius-pill)`](/docs/tokens/border-radius) | Handle border radius   |
+| `--vui-slider-handle-color`          | [`var(--color-border-strong)`](/docs/tokens/colors)       | Handle border color    |
+| `--vui-slider-step-indicator-width`  | `2px`                                                     | Step tick width        |
+| `--vui-slider-step-indicator-height` | `4px`                                                     | Step tick height       |

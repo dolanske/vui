@@ -67,3 +67,21 @@ const email = ref()
 | Name    | Type     | Description               |
 | ------- | -------- | ------------------------- |
 | `focus` | `method` | Focuses the input element |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                             | Default                        | Description            |
+| --------------------------------- | ------------------------------ | ---------------------- |
+| `--vui-input-color-text-red`      | [`var(--color-text-red)`](/docs/tokens/colors)        | Error text color       |
+| `--vui-input-color-text`          | [`var(--color-text)`](/docs/tokens/colors)            | Input text color       |
+| `--vui-input-color-text-light`    | [`var(--color-text-light)`](/docs/tokens/colors)      | Placeholder text color |
+| `--vui-input-color-text-lighter`  | [`var(--color-text-lighter)`](/docs/tokens/colors)    | Dim text color         |
+| `--vui-input-color-border`        | [`var(--color-border)`](/docs/tokens/colors)          | Border color           |
+| `--vui-input-color-border-strong` | [`var(--color-border-strong)`](/docs/tokens/colors)   | Focused border color   |
+| `--vui-input-color-border-weak`   | [`var(--color-border-weak)`](/docs/tokens/colors)     | Subtle border color    |
+| `--vui-input-background-color`    | [`var(--color-bg-raised)`](/docs/tokens/colors)       | Input background       |
+| `--vui-input-height`              | [`var(--interactive-el-height)`](/docs/tokens/layout#interactive-element-height) | Input height           |
+| `--vui-input-padding`             | [`var(--space-xs)`](/docs/tokens/spacing)              | Input padding          |
+| `--vui-textarea-padding`          | [`var(--space-xs)`](/docs/tokens/spacing)              | Textarea padding       |

@@ -41,3 +41,13 @@ import { Avatar, Card, Flex, Overflow } from '@dolanske/vui'
 | Name      | Accepts | Description            |
 | --------- | ------- | ---------------------- |
 | `default` | `any`   | The scrollable content |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                          | Default            | Description             |
+| ------------------------------ | ------------------ | ----------------------- |
+| `--vui-overflow-gutter-size`   | `8px`              | Scrollbar gutter width  |
+| `--vui-overflow-shadow-size`   | `32px`             | Edge fade shadow size   |
+| `--vui-overflow-shadow-color`  | [`var(--color-bg)`](/docs/tokens/colors)  | Edge fade shadow color  |

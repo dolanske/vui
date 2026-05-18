@@ -179,3 +179,12 @@ A title or header section in the dropdown menu which also divides the dropdown i
 | --------- | ------- | ----- | ------------------------------------------ |
 | `default` | `any`   | -     | The title text                             |
 | `end`     | `any`   | -     | Content to display at the end of the title |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                       | Default   | Description              |
+| --------------------------- | --------- | ------------------------ |
+| `--vui-dropdown-min-width`  | `128px`   | Minimum dropdown width   |
+| `--vui-dropdown-max-height` | `none`    | Maximum dropdown height  |

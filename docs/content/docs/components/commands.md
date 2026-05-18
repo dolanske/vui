@@ -125,3 +125,12 @@ Each entry in the `commands` array must conform to this interface:
 - **Shortcut keys** — Shortcuts defined on commands are registered as global key listeners while the component is mounted.
 - **Auto-scroll** — The focused item is automatically scrolled into view.
 - **Mobile** — A dedicated close button is shown on small screens instead of relying solely on `Esc`.
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                        | Default   | Description                     |
+| ---------------------------- | --------- | ------------------------------- |
+| `--vui-commands-input-size`  | `56px`    | Input bar height                |
+| `--vui-commands-max-height`  | `612px`   | Max height of the results list  |

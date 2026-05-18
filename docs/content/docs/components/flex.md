@@ -63,3 +63,17 @@ The idea is that you control the component by using boolean props. This allows y
 | Name      | Accepts | Description                   |
 | --------- | ------- | ----------------------------- |
 | `default` | `any`   | The flex items to be laid out |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                   | Default   | Description                                  |
+| ----------------------- | --------- | -------------------------------------------- |
+| `--vui-flex-display`    | `flex`            | Display value      |
+| `--vui-flex-wrap`       | `nowrap`          | Flex wrap          |
+| `--vui-flex-direction`  | `row`             | Flex direction     |
+| `--vui-flex-justify`    | `flex-start`      | Justify content    |
+| `--vui-flex-align`      | `flex-start`      | Align items        |
+| `--vui-flex-gap`        | [`var(--space-s)`](/docs/tokens/spacing)  | Gap                |
+| `--vui-flex-width`      | `auto`            | Container width    |

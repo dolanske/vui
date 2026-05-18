@@ -6,14 +6,14 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
 
 <template>
   <div>
-    <h1>Text</h1>
+    <h1 id="text"><a href="#text">Text</a></h1>
     <p>
       VUI does not ship with any fonts. It is up to the user to define that in their application. It ships with two CSS
       font variables to define your UI fonts.
     </p>
 
-    <h2>
-      Font families
+    <h2 id="font-families">
+      <a href="#font-families">Font families</a>
     </h2>
 
     <Grid gap="s" :columns="2" class="mb-xl">
@@ -69,7 +69,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
       </Card>
     </Grid>
 
-    <h2>Text size</h2>
+    <h2 id="text-size"><a href="#text-size">Text size</a></h2>
 
     <p class="mb-l">
       The root font-size is <code>63.5%</code> which makes conversion between pixels and rem values straightforward
@@ -91,7 +91,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
       />
     </div>
 
-    <h2>Font weight</h2>
+    <h2 id="font-weight"><a href="#font-weight">Font weight</a></h2>
 
     <p class="mb-l">
       All font weights starting from <code>300</code> are supported.
@@ -111,7 +111,7 @@ import { fontSizeClasses, fontWeightClasses, lineHeightTokens } from '~/utils/co
       </TokenItem>
     </div>
 
-    <h2>Line height</h2>
+    <h2 id="line-height"><a href="#line-height">Line height</a></h2>
 
     <p class="mb-xl">
       Line height is divided into four categories. To keep things consistent, in most cases you should be using

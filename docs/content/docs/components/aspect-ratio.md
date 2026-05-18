@@ -29,3 +29,14 @@ import { AspectRatio } from '@dolanske/vui'
 | Name      | Accepts | Description                                            |
 | --------- | ------- | ------------------------------------------------------ |
 | `default` | `any`   | The content rendered inside the aspect ratio container |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                         | Default                                                | Description                     |
+| ----------------------------- | ------------------------------------------------------ | ------------------------------- |
+| `--vui-aspect-ratio-value`    | `0%`                                                   | Aspect ratio as padding-bottom  |
+| `--vui-aspect-ratio-radius`   | [`var(--border-radius-m)`](/docs/tokens/border-radius) | Border radius of the container  |
+| `--vui-aspect-ratio-fit`      | `cover`                                                | Object-fit for inner media      |
+| `--vui-aspect-ratio-position` | `center`                                               | Object-position for inner media |

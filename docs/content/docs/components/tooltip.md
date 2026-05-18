@@ -133,3 +133,16 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 | --------- | ------- | ------------------------------------- |
 | `default` | `any`   | The element that triggers the tooltip |
 | `tooltip` | `any`   | The content of the tooltip            |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                             | Default                  | Description        |
+| --------------------------------- | ------------------------ | ------------------ |
+| `--vui-tooltip-padding-block`     | [`var(--space-xs)`](/docs/tokens/spacing)        | Vertical padding   |
+| `--vui-tooltip-padding-inline`    | [`var(--space-s)`](/docs/tokens/spacing)         | Horizontal padding |
+| `--vui-tooltip-max-width`         | `512px`                  | Max tooltip width  |
+| `--vui-tooltip-background-color`  | [`var(--color-bg-raised)`](/docs/tokens/colors) | Background color   |
+| `--vui-tooltip-font-size`         | [`var(--font-size-m)`](/docs/tokens/text)     | Font size          |
+| `--vui-tooltip-color`             | [`var(--color-text)`](/docs/tokens/colors)      | Text color         |

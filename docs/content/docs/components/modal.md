@@ -61,3 +61,13 @@ const isOpen = ref(false)
 | `default` | `{ close: () => void }` | The main content of the modal |
 | `header`  | `{ close: () => void }` | Custom header content         |
 | `footer`  | `{ close: () => void }` | Custom footer content         |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                      | Default   | Description                   |
+| -------------------------- | --------- | ----------------------------- |
+| `--vui-modal-max-width-s`  | `440px`   | Max width for small size      |
+| `--vui-modal-max-width-m`  | `620px`   | Max width for medium size     |
+| `--vui-modal-max-width-l`  | `728px`   | Max width for large size      |

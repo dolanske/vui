@@ -104,3 +104,13 @@ function increment() {
 ```
 
 ::
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                         | Default                     | Description                                     |
+| ----------------------------- | --------------------------- | ----------------------------------------------- |
+| `--vui-progress-height`       | `3px`                       | Bar height                                      |
+| `--vui-progress-color`        | [`var(--color-text-lighter)`](/docs/tokens/colors) | Fill color                                      |
+| `--vui-progress-track-color`  | [`var(--color-bg-raised)`](/docs/tokens/colors)    | Track color                                        |

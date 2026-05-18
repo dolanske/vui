@@ -133,7 +133,7 @@ export const componentList = [
   { name: 'Button Group', path: '/docs/components/button-group', keywords: ['button', 'group', 'toolbar', 'cluster'], description: 'Groups multiple buttons together with joined borders for a unified appearance' },
   { name: 'Calendar', path: '/docs/components/calendar', tags: ['date', 'picker'], keywords: ['date', 'picker', 'month', 'schedule'], description: 'Date selection and display component with month view' },
   { name: 'Card', path: '/docs/components/card', keywords: ['container', 'panel', 'content', 'box'], description: 'Container component for grouping related content' },
-  { name: 'Carousel', path: '/docs/components/carousel', keywords: ['slider', 'gallery', 'scroll', 'slideshow'], description: 'Scrollable container for displaying multiple items horizontally' },
+  { name: 'Carousel', path: '/docs/components/carousel', keywords: ['gallery', 'scroll', 'slideshow'], description: 'Scrollable container for displaying multiple items horizontally' },
   { name: 'Marquee', path: '/docs/components/marquee', keywords: ['scroll', 'stagger', 'animation', 'text'], description: 'Animated scrolling text or content', status: 'new' },
   { name: 'Checkbox', path: '/docs/components/checkbox', keywords: ['check', 'select', 'form', 'boolean'], description: 'Binary input control for selecting multiple options' },
   { name: 'Commands', path: '/docs/components/commands', keywords: ['search', 'palette', 'keyboard', 'shortcuts'], description: 'Searchable command palette with keyboard navigation and grouping', status: 'update' },

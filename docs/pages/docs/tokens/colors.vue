@@ -19,7 +19,7 @@ const filteredColorList = computed(() => {
 
 <template>
   <div>
-    <h1>Colors</h1>
+    <h1 id="colors"><a href="#colors">Colors</a></h1>
     <p>
       The VUI design system uses CSS custom properties (variables) to manage its color system. These variables are built using theme-specific color tokens that define the core palette.
     </p>

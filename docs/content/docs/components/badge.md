@@ -46,3 +46,14 @@ import { Badge } from '@dolanske/vui'
 | Name      | Accepts | Description                         |
 | --------- | ------- | ----------------------------------- |
 | `default` | `any`   | Content to display inside the badge |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                        | Default              | Description        |
+| ---------------------------- | -------------------- | ------------------ |
+| `--vui-badge-padding-block`  | `2px`                | Vertical padding   |
+| `--vui-badge-padding-inline` | [`var(--space-s)`](/docs/tokens/spacing)     | Horizontal padding |
+| `--vui-badge-font-size`      | [`var(--font-size-s)`](/docs/tokens/text) | Font size          |
+| `--vui-badge-height`         | `24px`               | Badge height       |

@@ -11,7 +11,7 @@ const filteredShadowList = computed(() => themeTab.value === 'dark' ? darkShadow
 
 <template>
   <div>
-    <h1>Shadows</h1>
+    <h1 id="shadows"><a href="#shadows">Shadows</a></h1>
     <p>
       Shadow tokens define the elevation treatment for floating UI such as tooltips, dropdowns, and overlays. VUI maps these theme-specific values to semantic aliases so components can use a consistent token regardless of active theme.
     </p>

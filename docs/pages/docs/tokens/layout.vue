@@ -7,13 +7,13 @@ import { getContainerPercent } from '~/utils/format'
 
 <template>
   <div>
-    <h1>Layout</h1>
+    <h1 id="layout"><a href="#layout">Layout</a></h1>
     <p class="mb-xl">
       Layout tokens define the core sizing constraints used across the framework. These values power container widths and the default heights of interactive UI elements.
     </p>
 
-    <h2 class="mb-l">
-      Containers
+    <h2 id="containers" class="mb-l">
+      <a href="#containers">Containers</a>
     </h2>
 
     <p class="mb-xl">
@@ -63,8 +63,8 @@ import { getContainerPercent } from '~/utils/format'
       </template>
     </TokenItem>
 
-    <h2 class="mb-l">
-      Interactive element height
+    <h2 id="interactive-element-height" class="mb-l">
+      <a href="#interactive-element-height">Interactive element height</a>
     </h2>
 
     <p class="mb-xl">

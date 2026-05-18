@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h1>Transition</h1>
+    <h1 id="transition"><a href="#transition">Transition</a></h1>
     <p class="mb-l">
       VUI focuses on fast & smooth transitions to prevent visual jitter and the feeling of lag/slowness.
     </p>

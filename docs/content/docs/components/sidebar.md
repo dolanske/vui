@@ -153,3 +153,12 @@ const isOpen = ref(true)
   </div>
 </template>
 ```
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                        | Default   | Description                         |
+| ---------------------------- | --------- | ----------------------------------- |
+| `--vui-sidebar-float-offset` | `8px`     | Offset for floating sidebar edges   |
+| `--vui-sidebar-width`        | `224px`   | Sidebar width                       |

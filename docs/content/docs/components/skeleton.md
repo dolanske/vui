@@ -32,3 +32,11 @@ import { Grid, Skeleton } from '@dolanske/vui'
 | `width`  | `100%`                   | `string` `number` <br> The width of the skeleton         |
 | `height` | `32px`                   | `string` `number` <br> The height of the skeleton        |
 | `circle` | `false`                  | `boolean` <br> Whether to make the skeleton circular     |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                    | Default                | Description                |
+| ------------------------ | ---------------------- | -------------------------- |
+| `--vui-skeleton-color`   | [`var(--color-border)`](/docs/tokens/colors)  | Skeleton background color  |

@@ -61,3 +61,12 @@ const isOpen = ref(false)
 | `default` | `{ close: () => void }` | The main content of the sheet   |
 | `header`  | `{ close: () => void }` | The header content of the sheet |
 | `footer`  | `{ close: () => void }` | The footer content of the sheet |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                        | Default  | Description                        |
+| ---------------------------- | -------- | ---------------------------------- |
+| `--vui-sheet-inline-offset`  | `24px`   | Horizontal offset from screen edge |
+| `--vui-sheet-max-height`     | `35dvh`  | Max height in bottom sheet mode    |

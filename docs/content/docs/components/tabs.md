@@ -74,3 +74,13 @@ const activeTab = ref('tab1')
 | Name      | Accepts | Description                |
 | --------- | ------- | -------------------------- |
 | `default` | `any`   | Custom content for the tab |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                            | Default   | Description                    |
+| -------------------------------- | --------- | ------------------------------ |
+| `--vui-tabs-height`              | `40px`               | Tab bar height              |
+| `--vui-tabs-item-padding-inline` | `10px`               | Tab item horizontal padding |
+| `--vui-tabs-underline-color`     | [`var(--color-text)`](/docs/tokens/colors)  | Active tab underline color  |

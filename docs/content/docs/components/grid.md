@@ -67,3 +67,18 @@ The idea is that you control the component by using boolean props. This allows y
 | Name      | Accepts | Description                   |
 | --------- | ------- | ----------------------------- |
 | `default` | `any`   | The grid items to be laid out |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                 | Default   | Description                                |
+| --------------------- | --------- | ------------------------------------------ |
+| `--vui-grid-display`  | `grid`            | Display value          |
+| `--vui-grid-gap`      | [`var(--space-s)`](/docs/tokens/spacing)  | Gap                    |
+| `--vui-grid-columns`  | `none`            | Grid template columns  |
+| `--vui-grid-rows`     | `none`            | Grid template rows     |
+| `--vui-grid-align`    | `flex-start`      | Align items            |
+| `--vui-grid-justify`  | `stretch`         | Justify items          |
+| `--vui-grid-flow`     | `row`             | Grid auto flow         |
+| `--vui-grid-width`    | `auto`            | Container width        |

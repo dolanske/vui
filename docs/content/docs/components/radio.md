@@ -77,3 +77,11 @@ The `RadioGroup` component wraps its slot in a [Flex](/docs/components/flex) com
 | Name       | Default | Type                                                               |
 | ---------- | ------- | ------------------------------------------------------------------ |
 | `disabled` | `false` | `boolean` <br> Whether all radio buttons in the group are disabled |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                 | Default | Description          |
+| --------------------- | ------- | -------------------- |
+| `--vui-radio-size`    | `24px`  | Radio button size    |

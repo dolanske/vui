@@ -68,3 +68,15 @@ The drawer component requires a root element with the `vaul-drawer-wrapper` attr
 | --------- | ------- | ----------------------------------------------------- |
 | `header`  | `any`   | Optional header content rendered above drawer content |
 | `default` | `any`   | The content of the drawer                             |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                              | Default                                         | Description         |
+| ---------------------------------- | ----------------------------------------------- | ------------------- |
+| `--vui-drawer-top-offset`          | `28px`                                          | Top content padding |
+| `--vui-drawer-shadow-open`         | `0px -12px 48px 24px var(--color-bg-lowered)`   | Shadow when open    |
+| `--vui-drawer-shadow-closed`       | `0px 0px 0px 0px transparent`                   | Shadow when closed  |
+| `--vui-drawer-overlay-max-opacity` | `75%`                                           | Max overlay opacity |
+| `--vui-drawer-overlay-color`       | [`var(--color-bg-raised)`](/docs/tokens/colors) | Overlay color       |

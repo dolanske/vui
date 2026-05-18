@@ -75,3 +75,13 @@ import { Button } from '@dolanske/vui'
 ```
 
 ::
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                    | Default                                                                          | Description        |
+| ------------------------ | -------------------------------------------------------------------------------- | ------------------ |
+| `--vui-button-height`    | [`var(--interactive-el-height)`](/docs/tokens/layout#interactive-element-height) | Button height      |
+| `--vui-button-padding`   | [`var(--space-xs)`](/docs/tokens/spacing)                                        | Horizontal padding |
+| `--vui-button-font-size` | [`var(--font-size-s)`](/docs/tokens/text)                                        | Default font size  |

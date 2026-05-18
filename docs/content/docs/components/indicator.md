@@ -40,3 +40,15 @@ import { Avatar, Badge, Indicator } from '@dolanske/vui'
 | Name      | Accepts | Description                                                              |
 | --------- | ------- | ------------------------------------------------------------------------ |
 | `default` | `any`   | Optional content to wrap. Useful if you want to place a tiny icon inside |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                          | Default                     | Description               |
+| ------------------------------ | --------------------------- | ------------------------- |
+| `--vui-indicator-size`         | `8px`                       | Dot diameter              |
+| `--vui-indicator-color`        | [`var(--color-text-lighter)`](/docs/tokens/colors) | Dot color                 |
+| `--vui-indicator-outline-color`| [`var(--color-bg)`](/docs/tokens/colors)           | Outline ring color        |
+| `--vui-indicator-outline-size` | `2px`                       | Outline ring thickness    |
+| `--vui-indicator-offset`       | `0`                         | Offset from anchor corner |

@@ -54,3 +54,11 @@ const checked = ref(true)
 | `default`  | `any`                    | Content to be displayed as the label (overrides the `label` prop if provided) |
 | `icon-on`  | `'ph:check-square-fill'` | Slot which renders when the component is checked                              |
 | `icon-off` | `'ph:square'`            | Slot which renders when the component is not checked                          |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                  | Default | Description               |
+| ---------------------- | ------- | ------------------------- |
+| `--vui-checkbox-size`  | `24px`  | Checkbox width and height |

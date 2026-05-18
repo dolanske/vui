@@ -33,11 +33,9 @@ interface Props {
    */
   label?: string
   /**
-   * REVIEW: consider if this should be implementation logic or up to the user
-   *
-   * If enabled, output values will be rounded
+   * Round output values. `true` rounds to an integer, a number specifies decimal places, `false` disables rounding
    */
-  // round?: boolean
+  round?: boolean | number
 }
 
 const {
@@ -47,6 +45,7 @@ const {
   range,
   disabled,
   label,
+  round = true,
 } = defineProps<Props>()
 
 const modelPercent = defineModel<number>({
@@ -69,7 +68,12 @@ function toPercentage(value: number) {
 }
 
 function fromPercentage(value: number) {
-  return (value / 100) * (max - min) + min
+  const raw = (value / 100) * (max - min) + min
+  if (round === false)
+    return raw
+  const decimals = round === true ? 0 : round
+  const factor = 10 ** decimals
+  return Math.round(raw * factor) / factor
 }
 
 const stepSize = computed(() => steps != null ? 100 / steps : null)

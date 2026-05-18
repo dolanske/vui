@@ -38,3 +38,15 @@ import { Avatar } from '@dolanske/vui'
 | `default` | `any`   | Content to display inside the avatar (e.g. initials or text). Takes priority over `url` and `icon`  |
 | `icon`    | `any`   | Custom icon to show as the fallback when no `url` or `default` slot content is provided             |
 | `overlay` | `any`   | Content rendered as an absolute overlay on top of the avatar (e.g. an `Indicator` or action button) |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                           | Default                                                                          | Description             |
+| ------------------------------- | -------------------------------------------------------------------------------- | ----------------------- |
+| `--vui-avatar-size`             | [`var(--interactive-el-height)`](/docs/tokens/layout#interactive-element-height) | Avatar width and height |
+| `--vui-avatar-font-size`        | [`var(--font-size-s)`](/docs/tokens/text)                                        | Font size for initials  |
+| `--vui-avatar-border-radius`    | `100%`                                                                           | Border radius           |
+| `--vui-avatar-background-color` | [`var(--color-bg-raised)`](/docs/tokens/colors)                                  | Background color        |
+| `--vui-avatar-color`            | [`var(--color-text-light)`](/docs/tokens/colors)                                 | Text color              |

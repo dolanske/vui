@@ -5,7 +5,7 @@ import { sizeTokens } from '~/utils/constants'
 
 <template>
   <div>
-    <h1>Spacing</h1>
+    <h1 id="spacing"><a href="#spacing">Spacing</a></h1>
     <p class="mb-xl">
       A set of predefined CSS variables that define consistent spacing values for <strong>margin</strong>, <strong>padding</strong>, and <strong>gap</strong> properties throughout your application. These spacing tokens help maintain visual harmony and consistent layout spacing across pages and components.
     </p>

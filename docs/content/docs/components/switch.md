@@ -13,8 +13,7 @@ const enabled = ref(false)
 </script>
 
 <template>
-  <Switch v-model="enabled" label="Enable feature" />
-  <Switch v-model="enabled" label="Disabled switch" disabled />
+  <Switch v-model="enabled" label="You're awesome" />
 </template>
 ```
 
@@ -42,3 +41,13 @@ const enabled = ref(false)
 | Name      | Accepts | Description                                                                   |
 | --------- | ------- | ----------------------------------------------------------------------------- |
 | `default` | `any`   | Content to be displayed as the label (overrides the `label` prop if provided) |
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                           | Default  | Description                     |
+| ------------------------------- | -------- | ------------------------------- |
+| `--vui-switch-size`             | `24px`   | Toggle indicator size           |
+| `--vui-switch-indicator-offset` | `6px`    | Indicator inset from track edge |
+| `--vui-switch-align`            | `center` | Vertical alignment of switch    |
