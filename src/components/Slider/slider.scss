@@ -17,6 +17,7 @@
   background-color: var(--vui-slider-background);
   border-radius: var(--border-radius-pill);
   z-index: 2;
+  touch-action: none;
 
   &.has-steps {
     margin-bottom: 8px;
@@ -36,7 +37,6 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    will-change: left;
     width: var(--vui-slider-handle-size);
     height: var(--vui-slider-handle-size);
     border-radius: var(--vui-slider-handle-rounding);
@@ -45,10 +45,12 @@
     border: 1px solid var(--vui-slider-handle-color);
     z-index: 3;
     cursor: grab;
+    touch-action: none;
 
     &:active,
-    &:focus-within {
+    &:focus-visible {
       outline: var(--outline);
+      z-index: 4;
     }
   }
 
@@ -70,5 +72,18 @@
     &:last-of-type {
       transform: translateX(calc(var(--vui-slider-step-indicator-width) * -1));
     }
+  }
+
+  &.is-dragging {
+    cursor: grabbing;
+
+    .vui-slider-handle {
+      cursor: grabbing;
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }

@@ -17,6 +17,7 @@ table {
 .vui-tabs .vui-tab-underline {
   border-bottom-width: 1px;
   bottom: -1px;
+  z-index: 2;
 }
 
 .vui-dropdown-item.disabled {

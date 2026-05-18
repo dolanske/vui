@@ -165,6 +165,7 @@ export const componentList = [
   { name: 'Resizable', path: '/docs/components/resizable', keywords: ['split', 'panel', 'drag', 'layout'], description: 'Layout container that splits content into resizable panels' },
   { name: 'Select', path: '/docs/components/select', keywords: ['dropdown', 'options', 'choice', 'form'], description: 'Dropdown for selecting from a list of options' },
   { name: 'Sheet', path: '/docs/components/sheet', keywords: ['bottom', 'panel', 'mobile', 'overlay'], description: 'Bottom sheet that slides up from screen bottom' },
+  { name: 'Slider', path: '/docs/components/slider', keywords: ['range', 'input', 'drag', 'value', 'step'], description: 'Draggable input for selecting a numeric value or range', status: 'new' },
   { name: 'Sidebar', path: '/docs/components/sidebar', keywords: ['navigation', 'panel', 'menu', 'nav'], description: 'Vertical navigation panel typically on screen edges' },
   { name: 'Skeleton', path: '/docs/components/skeleton', keywords: ['placeholder', 'loading', 'shimmer', 'ghost'], description: 'Loading placeholder that mimics content structure' },
   { name: 'Spinner', path: '/docs/components/spinner', keywords: ['loading', 'busy', 'indicator', 'animated'], description: 'Animated loading indicator' },

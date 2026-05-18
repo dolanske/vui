@@ -8,12 +8,15 @@ const steppedValue = ref(40)
 
 const rangeStart = ref(20)
 const rangeEnd = ref(70)
+
+const steppedRangeStart = ref(0)
+const steppedRangeEnd = ref(100)
 </script>
 
 <template>
   <div class="mb-xxl">
     <h3 class="mb-l">
-      Skeletons
+      Sliders
     </h3>
     <table style="table-layout: fixed;">
       <tbody>
@@ -26,6 +29,16 @@ const rangeEnd = ref(70)
           </th>
           <td style="vertical-align: middle;">
             <Slider v-model="singleValue" />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <Flex x-between>
+              <span>Disabled</span>
+            </Flex>
+          </th>
+          <td style="vertical-align: middle;">
+            <Slider disabled />
           </td>
         </tr>
         <tr>
@@ -47,7 +60,18 @@ const rangeEnd = ref(70)
             </Flex>
           </th>
           <td style="vertical-align: middle;">
-            <Slider v-model:start="rangeStart" v-model:end="rangeEnd" range :steps="10" />
+            <Slider v-model:start="rangeStart" v-model:end="rangeEnd" range />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <Flex x-between>
+              <span>Stepped range</span>
+              <span>{{ steppedRangeStart }} - {{ steppedRangeEnd }}</span>
+            </Flex>
+          </th>
+          <td style="vertical-align: middle;">
+            <Slider v-model:start="steppedRangeStart" v-model:end="steppedRangeEnd" range :steps="10" />
           </td>
         </tr>
       </tbody>
