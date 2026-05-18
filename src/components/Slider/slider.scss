@@ -1,0 +1,42 @@
+.vui-slider {
+  --vui-slider-height: 4px;
+  --vui-slider-background: var(--color-border);
+  --vui-slider-indicator: var(--color-accent);
+  --vui-slider-handle-width: 20px;
+  --vui-slider-handle-height: 20px;
+  --vui-slider-handle-rounding: var(--border-radius-pill);
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--vui-slider-height);
+  background-color: var(--vui-slider-background);
+  border-radius: var(--border-radius-pill);
+
+  .vui-slider-indicator {
+    position: absolute;
+    inset: 0;
+    right: unset;
+    width: 0%;
+    background-color: var(--vui-slider-indicator);
+    border-radius: var(--border-radius-pill);
+  }
+
+  .vui-slider-handle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    will-change: left;
+    width: var(--vui-slider-handle-width);
+    height: var(--vui-slider-handle-height);
+    border-radius: var(--vui-slider-handle-rounding);
+    background-color: var(--color-bg);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--color-border-strong);
+    cursor: grab;
+
+    &:focus-within {
+      outline: var(--outline);
+    }
+  }
+}
