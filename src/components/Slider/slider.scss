@@ -1,0 +1,89 @@
+.vui-slider {
+  --vui-slider-height: 4px;
+  --vui-slider-background: var(--color-border);
+  --vui-slider-indicator: var(--color-accent);
+
+  --vui-slider-handle-size: 20px;
+  --vui-slider-handle-rounding: var(--border-radius-pill);
+  --vui-slider-handle-color: var(--color-border-strong);
+
+  --vui-slider-step-indicator-width: 2px;
+  --vui-slider-step-indicator-height: 4px;
+
+  display: block;
+  position: relative;
+  width: 100%;
+  height: var(--vui-slider-height);
+  background-color: var(--vui-slider-background);
+  border-radius: var(--border-radius-pill);
+  z-index: 2;
+  touch-action: none;
+
+  &.has-steps {
+    margin-bottom: 8px;
+  }
+
+  .vui-slider-indicator {
+    position: absolute;
+    inset: 0;
+    right: unset;
+    width: 0%;
+    background-color: var(--vui-slider-indicator);
+    border-radius: var(--border-radius-pill);
+    z-index: 1;
+  }
+
+  .vui-slider-handle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--vui-slider-handle-size);
+    height: var(--vui-slider-handle-size);
+    border-radius: var(--vui-slider-handle-rounding);
+    background-color: var(--color-bg);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--vui-slider-handle-color);
+    z-index: 3;
+    cursor: grab;
+    touch-action: none;
+
+    &:active,
+    &:focus-visible {
+      outline: var(--outline);
+      z-index: 4;
+    }
+  }
+
+  .vui-slider-step-indicator {
+    display: block;
+    width: var(--vui-slider-step-indicator-width);
+    height: var(--vui-slider-step-indicator-height);
+    position: absolute;
+    top: calc(100% + 3px);
+    z-index: 1;
+    border-radius: var(--border-radius-pill);
+    background-color: var(--vui-slider-background);
+    transform: translateX(calc(var(--vui-slider-step-indicator-width) / -2));
+
+    &:first-of-type {
+      transform: translateX(0);
+    }
+
+    &:last-of-type {
+      transform: translateX(calc(var(--vui-slider-step-indicator-width) * -1));
+    }
+  }
+
+  &.is-dragging {
+    cursor: grabbing;
+
+    .vui-slider-handle {
+      cursor: grabbing;
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

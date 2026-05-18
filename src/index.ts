@@ -58,6 +58,7 @@ import Select from './components/Select/Select.vue'
 import Sheet from './components/Sheet/Sheet.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
 import Skeleton from './components/Skeleton/Skeleton.vue'
+import Slider from './components/Slider/Slider.vue'
 import Spinner from './components/Spinner/Spinner.vue'
 import Switch from './components/Switch/Switch.vue'
 import * as Table from './components/Table'
@@ -141,6 +142,7 @@ export {
   type Size,
   type Sizes,
   Skeleton,
+  Slider,
   type Spaces,
   type SpaceSize,
   Spinner,

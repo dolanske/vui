@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import Switch from './components/Switch/Switch.vue'
-import ExampleDropdowns from './examples/ExampleDropdowns.vue'
-import ExampleMenubar from './examples/ExampleMenubar.vue'
+import ExampleSliders from './examples/ExampleSliders.vue'
 import { setColorTheme } from './shared/theme'
 
 const isLight = ref(false)
@@ -14,7 +13,6 @@ watchEffect(() => {
 <template>
   <main vaul-drawer-wrapper class="container-m py-xxxl">
     <Switch v-model="isLight" class="mb-xxl" label="Light theme" />
-    <ExampleDropdowns />
-    <ExampleMenubar />
+    <ExampleSliders />
   </main>
 </template>

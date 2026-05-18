@@ -79,7 +79,7 @@
   .vui-tab-underline {
     transition: var(--transition);
     display: block;
-    border-bottom: 2px solid var(--vui-tabs-underline-color, var(--color-border));
+    border-bottom: 2px solid var(--vui-tabs-underline-color, var(--color-text));
     position: absolute;
     bottom: 0;
   }
