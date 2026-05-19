@@ -12,6 +12,12 @@
   view-transition-name: none;
   backdrop-filter: blur(1px);
 
+  &.child {
+    &:after {
+      opacity: 0.25;
+    }
+  }
+
   &:after {
     content: '';
     position: fixed;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Props } from './Popout.vue'
-import { ref, useAttrs, useId, useTemplateRef } from 'vue'
+import { computed, ref, useAttrs, useId, useTemplateRef, watch } from 'vue'
 import Popout from './Popout.vue'
 
 type PopoutHoverProps = Omit<Props, 'anchor' | 'visible'> & {
@@ -41,13 +41,31 @@ function setVisibility(visibleState: boolean) {
 
   visible.value = visibleState
 }
+
+// Use the first child element as the actual anchor for Popout positioning so that
+// the wrapper's display type does not affect offset calculations.
+const anchorElement = computed(() =>
+  (anchor.value?.firstElementChild as HTMLElement | null) ?? anchor.value,
+)
+
+// Whenever anchor changes, we need to make sure to make it focusable in case it
+// isn't a button/clickable element. This improves accessibility for keyboard users
+watch(anchor, () => {
+  if (!anchor.value)
+    return
+
+  anchor.value.firstElementChild?.setAttribute('tabindex', '0')
+}, {
+  flush: 'post',
+  immediate: true,
+})
 </script>
 
 <template>
-  <div
+  <span
     ref="anchorRef"
     class="popout-hover-anchor"
-    tabindex="0"
+    tabindex="-1"
     aria-haspopup="true"
     :aria-expanded="visible"
     :aria-controls="popoutId"
@@ -57,24 +75,19 @@ function setVisibility(visibleState: boolean) {
     @focusout="handleFocusOut"
   >
     <slot name="trigger" />
-  </div>
+  </span>
   <Popout
     :id="popoutId"
     ref="popoutRef"
     v-bind="{ ...attrs, ...remainingProps }"
-    :anchor
+    :anchor="anchorElement"
     :visible
     :enter-delay
     :leave-delay
     @mouseenter="setVisibility(true)"
     @mouseleave="setVisibility(false)"
+    @focusout="setVisibility(false)"
   >
     <slot />
   </Popout>
 </template>
-
-<style scoped>
-.popout-hover-anchor {
-  width: fit-content;
-}
-</style>

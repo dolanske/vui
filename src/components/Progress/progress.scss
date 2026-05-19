@@ -12,8 +12,7 @@
   height: var(--vui-progress-height);
 
   &.fixed {
-    transition: var(--transition-slow);
-    transition-property: height;
+    transition: height var(--transition-slow);
     position: fixed;
     inset: 0;
     bottom: unset;
@@ -39,7 +38,7 @@
     width: 0;
     border-radius: var(--border-radius-pill);
     background-color: var(--vui-progress-color);
-    transition: var(--transition-slow);
+    transition: width var(--transition-slow);
   }
 }
 

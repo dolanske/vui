@@ -42,7 +42,6 @@ const options = [
 | `readonly`         | `false` | `boolean` <br> Whether the select is readonly                                     |
 | `label`            | —       | `string` <br> The label text for the select                                       |
 | `placeholder`      | —       | `string` <br> Placeholder text when no option is selected                         |
-| `expand`           | `false` | `boolean` <br> Expands the select to fill available width                         |
 | `hint`             | —       | `string` <br> Helper text displayed under the label                               |
 | `search`           | `false` | `boolean` <br> Whether to enable search functionality                             |
 | `required`         | `false` | `boolean` <br> Whether the select is required                                     |

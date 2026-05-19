@@ -3,15 +3,6 @@
     width: auto;
     min-width: 96px;
 
-    &.expand {
-      width: 100%;
-
-      .vui-dropdown-trigger-wrap,
-      .vui-dropdown-trigger-content {
-        width: 100%;
-      }
-    }
-
     &.disabled {
       .vui-input-style {
         cursor: not-allowed;
@@ -74,7 +65,7 @@ select {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-s);
   padding-inline: var(--space-xs);
-  transition: var(--transition-fast);
+  transition: border-color var(--transition-fast);
   z-index: var(--z-default);
   font-size: var(--font-size-m);
   color: var(--color-text);

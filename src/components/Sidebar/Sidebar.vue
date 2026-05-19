@@ -7,6 +7,7 @@ import './sidebar.scss'
 const props = withDefaults(defineProps<Props>(), {
   width: 224,
   mini: false,
+  appearDelay: 250,
 })
 
 interface Props {
@@ -20,6 +21,10 @@ interface Props {
    * sidebar will apear over content, not pushing anything over
    */
   appear?: boolean
+  /**
+   * Controls the amount of time user needs to hover the appear area, for sidebar to show up. Default is `250` milliseconds.
+   */
+  appearDelay?: number
   /**
    * Add edges of background around sidebar
    */
@@ -57,7 +62,7 @@ const { start, stop, isPending } = useTimeoutFn(() => {
   if (props.appear) {
     open.value = true
   }
-}, 250)
+}, () => props.appearDelay)
 
 const APPEAR_OFFSET = 32
 

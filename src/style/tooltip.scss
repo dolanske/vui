@@ -27,7 +27,9 @@ Available tooltip positions:
     padding: 4px 8px;
     line-height: 1.3em;
     border-radius: var(--border-radius-m);
-    transition: var(--transition);
+    transition:
+      opacity var(--transition),
+      visibility var(--transition);
 
     max-width: 512px;
     opacity: 0;

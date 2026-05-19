@@ -25,7 +25,6 @@ type Props = {
   label?: string
   placeholder?: string
   required?: boolean
-  expand?: boolean
   hint?: string
   search?: boolean
   maxActiveOptions?: number
@@ -50,7 +49,6 @@ type Props = {
 }
 
 const {
-  expand,
   readonly,
   required,
   hint,
@@ -157,10 +155,9 @@ const isMobile = useBreakpoint(Breakpoints.Mobile)
 </script>
 
 <template>
-  <div class="vui-input-container vui-select" :class="{ expand, required, readonly, disabled, 'has-errors': errors.length > 0 }" :style="sizeStyle">
+  <div class="vui-input-container vui-select" :class="{ required, readonly, disabled, 'has-errors': errors.length > 0 }" :style="sizeStyle">
     <Dropdown
       ref="dropdown"
-      :expand
       :max-height
       :transition-name
       :no-mobile-drawer="noMobileDrawer"

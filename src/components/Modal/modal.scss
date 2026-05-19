@@ -10,6 +10,8 @@
   pointer-events: none;
   view-transition-name: none;
 
+  transform: translateY(calc(var(--layer-position) * 16px));
+
   &.centered {
     display: flex;
     align-items: center;

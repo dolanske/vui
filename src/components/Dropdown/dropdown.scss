@@ -1,7 +1,5 @@
 .vui-dropdown-trigger-wrap {
-  width: fit-content;
-  position: relative;
-  // display: contents;
+  display: contents;
 }
 
 .vui-dropdown {
@@ -23,12 +21,20 @@
     margin-block: var(--space-xxxs);
   }
 
-  &:has(.vui-dropdown-item-icon:not(:empty)) {
-    .vui-dropdown-item {
+  // This is horrible, but basically allows us to add padding to items if they
+  // have an icon. But not propagate that padding to nested submenus
+  // I will atone for my sins (no)
+  &:has(
+    > .vui-dropdown-item .vui-dropdown-item-icon:not(:empty),
+    > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon:not(:empty)
+  ) {
+    > .vui-dropdown-item,
+    > :not(.vui-dropdown) > .vui-dropdown-item {
       padding-left: var(--space-xs);
     }
 
-    .vui-dropdown-item-icon {
+    > .vui-dropdown-item .vui-dropdown-item-icon,
+    > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon {
       display: flex !important;
       margin-right: calc(var(--space-xs) / 2);
     }

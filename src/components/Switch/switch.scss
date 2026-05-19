@@ -62,7 +62,9 @@
       height: calc(var(--vui-switch-size) - var(--vui-switch-indicator-offset));
       border-radius: var(--border-radius-pill);
       background-color: var(--color-text-lighter);
-      transition: var(--transition);
+      transition:
+        left var(--transition),
+        background-color var(--transition);
     }
   }
 

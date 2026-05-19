@@ -112,11 +112,14 @@ defineExpose({
 watch(() => props.visible, (isVisible) => {
   if (isVisible) {
     clearTimeout(leaveTimeoutId)
+
     if (!props.enterDelay || props.enterDelay <= 0) {
       delayedVisible.value = true
       return
     }
+
     clearTimeout(enterTimeoutId)
+
     enterTimeoutId = setTimeout(() => {
       if (props.visible)
         delayedVisible.value = true
@@ -124,10 +127,12 @@ watch(() => props.visible, (isVisible) => {
   }
   else {
     clearTimeout(enterTimeoutId)
+
     if (!props.leaveDelay || props.leaveDelay <= 0) {
       delayedVisible.value = false
       return
     }
+
     leaveTimeoutId = setTimeout(() => {
       if (!props.visible)
         delayedVisible.value = false

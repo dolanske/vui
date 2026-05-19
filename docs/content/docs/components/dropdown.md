@@ -56,7 +56,6 @@ import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
 | ----------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `placement`       | `bottom-start` | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger                                                                                                                                                              |
 | `minWidth`        | `156`          | `number` `string` <br> Minimum width of the dropdown in pixels or CSS units                                                                                                                                                                                                                                                                          |
-| `expand`          | `false`        | `boolean` <br> Whether to expand the dropdown to match the trigger's width                                                                                                                                                                                                                                                                           |
 | `maxHeight`       | `356`          | `number` `string` <br> Maximum height of the dropdown before scrolling in pixels or CSS units                                                                                                                                                                                                                                                        |
 | `noMobileDrawer`  | `false`        | `boolean` <br> Disables mobile drawer behavior and always uses floating dropdown                                                                                                                                                                                                                                                                     |
 | `transition-name` | —              | `string` `none` <br> Allows you to change or disable the Vue transition for dropdown appear. By default, placement-based transition is used. Set to `none` when using the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) to prevent the default animation from conflicting with your view transition. |
@@ -84,6 +83,84 @@ interface DropdownSlotsProps {
   toggle: () => void
 }
 ```
+
+### Nested dropdowns
+
+Use [PopoutHover](/docs/components/popout-hover) inside a dropdown to create multi-level menus. Nest it anywhere in the default slot and use `placement="right-start"` (or `left-start`) to open the submenu to the side.
+::dropdown-nested-example
+
+```vue
+<script setup lang="ts">
+import { Button, Divider, Dropdown, DropdownItem, DropdownTitle, PopoutHover } from '@dolanske/vui'
+</script>
+
+<template>
+  <Dropdown>
+    <template #trigger="{ open }">
+      <Button variant="fill" @click="open">
+        File
+      </Button>
+    </template>
+
+    <DropdownTitle>File</DropdownTitle>
+
+    <DropdownItem>
+      New file
+      <template #hint>
+        <Icon name="ph:command" />
+        + N
+      </template>
+    </DropdownItem>
+
+    <PopoutHover placement="right-start">
+      <template #trigger>
+        <DropdownItem>
+          <template #icon>
+            <Icon name="ph:clock-counter-clockwise" />
+          </template>
+          Open recent
+          <template #iconEnd>
+            <Icon name="ph:caret-right" />
+          </template>
+        </DropdownItem>
+      </template>
+      <div class="vui-dropdown">
+        <DropdownTitle>Recent</DropdownTitle>
+        <DropdownItem>dashboard.vue</DropdownItem>
+        <DropdownItem>settings.vue</DropdownItem>
+        <DropdownItem>index.vue</DropdownItem>
+        <Divider />
+        <PopoutHover placement="right-start">
+          <template #trigger>
+            <DropdownItem>
+              More files
+              <template #iconEnd>
+                <Icon name="ph:caret-right" />
+              </template>
+            </DropdownItem>
+          </template>
+          <div class="vui-dropdown">
+            <DropdownItem>profile.vue</DropdownItem>
+            <DropdownItem>auth.vue</DropdownItem>
+            <DropdownItem>404.vue</DropdownItem>
+          </div>
+        </PopoutHover>
+      </div>
+    </PopoutHover>
+
+    <Divider />
+
+    <DropdownItem>
+      <template #icon>
+        <Icon name="ph:trash" />
+      </template>
+      Move to trash
+    </DropdownItem>
+  </Dropdown>
+</template>
+```
+
+::
 
 ### Components
 
@@ -133,7 +210,7 @@ import { DropdownItem } from '@dolanske/vui'
 | Name       | Default | Type                                        |
 | ---------- | ------- | ------------------------------------------- |
 | `disabled` | `false` | `boolean` <br> Whether the item is disabled |
-| `size`     | —       | `'s'` `'m'` <br> Size of the dropdown item |
+| `size`     | —       | `'s'` `'m'` <br> Size of the dropdown item  |
 
 ##### Slots
 
@@ -184,7 +261,7 @@ A title or header section in the dropdown menu which also divides the dropdown i
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                       | Default   | Description              |
-| --------------------------- | --------- | ------------------------ |
-| `--vui-dropdown-min-width`  | `128px`   | Minimum dropdown width   |
-| `--vui-dropdown-max-height` | `none`    | Maximum dropdown height  |
+| Token                       | Default | Description             |
+| --------------------------- | ------- | ----------------------- |
+| `--vui-dropdown-min-width`  | `128px` | Minimum dropdown width  |
+| `--vui-dropdown-max-height` | `none`  | Maximum dropdown height |

@@ -19,7 +19,7 @@
       z-index: var(--z-default);
       font-size: var(--font-size-m);
       outline: 0 solid var(--color-text-light);
-      transition: var(--transition-fast);
+      transition: outline var(--transition-fast);
       background-color: var(--);
       background-color: var(--vui-otp-background-color);
 

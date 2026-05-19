@@ -31,7 +31,7 @@ const props = defineProps<Props>()
       <slot name="hint" />
     </div>
 
-    <div v-if="$slots.iconEnd" class="vui-dropdown-item-icon">
+    <div v-if="$slots.iconEnd" class="vui-dropdown-item-icon-end">
       <slot name="iconEnd" />
     </div>
   </button>

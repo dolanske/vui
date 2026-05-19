@@ -71,7 +71,7 @@
     font-size: var(--vui-button-font-size-xl);
   }
   svg path {
-    transition: var(--transition-fast);
+    transition: color var(--transition-fast);
   }
 
   height: var(--vui-button-height);
@@ -83,7 +83,10 @@
   padding-inline: var(--vui-button-padding);
   font-size: var(--vui-button-font-size);
   position: relative;
-  transition: var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
   border: 1px solid transparent;
   background-color: transparent;
   color: var(--color-text);
@@ -97,7 +100,7 @@
     display: grid;
     grid-template-columns: max-content 1fr max-content;
     align-items: center;
-    transition: var(--transition-fast);
+    transition: opacity var(--transition-fast);
     opacity: 1;
     width: 100%;
     font-weight: var(--font-weight-medium);
@@ -144,7 +147,7 @@
   }
 
   .vui-spinner {
-    transition: var(--transition-fast);
+    transition: opacity var(--transition-fast);
     opacity: 0;
     position: absolute;
     pointer-events: none;

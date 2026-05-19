@@ -7,7 +7,7 @@ const emits = defineEmits<{
   (e: 'close'): void
 }>()
 
-const { layerIndex, openLayer, closeLayer } = useLayer()
+const { layerIndex, layerPostition, openLayer, closeLayer } = useLayer()
 
 // Track whether the mousedown originated on the backdrop itself,
 // so that dragging from inside content onto the backdrop doesn't
@@ -44,7 +44,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="vui-backdrop" :style="{ '--layer-z': layerIndex }" @mousedown="handleMouseDown" @click="handleClick">
+  <div
+    class="vui-backdrop"
+    :class="{ child: layerPostition > 0 }"
+    :style="{
+      '--layer-z': layerIndex,
+      '--layer-position': layerPostition,
+    }"
+    @mousedown="handleMouseDown"
+    @click="handleClick"
+  >
     <slot />
   </div>
 </template>

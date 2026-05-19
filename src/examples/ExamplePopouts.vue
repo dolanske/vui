@@ -118,7 +118,7 @@ const stackedModal2Open = ref(false)
     <Popout :visible="layerPopoutOpen" :anchor="layerPopoutAnchorRef" class="test-popout" placement="bottom-start" @click-outside="layerPopoutOpen = false">
       <p>I was opened first — the modal should still appear above me.</p>
     </Popout>
-    <Modal :open="layerModalOpen" transition-name="none" @close="layerModalOpen = false">
+    <Modal :open="layerModalOpen" @close="layerModalOpen = false">
       <template #header>
         <h4>Modal opened after the popout</h4>
       </template>
@@ -141,7 +141,7 @@ const stackedModal2Open = ref(false)
     <Button @click="tooltipModalOpen = true">
       Open modal with tooltips
     </Button>
-    <Modal :open="tooltipModalOpen" transition-name="none" @close="tooltipModalOpen = false">
+    <Modal :open="tooltipModalOpen" @close="tooltipModalOpen = false">
       <template #header>
         <h4>Tooltips inside a Modal</h4>
       </template>
@@ -187,7 +187,7 @@ const stackedModal2Open = ref(false)
     <Button @click="stackedModal1Open = true">
       Open Modal 1
     </Button>
-    <Modal :open="stackedModal1Open" transition-name="none" @close="stackedModal1Open = false">
+    <Modal :open="stackedModal1Open" @close="stackedModal1Open = false">
       <template #header>
         <h4>Modal 1 (first opened)</h4>
       </template>
@@ -198,7 +198,7 @@ const stackedModal2Open = ref(false)
         </Button>
       </template>
     </Modal>
-    <Modal :open="stackedModal2Open" transition-name="none" @close="stackedModal2Open = false">
+    <Modal :open="stackedModal2Open" @close="stackedModal2Open = false">
       <template #header>
         <h4>Modal 2 (second opened)</h4>
       </template>

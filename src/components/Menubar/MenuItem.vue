@@ -31,7 +31,6 @@ function handleMouseenter() {
 <template>
   <div
     ref="trigger"
-    class="vui-dropdown-trigger-wrap"
     @click="handleClick"
     @mouseenter="handleMouseenter"
   >

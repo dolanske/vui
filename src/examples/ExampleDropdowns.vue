@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { IconArrowRight, IconCommand, IconTrash, IconUser, IconX } from '@iconify-prerendered/vue-ph'
+import { IconArrowRight, IconCaretRight, IconCommand, IconTrash, IconUser, IconX } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import Divider from '../components/Divider/Divider.vue'
 import Dropdown from '../components/Dropdown/Dropdown.vue'
 import DropdownItem from '../components/Dropdown/DropdownItem.vue'
 import DropdownTitle from '../components/Dropdown/DropdownTitle.vue'
 import Flex from '../components/Flex/Flex.vue'
+import PopoutHover from '../components/Popout/PopoutHover.vue'
 
 const placements = ['top', 'bottom', 'left', 'right'] as const
 </script>
@@ -20,18 +21,36 @@ const placements = ['top', 'bottom', 'left', 'right'] as const
       <tbody>
         <tr>
           <th>
-            Base + expand <br> (dropdown takes width of the trigger)
+            Base
           </th>
           <td>
-            <Dropdown expand>
+            <Dropdown>
               <template #trigger="{ toggle }">
-                <Button class="btn btn-primary" expand @click="toggle">
+                <Button class="btn btn-primary" @click="toggle">
                   Dropdown
                 </Button>
               </template>
-              <DropdownItem>New user</DropdownItem>
+              <PopoutHover placement="right-start">
+                <template #trigger>
+                  <DropdownItem>
+                    New user
+                    <template #iconEnd>
+                      <IconCaretRight />
+                    </template>
+                  </DropdownItem>
+                </template>
+                <div class="vui-dropdown">
+                  <DropdownItem>Anonymous</DropdownItem>
+                  <DropdownItem>Template</DropdownItem>
+                </div>
+              </PopoutHover>
               <DropdownItem>Update</DropdownItem>
-              <DropdownItem>Cancel</DropdownItem>
+              <DropdownItem>
+                <template #icon>
+                  <IconX />
+                </template>
+                Cancel all requests
+              </DropdownItem>
             </Dropdown>
           </td>
         </tr>
@@ -140,7 +159,6 @@ const placements = ['top', 'bottom', 'left', 'right'] as const
                   <template #icon>
                     <IconArrowRight />
                   </template>
-
                   Update
                 </DropdownItem>
                 <DropdownItem size="s">
@@ -170,7 +188,7 @@ const placements = ['top', 'bottom', 'left', 'right'] as const
         <tr>
           <th>Disabled</th>
           <td>
-            <Dropdown expand>
+            <Dropdown>
               <template #trigger="{ toggle }">
                 <Button class="btn btn-primary" disabled @click="toggle">
                   Dropdown

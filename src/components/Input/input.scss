@@ -112,7 +112,9 @@
       outline: none;
       font-size: var(--font-size-m);
       width: 100%;
-      transition: var(--transition-fast);
+      transition:
+        border-color var(--transition-fast),
+        outline var(--transition-fast);
       padding-inline: var(--vui-input-padding);
       z-index: var(--z-default);
 

@@ -4,7 +4,9 @@
 
 <template>
   <div>
-    <h1 id="transition"><a href="#transition">Transition</a></h1>
+    <h1 id="transition">
+      <a href="#transition">Transition</a>
+    </h1>
     <p class="mb-l">
       VUI focuses on fast & smooth transitions to prevent visual jitter and the feeling of lag/slowness.
     </p>
@@ -14,8 +16,7 @@
         <div
           class="transition-indicator" :style="{
             transition: item.value,
-            // animationDuration: item.value.split(' all ')[0],
-            // animationTimingFunction: item.value.split(' all ')[1],
+            transitionProperty: 'left',
           }"
         />
       </div>

@@ -6,7 +6,10 @@
   border-radius: var(--border-radius-xs);
   font-size: var(--font-size-xs);
   padding: 0 4px;
-  transition: var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
   font-weight: var(--font-weight-medium);
   background-color: var(--color-button-gray);
   color: var(--color-text-light);
@@ -14,7 +17,8 @@
   border: 1px solid var(--color-border);
 
   &.active {
-    transform: translateY(2px);
+    // will-change: transform;
+    transform: translateY(3px);
     color: var(--color-text-invert);
     background-color: var(--color-button-fill);
     color: contrast-color(var(--color-button-fill));

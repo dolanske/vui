@@ -1,37 +1,50 @@
-import type { Ref } from 'vue'
-import { onUnmounted, ref } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed, onUnmounted, ref } from 'vue'
 
 interface UseLayer {
-  layerIndex: Ref<number>
+  /**
+   * The z-index of the layer.
+   */
+  layerIndex: ComputedRef<number>
+  /**
+   * The number of the layer in the global stack. Bottom layer is 0, additional layers increment upward
+   */
+  layerPostition: ComputedRef<number>
+  /**
+   * Opens the layer, claiming a z-index from the global stack.
+   */
   openLayer: () => void
+  /**
+   * Closes the layer, releasing its z-index back to the global stack.
+   */
   closeLayer: () => void
 }
 
 const BASE_Z = 600
 const STEP = 10
-const stack: number[] = []
+const stack = ref<number[]>([])
 let counter = BASE_Z
 
 function claim(): number {
   counter += STEP
-  stack.push(counter)
+  stack.value.push(counter)
   return counter
 }
 
 function release(z: number): void {
-  const idx = stack.lastIndexOf(z)
+  const idx = stack.value.lastIndexOf(z)
 
   if (idx !== -1) {
-    stack.splice(idx, 1)
+    stack.value.splice(idx, 1)
   }
 
-  if (stack.length === 0) {
+  if (stack.value.length === 0) {
     counter = BASE_Z
   }
 }
 
 export function isTopLayer(z: number): boolean {
-  return stack.length > 0 && stack.at(-1) === z
+  return stack.value.length > 0 && stack.value.at(-1) === z
 }
 
 /**
@@ -41,28 +54,39 @@ export function isTopLayer(z: number): boolean {
  * it hides.  The layer is automatically released when the component unmounts.
  */
 export function useLayer(): UseLayer {
-  const layerIndex = ref<number>(BASE_Z)
-  let claimed: number | null = null
+  const claimed = ref<number | null>(null)
 
   function openLayer(): void {
-    if (claimed !== null)
+    if (claimed.value !== null)
       return
-    claimed = claim()
-    layerIndex.value = claimed
+    claimed.value = claim()
   }
 
   function closeLayer(): void {
-    if (claimed === null)
+    if (claimed.value === null)
       return
-    release(claimed)
-    claimed = null
+    release(claimed.value)
+    claimed.value = null
   }
 
   onUnmounted(() => {
     closeLayer()
   })
 
+  const layerIndex = computed(() => claimed.value ?? BASE_Z)
+
+  const layerPostition = computed(() => {
+    if (claimed.value === null)
+      return 0
+    const idx = stack.value.lastIndexOf(claimed.value)
+    if (idx === -1)
+      return 0
+    // Bottom layer is 0, layers above it increment
+    return idx
+  })
+
   return {
+    layerPostition,
     layerIndex,
     openLayer,
     closeLayer,

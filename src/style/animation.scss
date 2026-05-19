@@ -1,7 +1,7 @@
 .fade-enter-active,
 .fade-leave-active {
-  transition: var(--transition-fast);
-  will-change: opacity;
+  transition: opacity var(--transition-fast);
+  // will-change: opacity;
 }
 
 .fade-enter-from,
@@ -18,9 +18,10 @@
 .fade-right-leave-active,
 .fade-left-enter-active,
 .fade-left-leave-active {
-  transition: var(--transition-fast);
-  transition-property: transform, opacity;
-  will-change: transform, opacity;
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+  // will-change: transform, opacity;
 }
 
 // Specifics

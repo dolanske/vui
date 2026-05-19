@@ -407,7 +407,7 @@ article,
       &:before {
         content: '#';
         opacity: 0;
-        transition: var(--transition-fast);
+        transition: opacity var(--transition-fast);
         position: absolute;
         right: calc(100% + 4px);
         top: 50%;

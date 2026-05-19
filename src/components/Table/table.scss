@@ -79,7 +79,7 @@
     td {
       border: none;
       border-left: none !important;
-      transition: var(--transition-fast);
+      transition: background-color var(--transition-fast);
       position: relative;
       z-index: var(--z-default);
 

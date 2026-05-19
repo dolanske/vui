@@ -1,7 +1,8 @@
 <script setup lang='ts'>
 import type { Placement } from '../../shared/types'
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+
 import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { formatUnitValue } from '../../shared/helpers'
 import Drawer from '../Drawer/Drawer.vue'
@@ -17,10 +18,6 @@ export interface Props {
    * Set the minimum width of the dropdown element
    */
   minWidth?: number | string
-  /**
-   * Sets the width of the dropdown to the width of its anchor
-   */
-  expand?: boolean
   /**
    * Set he max height of the dropdown element before it starts scrolling
    */
@@ -40,7 +37,6 @@ export interface Props {
 const {
   placement = 'bottom-start',
   maxHeight = 356,
-  expand,
   minWidth = 156,
   noMobileDrawer = false,
   transitionName,
@@ -51,7 +47,10 @@ const emit = defineEmits<{
 }>()
 
 const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
-const popoutComponentRef = useTemplateRef<{ el: HTMLElement | null }>('popoutEl')
+const anchorElement = computed(() =>
+  (anchorRef.value?.firstElementChild as HTMLElement | null) ?? anchorRef.value,
+)
+const popoutComponentRef = useTemplateRef<{ el: () => HTMLElement | null }>('popoutEl')
 
 const showMenu = ref(false)
 
@@ -73,12 +72,6 @@ function toggle() {
 //   ignore: [anchorRef],
 // })
 
-const anchorWidth = computed(() => {
-  if (!expand || !window)
-    return 0
-  return anchorRef.value?.getBoundingClientRect().width
-})
-
 defineExpose({
   open,
   close,
@@ -87,17 +80,11 @@ defineExpose({
 })
 
 const mW = computed(() => formatUnitValue(minWidth))
-const w = computed(() => expand ? `${anchorWidth.value}px` : 'initial')
 
 const isMobile = useBreakpoint(Breakpoints.Mobile)
 
 const { escape } = useMagicKeys()
 whenever(escape, close)
-
-// We want to make sure that after opening, focus is transferred to the first
-// focusable element within Popout. And when focus is lost, we move back to the
-// trigger element. Big win for accessibility and keyboard navigation bro
-const FOCUSABLE_SELECTOR = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
 watch(showMenu, (v) => {
   if (!v) {
@@ -105,8 +92,8 @@ watch(showMenu, (v) => {
   }
   else {
     nextTick(() => {
-      popoutComponentRef.value?.el
-        ?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)
+      popoutComponentRef.value?.el()
+        ?.querySelector<HTMLElement>('button:not([disabled]), input:not([disabled])')
         ?.focus()
     })
   }
@@ -116,12 +103,17 @@ function onPopoutFocusout(event: FocusEvent) {
   const relatedTarget = event.relatedTarget as HTMLElement | null
   const currentTarget = event.currentTarget as HTMLElement
 
-  if (!relatedTarget)
+  // Focus stayed inside the popout
+  if (currentTarget.contains(relatedTarget))
     return
 
-  if (!currentTarget.contains(relatedTarget)) {
-    anchorRef.value?.focus()
-  }
+  // Focus moved back to the trigger area (e.g. Shift+Tab) — leave dropdown open
+  if (anchorRef.value?.contains(relatedTarget))
+    return
+
+  // Focus left the popout entirely — close and return to trigger.
+  close()
+  anchorRef.value?.querySelector<HTMLElement>('button:not([disabled]), input:not([disabled])')?.focus()
 }
 
 function onTriggerClickCapture(event: MouseEvent) {
@@ -135,11 +127,6 @@ function onTriggerClickCapture(event: MouseEvent) {
   close()
 }
 
-onMounted(() => {
-  if (expand && minWidth !== 156)
-    console.warn('[Dropdown] Dropdown: minWidth prop is ignored when expand is set to true')
-})
-
 function handleContentClick(event: MouseEvent) {
   const target = event.target as HTMLElement
 
@@ -152,7 +139,7 @@ function handleContentClick(event: MouseEvent) {
 </script>
 
 <template>
-  <div
+  <span
     ref="anchor"
     class="vui-dropdown-trigger-wrap"
     role="button"
@@ -162,7 +149,7 @@ function handleContentClick(event: MouseEvent) {
     @click.capture="onTriggerClickCapture"
   >
     <slot name="trigger" :open :is-open="showMenu" :close :toggle />
-  </div>
+  </span>
 
   <!-- Mobile: Drawer -->
   <Drawer
@@ -179,11 +166,11 @@ function handleContentClick(event: MouseEvent) {
     v-else
     ref="popoutEl"
     :visible="showMenu"
-    :anchor="anchorRef"
+    :anchor="anchorElement"
     class="vui-dropdown"
     :placement
     :style="{
-      '--vui-dropdown-min-width': expand ? w : mW,
+      '--vui-dropdown-min-width': mW,
       '--vui-dropdown-max-height': formatUnitValue(maxHeight),
     }"
     :transition-name

@@ -4,7 +4,6 @@ import { useClipboard } from '@vueuse/core'
 import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
 import { isNil } from '../../shared/helpers'
 import Popout from '../Popout/Popout.vue'
-import './copy-clipboard.scss'
 import '../Tooltip/tooltip.scss'
 
 interface Props {
@@ -72,9 +71,9 @@ const anchorEl = computed(() => anchorRef.value)
 </script>
 
 <template>
-  <div ref="anchor" class="vui-clipboard-copy-wrap" role="button" @click="copy(text)">
+  <span ref="anchor" role="button" @click="copy(text)">
     <slot :copy :copied />
-  </div>
+  </span>
   <Popout
     :anchor="anchorEl"
     :visible="copied && (!!parsedConfirm || !!$slots.confirm)"

@@ -25,9 +25,12 @@
     }
 
     .vui-dropdown-item-slot,
-    .vui-dropdown-item-icon svg path,
-    .vui-dropdown-item-icon .iconify {
-      color: var(--color-text-lighter) !important;
+    .vui-dropdown-item-icon,
+    .vui-dropdown-item-icon-end {
+      svg path,
+      .iconify {
+        color: var(--color-text-lighter) !important;
+      }
     }
 
     .vui-dropdown-item-hint {
@@ -37,7 +40,8 @@
     }
   }
 
-  .vui-dropdown-item-icon {
+  .vui-dropdown-item-icon,
+  .vui-dropdown-item-icon-end {
     width: 16px;
     height: 16px;
     display: flex;
@@ -95,6 +99,5 @@
   &.vui-dropdown-item-size-s {
     height: var(--interactive-el-height-s);
     font-size: var(--font-size-s);
-    // padding-inline: var(--space-xs);
   }
 }

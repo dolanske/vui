@@ -14,7 +14,7 @@
   box-shadow: var(--vui-drawer-shadow-closed);
 
   will-change: box-shadow;
-  transition: var(--transition-fast);
+  transition: box-shadow var(--transition-fast);
 
   &[data-state='open'] {
     box-shadow: var(--vui-drawer-shadow-open);
@@ -65,7 +65,7 @@
     top: 11px;
     border-radius: var(--border-radius-xs);
     background-color: var(--color-border-strong);
-    transition: var(--transition-fast);
+    transition: background-color var(--transition-fast);
   }
 
   // Override for special case where Drawer is using dropdown title
