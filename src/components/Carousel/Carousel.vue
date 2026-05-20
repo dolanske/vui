@@ -11,6 +11,7 @@ const {
   hideScrollbar,
   hideShadows,
   snap,
+  disableDrag,
 } = defineProps<Props>()
 
 /**
@@ -36,6 +37,12 @@ interface Props {
    * Enables scroll-snap so items snap into place when scrolling stops
    */
   snap?: boolean
+  /**
+   * Disables the drag-to-scroll functionality. Keeping only mouse wheel and
+   * touch scrolling. Useful when the carousel contains interactive elements
+   * like buttons or links that would conflict with dragging.
+   */
+  disableDrag?: boolean
 }
 
 const carouselRef = useTemplateRef<InstanceType<typeof Flex>>('carouselWrap')
@@ -53,6 +60,9 @@ const scrollStartX = ref(0)
 const DRAG_THRESHOLD = 6
 
 useEventListener(carouselEl, 'pointerdown', (e: PointerEvent) => {
+  if (disableDrag)
+    return
+
   // Only handle left mouse button (or touch/pen)
   if (e.button !== 0 && e.pointerType === 'mouse')
     return
@@ -72,7 +82,7 @@ useEventListener(carouselEl, 'pointerdown', (e: PointerEvent) => {
 })
 
 useEventListener(carouselEl, 'pointermove', (e: PointerEvent) => {
-  if (!isDragging.value)
+  if (disableDrag || !isDragging.value)
     return
 
   const delta = dragStartX.value - e.clientX
@@ -131,7 +141,12 @@ onMounted(() => {
 <template>
   <div
     class="overflow is-horizontal carousel"
-    :class="{ 'hide-scrollbar': hideScrollbar, 'hide-shadows': hideShadows, 'is-snap': snap }"
+    :class="{
+      'hide-scrollbar': hideScrollbar,
+      'hide-shadows': hideShadows,
+      'no-drag': disableDrag,
+      'is-snap': snap,
+    }"
   >
     <div class="overflow-track">
       <div class="overflow-shadow overflow-shadow-left" :class="{ visible: x > 0 }" />

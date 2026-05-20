@@ -4,6 +4,17 @@
   gap: 0;
   align-items: stretch;
 
+  &.hide-handles {
+    & > .vui-resizable-handle {
+      opacity: 0;
+
+      &:focus-within,
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
   &.vertical {
     flex-direction: column;
 
@@ -40,6 +51,7 @@
     align-self: stretch;
     z-index: 2;
     cursor: ew-resize;
+    transition: opacity var(--transition-fast);
 
     &:focus-within,
     &:hover {

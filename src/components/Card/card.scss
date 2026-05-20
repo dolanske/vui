@@ -14,8 +14,8 @@
   border-style: var(--vui-card-border-style, 'solid');
   border-color: var(--vui-card-border-color, var(--color-border));
 
-  & > .vui-divider {
-  }
+  // & > .vui-divider {
+  // }
 
   &.centered {
     & > .vui-card-header,
@@ -32,7 +32,7 @@
     & > .vui-card-header,
     & > .vui-card-content,
     & > .vui-card-footer {
-      padding: 0;
+      padding: 0 !important;
     }
   }
 

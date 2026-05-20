@@ -1,4 +1,9 @@
 .carousel {
+  &.no-drag .overflow-content {
+    cursor: default;
+    user-select: auto;
+  }
+
   .overflow-content {
     cursor: grab;
     user-select: none;

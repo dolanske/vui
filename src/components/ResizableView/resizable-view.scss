@@ -1,0 +1,102 @@
+.vui-resizable-view {
+  --vui-resizable-gap: var(--space-xxs);
+
+  // TEMP
+  height: 512px;
+  // END TEMP
+
+  gap: var(--vui-resizable-gap);
+
+  .vui-resizable {
+    gap: var(--vui-resizable-gap);
+  }
+
+  .nested-view {
+    height: 100%;
+  }
+
+  .view-wrap {
+    display: flex;
+    height: 100%;
+    position: relative;
+
+    & > .vui-card {
+      width: 100%;
+      height: 100%;
+
+      .vui-card-header {
+        overflow-y: auto;
+
+        & > .flex-1 > .vui-tabs {
+          gap: 0 !important;
+
+          .vui-tab {
+            &.drop-before::before,
+            &.drop-after::after {
+              content: '';
+              position: absolute;
+              top: 25%;
+              bottom: 25%;
+              width: 2px;
+              background-color: var(--color-bg-accent-raised);
+              border-radius: 1px;
+            }
+
+            &.drop-before::before {
+              left: -2px;
+            }
+            &.drop-after::after {
+              right: -2px;
+            }
+          }
+        }
+      }
+
+      .vui-card-content {
+        position: relative;
+        height: 100%;
+      }
+    }
+
+    .view-content {
+      position: absolute;
+      inset: 0;
+      padding: var(--space-xxs);
+
+      .view-drag-overlay {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.15;
+        background-color: var(--color-bg-accent-raised);
+        z-index: 10;
+        border-radius: var(--border-radius-m);
+        pointer-events: none;
+        transition: all var(--transition-fast);
+
+        &.drag-left {
+          left: 0;
+          width: 50%;
+        }
+
+        &.drag-right {
+          left: 50%;
+          width: 50%;
+        }
+
+        &.drag-top {
+          top: 0;
+          height: 50%;
+        }
+
+        &.drag-bottom {
+          top: 50%;
+          height: 50%;
+        }
+      }
+    }
+  }
+}

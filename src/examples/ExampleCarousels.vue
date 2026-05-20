@@ -88,6 +88,33 @@ const activeGap = ref<typeof gaps[number]>('s')
             </Carousel>
           </td>
         </tr>
+
+        <tr>
+          <th>No dragging</th>
+          <td>
+            <Carousel class="example-carousel" disable-drag>
+              <div
+                v-for="item in items"
+                :key="item.id"
+                :draggable="false"
+                :style="{
+                  minWidth: '120px',
+                  height: '80px',
+                  borderRadius: '8px',
+                  background: item.color,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#fff',
+                  fontWeight: 600,
+                  fontSize: '13px',
+                }"
+              >
+                {{ item.label }}
+              </div>
+            </Carousel>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

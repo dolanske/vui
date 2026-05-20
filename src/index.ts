@@ -54,6 +54,7 @@ import Progress from './components/Progress/Progress.vue'
 import Radio from './components/Radio/Radio.vue'
 import RadioGroup from './components/Radio/RadioGroup.vue'
 import Resizable from './components/Resizable/Resizable.vue'
+import ResizableView from './components/ResizableView/ResizableView.vue'
 import Select from './components/Select/Select.vue'
 import Sheet from './components/Sheet/Sheet.vue'
 import Sidebar from './components/Sidebar/Sidebar.vue'
@@ -133,6 +134,7 @@ export {
   RadioGroup,
   removeToast,
   Resizable,
+  ResizableView,
   searchString,
   Select,
   type SelectOption,

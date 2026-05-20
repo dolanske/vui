@@ -55,8 +55,16 @@ onMounted(() => {
   useResizeObserver(tabsRef, computeUnderlinePosition)
 
   watch(
-    [active, () => expand, () => flattened.value.length],
-    computeUnderlinePosition,
+    [active, () => expand, () => flattened.value.map(v => v.props?.value).join(',')],
+    () => {
+      computeUnderlinePosition()
+
+      // Check if the currently active tab is no longer available (might have been removed)
+      // In that case, set the first one as active
+      if (!flattened.value.some(v => v.props?.value === active.value)) {
+        active.value = flattened.value[0]?.props?.value
+      }
+    },
     {
       immediate: true,
       flush: 'post',

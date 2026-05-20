@@ -5,9 +5,10 @@ import { clamp } from '../../shared/helpers'
 import { useTopLevelSlots } from '../../shared/slots'
 import './resizable.scss'
 
-// TODO
-// 2. Support for `Panel` and prop handling
-// 3. Invisible divider (only shows up on hover)
+// TODO / REVIEW
+// Support for `Panel.vue` and prop handling (maybe not needed?)
+
+// Need to be able to get current resizable sizes etc via v-model so that components like ResizableView can handle/persist them
 
 interface Props {
   /**
@@ -18,6 +19,10 @@ interface Props {
    * If provided, it enables local persistence of panel sizes
    */
   storageKey?: string
+  /**
+   * Hides resizable handles unless hovered.
+   */
+  hideHandles?: boolean
 }
 
 interface PanelProps {
@@ -128,8 +133,8 @@ useEventListener(root, 'keydown', (event) => {
   // Control with arrow keys: left/right for horizontal, up/down for vertical but not at once
   if (((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !props.vertical) || ((event.key === 'ArrowUp' || event.key === 'ArrowDown') && props.vertical)) {
     event.preventDefault()
-    const MOVE_BY = 5
-    const delta = (event.key === 'ArrowLeft' || event.key === 'ArrowUp') ? -MOVE_BY : MOVE_BY
+    const RESIZE_STEP = 5
+    const delta = (event.key === 'ArrowLeft' || event.key === 'ArrowUp') ? -RESIZE_STEP : RESIZE_STEP
     applyResize(index, delta, panelState.value[index].size, panelState.value[index + 1].size)
   }
 })
@@ -148,7 +153,14 @@ function resetSize(index: number) {
 </script>
 
 <template>
-  <div ref="resizableRef" class="vui-resizable" :class="{ vertical: props.vertical }">
+  <div
+    ref="resizableRef"
+    class="vui-resizable"
+    :class="{
+      'vertical': props.vertical,
+      'hide-handles': props.hideHandles,
+    }"
+  >
     <template v-for="(panel, index) in panels" :key="panel.key">
       <div
         class="vui-resizable-panel"
