@@ -17,6 +17,7 @@ import ButtonGroup from './components/Button/ButtonGroup.vue'
 import Calendar from './components/Calendar/Calendar.vue'
 import Card from './components/Card/Card.vue'
 import Carousel from './components/Carousel/Carousel.vue'
+import Histogram from './components/Charts/Histogram.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
 import Commands from './components/Commands/Commands.vue'
 import ContextMenu from './components/ContextMenu/ContextMenu.vue'
@@ -112,6 +113,7 @@ export {
   File,
   Flex,
   Grid,
+  Histogram,
   Indicator,
   Input,
   Kbd,

@@ -1,0 +1,47 @@
+.vui-histogram {
+  --vui-histogram-color: var(--color-accent);
+  --vui-histogram-background-color: var(--color-bg-raised);
+  --vui-histogram-radius: var(--border-radius-pill);
+
+  &.expand {
+    width: 100%;
+    justify-content: space-between;
+
+    .vui-histogram-cell {
+      flex: 1;
+    }
+  }
+
+  &.clickable {
+    .vui-histogram-cell {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.55;
+      }
+    }
+  }
+
+  .vui-histogram-cell {
+    cursor: default;
+    width: 8px;
+
+    &.compact {
+      width: 4px;
+    }
+
+    border-radius: var(--vui-histogram-radius);
+    background-color: var(--vui-histogram-background-color);
+    overflow: hidden;
+    position: relative;
+
+    .vui-histogram-datacell {
+      transition: opacity var(--transition-fast);
+      border-radius: var(--vui-histogram-radius);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: var(--vui-histogram-color);
+    }
+  }
+}
