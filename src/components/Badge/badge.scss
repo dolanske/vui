@@ -222,12 +222,12 @@
   }
 
   &.vui-badge-variant-note {
-    color: var(--color-purple);
+    color: var(--color-text-purple);
 
     svg,
     .iconify,
     path {
-      color: var(--color-purple);
+      color: var(--color-text-purple);
     }
 
     &:not(.outline) {
@@ -248,7 +248,7 @@
     }
 
     &.outline {
-      border-color: var(--color-purple);
+      border-color: var(--color-text-purple);
     }
   }
 }

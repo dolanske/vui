@@ -77,7 +77,7 @@ export const darkThemeTokens = [
   { name: 'Accent', token: '--dark-color-accent', rgb: 'rgb(253, 115, 29)', hex: '#FD731D' },
   { name: 'Background Accent Raised', token: '--dark-color-bg-accent-raised', rgb: 'rgb(127, 52, 10)', hex: '#7F340A' },
   { name: 'Background Accent Lowered', token: '--dark-color-bg-accent-lowered', rgb: 'rgb(70, 28, 5)', hex: '#461C05' },
-  { name: 'Purple', token: '--dark-color-purple', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
+  { name: 'Purple', token: '--dark-color-text-purple', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
   { name: 'Background Purple Raised', token: '--dark-color-bg-purple-raised', rgb: 'rgb(98, 44, 158)', hex: '#622C9E' },
   { name: 'Background Purple Lowered', token: '--dark-color-bg-purple-lowered', rgb: 'rgb(72, 28, 118)', hex: '#481C76' },
 ]
@@ -114,7 +114,7 @@ export const lightThemeTokens = [
   { name: 'Accent', token: '--light-color-accent', rgb: 'rgb(245, 109, 24)', hex: '#F56D18' },
   { name: 'Background Accent Raised', token: '--light-color-bg-accent-raised', rgb: 'rgb(252, 190, 140)', hex: '#FCBE8C' },
   { name: 'Background Accent Lowered', token: '--light-color-bg-accent-lowered', rgb: 'rgb(255, 225, 200)', hex: '#FFE1C8' },
-  { name: 'Purple', token: '--light-color-purple', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
+  { name: 'Purple', token: '--light-color-text-purple', rgb: 'rgb(193, 118, 255)', hex: '#C176FF' },
   { name: 'Background Purple Raised', token: '--light-color-bg-purple-raised', rgb: 'rgb(211, 169, 242)', hex: '#D3A9F2' },
   { name: 'Background Purple Lowered', token: '--light-color-bg-purple-lowered', rgb: 'rgb(243, 228, 255)', hex: '#F3E4FF' },
 ]

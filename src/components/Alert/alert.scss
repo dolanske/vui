@@ -150,6 +150,50 @@
       }
     }
   }
+
+  &.vui-alert-variant-accent {
+    .vui-alert-icon path {
+      color: var(--color-accent);
+    }
+
+    &.filled {
+      background-color: var(--color-bg-accent-lowered);
+    }
+
+    &.filled-strong {
+      background-color: var(--color-bg-accent-raised);
+      color: var(--color-text);
+      color: contrast-color(var(--color-bg-accent-raised));
+
+      .vui-alert-default-content *,
+      .vui-alert-icon path {
+        color: var(--color-text);
+        color: contrast-color(var(--color-bg-accent-raised));
+      }
+    }
+  }
+
+  &.vui-alert-variant-note {
+    .vui-alert-icon path {
+      color: var(--color-text-purple);
+    }
+
+    &.filled {
+      background-color: var(--color-bg-purple-lowered);
+    }
+
+    &.filled-strong {
+      background-color: var(--color-bg-purple-raised);
+      color: var(--color-text);
+      color: contrast-color(var(--color-bg-purple-raised));
+
+      .vui-alert-default-content *,
+      .vui-alert-icon path {
+        color: var(--color-text);
+        color: contrast-color(var(--color-bg-purple-raised));
+      }
+    }
+  }
 }
 
 :root.light {
@@ -175,6 +219,14 @@
 
       &.vui-alert-variant-info {
         background-color: var(--color-bg-blue-lowered);
+      }
+
+      &.vui-alert-variant-accent {
+        background-color: var(--color-bg-accent-lowered);
+      }
+
+      &.vui-alert-variant-note {
+        background-color: var(--color-bg-purple-lowered);
       }
     }
 

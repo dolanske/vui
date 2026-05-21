@@ -4,7 +4,7 @@ import Alert from '../components/Alert/Alert.vue'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 
-const variants = ['neutral', 'danger', 'warning', 'success', 'info'] as const
+const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent', 'note'] as const
 </script>
 
 <template>

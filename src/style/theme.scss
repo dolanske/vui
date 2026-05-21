@@ -41,9 +41,9 @@
   --light-color-bg-accent-lowered: oklch(from var(--light-color-accent) 0.9 calc(c * 0.45) h / 0.7);
   --light-color-bg-accent-raised: oklch(from var(--light-color-accent) 0.82 calc(c * 0.75) h / 0.85);
 
-  --light-color-purple: rgb(193, 118, 255);
-  --light-color-bg-purple-lowered: rgb(243, 228, 255);
-  --light-color-bg-purple-raised: rgb(211, 169, 242);
+  --light-color-text-purple: rgb(193, 118, 255);
+  --light-color-bg-purple-lowered: oklch(from var(--light-color-text-purple) 0.9 calc(c * 0.45) h / 0.7);
+  --light-color-bg-purple-raised: oklch(from var(--light-color-text-purple) 0.82 calc(c * 0.75) h / 0.85);
 
   --light-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.085);
   --light-box-shadow-strong: 0 4px 15px rgba(8, 8, 8, 0.2);
@@ -92,9 +92,9 @@
   --dark-color-bg-accent-lowered: oklch(from var(--dark-color-accent) 0.4 calc(c * 0.75) h / 0.2);
   --dark-color-bg-accent-raised: oklch(from var(--dark-color-accent) 0.48 calc(c * 0.85) h / 0.6);
 
-  --dark-color-purple: rgb(193, 118, 255);
-  --dark-color-bg-purple-lowered: rgb(72, 28, 118);
-  --dark-color-bg-purple-raised: rgb(98, 44, 158);
+  --dark-color-text-purple: rgb(193, 118, 255);
+  --dark-color-bg-purple-lowered: oklch(from var(--dark-color-text-purple) 0.4 calc(c * 0.75) h / 0.2);
+  --dark-color-bg-purple-raised: oklch(from var(--dark-color-text-purple) 0.48 calc(c * 0.85) h / 0.6);
 
   --dark-box-shadow: 0 2px 12px rgba(8, 8, 8, 0.3);
   --dark-box-shadow-strong: 0 8px 16px rgba(8, 8, 8, 0.8);
@@ -147,7 +147,7 @@
   --color-bg-accent-lowered: var(--light-color-bg-accent-lowered);
   --color-bg-accent-raised: var(--light-color-bg-accent-raised);
 
-  --color-purple: var(--light-color-purple);
+  --color-text-purple: var(--light-color-text-purple);
   --color-bg-purple-lowered: var(--light-color-bg-purple-lowered);
   --color-bg-purple-raised: var(--light-color-bg-purple-raised);
 
@@ -202,7 +202,7 @@
   --color-bg-accent-lowered: var(--dark-color-bg-accent-lowered);
   --color-bg-accent-raised: var(--dark-color-bg-accent-raised);
 
-  --color-purple: var(--dark-color-purple);
+  --color-text-purple: var(--dark-color-text-purple);
   --color-bg-purple-lowered: var(--dark-color-bg-purple-lowered);
   --color-bg-purple-raised: var(--dark-color-bg-purple-raised);
 

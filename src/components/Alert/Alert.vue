@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { IconChatTeardrop, IconCheckCircle, IconInfo, IconWarning, IconWarningDiamond } from '@iconify-prerendered/vue-ph'
+import { IconChatTeardrop, IconCheckCircle, IconInfo, IconNoteBlank, IconSparkle, IconWarning, IconWarningDiamond } from '@iconify-prerendered/vue-ph'
 import './alert.scss'
 
 interface Props {
-  variant?: 'neutral' | 'info' | 'success' | 'warning' | 'danger'
+  variant?: 'neutral' | 'info' | 'success' | 'warning' | 'danger' | 'accent' | 'note'
   /**
    * Setting a title and description will use slightly different styling other
    * than slots.
@@ -56,6 +56,8 @@ const {
         <IconCheckCircle v-else-if="variant === 'success'" class="vui-alert-icon" />
         <IconWarning v-else-if="variant === 'warning'" class="vui-alert-icon" />
         <IconWarningDiamond v-else-if="variant === 'danger'" class="vui-alert-icon" />
+        <IconSparkle v-else-if="variant === 'accent'" class="vui-alert-icon" />
+        <IconNoteBlank v-else-if="variant === 'note'" class="vui-alert-icon" />
         <IconChatTeardrop v-else class="vui-alert-icon" />
       </template>
     </slot>
