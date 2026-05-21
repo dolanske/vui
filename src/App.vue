@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
+import Color from './components/Input/Color.vue'
 // import ResizableView from './components/ResizableView/ResizableView.vue'
 import Switch from './components/Switch/Switch.vue'
-import ExampleCarousels from './examples/ExampleCarousels.vue'
 import { setColorTheme } from './shared/theme'
 
 const isLight = ref(false)
@@ -19,6 +19,8 @@ watchEffect(() => {
 //     ],
 //   ],
 // ])
+
+const color = ref()
 </script>
 
 <template>
@@ -35,6 +37,8 @@ watchEffect(() => {
       {{ views }}
     </pre> -->
 
-    <ExampleCarousels />
+    <Color v-model.rgb="color" />
+
+    {{ color }}
   </main>
 </template>

@@ -68,6 +68,10 @@
     .vui-input-style {
       padding-left: 0 !important;
       outline: none !important;
+
+      input {
+        outline: none !important;
+      }
     }
   }
 
