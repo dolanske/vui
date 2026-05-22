@@ -39,7 +39,9 @@ function setSize(s: any) {
               <template #header>
                 <h4>Modal </h4>
               </template>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad harum id, distinctio voluptatum repellat eveniet repellendus saepe velit rem illo facere aspernatur iste nam, quasi dolores expedita consectetur enim autem?</p>
+              <p v-for="item in 20" :key="item">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad harum id, distinctio voluptatum repellat eveniet repellendus saepe velit rem illo facere aspernatur iste nam, quasi dolores expedita consectetur enim autem?
+              </p>
               <template #footer="{ close }">
                 <Button @click="close">
                   Close
@@ -49,7 +51,7 @@ function setSize(s: any) {
           </td>
         </tr>
         <tr>
-          <th>Base without breakpoints</th>
+          <th>Base without mobile breakpoint</th>
           <td>
             <Button @click="openBreakpoints = !openBreakpoints">
               Open

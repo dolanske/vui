@@ -5,7 +5,7 @@
 
   width: 100%;
   margin-inline: auto;
-  height: 100%;
+  min-height: 100%;
   position: relative;
   pointer-events: none;
   view-transition-name: none;
@@ -44,6 +44,8 @@
   }
 
   &.scrollable {
+    height: 100%;
+
     & > .vui-card {
       display: flex;
       flex-direction: column;
@@ -60,7 +62,6 @@
 
   & > .vui-card {
     width: 100%;
-    margin-bottom: var(--backdrop-offset);
     box-shadow: var(--box-shadow-strong);
     pointer-events: auto;
   }
