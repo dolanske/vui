@@ -1,110 +1,66 @@
 <script setup lang="ts">
-import { Button, Card, Flex } from '@dolanske/vui'
-import Commands from '~/components/Commands.vue'
+import { Card } from '@dolanske/vui'
 
-const router = useRouter()
+// const texts = [
+//   'CSS Tokens',
+//   'Generic Components',
+//   'CSS Class helpers',
+//   'High customizability',
+// ]
 </script>
 
 <template>
-  <div class="container container-m">
-    <div class="d-landing">
-      <h1>VUI.</h1>
+  <div class="landing">
+    <div class="container-s">
+      <div class="relative">
+        <div class="glow" />
+        <Card separators class="cta-card" :padding="false">
+          <div class="d-landing">
+            <h1>VUI.</h1>
+          </div>
+          <p class="text-xl p-xl text-center">
+            Component & Styles starter pack for your next project
+          </p>
+          <template #footer>
+            <Flex x-center class="p-m">
+              <Commands large />
+
+              <NuxtLink to="/docs" class="w-100">
+                <Button expand variant="accent">
+                  Get started
+                </Button>
+              </NuxtLink>
+            </Flex>
+          </template>
+        </Card>
+      </div>
     </div>
-
-    <Flex x-between gap="s" class="mb-m">
-      <Button
-        v-for="item in documentationTabs"
-        :key="item.label"
-        expand
-        size="l"
-        outline
-        @click="router.push(item.path)"
-      >
-        <template #start>
-          <Icon :name="item.icon" />
-        </template>
-        <span class="text-size-s">
-          {{ item.label }}
-        </span>
-      </Button>
-    </Flex>
-
-    <Card separators class="p-xl mb-m">
-      <p class="text-center mb-xl text-xl">
-        Homegrown component library & design system
-      </p>
-
-      <Flex x-center>
-        <!-- <Button variant="gray" outline size="l" class="btn-cta" @click="router.push('/docs/projects')">
-          Examples
-        </Button> -->
-
-        <Commands class="btn-cta" large />
-
-        <Button variant="accent" size="l" class="btn-cta" @click="router.push('/docs')">
-          Get started
-          <!-- <template #end>
-            <Icon name="ph:arrow-right" />
-          </template> -->
-        </Button>
-      </Flex>
-
-      <Flex x-center class="mt-l">
-        <RouterLink to="/docs/projects" class="btn-project">
-          Projects built on top of VUI
-        </RouterLink>
-      </Flex>
-    </Card>
-
-    <a href="https://dolansky.dev/" target="_blank" class="author">
-      <img src="/jdlogo.svg" alt="">
-      Created by @dolanske
-    </a>
   </div>
 </template>
 
-<style lang="scss">
-.author {
+<style scoped>
+.landing {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: var(--space-s);
-  color: var(--color-text-light);
-  font-size: var(--font-size-s);
-
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  img {
-    width: 24px;
-  }
-
-  &:hover {
-    color: var(--color-accent);
-  }
+  height: 100vh;
+  padding-block: var(--space-xl);
 }
 
-.btn-project {
-  font-size: var(--font-size-xs);
-  text-decoration: underline;
-  color: var(--color-text-light);
-
-  &:hover {
-    color: var(--color-accent);
-    text-decoration: none;
-  }
+.relative {
+  display: block;
+  position: relative;
+  z-index: 1;
 }
+.cta-card {
+  background-color: var(--color-bg-medium);
+  z-index: 2;
+  overflow: hidden;
 
-.btn-cta {
-  font-size: var(--font-size-l);
-  height: 48px;
-
-  .iconify {
-    font-size: var(--font-size-xl);
-    color: var(--color-text-inv);
+  p {
+    /* text-align: center; */
+    /* text-transform: uppercase; */
+    color: var(--color-text);
+    text-wrap: balance;
   }
 }
 
@@ -112,18 +68,18 @@ const router = useRouter()
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 512px;
-  margin-top: var(--space-m);
-  margin-bottom: calc(var(--space-xl) - 12px);
+  height: 268px;
   position: relative;
   z-index: 4;
+  transform: translateY(-8px);
+  margin-bottom: -8px;
 
-  --bg: var(--color-bg);
+  --bg: var(--color-bg-medium);
   --stripe-width: 4px;
   --stripe-gap: 24px;
 
   h1 {
-    font-size: 16rem;
+    font-size: 13rem;
     text-transform: uppercase;
     color: var(--color-bg);
   }
