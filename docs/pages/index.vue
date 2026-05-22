@@ -82,7 +82,7 @@ const ratingEmoji = computed(() => {
 
         <!-- Floating stuff -->
 
-        <Card style="position: absolute; top: -148px;left: -176px" class="w-auto floater" separators>
+        <Card class="w-auto floater-components" separators>
           <Flex>
             <NuxtLink to="/docs/components">
               <Badge variant="success">
@@ -105,7 +105,7 @@ const ratingEmoji = computed(() => {
           </template>
         </Card>
 
-        <ButtonGroup style="position: absolute; top: -96px; left: 172px">
+        <ButtonGroup class="floater-docs">
           <Button outline href="/docs">
             Docs
           </Button>
@@ -135,7 +135,7 @@ const ratingEmoji = computed(() => {
           </Dropdown>
         </ButtonGroup>
 
-        <Card style="position: absolute; top: -125px;right: -96px;width: 256px;" class="floater" separators>
+        <Card class="floater-rating" separators>
           <template #header>
             <p style="font-variant-numeric: tabular-nums">
               Rating: {{ slider / 10 }}/10 {{ ratingEmoji }}
@@ -150,7 +150,7 @@ const ratingEmoji = computed(() => {
           <Slider v-model="slider" :min="0" :max="100" :steps="10" />
         </Card>
 
-        <BadgeGroup style="position: absolute; top: 50px;right: -180px" :gap="2">
+        <BadgeGroup class="floater-badges" :gap="2">
           <Badge variant="success">
             Stable
           </Badge>
@@ -159,7 +159,7 @@ const ratingEmoji = computed(() => {
           </Badge>
         </BadgeGroup>
 
-        <Card border-style="dashed" centered style="position: absolute; top: 132px; right: -280px; width: 256px">
+        <Card border-style="dashed" centered class="floater-about">
           <strong class="mb-s">About VUI</strong>
           <p class="text-center mb-m">
             Originally, I built this library just as a starter template for my personal projects, but it's now so much more!
@@ -170,11 +170,11 @@ const ratingEmoji = computed(() => {
           </NuxtLink>
         </Card>
 
-        <Marquee style="position: absolute; bottom: 40px; right: -156px; width: 192px; padding-bottom: 8px;" direction="left" :speed="20" class="marquee-example">
+        <Marquee class="marquee-example floater-marquee" direction="left" :speed="20">
           <a v-for="key in 3" :key href="https://github.com/dolanske/vui" target="_blank" rel="noopener noreferrer">Star the project on github &nbsp;</a>
         </Marquee>
 
-        <Card style="position: absolute; bottom: -140px; right: -86px" class="w-auto floater" centered>
+        <Card class="w-auto floater-avatar" centered>
           <p class="mb-xs">
             Hover him <Icon name="ph:arrow-down" />
           </p>
@@ -203,9 +203,9 @@ const ratingEmoji = computed(() => {
           </PopoutHover>
         </Card>
 
-        <Switch v-model="isDarkOn" style="position: absolute; left: 183px; bottom: -80px; width: fit-content;" label="Dark mode" accent reversed />
+        <Switch v-model="isDarkOn" class="floater-switch" label="Dark mode" accent reversed />
 
-        <Card separators style="position: absolute; left: -256px; bottom: -100px;" class="w-auto floater">
+        <Card separators class="w-auto floater-form">
           <Flex column>
             <Input v-model="form.firstName" expand label="First name" required />
             <Input v-model="form.lastName" expand label="Last name" required />
@@ -217,7 +217,7 @@ const ratingEmoji = computed(() => {
           </Flex>
         </Card>
 
-        <AvatarGroup style="position: absolute; left: -108px; top: 32px" cluster column>
+        <AvatarGroup class="floater-avatars" cluster column>
           <Tooltip v-for="(avatar, index) in avatars" :key="avatar.name">
             <Avatar :url="avatar.url" size="l" />
             <template #tooltip>
@@ -234,6 +234,72 @@ const ratingEmoji = computed(() => {
 .popout-hover-example {
   padding: var(--space-m);
   max-width: 324px;
+}
+
+.floater-components {
+  position: absolute;
+  top: -154px;
+  left: -176px !important;
+  width: fit-content !important;
+}
+
+.floater-docs {
+  position: absolute;
+  top: -96px;
+  left: 172px;
+}
+
+.floater-rating {
+  position: absolute;
+  top: -125px;
+  right: -96px;
+  width: 256px;
+}
+
+.floater-badges {
+  position: absolute;
+  top: 50px;
+  right: -180px;
+}
+
+.floater-about {
+  position: absolute;
+  top: 132px;
+  right: -280px;
+  width: 256px;
+}
+
+.floater-marquee {
+  position: absolute;
+  bottom: 40px;
+  right: -156px;
+  width: 192px;
+  padding-bottom: 8px;
+}
+
+.floater-avatar {
+  position: absolute;
+  bottom: -140px;
+  right: -86px;
+}
+
+.floater-switch {
+  position: absolute;
+  left: 183px;
+  bottom: -80px;
+  width: auto !important;
+}
+
+.floater-form {
+  position: absolute;
+  left: -256px;
+  bottom: -100px;
+}
+
+.floater-avatars {
+  position: absolute;
+  left: -108px;
+  top: 32px;
 }
 </style>
 
@@ -373,6 +439,4 @@ const ratingEmoji = computed(() => {
   --stripe-width: 6px;
   --stripe-gap: 26px;
 }
-
-// Absolutely positioned example content
 </style>
