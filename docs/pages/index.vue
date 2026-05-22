@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { Avatar, AvatarGroup, Badge, Card, Checkbox, Indicator, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
+import { Avatar, AvatarGroup, Badge, Card, Checkbox, Divider, Dropdown, DropdownItem, Indicator, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
 
 const avatars = [
   { name: 'kilmanio', url: 'https://github.com/kilmanio.png' },
   { name: 'zealsprince', url: 'https://github.com/zealsprince.png' },
   { name: 'Jokler', url: 'https://github.com/Jokler.png' },
 ]
-
-// const texts = [
-//   'CSS Tokens',
-//   'Generic Components',
-//   'CSS Class helpers',
-//   'High customizability',
-// ]
 
 const form = reactive({
   firstName: '',
@@ -56,6 +49,9 @@ const ratingEmoji = computed(() => {
     return '😕'
   return '😭'
 })
+
+// TODO: fix
+// TODO: fix weird redirect to tokens
 </script>
 
 <template>
@@ -108,6 +104,36 @@ const ratingEmoji = computed(() => {
             <p>All the good stuff</p>
           </template>
         </Card>
+
+        <ButtonGroup style="position: absolute; top: -96px; left: 172px">
+          <Button outline href="/docs">
+            Docs
+          </Button>
+          <Dropdown>
+            <template #trigger="{ toggle }">
+              <Button square outline @click="toggle">
+                <Icon name="ph:caret-down" />
+              </Button>
+            </template>
+
+            <template #default="{ close }">
+              <NuxtLink v-for="tab in documentationTabs" :key="tab.label" :to="tab.path">
+                <DropdownItem>
+                  <template #icon>
+                    <Icon :name="tab.icon" />
+                  </template>
+                  {{ tab.label }}
+                </DropdownItem>
+              </NuxtLink>
+
+              <Divider />
+
+              <DropdownItem @click="close">
+                Close
+              </DropdownItem>
+            </template>
+          </Dropdown>
+        </ButtonGroup>
 
         <Card style="position: absolute; top: -125px;right: -96px;width: 256px;" class="floater" separators>
           <template #header>
@@ -177,7 +203,7 @@ const ratingEmoji = computed(() => {
           </PopoutHover>
         </Card>
 
-        <Switch v-model="isDarkOn" style="position: absolute; left: 156px; bottom: -80px; width: fit-content;" label="Dark mode" accent reversed />
+        <Switch v-model="isDarkOn" style="position: absolute; left: 183px; bottom: -80px; width: fit-content;" label="Dark mode" accent reversed />
 
         <Card separators style="position: absolute; left: -256px; bottom: -100px;" class="w-auto floater">
           <Flex column>
