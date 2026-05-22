@@ -1,8 +1,11 @@
 .vui-alert {
+  --vui-alert-padding: var(--space-s);
+  --vui-alert-gap: var(--space-s);
+
   display: flex;
-  gap: var(--space-s);
+  gap: var(--vui-alert-gap);
   border-radius: var(--border-radius-m);
-  padding: var(--space-s);
+  padding: var(--vui-alert-padding);
   font-size: var(--font-size-m);
   flex-wrap: nowrap;
   align-items: center;

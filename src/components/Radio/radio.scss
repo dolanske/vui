@@ -53,7 +53,7 @@
 
     & + label {
       display: grid;
-      grid-template-columns: 20px 1fr;
+      grid-template-columns: var(--vui-radio-size) 1fr;
       gap: 10px;
       font-size: var(--font-size-s);
       color: var(--color-text);

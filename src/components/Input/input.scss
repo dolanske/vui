@@ -14,10 +14,11 @@
   --vui-input-height: var(--interactive-el-height);
   --vui-input-padding: var(--space-xs);
   --vui-textarea-padding: var(--space-xs);
+  --vui-input-width: 224px;
 
   //
 
-  width: 224px;
+  width: var(--vui-input-width);
 
   &.disabled {
     .vui-input {
@@ -154,7 +155,6 @@
       border: none;
     }
 
-    // TODO: remove for a proper range component
     input[type='range'] {
       appearance: none;
       display: block;

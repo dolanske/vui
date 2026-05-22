@@ -2,12 +2,15 @@
   --vui-tabs-height: initial;
   --vui-tabs-item-padding-inline: initial;
   --vui-tabs-underline-color: initial;
+  --vui-tabs-gap: initial;
+  --vui-tabs-underline-size: initial;
+  --vui-tabs-border-color: initial;
 
   display: flex;
   width: 100%;
-  gap: 4px;
+  gap: var(--vui-tabs-gap, 4px);
   align-items: center;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--vui-tabs-border-color, var(--color-border));
   position: relative;
 
   &.vui-tabs-variant-filled {
@@ -81,7 +84,7 @@
       left var(--transition),
       width var(--transition);
     display: block;
-    border-bottom: 2px solid var(--vui-tabs-underline-color, var(--color-text));
+    border-bottom: var(--vui-tabs-underline-size, 2px) solid var(--vui-tabs-underline-color, var(--color-text));
     position: absolute;
     bottom: 0;
   }

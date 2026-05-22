@@ -102,3 +102,12 @@ import { Alert, Button, Flex } from '@dolanske/vui'
 ```
 
 ::
+
+### Tokens
+
+CSS variable tokens used for global or per-instance manipulation of certain styling.
+
+| Token                | Default                               | Description             |
+| -------------------- | ------------------------------------- | ----------------------- |
+| `--vui-alert-padding` | [`var(--space-s)`](/docs/tokens/spacing) | Alert inner padding    |
+| `--vui-alert-gap`    | [`var(--space-s)`](/docs/tokens/spacing) | Gap between icon and content |

@@ -53,7 +53,7 @@
 
     & + label {
       display: grid;
-      grid-template-columns: 20px 1fr;
+      grid-template-columns: var(--vui-checkbox-size) 1fr;
       gap: 10px;
       font-size: var(--font-size-m);
       color: var(--color-text);
