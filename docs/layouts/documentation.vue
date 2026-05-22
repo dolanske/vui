@@ -94,8 +94,9 @@ watch(subPagesToRender, (pages) => {
   const activePath = normalizePath(route.path)
   const isInsideCurrentSection = pages.some(page => normalizePath(page.path) === activePath)
 
-  // Only redirect to a section root when switching contexts from a non-section route.
-  if (!isInsideCurrentSection)
+  // Only redirect to a section root when switching contexts from a non-section route,
+  // but do NOT redirect if on /docs root.
+  if (!isInsideCurrentSection && activePath !== '/docs')
     router.replace(pages[0].path)
 })
 

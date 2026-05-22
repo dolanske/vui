@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Avatar, AvatarGroup, Badge, Card, Checkbox, Divider, Dropdown, DropdownItem, Indicator, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
+import { nextTick, onMounted } from 'vue'
+
+// TODO: upgrade all deps
 
 const avatars = [
   { name: 'kilmanio', url: 'https://github.com/kilmanio.png' },
@@ -16,7 +19,7 @@ const form = reactive({
 
 function submit() {
   pushToast('Feedback submitted!', {
-    description: `I (${form.firstName.length > 0 ? form.firstName : 'John'} ${form.lastName.length > 0 ? form.lastName : 'Pork'}) agree that this library is awesome, because ${form.description.length > 0 ? form.description : '...'}! ${form.agree === false ? 'Yeah I know you unchecked that damn checkbox. I see who you are. I know everything' : 'THANKS!!!!!!!!!!!!'}`,
+    description: `I (${form.firstName.length > 0 ? form.firstName : 'Unnamed'} ${form.lastName.length > 0 ? form.lastName : 'Fan'}) agree that this library is awesome, because ${form.description.length > 0 ? form.description : '...'}! ${form.agree === false ? 'Yeah I know you unchecked that damn checkbox. I see who you are. I know everything' : 'THANKS!!!!!!!!!!!!'}`,
   })
 }
 
@@ -50,8 +53,41 @@ const ratingEmoji = computed(() => {
   return '😭'
 })
 
-// TODO: fix
-// TODO: fix weird redirect to tokens
+onMounted(async () => {
+  await nextTick()
+  const center = document.querySelector('.cta-card')
+  const examples = Array.from(document.querySelectorAll('.example-fade')) as HTMLElement[]
+
+  if (!center || !examples.length)
+    return
+
+  const centerRect = center.getBoundingClientRect()
+
+  examples.forEach((el, i) => {
+    if (!el)
+      return
+
+    const rect = el.getBoundingClientRect()
+
+    const dx = rect.left + rect.width / 2 - (centerRect.left + centerRect.width / 2)
+    const dy = rect.top + rect.height / 2 - (centerRect.top + centerRect.height / 2)
+
+    const len = Math.sqrt(dx * dx + dy * dy) || 1
+    const tx = (dx / len) * 32
+    const ty = (dy / len) * 32
+
+    el.style.opacity = '0'
+    el.style.transform = `translate(${-tx}px, ${-ty}px)`
+    el.style.transition = 'opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1)'
+
+    setTimeout(() => {
+      el.style.opacity = '1'
+      el.style.transform = 'translate(0,0)'
+    }, 100 * (i + 1))
+  })
+})
+
+const hoveredBadge = ref<string | null>(null)
 </script>
 
 <template>
@@ -80,22 +116,21 @@ const ratingEmoji = computed(() => {
 
         <div class="glow" />
 
-        <!-- Floating stuff -->
-
-        <Card class="w-auto floater-components" separators>
+        <!-- EXAMPLE COMPONENTS START -->
+        <Card class="example-fade w-auto floater-components" separators>
           <Flex>
             <NuxtLink to="/docs/components">
-              <Badge variant="success">
+              <Badge variant="success" :filled="hoveredBadge === 'first'" @mouseenter="hoveredBadge = 'first'" @mouseleave="hoveredBadge = null">
                 Components
               </Badge>
             </NuxtLink>
             <NuxtLink to="/docs/classes">
-              <Badge variant="note">
+              <Badge variant="note" :filled="hoveredBadge === 'second'" @mouseenter="hoveredBadge = 'second'" @mouseleave="hoveredBadge = null">
                 CSS
               </Badge>
             </NuxtLink>
             <NuxtLink to="/docs/tokens">
-              <Badge variant="info">
+              <Badge variant="info" :filled="hoveredBadge === 'third'" @mouseenter="hoveredBadge = 'third'" @mouseleave="hoveredBadge = null">
                 Tokens
               </Badge>
             </NuxtLink>
@@ -105,7 +140,7 @@ const ratingEmoji = computed(() => {
           </template>
         </Card>
 
-        <ButtonGroup class="floater-docs">
+        <ButtonGroup class="example-fade floater-docs">
           <Button outline href="/docs">
             Docs
           </Button>
@@ -135,7 +170,7 @@ const ratingEmoji = computed(() => {
           </Dropdown>
         </ButtonGroup>
 
-        <Card class="floater-rating" separators>
+        <Card class="example-fade floater-rating" separators>
           <template #header>
             <p style="font-variant-numeric: tabular-nums">
               Rating: {{ slider / 10 }}/10 {{ ratingEmoji }}
@@ -150,7 +185,7 @@ const ratingEmoji = computed(() => {
           <Slider v-model="slider" :min="0" :max="100" :steps="10" />
         </Card>
 
-        <BadgeGroup class="floater-badges" :gap="2">
+        <BadgeGroup class="example-fade floater-badges" :gap="2">
           <Badge variant="success">
             Stable
           </Badge>
@@ -159,7 +194,7 @@ const ratingEmoji = computed(() => {
           </Badge>
         </BadgeGroup>
 
-        <Card border-style="dashed" centered class="floater-about">
+        <Card border-style="dashed" centered class="example-fade floater-about">
           <strong class="mb-s">About VUI</strong>
           <p class="text-center mb-m">
             Originally, I built this library just as a starter template for my personal projects, but it's now so much more!
@@ -170,11 +205,11 @@ const ratingEmoji = computed(() => {
           </NuxtLink>
         </Card>
 
-        <Marquee class="marquee-example floater-marquee" direction="left" :speed="20">
+        <Marquee class="marquee-example example-fade floater-marquee" direction="left" :speed="20">
           <a v-for="key in 3" :key href="https://github.com/dolanske/vui" target="_blank" rel="noopener noreferrer">Star the project on github &nbsp;</a>
         </Marquee>
 
-        <Card class="w-auto floater-avatar" centered>
+        <Card class="w-auto example-fade floater-avatar" centered>
           <p class="mb-xs">
             Hover him <Icon name="ph:arrow-down" />
           </p>
@@ -203,13 +238,13 @@ const ratingEmoji = computed(() => {
           </PopoutHover>
         </Card>
 
-        <Switch v-model="isDarkOn" class="floater-switch" label="Dark mode" accent reversed />
+        <Switch v-model="isDarkOn" class="example-fade floater-switch" label="Dark mode" accent reversed />
 
-        <Card separators class="w-auto floater-form">
+        <Card separators class="w-auto example-fade floater-form">
           <Flex column>
             <Input v-model="form.firstName" expand label="First name" required />
             <Input v-model="form.lastName" expand label="Last name" required />
-            <Textarea v-model="form.description" expand :rows="8" label="Desription" />
+            <Textarea v-model="form.description" expand :rows="8" label="Message" placeholder="What do you think?" />
             <Checkbox v-model="form.agree" label="I agree that this library is awesome" />
             <Button expand variant="fill" plain @click="submit">
               Submit
@@ -217,7 +252,7 @@ const ratingEmoji = computed(() => {
           </Flex>
         </Card>
 
-        <AvatarGroup class="floater-avatars" cluster column>
+        <AvatarGroup class="example-fade floater-avatars" cluster column>
           <Tooltip v-for="(avatar, index) in avatars" :key="avatar.name">
             <Avatar :url="avatar.url" size="l" />
             <template #tooltip>
@@ -225,15 +260,20 @@ const ratingEmoji = computed(() => {
             </template>
           </Tooltip>
         </AvatarGroup>
+        <!-- EXAMPLE COMPONENTS END -->
       </div>
     </div>
   </div>
 </template>
 
 <style>
+.example-fade {
+  opacity: 0;
+}
+
 .popout-hover-example {
   padding: var(--space-m);
-  max-width: 324px;
+  width: 324px;
 }
 
 .floater-components {
@@ -293,7 +333,11 @@ const ratingEmoji = computed(() => {
 .floater-form {
   position: absolute;
   left: -256px;
-  bottom: -100px;
+  bottom: -108px;
+
+  .vui-input-container .vui-input textarea {
+    height: 64px;
+  }
 }
 
 .floater-avatars {
@@ -301,9 +345,15 @@ const ratingEmoji = computed(() => {
   left: -108px;
   top: 32px;
 }
+
+/* Remove .example-fade CSS, revert to original */
 </style>
 
-<style scoped lang="scss">
+<style lang="scss">
+:deep(.vui-badge) {
+  transition: all var(--transition-fast);
+}
+
 .glow {
   position: absolute;
   width: 680px;
@@ -312,7 +362,7 @@ const ratingEmoji = computed(() => {
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
   background: radial-gradient(circle, var(--color-accent) 0%, var(--color-bg) 70%);
-  filter: opacity(0.1);
+  opacity: 0.1;
   z-index: 0;
   animation: glow-radius 10s linear infinite alternate;
 }
@@ -377,7 +427,7 @@ const ratingEmoji = computed(() => {
   z-index: 10;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 20px 30px 10px var(--color-bg-lowered);
+  box-shadow: 0 20px 30px 10px var(--dark-color-bg-lowered);
 
   p {
     color: var(--color-text);
@@ -401,7 +451,7 @@ const ratingEmoji = computed(() => {
   h1 {
     font-size: 13rem;
     text-transform: uppercase;
-    color: var(--color-bg);
+    color: var(--color-bg-medium);
   }
 
   &:before,
@@ -434,9 +484,19 @@ const ratingEmoji = computed(() => {
   }
 }
 
-:root.light .d-landing {
-  filter: saturate(300%);
-  --stripe-width: 6px;
-  --stripe-gap: 26px;
+:root.light {
+  .d-landing {
+    filter: saturate(300%);
+    --stripe-width: 7px;
+    --stripe-gap: 24px;
+  }
+
+  .cta-card {
+    box-shadow: var(--box-shadow-strong);
+  }
+
+  .glow {
+    opacity: 0.5;
+  }
 }
 </style>
