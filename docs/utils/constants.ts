@@ -428,6 +428,7 @@ export const libraryPages = [
   { label: 'useViewTransition', path: '/docs/library/use-view-transition', keywords: ['animation', 'view transition', 'transition'] },
   { label: 'searchString', path: '/docs/library/search-string', keywords: ['text', 'search', 'iteration'] },
   { label: 'useBreakpoint', path: '/docs/library/use-breakpoint', keywords: ['responsive', 'breakpoints', 'mobile'] },
+  { label: 'paginate', path: '/docs/library/paginate', keywords: ['pagination', 'array', 'chunk', 'tables'] },
 ]
 
 export const componentPages = [

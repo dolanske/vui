@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Overflow, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
-import { Transition } from 'vue'
 import { libraryPages } from '~/utils/constants'
 import { normalizePath } from '~/utils/format'
 
@@ -26,10 +25,10 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
 // states and set the active tab to the correct one
 watch(() => route.fullPath, (currentPath) => {
   // The root page is always the first one in the list
-  const tokensPath = subPages.Tokens[0]
-  const cssFrameworkPath = subPages.Classes[0]
-  const componentsPath = subPages.Components[0]
-  const libraryPath = subPages.Library[0]
+  const tokensPath = subPages.Tokens[0]!
+  const cssFrameworkPath = subPages.Classes[0]!
+  const componentsPath = subPages.Components[0]!
+  const libraryPath = subPages.Library[0]!
   // const currentPath = route.fullPath
 
   // Root docs page is active, so set active tab to nothing
@@ -94,10 +93,12 @@ watch(subPagesToRender, (pages) => {
   const activePath = normalizePath(route.path)
   const isInsideCurrentSection = pages.some(page => normalizePath(page.path) === activePath)
 
+  // TODO: fix, still goes to tokens instead of top-level routes like projects
+
   // Only redirect to a section root when switching contexts from a non-section route,
   // but do NOT redirect if on /docs root.
   if (!isInsideCurrentSection && activePath !== '/docs')
-    router.replace(pages[0].path)
+    router.replace(pages[0]!.path)
 })
 
 // Bredcrumbs

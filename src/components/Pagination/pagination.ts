@@ -16,7 +16,7 @@ export function paginate(
   totalItems: number,
   currentPage: number = 1,
   perPage: number = 15,
-  maxPages: number = 5,
+  maxPages: number = 3,
 ): Pagination {
   // calculate total pages
   const totalPages = Math.ceil(totalItems / perPage)

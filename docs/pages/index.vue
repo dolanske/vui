@@ -2,8 +2,6 @@
 import { Avatar, AvatarGroup, Badge, Card, Checkbox, Divider, Dropdown, DropdownItem, Indicator, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
 import { nextTick, onMounted } from 'vue'
 
-// TODO: upgrade all deps
-
 const avatars = [
   { name: 'kilmanio', url: 'https://github.com/kilmanio.png' },
   { name: 'zealsprince', url: 'https://github.com/zealsprince.png' },
@@ -141,7 +139,7 @@ const hoveredBadge = ref<string | null>(null)
         </Card>
 
         <ButtonGroup class="example-fade floater-docs">
-          <Button outline href="/docs">
+          <Button href="/docs">
             Docs
           </Button>
           <Dropdown>
@@ -299,7 +297,7 @@ const hoveredBadge = ref<string | null>(null)
 .floater-badges {
   position: absolute;
   top: 50px;
-  right: -180px;
+  right: -188px;
 }
 
 .floater-about {
@@ -311,8 +309,8 @@ const hoveredBadge = ref<string | null>(null)
 
 .floater-marquee {
   position: absolute;
-  bottom: 40px;
-  right: -156px;
+  bottom: 50px;
+  right: -164px;
   width: 192px;
   padding-bottom: 8px;
 }
@@ -342,8 +340,8 @@ const hoveredBadge = ref<string | null>(null)
 
 .floater-avatars {
   position: absolute;
-  left: -108px;
-  top: 32px;
+  left: -104px;
+  top: 28px;
 }
 
 /* Remove .example-fade CSS, revert to original */
@@ -362,7 +360,7 @@ const hoveredBadge = ref<string | null>(null)
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
   background: radial-gradient(circle, var(--color-accent) 0%, var(--color-bg) 70%);
-  opacity: 0.1;
+  opacity: 0.2;
   z-index: 0;
   animation: glow-radius 10s linear infinite alternate;
 }
@@ -380,7 +378,7 @@ const hoveredBadge = ref<string | null>(null)
   &:after {
     content: '';
     z-index: 2;
-    width: 32px;
+    width: 20px;
     position: absolute;
     right: 0;
     top: 0;

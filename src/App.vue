@@ -2,7 +2,7 @@
 import { ref, watchEffect } from 'vue'
 // import ResizableView from './components/ResizableView/ResizableView.vue'
 import Switch from './components/Switch/Switch.vue'
-import ExampleModals from './examples/ExampleModals.vue'
+import ExampleTables from './examples/ExampleTables.vue'
 import { setColorTheme } from './shared/theme'
 
 const isLight = ref(false)
@@ -35,6 +35,6 @@ watchEffect(() => {
       {{ views }}
     </pre> -->
 
-    <ExampleModals />
+    <ExampleTables />
   </main>
 </template>
