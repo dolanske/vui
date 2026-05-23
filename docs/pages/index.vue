@@ -242,7 +242,7 @@ const hoveredBadge = ref<string | null>(null)
           <Flex column>
             <Input v-model="form.firstName" expand label="First name" required />
             <Input v-model="form.lastName" expand label="Last name" required />
-            <Textarea v-model="form.description" expand :rows="8" label="Message" placeholder="What do you think?" />
+            <Textarea v-model="form.description" expand :rows="3" label="Message" placeholder="What do you think?" />
             <Checkbox v-model="form.agree" label="I agree that this library is awesome" />
             <Button expand variant="fill" plain @click="submit">
               Submit
@@ -264,7 +264,7 @@ const hoveredBadge = ref<string | null>(null)
   </div>
 </template>
 
-<style>
+<style scoped>
 .example-fade {
   opacity: 0;
 }
@@ -406,7 +406,7 @@ const hoveredBadge = ref<string | null>(null)
 .landing {
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - var(--space-xxxl));
   padding-block: var(--space-xl);
 }
 
