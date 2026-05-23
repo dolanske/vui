@@ -2,6 +2,8 @@
 import Avatar from '../components/Avatar/Avatar.vue'
 import AvatarGroup from '../components/Avatar/AvatarGroup.vue'
 import Flex from '../components/Flex/Flex.vue'
+import PopoutHover from '../components/Popout/PopoutHover.vue'
+import Tooltip from '../components/Tooltip/Tooltip.vue'
 
 const variants = ['s', 'm', 'l', 96] as const
 const radius = ['xs', 's', 'm', 'l', 48] as const
@@ -82,7 +84,14 @@ const avatars = [
           <td>
             <AvatarGroup :limit="2" limit-size="m" cluster>
               <a v-for="avatar in avatars" :key="avatar.name" href="https://google.com">
-                <Avatar size="m" :url="avatar.url" />
+                <PopoutHover>
+                  <template #trigger>
+                    <Avatar size="m" :url="avatar.url" />
+                  </template>
+                  <div class="p-m">
+                    <p>{{ avatar.name }}</p>
+                  </div>
+                </PopoutHover>
               </a>
             </AvatarGroup>
           </td>
@@ -92,7 +101,12 @@ const avatars = [
           <td>
             <AvatarGroup :limit="2" limit-size="m" cluster column>
               <a v-for="avatar in avatars" :key="avatar.name" href="https://google.com">
-                <Avatar size="m" :url="avatar.url" />
+                <Tooltip>
+                  <Avatar size="m" :url="avatar.url" />
+                  <template #tooltip>
+                    <p>{{ avatar.name }}</p>
+                  </template>
+                </Tooltip>
               </a>
             </AvatarGroup>
           </td>

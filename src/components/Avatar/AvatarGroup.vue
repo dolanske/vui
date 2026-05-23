@@ -5,8 +5,7 @@ import { computed } from 'vue'
 import { useTopLevelSlots } from '../../shared/slots'
 import Flex from '../Flex/Flex.vue'
 import Avatar from './Avatar.vue'
-
-// TODO: docs & example & release
+import './avatar-group.scss'
 
 type ClusterProps
   = | {
@@ -88,35 +87,3 @@ const formatted = computed(() => {
     </slot>
   </Flex>
 </template>
-
-<style>
-.vui-avatar-group {
-  --vui-avatar-group-border: var(--color-bg);
-
-  &.cluster {
-    gap: 0 !important;
-
-    &.column > *:not(:first-child) {
-      margin-top: -8px;
-      margin-left: 0;
-    }
-
-    & > * {
-      z-index: 1;
-
-      &:not(:first-child) {
-        margin-left: -8px;
-      }
-
-      &:hover {
-        z-index: 2;
-      }
-
-      &:is(.vui-avatar),
-      .vui-avatar {
-        border: 3px solid var(--vui-avatar-group-border) !important;
-      }
-    }
-  }
-}
-</style>

@@ -16,6 +16,13 @@ const projects = [
     logo: 'vui.svg',
     tags: ['Documentation'],
   },
+  {
+    title: 'Orbit',
+    description: 'Orbit is a modern client layer built on IRC. Including voice calls, screen share, identity manager with cross-platform clients.',
+    logo: 'orbit.svg',
+    url: 'https://github.com/hivecom/orbit-spec',
+    tags: ['IRC client', 'Voice Calls', 'Screen sharing'],
+  },
 ] as const
 </script>
 
@@ -84,8 +91,6 @@ const projects = [
   img {
     margin: 0;
     border-radius: 0;
-    // Font line-height offset
-    transform: translateY(-2px);
   }
 
   h3 {
