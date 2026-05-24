@@ -89,7 +89,7 @@ export {
   BadgeGroup,
   BreadcrumbItem,
   Breadcrumbs,
-  type Breakpoints,
+  Breakpoints,
   Button,
   ButtonGroup,
   Calendar,

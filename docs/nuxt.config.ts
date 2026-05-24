@@ -54,6 +54,7 @@ export default defineNuxtConfig({
     mode: 'svg',
     clientBundle: {
       icons: [
+        'ph:sidebar',
         'ph:arrow-down',
         'ph:arrow-left',
         'ph:arrow-right',

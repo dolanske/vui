@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
-import { useColorMode } from '@vueuse/core'
+import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs, useBreakpoint } from '@dolanske/vui'
+import { useColorMode, whenever } from '@vueuse/core'
 import { libraryPages } from '~/utils/constants'
 import { normalizePath } from '~/utils/format'
 
@@ -145,11 +145,23 @@ onBeforeMount(async () => {
       return 'unknown'
     })
 })
+
+// Mobile sidebar
+const sidebarOpen = ref(true)
+// @ts-expect-error bad library export type
+const isMobile = useBreakpoint('tablet')
+
+watch(isMobile, () => {
+  if (isMobile.value) {
+    sidebarOpen.value = false
+  }
+}, { immediate: true })
+whenever(isMobile, () => sidebarOpen.value = false, { immediate: true })
 </script>
 
 <template>
   <div class="vui-sidebar-layout" vaul-drawer-wrapper>
-    <Sidebar class="app-sidebar" :width="232">
+    <Sidebar v-model="sidebarOpen" class="app-sidebar" :width="232">
       <template #header>
         <Flex class="mb-s" y-center>
           <NuxtLink to="/">
@@ -224,13 +236,18 @@ onBeforeMount(async () => {
             {{ item.label }}
           </Tab>
         </Tabs>
-        <Breadcrumbs class="app-breadcrumbs">
-          <BreadcrumbItem v-for="item in breadcrumbItems" :key="item.path">
-            <Button variant="link" @click="pushPage(item.path)">
-              {{ item.label }}
-            </Button>
-          </BreadcrumbItem>
-        </Breadcrumbs>
+        <div class="app-breadcrumbs">
+          <Button size="s" square plain @click="sidebarOpen = !sidebarOpen">
+            <Icon name="ph:sidebar" />
+          </Button>
+          <Breadcrumbs>
+            <BreadcrumbItem v-for="item in breadcrumbItems" :key="item.path">
+              <Button variant="link" @click="pushPage(item.path)">
+                {{ item.label }}
+              </Button>
+            </BreadcrumbItem>
+          </Breadcrumbs>
+        </div>
 
         <article class="typeset">
           <slot />
@@ -305,13 +322,16 @@ onBeforeMount(async () => {
 }
 
 .app-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
   margin-bottom: var(--space-s);
   position: sticky;
   top: calc(var(--docs-tab-height) + 1px);
   z-index: var(--z-sticky);
   background-color: var(--color-bg);
 
-  .vui-button {
+  .vui-button-variant-link {
     padding-inline: 0;
     color: var(--color-text-lighter);
     text-transform: capitalize;
@@ -331,9 +351,7 @@ article {
     line-height: 1.5em;
   }
 }
-</style>
 
-<style scoped lang="scss">
 .docs-tabs {
   position: sticky;
   top: 0;
@@ -364,6 +382,24 @@ article {
 
     &:last-of-type {
       justify-content: flex-end;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app-breadcrumbs {
+    top: 0;
+  }
+
+  .docs-tabs {
+    margin-bottom: var(--space-m);
+    top: unset;
+    position: fixed;
+    bottom: 0;
+
+    .vui-tab {
+      flex-direction: column;
+      font-size: var(--font-size-s);
     }
   }
 }

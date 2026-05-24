@@ -264,14 +264,16 @@ const hoveredBadge = ref<string | null>(null)
   </div>
 </template>
 
-<style scoped>
-.example-fade {
-  opacity: 0;
-}
-
+<style>
 .popout-hover-example {
   padding: var(--space-m);
   width: 324px;
+}
+</style>
+
+<style scoped>
+.example-fade {
+  opacity: 0;
 }
 
 .floater-components {
@@ -344,10 +346,6 @@ const hoveredBadge = ref<string | null>(null)
   top: 28px;
 }
 
-/* Remove .example-fade CSS, revert to original */
-</style>
-
-<style lang="scss">
 :deep(.vui-badge) {
   transition: all var(--transition-fast);
 }
@@ -408,6 +406,7 @@ const hoveredBadge = ref<string | null>(null)
   align-items: center;
   height: calc(100vh - var(--space-xxxl));
   padding-block: var(--space-xl);
+  overflow-x: hidden;
 }
 
 .relative {
@@ -495,6 +494,35 @@ const hoveredBadge = ref<string | null>(null)
 
   .glow {
     opacity: 0.5;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .popout-hover-example,
+  .floater-components,
+  .floater-docs,
+  .floater-rating,
+  .floater-badges,
+  .floater-about,
+  .floater-marquee,
+  .floater-avatar,
+  .floater-switch,
+  .floater-form,
+  .floater-avatars {
+    display: none;
+  }
+
+  .glow {
+    width: 512px;
+    height: 512px;
+  }
+
+  .landing {
+    overflow: hidden;
+  }
+
+  main:has(.landing) {
+    padding-bottom: 0;
   }
 }
 </style>
