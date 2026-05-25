@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
+import { onClickOutside, useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
 import { computed, onBeforeMount, useSlots, useTemplateRef } from 'vue'
 import { isNil } from '../../shared/helpers'
 import './sidebar.scss'
@@ -99,11 +99,21 @@ watchThrottled(elementX, (pos) => {
   throttle: 100,
   immediate: true,
 })
+
+onClickOutside(sidebarRef, () => {
+  if (open.value && props.floaty)
+    open.value = false
+})
 </script>
 
 <template>
-  <div ref="wrap" class="vui-sidebar-outer" :style="{ width }" :class="{ open }">
-    <aside ref="sidebar" class="vui-sidebar" :class="{ open, floaty: props.floaty, mini: props.mini }" :style="{ width: `${props.mini ? 65 : props.width}px` }">
+  <div ref="wrap" class="vui-sidebar-outer" :style="{ width: props.floaty ? 0 : width }" :class="{ open }">
+    <aside
+      ref="sidebar"
+      class="vui-sidebar"
+      :class="{ open, floaty: props.floaty, mini: props.mini }"
+      :style="{ '--vui-sidebar-width': `${props.mini ? 65 : props.width}px` }"
+    >
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />
       </div>

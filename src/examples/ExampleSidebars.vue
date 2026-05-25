@@ -56,7 +56,7 @@ const s3 = ref(true)
               <Flex y-center>
                 <Avatar size="m" />
                 <span class="flex-1">dolanske</span>
-                <Button plain size="s">
+                <Button plain size="s" square>
                   <IconSignOut />
                 </Button>
               </Flex>
@@ -175,7 +175,7 @@ const s3 = ref(true)
           </Sidebar>
           <main class="p-l">
             <Flex y-center class="mb-m">
-              <Button plain size="s" @click="s2 = !s2">
+              <Button plain size="s" square @click="s2 = !s2">
                 <IconSidebarSimple />
               </Button>
               <h4>
@@ -227,7 +227,7 @@ const s3 = ref(true)
 
             <template #footer="{ close }">
               <Flex x-center>
-                <Button plain @click="close">
+                <Button plain square @click="close">
                   <IconX />
                 </Button>
               </Flex>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
 import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs, useBreakpoint } from '@dolanske/vui'
-import { useColorMode, whenever } from '@vueuse/core'
+import { useColorMode, useMediaQuery, whenever } from '@vueuse/core'
 import { libraryPages } from '~/utils/constants'
 import { normalizePath } from '~/utils/format'
 
@@ -125,10 +125,6 @@ const breadcrumbItems = computed(() => {
   ]
 })
 
-function pushPage(page: string) {
-  router.push(page)
-}
-
 const persistentSidebarLinks = computed(() => {
   const links = [...globalLinks]
   return subPagesToRender.value ? links : links.concat(documentationTabs)
@@ -148,20 +144,26 @@ onBeforeMount(async () => {
 
 // Mobile sidebar
 const sidebarOpen = ref(true)
-// @ts-expect-error bad library export type
-const isMobile = useBreakpoint('tablet')
+const isTablet = useMediaQuery('(max-width: 768px)')
 
-watch(isMobile, () => {
-  if (isMobile.value) {
+watch(isTablet, (tablet) => {
+  if (tablet) {
     sidebarOpen.value = false
   }
 }, { immediate: true })
-whenever(isMobile, () => sidebarOpen.value = false, { immediate: true })
+
+function pushPage(page: string) {
+  if (isTablet.value) {
+    sidebarOpen.value = false
+  }
+
+  router.push(page)
+}
 </script>
 
 <template>
   <div class="vui-sidebar-layout" vaul-drawer-wrapper>
-    <Sidebar v-model="sidebarOpen" class="app-sidebar" :width="232">
+    <Sidebar v-model="sidebarOpen" class="app-sidebar" :width="232" :floaty="isTablet">
       <template #header>
         <Flex class="mb-s" y-center>
           <NuxtLink to="/">
@@ -230,14 +232,14 @@ whenever(isMobile, () => sidebarOpen.value = false, { immediate: true })
 
     <main ref="mainScrollEl">
       <div class="container container-m">
-        <Tabs v-model="currentTab" expand class="docs-tabs">
+        <Tabs v-model="currentTab" expand class="docs-tabs" :variant="isTablet ? 'filled' : 'default'">
           <Tab v-for="item in documentationTabs" :key="item.label" :value="item.label">
             <Icon :name="item.icon" />
             {{ item.label }}
           </Tab>
         </Tabs>
         <div class="app-breadcrumbs">
-          <Button size="s" square plain @click="sidebarOpen = !sidebarOpen">
+          <Button size="s" square plain class="mr-m" @click="sidebarOpen = !sidebarOpen">
             <Icon name="ph:sidebar" />
           </Button>
           <Breadcrumbs>
@@ -247,6 +249,10 @@ whenever(isMobile, () => sidebarOpen.value = false, { immediate: true })
               </Button>
             </BreadcrumbItem>
           </Breadcrumbs>
+          <div class="flex-1" />
+          <NuxtLink to="/">
+            <img src="/logo.svg" alt="VUI logo" class="vui-logo-image small">
+          </NuxtLink>
         </div>
 
         <article class="typeset">
@@ -288,6 +294,13 @@ whenever(isMobile, () => sidebarOpen.value = false, { immediate: true })
   width: 32px;
   height: 32px;
   margin-block: 3px;
+
+  &.small {
+    width: 20px;
+    height: 20px;
+    margin-block: 0;
+    transform: translateY(2px);
+  }
 }
 
 .app-sidebar {
@@ -392,10 +405,18 @@ article {
   }
 
   .docs-tabs {
-    margin-bottom: var(--space-m);
+    margin-bottom: 0;
     top: unset;
     position: fixed;
-    bottom: 0;
+    bottom: var(--space-xs);
+    left: var(--space-xs);
+    width: auto;
+    right: var(--space-xs);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-bg-medium) !important;
+    /* border: 1px solid var(--color-border) !important; */
+    box-shadow: var(--shadow-strong);
+    z-index: var(--z-sticky) !important;
 
     .vui-tab {
       flex-direction: column;

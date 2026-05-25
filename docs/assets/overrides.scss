@@ -52,6 +52,20 @@ article {
   z-index: 1;
   position: relative;
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    a {
+      cursor: default;
+      &:before {
+        display: none !important;
+      }
+    }
+  }
+
   a:hover > code {
     color: var(--color-accent);
   }

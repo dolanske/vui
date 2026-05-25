@@ -178,3 +178,31 @@ main {
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .list-item {
+    display: grid;
+    align-items: start;
+    width: 100%;
+    grid-template-areas:
+      'value token'
+      'indicator token';
+
+    grid-template-columns: 1fr auto;
+
+    & > :nth-child(1) {
+      grid-area: indicator;
+      min-width: 0;
+    }
+
+    & > :nth-child(2) {
+      grid-area: value;
+      min-width: 0;
+    }
+
+    & > :nth-child(3) {
+      grid-area: token;
+      justify-self: end;
+    }
+  }
+}
