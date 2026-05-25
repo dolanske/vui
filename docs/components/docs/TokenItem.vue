@@ -82,7 +82,7 @@ const computedStyle = computed(() => {
 
 @media screen and (max-width: 768px) {
   .indicator-container {
-    width: 100%;
+    width: 128px;
   }
 }
 </style>

@@ -2,6 +2,7 @@
 import type { LinkItem } from '~/types/shared'
 import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs, useBreakpoint } from '@dolanske/vui'
 import { useColorMode, useMediaQuery, whenever } from '@vueuse/core'
+import { capitalize } from 'vue'
 import { libraryPages } from '~/utils/constants'
 import { normalizePath } from '~/utils/format'
 
@@ -112,7 +113,7 @@ const breadcrumbItems = computed(() => {
       const prev = group.at(-1)
 
       group.push({
-        label: item,
+        label: capitalize(item.toLowerCase().replaceAll('-', ' ')),
         path: `${prev ? prev.path : ''}/${item}`,
       })
 
@@ -143,14 +144,17 @@ onBeforeMount(async () => {
 })
 
 // Mobile sidebar
-const sidebarOpen = ref(true)
 const isTablet = useMediaQuery('(max-width: 768px)')
+const sidebarOpen = ref(!isTablet.value)
 
 watch(isTablet, (tablet) => {
   if (tablet) {
     sidebarOpen.value = false
   }
-}, { immediate: true })
+  else {
+    sidebarOpen.value = true
+  }
+}, { immediate: true, flush: 'post' })
 
 function pushPage(page: string) {
   if (isTablet.value) {
@@ -163,72 +167,74 @@ function pushPage(page: string) {
 
 <template>
   <div class="vui-sidebar-layout" vaul-drawer-wrapper>
-    <Sidebar v-model="sidebarOpen" class="app-sidebar" :width="232" :floaty="isTablet">
-      <template #header>
-        <Flex class="mb-s" y-center>
-          <NuxtLink to="/">
-            <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
+    <ClientOnly>
+      <Sidebar v-model="sidebarOpen" class="app-sidebar" :width="232" :floaty="isTablet">
+        <template #header>
+          <Flex class="mb-s" y-center>
+            <NuxtLink to="/">
+              <img src="/logo.svg" alt="VUI logo" class="vui-logo-image">
+            </NuxtLink>
+
+            <h5>VUI.</h5>
+            <div class="flex-1" />
+            <Commands />
+          </Flex>
+          <Divider class="my-xs" />
+
+          <!-- Always-present pages -->
+          <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path" @click="currentTab = ''">
+            <DropdownItem :class="{ active: route.path.endsWith(link.path) }">
+              {{ link.label }}
+            </DropdownItem>
           </NuxtLink>
 
-          <h5>VUI.</h5>
-          <div class="flex-1" />
-          <Commands />
-        </Flex>
-        <Divider class="my-xs" />
-
-        <!-- Always-present pages -->
-        <NuxtLink v-for="link in persistentSidebarLinks" :key="link.path" :to="link.path" @click="currentTab = ''">
-          <DropdownItem :class="{ active: route.path.endsWith(link.path) }">
-            {{ link.label }}
-          </DropdownItem>
-        </NuxtLink>
-
-        <Divider v-show="subPagesToRender" class="my-xs" />
-      </template>
-
-      <template #footer>
-        <Divider class="my-xs" />
-        <!-- Bind color for these specific styles -->
-        <Flex y-center gap="xs" :style="{ '--color-text-light': 'var(--color-text-invert)' }">
-          <Button size="s" square variant="fill" @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">
-            <Icon :name="colorMode === 'dark' ? 'ph:sun' : 'ph:moon'" />
-          </Button>
-          <Button size="s" square variant="fill" href="https://github.com/dolanske/vui" target="_blank">
-            <Icon name="ph:github-logo" />
-          </Button>
-          <div class="flex-1" />
-          <span class="text-s color-text-lightest">{{ version }}</span>
-        </Flex>
-      </template>
-
-      <span class="pl-xs text-xs block mb-s text-semibold">
-        {{ currentTab }}
-      </span>
-
-      <DropdownItem
-        v-for="subPage in subPagesToRender"
-        :key="subPage.path"
-        class="sidebar-item"
-        :class="{ active: route.fullPath.endsWith(subPage.path) }"
-        @click="pushPage(subPage.path)"
-      >
-        {{ subPage.label }}
-
-        <template #hint>
-          <Badge v-if="subPage?.status === 'new'" size="s" outline variant="accent">
-            New
-          </Badge>
-          <Tooltip v-else-if="subPage?.status === 'update'">
-            <Badge size="s" circle>
-              <Icon name="ph:circle" />
-            </Badge>
-            <template #tooltip>
-              <p>Updated</p>
-            </template>
-          </Tooltip>
+          <Divider v-show="subPagesToRender" class="my-xs" />
         </template>
-      </DropdownItem>
-    </Sidebar>
+
+        <template #footer>
+          <Divider class="my-xs" />
+          <!-- Bind color for these specific styles -->
+          <Flex y-center gap="xs" :style="{ '--color-text-light': 'var(--color-text-invert)' }">
+            <Button size="s" square variant="fill" @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">
+              <Icon :name="colorMode === 'dark' ? 'ph:sun' : 'ph:moon'" />
+            </Button>
+            <Button size="s" square variant="fill" href="https://github.com/dolanske/vui" target="_blank">
+              <Icon name="ph:github-logo" />
+            </Button>
+            <div class="flex-1" />
+            <span class="text-s color-text-lightest">{{ version }}</span>
+          </Flex>
+        </template>
+
+        <span class="pl-xs text-xs block mb-s text-semibold">
+          {{ currentTab }}
+        </span>
+
+        <DropdownItem
+          v-for="subPage in subPagesToRender"
+          :key="subPage.path"
+          class="sidebar-item"
+          :class="{ active: route.fullPath.endsWith(subPage.path) }"
+          @click="pushPage(subPage.path)"
+        >
+          {{ subPage.label }}
+
+          <template #hint>
+            <Badge v-if="subPage?.status === 'new'" size="s" outline variant="accent">
+              New
+            </Badge>
+            <Tooltip v-else-if="subPage?.status === 'update'">
+              <Badge size="s" circle>
+                <Icon name="ph:circle" />
+              </Badge>
+              <template #tooltip>
+                <p>Updated</p>
+              </template>
+            </Tooltip>
+          </template>
+        </DropdownItem>
+      </Sidebar>
+    </ClientOnly>
 
     <main ref="mainScrollEl">
       <div class="container container-m">
@@ -239,7 +245,7 @@ function pushPage(page: string) {
           </Tab>
         </Tabs>
         <div class="app-breadcrumbs">
-          <Button size="s" square plain class="mr-m" @click="sidebarOpen = !sidebarOpen">
+          <Button size="s" square plain class="mr-xs" @click="sidebarOpen = !sidebarOpen">
             <Icon name="ph:sidebar" />
           </Button>
           <Breadcrumbs>
@@ -250,7 +256,7 @@ function pushPage(page: string) {
             </BreadcrumbItem>
           </Breadcrumbs>
           <div class="flex-1" />
-          <NuxtLink to="/">
+          <NuxtLink v-if="isTablet" to="/">
             <img src="/logo.svg" alt="VUI logo" class="vui-logo-image small">
           </NuxtLink>
         </div>
@@ -381,10 +387,6 @@ article {
 .docs-bottom-navigation {
   margin-top: 128px;
 
-  .vui-button .vui-button-slot {
-    display: block !important;
-  }
-
   .vui-button {
     padding: var(--space-m);
     height: 80px;
@@ -404,6 +406,11 @@ article {
     top: 0;
   }
 
+  .docs-bottom-navigation {
+    margin-top: 32px;
+    padding-bottom: 64px;
+  }
+
   .docs-tabs {
     margin-bottom: 0;
     top: unset;
@@ -413,15 +420,25 @@ article {
     width: auto;
     right: var(--space-xs);
     border-radius: var(--border-radius-m);
-    background-color: var(--color-bg-medium) !important;
+    background-color: var(--color-bg-lowered) !important;
     /* border: 1px solid var(--color-border) !important; */
-    box-shadow: var(--shadow-strong);
+    box-shadow: var(--box-shadow-strong);
     z-index: var(--z-sticky) !important;
+
+    .vui-tab-underline {
+      background-color: var(--color-bg-medium) !important;
+    }
 
     .vui-tab {
       flex-direction: column;
       font-size: var(--font-size-s);
     }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .docs-tabs .vui-tab {
+    font-size: var(--font-size-xs);
   }
 }
 </style>

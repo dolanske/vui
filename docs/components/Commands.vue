@@ -62,7 +62,7 @@ const isMac = import.meta.client && /Mac/i.test(navigator.platform)
       </p>
     </template>
   </Tooltip>
-  <Commands :open :commands @close="open = false">
+  <Commands :open :commands compact @close="open = false">
     <template #icon="{ command }">
       <Icon v-if="command.group === 'Tokens'" name="ph:brackets-curly" />
       <Icon v-else-if="command.group === 'Framework'" name="ph:file-css" />

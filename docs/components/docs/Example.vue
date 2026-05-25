@@ -66,4 +66,10 @@ const tab = ref('Preview')
     margin-top: 0 !important;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .example-component {
+    padding: var(--space-m);
+  }
+}
 </style>
