@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs, useBreakpoint } from '@dolanske/vui'
-import { useColorMode, useMediaQuery, whenever } from '@vueuse/core'
+import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { useColorMode, useMediaQuery } from '@vueuse/core'
 import { capitalize } from 'vue'
 import { libraryPages } from '~/utils/constants'
 import { normalizePath } from '~/utils/format'

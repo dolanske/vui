@@ -2,9 +2,8 @@
 import type { Placement } from '../../shared/types'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
-
-import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { formatUnitValue } from '../../shared/helpers'
+import { viewport } from '../../shared/viewport'
 import Drawer from '../Drawer/Drawer.vue'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'
@@ -81,8 +80,6 @@ defineExpose({
 
 const mW = computed(() => formatUnitValue(minWidth))
 
-const isMobile = useBreakpoint(Breakpoints.Mobile)
-
 const { escape } = useMagicKeys()
 whenever(escape, close)
 
@@ -153,7 +150,7 @@ function handleContentClick(event: MouseEvent) {
 
   <!-- Mobile: Drawer -->
   <Drawer
-    v-if="isMobile && !noMobileDrawer"
+    v-if="viewport.s && !noMobileDrawer"
     :open="showMenu"
     @close="close"
     @click="handleContentClick"

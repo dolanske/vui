@@ -4,7 +4,7 @@ import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
 import { computed, ref, useAttrs, watch } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
-import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
+import { viewport } from '../../shared/viewport'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import './modal.scss'
@@ -90,11 +90,8 @@ watch(() => open, (isOpen) => {
   }
 })
 
-// Automatically change modal to fullscreen on mobile
-const isMobile = useBreakpoint(Breakpoints.Mobile)
-
 const realSize = computed(() => {
-  if (isMobile.value && !disableMobileFs) {
+  if (viewport.s && !disableMobileFs) {
     return 'screen'
   }
 

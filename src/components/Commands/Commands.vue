@@ -3,8 +3,8 @@ import type { VNode } from 'vue'
 import { IconArrowDown, IconArrowUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, nextTick, ref, useTemplateRef, watch, watchEffect } from 'vue'
-import { Breakpoints, useBreakpoint } from '../../shared/breakpoints'
 import { searchString } from '../../shared/helpers'
+import { viewport } from '../../shared/viewport'
 import Badge from '../Badge/Badge.vue'
 import Button from '../Button/Button.vue'
 import Carousel from '../Carousel/Carousel.vue'
@@ -59,8 +59,6 @@ interface Props {
    */
   compact?: boolean
 }
-
-const isMobile = useBreakpoint(Breakpoints.Mobile)
 
 const searchValue = defineModel<string>('search', { default: '' })
 
@@ -210,7 +208,7 @@ const search = useTemplateRef('searchRef')
 function resetSearch() {
   searchValue.value = ''
 
-  if (!isMobile.value) {
+  if (!viewport.s) {
     search.value?.focus({ preventScroll: true })
   }
 }
@@ -252,7 +250,7 @@ watch(
             <IconX class="text-color-light" />
           </Button>
 
-          <Button v-if="isMobile" size="s" @click="emit('close')">
+          <Button v-if="viewport.s" size="s" @click="emit('close')">
             Close
           </Button>
         </Flex>

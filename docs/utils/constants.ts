@@ -427,7 +427,7 @@ export const libraryPages = [
   { label: 'Getting started', path: '/docs/library', keywords: ['methods', 'helpers', 'composables'] },
   { label: 'useViewTransition', path: '/docs/library/use-view-transition', keywords: ['animation', 'view transition', 'transition'] },
   { label: 'searchString', path: '/docs/library/search-string', keywords: ['text', 'search', 'iteration'] },
-  { label: 'useBreakpoint', path: '/docs/library/use-breakpoint', keywords: ['responsive', 'breakpoints', 'mobile'] },
+  { label: 'viewport', path: '/docs/library/viewport', keywords: ['responsive', 'breakpoints', 'mobile', 'viewport'] },
   { label: 'paginate', path: '/docs/library/paginate', keywords: ['pagination', 'array', 'chunk', 'tables'] },
 ]
 
