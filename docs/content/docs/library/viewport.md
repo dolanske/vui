@@ -26,7 +26,7 @@ if (viewport.s) {
 </span>
 ```
 
-### Customizing
+### Customization
 
 The pixel values for each breakpoint are stored in a reactive `breakpoints` ref. You can override them to match your project's needs:
 
