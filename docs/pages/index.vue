@@ -12,7 +12,7 @@ const form = reactive({
   firstName: '',
   lastName: '',
   description: '',
-  agree: false,
+  agree: true,
 })
 
 function submit() {
