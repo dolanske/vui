@@ -289,14 +289,14 @@
   &.vui-button-variant-accent {
     &:not(.plain):not(.outline) {
       color: var(--color-text);
-      background-color: var(--color-bg-accent-raised);
-      color: contrast-color(var(--color-bg-accent-raised));
+      background-color: var(--color-accent);
+      color: contrast-color(var(--color-accent));
 
       .iconify,
       svg,
       path {
         color: var(--color-text);
-        color: contrast-color(var(--color-bg-accent-raised));
+        color: contrast-color(var(--color-accent));
       }
     }
 
@@ -305,7 +305,7 @@
     }
 
     &:not(.plain):not(.disabled):hover {
-      background-color: color-mix(in oklch, var(--color-bg-accent-raised) 70%, transparent);
+      background-color: color-mix(in oklch, var(--color-accent) 70%, transparent);
     }
 
     &.plain:hover:not(.disabled) {

@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
-import { reactiveComputed, useMediaQuery } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
+import { reactive, ref, watchEffect } from 'vue'
 
-export interface Breakpoints {
+export type Breakpoints = Record<string, boolean> & {
   /**
    * Mobile breakpoint `<=572px`
    */
@@ -17,7 +17,13 @@ export interface Breakpoints {
   l: boolean
 }
 
-export const breakpoints = ref({
+type BreakpointValues = Record<string, number> & {
+  s: number
+  m: number
+  l: number
+}
+
+export const breakpoints = ref<BreakpointValues>({
   s: 572,
   m: 768,
   l: 1228,
@@ -25,20 +31,29 @@ export const breakpoints = ref({
 
 type BreakpointKey = keyof typeof breakpoints.value
 
-const rawViewports = computed(() => {
-  return Object.entries(breakpoints.value).reduce((acc, [key, value]) => {
-    acc[key as BreakpointKey] = useMediaQuery(`(max-width: ${value}px)`, {
-      // Default values for SSR to prevent hydration mismatch
-      ssrWidth: 1680,
-    })
-    return acc
-  }, {} as Record<BreakpointKey, Ref<boolean>>)
+const mediaQueries = new Map<string, Ref<boolean>>()
+
+// Source of truth for consumers. Keys mirror `breakpoints` and stay reactive.
+const viewportState = reactive<Record<string, boolean>>({})
+
+watchEffect(() => {
+  const currentKeys = new Set(Object.keys(breakpoints.value))
+
+  for (const key of currentKeys) {
+    if (!mediaQueries.has(key)) {
+      mediaQueries.set(key, useMediaQuery(() => `(max-width: ${breakpoints.value[key as BreakpointKey]}px)`))
+    }
+
+    viewportState[key] = Boolean(mediaQueries.get(key)?.value)
+  }
+
+  for (const key of mediaQueries.keys()) {
+    if (!currentKeys.has(key)) {
+      mediaQueries.delete(key)
+      delete viewportState[key]
+    }
+  }
 })
 
-// Convert rawViewports to a reactive object of booleans for easy consumption
-export const viewport = reactiveComputed<Breakpoints>(() => {
-  return Object.entries(rawViewports.value).reduce((acc, [key, value]) => {
-    acc[key as keyof Breakpoints] = value.value
-    return acc
-  }, {} as Breakpoints)
-})
+// `reactive` unwraps refs on property access, so consumers can use `viewport.s`.
+export const viewport = viewportState as Breakpoints

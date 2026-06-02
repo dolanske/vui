@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Card, Flex } from '@dolanske/vui'
+import { Alert, Card, Flex, viewport } from '@dolanske/vui'
 
 const projects = [
   {
@@ -28,13 +28,21 @@ const projects = [
 
 <template>
   <div>
-    <h1>Projects using VUI</h1>
-
+    <h1>Projects</h1>
     <p class="mb-xl">
-      Here's a list of projects which are built using VUI.
+      Projects built on top of, or partially utilising VUI for ther user interfaces.
     </p>
-
-    <Grid :columns="2" gap="l">
+    <Alert variant="accent" class="mb-xl" filled>
+      <Flex y-center x-between :column="viewport.s">
+        <p class="m-0">
+          Have you used <b>VUI</b> in your project? Add an issue and I'll list your project here!
+        </p>
+        <Button variant="accent" size="s" href="https://github.com/dolanske/vui/issues" target="_blank" rel="noopener noreferrer">
+          Open Github
+        </Button>
+      </Flex>
+    </Alert>
+    <Grid :columns="viewport.s ? 1 : 2" :gap=" viewport.s ? 'm' : 'l'">
       <a v-for="project in projects" :key="project.url" :href="project.url" target="_blank" class="project-card">
         <Card>
           <Flex column gap="xs" style="height: 100%;">

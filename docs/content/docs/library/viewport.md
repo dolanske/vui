@@ -38,28 +38,38 @@ breakpoints.value.s = 640 // Change mobile breakpoint to 640px
 
 ### Extending
 
-If you wish to add new breakpoints, you can do it by appending a new property to the `breakpoints` ref and globally augmenting the `Breakpoints` interface for type safety:
+If you wish to add new breakpoints, append a new property to `breakpoints.value`:
 
 ```ts
 import { breakpoints } from '@dolanske/vui'
 
-Reflect.set(breakpoints, 'xl', 2048)
+breakpoints.value.xl = 2048
 ```
 
-To make TypeScript aware of your new breakpoint everywhere, augment the `Breakpoints` interface in a `.d.ts` file (e.g., `types/viewport-augment.d.ts`):
+Then use bracket access for dynamic keys:
 
 ```ts
-// types/viewport-augment.d.ts
-import '@dolanske/vui'
+import { viewport } from '@dolanske/vui'
 
-declare module '@dolanske/vui' {
-  interface Breakpoints {
-    /**
-     * 2k monitors (<= 2048px)
-     */
-    xl: boolean
-  }
+if (viewport['xl']) {
+  // ...
 }
 ```
 
-Now, `viewport.xl` will be reactive and type-safe throughout your project.
+If you want stricter typing for custom keys in your app code, create a local helper type:
+
+```ts
+import { viewport } from '@dolanske/vui'
+
+type AppViewport = typeof viewport & {
+  xl: boolean
+}
+
+const appViewport = viewport as AppViewport
+
+if (appViewport['xl']) {
+  // ...
+}
+```
+
+Custom keys are reactive the same way as built-in keys.
