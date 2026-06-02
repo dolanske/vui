@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const docsContentRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), 'content/docs')
-const appBaseUrl = '/vui/'
+const appBaseUrl = '/'
 
 function collectMarkdownRoutes(directory: string, rootDirectory = directory): string[] {
   const entries = readdirSync(directory, { withFileTypes: true })

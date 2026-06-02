@@ -13,7 +13,6 @@ export default defineConfig(({ mode }) => {
   const isGitHubPages = mode === 'pages'
 
   return {
-    ...(isGitHubPages && { base: '/vui/' }),
     server: {
       port: 3005,
     },
