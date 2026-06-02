@@ -120,11 +120,14 @@
     flex: 1;
   }
 
+  // Because start & end slots mostly house icons, visually the padding on the side
+  // appears to be larger than it is. To balance it out, we apply negative 4px margin
   .vui-button-slot-start {
     justify-self: flex-start;
 
     &:not(:empty) {
       margin-right: 6px;
+      margin-left: -4px;
     }
   }
 
@@ -133,16 +136,20 @@
 
     &:not(:empty) {
       margin-left: 6px;
+      margin-right: -4px;
     }
   }
 
+  // Do not apply negative margin for small buttons, as the padding is already quite tight
   &.vui-button-size-s {
     .vui-button-slot-start:not(:empty) {
       margin-right: 4px;
+      margin-left: 0;
     }
 
     .vui-button-slot-end:not(:empty) {
       margin-left: 4px;
+      margin-right: 0;
     }
   }
 
