@@ -2,8 +2,7 @@
 
 Badges are used to display a status of an object or action that a component has performed. Often used inside tables and other data lists.
 
-::badge-example
-
+::badge-example{sourcePath="Badge/Badge.vue"}
 ```vue
 <script setup>
 import { Badge } from '@dolanske/vui'

@@ -2,8 +2,7 @@
 
 The Avatar component displays a thumbnail image representing a user or entity. When no image source is provided, it shows a default avatar illustration.
 
-::avatar-example
-
+::avatar-example{sourcePath="Avatar/Avatar.vue"}
 ```vue
 <script setup>
 import { Avatar } from '@dolanske/vui'

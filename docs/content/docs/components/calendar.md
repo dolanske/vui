@@ -2,8 +2,7 @@
 
 A date picker component that allows users to select dates and times. It's built on top of [Vue Datepicker](https://vue3datepicker.com/installation/) and provides a consistent look and feel with the rest of the UI components.
 
-::calendar-example
-
+::calendar-example{sourcePath="Calendar/Calendar.vue"}
 ```vue
 <script setup>
 import { Calendar, Flex } from '@dolanske/vui'
@@ -48,7 +47,6 @@ All events emitted by the component are described here in the [official document
 #### Date Range Selection
 
 ::calendar-date-range-example
-
 ```vue
 <script setup>
 import { Calendar } from '@dolanske/vui'
@@ -72,7 +70,6 @@ const dateRange = ref([])
 #### Custom Trigger
 
 ::calendar-custom-trigger-example
-
 ```vue
 <script setup>
 import { Calendar } from '@dolanske/vui'
@@ -97,7 +94,6 @@ const date = ref(new Date())
 #### Inline
 
 ::calendar-inline-example
-
 ```vue
 <script setup>
 import { Calendar } from '@dolanske/vui'

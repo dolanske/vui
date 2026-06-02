@@ -4,8 +4,7 @@ A horizontally scrollable container for displaying a row of items. It supports d
 
 > When using the Carousel, you should set `:draggable="false"` on child elements to avoid conflicts with the native drag behavior during drag-to-scroll.
 
-::carousel-example
-
+::carousel-example{sourcePath="Carousel/Carousel.vue"}
 ```vue
 <script setup>
 import { Carousel } from '@dolanske/vui'

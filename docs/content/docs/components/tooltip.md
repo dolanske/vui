@@ -4,8 +4,7 @@ The Tooltip component displays additional information when hovering over an elem
 
 > Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
-::tooltip-example
-
+::tooltip-example{sourcePath="Tooltip/Tooltip.vue"}
 ```vue
 <script setup>
 import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'

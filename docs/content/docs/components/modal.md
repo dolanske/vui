@@ -2,8 +2,7 @@
 
 A modal component that displays content in a floating window over the main content. It supports various sizes, customization options, and can be used for dialogs, forms, or any other content that needs to be displayed in a focused context above the page content.
 
-::modal-example
-
+::modal-example{sourcePath="Modal/Modal.vue"}
 ```vue
 <script setup lang="ts">
 import { Button, Flex, Modal } from '@dolanske/vui'

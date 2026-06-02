@@ -2,8 +2,7 @@
 
 The Skeleton component is a loading placeholder that can be used to indicate content is being loaded. It supports various shapes and sizes, making it versatile for different use cases.
 
-::skeleton-example
-
+::skeleton-example{sourcePath="Skeleton/Skeleton.vue"}
 ```vue
 <script setup>
 import { Grid, Skeleton } from '@dolanske/vui'

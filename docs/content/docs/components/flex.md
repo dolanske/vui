@@ -4,8 +4,7 @@ A flexible box layout component that provides a convenient way to create flexbox
 
 Most layout controls are boolean toggles. When you omit them, Flex falls back to CSS defaults: `row`, `nowrap`, `flex-start`, and the theme `s` gap.
 
-::flex-example
-
+::flex-example{sourcePath="Flex/Flex.vue"}
 ```vue
 <script setup>
 import { Flex } from '@dolanske/vui'

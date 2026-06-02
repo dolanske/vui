@@ -2,8 +2,7 @@
 
 A toast notification component that displays temporary messages to users. It supports various options like custom actions, descriptions, and custom body components.
 
-::toast-example
-
+::toast-example{sourcePath="Toast/Toasts.vue"}
 ```vue
 <script setup>
 import { Button, pushToast } from '@dolanske/vui'
@@ -81,7 +80,6 @@ Function to manually remove a toast notification.
 #### Persistent Toast
 
 ::toast-persistent-example
-
 ```vue
 <script setup>
 import { Button, pushToast } from '@dolanske/vui'
@@ -106,7 +104,6 @@ function showPersistentToast() {
 #### Custom Body Toast
 
 ::toast-custom-body-example
-
 ```vue
 <script setup>
 import { Button, pushToast } from '@dolanske/vui'

@@ -2,8 +2,7 @@
 
 The Pagination component provides a user interface for navigating through paginated content. It supports page numbers, previous/next buttons, and first/last page navigation.
 
-::pagination-example
-
+::pagination-example{sourcePath="Pagination/Pagination.vue"}
 ```vue
 <script setup>
 import { paginate, Pagination } from '@dolanske/vui'

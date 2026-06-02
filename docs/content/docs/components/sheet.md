@@ -2,8 +2,7 @@
 
 The Sheet component is a slide-out panel that can be positioned on any side of the screen. It's commonly used for displaying additional content, forms, or navigation menus.
 
-::sheet-example
-
+::sheet-example{sourcePath="Sheet/Sheet.vue"}
 ```vue
 <script setup>
 import { Button, Sheet } from '@dolanske/vui'

@@ -179,7 +179,7 @@ function getDepth(target: any[], nodes: any[] = views.value, depth = 1): number 
  */
 const dragState = ref<{ panel: Panel, tabIndex: number } | null>(null)
 
-/** Called by the source ViewPanel's dragstart handler. */
+// Called by the source ViewPanel's dragstart handler.
 function startDrag(panel: Panel, tabIndex: number) {
   dragState.value = { panel, tabIndex }
 }
@@ -214,7 +214,9 @@ function handleDrag(toPanel: Panel, insertIndex: number) {
     removePanelFromTree(fromPanel)
 
   collapseTree()
-  ensureIds(views.value) // assign IDs to any nodes touched by the mutation
+
+  // assign IDs to any nodes touched by the mutation
+  ensureIds(views.value)
 }
 
 /**
@@ -321,20 +323,24 @@ provide('$vrp', {
         <template v-for="item2 in item1" :key="nodeKey(item2)">
           <Resizable v-if="Array.isArray(item2)" hide-handles class="nested-view">
             <ViewPanel v-for="item3 in item2" :key="nodeKey(item3)" :panel="item3">
-              <template v-if="slots.tab" #tab="slotProps">
+              <!-- Forward ResizableView's `tab` scoped slot to ViewPanel.
+                `slotProps` is the payload emitted by ViewPanel (`{ tab, panel }`), and
+                we pass it through unchanged so consumers receive the exact panel context
+                from the panel instance that is currently rendering. -->
+              <template #tab="slotProps">
                 <slot name="tab" v-bind="slotProps" />
               </template>
             </ViewPanel>
           </Resizable>
           <ViewPanel v-else :panel="item2">
-            <template v-if="slots.tab" #tab="slotProps">
+            <template #tab="slotProps">
               <slot name="tab" v-bind="slotProps" />
             </template>
           </ViewPanel>
         </template>
       </Resizable>
       <ViewPanel v-else :panel="item1">
-        <template v-if="slots.tab" #tab="slotProps">
+        <template #tab="slotProps">
           <slot name="tab" v-bind="slotProps" />
         </template>
       </ViewPanel>

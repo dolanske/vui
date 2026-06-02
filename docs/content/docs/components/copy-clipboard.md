@@ -2,8 +2,7 @@
 
 A component that provides a simple way to copy text to the clipboard with a confirmation tooltip. It uses the Clipboard API and provides a flexible way to customize the copy confirmation UI.
 
-::copy-clipboard-example
-
+::copy-clipboard-example{sourcePath="CopyClipboard/CopyClipboard.vue"}
 ```vue
 <script setup>
 import { Button, CopyClipboard } from '@dolanske/vui'
@@ -52,7 +51,6 @@ interface DefaultSlotProps {
 Here's a heavily customized copy-clipboard using all the props
 
 ::copy-clipboard-custom-example
-
 ```vue
 <script setup>
 import { Badge, Button, Card, CopyClipboard } from '@dolanske/vui'

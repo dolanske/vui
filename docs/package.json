@@ -12,7 +12,7 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@dolanske/vui": "^1.15.1",
+    "@dolanske/vui": "^1.15.2",
     "@iconify-json/ph": "^1.2.2",
     "@nuxt/content": "^3.14.0",
     "@nuxt/fonts": "^0.14.0",

@@ -3,6 +3,7 @@ import { Tab, Tabs } from '@dolanske/vui'
 
 const props = defineProps<{
   full?: boolean
+  sourcePath?: string
 }>()
 
 defineSlots<{
@@ -22,6 +23,15 @@ const tab = ref('Preview')
       <Tab value="Code">
         Code
       </Tab>
+
+      <template #end>
+        <Button v-if="props.sourcePath" outline size="s" :href="`https://github.com/dolanske/vui/blob/main/src/components/${props.sourcePath}`" target="_blank" rel="noopener noreferrer">
+          <template #start>
+            <Icon name="ph:code" />
+          </template>
+          Source
+        </Button>
+      </template>
     </Tabs>
     <div v-if="tab === 'Preview'" class="example-component" :class="{ full: props.full }">
       <slot name="component" />
@@ -52,6 +62,7 @@ const tab = ref('Preview')
 
 .example-code pre {
   margin-top: 0 !important;
+  border: none;
 }
 
 .example-component.full {

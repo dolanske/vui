@@ -4,8 +4,7 @@ A context menu component that listens for right-click events on its content and 
 
 > Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
-::context-menu-example
-
+::context-menu-example{sourcePath="ContextMenu/ContextMenu.vue"}
 ```vue
 <script setup lang="ts">
 import { Card, ContextMenu, DropdownItem } from '@dolanske/vui'

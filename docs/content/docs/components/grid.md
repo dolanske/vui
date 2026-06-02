@@ -4,8 +4,7 @@ A simple grid layout component that provides a convenient way to create grid lay
 
 Most layout controls are boolean toggles. When you omit them, Grid falls back to CSS defaults such as `grid`, `row` auto-flow, `stretch`, and the theme `s` gap.
 
-::grid-example
-
+::grid-example{sourcePath="Grid/Grid.vue"}
 ```vue
 <script setup>
 import { Grid } from '@dolanske/vui'

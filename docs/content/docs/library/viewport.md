@@ -46,28 +46,28 @@ import { breakpoints } from '@dolanske/vui'
 breakpoints.value.xl = 2048
 ```
 
-Then use bracket access for dynamic keys:
+To make TypeScript aware of your new breakpoint everywhere, augment the `Breakpoints` interface in a `.d.ts` file (for example `types/viewport-augment.d.ts`):
 
 ```ts
-import { viewport } from '@dolanske/vui'
+// types/viewport-augment.d.ts
+import '@dolanske/vui'
 
-if (viewport['xl']) {
-  // ...
+declare module '@dolanske/vui' {
+  interface Breakpoints {
+    /**
+     * 2k monitors (<= 2048px)
+     */
+    xl: boolean
+  }
 }
 ```
 
-If you want stricter typing for custom keys in your app code, create a local helper type:
+Now you can use it directly:
 
 ```ts
 import { viewport } from '@dolanske/vui'
 
-type AppViewport = typeof viewport & {
-  xl: boolean
-}
-
-const appViewport = viewport as AppViewport
-
-if (appViewport['xl']) {
+if (viewport.xl) {
   // ...
 }
 ```

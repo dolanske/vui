@@ -4,8 +4,7 @@ A responsive sidebar component that can be used for navigation, menus, or any ot
 
 Please note, Sidebar must always be placed within a `<div class="vui-sidebar-layout" />` element. Similar to [Drawer](/docs/components/drawer)
 
-::sidebar-example
-
+::sidebar-example{sourcePath="Sidebar/Sidebar.vue"}
 ```vue
 <script>
 import { Button, DropdownItem, Flex, Sidebar } from '@dolanske/vui'
@@ -112,7 +111,6 @@ interface SidebarExpose {
 ### Examples
 
 ::sidebar-floaty-example
-
 ```vue
 <script setup>
 import { Sidebar } from '@dolanske/vui'

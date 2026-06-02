@@ -2,8 +2,7 @@
 
 A file upload component that supports both drag-and-drop and click-to-upload functionality. It provides a visual interface for users to upload files.
 
-::dropzone-example
-
+::dropzone-example{sourcePath="Input/Dropzone.vue"}
 ```vue
 <script setup>
 import { Dropzone, Flex } from '@dolanske/vui'

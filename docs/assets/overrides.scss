@@ -25,7 +25,8 @@ table {
 }
 
 pre {
-  border: none;
+  // border: none;
+  border: 1px solid var(--color-border-weak);
   background-color: var(--color-bg-lowered);
   line-height: var(--line-height-base);
   font-weight: 400;

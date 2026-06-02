@@ -2,8 +2,7 @@
 
 The Spinner component is a loading indicator that shows an animated circular progress. It's commonly used to indicate that a process is ongoing or that content is being loaded.
 
-::spinner-example
-
+::spinner-example{sourcePath="Spinner/Spinner.vue"}
 ```vue
 <script setup>
 import { Flex, Spinner } from '@dolanske/vui'

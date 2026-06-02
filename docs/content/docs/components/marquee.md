@@ -2,8 +2,7 @@
 
 A continuously scrolling ticker that loops its content infinitely. It duplicates the slot content behind the scenes to create a seamless loop, and exposes controls for direction, speed, and a stepped/stagger mode. Animation is disabled if user uses `prefer-reduced-motion` setting on.
 
-::marquee-example
-
+::marquee-example{sourcePath="Marquee/Marquee.vue"}
 ```vue
 <script setup>
 import { Flex, Marquee } from '@dolanske/vui'

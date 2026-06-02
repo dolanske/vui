@@ -2,8 +2,7 @@
 
 A layout container that splits content into resizable panels separated by draggable handles. Supports horizontal and vertical layouts, keyboard navigation, and optional persistence of panel sizes.
 
-::resizable-example
-
+::resizable-example{sourcePath="Resizable/Resizable.vue"}
 ```vue
 <script setup>
 import { Flex, Resizable } from '@dolanske/vui'

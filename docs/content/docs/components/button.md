@@ -2,8 +2,7 @@
 
 A button component that supports various styles, sizes, and states. It can be used as a standard button or as a link.
 
-::button-example
-
+::button-example{sourcePath="Button/Button.vue"}
 ```vue
 <script setup>
 import { Button } from '@dolanske/vui'
@@ -55,7 +54,6 @@ The button component emits all standard button events like `click`, `focus`, `bl
 #### Custom slots
 
 ::button-slot-example
-
 ```vue
 <script setup>
 import { Button } from '@dolanske/vui'

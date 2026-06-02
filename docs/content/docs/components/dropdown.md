@@ -4,8 +4,7 @@ A dropdown menu component that provides a flexible way to display a list of opti
 
 > Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
-::dropdown-example
-
+::dropdown-example{sourcePath="Dropdown/Dropdown.vue"}
 ```vue
 <script setup lang="ts">
 import { Button, Dropdown, DropdownItem, DropdownTitle } from '@dolanske/vui'
@@ -88,7 +87,6 @@ interface DropdownSlotsProps {
 
 Use [PopoutHover](/docs/components/popout-hover) inside a dropdown to create multi-level menus. Nest it anywhere in the default slot and use `placement="right-start"` (or `left-start`) to open the submenu to the side.
 ::dropdown-nested-example
-
 ```vue
 <script setup lang="ts">
 import { Button, Divider, Dropdown, DropdownItem, DropdownTitle, PopoutHover } from '@dolanske/vui'
@@ -171,7 +169,6 @@ The dropdopwn component is meant to be used with a few specific components. If y
 A clickable item in the dropdown menu.
 
 ::dropdown-item-example
-
 ```vue
 <script setup lang="ts">
 import { DropdownItem } from '@dolanske/vui'
@@ -224,7 +221,6 @@ import { DropdownItem } from '@dolanske/vui'
 A title or header section in the dropdown menu which also divides the dropdown into sections.
 
 ::dropdown-title-example
-
 ```vue
 <template>
   <DropdownTitle>

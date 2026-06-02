@@ -2,8 +2,7 @@
 
 The Radio component is a form control that allows users to select a single option from a list of choices. It can be used individually or as part of a `RadioGroup` for managing multiple related options.
 
-::radio-example
-
+::radio-example{sourcePath="Radio/Radio.vue"}
 ```vue
 <script setup>
 import { Radio, RadioGroup } from '@dolanske/vui'

@@ -2,8 +2,7 @@
 
 The Progress component is a flexible progress indicator that can be used to show loading states, file upload progress, or any other progress-related information. It supports both determinate and indeterminate states, and can be displayed as a fixed bar at the top of the page.
 
-::progress-example
-
+::progress-example{sourcePath="Progress/Progress.vue"}
 ```vue
 <script setup>
 import { Progress } from '@dolanske/vui'
@@ -41,7 +40,6 @@ The value of the progress component is controlled via `v-model`
 The following example shows different variations of the progress component.
 
 ::progress-advanced-example
-
 ```vue
 <script setup>
 import { Button, Flex, Progress } from '@dolanske/vui'

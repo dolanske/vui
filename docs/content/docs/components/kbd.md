@@ -2,8 +2,7 @@
 
 A component that displays keyboard shortcuts and can optionally highlight when the keys are pressed. It's useful for showing keyboard shortcuts in your application.
 
-::kbd-example
-
+::kbd-example{sourcePath="Kbd/Kbd.vue"}
 ```vue
 <script setup>
 import { Flex, Kbd, KbdGroup } from '@dolanske/vui'

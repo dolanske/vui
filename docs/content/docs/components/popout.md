@@ -4,8 +4,7 @@ A flexible popout component that can be used to create tooltips, dropdowns, or a
 
 > Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
-::popout-example
-
+::popout-example{sourcePath="Popout/Popout.vue"}
 ```vue
 <script setup>
 import { Button, Popout } from '@dolanske/vui'

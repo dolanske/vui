@@ -2,8 +2,7 @@
 
 A versatile select component that allows users to choose one or more options from a dropdown list. It supports both single and multiple selection modes, includes search functionality, and provides various customization options.
 
-::select-example
-
+::select-example{sourcePath="Select/Select.vue"}
 ```vue
 <script setup lang="ts">
 import { Select } from '@dolanske/vui'

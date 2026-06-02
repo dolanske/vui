@@ -4,8 +4,7 @@ A draggable input for selecting a numeric value within a defined range. Supports
 
 By default, slider rounds output values to integers.
 
-::slider-example
-
+::slider-example{sourcePath="Slider/Slider.vue"}
 ```vue
 <script setup>
 import { Slider } from '@dolanske/vui'
@@ -44,7 +43,6 @@ const value = ref(40)
 Range mode with 10 steps. Both handles snap to step boundaries and cannot cross each other.
 
 ::slider-range-example
-
 ```vue
 <script setup>
 import { Slider } from '@dolanske/vui'

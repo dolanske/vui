@@ -2,8 +2,7 @@
 
 A scrollable container with gradient shadow indicators that show when there is more content to scroll to. Supports both vertical and horizontal scrolling.
 
-::overflow-example
-
+::overflow-example{sourcePath="Overflow/Overflow.vue"}
 ```vue
 <script setup>
 import { Avatar, Card, Flex, Overflow } from '@dolanske/vui'

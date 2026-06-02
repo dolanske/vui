@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import { reactive, ref, watchEffect } from 'vue'
 
-export type Breakpoints = Record<string, boolean> & {
+export interface Breakpoints {
   /**
    * Mobile breakpoint `<=572px`
    */
@@ -56,4 +56,4 @@ watchEffect(() => {
 })
 
 // `reactive` unwraps refs on property access, so consumers can use `viewport.s`.
-export const viewport = viewportState as Breakpoints
+export const viewport = viewportState as unknown as Breakpoints

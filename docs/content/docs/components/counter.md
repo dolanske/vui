@@ -2,8 +2,7 @@
 
 A specialized input component for numeric values that includes increment and decrement buttons. It extends the base Input component with counter-specific functionality.
 
-::counter-example
-
+::counter-example{sourcePath="Input/Counter.vue"}
 ```vue
 <script setup>
 import { Counter } from '@dolanske/vui'

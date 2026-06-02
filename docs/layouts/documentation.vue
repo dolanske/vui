@@ -14,6 +14,7 @@ const mainScrollEl = ref<HTMLElement | null>(null)
 type AvailableTabs = 'Tokens' | 'Classes' | 'Components' | 'Library'
 
 const currentTab = ref<AvailableTabs | ''>('')
+const lastTabSelection = ref<AvailableTabs>('Tokens')
 
 const subPages: Record<AvailableTabs, LinkItem[]> = {
   Tokens: tokenPages,
@@ -22,35 +23,42 @@ const subPages: Record<AvailableTabs, LinkItem[]> = {
   Library: libraryPages,
 }
 
+// Top-level docs pages that should not be controlled by tab state.
+// Add future standalone pages here.
+const standaloneDocsPages = ['/docs', '/docs/projects']
+
+function normalizeRoutePath(path: string) {
+  return normalizePath(path.split('?')[0]!.split('#')[0]!)
+}
+
+function getTabForPath(path: string): AvailableTabs | '' {
+  const normalizedPath = normalizeRoutePath(path)
+
+  if (standaloneDocsPages.includes(normalizedPath))
+    return ''
+
+  const tabEntry = Object.entries(subPages)
+    .find(([, pages]) => pages.some(page => normalizedPath.startsWith(normalizePath(page.path))))
+
+  return (tabEntry?.[0] as AvailableTabs | undefined) ?? ''
+}
+
 // When mounting, we need to first keep tabs in sync with the URL. So loop over
 // states and set the active tab to the correct one
 watch(() => route.fullPath, (currentPath) => {
-  // The root page is always the first one in the list
-  const tokensPath = subPages.Tokens[0]!
-  const cssFrameworkPath = subPages.Classes[0]!
-  const componentsPath = subPages.Components[0]!
-  const libraryPath = subPages.Library[0]!
-  // const currentPath = route.fullPath
+  const tab = getTabForPath(currentPath)
 
-  // Root docs page is active, so set active tab to nothing
-  if (currentPath.endsWith('/docs')) {
-    currentTab.value = ''
-  }
-  else if (currentPath.includes(tokensPath.path)) {
-    currentTab.value = 'Tokens'
-  }
-  else if (currentPath.includes(cssFrameworkPath.path)) {
-    currentTab.value = 'Classes'
-  }
-  else if (currentPath.includes(componentsPath.path)) {
-    currentTab.value = 'Components'
-  }
-  else if (currentPath.includes(libraryPath.path)) {
-    currentTab.value = 'Library'
-  }
+  currentTab.value = tab
+
+  if (tab)
+    lastTabSelection.value = tab
 }, {
   immediate: true,
-  flush: 'post',
+  flush: 'pre',
+})
+
+const tabsModelValue = computed<AvailableTabs>(() => {
+  return currentTab.value || lastTabSelection.value
 })
 
 // Docs layout scrolls inside <main>, so reset that container on every route
@@ -85,24 +93,6 @@ const prevAndNext = computed(() => {
     next: subPagesToRender.value[indexOfActive + 1],
   }
 })
-
-// Reset to default route when main context changes
-watch(subPagesToRender, (pages) => {
-  if (!pages)
-    return
-
-  const activePath = normalizePath(route.path)
-  const isInsideCurrentSection = pages.some(page => normalizePath(page.path) === activePath)
-
-  // TODO: fix, still goes to tokens instead of top-level routes like projects
-
-  // Only redirect to a section root when switching contexts from a non-section route,
-  // but do NOT redirect if on /docs root.
-  if (!isInsideCurrentSection && activePath !== '/docs')
-    router.replace(pages[0]!.path)
-})
-
-// Bredcrumbs
 
 // Combine current route path into clickable links
 const breadcrumbItems = computed(() => {
@@ -162,6 +152,15 @@ function pushPage(page: string) {
   }
 
   router.push(page)
+}
+
+function handleTabChange(tab: AvailableTabs) {
+  lastTabSelection.value = tab
+
+  const defaultPage = subPages[tab][0]?.path
+
+  if (defaultPage)
+    pushPage(defaultPage)
 }
 </script>
 
@@ -238,7 +237,13 @@ function pushPage(page: string) {
 
     <main ref="mainScrollEl">
       <div class="container container-m">
-        <Tabs v-model="currentTab" expand class="docs-tabs" :variant="isTablet ? 'filled' : 'default'">
+        <Tabs
+          :model-value="tabsModelValue"
+          expand
+          class="docs-tabs"
+          :variant="isTablet ? 'filled' : 'default'"
+          @update:model-value="handleTabChange"
+        >
           <Tab v-for="item in documentationTabs" :key="item.label" :value="item.label">
             <Icon :name="item.icon" />
             {{ item.label }}

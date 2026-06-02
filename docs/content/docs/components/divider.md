@@ -2,8 +2,7 @@
 
 A divider component that creates a horizontal or vertical line to separate content. It supports line thickness, style type, and can include content in the middle.
 
-::divider-example
-
+::divider-example{sourcePath="Divider/Divider.vue"}
 ```vue
 <script setup>
 import { Avatar, Divider, Flex } from '@dolanske/vui'

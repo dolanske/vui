@@ -1,6 +1,7 @@
 import type { Command } from './components/Commands/Commands.vue'
 import type { SelectOption } from './components/Select/Select.vue'
 import type { Size, Sizes, Spaces, SpaceSize } from './shared/types'
+import type { Breakpoints } from './shared/viewport'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
@@ -88,6 +89,7 @@ export {
   BadgeGroup,
   BreadcrumbItem,
   Breadcrumbs,
+  type Breakpoints,
   breakpoints,
   Button,
   ButtonGroup,

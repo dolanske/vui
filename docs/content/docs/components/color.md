@@ -2,8 +2,7 @@
 
 A specialized input component for selecting colors. It combines a native color picker with a text input for direct color value entry.
 
-::color-example
-
+::color-example{sourcePath="Input/Color.vue"}
 ```vue
 <script setup>
 import { Color } from '@dolanske/vui'

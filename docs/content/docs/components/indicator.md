@@ -2,8 +2,7 @@
 
 A small dot indicator that can be used standalone or attached to other components like `Avatar`, `Badge`, `Buttons` and more to convey status such as online presence or alerts.
 
-::indicator-example
-
+::indicator-example{sourcePath="Indicator/Indicator.vue"}
 ```vue
 <script setup>
 import { Avatar, Badge, Indicator } from '@dolanske/vui'

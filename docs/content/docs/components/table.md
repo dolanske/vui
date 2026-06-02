@@ -4,8 +4,7 @@ A powerful data display component that provides sorting, pagination, row selecti
 
 If you have tables with a lot of horizontal content, wrap them in a `.vui-table-overflow` class seamless vertical scrollbar setup.
 
-::table-example
-
+::table-example{sourcePath="Table/Root.vue"}
 ```vue
 <script setup lang="ts">
 import { defineTable, Pagination, Table } from '@dolanske/vui'
@@ -179,7 +178,6 @@ The `defineTable` composable returns an object with the following reactive prope
 #### Custom Cell content
 
 ::table-custom-cell-example
-
 ```vue
 <script setup lang="ts">
 import { Button, defineTable, Table } from '@dolanske/vui'

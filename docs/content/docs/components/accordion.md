@@ -2,7 +2,7 @@
 
 An accordion is an interactive heading that reveals an associated section of content when clicked. It can be grouped together with multiple accordions using the [AccordionGroup](/docs/components/accordion-group) component.
 
-::accordion-example
+::accordion-example{sourcePath="Accordion/Accordion.vue"}
 
 ```vue
 <script setup>
