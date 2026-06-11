@@ -1,0 +1,17 @@
+.vui-stepper {
+  display: flex;
+  gap: var(--space-xxs);
+
+  .vui-stepper-item {
+    height: 8px;
+    width: 8px;
+    transition: all var(--transition-slow);
+    background-color: var(--color-text-lightest);
+    border-radius: var(--border-radius-pill);
+
+    &.active {
+      width: 12px;
+      background-color: var(--color-accent);
+    }
+  }
+}
