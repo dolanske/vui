@@ -130,7 +130,7 @@ const commands: Command[] = [
   <Button @click="open = !open">
     Toggle
   </Button>
-  <Commands :open :commands compact @close="open = false">
+  <Commands :open :commands @close="open = false">
     <template #icon="{ command }">
       <IconLinkBold v-if="command.group === 'Navigation'" />
       <IconFolder v-else />
