@@ -3,6 +3,7 @@
 A divider component that creates a horizontal or vertical line to separate content. It supports line thickness, style type, and can include content in the middle.
 
 ::divider-example{sourcePath="Divider/Divider.vue"}
+
 ```vue
 <script setup>
 import { Avatar, Divider, Flex } from '@dolanske/vui'
@@ -45,10 +46,10 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                              | Default   | Description                   |
-| ---------------------------------- | --------- | ----------------------------- |
-| `--vui-divider-size`               | `1px`                  | Line thickness                |
-| `--vui-divider-height`             | `100%`                 | Vertical divider height       |
-| `--vui-divider-type`               | `solid`                | Border style                  |
-| `--vui-divider-color`              | [`var(--color-border)`](/docs/tokens/colors)  | Line color                    |
-| `--vui-divider-slot-outline-color` | [`var(--color-bg)`](/docs/tokens/colors)      | Slot label outline color      |
+| Token                              | Default                                      | Description              |
+| ---------------------------------- | -------------------------------------------- | ------------------------ |
+| `--vui-divider-size`               | `1px`                                        | Line thickness           |
+| `--vui-divider-height`             | `100%`                                       | Vertical divider height  |
+| `--vui-divider-type`               | `solid`                                      | Border style             |
+| `--vui-divider-color`              | [`var(--color-border)`](/docs/tokens/colors) | Line color               |
+| `--vui-divider-slot-outline-color` | [`var(--color-bg)`](/docs/tokens/colors)     | Slot label outline color |

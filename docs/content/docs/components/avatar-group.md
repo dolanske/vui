@@ -3,6 +3,7 @@
 A wrapper component that groups multiple `Avatar` components together. Supports clustering avatars with overlapping borders, limiting the number of visible avatars with a remaining count, and both horizontal and vertical layouts.
 
 ::avatar-group-example{sourcePath="Avatar/AvatarGroup.vue"}
+
 ```vue
 <script setup>
 import { Avatar, AvatarGroup } from '@dolanske/vui'

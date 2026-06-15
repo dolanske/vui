@@ -5,6 +5,7 @@ A menubar component that renders a horizontal list of labeled menu triggers. Cli
 > The menu slot content is unstyled by default. Wrapping it in `<div class="vui-dropdown">` makes it visually consistent with the [Dropdown](/docs/components/dropdown) component.
 
 ::menubar-example{sourcePath="Menubar/Menubar.vue"}
+
 ```vue
 <script setup lang="ts">
 import { Button, Card, Divider, DropdownItem, Menubar, MenuItem } from '@dolanske/vui'

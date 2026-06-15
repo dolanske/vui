@@ -3,6 +3,7 @@
 A wrapper component that groups multiple buttons together, joining their borders for a cohesive, unified appearance. Commonly used for toolbars, split buttons, or any set of related actions.
 
 ::button-group-example{sourcePath="Button/ButtonGroup.vue"}
+
 ```vue
 <script setup>
 import { Button, ButtonGroup } from '@dolanske/vui'

@@ -5,7 +5,9 @@ import { borderRadiusTokens } from '~/utils/constants'
 
 <template>
   <div>
-    <h1 id="border-radius"><a href="#border-radius">Border Radius</a></h1>
+    <h1 id="border-radius">
+      <a href="#border-radius">Border Radius</a>
+    </h1>
     <p class="mb-xl">
       Border radius tokens define the corner curvature used across surfaces, inputs, overlays, and pill-shaped elements. Using the shared radius scale keeps components visually consistent.
     </p>

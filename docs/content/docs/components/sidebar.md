@@ -5,6 +5,7 @@ A responsive sidebar component that can be used for navigation, menus, or any ot
 Please note, Sidebar must always be placed within a `<div class="vui-sidebar-layout" />` element. Similar to [Drawer](/docs/components/drawer)
 
 ::sidebar-example{sourcePath="Sidebar/Sidebar.vue"}
+
 ```vue
 <script>
 import { Button, DropdownItem, Flex, Sidebar } from '@dolanske/vui'
@@ -111,6 +112,7 @@ interface SidebarExpose {
 ### Examples
 
 ::sidebar-floaty-example
+
 ```vue
 <script setup>
 import { Sidebar } from '@dolanske/vui'
@@ -156,7 +158,7 @@ const isOpen = ref(true)
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                        | Default   | Description                         |
-| ---------------------------- | --------- | ----------------------------------- |
-| `--vui-sidebar-float-offset` | `8px`     | Offset for floating sidebar edges   |
-| `--vui-sidebar-width`        | `224px`   | Sidebar width                       |
+| Token                        | Default | Description                       |
+| ---------------------------- | ------- | --------------------------------- |
+| `--vui-sidebar-float-offset` | `8px`   | Offset for floating sidebar edges |
+| `--vui-sidebar-width`        | `224px` | Sidebar width                     |

@@ -3,6 +3,7 @@
 The Sheet component is a slide-out panel that can be positioned on any side of the screen. It's commonly used for displaying additional content, forms, or navigation menus.
 
 ::sheet-example{sourcePath="Sheet/Sheet.vue"}
+
 ```vue
 <script setup>
 import { Button, Sheet } from '@dolanske/vui'
@@ -65,7 +66,7 @@ const isOpen = ref(false)
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                        | Default  | Description                        |
-| ---------------------------- | -------- | ---------------------------------- |
-| `--vui-sheet-inline-offset`  | `24px`   | Horizontal offset from screen edge |
-| `--vui-sheet-max-height`     | `35dvh`  | Max height in bottom sheet mode    |
+| Token                       | Default | Description                        |
+| --------------------------- | ------- | ---------------------------------- |
+| `--vui-sheet-inline-offset` | `24px`  | Horizontal offset from screen edge |
+| `--vui-sheet-max-height`    | `35dvh` | Max height in bottom sheet mode    |

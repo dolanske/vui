@@ -3,6 +3,7 @@
 The Progress component is a flexible progress indicator that can be used to show loading states, file upload progress, or any other progress-related information. It supports both determinate and indeterminate states, and can be displayed as a fixed bar at the top of the page.
 
 ::progress-example{sourcePath="Progress/Progress.vue"}
+
 ```vue
 <script setup>
 import { Progress } from '@dolanske/vui'
@@ -40,6 +41,7 @@ The value of the progress component is controlled via `v-model`
 The following example shows different variations of the progress component.
 
 ::progress-advanced-example
+
 ```vue
 <script setup>
 import { Button, Flex, Progress } from '@dolanske/vui'
@@ -107,8 +109,8 @@ function increment() {
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                         | Default                     | Description                                     |
-| ----------------------------- | --------------------------- | ----------------------------------------------- |
-| `--vui-progress-height`       | `3px`                       | Bar height                                      |
-| `--vui-progress-color`        | [`var(--color-text-lighter)`](/docs/tokens/colors) | Fill color                                      |
-| `--vui-progress-track-color`  | [`var(--color-bg-raised)`](/docs/tokens/colors)    | Track color                                        |
+| Token                        | Default                                            | Description |
+| ---------------------------- | -------------------------------------------------- | ----------- |
+| `--vui-progress-height`      | `3px`                                              | Bar height  |
+| `--vui-progress-color`       | [`var(--color-text-lighter)`](/docs/tokens/colors) | Fill color  |
+| `--vui-progress-track-color` | [`var(--color-bg-raised)`](/docs/tokens/colors)    | Track color |

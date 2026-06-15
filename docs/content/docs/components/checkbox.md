@@ -3,6 +3,7 @@
 A checkbox component that supports custom icons, labels, and various states. It can be used as a controlled or uncontrolled component.
 
 ::checkbox-example{sourcePath="Checkbox/Checkbox.vue"}
+
 ```vue
 <script setup>
 import { Checkbox } from '@dolanske/vui'
@@ -58,6 +59,6 @@ const checked = ref(true)
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                  | Default | Description               |
-| ---------------------- | ------- | ------------------------- |
-| `--vui-checkbox-size`  | `24px`  | Checkbox width and height |
+| Token                 | Default | Description               |
+| --------------------- | ------- | ------------------------- |
+| `--vui-checkbox-size` | `24px`  | Checkbox width and height |

@@ -3,6 +3,7 @@
 A small dot indicator that can be used standalone or attached to other components like `Avatar`, `Badge`, `Buttons` and more to convey status such as online presence or alerts.
 
 ::indicator-example{sourcePath="Indicator/Indicator.vue"}
+
 ```vue
 <script setup>
 import { Avatar, Badge, Indicator } from '@dolanske/vui'
@@ -44,10 +45,10 @@ import { Avatar, Badge, Indicator } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                          | Default                     | Description               |
-| ------------------------------ | --------------------------- | ------------------------- |
-| `--vui-indicator-size`         | `8px`                       | Dot diameter              |
-| `--vui-indicator-color`        | [`var(--color-text-lighter)`](/docs/tokens/colors) | Dot color                 |
-| `--vui-indicator-outline-color`| [`var(--color-bg)`](/docs/tokens/colors)           | Outline ring color        |
-| `--vui-indicator-outline-size` | `2px`                       | Outline ring thickness    |
-| `--vui-indicator-offset`       | `0`                         | Offset from anchor corner |
+| Token                           | Default                                            | Description               |
+| ------------------------------- | -------------------------------------------------- | ------------------------- |
+| `--vui-indicator-size`          | `8px`                                              | Dot diameter              |
+| `--vui-indicator-color`         | [`var(--color-text-lighter)`](/docs/tokens/colors) | Dot color                 |
+| `--vui-indicator-outline-color` | [`var(--color-bg)`](/docs/tokens/colors)           | Outline ring color        |
+| `--vui-indicator-outline-size`  | `2px`                                              | Outline ring thickness    |
+| `--vui-indicator-offset`        | `0`                                                | Offset from anchor corner |

@@ -3,6 +3,7 @@
 Groups multiple [Accordion](/docs/components/accordion) components together and controls whether only a single accordion or multiple accordions can be opened simultaneously.
 
 ::accordion-group-example{sourcePath="Accordion/AccordionGroup.vue"}
+
 ```vue
 <script setup>
 import { Accordion, AccordionGroup } from '@dolanske/vui'

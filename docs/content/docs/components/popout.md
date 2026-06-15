@@ -5,6 +5,7 @@ A flexible popout component that can be used to create tooltips, dropdowns, or a
 > Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
 ::popout-example{sourcePath="Popout/Popout.vue"}
+
 ```vue
 <script setup>
 import { Button, Popout } from '@dolanske/vui'
@@ -37,16 +38,16 @@ const anchorRef = ref(null)
 
 ### Props
 
-| Name              | Default | Type                                                                                                                                           |
-| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `anchor`          | —       | `HTMLElement` <br> Reference to the HTML element the Popout is anchored to                                                                     |
-| `placement`       | `top`   | `string` <br> Position of the popout relative to the anchor                                                                                    |
-| `offset`          | `8`     | `number` <br> Distance between the anchor and the popout in pixels                                                                             |
-| `visible`         | —       | `boolean` <br> Whether the popout is visible                                                                                                   |
+| Name              | Default | Type                                                                                                                                                                                                                                                                                                                                                   |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `anchor`          | —       | `HTMLElement` <br> Reference to the HTML element the Popout is anchored to                                                                                                                                                                                                                                                                             |
+| `placement`       | `top`   | `string` <br> Position of the popout relative to the anchor                                                                                                                                                                                                                                                                                            |
+| `offset`          | `8`     | `number` <br> Distance between the anchor and the popout in pixels                                                                                                                                                                                                                                                                                     |
+| `visible`         | —       | `boolean` <br> Whether the popout is visible                                                                                                                                                                                                                                                                                                           |
 | `transition-name` | —       | `string` `none` <br> Allows you to change or disable the Vue transition for the popout appear. By default, placement-based transition is used. Set to `none` when using the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) to prevent the default animation from conflicting with your view transition. |
-| `teleport`        | `true`  | `boolean` <br> Whether the popout is teleported to `body`                                                                                      |
-| `enter-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout becomes visible after `visible` turns true                                               |
-| `leave-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout hides after `visible` turns false                                                        |
+| `teleport`        | `true`  | `boolean` <br> Whether the popout is teleported to `body`                                                                                                                                                                                                                                                                                              |
+| `enter-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout becomes visible after `visible` turns true                                                                                                                                                                                                                                                       |
+| `leave-delay`     | `0`     | `number` <br> Delay in milliseconds before the popout hides after `visible` turns false                                                                                                                                                                                                                                                                |
 
 ### Events
 

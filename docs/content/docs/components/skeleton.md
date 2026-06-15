@@ -3,6 +3,7 @@
 The Skeleton component is a loading placeholder that can be used to indicate content is being loaded. It supports various shapes and sizes, making it versatile for different use cases.
 
 ::skeleton-example{sourcePath="Skeleton/Skeleton.vue"}
+
 ```vue
 <script setup>
 import { Grid, Skeleton } from '@dolanske/vui'
@@ -36,6 +37,6 @@ import { Grid, Skeleton } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                    | Default                | Description                |
-| ------------------------ | ---------------------- | -------------------------- |
-| `--vui-skeleton-color`   | [`var(--color-border)`](/docs/tokens/colors)  | Skeleton background color  |
+| Token                  | Default                                      | Description               |
+| ---------------------- | -------------------------------------------- | ------------------------- |
+| `--vui-skeleton-color` | [`var(--color-border)`](/docs/tokens/colors) | Skeleton background color |

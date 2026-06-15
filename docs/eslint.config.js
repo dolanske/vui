@@ -7,4 +7,9 @@ export default antfu({
     html: true,
     markdown: true,
   },
+}, {
+  files: ['**/*.md'],
+  rules: {
+    'markdown/heading-increment': 'off',
+  },
 })

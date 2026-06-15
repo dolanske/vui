@@ -3,6 +3,7 @@
 A multi-line text input component that extends the base Input component with textarea-specific functionality. It supports resizing, auto-resizing, and character limits.
 
 ::textarea-example{sourcePath="Input/Textarea.vue"}
+
 ```vue
 <script setup>
 import { Textarea } from '@dolanske/vui'

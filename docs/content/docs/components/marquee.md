@@ -3,6 +3,7 @@
 A continuously scrolling ticker that loops its content infinitely. It duplicates the slot content behind the scenes to create a seamless loop, and exposes controls for direction, speed, and a stepped/stagger mode. Animation is disabled if user uses `prefer-reduced-motion` setting on.
 
 ::marquee-example{sourcePath="Marquee/Marquee.vue"}
+
 ```vue
 <script setup>
 import { Flex, Marquee } from '@dolanske/vui'
@@ -51,6 +52,6 @@ import { Flex, Marquee } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                 | Default   | Description                         |
-| --------------------- | --------- | ----------------------------------- |
-| `--vui-marquee-gap`   | `0`       | Gap between repeated content items  |
+| Token               | Default | Description                        |
+| ------------------- | ------- | ---------------------------------- |
+| `--vui-marquee-gap` | `0`     | Gap between repeated content items |

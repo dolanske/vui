@@ -3,6 +3,7 @@
 A specialized input component for handling file uploads. It extends the base Input component with file-specific functionality.
 
 ::file-example{sourcePath="Input/File.vue"}
+
 ```vue
 <script setup>
 import { File } from '@dolanske/vui'

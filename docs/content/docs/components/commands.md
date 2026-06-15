@@ -3,6 +3,7 @@
 A command palette component that provides a searchable, keyboard-navigable interface for executing actions. It supports grouping, keyboard shortcuts, icons, and full customization via slots.
 
 ::commands-example{sourcePath="Commands/Commands.vue"}
+
 ```vue
 <script setup lang="ts">
 import { Button, Commands } from '@dolanske/vui'
@@ -71,6 +72,7 @@ The component allows you to fully customize the icon, command item or even repla
 | `icon`    | `{ command: Command }`                    | Overrides the icon inside the default command item layout  |
 
 ::commands-custom-example
+
 ```vue
 <template>
   <Commands :open="isOpen" :commands="commands" @close="isOpen = false">
@@ -128,7 +130,7 @@ Each entry in the `commands` array must conform to this interface:
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                        | Default   | Description                     |
-| ---------------------------- | --------- | ------------------------------- |
-| `--vui-commands-input-size`  | `56px`    | Input bar height                |
-| `--vui-commands-max-height`  | `612px`   | Max height of the results list  |
+| Token                       | Default | Description                    |
+| --------------------------- | ------- | ------------------------------ |
+| `--vui-commands-input-size` | `56px`  | Input bar height               |
+| `--vui-commands-max-height` | `612px` | Max height of the results list |

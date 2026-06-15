@@ -1,8 +1,11 @@
 import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { COLOR_MODE_STORAGE_KEY } from './utils/color-mode'
 
 const docsContentRoot = resolve(fileURLToPath(new URL('.', import.meta.url)), 'content/docs')
+const vuiRoot = fileURLToPath(new URL('..', import.meta.url))
+const vuiSrc = (path: string) => resolve(vuiRoot, 'src', path)
 const appBaseUrl = '/'
 
 function collectMarkdownRoutes(directory: string, rootDirectory = directory): string[] {
@@ -130,6 +133,21 @@ export default defineNuxtConfig({
       },
       title: 'VUI Documentation',
       titleTemplate: '%s | VUI',
+      script: [
+        {
+          // Blocking script to apply the color mode class before first paint,
+          // preventing a flash of unstyled content when a visitor has a saved
+          // theme. This intentionally mirrors VueUse's `useColorMode` defaults
+          // (storage key + `auto` resolution) since it runs outside the
+          // composable. Toggling individual classes (rather than assigning
+          // `className`) avoids clobbering any other classes already present on
+          // the `<html>` element.
+          innerHTML: `(function(){try{var k=${JSON.stringify(COLOR_MODE_STORAGE_KEY)};var m=localStorage.getItem(k);var r=(m==='dark'||m==='light')?m:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var c=document.documentElement.classList;c.remove('dark','light');c.add(r);}catch(e){}})();`,
+          type: 'text/javascript',
+          tagPriority: 'critical',
+          tagPosition: 'head',
+        },
+      ],
       meta: [
         { name: 'description', content: 'Homegrown Vue component library and design system documentation.' },
         { name: 'robots', content: 'index, follow' },
@@ -148,10 +166,27 @@ export default defineNuxtConfig({
       ],
     },
   },
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@floating-ui/vue',
+        '@iconify-prerendered/vue-ph',
+        '@vuepic/vue-datepicker',
+        '@vueuse/core',
+        'vaul-vue',
+      ],
+    },
+    resolve: {
+      alias: {
+        '@dolanske/vui': vuiSrc('index.ts'),
+        '@dolanske/vui/style': vuiSrc('style.scss'),
+      },
+    },
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
   css: [
-    '@dolanske/vui/style',
+    vuiSrc('style.scss'),
     '~/assets/index.scss',
   ],
   content: {

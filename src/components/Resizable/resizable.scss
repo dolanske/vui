@@ -39,9 +39,19 @@
   }
 
   & > .vui-resizable-panel {
-    display: block;
+    display: flex;
     z-index: 1;
     overflow: hidden;
+
+    // Let the panel's content fill the resolved panel size in both
+    // orientations: flex:1 fills the main axis, the default
+    // align-items:stretch fills the cross axis, and the min-* resets
+    // remove the min-content floor so overflow:hidden can take effect.
+    & > * {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+    }
   }
 
   & > .vui-resizable-handle {

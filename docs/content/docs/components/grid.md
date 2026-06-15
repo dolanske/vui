@@ -5,6 +5,7 @@ A simple grid layout component that provides a convenient way to create grid lay
 Most layout controls are boolean toggles. When you omit them, Grid falls back to CSS defaults such as `grid`, `row` auto-flow, `stretch`, and the theme `s` gap.
 
 ::grid-example{sourcePath="Grid/Grid.vue"}
+
 ```vue
 <script setup>
 import { Grid } from '@dolanske/vui'
@@ -40,26 +41,26 @@ import { Grid } from '@dolanske/vui'
 
 The idea is that you control the component by using boolean props. This allows you to define layouts quickly.
 
-| Name               | Default   | Type                                                                                                                |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- |
-| `inline`           | `false`   | `boolean` <br> Makes the grid container inline                                                                      |
+| Name               | Default   | Type                                                                                                                     |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `inline`           | `false`   | `boolean` <br> Makes the grid container inline                                                                           |
 | `gap`              | `s`       | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between grid items (theme spacing token or custom unit value) |
-| `rows`             | —         | `number` `string` <br> Number of rows or custom grid template rows                                                  |
-| `columns`          | —         | `number` `string` <br> Number of columns or custom grid template columns                                            |
-| `center`           | `false`   | `boolean` <br> Centers items on both axes                                                                           |
-| `x-start`          | `stretch` | `boolean` <br> Aligns items to the start on the inline axis                                                         |
-| `x-end`            | `false`   | `boolean` <br> Aligns items to the end on the inline axis                                                           |
-| `x-center`         | `false`   | `boolean` <br> Centers items on the inline axis                                                                     |
-| `x-stretch`        | `stretch` | `boolean` <br> Stretches items across the inline axis                                                               |
-| `y-start`          | `start`   | `boolean` <br> Aligns items to the start on the block axis                                                          |
-| `y-end`            | `false`   | `boolean` <br> Aligns items to the end on the block axis                                                            |
-| `y-center`         | `false`   | `boolean` <br> Centers items on the block axis                                                                      |
-| `y-baseline`       | `false`   | `boolean` <br> Aligns items along their baselines                                                                   |
-| `y-stretch`        | `stretch` | `boolean` <br> Stretches items across the block axis                                                                |
-| `auto-flow-row`    | `row`     | `boolean` <br> Auto-places grid items by rows                                                                       |
-| `auto-flow-column` | `false`   | `boolean` <br> Auto-places grid items by columns                                                                    |
-| `auto-flow-dense`  | `false`   | `boolean` <br> Enables dense auto-placement packing                                                                 |
-| `expand`           | `false`   | `boolean` <br> Makes the grid container expand to full width                                                        |
+| `rows`             | —         | `number` `string` <br> Number of rows or custom grid template rows                                                       |
+| `columns`          | —         | `number` `string` <br> Number of columns or custom grid template columns                                                 |
+| `center`           | `false`   | `boolean` <br> Centers items on both axes                                                                                |
+| `x-start`          | `stretch` | `boolean` <br> Aligns items to the start on the inline axis                                                              |
+| `x-end`            | `false`   | `boolean` <br> Aligns items to the end on the inline axis                                                                |
+| `x-center`         | `false`   | `boolean` <br> Centers items on the inline axis                                                                          |
+| `x-stretch`        | `stretch` | `boolean` <br> Stretches items across the inline axis                                                                    |
+| `y-start`          | `start`   | `boolean` <br> Aligns items to the start on the block axis                                                               |
+| `y-end`            | `false`   | `boolean` <br> Aligns items to the end on the block axis                                                                 |
+| `y-center`         | `false`   | `boolean` <br> Centers items on the block axis                                                                           |
+| `y-baseline`       | `false`   | `boolean` <br> Aligns items along their baselines                                                                        |
+| `y-stretch`        | `stretch` | `boolean` <br> Stretches items across the block axis                                                                     |
+| `auto-flow-row`    | `row`     | `boolean` <br> Auto-places grid items by rows                                                                            |
+| `auto-flow-column` | `false`   | `boolean` <br> Auto-places grid items by columns                                                                         |
+| `auto-flow-dense`  | `false`   | `boolean` <br> Enables dense auto-placement packing                                                                      |
+| `expand`           | `false`   | `boolean` <br> Makes the grid container expand to full width                                                             |
 
 ### Slots
 
@@ -71,13 +72,13 @@ The idea is that you control the component by using boolean props. This allows y
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                 | Default   | Description                                |
-| --------------------- | --------- | ------------------------------------------ |
-| `--vui-grid-display`  | `grid`            | Display value          |
-| `--vui-grid-gap`      | [`var(--space-s)`](/docs/tokens/spacing)  | Gap                    |
-| `--vui-grid-columns`  | `none`            | Grid template columns  |
-| `--vui-grid-rows`     | `none`            | Grid template rows     |
-| `--vui-grid-align`    | `flex-start`      | Align items            |
-| `--vui-grid-justify`  | `stretch`         | Justify items          |
-| `--vui-grid-flow`     | `row`             | Grid auto flow         |
-| `--vui-grid-width`    | `auto`            | Container width        |
+| Token                | Default                                  | Description           |
+| -------------------- | ---------------------------------------- | --------------------- |
+| `--vui-grid-display` | `grid`                                   | Display value         |
+| `--vui-grid-gap`     | [`var(--space-s)`](/docs/tokens/spacing) | Gap                   |
+| `--vui-grid-columns` | `none`                                   | Grid template columns |
+| `--vui-grid-rows`    | `none`                                   | Grid template rows    |
+| `--vui-grid-align`   | `flex-start`                             | Align items           |
+| `--vui-grid-justify` | `stretch`                                | Justify items         |
+| `--vui-grid-flow`    | `row`                                    | Grid auto flow        |
+| `--vui-grid-width`   | `auto`                                   | Container width       |

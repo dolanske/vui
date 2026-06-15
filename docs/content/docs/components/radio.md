@@ -3,6 +3,7 @@
 The Radio component is a form control that allows users to select a single option from a list of choices. It can be used individually or as part of a `RadioGroup` for managing multiple related options.
 
 ::radio-example{sourcePath="Radio/Radio.vue"}
+
 ```vue
 <script setup>
 import { Radio, RadioGroup } from '@dolanske/vui'
@@ -81,6 +82,6 @@ The `RadioGroup` component wraps its slot in a [Flex](/docs/components/flex) com
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                 | Default | Description          |
-| --------------------- | ------- | -------------------- |
-| `--vui-radio-size`    | `24px`  | Radio button size    |
+| Token              | Default | Description       |
+| ------------------ | ------- | ----------------- |
+| `--vui-radio-size` | `24px`  | Radio button size |

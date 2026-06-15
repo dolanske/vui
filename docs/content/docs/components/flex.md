@@ -5,6 +5,7 @@ A flexible box layout component that provides a convenient way to create flexbox
 Most layout controls are boolean toggles. When you omit them, Flex falls back to CSS defaults: `row`, `nowrap`, `flex-start`, and the theme `s` gap.
 
 ::flex-example{sourcePath="Flex/Flex.vue"}
+
 ```vue
 <script setup>
 import { Flex } from '@dolanske/vui'
@@ -67,12 +68,12 @@ The idea is that you control the component by using boolean props. This allows y
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                   | Default   | Description                                  |
-| ----------------------- | --------- | -------------------------------------------- |
-| `--vui-flex-display`    | `flex`            | Display value      |
-| `--vui-flex-wrap`       | `nowrap`          | Flex wrap          |
-| `--vui-flex-direction`  | `row`             | Flex direction     |
-| `--vui-flex-justify`    | `flex-start`      | Justify content    |
-| `--vui-flex-align`      | `flex-start`      | Align items        |
-| `--vui-flex-gap`        | [`var(--space-s)`](/docs/tokens/spacing)  | Gap                |
-| `--vui-flex-width`      | `auto`            | Container width    |
+| Token                  | Default                                  | Description     |
+| ---------------------- | ---------------------------------------- | --------------- |
+| `--vui-flex-display`   | `flex`                                   | Display value   |
+| `--vui-flex-wrap`      | `nowrap`                                 | Flex wrap       |
+| `--vui-flex-direction` | `row`                                    | Flex direction  |
+| `--vui-flex-justify`   | `flex-start`                             | Justify content |
+| `--vui-flex-align`     | `flex-start`                             | Align items     |
+| `--vui-flex-gap`       | [`var(--space-s)`](/docs/tokens/spacing) | Gap             |
+| `--vui-flex-width`     | `auto`                                   | Container width |

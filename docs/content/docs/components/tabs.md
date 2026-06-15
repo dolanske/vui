@@ -3,6 +3,7 @@
 A tabs component that allows users to switch between different views or sections of content. It supports two styl
 
 ::tabs-example{sourcePath="Tabs/Tabs.vue"}
+
 ```vue
 <script setup>
 import { Tab, Tabs } from '@dolanske/vui'

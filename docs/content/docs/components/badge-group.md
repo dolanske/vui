@@ -3,6 +3,7 @@
 A wrapper component that groups multiple `Badge` components together with merged borders for a compact, unified appearance. Useful for displaying a set of related labels inline, such as version tags or category chains.
 
 ::badge-group-example{sourcePath="Badge/BadgeGroup.vue"}
+
 ```vue
 <script setup>
 import { Badge, BadgeGroup } from '@dolanske/vui'

@@ -5,6 +5,7 @@ A convenience wrapper around `Popout` that automatically shows and hides the pop
 > Please note: `PopoutHover` (and the underlying `Popout`) cannot be styled using `scoped` CSS in Vue SFC. Define a separate non-scoped `<style>` block to style the popout container.
 
 ::popout-hover-example{sourcePath="Popout/PopoutHover.vue"}
+
 ```vue
 <script setup>
 import { Avatar, Badge, Button, PopoutHover } from '@dolanske/vui'

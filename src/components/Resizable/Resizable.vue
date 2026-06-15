@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useElementBounding, useEventListener, useStorage } from '@vueuse/core'
-import { ref, useTemplateRef, watch } from 'vue'
+import { computed, ref, useTemplateRef, watch } from 'vue'
 import { clamp } from '../../shared/helpers'
 import { useTopLevelSlots } from '../../shared/slots'
 import './resizable.scss'
@@ -23,6 +23,12 @@ interface Props {
    * Hides resizable handles unless hovered.
    */
   hideHandles?: boolean
+  /**
+   * Minimum size (in pixels) each panel can be resized to. Applies to
+   * every panel and is enforced along the active axis (width for
+   * horizontal layouts, height for vertical ones).
+   */
+  minSize?: number
 }
 
 interface PanelProps {
@@ -49,7 +55,20 @@ const panelState = props.storageKey
   ? useStorage<PanelState[]>(props.storageKey, [])
   : ref<PanelState[]>([])
 
-const { left, right, width, top, bottom } = useElementBounding(root)
+const { left, right, width, height, top, bottom } = useElementBounding(root)
+
+// The axis the panels are laid out along. Deltas are converted to a
+// percentage of this size, so vertical layouts must use height.
+const axisSize = computed(() => (props.vertical ? height.value : width.value))
+
+// Convert the pixel `minSize` into a percentage of the current axis so it
+// can be compared against the percentage-based panel sizes.
+const minSizePercent = computed(() => {
+  if (!props.minSize || !axisSize.value)
+    return 0
+
+  return (props.minSize / axisSize.value) * 100
+})
 
 // Set initial panel sizes on mount or when panels change
 watch(panels, (items) => {
@@ -76,8 +95,19 @@ function getFocusedHandle(event: MouseEvent | KeyboardEvent) {
 }
 
 function applyResize(index: number, deltaSize: number, baseSize: number, nextBaseSize: number) {
-  panelState.value[index].size = clamp(0, 100, baseSize + deltaSize)
-  panelState.value[index + 1].size = clamp(0, 100, nextBaseSize - deltaSize)
+  // Resizing only ever moves space between a panel and its neighbour, so
+  // their combined size is constant. Clamp within that pair while keeping
+  // both panels above the minimum size.
+  const pairSize = baseSize + nextBaseSize
+  const min = minSizePercent.value
+
+  // Not enough room for both panels to honour the minimum: leave as-is.
+  if (min * 2 > pairSize)
+    return
+
+  const newSize = clamp(min, pairSize - min, baseSize + deltaSize)
+  panelState.value[index].size = newSize
+  panelState.value[index + 1].size = pairSize - newSize
 }
 
 // Controls via mouse drag
@@ -107,10 +137,10 @@ useEventListener(root, 'mousedown', (event) => {
 
     const delta = clampedClientPos - startPos
 
-    if (!width.value)
+    if (!axisSize.value)
       return
 
-    applyResize(index, (delta / width.value) * 100, startSize, nextStartSize)
+    applyResize(index, (delta / axisSize.value) * 100, startSize, nextStartSize)
   }
 
   const onMouseUp = () => {

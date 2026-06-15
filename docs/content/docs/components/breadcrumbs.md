@@ -3,6 +3,7 @@
 A navigation component that shows the current page's location within a navigational hierarchy. It consists of two components: `Breadcrumbs` and `BreadcrumbItem`.
 
 ::breadcrumbs-example{sourcePath="Breadcrumbs/Breadcrumbs.vue"}
+
 ```vue
 <script setup>
 import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
@@ -53,6 +54,7 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 #### Custom Separator
 
 ::breadcrumbs-custom-separator-example
+
 ```vue
 <script setup>
 import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
@@ -72,6 +74,7 @@ import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'
 #### Custom Content
 
 ::breadcrumbs-custom-content-example
+
 ```vue
 <script setup>
 import { BreadcrumbItem, Breadcrumbs } from '@dolanske/vui'

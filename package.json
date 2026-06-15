@@ -43,6 +43,7 @@
   ],
   "scripts": {
     "dev": "vite",
+    "docs": "npm run dev --prefix docs",
     "dev:lan": "vite --host",
     "build": "vue-tsc -b && vite build",
     "build:pages": "vue-tsc -b && vite build --mode pages",

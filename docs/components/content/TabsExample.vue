@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Switch, Tab, Tabs } from '@dolanske/vui'
+import { Switch, Tab, Tabs } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const activeTab = ref('tab1')

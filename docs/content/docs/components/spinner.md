@@ -3,6 +3,7 @@
 The Spinner component is a loading indicator that shows an animated circular progress. It's commonly used to indicate that a process is ongoing or that content is being loaded.
 
 ::spinner-example{sourcePath="Spinner/Spinner.vue"}
+
 ```vue
 <script setup>
 import { Flex, Spinner } from '@dolanske/vui'
@@ -29,7 +30,7 @@ import { Flex, Spinner } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                        | Default                | Description            |
-| ---------------------------- | ---------------------- | ---------------------- |
-| `--vui-spinner-color`        | [`var(--color-accent)`](/docs/tokens/colors)  | Spinner color          |
-| `--vui-spinner-border-width` | `3px`                  | Spinner ring thickness |
+| Token                        | Default                                      | Description            |
+| ---------------------------- | -------------------------------------------- | ---------------------- |
+| `--vui-spinner-color`        | [`var(--color-accent)`](/docs/tokens/colors) | Spinner color          |
+| `--vui-spinner-border-width` | `3px`                                        | Spinner ring thickness |
