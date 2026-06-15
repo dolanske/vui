@@ -1,0 +1,28 @@
+name: Test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+# Opt the bundled JavaScript actions (checkout, setup-node, etc.) into the
+# Node.js 24 runtime ahead of it becoming the GitHub Actions default, which
+# silences the Node.js 20 deprecation warnings.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      # `npm test` runs vitest in watch mode; use `run` for a single CI pass.
+      - name: Run tests
+        run: npx vitest run
