@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - main
+# Opt the bundled JavaScript actions (checkout, setup-node, etc.) into the
+# Node.js 24 runtime ahead of it becoming the GitHub Actions default, which
+# silences the Node.js 20 deprecation warnings.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,8 +18,16 @@ jobs:
       - run: corepack enable
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      # Pick your own package manager and build script
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
+      # The docs alias `@dolanske/vui` to ../src, so the build compiles the
+      # library source directly. Node resolves vui's runtime dependencies
+      # (e.g. @vuepic/vue-datepicker) from the repo-root node_modules, so the
+      # root deps must be installed alongside the docs deps.
+      - run: npm ci
       - run: cd docs && npm install
       - run: cd docs && npx nuxt build --preset github_pages
       - name: Upload artifact
