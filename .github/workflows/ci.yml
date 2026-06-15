@@ -1,0 +1,129 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+# Opt the bundled JavaScript actions (checkout, setup-node, etc.) into the
+# Node.js 24 runtime ahead of it becoming the GitHub Actions default, which
+# silences the Node.js 20 deprecation warnings.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+jobs:
+  # Installs root + docs dependencies once and caches node_modules so the
+  # downstream jobs can restore them instead of reinstalling. The cache key is
+  # derived from both lockfiles, so it is reused until a lockfile changes.
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            docs/node_modules
+          key: node-modules-${{ runner.os }}-node24-${{ hashFiles('package-lock.json', 'docs/package-lock.json') }}
+      - name: Install root dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+      # The docs alias `@dolanske/vui` to ../src, so the build compiles the
+      # library source directly and resolves vui's runtime dependencies from
+      # the repo-root node_modules installed above.
+      - name: Install docs dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: cd docs && npm install
+
+  lint:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            docs/node_modules
+          key: node-modules-${{ runner.os }}-node24-${{ hashFiles('package-lock.json', 'docs/package-lock.json') }}
+          fail-on-cache-miss: true
+      - name: Lint library
+        run: npm run lint
+      - name: Lint docs
+        run: cd docs && npm run lint
+
+  test:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            docs/node_modules
+          key: node-modules-${{ runner.os }}-node24-${{ hashFiles('package-lock.json', 'docs/package-lock.json') }}
+          fail-on-cache-miss: true
+      # `npm test` runs vitest in watch mode; use `run` for a single CI pass.
+      - name: Run tests
+        run: npx vitest run
+
+  build:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            docs/node_modules
+          key: node-modules-${{ runner.os }}-node24-${{ hashFiles('package-lock.json', 'docs/package-lock.json') }}
+          fail-on-cache-miss: true
+      - name: Build docs
+        run: cd docs && npx nuxt build --preset github_pages
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/.output/public
+
+  # Deploys the artifact produced by `build`. Runs only on pushes to main
+  # (not pull requests) and requires the full pipeline to succeed first.
+  deploy:
+    needs: build
+    if: github.event_name == 'push'
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
