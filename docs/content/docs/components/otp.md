@@ -3,6 +3,7 @@
 A One-Time Password (OTP) input component that provides a user-friendly way to enter verification codes. It supports both numeric and alphanumeric inputs, with features like paste support and redacted display.
 
 ::one-time-password-example{sourcePath="OTP/OTP.vue"}
+
 ```vue
 <script setup>
 import { OTP, OTPItem } from '@dolanske/vui'
@@ -46,6 +47,6 @@ const otpValue = ref('')
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                         | Default                    | Description            |
-| ----------------------------- | -------------------------- | ---------------------- |
-| `--vui-otp-background-color`  | [`var(--color-bg-lowered)`](/docs/tokens/colors)  | Input cell background  |
+| Token                        | Default                                          | Description           |
+| ---------------------------- | ------------------------------------------------ | --------------------- |
+| `--vui-otp-background-color` | [`var(--color-bg-lowered)`](/docs/tokens/colors) | Input cell background |

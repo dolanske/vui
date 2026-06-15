@@ -43,7 +43,7 @@ type Level3Item = Panel
 type Level2Item = Panel | Level3Item[]
 type Level1Item = Panel | Level2Item[]
 
-const slots = defineSlots<{
+defineSlots<{
   tab: (props: { tab: ViewTab | undefined, panel: Panel }) => any
 }>()
 

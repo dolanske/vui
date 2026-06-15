@@ -5,6 +5,7 @@ The Tooltip component displays additional information when hovering over an elem
 > Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
 ::tooltip-example{sourcePath="Tooltip/Tooltip.vue"}
+
 ```vue
 <script setup>
 import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
@@ -137,11 +138,11 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                             | Default                  | Description        |
-| --------------------------------- | ------------------------ | ------------------ |
-| `--vui-tooltip-padding-block`     | [`var(--space-xs)`](/docs/tokens/spacing)        | Vertical padding   |
-| `--vui-tooltip-padding-inline`    | [`var(--space-s)`](/docs/tokens/spacing)         | Horizontal padding |
-| `--vui-tooltip-max-width`         | `512px`                  | Max tooltip width  |
-| `--vui-tooltip-background-color`  | [`var(--color-bg-raised)`](/docs/tokens/colors) | Background color   |
-| `--vui-tooltip-font-size`         | [`var(--font-size-m)`](/docs/tokens/text)     | Font size          |
-| `--vui-tooltip-color`             | [`var(--color-text)`](/docs/tokens/colors)      | Text color         |
+| Token                            | Default                                         | Description        |
+| -------------------------------- | ----------------------------------------------- | ------------------ |
+| `--vui-tooltip-padding-block`    | [`var(--space-xs)`](/docs/tokens/spacing)       | Vertical padding   |
+| `--vui-tooltip-padding-inline`   | [`var(--space-s)`](/docs/tokens/spacing)        | Horizontal padding |
+| `--vui-tooltip-max-width`        | `512px`                                         | Max tooltip width  |
+| `--vui-tooltip-background-color` | [`var(--color-bg-raised)`](/docs/tokens/colors) | Background color   |
+| `--vui-tooltip-font-size`        | [`var(--font-size-m)`](/docs/tokens/text)       | Font size          |
+| `--vui-tooltip-color`            | [`var(--color-text)`](/docs/tokens/colors)      | Text color         |

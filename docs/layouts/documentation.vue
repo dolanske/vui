@@ -237,18 +237,20 @@ function handleTabChange(tab: AvailableTabs) {
 
     <main ref="mainScrollEl">
       <div class="container container-m">
-        <Tabs
-          :model-value="tabsModelValue"
-          expand
-          class="docs-tabs"
-          :variant="isTablet ? 'filled' : 'default'"
-          @update:model-value="handleTabChange"
-        >
-          <Tab v-for="item in documentationTabs" :key="item.label" :value="item.label">
-            <Icon :name="item.icon" />
-            {{ item.label }}
-          </Tab>
-        </Tabs>
+        <ClientOnly>
+          <Tabs
+            :model-value="tabsModelValue"
+            expand
+            class="docs-tabs"
+            :variant="isTablet ? 'filled' : 'default'"
+            @update:model-value="handleTabChange"
+          >
+            <Tab v-for="item in documentationTabs" :key="item.label" :value="item.label">
+              <Icon :name="item.icon" />
+              {{ item.label }}
+            </Tab>
+          </Tabs>
+        </ClientOnly>
         <div class="app-breadcrumbs">
           <Button size="s" square plain class="mr-xs" @click="sidebarOpen = !sidebarOpen">
             <Icon name="ph:sidebar" />
@@ -261,9 +263,11 @@ function handleTabChange(tab: AvailableTabs) {
             </BreadcrumbItem>
           </Breadcrumbs>
           <div class="flex-1" />
-          <NuxtLink v-if="isTablet" to="/">
-            <img src="/logo.svg" alt="VUI logo" class="vui-logo-image small">
-          </NuxtLink>
+          <ClientOnly>
+            <NuxtLink v-if="isTablet" to="/">
+              <img src="/logo.svg" alt="VUI logo" class="vui-logo-image small">
+            </NuxtLink>
+          </ClientOnly>
         </div>
 
         <article class="typeset">

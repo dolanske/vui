@@ -3,6 +3,7 @@
 A specialized input component for password fields that includes a toggle button to show/hide the password.
 
 ::password-example{sourcePath="Input/Password.vue"}
+
 ```vue
 <script setup>
 import { Password } from '@dolanske/vui'

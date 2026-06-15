@@ -3,6 +3,7 @@
 A drawer component that slides in from the side of the screen. It's built on top of the [Vaul](https://github.com/unovue/vaul-vue) library and provides a customizable container for content.
 
 ::drawer-example{sourcePath="Drawer/Drawer.vue"}
+
 ```vue
 <script setup>
 import { Button, Drawer } from '@dolanske/vui'

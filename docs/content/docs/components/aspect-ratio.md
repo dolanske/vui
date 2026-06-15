@@ -3,6 +3,7 @@
 A layout component that constrains its content to a given aspect ratio. It automatically fills the available width and adjusts height to maintain the ratio. Images and videos inside will be automatically sized to cover the container.
 
 ::aspect-ratio-example{sourcePath="AspectRatio/AspectRatio.vue"}
+
 ```vue
 <script setup lang="ts">
 import { AspectRatio } from '@dolanske/vui'

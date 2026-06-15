@@ -3,6 +3,7 @@
 A versatile input component that supports various input types, validation, and customization options. It includes features like character limits, error messages, and custom slots for additional content.
 
 ::input-example{sourcePath="Input/Input.vue"}
+
 ```vue
 <script setup>
 import { Input } from '@dolanske/vui'

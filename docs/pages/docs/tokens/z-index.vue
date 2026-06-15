@@ -4,7 +4,9 @@
 
 <template>
   <div>
-    <h1 id="z-index"><a href="#z-index">Z-Index</a></h1>
+    <h1 id="z-index">
+      <a href="#z-index">Z-Index</a>
+    </h1>
 
     <p>
       A set of predefined CSS variables that define consistent z-index values for elements throughout your application. These z-index tokens help maintain visual hierarchy and ensure that elements appear in the correct order.

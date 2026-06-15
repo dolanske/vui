@@ -9,6 +9,7 @@ A collection of simple HTML-based chart components for visualizing data.
 Displays a series of numeric values as vertical bars scaled relative to the highest value. Supports click interactions, tooltips, and compact or expanded layouts.
 
 ::histogram-example{sourcePath="Charts/Histogram.vue"}
+
 ```vue
 <script setup>
 import { Histogram } from '@dolanske/vui'

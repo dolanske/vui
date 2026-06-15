@@ -1,3 +1,5 @@
+<!-- eslint-disable markdown/no-multiple-h1 -->
+
 # Typography
 
 VUI comes with some [pre-defined HTML styles](https://github.com/dolanske/vui/blob/main/src/style/typography.scss).
@@ -72,7 +74,7 @@ This approach demonstrates how components can be designed to be both flexible an
 ## Design System Fundamentals
 
 <figure>
-  <img src="https://dolansky.dev/photography/DSCF6252.JPG" />
+  <img src="https://dolansky.dev/photography/DSCF6252.JPG" alt="Beskydy mountain range" />
 <figcaption>
 Picture of Beskydy mountain range. Taken by the library author @dolanske
 </figcaption>

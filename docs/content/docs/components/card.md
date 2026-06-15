@@ -3,6 +3,7 @@
 A card component that provides a container for content with optional header and footer sections. It supports separators between sections and customizable padding.
 
 ::card-example{sourcePath="Card/Card.vue"}
+
 ```vue
 <script setup>
 import { Button, Card, Flex } from '@dolanske/vui'
@@ -61,6 +62,7 @@ import { Button, Card, Flex } from '@dolanske/vui'
 Use the `header-align` prop to vertically align header content. This is useful when the header contains more than just the card title.
 
 ::card-centered-header-example
+
 ```vue
 <script setup>
 import { Button, Card } from '@dolanske/vui'
@@ -91,6 +93,7 @@ import { Button, Card } from '@dolanske/vui'
 Use `centered` and `border-style="dashed"` to create a styled error state card.
 
 ::card-error-example
+
 ```vue
 <script setup>
 import { Card } from '@dolanske/vui'

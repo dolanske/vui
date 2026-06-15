@@ -3,6 +3,7 @@
 The Switch component is a form control that allows users to toggle between two states. It provides a visual representation of a boolean value and can be customized with labels and different styles.
 
 ::switch-example{sourcePath="Switch/Switch.vue"}
+
 ```vue
 <script setup lang="ts">
 import { Switch } from '@dolanske/vui'

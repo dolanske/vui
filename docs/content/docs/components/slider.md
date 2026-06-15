@@ -5,6 +5,7 @@ A draggable input for selecting a numeric value within a defined range. Supports
 By default, slider rounds output values to integers.
 
 ::slider-example{sourcePath="Slider/Slider.vue"}
+
 ```vue
 <script setup>
 import { Slider } from '@dolanske/vui'
@@ -22,13 +23,13 @@ const value = ref(40)
 
 ### Props
 
-| Name    | Default | Type                                                            |
-| ------- | ------- | --------------------------------------------------------------- |
-| `min`   | `0`     | `number` <br> Minimum output value                              |
-| `max`   | `100`   | `number` <br> Maximum output value                              |
-| `steps` | —       | `number` <br> Number of equal divisions between `min` and `max` |
-| `range`    | `false` | `boolean` <br> Enables range mode with a start and end handle                                             |
-| `round`    | `true`  | `boolean \| number` <br> Round output values. `true` rounds to an integer, a number specifies decimal places, `false` disables rounding |
+| Name    | Default | Type                                                                                                                                    |
+| ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `min`   | `0`     | `number` <br> Minimum output value                                                                                                      |
+| `max`   | `100`   | `number` <br> Maximum output value                                                                                                      |
+| `steps` | —       | `number` <br> Number of equal divisions between `min` and `max`                                                                         |
+| `range` | `false` | `boolean` <br> Enables range mode with a start and end handle                                                                           |
+| `round` | `true`  | `boolean \| number` <br> Round output values. `true` rounds to an integer, a number specifies decimal places, `false` disables rounding |
 
 ### Models
 
@@ -43,6 +44,7 @@ const value = ref(40)
 Range mode with 10 steps. Both handles snap to step boundaries and cannot cross each other.
 
 ::slider-range-example
+
 ```vue
 <script setup>
 import { Slider } from '@dolanske/vui'

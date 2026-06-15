@@ -3,6 +3,7 @@
 A scrollable container with gradient shadow indicators that show when there is more content to scroll to. Supports both vertical and horizontal scrolling.
 
 ::overflow-example{sourcePath="Overflow/Overflow.vue"}
+
 ```vue
 <script setup>
 import { Avatar, Card, Flex, Overflow } from '@dolanske/vui'
@@ -45,8 +46,8 @@ import { Avatar, Card, Flex, Overflow } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                          | Default            | Description             |
-| ------------------------------ | ------------------ | ----------------------- |
-| `--vui-overflow-gutter-size`   | `8px`              | Scrollbar gutter width  |
-| `--vui-overflow-shadow-size`   | `32px`             | Edge fade shadow size   |
-| `--vui-overflow-shadow-color`  | [`var(--color-bg)`](/docs/tokens/colors)  | Edge fade shadow color  |
+| Token                         | Default                                  | Description            |
+| ----------------------------- | ---------------------------------------- | ---------------------- |
+| `--vui-overflow-gutter-size`  | `8px`                                    | Scrollbar gutter width |
+| `--vui-overflow-shadow-size`  | `32px`                                   | Edge fade shadow size  |
+| `--vui-overflow-shadow-color` | [`var(--color-bg)`](/docs/tokens/colors) | Edge fade shadow color |

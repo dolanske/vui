@@ -3,6 +3,7 @@
 Alert banners are full width components used to display important messages or notifications to users.
 
 ::alert-example{sourcePath="Alert/Alert.vue"}
+
 ```vue
 <script setup>
 import { Alert } from '@dolanske/vui'
@@ -60,6 +61,7 @@ Please note. Unless you're using the `description` prop, the Alert component doe
 #### Custom Title and Description
 
 ::alert-custom-example
+
 ```vue
 <script setup>
 import { Alert } from '@dolanske/vui'
@@ -79,6 +81,7 @@ import { Alert } from '@dolanske/vui'
 #### Components in Slots
 
 ::alert-components-example
+
 ```vue
 <script setup>
 import { Alert, Button, Flex } from '@dolanske/vui'
@@ -104,7 +107,7 @@ import { Alert, Button, Flex } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                | Default                               | Description             |
-| -------------------- | ------------------------------------- | ----------------------- |
-| `--vui-alert-padding` | [`var(--space-s)`](/docs/tokens/spacing) | Alert inner padding    |
-| `--vui-alert-gap`    | [`var(--space-s)`](/docs/tokens/spacing) | Gap between icon and content |
+| Token                 | Default                                  | Description                  |
+| --------------------- | ---------------------------------------- | ---------------------------- |
+| `--vui-alert-padding` | [`var(--space-s)`](/docs/tokens/spacing) | Alert inner padding          |
+| `--vui-alert-gap`     | [`var(--space-s)`](/docs/tokens/spacing) | Gap between icon and content |
