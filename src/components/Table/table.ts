@@ -1,12 +1,10 @@
 import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
 import { computed, provide, readonly, ref, shallowRef, toValue } from 'vue'
-import { searchString } from '../../shared/helpers'
+import { isObjectInSet, searchString } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
-export type BaseRow = Record<string, string | number>
-
-export interface TableSelectionProvide<Row = BaseRow> {
+export interface TableSelectionProvide<Row = any> {
   selectedRows: Ref<Set<Row>>
   selectRow: (row: Row) => void
   selectAllRows: () => void
@@ -188,13 +186,10 @@ export function defineTable<const Dataset extends any[]>(
   const selectingEnabled = computed(() => options.value.select)
 
   /**
-   * Accepts either an existing index of a row within the dataset or the dataset
-   * row itself. If the item is already selected, it will be deselected.
-   *
-   * @param row {Number | RowObject}
+   * Checks whether the provided row is already selected. If it is, it deselects it by
    */
   function selectRow(row: Dataset[number]): void {
-    if (selectedRows.value.has(row)) {
+    if (isObjectInSet(selectedRows.value, row)) {
       selectedRows.value.delete(row)
     }
     else {
@@ -204,6 +199,9 @@ export function defineTable<const Dataset extends any[]>(
 
   const isSelectedAll = computed(() => $data.value.length === selectedRows.value.size)
 
+  /**
+   * Selects the entire dataset
+   */
   function selectAllRows(): void {
     if (isSelectedAll.value) {
       // If the selected indexes have the same length as the data array, we can

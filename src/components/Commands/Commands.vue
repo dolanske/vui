@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue'
-import { IconArrowDown, IconArrowUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
+import { IconArrowDown, IconArrowUp, IconX } from '@iconify-prerendered/vue-ph'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, nextTick, ref, useTemplateRef, watch, watchEffect } from 'vue'
 import { searchString } from '../../shared/helpers'
@@ -11,11 +11,13 @@ import Carousel from '../Carousel/Carousel.vue'
 import Flex from '../Flex/Flex.vue'
 import Kbd from '../Kbd/Kbd.vue'
 import Modal from '../Modal/Modal.vue'
+import Overflow from '../Overflow/Overflow.vue'
+
 import Spinner from '../Spinner/Spinner.vue'
 import './commands.scss'
 
 const props = withDefaults(defineProps<Props>(), {
-  placeholder: 'Write a command..',
+  placeholder: 'Type a command..',
 })
 
 const emit = defineEmits<{
@@ -238,15 +240,12 @@ watch(
   >
     <template #header>
       <div class="vui-commands-input">
-        <div class="vui-commands-input-icon">
-          <Spinner v-if="loading" size="s" />
-          <IconMagnifyingGlass v-else />
-        </div>
-
         <input ref="searchRef" v-model="searchValue" type="text" autofocus :placeholder="props.placeholder">
 
         <Flex :gap="2">
-          <Button v-if="searchValue" size="s" square @click="resetSearch">
+          <Spinner v-if="loading" size="s" />
+
+          <Button v-else-if="searchValue" size="s" square @click="resetSearch">
             <IconX class="text-color-light" />
           </Button>
 
@@ -298,43 +297,45 @@ watch(
       <p>No results found</p>
     </div>
 
-    <slot v-else :commands="groupedResults">
-      <div v-for="(group, groupKey, groupIndex) in groupedResults" :key="groupKey" class="vui-commands-group" tabindex="-1">
-        <span v-if="groupKey !== EMPTY_GROUP_KEY && activeGroup === 'All'" class="vui-commands-group-title">
-          {{ groupKey }}
-        </span>
+    <Overflow v-else>
+      <slot :commands="groupedResults">
+        <div v-for="(group, groupKey, groupIndex) in groupedResults" :key="groupKey" class="vui-commands-group" tabindex="-1">
+          <span v-if="groupKey !== EMPTY_GROUP_KEY && activeGroup === 'All'" class="vui-commands-group-title">
+            {{ groupKey }}
+          </span>
 
-        <ul class="vui-commands-list">
-          <li
-            v-for="(result, index) in group"
-            :key="result.title"
-            :data-index="groupOffsets[groupIndex] + index"
-            :class="{ 'vui-commands-list-item-focused': focusedIndex === groupOffsets[groupIndex] + index }"
-            @click="handleSelect(result)"
-          >
-            <slot :command="result" :group="groupKey" name="command">
-              <button class="vui-commands-list-item">
-                <div v-if="result.icon || $slots.icon" class="vui-commands-list-item-icon">
-                  <slot :command="result" name="icon">
-                    <component :is="result.icon" />
-                  </slot>
-                </div>
-                <div class="vui-command-body">
-                  <span>
-                    {{ result.title }}
-                  </span>
-                  <p v-if="result.description" class="text-overflow-1">
-                    {{ result.description }}
-                  </p>
-                </div>
-                <Flex v-if="result.shortcut" gap="xxs">
-                  <Kbd v-for="shortcut in result.shortcut.split('+')" :key="shortcut" class="vui-commands-list-item-shortcut" :keys="shortcut" />
-                </Flex>
-              </button>
-            </slot>
-          </li>
-        </ul>
-      </div>
-    </slot>
+          <ul class="vui-commands-list">
+            <li
+              v-for="(result, index) in group"
+              :key="result.title"
+              :data-index="groupOffsets[groupIndex] + index"
+              :class="{ 'vui-commands-list-item-focused': focusedIndex === groupOffsets[groupIndex] + index }"
+              @click="handleSelect(result)"
+            >
+              <slot :command="result" :group="groupKey" name="command">
+                <button class="vui-commands-list-item">
+                  <div v-if="result.icon || $slots.icon" class="vui-commands-list-item-icon">
+                    <slot :command="result" name="icon">
+                      <component :is="result.icon" />
+                    </slot>
+                  </div>
+                  <div class="vui-command-body">
+                    <span>
+                      {{ result.title }}
+                    </span>
+                    <p v-if="result.description" class="text-overflow-1">
+                      {{ result.description }}
+                    </p>
+                  </div>
+                  <Flex v-if="result.shortcut" gap="xxs">
+                    <Kbd v-for="shortcut in result.shortcut.split('+')" :key="shortcut" class="vui-commands-list-item-shortcut" :keys="shortcut" />
+                  </Flex>
+                </button>
+              </slot>
+            </li>
+          </ul>
+        </div>
+      </slot>
+    </Overflow>
   </Modal>
 </template>

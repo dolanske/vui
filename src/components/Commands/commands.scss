@@ -56,22 +56,6 @@
     border-top-right-radius: var(--border-radius-m);
     margin-bottom: var(--space-xs);
 
-    .vui-commands-input-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: 50%;
-      left: 24px;
-      transform: translateY(-50%);
-
-      & > svg,
-      & > .iconify {
-        font-size: 22px;
-        color: var(--color-text-lighter);
-      }
-    }
-
     .vui-flex {
       position: absolute;
       top: 50%;
@@ -88,12 +72,13 @@
       line-height: var(--vui-commands-input-size);
       border: none;
       background-color: transparent;
-      padding-left: 64px;
+      // padding-left: 56px;
+      padding-left: var(--space-m);
       padding-right: 128px;
       border-radius: var(--border-radius-m);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-
+      caret-color: var(--color-accent);
       outline: none !important;
 
       &:focus-visible {
@@ -174,7 +159,7 @@
       &:hover,
       &.vui-commands-list-item-focused {
         .vui-commands-list-item {
-          background-color: var(--color-bg-raised);
+          background-color: var(--color-bg-accent-lowered);
 
           .vui-commands-list-item-icon {
             color: var(--color-accent);
@@ -191,11 +176,12 @@
         justify-content: flex-start;
         align-items: center;
         text-align: left;
-        padding-inline: var(--space-m);
-        height: 56px;
+        padding-right: var(--space-m);
+        padding-left: var(--space-s);
+        height: 52px;
         width: 100%;
         position: relative;
-        gap: var(--space-m);
+        gap: var(--space-s);
 
         .vui-commands-list-item-icon {
           display: flex;

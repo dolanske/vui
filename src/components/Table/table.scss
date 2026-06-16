@@ -6,7 +6,7 @@
 }
 
 .vui-table-container {
-  --vui-checkbox-cell-width: calc(calc(var(--space-xs) * 2) + 32px);
+  --vui-checkbox-cell-width: calc(calc(var(--space-xxs) * 2) + 32px);
 
   display: block;
   width: 100%;
@@ -89,8 +89,9 @@
         min-width: var(--vui-checkbox-cell-width);
         max-width: var(--vui-checkbox-cell-width);
         height: auto;
-        padding-inline: var(--space-xs);
+        padding-inline: var(--space-xxs);
         padding-block: 0;
+
         vertical-align: middle;
 
         &.selected .vui-button.icon .vui-button-slot svg path,

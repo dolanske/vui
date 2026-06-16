@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { BaseRow, TableSelectionProvide } from './table'
+import type { TableSelectionProvide } from './table'
 import { IconCheckSquareFill, IconSquare } from '@iconify-prerendered/vue-ph'
 import { computed, inject } from 'vue'
 import { isObjectInSet } from '../../shared/helpers'
@@ -7,7 +7,7 @@ import Button from '../Button/Button.vue'
 import { TableSelectionProvideSymbol } from './table'
 
 interface Props {
-  row: BaseRow
+  row: any
 }
 
 const props = defineProps<Props>()
@@ -16,6 +16,7 @@ const {
   selectRow,
   selectedRows,
 } = inject(TableSelectionProvideSymbol) as TableSelectionProvide
+
 const isSelected = computed(() => isObjectInSet(selectedRows.value, props.row))
 </script>
 

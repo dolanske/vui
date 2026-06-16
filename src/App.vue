@@ -37,7 +37,7 @@ watchEffect(() => {
       {{ views }}
     </pre> -->
 
-    <ExampleTables />
     <ExampleCommands />
+    <ExampleTables />
   </main>
 </template>
