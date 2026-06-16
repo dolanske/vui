@@ -104,38 +104,6 @@ export function clamp(min: number, max: number, value: number): number {
   return Math.min(Math.max(value, min), max)
 }
 
-/**
- * Checks wether an object is inside of Set, based on comparing values. Not reference
- *
- * @param set The Set
- * @param obj Object which should be in the side
- * @returns If object is inside the set
- */
-export function isObjectInSet(set: Set<any>, obj: any): boolean {
-  for (const item of set) {
-    // Check if both have the same number of keys
-    if (Object.keys(item).length !== Object.keys(obj).length) {
-      continue
-    }
-
-    // Compare each key-value pair
-    let isEqual = true
-
-    for (const key in item) {
-      if (key in item && item[key] !== obj[key]) {
-        isEqual = false
-        break
-      }
-    }
-
-    if (isEqual) {
-      return true
-    }
-  }
-
-  return false
-}
-
 export function getPlacementAnimationName(position: Placement): string {
   const suffix = position.includes('-') ? position.split('-')[0] : position
   return `fade-${suffix}`

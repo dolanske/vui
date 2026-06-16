@@ -1,11 +1,11 @@
 import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
-import { computed, provide, readonly, ref, shallowRef, toValue } from 'vue'
-import { isObjectInSet, searchString } from '../../shared/helpers'
+import { computed, provide, ref, shallowRef, toValue } from 'vue'
+import { searchString } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
 export interface TableSelectionProvide<Row = any> {
-  selectedRows: Ref<Set<Row>>
+  selectedRows: Ref<Map<string | number, Row>>
   selectRow: (row: Row) => void
   selectAllRows: () => void
   enabled: ComputedRef<boolean>
@@ -25,19 +25,24 @@ export interface Header {
   sortKey?: 'asc' | 'desc'
 }
 
-interface TableOptionsInput {
+interface TableOptionsInput<Dataset extends any[]> {
   pagination?: {
     enabled?: boolean
     perPage?: number
     maxPages?: number
   }
-  select?: boolean
+  /**
+   * If setting is enabled, you _must_ provide an `id` property on your dataset
+   * objects, which is used for selection. The value of this property can be
+   * either a string or a number and has to be unique.
+   */
+  select?: Dataset[number] extends { id: string | number } ? boolean : false
 }
 
 // eslint-disable-next-line ts/explicit-function-return-type
 export function defineTable<const Dataset extends any[]>(
   computedDataset: MaybeRefOrGetter<Dataset>,
-  tableOptions?: TableOptionsInput,
+  tableOptions?: TableOptionsInput<Dataset>,
 ) {
   const $data = computed(() => toValue(computedDataset))
 
@@ -51,7 +56,7 @@ export function defineTable<const Dataset extends any[]>(
     },
     select: false,
     ...tableOptions,
-  } as DeepRequired<TableOptionsInput>)
+  } as DeepRequired<TableOptionsInput<Dataset>>)
 
   //
   // Pagination
@@ -182,18 +187,19 @@ export function defineTable<const Dataset extends any[]>(
 
   //
   // Row selecting
-  const selectedRows = ref<Set<Dataset[number]>>(new Set())
-  const selectingEnabled = computed(() => options.value.select)
+  const selectedRows = ref<Map<string | number, Dataset[number]>>(new Map())
+  const selectingEnabled = computed(() => options.value.select as boolean)
 
   /**
-   * Checks whether the provided row is already selected. If it is, it deselects it by
+   * Checks whether the provided row is already selected. If it is, it deselects it.
+   * Uses `row.id` as the Map key for O(1) lookup, so paginated rows (new references, same data) work correctly.
    */
   function selectRow(row: Dataset[number]): void {
-    if (isObjectInSet(selectedRows.value, row)) {
-      selectedRows.value.delete(row)
+    if (selectedRows.value.has(row.id)) {
+      selectedRows.value.delete(row.id)
     }
     else {
-      selectedRows.value.add(row)
+      selectedRows.value.set(row.id, row)
     }
   }
 
@@ -207,15 +213,15 @@ export function defineTable<const Dataset extends any[]>(
       // If the selected indexes have the same length as the data array, we can
       // assume all of them are selected. Therefore we toggle it by deselecting
       // all of them
-      selectedRows.value = new Set()
+      selectedRows.value = new Map()
     }
     else {
-      selectedRows.value = new Set($data.value)
+      selectedRows.value = new Map($data.value.map(row => [row.id, row]))
     }
   }
 
   function deselectAllRows(): void {
-    selectedRows.value = new Set()
+    selectedRows.value = new Map()
   }
 
   provide(TableSelectionProvideSymbol as InjectionKey<TableSelectionProvide<Dataset[number]>>, {
@@ -232,7 +238,7 @@ export function defineTable<const Dataset extends any[]>(
     search,
     rows,
     allRows: filteredRows,
-    selectedRows: readonly(selectedRows),
+    selectedRows: computed(() => [...selectedRows.value.values()]),
     headers,
     pagination,
     canPrevPage,

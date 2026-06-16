@@ -2,7 +2,6 @@
 import type { TableSelectionProvide } from './table'
 import { IconCheckSquareFill, IconSquare } from '@iconify-prerendered/vue-ph'
 import { computed, inject } from 'vue'
-import { isObjectInSet } from '../../shared/helpers'
 import Button from '../Button/Button.vue'
 import { TableSelectionProvideSymbol } from './table'
 
@@ -17,7 +16,7 @@ const {
   selectedRows,
 } = inject(TableSelectionProvideSymbol) as TableSelectionProvide
 
-const isSelected = computed(() => isObjectInSet(selectedRows.value, props.row))
+const isSelected = computed(() => selectedRows.value.has(props.row.id))
 </script>
 
 <template>
