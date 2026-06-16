@@ -62,7 +62,7 @@
       justify-content: center;
       position: absolute;
       top: 50%;
-      left: 12px;
+      left: 24px;
       transform: translateY(-50%);
 
       & > svg,
@@ -88,11 +88,17 @@
       line-height: var(--vui-commands-input-size);
       border: none;
       background-color: transparent;
-      padding-left: 48px;
+      padding-left: 64px;
       padding-right: 128px;
       border-radius: var(--border-radius-m);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+
+      outline: none !important;
+
+      &:focus-visible {
+        background-color: var(--color-bg-raised);
+      }
     }
   }
 

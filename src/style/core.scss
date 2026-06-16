@@ -132,6 +132,10 @@ body {
   min-height: 100dvh;
 }
 
+[role='button'] {
+  cursor: pointer;
+}
+
 // Set base icon color
 .iconify {
   color: var(--color-text-light);

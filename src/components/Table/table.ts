@@ -1,14 +1,14 @@
 import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
 import type { DeepRequired } from '../../shared/types'
-import { computed, provide, readonly, ref, toValue } from 'vue'
+import { computed, provide, readonly, ref, shallowRef, toValue } from 'vue'
 import { searchString } from '../../shared/helpers'
 import { paginate } from '../Pagination/pagination'
 
 export type BaseRow = Record<string, string | number>
 
-export interface TableSelectionProvide {
-  selectedRows: Ref<Set<BaseRow>>
-  selectRow: (row: BaseRow) => void
+export interface TableSelectionProvide<Row = BaseRow> {
+  selectedRows: Ref<Set<Row>>
+  selectRow: (row: Row) => void
   selectAllRows: () => void
   enabled: ComputedRef<boolean>
   isSelectedAll: ComputedRef<boolean>
@@ -25,7 +25,6 @@ export interface Header {
   label: string
   sortToggle: () => void
   sortKey?: 'asc' | 'desc'
-
 }
 
 interface TableOptionsInput {
@@ -86,7 +85,7 @@ export function defineTable<const Dataset extends any[]>(
   //
   // Sorting
 
-  const sorting = ref<Sorting<Ref<keyof Dataset[number]>>>({
+  const sorting = shallowRef<Sorting<keyof Dataset[number]>>({
     key: undefined,
     type: 'asc',
   })
@@ -110,7 +109,7 @@ export function defineTable<const Dataset extends any[]>(
 
   //
   // Dataset formatting
-  const filteredRows = computed(() => {
+  const filteredRows = computed<Dataset>(() => {
     const searchValue = search.value
     let final = $data.value
 
@@ -141,12 +140,13 @@ export function defineTable<const Dataset extends any[]>(
   const headers = computed(() => Object
     .keys($data.value[0] || {})
     .map((key) => {
+      const typedKey = key as keyof Dataset[number]
       return {
         label: key,
-        sortKey: sorting.value.key === key && sorting.value.type,
+        sortKey: sorting.value.key === typedKey && sorting.value.type,
         sortToggle: () => {
           // 3-way toggle asc -> desc -> turn off (reset to undefined)
-          if (sorting.value.key === key) {
+          if (sorting.value.key === typedKey) {
             switch (sorting.value.type) {
               case 'asc': {
                 sorting.value.type = 'desc'
@@ -154,25 +154,25 @@ export function defineTable<const Dataset extends any[]>(
               }
               case 'desc': {
                 sorting.value.key = undefined
-                sorting.value.key = 'asc'
+                sorting.value.type = 'asc'
                 break
               }
               default: {
-                sorting.value.key = key
+                sorting.value.key = typedKey
                 sorting.value.type = 'asc'
                 break
               }
             }
           }
           else {
-            setSort(key)
+            setSort(typedKey)
           }
         },
       } as Header
     }),
   )
 
-  const rows = computed(() => {
+  const rows = computed<Dataset>(() => {
     if (options.value.pagination?.enabled === true) {
       return filteredRows.value.slice(
         pagination.value.startIndex,
@@ -184,7 +184,7 @@ export function defineTable<const Dataset extends any[]>(
 
   //
   // Row selecting
-  const selectedRows = ref<Set<BaseRow>>(new Set() as Set<BaseRow>)
+  const selectedRows = ref<Set<Dataset[number]>>(new Set())
   const selectingEnabled = computed(() => options.value.select)
 
   /**
@@ -220,7 +220,7 @@ export function defineTable<const Dataset extends any[]>(
     selectedRows.value = new Set()
   }
 
-  provide(TableSelectionProvideSymbol, {
+  provide(TableSelectionProvideSymbol as InjectionKey<TableSelectionProvide<Dataset[number]>>, {
     selectedRows,
     selectRow,
     selectAllRows,
@@ -232,10 +232,10 @@ export function defineTable<const Dataset extends any[]>(
     setSort,
     clearSort,
     search,
-    rows: readonly(rows),
-    allRows: readonly(filteredRows),
+    rows,
+    allRows: filteredRows,
     selectedRows: readonly(selectedRows),
-    headers: readonly(headers),
+    headers,
     pagination,
     canPrevPage,
     canNextPage,

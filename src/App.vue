@@ -3,6 +3,7 @@ import { ref, watchEffect } from 'vue'
 // import ResizableView from './components/ResizableView/ResizableView.vue'
 import Switch from './components/Switch/Switch.vue'
 
+import ExampleCommands from './examples/ExampleCommands.vue'
 import ExampleTables from './examples/ExampleTables.vue'
 import { setColorTheme } from './shared/theme'
 
@@ -37,5 +38,6 @@ watchEffect(() => {
     </pre> -->
 
     <ExampleTables />
+    <ExampleCommands />
   </main>
 </template>
