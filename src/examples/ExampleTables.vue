@@ -139,15 +139,19 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
       This example demonstrates the full capability of the table component. Including column sorting, pagination and row selection.
     </p>
 
-    <Table.Root separate-cells class="mb-l" fixed>
+    <Table.Root separate-cells scroll pin="both">
       <template #header>
         <Table.SelectAll />
-        <Table.Head v-for="header in headers" :key="header.label" :header sort />
+        <Table.Head>Test</Table.Head>
+        <Table.Head v-for="header in headers.filter((item) => item.label !== 'id')" :key="header.label" :header sort />
       </template>
       <template #body>
         <tr v-for="row in rows" :key="row.State">
           <Table.SelectRow :row />
-          <Table.Cell>{{ row.State }}</Table.Cell>
+          <Table.Cell>Hiii</Table.Cell>
+          <Table.Cell>
+            {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }} {{ row.State }}
+          </Table.Cell>
           <Table.Cell>{{ row.Population }}</Table.Cell>
           <Table.Cell>{{ row.Capital }}</Table.Cell>
         </tr>
@@ -157,7 +161,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
       </template>
     </Table.Root>
 
-    <Accordion :label="`Selected rows (${selectedRows.length})`" class="mb-xl">
+    <Accordion :label="`Selected rows (${selectedRows.length})`" class="mb-xl mt-l">
       <pre>
         {{ selectedRows }}
       </pre>

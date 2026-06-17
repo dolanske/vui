@@ -46,6 +46,49 @@
     }
   }
 
+  &.pin-first {
+    table tr {
+      & > th:first-child,
+      & > td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+      }
+
+      & > td:first-child {
+        background-color: var(--color-bg);
+      }
+    }
+
+    // If selection is active, the first column are checkboxes. So we pin 2nd
+    // column as well, which is the first column to contain content
+    &.selecting table tr {
+      & > th:nth-child(2),
+      & > td:nth-child(2) {
+        position: sticky;
+        left: calc(var(--vui-checkbox-cell-width) - 1px);
+        z-index: 2;
+      }
+
+      & > td:nth-child(2) {
+        background-color: var(--color-bg);
+      }
+    }
+  }
+
+  &.pin-last table tr {
+    & > th:last-child,
+    & > td:last-child {
+      position: sticky;
+      right: 0;
+      z-index: 2;
+    }
+
+    & > td:last-child {
+      background-color: var(--color-bg);
+    }
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -62,7 +105,8 @@
 
       &:has(.vui-table-interactive-cell.selected) {
         td {
-          background-color: var(--color-bg-raised);
+          // !important to override sticky columns
+          background-color: var(--color-bg-raised) !important;
         }
       }
 
@@ -73,6 +117,7 @@
 
     th {
       border-top: 0 !important;
+      vertical-align: middle;
     }
 
     th,
@@ -90,9 +135,14 @@
         max-width: var(--vui-checkbox-cell-width);
         height: auto;
         padding-inline: var(--space-xxs);
-        padding-block: 0;
+        // padding-block: 0;
+        padding-top: var(--space-xs);
 
-        vertical-align: middle;
+        &:is(td) {
+          padding-top: calc(var(--space-xs) - 2px);
+        }
+
+        // vertical-align: middle;
 
         &.selected .vui-button.icon .vui-button-slot svg path,
         &.selected .vui-button.icon .vui-button-slot .iconify {

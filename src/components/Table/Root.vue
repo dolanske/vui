@@ -25,10 +25,20 @@ interface Props {
    * Wrap table with a border
    */
   outerBorder?: boolean
+  /**
+   * Pins the selected so it stays visible while user scrolls the table horizontally
+   */
+  pin?: 'first' | 'last' | 'both'
+  /**
+   * Enable automatic horizontal scrolling if table content ovetflows its container
+   */
+  scroll?: boolean
 }
 
 const {
+  pin,
   fixed,
+  scroll,
   nowrap,
   separateRows = true,
   separateCells = false,
@@ -47,6 +57,9 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
       'separated-rows': separateRows,
       'separated-cells': separateCells,
       'outer-border': outerBorder,
+      'pin-first': pin === 'first' || pin === 'both',
+      'pin-last': pin === 'last' || pin === 'both',
+      'vui-table-overflow': scroll,
     }"
   >
     <table>
