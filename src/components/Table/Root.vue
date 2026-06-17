@@ -25,6 +25,7 @@ interface Props {
    * Wrap table with a border
    */
   outerBorder?: boolean
+  // TODO: document
   /**
    * Pins the selected so it stays visible while user scrolls the table horizontally
    */
