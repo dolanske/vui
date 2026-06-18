@@ -139,7 +139,7 @@ const exampleToRender = computed(() => testData.slice(paginationExample.value.st
       This example demonstrates the full capability of the table component. Including column sorting, pagination and row selection.
     </p>
 
-    <Table.Root separate-cells scroll pin="both">
+    <Table.Root separate-cells>
       <template #header>
         <Table.SelectAll />
         <Table.Head>Test</Table.Head>

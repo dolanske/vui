@@ -61,13 +61,15 @@ const { headers, rows, pagination, setPage } = defineTable(data, {
 
 #### Table.Root Props
 
-| Name            | Default | Type                                                            |
-| --------------- | ------- | --------------------------------------------------------------- |
-| `fixed`         | `false` | `boolean` <br> Sets the `table-layout` property to `fixed`      |
-| `nowrap`        | `false` | `boolean` <br> Prevents cell content from wrapping to new lines |
-| `separateRows`  | `true`  | `boolean` <br> Adds a visual separator between rows             |
-| `separateCells` | `false` | `boolean` <br> Adds a visual separator between cells            |
-| `outerBorder`   | `true`  | `boolean` <br> Adds a border around the table                   |
+| Name            | Default | Type                                                                                                                                                             |
+| --------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fixed`         | `false` | `boolean` <br> Sets the `table-layout` property to `fixed`                                                                                                       |
+| `scroll`        | `false` | `boolean` <br> If table content overflows, it will add a horizontal scrollbar to it without expanding the table out of bounds. Only works if `fixed` is not set. |
+| `pin`           | —       | `first`, `last`, `both` <br> Pins the first or last column. Only works if `scroll` is enabled.                                                                   |
+| `nowrap`        | `false` | `boolean` <br> Prevents cell content from wrapping to new lines                                                                                                  |
+| `separateRows`  | `true`  | `boolean` <br> Adds a visual separator between rows                                                                                                              |
+| `separateCells` | `false` | `boolean` <br> Adds a visual separator between cells                                                                                                             |
+| `outerBorder`   | `true`  | `boolean` <br> Adds a border around the table                                                                                                                    |
 
 #### Table.Head Props
 

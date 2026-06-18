@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import type { TableSelectionProvide } from './table'
 import { inject } from 'vue'
+import { viewport } from '../../shared/viewport'
 import { TableSelectionProvideSymbol } from './table'
 import './table.scss'
 
@@ -25,7 +26,6 @@ interface Props {
    * Wrap table with a border
    */
   outerBorder?: boolean
-  // TODO: document && disable on mobile
   /**
    * Pins the selected so it stays visible while user scrolls the table horizontally
    */
@@ -58,8 +58,8 @@ const selecting = inject(TableSelectionProvideSymbol) as TableSelectionProvide
       'separated-rows': separateRows,
       'separated-cells': separateCells,
       'outer-border': outerBorder,
-      'pin-first': pin === 'first' || pin === 'both',
-      'pin-last': pin === 'last' || pin === 'both',
+      'pin-first': (pin === 'first' || pin === 'both') && !viewport.s,
+      'pin-last': (pin === 'last' || pin === 'both') && !viewport.s,
       'vui-table-overflow': scroll,
     }"
   >
