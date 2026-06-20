@@ -168,7 +168,7 @@ The `defineTable` composable returns an object with the following reactive prope
 | `search`        | `Ref<string>`                          | Reactive search query string                  |
 | `rows`          | `ComputedRef<T[]>`                     | Filtered and paginated dataset rows           |
 | `allRows`       | `ComputedRef<T[]>`                     | All filtered rows (without pagination)        |
-| `selectedRows`  | `ComputedRef<Set<T>>`                  | Set of currently selected rows                |
+| `selectedRows`  | `ComputedRef<T[]>`                     | Array of currently selected rows              |
 | `headers`       | `ComputedRef<Header[]>`                | Table headers with sorting functionality      |
 | `pagination`    | `ComputedRef<PaginationResult>`        | Pagination state and metadata                 |
 | `canPrevPage`   | `ComputedRef<boolean>`                 | Whether previous page navigation is available |
