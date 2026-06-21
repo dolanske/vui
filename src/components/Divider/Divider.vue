@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { formatUnitValue } from '../../shared/helpers'
+import { formatUnitValue } from '../../lib/helpers'
 import './divider.scss'
 
 interface BaseProps {

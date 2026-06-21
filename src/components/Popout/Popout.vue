@@ -1,10 +1,10 @@
 <script setup lang='ts'>
-import type { Placement, PopoutMaybeElement } from '../../shared/types'
+import type { Placement, PopoutMaybeElement } from '../../lib/types'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
 import { computed, ref, useAttrs, useTemplateRef, watch } from 'vue'
-import { getPlacementAnimationName } from '../../shared/helpers'
-import { useLayer } from '../../shared/layerManager'
+import { getPlacementAnimationName } from '../../lib/helpers'
+import { useLayer } from '../../lib/layerManager'
 import './popout.scss'
 
 export interface Props {

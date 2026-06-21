@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { TableSelectionProvide } from './table'
 import { inject } from 'vue'
-import { viewport } from '../../shared/viewport'
+import { viewport } from '../../lib/viewport'
 import { TableSelectionProvideSymbol } from './table'
 import './table.scss'
 

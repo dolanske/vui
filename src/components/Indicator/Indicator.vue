@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types'
 import { computed } from 'vue'
 import './indicator.scss'
 

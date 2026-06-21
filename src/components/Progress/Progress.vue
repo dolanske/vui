@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { whenever } from '@vueuse/core'
 import { computed, onMounted, useTemplateRef, watch, watchEffect } from 'vue'
-import { clamp, delay, formatUnitValue, isNil, randomMinMax } from '../../shared/helpers'
+import { clamp, delay, formatUnitValue, isNil, randomMinMax } from '../../lib/helpers'
 import './progress.scss'
 
 interface Props {

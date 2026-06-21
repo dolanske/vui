@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { isTopLayer, useLayer } from '../../shared/layerManager'
+import { isTopLayer, useLayer } from '../../lib/layerManager'
 import './backdrop.scss'
 
 const emits = defineEmits<{

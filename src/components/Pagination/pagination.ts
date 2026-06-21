@@ -1,4 +1,4 @@
-import { createArray } from '../../shared/helpers'
+import { createArray } from '../../lib/helpers'
 
 export interface Pagination {
   totalItems: number

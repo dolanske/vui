@@ -1,8 +1,8 @@
 <script lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types.ts'
 import { computed, defineComponent, h } from 'vue'
-import { isNil } from '../../shared/helpers'
-import { Size } from '../../shared/types'
+import { isNil } from '../../lib/helpers.ts'
+import { Size } from '../../lib/types.ts'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 

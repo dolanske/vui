@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useEventListener } from '@vueuse/core'
 import { ref, useTemplateRef } from 'vue'
-import { isTopLayer } from '../../shared/layerManager'
+import { isTopLayer } from '../../lib/layerManager.ts'
 import Popout from '../Popout/Popout.vue'
 import './context-menu.scss'
 

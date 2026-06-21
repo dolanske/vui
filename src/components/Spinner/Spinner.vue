@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types'
 import { computed } from 'vue'
-import { Size } from '../../shared/types'
+import { Size } from '../../lib/types'
 import './spinner.scss'
 
 interface Props {

@@ -58,6 +58,7 @@
     "@types/node": "^25.6.0",
     "@vuepic/vue-datepicker": "^12.1.0",
     "@vueuse/core": "^14.2.1",
+    "emojibase": "^17.0.0",
     "sass": "^1.99.0",
     "vaul-vue": "^0.4.1",
     "vite-plugin-dts": "^4.5.4",

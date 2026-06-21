@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { Sizes } from '../shared/types'
+import type { Sizes } from '../lib/types.ts'
 import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'

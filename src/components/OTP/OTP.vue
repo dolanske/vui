@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { ModelRef, Ref } from 'vue'
 import { computed, provide, ref, toRef, useTemplateRef, watch } from 'vue'
-import { setCharAt } from '../../shared/helpers'
+import { setCharAt } from '../../lib/helpers'
 import './otp.scss'
 
 export interface OtpContext {

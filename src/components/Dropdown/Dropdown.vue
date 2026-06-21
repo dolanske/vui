@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-import type { Placement } from '../../shared/types'
+import type { Placement } from '../../lib/types.ts'
 import { useMagicKeys, whenever } from '@vueuse/core'
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
-import { formatUnitValue } from '../../shared/helpers'
-import { viewport } from '../../shared/viewport'
+import { formatUnitValue } from '../../lib/helpers.ts'
+import { viewport } from '../../lib/viewport.ts'
 import Drawer from '../Drawer/Drawer.vue'
 import Popout from '../Popout/Popout.vue'
 import './dropdown.scss'

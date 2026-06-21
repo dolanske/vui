@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { IconCaretRight } from '@iconify-prerendered/vue-ph'
-import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
+import { enforceSlotType, useFlattenedSlot } from '../../lib/slots'
 import './breadcrumbs.scss'
 
 interface Props {

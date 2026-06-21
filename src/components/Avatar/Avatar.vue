@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types'
 import { IconUser } from '@iconify-prerendered/vue-ph'
 import { computed, ref } from 'vue'
-import { formatUnitValue } from '../../shared/helpers'
+import { formatUnitValue } from '../../lib/helpers'
 import './avatar.scss'
 
 interface Props {

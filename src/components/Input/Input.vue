@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useId, useTemplateRef, watchEffect } from 'vue'
-import { getMaybeRefLength } from '../../shared/helpers'
+import { getMaybeRefLength } from '../../lib/helpers.ts'
 import Flex from '../Flex/Flex.vue'
 import '../../style/core.scss'
 import './input.scss'

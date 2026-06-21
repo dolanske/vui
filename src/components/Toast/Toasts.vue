@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Placement } from '../../shared/types'
+import type { Placement } from '../../lib/types.ts'
 import Button from '../Button/Button.vue'
 import { toasts } from './toast'
 import './toast.scss'

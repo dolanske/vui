@@ -2,7 +2,7 @@
 import type { TabProps } from './Tab.vue'
 import { useResizeObserver } from '@vueuse/core'
 import { onMounted, useTemplateRef, watch } from 'vue'
-import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
+import { enforceSlotType, useFlattenedSlot } from '../../lib/slots.ts'
 import './tabs.scss'
 
 interface Props {

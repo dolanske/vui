@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Spaces } from '../../shared/types'
+import type { Spaces } from '../../lib/types.ts'
 import { useEventListener, useScroll } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import Flex from '../Flex/Flex.vue'

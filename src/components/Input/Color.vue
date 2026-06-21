@@ -2,8 +2,8 @@
 import type { InputProps } from './Input.vue'
 import { IconPalette } from '@iconify-prerendered/vue-ph'
 import { computed, useAttrs, useId } from 'vue'
-import { hexToRgb, REGEX_HEX, REGEX_RGB_PARTIAL, toHex } from '../../shared/color'
-import { theme } from '../../shared/theme'
+import { hexToRgb, REGEX_HEX, REGEX_RGB_PARTIAL, toHex } from '../../lib/color.ts'
+import { theme } from '../../lib/theme.ts'
 import Input from './Input.vue'
 
 const props = defineProps<InputProps>()
