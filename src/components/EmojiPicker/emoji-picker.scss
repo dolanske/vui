@@ -1,5 +1,5 @@
 .vui-emoji-picker {
-  --vui-emoji-picker-height: 408px;
+  --vui-emoji-picker-height: 380px;
 
   border: none;
 
@@ -11,7 +11,7 @@
   .vui-tabs {
     padding-inline: var(--space-xs);
     justify-content: space-between;
-    --vui-tabs-gap: 1px;
+    --vui-tabs-gap: var(--space-xxs);
     --vui-tabs-item-padding-inline: var(--space-xxs);
 
     .emoji-item {
@@ -31,7 +31,9 @@
         border-radius: var(--border-radius-pill);
         z-index: -1;
         opacity: 0;
-        transition: opacity var(--transition) background-color var(--transition);
+        transition:
+          opacity var(--transition),
+          background-color var(--transition);
       }
 
       &:hover,
@@ -52,8 +54,49 @@
   }
 
   .vui-emoji-picker {
+    display: flex;
+    gap: var(--space-s);
+    flex-direction: column;
     height: var(--vui-emoji-picker-height);
     width: 100%;
+
+    .emoji-item {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      overflow: hidden;
+    }
+
+    .vui-emoji-picker-group {
+      display: none;
+      position: relative;
+
+      &:has(.vui-button) {
+        display: block;
+      }
+
+      .vui-emoji-group-title {
+        display: block;
+        width: fit-content;
+        font-size: var(--font-size-xs);
+        color: var(--color-text-light);
+        position: sticky;
+        top: 4px;
+        padding-left: 6px;
+        z-index: 6;
+        margin-bottom: var(--space-xs);
+        pointer-events: none;
+
+        &:before {
+          content: '';
+          position: absolute;
+          inset: -4px -8px;
+          z-index: -1;
+          filter: blur(5px) opacity(1);
+          background-color: var(--color-bg);
+        }
+      }
+    }
   }
 
   .vui-card-header {
@@ -68,7 +111,6 @@
 
   .vui-emoji-content {
     padding: var(--space-xxs);
-    // padding-bottom: var(--space-xs);
   }
 
   .vui-emoji-search {

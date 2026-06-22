@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Emoji, GroupDataset } from 'emojibase'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { refDebounced, useEventListener } from '@vueuse/core'
+import { useEventListener, useIntersectionObserver } from '@vueuse/core'
 import { fetchEmojis, fetchFromCDN } from 'emojibase'
-import { capitalize, computed, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef, watch } from 'vue'
+import { capitalize, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef } from 'vue'
 import { randomMinMax, searchString } from '../../lib/helpers.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
@@ -26,15 +26,10 @@ const activeTab = ref(0)
 
 const searchInput = useTemplateRef('input')
 const search = ref('')
-const searchDebounced = refDebounced(search, 350)
 
 // Automatically scroll up when switching between tabs
-const overflow = useTemplateRef('overflow')
-watch(activeTab, () => {
-  if (overflow.value?.contentRef) {
-    overflow.value.contentRef.scrollTop = 0
-  }
-})
+const groupTitles = useTemplateRef('groupTitles')
+const visibleGroups = new Set<string>()
 
 onBeforeMount(async () => {
   await Promise.all([
@@ -99,21 +94,96 @@ function resetSearch() {
   searchInput.value?.focus()
 }
 
-// Merge groups & emojis into one array. When filtering, this array is flat and lists all emojis
-const filteredData = computed(() => {
-  if (!emojiData.value || !groupData.value) {
+// When pressing tab, user is automatically & instantly scrolled to the proper group,
+// but observer might still retriger and making the tab underline animation stutter.
+const observerPaused = ref(false)
+const overflow = useTemplateRef('overflow')
+const SCROLL_OFFSET = -16
+
+function handleTabClick(key: string) {
+  if (search.value) {
+    search.value = ''
+  }
+
+  activeTab.value = Number(key)
+  observerPaused.value = true
+
+  setTimeout(() => {
+    observerPaused.value = false
+  }, 100)
+
+  nextTick(() => {
+    const target = groupTitles.value?.find((el: HTMLElement) => el.dataset.titleGroup === key)?.nextElementSibling
+    const container = overflow.value?.contentRef
+
+    if (target && container) {
+      if (container) {
+        const containerRect = container.getBoundingClientRect()
+        const targetRect = target.getBoundingClientRect()
+        const top = container.scrollTop + (targetRect.top - containerRect.top) + SCROLL_OFFSET
+
+        container.scrollTo({
+          top: Math.max(0, top),
+          behavior: 'instant',
+        })
+      }
+    }
+  })
+}
+
+// As we scroll, make sure to change tabs depending on the highlighted section
+useIntersectionObserver(
+  () => groupTitles.value ?? [],
+  (entries) => {
+    if (observerPaused.value) {
+      return
+    }
+
+    for (const entry of entries) {
+      const key = (entry.target as HTMLElement).dataset.titleGroup
+
+      if (!key) {
+        continue
+      }
+
+      if (entry.isIntersecting) {
+        visibleGroups.add(key)
+      }
+      else {
+        visibleGroups.delete(key)
+      }
+    }
+
+    if (!groupTitles.value?.length || !visibleGroups.size) {
+      return
+    }
+
+    // Pick the first visible title
+    const firstVisibleTitle = groupTitles.value.find((el: HTMLElement) => {
+      const key = el.dataset.titleGroup
+      return key ? visibleGroups.has(key) : false
+    })
+
+    activeTab.value = Number(firstVisibleTitle?.dataset.titleGroup)
+  },
+  {
+    threshold: [0, 0.1, 0.25, 0.5, 1],
+  },
+)
+
+function getEmojisByGroup(groupKey: string) {
+  if (!emojiData.value) {
     return []
   }
 
-  // Search through emojis as a flat array
-  if (searchDebounced.value) {
-    return Object.values(emojiData.value)
-      .flat()
-      .filter(emoji => searchString([emoji.label, ...(emoji.tags ?? [])], searchDebounced.value))
+  const dataset = emojiData.value[Number(groupKey)]
+
+  if (search.value) {
+    return dataset.filter(emoji => searchString([emoji.label, ...(emoji.tags ?? [])], search.value))
   }
 
-  return emojiData.value[Number(activeTab.value)]
-})
+  return dataset
+}
 </script>
 
 <template>
@@ -131,8 +201,8 @@ const filteredData = computed(() => {
         </Button>
       </div>
 
-      <Tabs v-model="activeTab">
-        <Tab v-for="(item, key) in groupData.groups" :key="item" :value="key">
+      <Tabs :model-value="activeTab.toString()">
+        <Tab v-for="(item, key) in groupData.groups" :key="item" :value="key" @click="handleTabClick(key)">
           <Tooltip>
             <span class="emoji-item">
               {{ emojiData[key][1].emoji }}
@@ -148,26 +218,31 @@ const filteredData = computed(() => {
     <div class="vui-emoji-content">
       <Overflow ref="overflow" hide-scrollbar>
         <div class="vui-emoji-picker">
-          <Grid
-            :columns="8"
-            :gap="0"
-            x-center
-            y-center
-          >
-            <Button
-              v-for="item in filteredData"
-              :key="item.hexcode"
-              plain
-              square
-              size="l"
-              @mouseover="activeEmoji = item"
-              @click="emit('select', item)"
+          <div v-for="(groupName, groupKey) of groupData.groups" :key="groupKey" class="vui-emoji-picker-group">
+            <span ref="groupTitles" class="vui-emoji-group-title" :data-title-group="groupKey">
+              {{ formatGroupName(groupName) }}
+            </span>
+            <Grid
+              :columns="8"
+              :gap="0"
+              x-center
+              y-center
             >
-              <span class="emoji-item">
-                {{ item.emoji }}
-              </span>
-            </Button>
-          </Grid>
+              <Button
+                v-for="item in getEmojisByGroup(groupKey)"
+                :key="item.hexcode"
+                plain
+                square
+                size="l"
+                @mouseover="activeEmoji = item"
+                @click="emit('select', item)"
+              >
+                <span class="emoji-item">
+                  {{ item.emoji }}
+                </span>
+              </Button>
+            </Grid>
+          </div>
         </div>
       </Overflow>
     </div>
