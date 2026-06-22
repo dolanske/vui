@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Emoji, GroupDataset } from 'emojibase'
-import { IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
-import { refDebounced, useCssVar, useEventListener } from '@vueuse/core'
+import { IconX } from '@iconify-prerendered/vue-ph'
+import { refDebounced, useEventListener } from '@vueuse/core'
 import { fetchEmojis, fetchFromCDN } from 'emojibase'
-import { capitalize, computed, nextTick, onBeforeMount, ref, shallowRef, useTemplateRef, watch } from 'vue'
+import { capitalize, computed, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef, watch } from 'vue'
 import { randomMinMax, searchString } from '../../lib/helpers.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
@@ -27,7 +27,6 @@ const activeTab = ref(0)
 const searchInput = useTemplateRef('input')
 const search = ref('')
 const searchDebounced = refDebounced(search, 350)
-const activeSearch = ref(false)
 
 // Automatically scroll up when switching between tabs
 const overflow = useTemplateRef('overflow')
@@ -83,27 +82,23 @@ function formatGroupName(label: string) {
     .join(' ')
 }
 
-// Dataset search
-function openSearch() {
-  activeSearch.value = true
-
+onMounted(() => {
   nextTick(() => {
     searchInput.value?.focus()
   })
-}
-
-function closeSearch() {
-  activeSearch.value = false
-  search.value = ''
-}
+})
 
 useEventListener(searchInput, 'keydown', (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
-    closeSearch()
+    search.value = ''
   }
 })
 
-// Filter the groups
+function resetSearch() {
+  search.value = ''
+  searchInput.value?.focus()
+}
+
 // Merge groups & emojis into one array. When filtering, this array is flat and lists all emojis
 const filteredData = computed(() => {
   if (!emojiData.value || !groupData.value) {
@@ -111,7 +106,7 @@ const filteredData = computed(() => {
   }
 
   // Search through emojis as a flat array
-  if (activeSearch.value && searchDebounced.value) {
+  if (searchDebounced.value) {
     return Object.values(emojiData.value)
       .flat()
       .filter(emoji => searchString([emoji.label, ...(emoji.tags ?? [])], searchDebounced.value))
@@ -128,10 +123,10 @@ const filteredData = computed(() => {
     :padding="false"
   >
     <template #header>
-      <div v-if="activeSearch" class="vui-emoji-search">
-        <label class="visually-hidden" for="emoji-search">Search emojis</label>
-        <input ref="input" v-model="search" name="emoji-search" type="text" placeholder="Search an emoji...">
-        <Button square size="s" @click="closeSearch">
+      <div class="vui-emoji-search">
+        <label class="visually-hidden" for="emoji-search">Search for an emoji</label>
+        <input ref="input" v-model="search" name="emoji-search" type="text" placeholder="Seach for an emoji...">
+        <Button v-if="search" square size="s" plain @click="resetSearch">
           <IconX />
         </Button>
       </div>
@@ -147,12 +142,6 @@ const filteredData = computed(() => {
             </template>
           </Tooltip>
         </Tab>
-
-        <template #end>
-          <Button square size="s" @click="openSearch">
-            <IconMagnifyingGlass />
-          </Button>
-        </template>
       </Tabs>
     </template>
 
