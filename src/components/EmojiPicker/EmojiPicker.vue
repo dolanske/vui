@@ -3,7 +3,7 @@ import type { Emoji, GroupDataset } from 'emojibase'
 import { IconX } from '@iconify-prerendered/vue-ph'
 import { useEventListener, useIntersectionObserver } from '@vueuse/core'
 import { fetchEmojis, fetchFromCDN } from 'emojibase'
-import { capitalize, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef } from 'vue'
+import { capitalize, computed, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef } from 'vue'
 import { randomMinMax, searchString } from '../../lib/helpers.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
@@ -167,23 +167,30 @@ useIntersectionObserver(
     activeTab.value = Number(firstVisibleTitle?.dataset.titleGroup)
   },
   {
-    threshold: [0, 0.1, 0.25, 0.5, 1],
+    threshold: [0],
   },
 )
 
-function getEmojisByGroup(groupKey: string) {
+const filteredEmojisByGroup = computed(() => {
   if (!emojiData.value) {
-    return []
+    return {}
   }
 
-  const dataset = emojiData.value[Number(groupKey)]
+  const result: Record<string, Emoji[]> = {}
 
-  if (search.value) {
-    return dataset.filter(emoji => searchString([emoji.label, ...(emoji.tags ?? [])], search.value))
+  for (const [groupKey, emojis] of Object.entries(emojiData.value)) {
+    if (search.value) {
+      result[groupKey] = emojis.filter(emoji =>
+        searchString([emoji.label, ...(emoji.tags ?? [])], search.value),
+      )
+    }
+    else {
+      result[groupKey] = emojis
+    }
   }
 
-  return dataset
-}
+  return result
+})
 </script>
 
 <template>
@@ -229,7 +236,7 @@ function getEmojisByGroup(groupKey: string) {
               y-center
             >
               <Button
-                v-for="item in getEmojisByGroup(groupKey)"
+                v-for="item in filteredEmojisByGroup[groupKey]"
                 :key="item.hexcode"
                 plain
                 square
