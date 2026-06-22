@@ -28,11 +28,12 @@ const searchInput = useTemplateRef('input')
 const search = ref('')
 
 // Automatically scroll up when switching between tabs
-const groupTitles = useTemplateRef('groupTitles')
+const groupTitles = useTemplateRef<HTMLSpanElement[]>('groupTitles')
 const visibleGroups = new Set<string>()
 
 onBeforeMount(async () => {
   await Promise.all([
+    // The `local` caches the response in localStorage
     fetchFromCDN<GroupDataset>('meta/groups.json', {
       local: true,
     }),
@@ -79,12 +80,6 @@ function formatGroupName(label: string) {
     .map(word => capitalize(word))
     .join(' ')
 }
-
-onMounted(() => {
-  nextTick(() => {
-    searchInput.value?.focus()
-  })
-})
 
 useEventListener(searchInput, 'keydown', (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
@@ -133,6 +128,17 @@ function handleTabClick(key: string) {
     }
   })
 }
+
+// Focus search & scroll to top on mount
+onMounted(() => {
+  nextTick(() => {
+    searchInput.value?.focus()
+
+    if (overflow.value?.contentRef) {
+      overflow.value.contentRef.scrollTop = 0
+    }
+  })
+})
 
 // As we scroll, make sure to change tabs depending on the highlighted section
 useIntersectionObserver(
@@ -238,19 +244,19 @@ const filteredEmojisByGroup = computed(() => {
               x-center
               y-center
             >
-              <Button
+              <button
                 v-for="item in filteredEmojisByGroup[groupKey]"
                 :key="item.hexcode"
-                plain
-                square
-                size="l"
                 @mouseover="activeEmoji = item"
                 @click="emit('select', item)"
               >
+                <!-- plain
+                square
+                size="l" -->
                 <span class="emoji-item">
                   {{ item.emoji }}
                 </span>
-              </Button>
+              </button>
             </Grid>
           </div>
         </div>

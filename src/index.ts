@@ -27,6 +27,7 @@ import Drawer from './components/Drawer/Drawer.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
+import EmojiPicker from './components/EmojiPicker/EmojiPicker.vue'
 import Flex from './components/Flex/Flex.vue'
 import Grid from './components/Grid/Grid.vue'
 import Indicator from './components/Indicator/Indicator.vue'
@@ -111,6 +112,7 @@ export {
   DropdownItem,
   DropdownTitle,
   Dropzone,
+  EmojiPicker,
   File,
   Flex,
   Grid,

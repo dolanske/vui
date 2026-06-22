@@ -11,6 +11,7 @@
   .vui-tabs {
     padding-inline: var(--space-xs);
     justify-content: space-between;
+
     --vui-tabs-gap: var(--space-xxs);
     --vui-tabs-item-padding-inline: var(--space-xxs);
 
@@ -58,7 +59,6 @@
     gap: var(--space-s);
     flex-direction: column;
     height: var(--vui-emoji-picker-height);
-    width: 100%;
 
     .emoji-item {
       width: 32px;
@@ -71,7 +71,11 @@
       display: none;
       position: relative;
 
-      &:has(.vui-button) {
+      content-visibility: auto;
+      // contain: layout paint style;
+      // contain-intrinsic-size: auto 512px;
+
+      &:has(button) {
         display: block;
       }
 
@@ -79,10 +83,10 @@
         display: block;
         width: fit-content;
         font-size: var(--font-size-xs);
-        color: var(--color-text-light);
+        color: var(--color-text);
         position: sticky;
-        top: 4px;
-        padding-left: 6px;
+        top: 10px;
+        padding-left: 10px;
         z-index: 6;
         margin-bottom: var(--space-xs);
         pointer-events: none;
@@ -90,10 +94,24 @@
         &:before {
           content: '';
           position: absolute;
-          inset: -4px -8px;
+          inset: -8px;
           z-index: -1;
-          filter: blur(5px) opacity(1);
+          filter: blur(10px) opacity(1);
           background-color: var(--color-bg);
+        }
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-m);
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--color-button-gray-hover);
         }
       }
     }
@@ -111,6 +129,10 @@
 
   .vui-emoji-content {
     padding: var(--space-xxs);
+
+    .vui-overflow {
+      --vui-overflow-shadow-size: 16px;
+    }
   }
 
   .vui-emoji-search {

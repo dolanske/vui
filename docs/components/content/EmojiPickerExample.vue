@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import Card from '../../../src/components/Card/Card.vue'
-import EmojiPicker from '../../../src/components/EmojiPicker/EmojiPicker.vue'
+import { Card, EmojiPicker, Flex } from '@dolanske/vui'
 </script>
 
 <template>
   <DocsExample>
     <template #component>
-      <Card :padding="false" inline>
-        <EmojiPicker />
-      </Card>
+      <Flex x-center>
+        <Card :padding="false" inline>
+          <EmojiPicker />
+        </Card>
+      </Flex>
     </template>
     <template #code>
       <slot />
