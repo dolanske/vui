@@ -33,10 +33,13 @@ const visibleGroups = new Set<string>()
 
 onBeforeMount(async () => {
   await Promise.all([
-    fetchFromCDN('meta/groups.json') as Promise<GroupDataset>,
+    fetchFromCDN<GroupDataset>('meta/groups.json', {
+      local: true,
+    }),
     fetchEmojis('en', {
       compact: false,
-    }) as Promise<Emoji[]>,
+      local: true,
+    }),
   ])
     .then(([groupsRaw, emojisRaw]) => {
       // Get rid of skin tones group - it does not contain any emojis
