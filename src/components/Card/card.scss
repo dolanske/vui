@@ -17,6 +17,11 @@
   // & > .vui-divider {
   // }
 
+  &.inline {
+    display: inline-block;
+    width: auto;
+  }
+
   &.centered {
     & > .vui-card-header,
     & > .vui-card-content,

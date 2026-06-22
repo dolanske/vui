@@ -1,26 +1,29 @@
 .vui-emoji-picker {
   --vui-emoji-picker-height: 408px;
-  --vui-emoji-picker-width: 432px;
 
-  max-width: var(--vui-emoji-picker-width);
+  border: none;
 
   .emoji-item {
-    font-size: 22px;
+    font-size: 24px;
     text-align: center;
   }
 
   .vui-tabs {
     padding-inline: var(--space-s);
     padding-left: var(--space-xs);
-    --vui-tabs-gap: 2px;
+    --vui-tabs-gap: 1px;
     --vui-tabs-item-padding-inline: var(--space-xxs);
+
+    .flex-1 {
+      width: 8px;
+    }
 
     .emoji-item {
       font-size: 18px;
     }
 
     .vui-tab {
-      width: 36px;
+      width: 34px;
       text-align: center;
       position: relative;
       z-index: 2;
@@ -63,6 +66,8 @@
 
   .vui-card-footer {
     z-index: 5;
+    display: block;
+    max-width: 100%;
   }
 
   .vui-emoji-content {
@@ -71,15 +76,25 @@
   }
 
   .vui-emoji-footer {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     gap: var(--space-s);
     padding: var(--space-s);
     border-top: 1px solid var(--color-border);
-    z-index: 3;
+    // max-width: 100%;
 
     .emoji-item {
-      font-size: 28px;
+      font-size: 40px;
+    }
+
+    p {
+      margin: 0;
+      max-width: 256px;
+      line-height: var(--line-height-title);
+      font-size: var(--font-size-m);
+      color: var(--color-text-light);
+      text-wrap: balance;
     }
   }
 

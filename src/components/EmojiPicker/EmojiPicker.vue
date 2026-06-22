@@ -3,8 +3,8 @@ import type { Emoji, GroupDataset } from 'emojibase'
 import { IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { refDebounced, useCssVar, useEventListener } from '@vueuse/core'
 import { fetchEmojis, fetchFromCDN } from 'emojibase'
-import { capitalize, nextTick, onBeforeMount, ref, shallowRef, useTemplateRef } from 'vue'
-import { randomMinMax } from '../../lib/helpers.ts'
+import { capitalize, computed, nextTick, onBeforeMount, ref, shallowRef, useTemplateRef, watch } from 'vue'
+import { randomMinMax, searchString } from '../../lib/helpers.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import Grid from '../Grid/Grid.vue'
@@ -14,6 +14,10 @@ import Tabs from '../Tabs/Tabs.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import './emoji-picker.scss'
 
+const emit = defineEmits<{
+  (e: 'select', emoji: Emoji): void
+}>()
+
 const groupData = shallowRef<GroupDataset | null>(null)
 const emojiData = shallowRef<Record<string, Emoji[]> | null>(null)
 
@@ -22,10 +26,16 @@ const activeTab = ref(0)
 
 const searchInput = useTemplateRef('input')
 const search = ref('')
-const searchDebounced = refDebounced(search, 500)
+const searchDebounced = refDebounced(search, 350)
 const activeSearch = ref(false)
 
-const showAllGroups = ref(true)
+// Automatically scroll up when switching between tabs
+const overflow = useTemplateRef('overflow')
+watch(activeTab, () => {
+  if (overflow.value?.contentRef) {
+    overflow.value.contentRef.scrollTop = 0
+  }
+})
 
 onBeforeMount(async () => {
   await Promise.all([
@@ -65,9 +75,6 @@ onBeforeMount(async () => {
     })
 })
 
-const root = useTemplateRef('root')
-const height = useCssVar('--vui-emoji-picker-height', root)
-
 // Capitalizes each word & replaces hyphen with slash
 function formatGroupName(label: string) {
   return label.replace('-', ' / ')
@@ -76,7 +83,7 @@ function formatGroupName(label: string) {
     .join(' ')
 }
 
-// Searching
+// Dataset search
 function openSearch() {
   activeSearch.value = true
 
@@ -97,43 +104,46 @@ useEventListener(searchInput, 'keydown', (e: KeyboardEvent) => {
 })
 
 // Filter the groups
-// TODO:
-
 // Merge groups & emojis into one array. When filtering, this array is flat and lists all emojis
 const filteredData = computed(() => {
-  // Search through emojis as a flat array
-  if (activeSearch.value && searchDebounced.value) {
-    return emoji
+  if (!emojiData.value || !groupData.value) {
+    return []
   }
 
-  return ''
+  // Search through emojis as a flat array
+  if (activeSearch.value && searchDebounced.value) {
+    return Object.values(emojiData.value)
+      .flat()
+      .filter(emoji => searchString([emoji.label, ...(emoji.tags ?? [])], searchDebounced.value))
+  }
+
+  return emojiData.value[Number(activeTab.value)]
 })
 </script>
 
 <template>
   <Card
     v-if="groupData && emojiData"
-    ref="root"
     class="vui-emoji-picker"
     :padding="false"
   >
     <template #header>
       <div v-if="activeSearch" class="vui-emoji-search">
-        <input ref="input" type="text" placeholder="Search an emoji...">
-
+        <label class="visually-hidden" for="emoji-search">Search emojis</label>
+        <input ref="input" v-model="search" name="emoji-search" type="text" placeholder="Search an emoji...">
         <Button square size="s" @click="closeSearch">
           <IconX />
         </Button>
       </div>
 
       <Tabs v-model="activeTab">
-        <Tab v-for="(group, groupKey) in groupData.groups" :key="group" :value="groupKey">
+        <Tab v-for="(item, key) in groupData.groups" :key="item" :value="key">
           <Tooltip>
             <span class="emoji-item">
-              {{ emojiData[groupKey][1].emoji }}
+              {{ emojiData[key][1].emoji }}
             </span>
             <template #tooltip>
-              <p>{{ formatGroupName(group) }}</p>
+              <p>{{ formatGroupName(item) }}</p>
             </template>
           </Tooltip>
         </Tab>
@@ -147,31 +157,28 @@ const filteredData = computed(() => {
     </template>
 
     <div class="vui-emoji-content">
-      <Overflow hide-scrollbar :style="showAllGroups ? { height } : null">
+      <Overflow ref="overflow" hide-scrollbar>
         <div class="vui-emoji-picker">
-          <template v-for="(group, groupKey) of groupData.groups" :key="group">
-            <!-- No conditional rendering due to the sheer amount of items -->
-            <Grid
-              v-show="groupKey === activeTab.toString() || activeSearch"
-              :columns="9"
-              :gap="0"
-              x-center
-              y-center
+          <Grid
+            :columns="8"
+            :gap="0"
+            x-center
+            y-center
+          >
+            <Button
+              v-for="item in filteredData"
+              :key="item.hexcode"
+              plain
+              square
+              size="l"
+              @mouseover="activeEmoji = item"
+              @click="emit('select', item)"
             >
-              <Button
-                v-for="item in emojiData[Number(groupKey)]"
-                :key="item.hexcode"
-                plain
-                square
-                size="l"
-                @mouseover="activeEmoji = item"
-              >
-                <span class="emoji-item">
-                  {{ item.emoji }}
-                </span>
-              </Button>
-            </Grid>
-          </template>
+              <span class="emoji-item">
+                {{ item.emoji }}
+              </span>
+            </Button>
+          </Grid>
         </div>
       </Overflow>
     </div>

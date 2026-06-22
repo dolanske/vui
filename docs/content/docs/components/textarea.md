@@ -64,6 +64,8 @@ const text = ref('')
 
 ### Exposes
 
+When queried via `useTemplateRef`, this component exposes
+
 | Name    | Type     | Description                  |
 | ------- | -------- | ---------------------------- |
 | `focus` | `method` | Focuses the textarea element |

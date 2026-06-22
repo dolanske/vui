@@ -45,6 +45,10 @@ const showShadowBottom = computed(() => {
     return false
   return y.value < contentRef.value.scrollHeight - contentRef.value.clientHeight - 1
 })
+
+defineExpose({
+  contentRef,
+})
 </script>
 
 <template>
