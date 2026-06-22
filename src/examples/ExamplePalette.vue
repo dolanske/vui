@@ -3,7 +3,7 @@ import { IconMoon, IconSun } from '@iconify-prerendered/vue-ph'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
 import Grid from '../components/Grid/Grid.vue'
-import { setColorTheme, theme } from '../shared/theme'
+import { setColorTheme, theme } from '../lib/theme.ts'
 import ExampleColor from './shared/ExampleColor.vue'
 
 // function getPalette(type: 'light' | 'dark') {

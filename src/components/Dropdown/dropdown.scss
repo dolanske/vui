@@ -39,4 +39,9 @@
       margin-right: calc(var(--space-xs) / 2);
     }
   }
+
+  &:has(.vui-emoji-picker) {
+    --vui-dropdown-max-height: 600px !important;
+    padding: 0 !important;
+  }
 }

@@ -10,10 +10,12 @@ export interface Props {
   headerAlign?: 'start' | 'center' | 'end' | 'baseline'
   centered?: boolean
   borderStyle?: 'solid' | 'dashed' | 'dotted' | (string & {})
+  inline?: boolean
 }
 
 const {
   padding = true,
+  inline,
   separators,
   headerSeparator,
   footerSeparator,
@@ -31,6 +33,7 @@ const {
       'footer-separator': separators || footerSeparator,
       'no-padding': !padding,
       centered,
+      inline,
 
     }"
     :style="{

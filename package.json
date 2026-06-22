@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "1.15.6",
+  "version": "1.16.1",
   "private": false,
   "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
@@ -58,6 +58,7 @@
     "@types/node": "^25.6.0",
     "@vuepic/vue-datepicker": "^12.1.0",
     "@vueuse/core": "^14.2.1",
+    "emojibase": "^17.0.0",
     "sass": "^1.99.0",
     "vaul-vue": "^0.4.1",
     "vite-plugin-dts": "^4.5.4",

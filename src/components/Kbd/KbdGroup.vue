@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { useMagicKeys, whenever } from '@vueuse/core'
-import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
+import { enforceSlotType, useFlattenedSlot } from '../../lib/slots'
 
 /**
  * Can be used to wrap multiple <Kbd /> elements and triggers the callback when

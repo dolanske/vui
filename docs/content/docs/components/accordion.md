@@ -43,7 +43,7 @@ import { Accordion } from '@dolanske/vui'
 
 ### Exposes
 
-When queries via `useTemplateRef`, this component exposes
+When queried via `useTemplateRef`, this component exposes
 
 | Name     | Type          | Usage                                               |
 | -------- | ------------- | --------------------------------------------------- |

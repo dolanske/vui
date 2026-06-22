@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { FlexProps } from '../Flex/Flex.vue'
-import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
+import { enforceSlotType, useFlattenedSlot } from '../../lib/slots.ts'
 import Flex from '../Flex/Flex.vue'
 
 interface Props extends FlexProps {

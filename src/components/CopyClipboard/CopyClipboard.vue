@@ -1,8 +1,8 @@
 <script setup lang='ts'>
-import type { Placement } from '../../shared/types'
+import type { Placement } from '../../lib/types.ts'
 import { useClipboard } from '@vueuse/core'
 import { computed, onMounted, useSlots, useTemplateRef } from 'vue'
-import { isNil } from '../../shared/helpers'
+import { isNil } from '../../lib/helpers.ts'
 import Popout from '../Popout/Popout.vue'
 import '../Tooltip/tooltip.scss'
 

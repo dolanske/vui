@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
-import type { Sizes, VueClass } from '../../shared/types'
+import type { Sizes, VueClass } from '../../lib/types'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerRootNested, DrawerTitle } from 'vaul-vue'
 import { computed, onMounted, onUnmounted, ref, useAttrs, useId, watch, watchEffect } from 'vue'
-import { useLayer } from '../../shared/layerManager'
+import { useLayer } from '../../lib/layerManager'
 import './drawer.scss'
 
 interface Props {

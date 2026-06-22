@@ -1,0 +1,185 @@
+.vui-emoji-picker {
+  --vui-emoji-picker-height: 380px;
+
+  border: none;
+
+  .emoji-item {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .vui-tabs {
+    padding-inline: var(--space-xs);
+    justify-content: space-between;
+
+    --vui-tabs-gap: var(--space-xxs);
+    --vui-tabs-item-padding-inline: var(--space-xxs);
+
+    .emoji-item {
+      font-size: 18px;
+    }
+
+    .vui-tab {
+      width: 34px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+
+      &:after {
+        content: '';
+        position: absolute;
+        inset: 6px 0;
+        border-radius: var(--border-radius-pill);
+        z-index: -1;
+        opacity: 0;
+        transition:
+          opacity var(--transition),
+          background-color var(--transition);
+      }
+
+      &:hover,
+      &.active {
+        &:after {
+          opacity: 1;
+        }
+      }
+
+      &:hover:after {
+        background-color: var(--color-button-gray);
+      }
+
+      &.active:after {
+        background-color: var(--color-button-gray-hover);
+      }
+    }
+  }
+
+  .vui-emoji-picker {
+    display: flex;
+    gap: var(--space-s);
+    flex-direction: column;
+    height: var(--vui-emoji-picker-height);
+
+    .emoji-item {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      overflow: hidden;
+    }
+
+    .vui-emoji-picker-group {
+      display: none;
+      position: relative;
+
+      content-visibility: auto;
+      // contain: layout paint style;
+      // contain-intrinsic-size: auto 512px;
+
+      &:has(button) {
+        display: block;
+      }
+
+      .vui-emoji-group-title {
+        display: block;
+        width: fit-content;
+        font-size: var(--font-size-xs);
+        color: var(--color-text);
+        position: sticky;
+        top: 10px;
+        padding-left: 10px;
+        z-index: 6;
+        margin-bottom: var(--space-xs);
+        pointer-events: none;
+
+        &:before {
+          content: '';
+          position: absolute;
+          inset: -8px;
+          z-index: -1;
+          filter: blur(10px) opacity(1);
+          background-color: var(--color-bg);
+        }
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-m);
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--color-button-gray-hover);
+        }
+      }
+    }
+  }
+
+  .vui-card-header {
+    background-color: var(--color-bg-medium);
+  }
+
+  .vui-card-footer {
+    z-index: 5;
+    display: block;
+    max-width: 100%;
+  }
+
+  .vui-emoji-content {
+    padding: var(--space-xxs);
+
+    .vui-overflow {
+      --vui-overflow-shadow-size: 16px;
+    }
+  }
+
+  .vui-emoji-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    width: 100%;
+    background-color: var(--color-bg-medium);
+    z-index: 5;
+    border-top-left-radius: var(--border-radius-m);
+    border-top-right-radius: var(--border-radius-m);
+    padding-right: var(--space-s);
+
+    input {
+      width: 100%;
+      height: 100%;
+      height: var(--interactive-el-height-l);
+      border: none;
+      padding-inline: var(--space-s);
+      outline: none;
+      background-color: transparent;
+      font-weight: var(--font-weight-regular);
+      font-family: var(--font);
+      font-size: var(--font-size-m);
+      caret-color: var(--color-accent);
+    }
+  }
+
+  .vui-emoji-footer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-xs);
+    border-top: 1px solid var(--color-border);
+
+    .emoji-item {
+      font-size: 40px;
+    }
+
+    p {
+      margin: 0;
+      max-width: 256px;
+      line-height: var(--line-height-title);
+      font-size: var(--font-size-m);
+      color: var(--color-text-light);
+      text-wrap: balance;
+    }
+  }
+}

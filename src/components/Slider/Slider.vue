@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useElementBounding, useEventListener } from '@vueuse/core'
 import { computed, nextTick, ref, useTemplateRef } from 'vue'
-import { clamp } from '../../shared/helpers'
+import { clamp } from '../../lib/helpers'
 import './slider.scss'
 
 // Internally, the slider always operates on a 0-100 percentage range.

@@ -1,7 +1,7 @@
 import type { ComputedRef, InjectionKey, MaybeRefOrGetter, Ref } from 'vue'
-import type { DeepRequired } from '../../shared/types'
+import type { DeepRequired } from '../../lib/types'
 import { computed, provide, ref, shallowRef, toValue } from 'vue'
-import { searchString } from '../../shared/helpers'
+import { searchString } from '../../lib/helpers'
 import { paginate } from '../Pagination/pagination'
 
 export interface TableSelectionProvide<Row = any> {

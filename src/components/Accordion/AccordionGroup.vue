@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { AccordionProps } from './Accordion.vue'
 import { useTemplateRef } from 'vue'
-import { enforceSlotType, useFlattenedSlot } from '../../shared/slots'
+import { enforceSlotType, useFlattenedSlot } from '../../lib/slots.ts'
 // Renderless component which is used to house multiple accordions which can be triggered together in some way
 
 interface AccordionExposed {

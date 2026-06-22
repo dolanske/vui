@@ -1,10 +1,10 @@
 <script setup lang='ts'>
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types.ts'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
 import { computed, ref, useAttrs, watch } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
-import { viewport } from '../../shared/viewport'
+import { viewport } from '../../lib/viewport.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import './modal.scss'

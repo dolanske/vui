@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useElementBounding, useEventListener, useStorage } from '@vueuse/core'
 import { computed, ref, useTemplateRef, watch } from 'vue'
-import { clamp } from '../../shared/helpers'
-import { useTopLevelSlots } from '../../shared/slots'
+import { clamp } from '../../lib/helpers'
+import { useTopLevelSlots } from '../../lib/slots'
 import './resizable.scss'
 
 // TODO / REVIEW

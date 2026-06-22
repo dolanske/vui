@@ -3,7 +3,7 @@ import { useScroll } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
 import './overflow.scss'
 
-interface Props {
+export interface Props {
   /**
    * Use horizontal scrolling instead of vertical
    */
@@ -45,11 +45,15 @@ const showShadowBottom = computed(() => {
     return false
   return y.value < contentRef.value.scrollHeight - contentRef.value.clientHeight - 1
 })
+
+defineExpose({
+  contentRef,
+})
 </script>
 
 <template>
   <div
-    class="overflow"
+    class="vui-overflow"
     :class="{
       'hide-scrollbar': hideScrollbar,
       'hide-shadows': hideShadows,

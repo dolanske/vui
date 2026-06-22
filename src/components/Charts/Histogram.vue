@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Spaces } from '../../shared/types'
+import type { Spaces } from '../../lib/types.ts'
 import { computed, getCurrentInstance } from 'vue'
 import Flex from '../Flex/Flex.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'

@@ -1,7 +1,7 @@
 <!-- eslint-disable ts/no-use-before-define -->
 <script setup lang='ts'>
 import { computed } from 'vue'
-import { formatUnitValue } from '../../shared/helpers'
+import { formatUnitValue } from '../../lib/helpers'
 import './skeleton.scss'
 
 interface Props {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Spaces } from '../../shared/types'
+import type { Spaces } from '../../lib/types'
 import { computed } from 'vue'
-import { createArray, formatUnitValue } from '../../shared/helpers'
+import { createArray, formatUnitValue } from '../../lib/helpers'
 import './grid.scss'
 
 /**
@@ -29,6 +29,8 @@ interface Props {
   xEnd?: boolean
   /** Stretch items on inline axis. */
   xStretch?: boolean
+  /** Distribute items with space-between on inline axis. */
+  xBetween?: boolean
   /** Align items to center on block axis. */
   yCenter?: boolean
   /** Align items to start on block axis. */
@@ -104,6 +106,8 @@ const aJ = computed(() => {
     return 'center'
   else if (props.xStretch)
     return 'stretch'
+  else if (props.xBetween)
+    return 'space-between'
   return undefined
 })
 

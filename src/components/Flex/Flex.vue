@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Spaces } from '../../shared/types'
+import type { Spaces } from '../../lib/types'
 import { computed } from 'vue'
-import { formatUnitValue } from '../../shared/helpers'
+import { formatUnitValue } from '../../lib/helpers'
 import './flex.scss'
 
 export interface FlexProps {

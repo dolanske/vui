@@ -51,3 +51,11 @@ CSS variable tokens used for global or per-instance manipulation of certain styl
 | `--vui-overflow-gutter-size`  | `8px`                                    | Scrollbar gutter width |
 | `--vui-overflow-shadow-size`  | `32px`                                   | Edge fade shadow size  |
 | `--vui-overflow-shadow-color` | [`var(--color-bg)`](/docs/tokens/colors) | Edge fade shadow color |
+
+### Exposes
+
+When queried via `useTemplateRef`, this component exposes
+
+| Name         | Type          | Usage                                                       |
+| ------------ | ------------- | ----------------------------------------------------------- |
+| `contentRef` | `TemplateRef` | Forwards the ref for the internal overflow content element. |

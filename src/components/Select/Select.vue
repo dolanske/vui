@@ -1,10 +1,10 @@
 <!-- eslint-disable ts/consistent-type-definitions -->
 <script setup lang='ts' generic="T">
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types.ts'
 import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
-import { searchString } from '../../shared/helpers'
-import { viewport } from '../../shared/viewport'
+import { searchString } from '../../lib/helpers.ts'
+import { viewport } from '../../lib/viewport.ts'
 import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
 import DropdownItem from '../Dropdown/DropdownItem.vue'

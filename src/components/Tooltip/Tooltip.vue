@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import type { Placement } from '../../shared/types'
+import type { Placement } from '../../lib/types.ts'
 import { computed, ref, useAttrs, useId, useTemplateRef } from 'vue'
-import { viewport } from '../../shared/viewport'
+import { viewport } from '../../lib/viewport.ts'
 import Popout from '../Popout/Popout.vue'
 import './tooltip.scss'
 

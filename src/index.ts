@@ -1,7 +1,7 @@
 import type { Command } from './components/Commands/Commands.vue'
 import type { SelectOption } from './components/Select/Select.vue'
-import type { Size, Sizes, Spaces, SpaceSize } from './shared/types'
-import type { Breakpoints } from './shared/viewport'
+import type { Size, Sizes, Spaces, SpaceSize } from './lib/types.ts'
+import type { Breakpoints } from './lib/viewport.ts'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
 import Alert from './components/Alert/Alert.vue'
@@ -27,6 +27,7 @@ import Drawer from './components/Drawer/Drawer.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import DropdownTitle from './components/Dropdown/DropdownTitle.vue'
+import EmojiPicker from './components/EmojiPicker/EmojiPicker.vue'
 import Flex from './components/Flex/Flex.vue'
 import Grid from './components/Grid/Grid.vue'
 import Indicator from './components/Indicator/Indicator.vue'
@@ -71,10 +72,10 @@ import { pushToast, removeToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
-import { searchString } from './shared/helpers'
-import { setColorTheme, theme } from './shared/theme'
-import { breakpoints, viewport } from './shared/viewport'
-import { useViewTransition } from './shared/viewTransition'
+import { searchString } from './lib/helpers.ts'
+import { setColorTheme, theme } from './lib/theme.ts'
+import { breakpoints, viewport } from './lib/viewport.ts'
+import { useViewTransition } from './lib/viewTransition.ts'
 import './style.scss'
 
 export {
@@ -111,6 +112,7 @@ export {
   DropdownItem,
   DropdownTitle,
   Dropzone,
+  EmojiPicker,
   File,
   Flex,
   Grid,

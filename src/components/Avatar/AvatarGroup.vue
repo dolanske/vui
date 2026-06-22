@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Sizes } from '../../shared/types'
+import type { Sizes } from '../../lib/types.ts'
 import type { FlexProps } from '../Flex/Flex.vue'
 import { computed } from 'vue'
-import { useTopLevelSlots } from '../../shared/slots'
+import { useTopLevelSlots } from '../../lib/slots.ts'
 import Flex from '../Flex/Flex.vue'
 import Avatar from './Avatar.vue'
 import './avatar-group.scss'

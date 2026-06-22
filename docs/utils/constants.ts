@@ -145,6 +145,7 @@ export const componentList = [
   { name: 'Drawer', path: '/docs/components/drawer', keywords: ['panel', 'sidebar', 'overlay', 'slide'], description: 'Sliding panel that appears from screen edges' },
   { name: 'Dropdown', path: '/docs/components/dropdown', tags: ['item', 'title'], keywords: ['menu', 'options', 'list', 'popup'], description: 'Menu that appears when clicking a trigger element' },
   { name: 'Dropzone', path: '/docs/components/dropzone', keywords: ['upload', 'drag', 'drop', 'file'], description: 'Drag and drop area for file uploads' },
+  { name: 'Emoji Picker', path: '/docs/components/emoji-picker', keywords: ['emoji', 'picker', 'search', 'reaction', 'unicode'], description: 'Searchable emoji picker with grouped tabs and hover previews', status: 'new' },
   { name: 'File', path: '/docs/components/file', keywords: ['upload', 'attachment', 'document', 'input'], description: 'File upload input with preview and management' },
   { name: 'Flex', path: '/docs/components/flex', keywords: ['flexbox', 'layout', 'row', 'column'], description: 'Flexbox-based layout component for one-dimensional layouts' },
   { name: 'Grid', path: '/docs/components/grid', keywords: ['columns', 'layout', 'rows', 'responsive'], description: 'Grid-based layout component for two-dimensional layouts' },

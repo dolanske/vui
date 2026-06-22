@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { onClickOutside, useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
 import { computed, onBeforeMount, useSlots, useTemplateRef } from 'vue'
-import { isNil } from '../../shared/helpers'
+import { isNil } from '../../lib/helpers'
 import './sidebar.scss'
 
 const props = withDefaults(defineProps<Props>(), {

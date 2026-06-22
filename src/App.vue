@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-// import ResizableView from './components/ResizableView/ResizableView.vue'
 import Switch from './components/Switch/Switch.vue'
 
-import ExampleCommands from './examples/ExampleCommands.vue'
-import ExampleTables from './examples/ExampleTables.vue'
-import { setColorTheme } from './shared/theme'
+import ExampleEmojis from './examples/ExampleEmojis.vue'
+import { setColorTheme } from './lib/theme.ts'
 
 const isLight = ref(false)
 watchEffect(() => {
@@ -36,8 +34,6 @@ watchEffect(() => {
     <pre class="mt-l">
       {{ views }}
     </pre> -->
-
-    <ExampleCommands />
-    <ExampleTables />
+    <ExampleEmojis />
   </main>
 </template>

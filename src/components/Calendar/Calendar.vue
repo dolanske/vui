@@ -3,7 +3,7 @@ import type { RootProps } from '@vuepic/vue-datepicker'
 import { IconCalendarBlank, IconCaretDown, IconCaretLeft, IconCaretRight, IconCaretUp, IconClock, IconX } from '@iconify-prerendered/vue-ph'
 import { VueDatePicker } from '@vuepic/vue-datepicker'
 import { useAttrs } from 'vue'
-import { theme } from '../../shared/theme'
+import { theme } from '../../lib/theme'
 import '@vuepic/vue-datepicker/dist/main.css'
 import './calendar.scss'
 
