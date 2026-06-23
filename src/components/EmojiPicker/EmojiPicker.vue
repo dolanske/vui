@@ -227,7 +227,7 @@ const filteredEmojisByGroup = computed(() => {
 
     <div v-if="groupData && emojiData" class="vui-emoji-content">
       <Overflow ref="overflow" hide-scrollbar>
-        <div class="vui-emoji-picker">
+        <div class="vui-emoji-picker-inner">
           <div v-for="(groupName, groupKey) of groupData.groups" :key="groupKey" class="vui-emoji-picker-group">
             <span ref="groupTitles" class="vui-emoji-group-title" :data-title-group="groupKey">
               {{ formatGroupName(groupName) }}

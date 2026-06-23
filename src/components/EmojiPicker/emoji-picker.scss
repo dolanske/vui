@@ -54,9 +54,9 @@
     }
   }
 
-  .vui-emoji-picker {
+  .vui-emoji-picker-inner {
     display: flex;
-    gap: var(--space-s);
+    gap: var(--space-l);
     flex-direction: column;
     height: var(--vui-emoji-picker-height);
 
@@ -88,7 +88,7 @@
         top: 10px;
         padding-left: 10px;
         z-index: 6;
-        margin-bottom: var(--space-xs);
+        margin-bottom: var(--space-s);
         pointer-events: none;
 
         &:before {
