@@ -129,14 +129,9 @@ function handleTabClick(key: string) {
   })
 }
 
-// Focus search & scroll to top on mount
 onMounted(() => {
   nextTick(() => {
     searchInput.value?.focus()
-
-    if (overflow.value?.contentRef) {
-      overflow.value.contentRef.scrollTop = 0
-    }
   })
 })
 
@@ -204,7 +199,6 @@ const filteredEmojisByGroup = computed(() => {
 
 <template>
   <Card
-    v-if="groupData && emojiData"
     class="vui-emoji-picker"
     :padding="false"
   >
@@ -217,7 +211,7 @@ const filteredEmojisByGroup = computed(() => {
         </Button>
       </div>
 
-      <Tabs :model-value="activeTab.toString()">
+      <Tabs v-if="groupData && emojiData" :model-value="activeTab.toString()">
         <Tab v-for="(item, key) in groupData.groups" :key="item" :value="key" @click="handleTabClick(key)">
           <Tooltip>
             <span class="emoji-item">
@@ -231,7 +225,7 @@ const filteredEmojisByGroup = computed(() => {
       </Tabs>
     </template>
 
-    <div class="vui-emoji-content">
+    <div v-if="groupData && emojiData" class="vui-emoji-content">
       <Overflow ref="overflow" hide-scrollbar>
         <div class="vui-emoji-picker">
           <div v-for="(groupName, groupKey) of groupData.groups" :key="groupKey" class="vui-emoji-picker-group">

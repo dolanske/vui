@@ -140,7 +140,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="overflow is-horizontal carousel"
+    class="vui-overflow is-horizontal carousel"
     :class="{
       'hide-scrollbar': hideScrollbar,
       'hide-shadows': hideShadows,
