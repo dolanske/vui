@@ -1,7 +1,7 @@
 {
   "name": "@dolanske/vui",
   "type": "module",
-  "version": "1.16.3",
+  "version": "1.17.0",
   "private": false,
   "description": "Brother in Christ there's a new UI library",
   "author": "dolanske",
@@ -20,6 +20,10 @@
     "design system",
     "ui library"
   ],
+  "sideEffects": [
+    ".css",
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
@@ -37,10 +41,13 @@
   "unpkg": "./dist/vui.js",
   "types": "./dist/src/index.d.ts",
   "files": [
-    "./dist/*",
+    "./dist/",
     "LICENSE",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "docs": "npm run dev --prefix docs",
@@ -52,29 +59,32 @@
     "lint:fix": "eslint . --fix",
     "test": "vitest"
   },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
   "dependencies": {
-    "@floating-ui/vue": "^1.1.11",
+    "@floating-ui/vue": "^2.0.0",
     "@iconify-prerendered/vue-ph": "^0.28.1714973607",
-    "@types/node": "^25.6.0",
-    "@vuepic/vue-datepicker": "^12.1.0",
-    "@vueuse/core": "^14.2.1",
+    "@vuepic/vue-datepicker": "^14.0.0",
+    "@vueuse/core": "^14.3.0",
     "emojibase": "^17.0.0",
-    "sass": "^1.99.0",
-    "vaul-vue": "^0.4.1",
-    "vite-plugin-dts": "^4.5.4",
-    "vue": "^3.5.33"
+    "vaul-vue": "^0.4.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^8.2.0",
-    "@vitejs/plugin-vue": "^6.0.6",
-    "@vue/test-utils": "^2.4.9",
-    "baseline-browser-mapping": "^2.10.23",
-    "eslint": "^10.2.1",
+    "@antfu/eslint-config": "^9.1.0",
+    "@types/node": "^26.0.0",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "@vue/test-utils": "^2.4.11",
+    "baseline-browser-mapping": "^2.10.38",
+    "eslint": "^10.5.0",
     "eslint-plugin-format": "^2.0.1",
-    "jsdom": "^29.1.0",
+    "jsdom": "^29.1.1",
+    "sass": "^1.101.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.10",
-    "vitest": "^4.1.5",
-    "vue-tsc": "^3.2.7"
+    "vite": "^8.1.0",
+    "vite-plugin-dts": "^5.0.3",
+    "vitest": "^4.1.9",
+    "vue": "^3.5.38",
+    "vue-tsc": "^3.3.5"
   }
 }

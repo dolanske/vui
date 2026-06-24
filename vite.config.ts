@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
         : [dts({
             tsconfigPath: './tsconfig.app.json',
             entryRoot: 'src',
-            outDir: 'dist',
+            outDirs: 'dist',
             exclude: ['src/App.vue', 'src/main.ts', 'src/examples/**', 'src/style.scss'],
           })]),
     ],
@@ -47,6 +47,8 @@ export default defineConfig(({ mode }) => {
             },
           }
         : {
+            outDir: 'dist',
+            sourcemap: true,
             lib: {
               entry: resolve(__dirname, 'src', 'index.ts'),
               name: 'vui',
@@ -54,10 +56,8 @@ export default defineConfig(({ mode }) => {
               formats: ['es'],
             },
             rollupOptions: {
-              external: ['vue', 'sass'],
-              input: ['./src/index.ts'],
+              external: id => id === 'vue' || id.startsWith('vue/'),
               output: {
-                dir: 'dist',
                 exports: 'named',
               },
             },

@@ -5,6 +5,7 @@ import { useEventListener, useIntersectionObserver } from '@vueuse/core'
 import { fetchEmojis, fetchFromCDN } from 'emojibase'
 import { capitalize, computed, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef } from 'vue'
 import { randomMinMax, searchString } from '../../lib/helpers.ts'
+import { viewport } from '../../lib/viewport.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
 import Grid from '../Grid/Grid.vue'
@@ -258,7 +259,7 @@ const filteredEmojisByGroup = computed(() => {
     </div>
 
     <template #footer>
-      <div v-if="activeEmoji" class="vui-emoji-footer">
+      <div v-if="activeEmoji && !viewport.s" class="vui-emoji-footer">
         <span class="emoji-item">
           {{ activeEmoji.emoji }}
         </span>
