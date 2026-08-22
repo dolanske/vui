@@ -163,7 +163,7 @@
 
   .vui-emoji-footer {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr 32px;
     align-items: center;
     gap: var(--space-s);
     padding: var(--space-xs);
@@ -171,11 +171,12 @@
 
     .emoji-item {
       font-size: 40px;
+      transform: translateY(3px);
     }
 
     p {
       margin: 0;
-      max-width: 256px;
+      max-width: 242px;
       line-height: var(--line-height-title);
       font-size: var(--font-size-m);
       color: var(--color-text-light);

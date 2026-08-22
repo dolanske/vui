@@ -6,7 +6,7 @@ import EmojiPicker from '../components/EmojiPicker/EmojiPicker.vue'
 <template>
   <div>
     <Card :padding="false" inline>
-      <EmojiPicker />
+      <EmojiPicker :recent="['😄']" />
     </Card>
     <!-- {{ unicodeToEmoji(data.smileys_people[0].u) }} -->
   </div>

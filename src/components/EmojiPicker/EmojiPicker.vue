@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Emoji, GroupDataset } from 'emojibase'
-import { IconX } from '@iconify-prerendered/vue-ph'
-import { useEventListener, useIntersectionObserver } from '@vueuse/core'
+import { IconArrowUp, IconX } from '@iconify-prerendered/vue-ph'
+import { createReusableTemplate, useEventListener, useIntersectionObserver, useScroll } from '@vueuse/core'
 import { fetchEmojis, fetchFromCDN } from 'emojibase'
 import { capitalize, computed, nextTick, onBeforeMount, onMounted, ref, shallowRef, useTemplateRef } from 'vue'
 import { randomMinMax, searchString } from '../../lib/helpers.ts'
@@ -15,12 +15,32 @@ import Tabs from '../Tabs/Tabs.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import './emoji-picker.scss'
 
+const {
+  recent,
+  recentLabel = 'Frequently Used',
+} = defineProps<{
+  /**
+   * Raw emoji strings. These will be matched against the internal dataset and
+   * displayed as selectable emojis with metadata.
+   *
+   * Note, that when user is filtering, recent emoji selection is hidden.
+   */
+  recent: string[]
+  /**
+   * Title for the recently used section.
+   *
+   * Defaults to "Frequently used"
+   */
+  recentLabel?: string
+}>()
+
 const emit = defineEmits<{
-  (e: 'select', emoji: Emoji): void
+  select: [emoji: Emoji]
 }>()
 
 const groupData = shallowRef<GroupDataset | null>(null)
 const emojiData = shallowRef<Record<string, Emoji[]> | null>(null)
+const rawEmojiDataset = shallowRef<Emoji[]>([])
 
 const activeEmoji = ref<Emoji | null>(null)
 const activeTab = ref(0)
@@ -44,6 +64,8 @@ onBeforeMount(async () => {
     }),
   ])
     .then(([groupsRaw, emojisRaw]) => {
+      rawEmojiDataset.value = emojisRaw
+
       // Get rid of skin tones group - it does not contain any emojis
       delete groupsRaw.groups['2']
       groupData.value = groupsRaw
@@ -73,6 +95,8 @@ onBeforeMount(async () => {
       }, {} as Record<number, Emoji[]>)
     })
 })
+
+const recentEmojis = computed(() => rawEmojiDataset.value.filter(({ emoji }) => recent.includes(emoji)))
 
 // Capitalizes each word & replaces hyphen with slash
 function formatGroupName(label: string) {
@@ -196,9 +220,37 @@ const filteredEmojisByGroup = computed(() => {
 
   return result
 })
+
+function scrollUp() {
+  overflow.value?.contentRef?.scrollTo({ top: 0, behavior: 'instant' })
+}
+
+const { y } = useScroll(() => overflow.value?.contentRef)
+
+const [DefineEmojiList, EmojiList] = createReusableTemplate<{ emojis: Emoji[] }>()
 </script>
 
 <template>
+  <DefineEmojiList v-slot="{ emojis }">
+    <Grid
+      :columns="8"
+      :gap="0"
+      x-center
+      y-center
+    >
+      <button
+        v-for="item in emojis"
+        :key="item.hexcode"
+        @mouseover="activeEmoji = item"
+        @click="emit('select', item)"
+      >
+        <span class="emoji-item">
+          {{ item.emoji }}
+        </span>
+      </button>
+    </Grid>
+  </DefineEmojiList>
+
   <Card
     class="vui-emoji-picker"
     :padding="false"
@@ -229,30 +281,16 @@ const filteredEmojisByGroup = computed(() => {
     <div v-if="groupData && emojiData" class="vui-emoji-content">
       <Overflow ref="overflow" hide-scrollbar>
         <div class="vui-emoji-picker-inner">
+          <div v-if="recent" v-show="!search" class="vui-emoji-picker-group">
+            <span class="vui-emoji-group-title">{{ recentLabel }}</span>
+            <EmojiList :emojis="recentEmojis" />
+          </div>
+
           <div v-for="(groupName, groupKey) of groupData.groups" :key="groupKey" class="vui-emoji-picker-group">
             <span ref="groupTitles" class="vui-emoji-group-title" :data-title-group="groupKey">
               {{ formatGroupName(groupName) }}
             </span>
-            <Grid
-              :columns="8"
-              :gap="0"
-              x-center
-              y-center
-            >
-              <button
-                v-for="item in filteredEmojisByGroup[groupKey]"
-                :key="item.hexcode"
-                @mouseover="activeEmoji = item"
-                @click="emit('select', item)"
-              >
-                <!-- plain
-                square
-                size="l" -->
-                <span class="emoji-item">
-                  {{ item.emoji }}
-                </span>
-              </button>
-            </Grid>
+            <EmojiList :emojis="filteredEmojisByGroup[groupKey]" />
           </div>
         </div>
       </Overflow>
@@ -266,6 +304,9 @@ const filteredEmojisByGroup = computed(() => {
         <p>
           {{ capitalize(activeEmoji.label) }}
         </p>
+        <Button v-show="y > 64" square plain @click="scrollUp">
+          <IconArrowUp />
+        </Button>
       </div>
     </template>
   </Card>
