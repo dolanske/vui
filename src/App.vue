@@ -3,6 +3,7 @@ import { ref, watchEffect } from 'vue'
 import Switch from './components/Switch/Switch.vue'
 
 import ExampleEmojis from './examples/ExampleEmojis.vue'
+import ExampleSidebars from './examples/ExampleSidebars.vue'
 import { setColorTheme } from './lib/theme.ts'
 
 const isLight = ref(false)
@@ -34,6 +35,7 @@ watchEffect(() => {
     <pre class="mt-l">
       {{ views }}
     </pre> -->
-    <ExampleEmojis />
+    <!-- <ExampleEmojis /> -->
+    <ExampleSidebars />
   </main>
 </template>

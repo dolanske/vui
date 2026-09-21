@@ -10,44 +10,83 @@ const props = withDefaults(defineProps<Props>(), {
   appearDelay: 250,
 })
 
+// TODO: refactor props
+// - floaty rename to `float` - appears over content when sidebar is open
+// - appear only does the triggering part, not the floating part
+// - mini: same
+// - remove `width` and control it via CSS variable as well
+// - add variants
+//  - default: like now, with a border
+//  - borderless: no borders
+
 interface Props {
-  width?: number
+  variant: 'default' | 'plain' | 'card'
+  // /**
+  //  * Width of the sidebar, when it's open (& not minidifed)
+  //  */
+  // width?: number
   /**
-   * Controls wether the sidebar is displayed in full size, or a small version
+   * Controls wether the sidebar is displayed in full size, or a small version.
    */
   mini?: boolean
   /**
-   * Allow sidebar showing up, when user hovers at very left of the screen. The
-   * sidebar will apear over content, not pushing anything over
+   * If enabled, sidebar opens when user hovers close to where sidebar appears from.
    */
   appear?: boolean
   /**
-   * Controls the amount of time user needs to hover the appear area, for sidebar to show up. Default is `250` milliseconds.
+   * Controls the amount of time user needs to hover the trigger area, for sidebar to show up.
+   *
+   * Default is `250` milliseconds.
    */
   appearDelay?: number
   /**
-   * Add edges of background around sidebar
+   * If enabled, sidebar floats on top of content when opened
    */
-  floaty?: boolean
+  float?: boolean
 }
 
-const sidebarRef = useTemplateRef('sidebar')
+const sidebarInner = useTemplateRef('inner')
 const open = defineModel<boolean>({
   default: true,
 })
 const slots = useSlots()
-const offset = useCssVar('--vui-sidebar-float-offset', sidebarRef, {
+
+// Defines how far the floaty sidebar appears from the edge of its parent
+// const offset = useCssVar('--vui-sidebar-float-offset', sidebarInner, {
+//   initialValue: '8px',
+// })
+
+const width = useCssVar('--vui-sidebar-width', sidebarInner, {
   initialValue: '8px',
 })
 
-const width = computed(() => {
-  if (props.mini) {
-    return props.floaty ? '73px' : `65px`
-  }
-  if (!props.floaty)
-    return `${props.width}px`
-  return `calc(${props.width}px + ${offset.value})`
-})
+// const outerWidth = computed(() => {
+//   const elWidth = sidebarInner.value?.getBoundingClientRect().width
+
+//   if (props.appear) {
+//     return 0
+//   }
+
+//   if (props.floaty) {
+//     return props.mini
+//       ? `calc(${elWidth} + ${offset.value})`
+//       : `calc(${props.width}px + ${offset.value})`
+//   }
+
+//   if (!props.mini) {
+//     return `${props.width}px`
+//   }
+
+//   return `${elWidth}px`
+// })
+
+// const innerWidth = computed(() => {
+//   if (props.mini) {
+//     return 'auto'
+//   }
+
+//   return props.width
+// })
 
 const slotProps = computed(() => ({
   mini: props.mini,
@@ -66,15 +105,17 @@ const { start, stop, isPending } = useTimeoutFn(() => {
 
 const APPEAR_OFFSET = 32
 
-const wrapEl = useTemplateRef('wrap')
-const { elementX } = useMouseInElement(wrapEl)
+const sidebarOuter = useTemplateRef('outer')
+const { elementX } = useMouseInElement(sidebarOuter)
 
 onBeforeMount(() => {
+  // If appear is set on mount, but sidebar is open, close i
   if (props.appear && open.value) {
     open.value = false
   }
 })
 
+// FIXME: this doeasnt seem to take in account height outside of sidebar
 watchThrottled(elementX, (pos) => {
   if (!props.appear || (pos <= APPEAR_OFFSET && pos >= 0 && isPending.value))
     return
@@ -86,6 +127,7 @@ watchThrottled(elementX, (pos) => {
     stop()
   }
 
+  // FIXME: use iiner / outer width
   const openWidth = props.mini
     ? 65
     : props.floaty
@@ -100,19 +142,20 @@ watchThrottled(elementX, (pos) => {
   immediate: true,
 })
 
-onClickOutside(sidebarRef, () => {
-  if (open.value && props.floaty)
+onClickOutside(sidebarInner, () => {
+  if (open.value && props.floaty) {
     open.value = false
+  }
 })
 </script>
 
 <template>
-  <div ref="wrap" class="vui-sidebar-outer" :style="{ width: props.floaty ? 0 : width }" :class="{ open }">
+  <div ref="outer" class="vui-sidebar-outer" :style="{ width: outerWidth }" :class="{ open }">
     <aside
-      ref="sidebar"
+      ref="inner"
       class="vui-sidebar"
       :class="{ open, floaty: props.floaty, mini: props.mini }"
-      :style="{ '--vui-sidebar-width': `${props.mini ? 65 : props.width}px` }"
+      :style="{ '--vui-sidebar-width': `${innerWidth}px` }"
     >
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />

@@ -260,7 +260,7 @@ const s3 = ref(true)
       <div>
         <span class="mb-m block">Appear + custom width</span>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar appear :width="300">
+          <Sidebar appear :width="200" floaty>
             <template #header>
               <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
