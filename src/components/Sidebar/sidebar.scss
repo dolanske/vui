@@ -19,8 +19,9 @@
 }
 
 .vui-sidebar {
-  --vui-sidebar-float-offset: 8px;
-  --vui-sidebar-width: initial;
+  --vui-sidebar-offset: var(--space-s);
+  --vui-sidebar-width-full: initial;
+  --vui-sidebar-width-mini: initial;
 
   display: flex;
   height: 100%;
@@ -45,13 +46,13 @@
   }
 
   &.floaty {
-    top: var(--vui-sidebar-float-offset);
-    left: var(--vui-sidebar-float-offset);
-    bottom: var(--vui-sidebar-float-offset);
-    height: calc(100% - calc(var(--vui-sidebar-float-offset) * 2));
+    top: var(--vui-sidebar-offset);
+    left: var(--vui-sidebar-offset);
+    bottom: var(--vui-sidebar-offset);
+    height: calc(100% - calc(var(--vui-sidebar-offset) * 2));
     border-radius: var(--border-radius-m);
     border: 1px solid var(--color-border);
-    transform: translateX(calc(-100% - calc(var(--vui-sidebar-float-offset) * 2)));
+    transform: translateX(calc(-100% - calc(var(--vui-sidebar-offset) * 2)));
     box-shadow: var(--box-shadow);
   }
 
@@ -95,7 +96,7 @@
     padding-inline: var(--space-xs);
   }
 
-  &.mini {
+  &.mini:not(.manual-buttons) {
     .vui-dropdown-item .vui-dropdown-item-icon {
       width: 20px;
       height: 20px;
