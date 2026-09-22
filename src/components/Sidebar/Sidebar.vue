@@ -35,9 +35,6 @@ interface Props {
    * Removes automatic transform of some VUI components when placed inside the Sidebar
    */
   noAutoTransform?: boolean
-  /**
-   * Controls the width of the sidebar in full size
-   */
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -62,6 +59,7 @@ const slotProps = computed(() => ({
   mini: props.mini,
   float: props.float,
   appear: props.appear,
+  noAutoTransform: props.noAutoTransform,
   open,
   close: () => open.value = false,
 }))
