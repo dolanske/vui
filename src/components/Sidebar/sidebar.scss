@@ -19,33 +19,40 @@
 }
 
 .vui-sidebar {
-  --vui-sidebar-offset: var(--space-s);
-  --vui-sidebar-width-full: initial;
-  --vui-sidebar-width-mini: initial;
+  --vui-sidebar-offset: var(--space-xs);
+  --vui-sidebar-width-full: 224px;
+  --vui-sidebar-width-mini: 68px;
 
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
   gap: var(--space-sm);
-  width: var(--vui-sidebar-width);
+  width: var(--vui-sidebar-width-full);
   position: absolute;
   top: 0;
   z-index: var(--z-nav);
   background-color: var(--color-bg);
   border-right: 1px solid var(--color-border);
-  transition: transform var(--transition-slow);
+  transition:
+    transform var(--transition-slow),
+    width var(--transition-slow);
   transform: translateX(-100%);
   will-change: transform;
+
+  &.mini {
+    width: var(--vui-sidebar-width-mini);
+  }
 
   &.open {
     transform: translateX(0);
 
-    &.floaty {
+    &.float {
       transform: translateX(0);
     }
   }
 
-  &.floaty {
+  &.float {
     top: var(--vui-sidebar-offset);
     left: var(--vui-sidebar-offset);
     bottom: var(--vui-sidebar-offset);

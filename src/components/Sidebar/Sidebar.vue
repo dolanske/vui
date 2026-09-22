@@ -12,7 +12,7 @@ interface Props {
    * - plain: no styling except padding
    * - card: radius & border around the entire sidebar
    */
-  variant: 'default' | 'plain' | 'card'
+  variant?: 'default' | 'plain' | 'card'
   /**
    * Controls wether the sidebar is displayed in full size, or a small version.
    */
@@ -39,61 +39,38 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  variant: 'default',
   mini: false,
   appearDelay: 250,
 })
 
+const APPEAR_DETECT_THRESHOLD = 32
 const sidebarInner = useTemplateRef('inner')
+const sidebarOuter = useTemplateRef('outer')
+
 const open = defineModel<boolean>({
   default: true,
 })
 const slots = useSlots()
 
-const widthFull = useCssVar('--vui-sidebar-width-full', sidebarInner, {
-  initialValue: '224px',
-})
-
-const widthMini = useCssVar('--vui-sidebar-width-mini', sidebarInner, {
-  initialValue: '68px',
-})
-
+// Reference sidebar CSS variables
+const widthFull = useCssVar('--vui-sidebar-width-full', sidebarInner)
+const widthMini = useCssVar('--vui-sidebar-width-mini', sidebarInner)
 const offset = useCssVar('--vui-sidebar-offset', sidebarInner)
-
-// const outerWidth = computed(() => {
-//   const elWidth = sidebarInner.value?.getBoundingClientRect().width
-
-//   if (props.appear) {
-//     return 0
-//   }
-
-//   if (props.floaty) {
-//     return props.mini
-//       ? `calc(${elWidth} + ${offset.value})`
-//       : `calc(${props.width}px + ${offset.value})`
-//   }
-
-//   if (!props.mini) {
-//     return `${props.width}px`
-//   }
-
-//   return `${elWidth}px`
-// })
-
-// const innerWidth = computed(() => {
-//   if (props.mini) {
-//     return 'auto'
-//   }
-
-//   return props.width
-// })
 
 const slotProps = computed(() => ({
   mini: props.mini,
-  // floaty: props.floaty,
-  // width: props.width,
+  float: props.float,
+  appear: props.appear,
   open,
   close: () => open.value = false,
 }))
+
+onClickOutside(sidebarInner, () => {
+  if (open.value && props.float) {
+    open.value = false
+  }
+})
 
 // Sidebar `appear` implementation
 const { start, stop, isPending } = useTimeoutFn(() => {
@@ -102,11 +79,6 @@ const { start, stop, isPending } = useTimeoutFn(() => {
   }
 }, () => props.appearDelay)
 
-const APPEAR_DETECT_THRESHOLD = 32
-const sidebarOuter = useTemplateRef('outer')
-
-const { elementX, elementY, elementHeight, elementWidth } = useMouseInElement(sidebarOuter)
-
 onMounted(() => {
   // If appear is set on mount, but sidebar is open, close it
   if (props.appear && open.value) {
@@ -114,50 +86,46 @@ onMounted(() => {
   }
 })
 
-const outerWidth = computed(() => {
-  // `parseFloat` stops at first non-number value so we can effectively
-  // convert CSS variable string value to number like this
-  const _offset = parseFloat(offset.value!)
-  const _mini = parseFloat(widthMini.value!)
-  const _full = parseFloat(widthFull.value!)
+const { elementX, elementY, elementHeight } = useMouseInElement(sidebarOuter)
+
+// Derived from CSS vars/props, NOT measured from the DOM — the outer wrap's
+// real width is intentionally collapsed in floaty mode, so it can't be trusted
+// as the sidebar's true open width. This mirrors what the original implementation did.
+const openWidth = computed(() => {
+  const _offset = Number.parseFloat(offset.value!)
+  const _mini = Number.parseFloat(widthMini.value!)
+  const _full = Number.parseFloat(widthFull.value!)
 
   const val = props.mini ? _mini : _full
-  const calc = props.variant === 'card'
-    ? val + (_offset * 2)
-    : val
-
-  return formatUnitValue(calc)
+  return props.variant === 'card' ? val + (_offset * 2) : val
 })
 
-// FIXME: this doeasnt seem to take in account height outside of sidebar
-watchThrottled([elementX, elementHeight], ([pos]) => {
-  if (!props.appear || (pos <= APPEAR_DETECT_THRESHOLD && pos >= 0 && isPending.value))
+watchThrottled([elementX, elementY], ([x, y]) => {
+  const inTriggerZone = x <= APPEAR_DETECT_THRESHOLD && x >= 0
+
+  if (!props.appear || (inTriggerZone && isPending.value))
     return
 
-  if (pos <= APPEAR_DETECT_THRESHOLD && pos >= 0 && !open.value && !isPending.value) {
+  if (inTriggerZone && !open.value && !isPending.value) {
     start()
   }
   else if (isPending.value) {
     stop()
   }
 
-  if ((pos > APPEAR_DETECT_THRESHOLD + elementWidth.value || pos < 0) && open.value) {
+  const withinVerticalBounds = y >= 0 && y <= elementHeight.value
+
+  if ((x > APPEAR_DETECT_THRESHOLD + openWidth.value || x < 0 || !withinVerticalBounds) && open.value) {
     open.value = false
   }
 }, {
   throttle: 100,
   immediate: true,
 })
-
-onClickOutside(sidebarInner, () => {
-  if (open.value && props.float) {
-    open.value = false
-  }
-})
 </script>
 
 <template>
-  <div ref="outer" class="vui-sidebar-outer" :style="{ width: outerWidth }" :class="{ open, 'manual-buttons': props.manualButtons }">
+  <div ref="outer" class="vui-sidebar-outer" :style="{ width: props.float ? 0 : openWidth }" :class="{ open, 'manual-buttons': props.manualButtons }">
     <aside
       ref="inner"
       class="vui-sidebar"
