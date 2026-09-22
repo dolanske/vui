@@ -19,40 +19,58 @@
 }
 
 .vui-sidebar {
-  --vui-sidebar-float-offset: 8px;
-  --vui-sidebar-width: initial;
+  --vui-sidebar-offset: var(--space-xs);
+  --vui-sidebar-width-full: 224px;
+  --vui-sidebar-width-mini: 68px;
+
+  --vs-real-width: var(--vui-sidebar-width-full);
 
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
   gap: var(--space-sm);
-  width: var(--vui-sidebar-width);
+  width: var(--vui-sidebar-width-full);
   position: absolute;
   top: 0;
   z-index: var(--z-nav);
   background-color: var(--color-bg);
-  border-right: 1px solid var(--color-border);
-  transition: transform var(--transition-slow);
+  transition:
+    transform var(--transition-slow),
+    width var(--transition-slow);
   transform: translateX(-100%);
   will-change: transform;
 
-  &.open {
-    transform: translateX(0);
-
-    &.floaty {
-      transform: translateX(0);
-    }
+  &.mini {
+    width: var(--vui-sidebar-width-mini);
+    --vs-real-width: var(--vui-sidebar-width-mini);
   }
 
-  &.floaty {
-    top: var(--vui-sidebar-float-offset);
-    left: var(--vui-sidebar-float-offset);
-    bottom: var(--vui-sidebar-float-offset);
-    height: calc(100% - calc(var(--vui-sidebar-float-offset) * 2));
+  &.open {
+    transform: translateX(0) !important;
+  }
+
+  // Variantions give it different style
+  &.vui-sidebar-variant-default {
+    border-right: 1px solid var(--color-border);
+  }
+
+  &.vui-sidebar-variant-card {
     border-radius: var(--border-radius-m);
     border: 1px solid var(--color-border);
-    transform: translateX(calc(-100% - calc(var(--vui-sidebar-float-offset) * 2)));
-    box-shadow: var(--box-shadow);
+    margin: var(--vui-sidebar-offset);
+    width: var(--vs-real-width);
+    height: calc(100% - calc(var(--vui-sidebar-offset) * 2));
+    transform: translateX(calc(-100% + calc(var(--vui-sidebar-offset) * -1)));
+  }
+
+  &.float {
+    inset: 0;
+    right: unset;
+
+    &.open:not(.vui-sidebar-variant-plain) {
+      box-shadow: var(--box-shadow);
+    }
   }
 
   .vui-sidebar-header,
@@ -82,53 +100,54 @@
   }
 
   // Note: elements in sidebar (& mini) should have a slight modification
-
-  // Accordion
-  // Does not have a border under content
-  .vui-accordion {
-    border-bottom: 0;
-  }
-
-  // DropdownItems (sidebar items
-  // Should have a bit less spacing between slots
-  .vui-dropdown-item {
-    padding-inline: var(--space-xs);
-  }
-
-  &.mini {
-    .vui-dropdown-item .vui-dropdown-item-icon {
-      width: 20px;
-      height: 20px;
+  &:not(.no-auto-transform) {
+    // Accordion
+    // Does not have a border under content
+    .vui-accordion {
+      border-bottom: 0;
     }
 
-    .vui-button {
-      padding-inline: 0;
-
-      .vui-button-slot {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+    // DropdownItems (sidebar items
+    // Should have a bit less spacing between slots
+    .vui-dropdown-item {
+      padding-inline: var(--space-xs);
     }
 
-    .vui-dropdown-item,
-    .vui-button {
-      --vui-button-height: 40px;
-      width: var(--vui-button-height) !important;
-      height: var(--vui-button-height) !important;
-      justify-content: center;
-      align-items: center;
-
-      svg {
+    &.mini {
+      .vui-dropdown-item .vui-dropdown-item-icon {
         width: 20px;
         height: 20px;
       }
 
-      .vui-dropdown-item-slot,
-      .vui-dropdown-item-hint,
-      .vui-button-slot-end,
-      .vui-button-slot-start {
-        display: none;
+      .vui-button {
+        padding-inline: 0;
+
+        .vui-button-slot {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .vui-dropdown-item,
+      .vui-button {
+        --vui-button-height: 40px;
+        width: var(--vui-button-height) !important;
+        height: var(--vui-button-height) !important;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .vui-dropdown-item-slot,
+        .vui-dropdown-item-hint,
+        .vui-button-slot-end,
+        .vui-button-slot-start {
+          display: none;
+        }
       }
     }
   }

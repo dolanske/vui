@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { IconHouse, IconPhone, IconSidebarSimple, IconSignOut, IconUser, IconX } from '@iconify-prerendered/vue-ph'
+import { IconHouse, IconSidebarSimple, IconSignOut, IconX } from '@iconify-prerendered/vue-ph'
 import { useStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import Avatar from '../components/Avatar/Avatar.vue'
@@ -12,9 +12,10 @@ import Switch from '../components/Switch/Switch.vue'
 
 const s1 = useStorage('sidebar-open', false)
 const s1Mini = useStorage('sidebar-mini', true)
+const s1Transform = useStorage('sidebar-transform', false)
 
 const s2 = ref(true)
-const s3 = ref(true)
+const s3 = ref(false)
 </script>
 
 <template>
@@ -39,18 +40,6 @@ const s3 = ref(true)
                 <IconHouse />
               </template>
               Home
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconUser />
-              </template>
-              About
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconPhone />
-              </template>
-              Contact
             </DropdownItem>
             <template #footer>
               <Flex y-center>
@@ -77,9 +66,9 @@ const s3 = ref(true)
       </div>
 
       <div>
-        <span class="mb-m block">Toggleable + floaty</span>
+        <span class="mb-m block">Hidden by default & float</span>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar v-model="s1" floaty>
+          <Sidebar v-model="s1" variant="card" float>
             <template #header="{ close }">
               <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
@@ -96,18 +85,6 @@ const s3 = ref(true)
                 <IconHouse />
               </template>
               Outside
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconUser />
-              </template>
-              About You
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconPhone />
-              </template>
-              No contact
             </DropdownItem>
           </Sidebar>
           <main class="p-l">
@@ -136,11 +113,12 @@ const s3 = ref(true)
 
       <div>
         <Flex y-center x-star class="mb-m">
-          <span class="block">Mini</span>
+          <span class="block">Mini (toggle)</span>
           <Switch v-model="s1Mini" />
+          <Switch v-model="s1Transform" label="No button transform" />
         </Flex>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar v-model="s2" :mini="s1Mini">
+          <Sidebar v-model="s2" :mini="s1Mini" :no-auto-transform="s1Transform">
             <template #header>
               <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
@@ -151,18 +129,6 @@ const s3 = ref(true)
                 <IconHouse />
               </template>
               Home
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconUser />
-              </template>
-              About
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconPhone />
-              </template>
-              Contact
             </DropdownItem>
 
             <template #footer="{ close }">
@@ -198,9 +164,9 @@ const s3 = ref(true)
       </div>
 
       <div>
-        <span class="mb-m block">Mini & floaty </span>
+        <span class="mb-m block">Mini + float + appear</span>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar v-model="s3" mini floaty>
+          <Sidebar v-model="s3" mini float appear variant="plain">
             <template #header>
               <Flex y-center>
                 <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
@@ -211,18 +177,6 @@ const s3 = ref(true)
                 <IconHouse />
               </template>
               Home
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconUser />
-              </template>
-              About
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconPhone />
-              </template>
-              Contact
             </DropdownItem>
 
             <template #footer="{ close }">
@@ -260,7 +214,15 @@ const s3 = ref(true)
       <div>
         <span class="mb-m block">Appear + custom width</span>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar appear :width="300">
+          <Sidebar
+            appear
+            float
+            :style="{
+              '--vui-sidebar-width-full': '156px',
+              '--vui-sidebar-width-mini': '100px',
+            }"
+            variant="card"
+          >
             <template #header>
               <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
@@ -269,18 +231,6 @@ const s3 = ref(true)
                 <IconHouse />
               </template>
               Home
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconUser />
-              </template>
-              About
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconPhone />
-              </template>
-              Contact
             </DropdownItem>
           </Sidebar>
           <main class="p-l typeset">
@@ -293,9 +243,9 @@ const s3 = ref(true)
       </div>
 
       <div>
-        <span class="mb-m block">Appear + mini + floaty</span>
+        <span class="mb-m block">Appear + mini + float</span>
         <div class="vui-sidebar-layout" :style="{ height: '512px' }">
-          <Sidebar appear mini floaty>
+          <Sidebar appear mini float variant="card">
             <template #header>
               <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="">
             </template>
@@ -304,18 +254,6 @@ const s3 = ref(true)
                 <IconHouse />
               </template>
               Home
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconUser />
-              </template>
-              About
-            </DropdownItem>
-            <DropdownItem>
-              <template #icon>
-                <IconPhone />
-              </template>
-              Contact
             </DropdownItem>
           </Sidebar>
           <main class="p-l typeset">

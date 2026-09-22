@@ -2,7 +2,7 @@
 import { ref, watchEffect } from 'vue'
 import Switch from './components/Switch/Switch.vue'
 
-import ExampleEmojis from './examples/ExampleEmojis.vue'
+import ExampleSidebars from './examples/ExampleSidebars.vue'
 import { setColorTheme } from './lib/theme.ts'
 
 const isLight = ref(false)
@@ -22,7 +22,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <main vaul-drawer-wrapper class="container-m py-xxxl">
+  <main vaul-drawer-wrapper class="container-l py-xxxl">
     <Switch v-model="isLight" class="mb-xxl" label="Light theme" />
     <!--
     <ResizableView v-model="views">
@@ -34,6 +34,7 @@ watchEffect(() => {
     <pre class="mt-l">
       {{ views }}
     </pre> -->
-    <ExampleEmojis />
+    <!-- <ExampleEmojis /> -->
+    <ExampleSidebars />
   </main>
 </template>

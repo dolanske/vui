@@ -1,61 +1,74 @@
 <script setup lang='ts'>
-import { onClickOutside, useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
-import { computed, onBeforeMount, useSlots, useTemplateRef } from 'vue'
-import { isNil } from '../../lib/helpers'
+import { onClickOutside, useCssVar, useElementSize, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
+import { computed, onMounted, useAttrs, useSlots, useTemplateRef } from 'vue'
+import { formatUnitValue } from '../../lib/helpers'
 import './sidebar.scss'
 
+interface Props {
+  /**
+   * Sidebar styling.
+   *
+   * - default: border on the right
+   * - plain: no styling except padding
+   * - card: radius & border around the entire sidebar
+   */
+  variant?: 'default' | 'plain' | 'card'
+  /**
+   * Controls wether the sidebar is displayed in full size, or a small version.
+   */
+  mini?: boolean
+  /**
+   * If enabled, sidebar opens when user hovers close to where sidebar appears
+   * from.
+   */
+  appear?: boolean
+  /**
+   * Controls the amount of time in milliseconds user needs to hover the trigger
+   * area, for sidebar to show up.
+   */
+  appearDelay?: number
+  /**
+   * If enabled, sidebar floats on top of content when opened
+   */
+  float?: boolean
+  /**
+   * Removes automatic transform of some VUI components when placed inside the Sidebar
+   */
+  noAutoTransform?: boolean
+}
+
 const props = withDefaults(defineProps<Props>(), {
-  width: 224,
+  variant: 'default',
   mini: false,
   appearDelay: 250,
 })
 
-interface Props {
-  width?: number
-  /**
-   * Controls wether the sidebar is displayed in full size, or a small version
-   */
-  mini?: boolean
-  /**
-   * Allow sidebar showing up, when user hovers at very left of the screen. The
-   * sidebar will apear over content, not pushing anything over
-   */
-  appear?: boolean
-  /**
-   * Controls the amount of time user needs to hover the appear area, for sidebar to show up. Default is `250` milliseconds.
-   */
-  appearDelay?: number
-  /**
-   * Add edges of background around sidebar
-   */
-  floaty?: boolean
-}
+const APPEAR_DETECT_THRESHOLD = 32
+const sidebarInner = useTemplateRef('inner')
+const sidebarOuter = useTemplateRef('outer')
 
-const sidebarRef = useTemplateRef('sidebar')
 const open = defineModel<boolean>({
   default: true,
 })
 const slots = useSlots()
-const offset = useCssVar('--vui-sidebar-float-offset', sidebarRef, {
-  initialValue: '8px',
-})
+const attrs = useAttrs()
 
-const width = computed(() => {
-  if (props.mini) {
-    return props.floaty ? '73px' : `65px`
-  }
-  if (!props.floaty)
-    return `${props.width}px`
-  return `calc(${props.width}px + ${offset.value})`
-})
+const offset = useCssVar('--vui-sidebar-offset', sidebarInner)
 
 const slotProps = computed(() => ({
   mini: props.mini,
-  floaty: props.floaty,
-  width: props.width,
+  float: props.float,
+  appear: props.appear,
+  noAutoTransform: props.noAutoTransform,
   open,
   close: () => open.value = false,
 }))
+
+onClickOutside(sidebarInner, () => {
+  if (open.value && props.float) {
+    open.value = false
+  }
+})
 
 // Sidebar `appear` implementation
 const { start, stop, isPending } = useTimeoutFn(() => {
@@ -64,55 +77,60 @@ const { start, stop, isPending } = useTimeoutFn(() => {
   }
 }, () => props.appearDelay)
 
-const APPEAR_OFFSET = 32
-
-const wrapEl = useTemplateRef('wrap')
-const { elementX } = useMouseInElement(wrapEl)
-
-onBeforeMount(() => {
+onMounted(() => {
+  // If appear is set on mount, but sidebar is open, close it
   if (props.appear && open.value) {
     open.value = false
   }
 })
 
-watchThrottled(elementX, (pos) => {
-  if (!props.appear || (pos <= APPEAR_OFFSET && pos >= 0 && isPending.value))
+const { elementX, elementY, elementHeight } = useMouseInElement(sidebarOuter)
+const { width: sidebarWidth } = useElementSize(sidebarInner)
+
+// Outer width
+const openWidth = computed(() => {
+  const _offset = Number.parseFloat(offset.value!)
+  const val = sidebarWidth.value
+  return props.variant === 'card' ? val + (_offset * 2) : val
+})
+
+// Watch for mouse movement for `appear` prop
+watchThrottled([elementX, elementY], ([x, y]) => {
+  const inTriggerZone = x <= APPEAR_DETECT_THRESHOLD && x >= 0
+
+  if (!props.appear || (inTriggerZone && isPending.value))
     return
 
-  if (pos <= APPEAR_OFFSET && pos >= 0 && !open.value && !isPending.value) {
+  if (inTriggerZone && !open.value && !isPending.value) {
     start()
   }
   else if (isPending.value) {
     stop()
   }
 
-  const openWidth = props.mini
-    ? 65
-    : props.floaty
-      ? props.width
-      : props.width - (isNil(offset.value) ? 0 : Number(offset.value?.replace('px', '')))
+  const withinVerticalBounds = y >= 0 && y <= elementHeight.value
 
-  if ((pos > APPEAR_OFFSET + openWidth || pos < 0) && open.value) {
+  if ((x > APPEAR_DETECT_THRESHOLD + openWidth.value || x < 0 || !withinVerticalBounds) && open.value) {
     open.value = false
   }
 }, {
   throttle: 100,
   immediate: true,
 })
-
-onClickOutside(sidebarRef, () => {
-  if (open.value && props.floaty)
-    open.value = false
-})
 </script>
 
 <template>
-  <div ref="wrap" class="vui-sidebar-outer" :style="{ width: props.floaty ? 0 : width }" :class="{ open }">
+  <div
+    ref="outer"
+    class="vui-sidebar-outer"
+    :style="{ width: props.float ? 0 : formatUnitValue(openWidth) }"
+    :class="{ open }"
+  >
     <aside
-      ref="sidebar"
+      ref="inner"
       class="vui-sidebar"
-      :class="{ open, floaty: props.floaty, mini: props.mini }"
-      :style="{ '--vui-sidebar-width': `${props.mini ? 65 : props.width}px` }"
+      :class="[{ open, 'float': props.float, 'mini': props.mini, 'no-auto-transform': props.noAutoTransform }, `vui-sidebar-variant-${props.variant}`]"
+      v-bind="attrs"
     >
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />

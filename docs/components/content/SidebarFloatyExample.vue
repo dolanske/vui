@@ -6,7 +6,7 @@ import { DropdownItem, Sidebar } from '@dolanske/vui'
   <DocsExample full>
     <template #component>
       <div class="vui-sidebar-layout" :style="{ height: '420px' }">
-        <Sidebar appear :width="128" floaty>
+        <Sidebar appear float :style="{ '--vui-sidebar-width-full': '156px' }">
           <template #header>
             <img src="https://dolansky.dev/backgrounds/star.png" class="sidebar-logo" width="40" alt="" style="filter: invert(1);">
           </template>

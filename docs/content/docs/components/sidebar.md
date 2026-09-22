@@ -74,12 +74,13 @@ const isOpen = ref(true)
 
 ### Props
 
-| Name     | Default | Type                                                                                     |
-| -------- | ------- | ---------------------------------------------------------------------------------------- |
-| `width`  | `224`   | `number` <br> Width of the sidebar in pixels when in full mode                           |
-| `mini`   | `false` | `boolean` <br> Whether to display the sidebar in mini mode (collapsed)                   |
-| `appear` | `false` | `boolean` <br> Whether the sidebar should appear on hover at the left edge of the screen |
-| `floaty` | `false` | `boolean` <br> Whether to add edges of background around the sidebar                     |
+| Name                | Default   | Type                                                                                                          |
+| ------------------- | --------- | ------------------------------------------------------------------------------------------------------------- |
+| `variant`           | `default` | `default` `plain` `card` <br> Determines the look of the sidebar                                              |
+| `mini`              | `false`   | `boolean` <br> Controls wether the sidebar is displayed in full size, or a small version.                     |
+| `appear`            | `false`   | `boolean` <br> If enabled, sidebar floats on top of content when opened.                                      |
+| `float`             | `false`   | `boolean` <br> Whether to add edges of background around the sidebar                                          |
+| `no-auto-transform` | `false`   | `boolean` <br> When set, it removes automatic transform of some VUI components when placed inside the Sidebar |
 
 ### Events
 
@@ -102,8 +103,10 @@ All slots expose the same properties, which allow the UI to control the state of
 ```ts
 interface SidebarExpose {
   mini: Ref<boolean>
-  floaty: Ref<boolean>
+  float: Ref<boolean>
+  appear: Ref<boolean>
   width: Ref<number>
+  noAutoTransform: Ref<number>
   open: Ref<boolean>
   close: () => void
 }
@@ -123,7 +126,7 @@ const isOpen = ref(true)
 
 <template>
   <div class="vui-sidebar-layout">
-    <Sidebar appear :width="128" floaty>
+    <Sidebar appear float :style="{ '--vui-sidebar-width-full': '156px' }">
       <template #header>
         <img
           src="https://dolansky.dev/backgrounds/star.png"
@@ -158,7 +161,7 @@ const isOpen = ref(true)
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                        | Default | Description                       |
-| ---------------------------- | ------- | --------------------------------- |
-| `--vui-sidebar-float-offset` | `8px`   | Offset for floating sidebar edges |
-| `--vui-sidebar-width`        | `224px` | Sidebar width                     |
+| Token                  | Default | Description                       |
+| ---------------------- | ------- | --------------------------------- |
+| `--vui-sidebar-offset` | `8px`   | Offset for floating sidebar edges |
+| `--vui-sidebar-width`  | `224px` | Sidebar width                     |
