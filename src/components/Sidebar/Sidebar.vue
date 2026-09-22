@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import { onClickOutside, useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
-import { computed, onBeforeMount, onMounted, useSlots, useTemplateRef } from 'vue'
-import { formatUnitValue, isNil } from '../../lib/helpers'
+import { onClickOutside, useCssVar, useElementSize, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
+import { computed, onMounted, useAttrs, useSlots, useTemplateRef } from 'vue'
+import { formatUnitValue } from '../../lib/helpers'
 import './sidebar.scss'
 
 interface Props {
@@ -32,10 +32,12 @@ interface Props {
    */
   float?: boolean
   /**
-   * Removes automatic scaling / formatting of `<Button />` and `<DropdownItem
-   * />` components when sidebar is is minified.
+   * Removes automatic transform of some VUI components when placed inside the Sidebar
    */
-  manualButtons?: boolean
+  noAutoTransform?: boolean
+  /**
+   * Controls the width of the sidebar in full size
+   */
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -52,10 +54,8 @@ const open = defineModel<boolean>({
   default: true,
 })
 const slots = useSlots()
+const attrs = useAttrs()
 
-// Reference sidebar CSS variables
-const widthFull = useCssVar('--vui-sidebar-width-full', sidebarInner)
-const widthMini = useCssVar('--vui-sidebar-width-mini', sidebarInner)
 const offset = useCssVar('--vui-sidebar-offset', sidebarInner)
 
 const slotProps = computed(() => ({
@@ -87,16 +87,14 @@ onMounted(() => {
 })
 
 const { elementX, elementY, elementHeight } = useMouseInElement(sidebarOuter)
+const { width: sidebarWidth } = useElementSize(sidebarInner)
 
 // Derived from CSS vars/props, NOT measured from the DOM — the outer wrap's
 // real width is intentionally collapsed in floaty mode, so it can't be trusted
 // as the sidebar's true open width. This mirrors what the original implementation did.
 const openWidth = computed(() => {
   const _offset = Number.parseFloat(offset.value!)
-  const _mini = Number.parseFloat(widthMini.value!)
-  const _full = Number.parseFloat(widthFull.value!)
-
-  const val = props.mini ? _mini : _full
+  const val = sidebarWidth.value
   return props.variant === 'card' ? val + (_offset * 2) : val
 })
 
@@ -125,11 +123,17 @@ watchThrottled([elementX, elementY], ([x, y]) => {
 </script>
 
 <template>
-  <div ref="outer" class="vui-sidebar-outer" :style="{ width: props.float ? 0 : openWidth }" :class="{ open, 'manual-buttons': props.manualButtons }">
+  <div
+    ref="outer"
+    class="vui-sidebar-outer"
+    :style="{ width: props.float ? 0 : formatUnitValue(openWidth) }"
+    :class="{ open }"
+  >
     <aside
       ref="inner"
       class="vui-sidebar"
-      :class="{ open, float: props.float, mini: props.mini }"
+      :class="[{ open, 'float': props.float, 'mini': props.mini, 'no-auto-transform': props.noAutoTransform }, `vui-sidebar-variant-${props.variant}`]"
+      v-bind="attrs"
     >
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />
