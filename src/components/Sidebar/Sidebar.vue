@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { onClickOutside, useCssVar, useMouseInElement, useTimeoutFn, watchThrottled } from '@vueuse/core'
 import { computed, onBeforeMount, onMounted, useSlots, useTemplateRef } from 'vue'
-import { isNil } from '../../lib/helpers'
+import { formatUnitValue, isNil } from '../../lib/helpers'
 import './sidebar.scss'
 
 interface Props {
@@ -31,7 +31,6 @@ interface Props {
    * If enabled, sidebar floats on top of content when opened
    */
   float?: boolean
-
   /**
    * Removes automatic scaling / formatting of `<Button />` and `<DropdownItem
    * />` components when sidebar is is minified.
@@ -103,11 +102,10 @@ const { start, stop, isPending } = useTimeoutFn(() => {
   }
 }, () => props.appearDelay)
 
-const APPEAR_OFFSET = 32
-
+const APPEAR_DETECT_THRESHOLD = 32
 const sidebarOuter = useTemplateRef('outer')
 
-const { elementX, elementY, elementHeight } = useMouseInElement(sidebarOuter)
+const { elementX, elementY, elementHeight, elementWidth } = useMouseInElement(sidebarOuter)
 
 onMounted(() => {
   // If appear is set on mount, but sidebar is open, close it
@@ -116,37 +114,34 @@ onMounted(() => {
   }
 })
 
-// TODO: must convert pix to values, combine and back to px
 const outerWidth = computed(() => {
-  if (props.mini) {
-    return props.variant === 'card'
-      ? widthMini.value + (offset.value * 2)
-      : widthMini.value
-  }
+  // `parseFloat` stops at first non-number value so we can effectively
+  // convert CSS variable string value to number like this
+  const _offset = parseFloat(offset.value!)
+  const _mini = parseFloat(widthMini.value!)
+  const _full = parseFloat(widthFull.value!)
 
-  return props.variant === 'card'
+  const val = props.mini ? _mini : _full
+  const calc = props.variant === 'card'
+    ? val + (_offset * 2)
+    : val
+
+  return formatUnitValue(calc)
 })
 
 // FIXME: this doeasnt seem to take in account height outside of sidebar
-watchThrottled([elementX, elementY], (pos) => {
-  if (!props.appear || (pos <= APPEAR_OFFSET && pos >= 0 && isPending.value))
+watchThrottled([elementX, elementHeight], ([pos]) => {
+  if (!props.appear || (pos <= APPEAR_DETECT_THRESHOLD && pos >= 0 && isPending.value))
     return
 
-  if (pos <= APPEAR_OFFSET && pos >= 0 && !open.value && !isPending.value) {
+  if (pos <= APPEAR_DETECT_THRESHOLD && pos >= 0 && !open.value && !isPending.value) {
     start()
   }
   else if (isPending.value) {
     stop()
   }
 
-  // FIXME: use iiner / outer width
-  const openWidth = props.mini
-    ? 65
-    : props.floaty
-      ? props.width
-      : props.width - (isNil(offset.value) ? 0 : Number(offset.value?.replace('px', '')))
-
-  if ((pos > APPEAR_OFFSET + openWidth || pos < 0) && open.value) {
+  if ((pos > APPEAR_DETECT_THRESHOLD + elementWidth.value || pos < 0) && open.value) {
     open.value = false
   }
 }, {
@@ -162,12 +157,11 @@ onClickOutside(sidebarInner, () => {
 </script>
 
 <template>
-  <div ref="outer" class="vui-sidebar-outer" :style="{ width: mini ? widthMini : widthFull }" :class="{ open, `manual-buttons`: manualButtons }">
+  <div ref="outer" class="vui-sidebar-outer" :style="{ width: outerWidth }" :class="{ open, 'manual-buttons': props.manualButtons }">
     <aside
       ref="inner"
       class="vui-sidebar"
-      :class="{ open, floaty: props.floaty, mini: props.mini }"
-      :style="{ '--vui-sidebar-width': `${innerWidth}px` }"
+      :class="{ open, float: props.float, mini: props.mini }"
     >
       <div v-if="slots.header" class="vui-sidebar-header">
         <slot name="header" v-bind="slotProps" />
