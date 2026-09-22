@@ -87,15 +87,14 @@ onMounted(() => {
 const { elementX, elementY, elementHeight } = useMouseInElement(sidebarOuter)
 const { width: sidebarWidth } = useElementSize(sidebarInner)
 
-// Derived from CSS vars/props, NOT measured from the DOM — the outer wrap's
-// real width is intentionally collapsed in floaty mode, so it can't be trusted
-// as the sidebar's true open width. This mirrors what the original implementation did.
+// Outer width
 const openWidth = computed(() => {
   const _offset = Number.parseFloat(offset.value!)
   const val = sidebarWidth.value
   return props.variant === 'card' ? val + (_offset * 2) : val
 })
 
+// Watch for mouse movement for `appear` prop
 watchThrottled([elementX, elementY], ([x, y]) => {
   const inTriggerZone = x <= APPEAR_DETECT_THRESHOLD && x >= 0
 
