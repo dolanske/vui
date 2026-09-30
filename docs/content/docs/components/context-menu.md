@@ -22,7 +22,7 @@ import { Card, ContextMenu, DropdownItem } from '@dolanske/vui'
       </p>
     </Card>
 
-    <template #popout>
+    <template #menu>
       <div class="p-xxs">
         <DropdownItem>New user</DropdownItem>
         <DropdownItem>Update</DropdownItem>
@@ -37,7 +37,15 @@ import { Card, ContextMenu, DropdownItem } from '@dolanske/vui'
 
 ### Slots
 
-| Name      | Accepts | Description                                                  |
-| --------- | ------- | ------------------------------------------------------------ |
-| `default` | `any`   | The content area that listens for right-click events         |
-| `menu`    | `any`   | The content rendered inside the floating context menu popout |
+| Name      | Accepts | Props               | Description                                                  |
+| --------- | ------- | ------------------- | ------------------------------------------------------------ |
+| `default` | `any`   | -                   | The content area that listens for right-click events         |
+| `menu`    | `any`   | `close: () => void` | The content rendered inside the floating context menu popout |
+
+### Exposes
+
+When queried via `useTemplateRef`, this component exposes
+
+| Name    | Type     | Description     |
+| ------- | -------- | --------------- |
+| `close` | `method` | Closes the menu |

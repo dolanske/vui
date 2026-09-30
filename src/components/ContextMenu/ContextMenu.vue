@@ -27,8 +27,16 @@ useEventListener(context, 'contextmenu', (event) => {
 
 useEventListener(window, 'keydown', (event) => {
   if (event.key === 'Escape' && isTopLayer(popout.value?.layerIndex() ?? -1)) {
-    anchorPos.value = null
+    close()
   }
+})
+
+function close() {
+  anchorPos.value = null
+}
+
+defineExpose({
+  close,
 })
 </script>
 
@@ -52,7 +60,7 @@ useEventListener(window, 'keydown', (event) => {
       transition-name="none"
       @click-outside="anchorPos = null"
     >
-      <slot name="menu" />
+      <slot name="menu" :close />
     </Popout>
     <slot />
   </div>

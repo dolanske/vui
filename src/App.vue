@@ -2,7 +2,7 @@
 import { ref, watchEffect } from 'vue'
 import Switch from './components/Switch/Switch.vue'
 
-import ExampleSidebars from './examples/ExampleSidebars.vue'
+import ExampleContextMenus from './examples/ExampleContextMenus.vue'
 import { setColorTheme } from './lib/theme.ts'
 
 const isLight = ref(false)
@@ -35,6 +35,7 @@ watchEffect(() => {
       {{ views }}
     </pre> -->
     <!-- <ExampleEmojis /> -->
-    <ExampleSidebars />
+    <!-- <ExampleSidebars /> -->
+    <ExampleContextMenus />
   </main>
 </template>
