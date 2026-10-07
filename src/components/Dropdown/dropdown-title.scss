@@ -15,14 +15,16 @@
     text-transform: uppercase;
     font-weight: var(--font-weight-medium);
     border-bottom: 1px solid var(--color-border);
-    margin-inline: -4px;
-    margin-top: -4px;
+    // margin-inline: -4px;
+    // margin-top: -4px;
     margin-bottom: 4px;
     gap: var(--space-m);
     justify-content: space-between;
     background-color: var(--color-bg-medium);
     z-index: var(--z-popout);
     color: var(--color-text-light);
+    border-top-left-radius: var(--border-radius-s);
+    border-top-right-radius: var(--border-radius-s);
 
     &.sticky {
       position: sticky;

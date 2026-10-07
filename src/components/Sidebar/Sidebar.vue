@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<Props>(), {
   label: 'Sidebar',
 })
 
-const APPEAR_DETECT_THRESHOLD = 32
+const APPEAR_DETECT_THRESHOLD = 24
 const sidebarInner = useTemplateRef('inner')
 const sidebarOuter = useTemplateRef('outer')
 

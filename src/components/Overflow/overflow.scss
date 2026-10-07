@@ -96,8 +96,25 @@
       min-width: max-content;
     }
 
-    &.is-vertical .overflow-content {
-      overflow-y: auto;
+    // Height (or max-height) is usually set on the root element, but scrolling
+    // happens on the inner content. Pass the constraint down through the track
+    // so the content can actually overflow.
+    &.is-vertical {
+      display: flex;
+      flex-direction: column;
+
+      .overflow-track {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+
+      .overflow-content {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+      }
     }
 
     &.is-horizontal.is-vertical .overflow-content {

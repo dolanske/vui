@@ -9,6 +9,11 @@ import './calendar.scss'
 
 const props = defineProps<RootProps & {
   expand?: boolean
+  /**
+   * Shorthand for `timeConfig.enableTimePicker`. vue-datepicker v14 moved the
+   * option into `timeConfig`, this keeps the familiar prop working.
+   */
+  enableTimePicker?: boolean
 }>()
 
 const attrs = useAttrs()
@@ -35,14 +40,20 @@ function getPassedProps(): Record<string, unknown> {
 }
 
 function getBindings(): Record<string, unknown> {
-  const passed = getPassedProps()
+  const { enableTimePicker, ...passed } = getPassedProps()
+
+  const timeConfig = { ...(passed.timeConfig as Record<string, unknown> | undefined) }
+  if (enableTimePicker !== undefined)
+    timeConfig.enableTimePicker = enableTimePicker
+
   // The time is only part of the displayed value when it can be picked
-  const withTime = passed.enableTimePicker !== false && !passed.monthPicker && !passed.yearPicker && !passed.weekPicker && !passed.quarterPicker
+  const withTime = timeConfig.enableTimePicker !== false && !passed.monthPicker && !passed.yearPicker && !passed.weekPicker && !passed.quarterPicker
 
   return {
     autoApply: true,
     formats: { input: withTime ? 'dd/MM/yyyy HH:mm' : 'dd/MM/yyyy', month: 'MMMM' },
     ...passed,
+    ...(Object.keys(timeConfig).length > 0 ? { timeConfig } : {}),
     ...attrs,
   }
 }

@@ -191,6 +191,9 @@ Groups are worked through in order, with a review after each one.
 
 ## Group 11 - Feedback fixes
 
-- Calendar library styles are not overriden by the vui layer. No styling is applied to the calendar right now. Fix it
-- Emoji list looks weird
-- Select X button is too far from the v caret
+- [x] Calendar library styles are not overriden by the vui layer. No styling is applied to the calendar right now. Fix it
+- [x] Clicking emoji picker footer inside dropdown closes it. There is a "scroll up" button or emoji name which now cannot be interacted with
+- [x] Is there a way to speed up emoji picker tabs? there's a noticeable delay when rendering new emojis which havent been displayed yet
+- [x] Select X button is too far from the v caret
+- [x] enrich the non-docs examples to contain more use-cases for testing. Also add example files for components without them. You can compare to the docs examples and see what's missing pretty much.
+- [x] add the vui example component for theme testing. Pretty much needs to contain all theme colours and good example components in some nice layout which is small enough to fit in page.

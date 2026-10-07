@@ -1,43 +1,8 @@
 @layer vui.reset, vui.base, vui.components, vui.utilities;
 
+// vue-datepicker v14 uses `dp--kebab-case` class names. Its own styles live in
+// the `vui.base` layer (see datepicker.css), so everything here wins.
 @layer vui.components {
-  .dp__theme_light,
-  .dp__theme_dark {
-    --dp-background-color: var(--color-bg);
-    --dp-text-color: var(--color-text);
-    --dp-hover-color: var(--color-button-gray-hover);
-    --dp-hover-text-color: var(--color-text);
-    --dp-hover-icon-color: var(--color-text-lighter);
-    --dp-primary-color: var(--color-accent);
-    --dp-primary-disabled-color: var(--color-accent-disabled);
-    --dp-primary-text-color: var(--color-text-invert);
-    --dp-secondary-color: var(--color-border);
-    --dp-border-color: var(--color-border);
-    --dp-menu-border-color: var(--color-border);
-    --dp-border-color-hover: var(--color-border-strong);
-    --dp-border-color-focus: var(--color-border-strong);
-    --dp-disabled-color: var(--color-bg-raised);
-    --dp-disabled-color-text: var(--color-text-light);
-    --dp-scroll-bar-background: var(--color-bg-lowered);
-    --dp-scroll-bar-color: var(--color-border);
-    --dp-success-color: var(--color-green);
-    --dp-success-color-disabled: var(--color-green-disabled);
-    --dp-icon-color: var(--color-text-light);
-    --dp-danger-color: var(--color-red);
-    --dp-marker-color: var(--color-red);
-    --dp-tooltip-color: var(--color-bg-raised);
-    --dp-highlight-color: var(--color-bg-raised);
-    --dp-range-between-dates-background-color: var(--dp-hover-color, #484848);
-    --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
-    --dp-range-between-border-color: var(--dp-hover-color, #fff);
-  }
-
-  // TODO: dp theme light
-
-  .dp__theme_light {
-    --dp-primary-text-color: var(--color-text);
-  }
-
   :root {
     --dp-font-family: var(--font);
     --dp-border-radius: var(--border-radius-s);
@@ -49,44 +14,98 @@
     --dp-time-font-size: var(--font-size-s);
   }
 
+  .dp--theme-light,
+  .dp--theme-dark {
+    --dp-background-color: var(--color-bg);
+    --dp-text-color: var(--color-text);
+    --dp-hover-color: var(--color-button-gray-hover);
+    --dp-hover-text-color: var(--color-text);
+    --dp-hover-icon-color: var(--color-text);
+    --dp-primary-color: var(--color-accent);
+    --dp-primary-disabled-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-bg));
+    --dp-primary-text-color: var(--color-text);
+    --dp-secondary-color: var(--color-text-lightest);
+    --dp-border-color: var(--color-border);
+    --dp-menu-border-color: var(--color-border);
+    --dp-border-color-hover: var(--color-border-strong);
+    --dp-border-color-focus: var(--color-border-strong);
+    --dp-disabled-color: var(--color-bg-raised);
+    --dp-disabled-color-text: var(--color-text-lighter);
+    --dp-scroll-bar-background: var(--color-bg-lowered);
+    --dp-scroll-bar-color: var(--color-border);
+    --dp-success-color: var(--color-text-green);
+    --dp-success-color-disabled: var(--color-bg-green-raised);
+    --dp-icon-color: var(--color-text-light);
+    --dp-danger-color: var(--color-text-red);
+    --dp-marker-color: var(--color-text-red);
+    --dp-tooltip-color: var(--color-bg-raised);
+    --dp-highlight-color: var(--color-bg-accent-lowered);
+    --dp-range-between-dates-background-color: var(--color-bg-raised);
+    --dp-range-between-dates-text-color: var(--color-text);
+    --dp-range-between-border-color: var(--color-bg-raised);
+    --dp-loader: 4px solid var(--color-accent);
+  }
+
+  @supports (color: contrast-color(red)) {
+    .dp--theme-light,
+    .dp--theme-dark {
+      --dp-primary-text-color: contrast-color(var(--color-accent));
+    }
+  }
+
+  .dp--main {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight);
+  }
+
+  .dp--outer-menu-wrap {
+    box-shadow: var(--box-shadow-strong);
+  }
+
+  .dp--menu {
+    border-radius: var(--border-radius-m);
+  }
+
   .vui-calendar-inline {
-    .dp__outer_menu_wrap {
+    .dp--outer-menu-wrap {
       box-shadow: none;
     }
 
-    .dp__menu {
+    .dp--menu {
       border: none;
     }
   }
 
-  .dp__overlay_cell_pad {
+  .dp--overlay-cell-pad {
     font-size: var(--font-size-m);
     text-transform: capitalize;
     font-weight: var(--font-weight-medium);
   }
 
-  .dp__main {
-    font-size: var(--font-size-m);
-    font-weight: var(--font-weight);
+  .dp--btn,
+  .dp--month-year-select-base {
+    font-weight: var(--font-weight-medium);
   }
 
-  .dp__btn {
-    font-weight: var(--font-medium);
+  .dp--input {
+    height: var(--interactive-el-height);
   }
 
-  .dp__outer_menu_wrap {
-    box-shadow: var(--box-shadow-strong);
-  }
-
-  .dp__input_icon {
+  // Flex avoids the inline baseline gap which pushed the icon up
+  .dp--input-icon {
     inset-inline-start: 8px;
+    display: flex;
+    align-items: center;
   }
 
   .dp--clear-btn {
     inset-inline-end: 8px;
   }
 
-  .dp__input {
-    height: var(--interactive-el-height);
+  .dp--input-icons,
+  .dp--inner-nav svg,
+  .dp--inc-dec-button svg {
+    width: 16px;
+    height: 16px;
   }
 }

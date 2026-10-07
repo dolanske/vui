@@ -1,6 +1,13 @@
 <script setup lang='ts'>
+import { IconPencil, IconTrash } from '@iconify-prerendered/vue-ph'
+import { ref } from 'vue'
+import Avatar from '../components/Avatar/Avatar.vue'
+import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
+import Modal from '../components/Modal/Modal.vue'
 import Tooltip from '../components/Tooltip/Tooltip.vue'
+
+const modalOpen = ref(false)
 </script>
 
 <template>
@@ -95,6 +102,86 @@ import Tooltip from '../components/Tooltip/Tooltip.vue'
                 </template>
               </Tooltip>
             </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Arrow</th>
+          <td>
+            <Flex gap="l">
+              <Tooltip v-for="placement in (['top', 'right', 'bottom', 'left'] as const)" :key="placement" arrow :placement>
+                <span>{{ placement }}</span>
+                <template #tooltip>
+                  <p>Tooltip with an arrow</p>
+                </template>
+              </Tooltip>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>On buttons <br> Shows on keyboard focus, Escape hides</th>
+          <td>
+            <Flex gap="s">
+              <Tooltip>
+                <Button square aria-label="Edit">
+                  <IconPencil />
+                </Button>
+                <template #tooltip>
+                  <p>Edit</p>
+                </template>
+              </Tooltip>
+              <Tooltip>
+                <Button square aria-label="Delete" variant="danger">
+                  <IconTrash />
+                </Button>
+                <template #tooltip>
+                  <p>Delete forever</p>
+                </template>
+              </Tooltip>
+            </Flex>
+          </td>
+        </tr>
+        <tr>
+          <th>Rich content</th>
+          <td>
+            <Tooltip>
+              <span>Hover for a profile</span>
+              <template #tooltip>
+                <Flex gap="s" y-center>
+                  <Avatar :size="32" fallback="JD" />
+                  <div>
+                    <strong class="block">Jane Doe</strong>
+                    <span class="text-color-light">Designer</span>
+                  </div>
+                </Flex>
+              </template>
+            </Tooltip>
+          </td>
+        </tr>
+        <tr>
+          <th>Long text</th>
+          <td>
+            <Tooltip>
+              <span>Hover me</span>
+              <template #tooltip>
+                <p>{{ 'A very long tooltip text which should wrap within a sensible maximum width. '.repeat(3) }}</p>
+              </template>
+            </Tooltip>
+          </td>
+        </tr>
+        <tr>
+          <th>Inside a modal</th>
+          <td>
+            <Button @click="modalOpen = true">
+              Open modal
+            </Button>
+            <Modal v-model:open="modalOpen">
+              <Tooltip>
+                <Button>Hover me</Button>
+                <template #tooltip>
+                  <p>Tooltip above the modal</p>
+                </template>
+              </Tooltip>
+            </Modal>
           </td>
         </tr>
       </tbody>

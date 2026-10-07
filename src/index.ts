@@ -72,6 +72,7 @@ import { defineTable } from './components/Table/table'
 import Tab from './components/Tabs/Tab.vue'
 import TabPanel from './components/Tabs/TabPanel.vue'
 import Tabs from './components/Tabs/Tabs.vue'
+import ThemeSample from './components/ThemeSample/ThemeSample.vue'
 import { pushToast, removeToast, updateToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
@@ -168,6 +169,7 @@ export {
   Tabs,
   Textarea,
   theme,
+  ThemeSample,
   type Toast,
   type ToastOptions,
   Toasts,

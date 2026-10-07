@@ -74,9 +74,16 @@
         position: relative;
 
         // Off-screen groups are not rendered until scrolled near, which keeps
-        // ~1800 emoji buttons cheap
+        // ~1800 emoji buttons cheap on open. The picker renders them while
+        // idle (data-warm), so jumping to a tab is instant. The placeholder
+        // width matches the 8 column grid (42px buttons), otherwise a skipped
+        // group stretches the picker until it renders.
         content-visibility: auto;
-        contain-intrinsic-size: auto 512px;
+        contain-intrinsic-size: auto calc(8 * 42px) auto 512px;
+
+        &[data-warm] {
+          content-visibility: visible;
+        }
 
         &:has(button) {
           display: block;
@@ -144,6 +151,9 @@
       z-index: 5;
       display: block;
       max-width: 100%;
+      // The hovered label must never size the picker, it wraps to the width
+      // the emoji grid sets instead
+      contain: inline-size;
     }
 
     .vui-emoji-content {
@@ -173,7 +183,7 @@
         padding-inline: var(--space-s);
         outline: none;
         background-color: transparent;
-        font-weight: var(--font-weight-regular);
+        font-weight: var(--font-weight);
         font-family: var(--font);
         font-size: var(--font-size-m);
         caret-color: var(--color-accent);

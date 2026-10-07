@@ -9,6 +9,7 @@
     gap: var(--space-xs);
     width: 100%;
     height: var(--interactive-el-height);
+    min-height: var(--interactive-el-height);
     border-radius: var(--border-radius-m);
     font-size: var(--font-size-m);
     cursor: pointer;

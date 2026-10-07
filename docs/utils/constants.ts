@@ -176,6 +176,7 @@ export const componentList = [
   { name: 'Table', path: '/docs/components/table', tags: ['cell', 'head', 'header', 'row', 'select'], keywords: ['data', 'rows', 'columns', 'grid'], description: 'Data display component with rows and columns', status: 'update' },
   { name: 'Tabs', path: '/docs/components/tabs', tags: ['group'], keywords: ['navigation', 'sections', 'panel', 'tabbed'], description: 'Container for organizing content into tabbed sections' },
   { name: 'Textarea', path: '/docs/components/textarea', keywords: ['multiline', 'text', 'form', 'input'], description: 'Multi-line text input for longer content' },
+  { name: 'Theme Sample', path: '/docs/components/theme-sample', keywords: ['theme', 'tokens', 'colors', 'preview', 'palette'], description: 'Overview of every theme token and common components for theming', status: 'new' },
   { name: 'Toast', path: '/docs/components/toast', keywords: ['notification', 'message', 'alert', 'snackbar'], description: 'Temporary notification message that appears and disappears' },
   { name: 'Tooltip', path: '/docs/components/tooltip', keywords: ['hint', 'hover', 'info', 'popup'], description: 'Small popup that appears when hovering over an element' },
 ] as const

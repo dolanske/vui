@@ -27,6 +27,7 @@ The Calendar component accepts all the props listed in the [official documentati
 | ----------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `autoApply` | `true`                                         | `boolean` <br> Automatically apply the selected date when clicking on a day                                                                          |
 | `formats`   | `{ input: 'dd/MM/yyyy HH:mm', month: 'MMMM' }` | `object` <br> Display formats. The time is left out of `input` when `enable-time-picker` is `false` or a month, year, week or quarter picker is used |
+| `enableTimePicker` | `true` | `boolean` <br> VUI shorthand for `timeConfig.enableTimePicker`, which vue-datepicker v14 moved into `timeConfig` |
 | `expand`    | `false`                                        | `boolean` <br> VUI prop. Makes the calendar expand to full width. Without it, a custom `trigger` keeps its natural width                             |
 | `dark`      | Displayed theme                                | `boolean` <br> Follows the displayed theme (`isDark`), including the system preference in `auto` mode                                                |
 

@@ -170,7 +170,24 @@ function onPopoutFocusout(event: FocusEvent) {
   const relatedTarget = event.relatedTarget as HTMLElement | null
   const currentTarget = event.currentTarget as HTMLElement
 
-  // Focus stayed inside the popout, moved to a submenu or another layer above
+  // The whole window lost focus (e.g. switching apps). Keep the menu open.
+  if (!relatedTarget && !document.hasFocus())
+    return
+
+  // Focus was dropped, not moved: the focused element got hidden or removed, or
+  // plain content was clicked. Clicks outside are handled by click-outside, so
+  // keep the menu open and pull focus back in for Escape and Tab to keep working.
+  if (!relatedTarget) {
+    requestAnimationFrame(() => {
+      if (showMenu.value && currentTarget.isConnected && (!document.activeElement || document.activeElement === document.body))
+        currentTarget.focus({ preventScroll: true })
+    })
+    return
+  }
+
+  // Focus stayed inside the popout, moved to a submenu or another layer above.
+  // The popout itself is focusable (tabindex -1), so clicking plain content
+  // inside it keeps focus within instead of dropping it to the body.
   if (currentTarget.contains(relatedTarget) || isInsideHigherLayer(relatedTarget))
     return
 
@@ -267,6 +284,7 @@ function onMenuKeydown(event: KeyboardEvent) {
       '--vui-dropdown-max-height': formatUnitValue(maxHeight),
     }"
     :transition-name
+    tabindex="-1"
     close-on-escape
     v-bind="attrs"
     @escape="close(true)"

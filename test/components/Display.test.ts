@@ -14,6 +14,7 @@ import Progress from '../../src/components/Progress/Progress.vue'
 import ResizableView from '../../src/components/ResizableView/ResizableView.vue'
 import Skeleton from '../../src/components/Skeleton/Skeleton.vue'
 import Spinner from '../../src/components/Spinner/Spinner.vue'
+import ThemeSample from '../../src/components/ThemeSample/ThemeSample.vue'
 import { pushToast, removeToast, toasts, updateToast } from '../../src/components/Toast/toast'
 import Toasts from '../../src/components/Toast/Toasts.vue'
 import { flush, pressKey } from '../helpers'
@@ -112,6 +113,17 @@ describe('display components', () => {
     await flush()
     expect(highlight.classes()).toContain('active')
     highlight.unmount()
+  })
+})
+
+describe('theme sample', () => {
+  it('renders every color group and is labelled', () => {
+    const wrapper = mount(ThemeSample, { props: { title: 'My theme' }, attachTo: document.body })
+    expect(wrapper.attributes('aria-label')).toBe('My theme')
+    expect(wrapper.findAll('.vui-theme-sample-color-group')).toHaveLength(10)
+    expect(wrapper.find('[title="--color-accent"]').exists()).toBe(true)
+    expect(wrapper.find('.vui-button').exists()).toBe(true)
+    wrapper.unmount()
   })
 })
 

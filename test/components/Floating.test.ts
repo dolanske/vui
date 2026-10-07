@@ -81,6 +81,32 @@ describe('dropdown', () => {
   })
 })
 
+describe('dropdown with plain content', () => {
+  it('stays open when non-focusable content inside it is clicked', async () => {
+    const App = defineComponent({
+      render: () => h(Dropdown, { role: 'dialog' }, {
+        trigger: ({ toggle }: any) => h('button', { id: 'plain-trigger', onClick: toggle }, 'Open'),
+        default: () => [h('p', { class: 'plain-text' }, 'Plain text'), h('button', { id: 'inner' }, 'Inner')],
+      }),
+    })
+    const wrapper = mount(App, withTransitions)
+    await settle()
+
+    document.getElementById('plain-trigger')!.click()
+    await settle()
+    const popout = document.querySelector<HTMLElement>('.vui-dropdown')!
+    expect(popout.getAttribute('tabindex')).toBe('-1')
+
+    // A mousedown on plain text moves focus to the closest focusable
+    // ancestor, which is the popout itself
+    document.getElementById('inner')!.focus()
+    popout.focus()
+    await settle()
+    expect(document.querySelector('.vui-dropdown')).not.toBeNull()
+    wrapper.unmount()
+  })
+})
+
 describe('context menu', () => {
   it('only opens the innermost nested menu', async () => {
     const App = defineComponent({

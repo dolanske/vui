@@ -104,6 +104,7 @@ async function load() {
     }, {} as Record<number, Emoji[]>)
 
     status.value = 'ready'
+    nextTick(warmGroupsWhenIdle)
   }
   catch (error) {
     status.value = 'error'
@@ -144,10 +145,44 @@ const observerPaused = ref(false)
 const overflow = useTemplateRef('overflow')
 const SCROLL_OFFSET = -16
 
+//
+// Groups use `content-visibility: auto` so opening the picker stays cheap. A group
+// which was never rendered has to be laid out and painted the moment a tab jumps
+// to it, which shows as a delay. Groups are therefore rendered one by one while
+// the browser is idle, and all at once right before a tab jump.
+
+function getGroupElements(): HTMLElement[] {
+  const container = overflow.value?.contentRef as HTMLElement | undefined
+  return container ? Array.from(container.querySelectorAll<HTMLElement>('.vui-emoji-picker-group')) : []
+}
+
+function warmGroup(el: HTMLElement) {
+  el.dataset.warm = ''
+}
+
+const onIdle: (_callback: () => void) => void = typeof window !== 'undefined' && 'requestIdleCallback' in window
+  ? callback => window.requestIdleCallback(callback, { timeout: 500 })
+  : callback => setTimeout(callback, 16)
+
+function warmGroupsWhenIdle() {
+  const pending = getGroupElements()
+  const next = () => {
+    const el = pending.shift()
+    if (!el)
+      return
+    if (el.isConnected)
+      warmGroup(el)
+    onIdle(next)
+  }
+  onIdle(next)
+}
+
 function handleTabClick(key: string) {
   if (search.value) {
     search.value = ''
   }
+
+  getGroupElements().forEach(warmGroup)
 
   activeTab.value = Number(key)
   observerPaused.value = true
@@ -244,7 +279,10 @@ const filteredEmojisByGroup = computed(() => {
 
 const hasResults = computed(() => Object.values(filteredEmojisByGroup.value).some(group => group.length > 0))
 
+// The button hides itself once at the top, so focus moves to the search first.
+// A hidden focused element drops focus, which would close a surrounding dropdown.
 function scrollUp() {
+  searchInput.value?.focus({ preventScroll: true })
   overflow.value?.contentRef?.scrollTo({ top: 0, behavior: 'instant' })
 }
 
@@ -399,11 +437,11 @@ const [DefineEmojiList, EmojiList] = createReusableTemplate<{ emojis: Emoji[], l
     </div>
 
     <template #footer>
-      <div v-if="activeEmoji && !viewport.s" class="vui-emoji-footer" aria-hidden="true">
-        <span class="emoji-item">
+      <div v-if="activeEmoji && !viewport.s" class="vui-emoji-footer">
+        <span class="emoji-item" aria-hidden="true">
           {{ activeEmoji.emoji }}
         </span>
-        <p>
+        <p aria-hidden="true">
           {{ capitalize(activeEmoji.label) }}
         </p>
         <Button v-show="y > 64" square plain aria-label="Scroll to top" @click="scrollUp">

@@ -25,7 +25,7 @@ interface Props {
 
 const {
   placement = 'bottom-end',
-  max = 5,
+  max = 8,
   label = 'Notifications',
   dismissLabel = 'Dismiss',
 } = defineProps<Props>()

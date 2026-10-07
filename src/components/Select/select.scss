@@ -42,8 +42,10 @@
         text-align: left;
       }
 
+      // Together with the flex gap before the caret, reserves exactly the
+      // width of the clear button
       .vui-select-clear-spacer {
-        width: var(--interactive-el-height-s);
+        width: calc(var(--interactive-el-height-s) - var(--space-s));
         flex-shrink: 0;
       }
 
@@ -51,8 +53,9 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        // Sits right before the caret icon
-        right: calc(var(--vui-input-padding) + 16px + var(--space-s));
+        // Sits right against the caret icon. The button's own padding is
+        // enough visual separation.
+        right: calc(var(--vui-input-padding) + 16px);
         border: none !important;
 
         .vui-button-slot svg,

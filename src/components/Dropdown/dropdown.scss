@@ -18,6 +18,11 @@
     flex-direction: column;
     gap: var(--space-xxxs);
 
+    // Focusable only so clicks on plain content keep focus inside the menu
+    &:focus {
+      outline: none;
+    }
+
     .vui-divider {
       width: auto;
       margin-inline: calc(var(--space-xxs) * -1);
