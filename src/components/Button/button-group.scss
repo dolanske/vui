@@ -1,116 +1,120 @@
-.vui-button-group {
-  .vui-button {
-    z-index: var(--z-default);
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-    &:hover {
-      z-index: var(--z-active);
-    }
-  }
-
-  // Positional selectors handle buttons that are unwrapped, wrapped once
-  // (e.g. inside a Tooltip), or wrapped twice (e.g. CopyClipboard + Tooltip).
-  // Some triggers (e.g. Calendar) add additional wrapper depth, so include
-  // a descendant fallback to keep edge rounding and spacing consistent.
-  &:not(.vertical) {
-    > :not(:last-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        margin-right: 0;
-      }
-    }
-
-    > :first-child:not(:only-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-
-    > :last-child:not(:only-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-    }
-
-    > :not(:first-child, :last-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        border-radius: 0;
-      }
-    }
-  }
-
-  &.vertical {
+@layer vui.components {
+  .vui-button-group {
     .vui-button {
-      width: 100%;
-    }
+      z-index: var(--z-default);
 
-    > :not(:last-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        margin-bottom: 0;
+      &:hover {
+        z-index: var(--z-active);
       }
     }
 
-    > :first-child:not(:only-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
+    // Positional selectors handle buttons that are unwrapped, wrapped once
+    // (e.g. inside a Tooltip), or wrapped twice (e.g. CopyClipboard + Tooltip).
+    // Some triggers (e.g. Calendar) add additional wrapper depth, so include
+    // a descendant fallback to keep edge rounding and spacing consistent.
+    &:not(.vertical) {
+      > :not(:last-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          margin-right: 0;
+        }
+      }
+
+      > :first-child:not(:only-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      > :last-child:not(:only-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      > :not(:first-child, :last-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          border-radius: 0;
+        }
       }
     }
 
-    > :last-child:not(:only-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
+    &.vertical {
       .vui-button {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        width: 100%;
+      }
+
+      > :not(:last-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          margin-bottom: 0;
+        }
+      }
+
+      > :first-child:not(:only-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      > :last-child:not(:only-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+
+      > :not(:first-child, :last-child) {
+        &.vui-button,
+        > .vui-button,
+        > * > .vui-button,
+        .vui-button {
+          border-radius: 0;
+        }
       }
     }
 
-    > :not(:first-child, :last-child) {
-      &.vui-button,
-      > .vui-button,
-      > * > .vui-button,
-      .vui-button {
-        border-radius: 0;
+    // Collapse double border between adjacent outline buttons when gap is 0
+    &.gap-zero:not(.vertical) > :not(:last-child) {
+      &.vui-button.outline,
+      > .vui-button.outline,
+      > * > .vui-button.outline,
+      .vui-button.outline {
+        margin-right: -1px;
       }
     }
-  }
 
-  // Collapse double border between adjacent outline buttons when gap is 0
-  &.gap-zero:not(.vertical) > :not(:last-child) {
-    &.vui-button.outline,
-    > .vui-button.outline,
-    > * > .vui-button.outline,
-    .vui-button.outline {
-      margin-right: -1px;
-    }
-  }
-
-  &.gap-zero.vertical > :not(:last-child) {
-    &.vui-button.outline,
-    > .vui-button.outline,
-    > * > .vui-button.outline,
-    .vui-button.outline {
-      margin-bottom: -1px;
+    &.gap-zero.vertical > :not(:last-child) {
+      &.vui-button.outline,
+      > .vui-button.outline,
+      > * > .vui-button.outline,
+      .vui-button.outline {
+        margin-bottom: -1px;
+      }
     }
   }
 }

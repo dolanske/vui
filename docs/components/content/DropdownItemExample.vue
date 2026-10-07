@@ -9,7 +9,7 @@ import { DropdownItem, Flex } from '@dolanske/vui'
         <Flex x-center column gap="0">
           <DropdownItem>
             Create
-            <template #icon-end>
+            <template #iconEnd>
               <Icon name="ph:plus" />
             </template>
           </DropdownItem>
@@ -24,7 +24,7 @@ import { DropdownItem, Flex } from '@dolanske/vui'
             </template>
           </DropdownItem>
           <DropdownItem disabled>
-            <template #icon-end>
+            <template #iconEnd>
               <Icon name="ph:trash" />
             </template>
             Delete

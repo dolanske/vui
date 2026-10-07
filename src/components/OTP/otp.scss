@@ -1,94 +1,110 @@
-.vui-otp {
-  --vui-otp-background-color: var(--color-bg-lowered);
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  display: inline-block;
-  position: relative;
+@layer vui.components {
+  .vui-otp {
+    --vui-otp-background-color: var(--color-bg-lowered);
 
-  .vui-otp-items {
-    display: inline-flex;
-    gap: 0;
+    display: inline-block;
+    position: relative;
 
-    .vui-otp-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--interactive-el-height);
-      height: var(--interactive-el-height);
-      border: 1px solid var(--color-border-strong);
-      color: var(--color-text);
-      z-index: var(--z-default);
-      font-size: var(--font-size-m);
-      outline: 0 solid var(--color-text-light);
-      transition: outline var(--transition-fast);
-      background-color: var(--);
-      background-color: var(--vui-otp-background-color);
+    .vui-otp-items {
+      display: inline-flex;
+      gap: 0;
 
-      .blinker {
-        display: block;
-        height: 16px;
-        width: 1px;
-        background-color: var(--color-text);
-        animation: blink 1s ease-out infinite;
-        visibility: hidden;
-      }
-
-      @keyframes blink {
-        0%,
-        70%,
-        100% {
-          opacity: 1;
-        }
-        20%,
-        50% {
-          opacity: 0;
-        }
-      }
-
-      &.has-value {
-        background-color: var(--color-bg-medium);
+      .vui-otp-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--interactive-el-height);
+        height: var(--interactive-el-height);
+        border: 1px solid var(--color-border-strong);
+        color: var(--color-text);
+        z-index: var(--z-default);
+        font-size: var(--font-size-m);
+        outline: 0 solid var(--color-text-light);
+        transition: outline var(--transition-fast);
+        background-color: var(--vui-otp-background-color);
 
         .blinker {
-          display: none !important;
+          display: block;
+          height: 16px;
+          width: 1px;
+          background-color: var(--color-text);
+          animation: blink 1s ease-out infinite;
+          visibility: hidden;
         }
-      }
 
-      &.active {
-        z-index: var(--z-active);
-        outline-width: 2px;
-
-        .blinker {
-          visibility: visible;
+        @keyframes blink {
+          0%,
+          70%,
+          100% {
+            opacity: 1;
+          }
+          20%,
+          50% {
+            opacity: 0;
+          }
         }
-      }
 
-      &:not(:first-child) {
-        margin-left: -1px;
-      }
+        &.has-value {
+          background-color: var(--color-bg-medium);
 
-      &:first-child {
-        border-top-left-radius: var(--border-radius-m);
-        border-bottom-left-radius: var(--border-radius-m);
-      }
+          .blinker {
+            display: none !important;
+          }
+        }
 
-      &:last-child {
-        border-top-right-radius: var(--border-radius-m);
-        border-bottom-right-radius: var(--border-radius-m);
+        &.active {
+          z-index: var(--z-active);
+          outline-width: 2px;
+
+          .blinker {
+            visibility: visible;
+          }
+        }
+
+        &:not(:first-child) {
+          margin-left: -1px;
+        }
+
+        &:first-child {
+          border-top-left-radius: var(--border-radius-m);
+          border-bottom-left-radius: var(--border-radius-m);
+        }
+
+        &:last-child {
+          border-top-right-radius: var(--border-radius-m);
+          border-bottom-right-radius: var(--border-radius-m);
+        }
       }
     }
-  }
 
-  .vui-otp-input {
-    position: absolute;
-    inset: 0;
-    border: none;
-    outline: none !important;
-    color: transparent;
-    background: transparent;
-    z-index: var(--z-mask);
-    caret-color: transparent;
+    &.invalid .vui-otp-items .vui-otp-item {
+      border-color: var(--color-text-red);
+    }
 
-    &::selection {
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      .vui-otp-input {
+        cursor: not-allowed;
+      }
+    }
+
+    .vui-otp-input {
+      position: absolute;
+      inset: 0;
+      border: none;
+      outline: none !important;
+      color: transparent;
       background: transparent;
+      z-index: var(--z-mask);
+      caret-color: transparent;
+
+      &::selection {
+        background: transparent;
+      }
     }
   }
 }

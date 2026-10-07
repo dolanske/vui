@@ -51,10 +51,14 @@ interface Props {
 
   /** Expand width to 100%. */
   expand?: boolean
+
+  /** Element to render, e.g. `ul` or `section`. */
+  as?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   gap: undefined,
+  as: 'div',
 })
 
 const ag = computed(() => {
@@ -77,8 +81,8 @@ const aTC = computed(() => {
 const aTR = computed(() => {
   if (typeof props.rows === 'number') {
     return createArray(props.rows || 1)
-      .map(() => '')
-      .join('1fr')
+      .map(() => '1fr')
+      .join(' ')
   }
   return props.rows
 })
@@ -106,10 +110,12 @@ const aJ = computed(() => {
     return 'center'
   else if (props.xStretch)
     return 'stretch'
-  else if (props.xBetween)
-    return 'space-between'
   return undefined
 })
+
+// Distributing space between items is a job for justify-content, not
+// justify-items
+const aJC = computed(() => props.xBetween ? 'space-between' : undefined)
 
 const aF = computed(() => {
   if (props.autoFlowColumn)
@@ -130,7 +136,8 @@ const aH = computed(() => props.expand ? '100%' : undefined)
 </script>
 
 <template>
-  <div
+  <component
+    :is="props.as"
     class="vui-grid" :style="{
       '--vui-grid-display': aD,
       '--vui-grid-gap': ag,
@@ -138,10 +145,11 @@ const aH = computed(() => props.expand ? '100%' : undefined)
       '--vui-grid-rows': aTR,
       '--vui-grid-align': aA,
       '--vui-grid-justify': aJ,
+      '--vui-grid-justify-content': aJC,
       '--vui-grid-flow': aF,
       '--vui-grid-width': aH,
     }"
   >
     <slot />
-  </div>
+  </component>
 </template>

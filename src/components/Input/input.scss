@@ -1,324 +1,342 @@
-.vui-input-container {
-  // Each component should have its own specification as it allows more granual
-  // modification via CSS variables if needed
-  --vui-input-color-text-red: var(--color-text-red);
-  --vui-input-color-text: var(--color-text);
-  --vui-input-color-text-light: var(--color-text-light);
-  --vui-input-color-text-lighter: var(--color-text-lighter);
-  --vui-input-color-border: var(--color-border);
-  --vui-input-color-border-strong: var(--color-border-strong);
-  --vui-input-color-border-weak: var(--color-border-weak);
+@use '../../style/theme-mode' as mode;
 
-  --vui-input-background-color: var(--color-bg-raised);
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  --vui-input-height: var(--interactive-el-height);
-  --vui-input-padding: var(--space-xs);
-  --vui-textarea-padding: var(--space-xs);
-  --vui-input-width: 224px;
+@layer vui.components {
+  .vui-input-container {
+    // Each component should have its own specification as it allows more granual
+    // modification via CSS variables if needed
+    --vui-input-color-text-red: var(--color-text-red);
+    --vui-input-color-text: var(--color-text);
+    --vui-input-color-text-light: var(--color-text-light);
+    --vui-input-color-text-lighter: var(--color-text-lighter);
+    --vui-input-color-border: var(--color-border);
+    --vui-input-color-border-strong: var(--color-border-strong);
+    --vui-input-color-border-weak: var(--color-border-weak);
 
-  //
+    --vui-input-background-color: var(--color-bg-raised);
 
-  width: var(--vui-input-width);
+    --vui-input-height: var(--interactive-el-height);
+    --vui-input-padding: var(--space-xs);
+    --vui-textarea-padding: var(--space-xs);
+    --vui-input-width: 224px;
 
-  &.disabled {
-    .vui-input {
-      label {
-        color: var(--vui-input-color-text-lighter);
+    //
+
+    width: var(--vui-input-width);
+
+    &.disabled {
+      .vui-input {
+        label {
+          color: var(--vui-input-color-text-lighter);
+        }
+
+        input,
+        textarea,
+        .vui-input-style {
+          cursor: not-allowed;
+          resize: none !important;
+          border-color: var(--vui-input-color-border-weak);
+        }
       }
+    }
 
+    &.expand {
+      width: 100%;
+    }
+
+    &.required .vui-input > label:after {
+      content: '*';
+      padding-left: 2px;
+      color: var(--vui-input-color-text-red);
+      font-size: var(--font-size-l);
+    }
+
+    &.readonly .vui-input {
       input,
       textarea,
       .vui-input-style {
-        cursor: not-allowed;
+        color: var(--vui-input-color-text-light);
         resize: none !important;
-        border-color: var(--vui-input-color-border-weak);
       }
     }
-  }
 
-  &.expand {
-    width: 100%;
-  }
-
-  &.required .vui-input > label:after {
-    content: '*';
-    padding-left: 2px;
-    color: var(--vui-input-color-text-red);
-    font-size: var(--font-size-l);
-  }
-
-  &.readonly .vui-input {
-    input,
-    textarea,
-    .vui-input-style {
-      color: var(--vui-input-color-text-light);
-      resize: none !important;
+    &.has-errors {
+      .vui-input {
+        .vui-input-style,
+        textarea {
+          outline: 1px solid var(--color-text-red) !important;
+        }
+      }
     }
-  }
 
-  &.has-errors {
+    &.vui-input-color {
+      .vui-input-style {
+        padding-left: 0 !important;
+        outline: none !important;
+
+        input {
+          outline: none !important;
+        }
+      }
+    }
+
     .vui-input {
+      label {
+        display: block;
+        text-align: left;
+        margin-bottom: 8px;
+        font-size: var(--font-size-m);
+        color: var(--vui-input-color-text);
+      }
+
+      svg {
+        min-width: 16px;
+        min-height: 16px;
+      }
+
+      .vui-input-hint {
+        margin-bottom: 8px;
+        margin-top: -4px;
+        color: var(--vui-input-color-text-lighter);
+        font-size: var(--font-size-s);
+        display: block;
+        text-align: left;
+      }
+
+      ::placeholder {
+        font-weight: var(--font-weight);
+        color: var(--color-text-lighter);
+        font-family: var(--font);
+      }
+
       .vui-input-style,
       textarea {
-        outline: 1px solid var(--color-text-red) !important;
-      }
-    }
-  }
+        // display: block;
+        border-radius: var(--border-radius-s);
+        border: 1px solid var(--vui-input-color-border);
+        background: var(--vui-input-background-color);
+        height: var(--vui-input-height);
+        line-height: var(--vui-input-height);
+        color: var(--color-text-lighter);
+        outline: none;
+        font-size: var(--font-size-m);
+        width: 100%;
+        transition:
+          border-color var(--transition-fast),
+          outline var(--transition-fast);
+        padding-inline: var(--vui-input-padding);
+        z-index: var(--z-default);
 
-  &.vui-input-color {
-    .vui-input-style {
-      padding-left: 0 !important;
-      outline: none !important;
-
-      input {
-        outline: none !important;
-      }
-    }
-  }
-
-  .vui-input {
-    label {
-      display: block;
-      text-align: left;
-      margin-bottom: 8px;
-      font-size: var(--font-size-m);
-      color: var(--vui-input-color-text);
-    }
-
-    svg {
-      min-width: 16px;
-      min-height: 16px;
-    }
-
-    .vui-input-hint {
-      margin-bottom: 8px;
-      margin-top: -4px;
-      color: var(--vui-input-color-text-lighter);
-      font-size: var(--font-size-s);
-      display: block;
-      text-align: left;
-    }
-
-    ::placeholder {
-      font-weight: var(--font-weight);
-      color: var(--color-text-lighter);
-      font-family: var(--font);
-    }
-
-    .vui-input-style,
-    textarea {
-      // display: block;
-      border-radius: var(--border-radius-s);
-      border: 1px solid var(--vui-input-color-border);
-      background: var(--vui-input-background-color);
-      height: var(--vui-input-height);
-      line-height: var(--vui-input-height);
-      color: var(--color-text-lighter);
-      outline: none;
-      font-size: var(--font-size-m);
-      width: 100%;
-      transition:
-        border-color var(--transition-fast),
-        outline var(--transition-fast);
-      padding-inline: var(--vui-input-padding);
-      z-index: var(--z-default);
-
-      &:has(input:focus),
-      &:focus {
-        // Override error outline
-        outline: 2px solid var(--color-text) !important;
-      }
-
-      .vui-button {
-        border: 1px solid var(--color-border);
-
-        &:first-child {
-          margin-left: calc(calc(var(--vui-input-padding) - 2px) * -1);
+        &:has(input:focus),
+        &:focus {
+          // Override error outline
+          outline: 2px solid var(--color-text) !important;
         }
 
-        &:last-child {
-          margin-right: calc(calc(var(--vui-input-padding) - 2px) * -1);
+        .vui-button.vui-input-clear {
+          border: none;
+          flex-shrink: 0;
+        }
+
+        .vui-button {
+          border: 1px solid var(--color-border);
+
+          &:first-child {
+            margin-left: calc(calc(var(--vui-input-padding) - 2px) * -1);
+          }
+
+          &:last-child {
+            margin-right: calc(calc(var(--vui-input-padding) - 2px) * -1);
+          }
         }
       }
-    }
 
-    input,
-    textarea {
-      color: var(--color-text);
-      font-family: var(--font);
-      // padding-inline: 3px;
-    }
-
-    input[type='file']::file-selector-button {
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      border: none;
-    }
-
-    input[type='range'] {
-      appearance: none;
-      display: block;
-      /* width: 100%; */
-      height: 20px;
-      border-radius: var(--border-radius-pill);
-      overflow: hidden;
-      background-color: var(--vui-input-background-color);
-
-      // Track - WebKit uses linear-gradient to fake progress fill via --range-progress custom property
-      &::-webkit-slider-runnable-track {
-        background: linear-gradient(
-          to right,
-          var(--color-accent) 0%,
-          var(--color-accent) var(--range-progress, 0%),
-          var(--color-border-strong) var(--range-progress, 0%),
-          var(--color-border-strong) 100%
-        );
-        border-radius: var(--border-radius-pill);
-      }
-      &::-moz-range-track {
-        background-color: var(--color-border-strong);
-        border-radius: var(--border-radius-pill);
+      input,
+      textarea {
+        color: var(--color-text);
+        font-family: var(--font);
+        // padding-inline: 3px;
       }
 
-      // Thumb
-      &::-webkit-slider-thumb,
-      &::-moz-range-thumb {
-        -webkit-appearance: none;
+      input[type='file']::file-selector-button {
+        background-color: var(--color-bg);
+        color: var(--color-text);
         border: none;
-        background-color: var(--color-text-light);
       }
 
-      // Progress fill (Firefox only; use linear-gradient on track for Chrome/Safari)
-      &::-moz-range-progress {
-        background-color: var(--color-accent);
+      input[type='range'] {
+        appearance: none;
+        display: block;
+        /* width: 100%; */
+        height: 20px;
         border-radius: var(--border-radius-pill);
+        overflow: hidden;
+        background-color: var(--vui-input-background-color);
+
+        // Track - WebKit uses linear-gradient to fake progress fill via --range-progress custom property
+        &::-webkit-slider-runnable-track {
+          background: linear-gradient(
+            to right,
+            var(--color-accent) 0%,
+            var(--color-accent) var(--range-progress, 0%),
+            var(--color-border-strong) var(--range-progress, 0%),
+            var(--color-border-strong) 100%
+          );
+          border-radius: var(--border-radius-pill);
+        }
+        &::-moz-range-track {
+          background-color: var(--color-border-strong);
+          border-radius: var(--border-radius-pill);
+        }
+
+        // Thumb
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+          -webkit-appearance: none;
+          border: none;
+          background-color: var(--color-text-light);
+        }
+
+        // Progress fill (Firefox only; use linear-gradient on track for Chrome/Safari)
+        &::-moz-range-progress {
+          background-color: var(--color-accent);
+          border-radius: var(--border-radius-pill);
+        }
       }
-    }
 
-    input[type='color'] {
-      width: 1px;
-      height: 1px;
-      position: absolute;
-      overflow: hidden;
-      outline: none !important;
-      opacity: 0;
+      input[type='color'] {
+        width: 1px;
+        height: 1px;
+        position: absolute;
+        overflow: hidden;
+        outline: none !important;
+        opacity: 0;
 
-      &:focus + label .vui-input-color-indicator {
-        outline: var(--outline);
-      }
+        &:focus + label .vui-input-color-indicator {
+          outline: var(--outline);
+        }
 
-      & + label {
-        position: relative;
-        margin: 0;
-        padding-left: var(--vui-input-height);
+        & + label {
+          position: relative;
+          margin: 0;
+          padding-left: var(--vui-input-height);
 
-        input {
-          padding-inline: var(--space-xs);
-          border-radius: var(--border-radius-s);
+          input {
+            padding-inline: var(--space-xs);
+            border-radius: var(--border-radius-s);
 
-          &:focus {
-            outline: var(--outline);
+            &:focus {
+              outline: var(--outline);
+            }
           }
-        }
 
-        .vui-input-color-indicator {
-          position: absolute;
-          inset: 2px;
-          right: unset;
-          width: calc(var(--vui-input-height) - 8px);
-          background-color: var(--color-border);
-          border-radius: var(--border-radius-s);
-          font-size: var(--font-size-l);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          &:hover {
-            opacity: 0.8;
-          }
-        }
-      }
-    }
-
-    ::-moz-range-thumb,
-    ::-webkit-slider-thumb {
-      width: 16px;
-      height: 16px;
-      background-color: var(--color-text-light);
-      border: none;
-    }
-
-    input {
-      display: block;
-      width: 100%;
-      border: none;
-      height: calc(var(--vui-input-height) - 2px);
-      line-height: calc(var(--vui-input-height) - 2px);
-      background: transparent;
-      outline: none;
-      font-size: var(--font-size-m);
-      color: var(--color-text);
-
-      &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px var(--color-bg) inset;
-        -webkit-text-fill-color: var(--color-text);
-      }
-    }
-
-    textarea {
-      line-height: 1.3em;
-      height: auto;
-      // 5lh = 5 lines of height
-      // min-height: 5lh;
-      field-sizing: content;
-      padding: var(--vui-textarea-padding);
-      transition: none;
-    }
-  }
-
-  &.vui-dropzone {
-    &.dragging .vui-input .vui-input-style {
-      border-color: var(--color-accent);
-
-      &:hover {
-        border-color: var(--color-border);
-      }
-    }
-
-    .vui-input {
-      .vui-input-style {
-        height: unset;
-        border-width: 2px;
-        border-style: dashed;
-        border-radius: var(--border-radius-m);
-        line-height: 1.2em;
-
-        &:hover {
-          border-color: var(--color-accent);
-        }
-
-        input {
-          width: 1px;
-          height: 1px;
-          position: absolute;
-          outline: 0 !important;
-          opacity: 0 !important;
-
-          & + label {
+          .vui-input-color-indicator {
+            position: absolute;
+            inset: 2px;
+            right: unset;
+            width: calc(var(--vui-input-height) - 8px);
+            background-color: var(--color-border);
+            border-radius: var(--border-radius-s);
+            font-size: var(--font-size-l);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            min-height: 96px;
-            margin: 0;
-            color: var(--color-text-light);
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      ::-moz-range-thumb,
+      ::-webkit-slider-thumb {
+        width: 16px;
+        height: 16px;
+        background-color: var(--color-text-light);
+        border: none;
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        border: none;
+        height: calc(var(--vui-input-height) - 2px);
+        line-height: calc(var(--vui-input-height) - 2px);
+        background: transparent;
+        outline: none;
+        font-size: var(--font-size-m);
+        color: var(--color-text);
+
+        &:-webkit-autofill {
+          box-shadow: 0 0 0px 1000px var(--color-bg) inset;
+          -webkit-text-fill-color: var(--color-text);
+        }
+      }
+
+      textarea {
+        line-height: 1.3em;
+        height: auto;
+        padding: var(--vui-textarea-padding);
+        transition: none;
+
+        // Only grow with content when explicitly requested. `rows` is kept as
+        // the minimum height, since `field-sizing` would otherwise ignore it.
+        &.auto-resize {
+          field-sizing: content;
+          overflow: hidden;
+          min-height: calc(var(--vui-textarea-rows, 5) * 1.3em + 2 * var(--vui-textarea-padding) + 2px);
+        }
+      }
+    }
+
+    &.vui-dropzone {
+      &.dragging .vui-input .vui-input-style {
+        border-color: var(--color-accent);
+
+        &:hover {
+          border-color: var(--color-border);
+        }
+      }
+
+      .vui-input {
+        .vui-input-style {
+          height: unset;
+          border-width: 2px;
+          border-style: dashed;
+          border-radius: var(--border-radius-m);
+          line-height: 1.2em;
+
+          &:hover {
+            border-color: var(--color-accent);
+          }
+
+          input {
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            outline: 0 !important;
+            opacity: 0 !important;
+
+            & + label {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              min-height: 96px;
+              margin: 0;
+              color: var(--color-text-light);
+            }
           }
         }
       }
     }
   }
-}
 
-:root.light .vui-input-container {
-  --vui-input-background-color: var(--color-bg-lowered);
+  @include mode.light {
+    .vui-input-container {
+      --vui-input-background-color: var(--color-bg-lowered);
+    }
+  }
 }

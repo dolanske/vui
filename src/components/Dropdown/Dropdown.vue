@@ -1,8 +1,10 @@
 <script setup lang='ts'>
 import type { Placement } from '../../lib/types.ts'
-import { useMagicKeys, whenever } from '@vueuse/core'
-import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, provide, ref, useAttrs, useId, useTemplateRef, watch, watchEffect } from 'vue'
+import { getFocusableElements } from '../../lib/focus.ts'
 import { formatUnitValue } from '../../lib/helpers.ts'
+import { useInputCapabilities } from '../../lib/media.ts'
+import { createMenuKeydownHandler, focusInitialItem, MENU_KEY } from '../../lib/menu.ts'
 import { viewport } from '../../lib/viewport.ts'
 import Drawer from '../Drawer/Drawer.vue'
 import Popout from '../Popout/Popout.vue'
@@ -31,7 +33,24 @@ export interface Props {
    * Setting the value to `none` will not apply any transition. This is useful when using viewTransitions to prevent conflicts between default animation and the view transition
    */
   transitionName?: string | 'none'
+  /**
+   * ARIA role of the popup. Use `listbox` for selection lists (like Select)
+   * and `dialog` for arbitrary interactive content (like an emoji picker).
+   */
+  role?: 'menu' | 'listbox' | 'dialog'
+  /**
+   * Makes the dropdown at least as wide as its trigger
+   */
+  matchWidth?: boolean
+  /**
+   * Accessible name of the mobile drawer
+   */
+  drawerTitle?: string
 }
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const {
   placement = 'bottom-start',
@@ -39,78 +58,129 @@ const {
   minWidth = 156,
   noMobileDrawer = false,
   transitionName,
+  role = 'menu',
+  matchWidth = false,
+  drawerTitle = 'Menu',
 } = defineProps<Props>()
 
 const emit = defineEmits<{
   close: []
 }>()
 
-const anchorRef = useTemplateRef<HTMLDivElement>('anchor')
+const attrs = useAttrs()
+const menuId = useId()
+
+const anchorRef = useTemplateRef<HTMLSpanElement>('anchor')
+const popoutComponentRef = useTemplateRef<InstanceType<typeof Popout>>('popoutEl')
+
+// The element users interact with: the first focusable element inside the
+// trigger slot, falling back to the first child
+const triggerElement = computed<HTMLElement | null>(() => {
+  const wrapper = anchorRef.value
+  if (!wrapper)
+    return null
+  return getFocusableElements(wrapper)[0] ?? (wrapper.firstElementChild as HTMLElement | null)
+})
+
 const anchorElement = computed(() =>
   (anchorRef.value?.firstElementChild as HTMLElement | null) ?? anchorRef.value,
 )
-const popoutComponentRef = useTemplateRef<{ el: () => HTMLElement | null }>('popoutEl')
 
 const showMenu = ref(false)
 
-function open() {
+// The drawer is meant for small touch screens. A narrow desktop window keeps
+// the floating dropdown.
+const { coarsePointer } = useInputCapabilities()
+const useDrawer = computed(() => viewport.s && coarsePointer.value && !noMobileDrawer)
+
+// Where focus goes when the menu opens: first or last item
+let initialFocus: 'first' | 'last' = 'first'
+
+function open(position: 'first' | 'last' = 'first') {
+  initialFocus = position
   showMenu.value = true
 }
 
-function close() {
+function close(returnFocus = false) {
+  if (!showMenu.value)
+    return
+
   showMenu.value = false
+  if (returnFocus)
+    triggerElement.value?.focus({ preventScroll: true })
 }
 
 function toggle() {
-  showMenu.value = !showMenu.value
+  if (showMenu.value)
+    close()
+  else
+    open()
 }
 
-// onClickOutside(dropdownRef, () => {
-//   showMenu.value = false
-// }, {
-//   ignore: [anchorRef],
-// })
+// Items (also inside teleported submenus) close the menu through this context
+provide(MENU_KEY, {
+  close: (returnFocus = true) => close(returnFocus),
+})
 
 defineExpose({
-  open,
-  close,
+  open: () => open(),
+  close: () => close(),
   toggle,
   isOpen: showMenu,
 })
 
 const mW = computed(() => formatUnitValue(minWidth))
 
-const { escape } = useMagicKeys()
-whenever(escape, close)
-
-watch(showMenu, (v) => {
+watch(showMenu, async (v) => {
   if (!v) {
     emit('close')
+    return
   }
-  else {
-    nextTick(() => {
-      popoutComponentRef.value?.el()
-        ?.querySelector<HTMLElement>('button:not([disabled]), input:not([disabled])')
-        ?.focus()
-    })
-  }
+
+  if (useDrawer.value)
+    return
+
+  await nextTick()
+  const el = popoutComponentRef.value?.el()
+  if (el)
+    focusInitialItem(el, initialFocus)
 })
+
+// ARIA wiring on the real trigger element
+watchEffect(() => {
+  const el = triggerElement.value
+  if (!el)
+    return
+
+  el.setAttribute('aria-haspopup', role === 'menu' ? 'menu' : role)
+  el.setAttribute('aria-expanded', String(showMenu.value))
+  if (showMenu.value && !useDrawer.value)
+    el.setAttribute('aria-controls', menuId)
+  else
+    el.removeAttribute('aria-controls')
+}, { flush: 'post' })
+
+function isInsideHigherLayer(target: Element | null): boolean {
+  const layerEl = target?.closest<HTMLElement>('[data-vui-layer]')
+  const ownLayer = popoutComponentRef.value?.layerIndex() ?? 0
+  return !!layerEl && Number(layerEl.dataset.vuiLayer) > ownLayer
+}
 
 function onPopoutFocusout(event: FocusEvent) {
   const relatedTarget = event.relatedTarget as HTMLElement | null
   const currentTarget = event.currentTarget as HTMLElement
 
-  // Focus stayed inside the popout
-  if (currentTarget.contains(relatedTarget))
+  // Focus stayed inside the popout, moved to a submenu or another layer above
+  if (currentTarget.contains(relatedTarget) || isInsideHigherLayer(relatedTarget))
     return
 
   // Focus moved back to the trigger area (e.g. Shift+Tab) — leave dropdown open
   if (anchorRef.value?.contains(relatedTarget))
     return
 
-  // Focus left the popout entirely — close and return to trigger.
+  // Focus left the menu (Tab, or a click elsewhere). The menu closes, but focus
+  // stays where the user put it.
   close()
-  anchorRef.value?.querySelector<HTMLElement>('button:not([disabled]), input:not([disabled])')?.focus()
 }
 
 function onTriggerClickCapture(event: MouseEvent) {
@@ -124,57 +194,86 @@ function onTriggerClickCapture(event: MouseEvent) {
   close()
 }
 
-function handleContentClick(event: MouseEvent) {
-  const target = event.target as HTMLElement
+// Keyboard support on the trigger: ArrowDown / ArrowUp open the menu
+function onTriggerKeydown(event: KeyboardEvent) {
+  if (event.target !== triggerElement.value)
+    return
 
-  // Check if the click was on a DropdownItem or inside one
-  // We use a CSS class selector to identify "closable" items
-  if (target.closest('.vui-dropdown-item')) {
-    close()
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault()
+    open(event.key === 'ArrowUp' ? 'last' : 'first')
   }
 }
+
+const navigate = createMenuKeydownHandler(() => popoutComponentRef.value?.el())
+
+function onMenuKeydown(event: KeyboardEvent) {
+  // Tab moves focus out of the menu, which closes it via focusout
+  if (event.key === 'ArrowRight') {
+    // Opens a submenu (PopoutHover) belonging to the focused item
+    const item = document.activeElement as HTMLElement | null
+    const submenuAnchor = item?.closest('.popout-hover-anchor')
+    if (submenuAnchor && popoutComponentRef.value?.el()?.contains(submenuAnchor)) {
+      event.preventDefault()
+      submenuAnchor.dispatchEvent(new CustomEvent('vui-submenu-open'))
+      return
+    }
+  }
+
+  navigate(event)
+}
+
+// Template note:
+// Pure layout wrapper (display: contents), ARIA is applied to the actual trigger
 </script>
 
 <template>
   <span
     ref="anchor"
     class="vui-dropdown-trigger-wrap"
-    role="button"
-    :aria-expanded="showMenu"
-    :aria-haspopup="true"
-    name="Dropdown menu"
     @click.capture="onTriggerClickCapture"
+    @keydown="onTriggerKeydown"
   >
-    <slot name="trigger" :open :is-open="showMenu" :close :toggle />
+    <slot name="trigger" :open="() => open()" :is-open="showMenu" :close="() => close()" :toggle />
   </span>
 
   <!-- Mobile: Drawer -->
   <Drawer
-    v-if="viewport.s && !noMobileDrawer"
+    v-if="useDrawer"
     :open="showMenu"
-    @close="close"
-    @click="handleContentClick"
+    :title="drawerTitle"
+    v-bind="attrs"
+    @close="close()"
   >
-    <slot :open :close :toggle :is-open="showMenu" />
+    <div :role="role" :aria-orientation="role === 'dialog' ? undefined : 'vertical'" @keydown="navigate">
+      <slot :open="() => open()" :close="() => close(true)" :toggle :is-open="showMenu" />
+    </div>
   </Drawer>
 
   <!-- Desktop: Popout -->
   <Popout
     v-else
+    :id="menuId"
     ref="popoutEl"
     :visible="showMenu"
     :anchor="anchorElement"
     class="vui-dropdown"
+    :role
+    :aria-orientation="role === 'dialog' ? undefined : 'vertical'"
     :placement
+    :match-width="matchWidth"
     :style="{
       '--vui-dropdown-min-width': mW,
       '--vui-dropdown-max-height': formatUnitValue(maxHeight),
     }"
     :transition-name
-    @click-outside="close"
-    @click="handleContentClick"
+    close-on-escape
+    v-bind="attrs"
+    @escape="close(true)"
+    @click-outside="close()"
     @focusout="onPopoutFocusout"
+    @keydown="onMenuKeydown"
   >
-    <slot :open :close :toggle :is-open="showMenu" />
+    <slot :open="() => open()" :close="() => close(true)" :toggle :is-open="showMenu" />
   </Popout>
 </template>

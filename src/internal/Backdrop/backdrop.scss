@@ -1,36 +1,51 @@
-.vui-backdrop {
-  --backdrop-offset: 64px;
+@use '../../style/theme-mode' as mode;
 
-  z-index: var(--layer-z, var(--z-overlay));
-  position: fixed;
-  display: block;
-  // width: 100dvw;
-  // height: 100dvh;
-  // top: 0;
-  // left: 0;
-  height: 100%;
-  inset: 0;
-  padding: var(--backdrop-offset);
-  overflow: hidden auto;
-  view-transition-name: none;
-  backdrop-filter: blur(1px);
-  background-color: rgb(from var(--color-bg-lowered) r g b / 0.75);
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  &.child {
-    background-color: rgb(from var(--color-bg-lowered) r g b / 0.25);
-  }
-}
-
-html:has(.vui-backdrop) {
-  overflow: hidden;
-}
-
-:root.light {
+@layer vui.components {
   .vui-backdrop {
-    background-color: rgb(from var(--dark-color-bg) r g b / 0.75);
+    --backdrop-offset: 64px;
+
+    z-index: var(--layer-z, var(--z-overlay));
+    position: fixed;
+    display: block;
+    inset: 0;
+    // Dynamic viewport units follow the mobile browser UI and on-screen keyboard
+    height: 100dvh;
+    padding: var(--backdrop-offset);
+    padding-bottom: calc(var(--backdrop-offset) + env(safe-area-inset-bottom, 0px));
+    overflow: hidden auto;
+    // Scrolling inside the backdrop never chains to the (locked) page, iOS included
+    overscroll-behavior: contain;
+    view-transition-name: none;
+    backdrop-filter: blur(1px);
+    background-color: rgb(from var(--color-bg-lowered) r g b / 0.75);
+    animation: vui-backdrop-in var(--transition);
+    transition: opacity var(--transition);
 
     &.child {
-      background-color: rgb(from var(--dark-color-bg) r g b / 0.25);
+      background-color: rgb(from var(--color-bg-lowered) r g b / 0.25);
+    }
+
+    // The content plays its own leave transition, the backdrop fades with it
+    &.leaving {
+      opacity: 0;
+    }
+  }
+
+  @keyframes vui-backdrop-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @include mode.light {
+    .vui-backdrop {
+      background-color: rgb(from var(--dark-color-bg) r g b / 0.75);
+
+      &.child {
+        background-color: rgb(from var(--dark-color-bg) r g b / 0.25);
+      }
     }
   }
 }

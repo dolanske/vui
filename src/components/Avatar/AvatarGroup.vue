@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Sizes } from '../../lib/types.ts'
 import type { FlexProps } from '../Flex/Flex.vue'
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useTopLevelSlots } from '../../lib/slots.ts'
 import Flex from '../Flex/Flex.vue'
 import Avatar from './Avatar.vue'
@@ -52,7 +52,28 @@ const {
 } = defineProps<Props>()
 
 const slots = defineSlots()
-const flattened = useTopLevelSlots(slots.default)
+const flattened = useTopLevelSlots(slots)
+
+// Random order of the avatars. Generated once after mount (never during SSR,
+// which would cause a hydration mismatch) and only regenerated when the
+// amount of avatars changes, so re-renders do not reshuffle.
+const randomOrder = ref<number[] | null>(null)
+
+function shuffle(length: number): number[] {
+  const order = Array.from({ length }, (_, index) => index)
+  // Fisher-Yates, unlike sort(() => Math.random() - 0.5) it is unbiased
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[order[i], order[j]] = [order[j], order[i]]
+  }
+  return order
+}
+
+onMounted(() => {
+  watch(() => flattened.value.length, (length) => {
+    randomOrder.value = randomized ? shuffle(length) : null
+  }, { immediate: true })
+})
 
 const formatted = computed(() => {
   if (!limit || flattened.value.length <= limit) {
@@ -62,8 +83,9 @@ const formatted = computed(() => {
     }
   }
 
-  const slotsToShow = randomized
-    ? [...flattened.value].sort(() => 0.5 - Math.random()).slice(0, limit)
+  const order = randomOrder.value
+  const slotsToShow = randomized && order && order.length === flattened.value.length
+    ? order.slice(0, limit).map(index => flattened.value[index])
     : flattened.value.slice(0, limit)
 
   return {
@@ -81,7 +103,7 @@ const formatted = computed(() => {
       :key="slot.key"
     />
     <slot name="remaining" :remaining="formatted.remaining">
-      <Avatar v-if="formatted.remaining" :size="limitSize">
+      <Avatar v-if="formatted.remaining" :size="limitSize" role="img" :aria-label="`${formatted.remaining} more`">
         {{ formatted.remaining > 99 ? '99+' : `+${formatted.remaining}` }}
       </Avatar>
     </slot>

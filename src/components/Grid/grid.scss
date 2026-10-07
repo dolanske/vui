@@ -1,23 +1,29 @@
-:where(.vui-grid) {
-  --vui-grid-display: initial;
-  --vui-grid-gap: initial;
-  --vui-grid-columns: initial;
-  --vui-grid-rows: initial;
-  --vui-grid-align: initial;
-  --vui-grid-justify: initial;
-  --vui-grid-flow: initial;
-  --vui-grid-width: initial;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  display: var(--vui-grid-display, grid);
-  gap: var(--vui-grid-gap, var(--space-s));
-  grid-template-columns: var(--vui-grid-columns, none);
-  grid-template-rows: var(--vui-grid-rows, none);
-  align-items: var(--vui-grid-align, flex-start);
-  justify-items: var(--vui-grid-justify, stretch);
-  grid-auto-flow: var(--vui-grid-flow, row);
-  width: var(--vui-grid-width, auto);
+@layer vui.components {
+  :where(.vui-grid) {
+    --vui-grid-display: initial;
+    --vui-grid-gap: initial;
+    --vui-grid-columns: initial;
+    --vui-grid-rows: initial;
+    --vui-grid-align: initial;
+    --vui-grid-justify: initial;
+    --vui-grid-justify-content: initial;
+    --vui-grid-flow: initial;
+    --vui-grid-width: initial;
 
-  > * {
-    min-width: 0;
+    display: var(--vui-grid-display, grid);
+    gap: var(--vui-grid-gap, var(--space-s));
+    grid-template-columns: var(--vui-grid-columns, none);
+    grid-template-rows: var(--vui-grid-rows, none);
+    align-items: var(--vui-grid-align, flex-start);
+    justify-items: var(--vui-grid-justify, stretch);
+    justify-content: var(--vui-grid-justify-content, normal);
+    grid-auto-flow: var(--vui-grid-flow, row);
+    width: var(--vui-grid-width, auto);
+
+    > * {
+      min-width: 0;
+    }
   }
 }

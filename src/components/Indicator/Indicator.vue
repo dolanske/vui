@@ -9,6 +9,11 @@ interface Props {
   size?: Sizes
   outline?: boolean
   ripple?: boolean
+  /**
+   * Text announced to screen readers, e.g. "Online". The dot itself only
+   * conveys the status through color.
+   */
+  label?: string
 }
 
 const props = defineProps<Props>()
@@ -44,12 +49,13 @@ const size = computed(() => {
 <template>
   <div
     class="vui-indicator"
-    :class="[`position-${props.position}`, { outline: props.outline, ripple: props.ripple }]"
+    :class="[props.position ? `position-${props.position}` : undefined, { outline: props.outline, ripple: props.ripple }]"
     :style="{
       '--vui-indicator-color': color,
       '--vui-indicator-size': size,
     }"
   >
     <slot />
+    <span v-if="props.label" class="visually-hidden">{{ props.label }}</span>
   </div>
 </template>

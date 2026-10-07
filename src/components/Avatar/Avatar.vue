@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import type { Sizes } from '../../lib/types'
 import { IconUser } from '@iconify-prerendered/vue-ph'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { formatUnitValue } from '../../lib/helpers'
 import './avatar.scss'
 
 interface Props {
   size?: Sizes | number
   url?: string
+  /**
+   * Text (usually initials) shown when there is no `url` or the image fails
+   * to load
+   */
   fallback?: string
-  icon?: string
+  /**
+   * Alternative text of the image. Empty by default, which marks the avatar
+   * as decorative. Set it when the avatar is the only representation of a
+   * person, e.g. `alt="Jane Doe"`.
+   */
   alt?: string
   radius?: Sizes | 'xs' | 'pill' | number
 }
@@ -19,24 +27,30 @@ const {
   size = 'm',
   url,
   fallback,
-  alt = 'avatar',
+  alt = '',
   radius = 'pill',
 } = defineProps<Props>()
 
-const showFallback = ref(false)
-const PILL_RADIUS_THRESHOLD = 164
+const imageFailed = ref(false)
+
+// A new image gets a new chance to load
+watch(() => url, () => {
+  imageFailed.value = false
+})
+
+const showImage = computed(() => !!url && !imageFailed.value)
 
 const aS = computed(() => typeof size === 'number' ? formatUnitValue(size) : undefined)
 const aR = computed(() => {
   if (typeof radius === 'number')
-    return radius > PILL_RADIUS_THRESHOLD ? formatUnitValue(radius) : 'var(--border-radius-pill)'
+    return formatUnitValue(radius)
 
   return `var(--border-radius-${radius})`
 })
 </script>
 
 <template>
-  <div
+  <span
     class="vui-avatar"
     :class="[`vui-avatar-size-${typeof size === 'number' ? 'l' : size}`]"
     :style="{
@@ -48,21 +62,21 @@ const aR = computed(() => {
       <slot />
     </span>
     <img
-      v-else-if="url && !showFallback"
+      v-else-if="showImage"
       :alt
       :src="url"
-      @error="showFallback = true"
+      @error="imageFailed = true"
     >
-    <strong v-else>
-      <template v-if="showFallback">
-        {{ fallback }}
-      </template>
-      <slot v-else name="icon">
+    <strong v-else-if="fallback">
+      {{ fallback }}
+    </strong>
+    <strong v-else aria-hidden="true">
+      <slot name="icon">
         <IconUser />
       </slot>
     </strong>
-    <div v-if="$slots.overlay" class="vui-avatar-overlay">
+    <span v-if="$slots.overlay" class="vui-avatar-overlay">
       <slot name="overlay" />
-    </div>
-  </div>
+    </span>
+  </span>
 </template>

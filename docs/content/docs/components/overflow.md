@@ -1,6 +1,6 @@
 # Overflow
 
-A scrollable container with gradient shadow indicators that show when there is more content to scroll to. Supports both vertical and horizontal scrolling.
+A scrollable container with gradient shadow indicators that show when there is more content to scroll to. Supports both vertical and horizontal scrolling. The shadows update when scrolling, when the container resizes and when its content changes. Overflowing content can be focused and scrolled with the keyboard.
 
 ::overflow-example{sourcePath="Overflow/Overflow.vue"}
 
@@ -35,6 +35,7 @@ import { Avatar, Card, Flex, Overflow } from '@dolanske/vui'
 | `hideScrollbar` | —       | `boolean` <br> Hides the scrollbar and removes the scrollbar gutter padding      |
 | `hideShadows`   | —       | `boolean` <br> Hides the gradient shadows indicating more scrollable content     |
 | `snap`          | —       | `boolean` <br> Enables scroll-snap so items snap into place when scrolling stops |
+| `label`         | —       | `string` <br> Accessible name of the scrollable region                           |
 
 ### Slots
 

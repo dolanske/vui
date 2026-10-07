@@ -1,12 +1,12 @@
 <script lang="ts">
+import type { Component, PropType } from 'vue'
 import type { Sizes } from '../../lib/types.ts'
-import { computed, defineComponent, h } from 'vue'
-import { isNil } from '../../lib/helpers.ts'
+import { computed, defineComponent, h, Transition } from 'vue'
 import { Size } from '../../lib/types.ts'
 import Spinner from '../Spinner/Spinner.vue'
 import './button.scss'
 
-export type Variants = 'fill' | 'danger' | 'success' | 'link' | 'accent' | 'note' | 'gray'
+export type Variants = 'fill' | 'danger' | 'success' | 'warning' | 'info' | 'link' | 'accent' | 'note' | 'gray'
 
 // There was an issue with swapping between <a> and <button> so in order to fix
 // that, we omit Vue's template and use the h function to create the element
@@ -15,9 +15,14 @@ export default defineComponent({
   name: 'VuiButton',
   props: {
     href: String,
+    /**
+     * Element or component to render, e.g. `RouterLink` or `NuxtLink`
+     * together with a `to` attribute
+     */
+    as: [String, Object] as PropType<string | Component>,
     loading: Boolean,
     size: {
-      type: String as () => Sizes,
+      type: String as PropType<Sizes>,
       default: 'm',
     },
     expand: Boolean,
@@ -26,12 +31,21 @@ export default defineComponent({
      */
     square: Boolean,
     variant: {
-      type: String as () => Variants,
+      type: String as PropType<Variants>,
       default: 'gray',
     },
     outline: Boolean,
     disabled: Boolean,
     plain: Boolean,
+    /**
+     * Native button type. Defaults to `button` so that buttons placed inside a
+     * `<form>` do not submit it unless explicitly asked to with `type="submit"`.
+     * Ignored when `href` is set.
+     */
+    type: {
+      type: String as PropType<'button' | 'submit' | 'reset'>,
+      default: 'button',
+    },
   },
   setup(props, { slots }) {
     const height = computed(() => {
@@ -52,11 +66,28 @@ export default defineComponent({
       }
     })
 
-    return () =>
-      h(
-        props.href ? 'a' : 'button',
+    const tag = computed(() => props.as ?? (props.href ? 'a' : 'button'))
+    // Anything that is not a native button (anchors, router links) behaves like a link
+    const isLink = computed(() => tag.value !== 'button')
+
+    // Disabled and loading buttons must not react to clicks. Native disabled
+    // buttons already swallow clicks, but anchors and loading buttons (which
+    // stay focusable) need to be blocked manually. Capture phase ensures this
+    // runs before any `@click` listener passed in by the consumer.
+    function blockInteraction(event: Event) {
+      if (props.loading || (props.disabled && isLink.value)) {
+        event.preventDefault()
+        event.stopImmediatePropagation()
+      }
+    }
+
+    return () => {
+      const isInactive = props.disabled || props.loading
+
+      return h(
+        tag.value as any,
         {
-          class: [
+          'class': [
             'vui-button',
             {
               loading: props.loading,
@@ -69,17 +100,32 @@ export default defineComponent({
             `vui-button-variant-${props.variant}`,
             `vui-button-size-${props.size}`,
           ],
-          disabled: props.disabled,
-          href: props.href,
-          role: 'button',
-          style: {
+          'style': {
             '--vui-button-height': height.value,
             '--vui-button-padding': padding.value,
           },
-          inert: props.loading,
+          ...(isLink.value
+            ? {
+                // A disabled link must not be navigable or reachable via Tab
+                // Only forward href when set, router link components compute their own
+                ...(props.href !== undefined ? { href: props.disabled ? undefined : props.href } : {}),
+                'role': props.disabled ? 'link' : undefined,
+                'tabindex': props.disabled ? -1 : undefined,
+                'aria-disabled': isInactive ? 'true' : undefined,
+              }
+            : {
+                'type': props.type,
+                // Loading buttons stay focusable (no `disabled` / `inert`) so
+                // focus is not lost when an async action starts
+                'disabled': props.disabled || undefined,
+                'aria-disabled': props.loading ? 'true' : undefined,
+              }),
+          'aria-busy': props.loading ? 'true' : undefined,
+          'onClickCapture': blockInteraction,
         },
         [
-          !isNil(props.loading) ? h(Spinner, { size: 's' }) : null,
+          h(Transition, { name: 'vui-button-spinner' }, () =>
+            props.loading ? h(Spinner, { 'size': 's', 'aria-hidden': 'true' }) : null),
           h('div', { class: 'vui-button-slot' }, [
             h('div', { class: 'vui-button-slot-start' }, slots?.start?.()),
             // Keep empty div even if slots aren't populated. This will force
@@ -90,6 +136,7 @@ export default defineComponent({
           ]),
         ],
       )
+    }
   },
 })
 </script>

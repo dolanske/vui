@@ -2,6 +2,8 @@
 
 A specialized input component for password fields that includes a toggle button to show/hide the password.
 
+The input uses `autocomplete="current-password"`, so password managers can fill it. Pass `autocomplete="new-password"` on sign-up and password change forms. The toggle button is labelled and announces its pressed state.
+
 ::password-example{sourcePath="Input/Password.vue"}
 
 ```vue
@@ -16,6 +18,7 @@ const password = ref('')
   <Password
     v-model="password"
     expand
+    name="password"
     placeholder="******************"
     label="Password"
   />
@@ -26,7 +29,7 @@ const password = ref('')
 
 ### Props
 
-The Password component accepts all props from the base Input component, with the following additions:
+The Password component accepts all props from the base Input component, except `type`, with the following additions:
 
 | Name            | Default | Type                                                             |
 | --------------- | ------- | ---------------------------------------------------------------- |
@@ -34,4 +37,4 @@ The Password component accepts all props from the base Input component, with the
 
 ### Usage
 
-The Color component inherits all functionality from the base [Input](/docs/components/input) component.
+The Password component inherits all functionality from the base [Input](/docs/components/input) component.

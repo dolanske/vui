@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useScroll } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
+import { useScrollEdges } from '../../lib/scroll'
 import './overflow.scss'
 
 export interface Props {
@@ -20,6 +20,10 @@ export interface Props {
    * Enables scroll-snap so items snap into place when scrolling stops
    */
   snap?: boolean
+  /**
+   * Accessible name of the scrollable region
+   */
+  label?: string
 }
 
 const {
@@ -27,24 +31,22 @@ const {
   hideScrollbar,
   hideShadows,
   snap,
+  label,
 } = defineProps<Props>()
 
 const contentRef = useTemplateRef<HTMLElement>('content')
 
-const { x, y } = useScroll(contentRef)
+// Updates on scroll, resize and content changes, not only on scroll
+const { canScrollLeft, canScrollRight, canScrollUp, canScrollDown, overflowsX, overflowsY } = useScrollEdges(contentRef)
 
-const showShadowLeft = computed(() => horizontal && x.value > 0)
-const showShadowRight = computed(() => {
-  if (!horizontal || !contentRef.value)
-    return false
-  return x.value < contentRef.value.scrollWidth - contentRef.value.clientWidth - 1
-})
-const showShadowTop = computed(() => !horizontal && y.value > 0)
-const showShadowBottom = computed(() => {
-  if (horizontal || !contentRef.value)
-    return false
-  return y.value < contentRef.value.scrollHeight - contentRef.value.clientHeight - 1
-})
+const showShadowLeft = computed(() => horizontal && canScrollLeft.value)
+const showShadowRight = computed(() => horizontal && canScrollRight.value)
+const showShadowTop = computed(() => !horizontal && canScrollUp.value)
+const showShadowBottom = computed(() => !horizontal && canScrollDown.value)
+
+// Scrollable regions must be reachable with the keyboard, so they can be
+// scrolled with the arrow keys
+const isScrollable = computed(() => horizontal ? overflowsX.value : overflowsY.value)
 
 defineExpose({
   contentRef,
@@ -67,7 +69,13 @@ defineExpose({
       <div class="overflow-shadow overflow-shadow-right" :class="{ visible: showShadowRight }" />
       <div class="overflow-shadow overflow-shadow-top" :class="{ visible: showShadowTop }" />
       <div class="overflow-shadow overflow-shadow-bottom" :class="{ visible: showShadowBottom }" />
-      <div ref="content" class="overflow-content">
+      <div
+        ref="content"
+        class="overflow-content"
+        :tabindex="isScrollable ? 0 : undefined"
+        :role="label ? 'region' : undefined"
+        :aria-label="label"
+      >
         <slot />
       </div>
     </div>

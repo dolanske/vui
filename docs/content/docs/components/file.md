@@ -14,11 +14,12 @@ const files = ref(null)
 
 <template>
   <File
-    v-model="files"
     hint="Upload your files here"
     label="File upload"
     accept=".pdf,.doc,.docx"
+    name="documents"
     multiple
+    @files="files = $event"
   />
 </template>
 ```
@@ -27,10 +28,10 @@ const files = ref(null)
 
 ### Usage
 
-The File component inherits all functionality from the base [Input](/docs/components/input) component.
+The File component accepts the props of the base [Input](/docs/components/input) component, except `type`. It has no `v-model`, selected files are delivered through the `files` event. Attributes such as `name` or `capture` are applied to the native file input.
 
 ### Events
 
-| Event | Type       | Description                                                    |
-| ----- | ---------- | -------------------------------------------------------------- |
-| files | `FileList` | Emitted when files are selected, providing the FileList object |
+| Event   | Type       | Description                                                    |
+| ------- | ---------- | -------------------------------------------------------------- |
+| `files` | `FileList` | Emitted when files are selected, providing the FileList object |

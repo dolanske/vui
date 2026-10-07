@@ -1,0 +1,85 @@
+// Windows High Contrast / forced colors mode. The browser replaces colors with
+// a small system palette and drops backgrounds, which would hide every
+// indicator drawn only with a background color. These rules restore them with
+// system colors (CanvasText, Highlight, ...).
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid Highlight !important;
+  }
+
+  // Tracks and indicators drawn with backgrounds
+  .vui-slider {
+    border: 1px solid CanvasText;
+
+    .vui-slider-indicator {
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
+
+    .vui-slider-handle {
+      border-color: CanvasText;
+    }
+  }
+
+  .vui-switch {
+    .vui-switch-icon {
+      border: 1px solid CanvasText;
+    }
+
+    .vui-switch-indicator {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+
+    &.checked .vui-switch-indicator {
+      background-color: Highlight;
+    }
+  }
+
+  .vui-progress {
+    border: 1px solid CanvasText;
+
+    .vui-progress-indicator {
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
+  }
+
+  .vui-tab-underline {
+    forced-color-adjust: none;
+    background-color: Highlight !important;
+  }
+
+  .vui-tab.active {
+    outline: 1px solid Highlight;
+  }
+
+  .vui-histogram-datacell,
+  .vui-indicator,
+  .vui-skeleton {
+    forced-color-adjust: none;
+    background-color: CanvasText !important;
+  }
+
+  // Selected and focused items in menus and lists
+  .vui-dropdown-item:focus-visible,
+  .vui-dropdown-item.selected,
+  .vui-commands-list-item-focused {
+    outline: 2px solid Highlight;
+  }
+
+  // Overlays need a visible edge once their shadows and backgrounds are gone
+  .vui-popout,
+  .vui-modal > .vui-card,
+  .vui-sheet,
+  .vui-drawer-content,
+  .vui-toast-item {
+    border: 1px solid CanvasText;
+  }
+
+  // Shadows are purely decorative and turn into solid blocks
+  .overflow-shadow {
+    display: none;
+  }
+}

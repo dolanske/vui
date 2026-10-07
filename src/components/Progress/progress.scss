@@ -1,49 +1,68 @@
-.vui-progress {
-  --vui-progress-height: 3px;
-  --vui-progress-color: var(--color-text-lighter);
-  --vui-progress-track-color: initial;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  display: block;
-  width: 100%;
-  position: relative;
-  border-radius: var(--border-radius-pill);
-  background-color: var(--vui-progress-track-color, var(--color-bg-raised));
-  overflow: hidden;
-  height: var(--vui-progress-height);
+@layer vui.components {
+  .vui-progress {
+    --vui-progress-height: 3px;
+    --vui-progress-color: var(--color-text-lighter);
+    --vui-progress-track-color: initial;
 
-  &.fixed {
-    transition: height var(--transition-slow);
-    position: fixed;
-    inset: 0;
-    bottom: unset;
-    height: 0;
-    border-radius: none !important;
-    z-index: 9999999;
+    display: block;
+    width: 100%;
+    position: relative;
+    border-radius: var(--border-radius-pill);
+    background-color: var(--vui-progress-track-color, var(--color-bg-raised));
+    overflow: hidden;
+    height: var(--vui-progress-height);
 
-    &.fixed-active {
-      height: var(--vui-progress-height);
+    &.fixed {
+      transition: height var(--transition-slow);
+      position: fixed;
+      inset: 0;
+      bottom: unset;
+      height: 0;
+      border-radius: none !important;
+      z-index: 9999999;
+
+      &.fixed-active {
+        height: var(--vui-progress-height);
+      }
+
+      .vui-progress-indicator {
+        border-top-left-radius: unset !important;
+        border-bottom-left-radius: unset !important;
+      }
     }
 
     .vui-progress-indicator {
-      border-top-left-radius: unset !important;
-      border-bottom-left-radius: unset !important;
+      position: absolute;
+      z-index: var(--z-active);
+      inset: 0;
+      right: unset;
+      width: 0;
+      border-radius: var(--border-radius-pill);
+      background-color: var(--vui-progress-color);
+      transition: width var(--transition-slow);
+    }
+
+    // Unknown progress, a segment sliding across the track
+    &.indeterminate .vui-progress-indicator {
+      width: 40%;
+      transition: none;
+      animation: vui-progress-indeterminate 1.4s ease-in-out infinite;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation-duration: 4s;
+      }
     }
   }
 
-  .vui-progress-indicator {
-    position: absolute;
-    z-index: var(--z-active);
-    inset: 0;
-    right: unset;
-    width: 0;
-    border-radius: var(--border-radius-pill);
-    background-color: var(--vui-progress-color);
-    transition: width var(--transition-slow);
-  }
-}
+  @keyframes vui-progress-indeterminate {
+    from {
+      left: -40%;
+    }
 
-:root.light {
-  .vui-progress-indicator {
-    background-color: var(--);
+    to {
+      left: 100%;
+    }
   }
 }

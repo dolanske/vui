@@ -1,29 +1,51 @@
 <script setup lang='ts'>
 import { IconCaretRight } from '@iconify-prerendered/vue-ph'
-import { enforceSlotType, useFlattenedSlot } from '../../lib/slots'
+import { useMutationObserver } from '@vueuse/core'
+import { h, onMounted, provide, ref, useTemplateRef } from 'vue'
+import { BREADCRUMBS_KEY } from './breadcrumbs'
 import './breadcrumbs.scss'
 
 interface Props {
   separator?: string
+  /**
+   * Accessible name of the navigation landmark
+   */
+  label?: string
 }
 
-const { separator } = defineProps<Props>()
+const { separator, label = 'Breadcrumb' } = defineProps<Props>()
 
-const slots = defineSlots()
-const flattened = useFlattenedSlot(slots.default)
-enforceSlotType(flattened, 'BreadcrumbItem')
+const slots = defineSlots<{
+  default?: () => any
+  separator?: () => any
+}>()
+
+const listRef = useTemplateRef('list')
+const lastItem = ref<Element | null>(null)
+
+function updateLastItem() {
+  lastItem.value = listRef.value?.lastElementChild ?? null
+}
+
+onMounted(updateLastItem)
+useMutationObserver(listRef, updateLastItem, { childList: true })
+
+provide(BREADCRUMBS_KEY, {
+  lastItem,
+  renderSeparator: () => {
+    if (slots.separator)
+      return slots.separator()
+    if (separator)
+      return separator
+    return h(IconCaretRight, { class: 'vui-breadcrumb-custom-separator' })
+  },
+})
 </script>
 
 <template>
-  <ul class="vui-breadcrumbs">
-    <template v-for="(vnode, index) of flattened" :key="vnode.props?.label || index">
-      <component :is="vnode" />
-      <template v-if="index !== flattened.length - 1">
-        <slot v-if="!separator" name="separator">
-          <IconCaretRight class="vui-breadcrumb-custom-separator" />
-        </slot>
-        <span v-else class="vui-breadcrumb-custom-separator">{{ separator }}</span>
-      </template>
-    </template>
-  </ul>
+  <nav class="vui-breadcrumbs-nav" :aria-label="label">
+    <ol ref="list" class="vui-breadcrumbs">
+      <slot />
+    </ol>
+  </nav>
 </template>

@@ -22,6 +22,7 @@ const isGapZero = computed(() => gap === 0)
     :row="!vertical"
     :column="vertical"
     class="vui-button-group"
+    role="group"
     :class="{ vertical, 'gap-zero': isGapZero }"
     :gap
     inline

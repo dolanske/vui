@@ -1,8 +1,14 @@
-.vui-context-menu {
-  position: relative;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  .vui-context-menu-anchor {
-    position: absolute;
-    pointer-events: none;
+@layer vui.components {
+  .vui-context-menu {
+    position: relative;
+    // Prevents the iOS long-press callout, the long-press opens the menu instead
+    -webkit-touch-callout: none;
+
+    .vui-context-menu-anchor {
+      position: absolute;
+      pointer-events: none;
+    }
   }
 }

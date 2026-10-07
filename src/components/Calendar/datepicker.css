@@ -1,0 +1,8 @@
+/*
+ * vue-datepicker styles go into a lower layer than the Calendar overrides, so
+ * the overrides always win, while styles of the host app (not in a layer) win
+ * over both.
+ */
+@layer vui.reset, vui.base, vui.components, vui.utilities;
+
+@import '@vuepic/vue-datepicker/dist/main.css' layer(vui.base);

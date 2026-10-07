@@ -1,6 +1,8 @@
 # OTP
 
-A One-Time Password (OTP) input component that provides a user-friendly way to enter verification codes. It supports both numeric and alphanumeric inputs, with features like paste support and redacted display.
+A One-Time Password (OTP) input component that provides a user-friendly way to enter verification codes. It supports both numeric and alphanumeric inputs, with features like paste support, SMS autofill (`autocomplete="one-time-code"`), virtual keyboards and redacted display.
+
+The length is taken from the rendered `OTPItem` components, or from the `length` prop. With `length` and no items, the items are rendered automatically.
 
 ::one-time-password-example{sourcePath="OTP/OTP.vue"}
 
@@ -31,17 +33,22 @@ const otpValue = ref('')
 
 ### Props
 
-| Name       | Default | Type                                                                                   |
-| ---------- | ------- | -------------------------------------------------------------------------------------- |
-| `mode`     | `both`  | `num` `char` `both` <br> Type of input allowed: numbers only, characters only, or both |
-| `redacted` | `false` | `boolean` <br> Whether to show asterisks instead of the actual input                   |
+| Name       | Default         | Type                                                                                     |
+| ---------- | --------------- | ---------------------------------------------------------------------------------------- |
+| `mode`     | `both`          | `num` `char` `both` <br> Type of input allowed: numbers only, characters only, or both   |
+| `redacted` | `false`         | `boolean` <br> Whether to show asterisks instead of the actual input                     |
+| `length`   | —               | `number` <br> Amount of characters. Renders the items automatically when none are passed |
+| `label`    | `One-time code` | `string` <br> Accessible label of the input                                              |
+| `disabled` | `false`         | `boolean` <br> Disables the input                                                        |
+| `invalid`  | `false`         | `boolean` <br> Marks the code as invalid, e.g. after a failed verification               |
+| `name`     | —               | `string` <br> Native `name` for form submission                                          |
 
 ### Events
 
-| Name       | Payload  | Type                                   |
-| ---------- | -------- | -------------------------------------- |
-| `change`   | `string` | Emitted when the OTP value changes     |
-| `complete` | `string` | Emitted when all OTP fields are filled |
+| Name       | Payload  | Type                                           |
+| ---------- | -------- | ---------------------------------------------- |
+| `change`   | `string` | Emitted when the OTP value changes             |
+| `complete` | `string` | Emitted once when all OTP fields become filled |
 
 ### Tokens
 

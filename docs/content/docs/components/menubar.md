@@ -1,6 +1,8 @@
 # Menubar
 
-A menubar component that renders a horizontal list of labeled menu triggers. Clicking a trigger opens its associated menu inline as a floating panel. Hovering over other triggers while any menu is open switches the active menu immediately — matching the native menubar UX.
+A menubar component that renders a horizontal list of labeled menu triggers. Clicking a trigger opens its associated menu as a floating panel. Hovering over other triggers while any menu is open switches the active menu immediately, matching the native menubar UX.
+
+The menubar follows the WAI-ARIA menubar pattern. Only one trigger is in the Tab order. `←` / `→` move between triggers (switching the open menu), `↓` opens a menu, `↑` / `↓` / `Home` / `End` and typeahead move between items, `←` / `→` inside a menu switch to the neighbouring menu and `Esc` closes the menu and returns focus to its trigger. Activating a `DropdownItem` closes the menu.
 
 > The menu slot content is unstyled by default. Wrapping it in `<div class="vui-dropdown">` makes it visually consistent with the [Dropdown](/docs/components/dropdown) component.
 
@@ -59,7 +61,9 @@ Menubar passes all props down to the underlying [`Flex`](/docs/components/flex) 
 
 ### MenuItem Slots
 
-| Name      | Accepts | Description                                                                   |
-| --------- | ------- | ----------------------------------------------------------------------------- |
-| `default` | `any`   | The trigger element (typically a `Button` with size `s`)                      |
-| `menu`    | `any`   | Content rendered inside [Popout](/docs/components/popout) when item is active |
+| Name      | Accepts | Description                                                                                                     |
+| --------- | ------- | --------------------------------------------------------------------------------------------------------------- |
+| `default` | `any`   | The trigger element (typically a `Button` with size `s`)                                                        |
+| `menu`    | `any`   | Content rendered inside [Popout](/docs/components/popout) (`role="menu"`) when item is active. Receives `close` |
+
+`MenuItem` must be placed inside a `Menubar`, otherwise it throws a descriptive error.

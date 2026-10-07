@@ -6,8 +6,8 @@ import { Accordion, Button } from '@dolanske/vui'
   <DocsExample>
     <template #component>
       <Accordion unstyled>
-        <template #trigger="{ isOpen, toggle }">
-          <Button @click="toggle">
+        <template #trigger="{ isOpen, toggle, attrs }">
+          <Button v-bind="attrs" @click="toggle">
             Details
             <Icon class="ml-m" :name="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
           </Button>

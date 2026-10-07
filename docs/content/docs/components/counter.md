@@ -2,6 +2,8 @@
 
 A specialized input component for numeric values that includes increment and decrement buttons. It extends the base Input component with counter-specific functionality.
 
+The model is always a number, or `null` while the field is empty. Steps respect `min` and `max` and avoid floating point drift (`0.1 + 0.2` gives `0.3`). Typed values are clamped to `min` / `max` once the field loses focus.
+
 ::counter-example{sourcePath="Input/Counter.vue"}
 
 ```vue
@@ -17,8 +19,8 @@ const count = ref(0)
     v-model="count"
     hint="Choose a number between 0 and 10"
     label="Counter"
-    :increment-enabled="count < 10"
-    :decrement-enabled="count > 0"
+    :min="0"
+    :max="10"
   />
 </template>
 ```
@@ -27,7 +29,7 @@ const count = ref(0)
 
 ### Props
 
-The Counter component accepts all props from the base [Input](/docs/components/input) component, with the following additions:
+The Counter component accepts all props from the base [Input](/docs/components/input) component, except `type`, with the following additions:
 
 | Name                | Default | Type                                                                              |
 | ------------------- | ------- | --------------------------------------------------------------------------------- |
@@ -37,3 +39,11 @@ The Counter component accepts all props from the base [Input](/docs/components/i
 | `decrement-by`      | `1`     | `number` <br> Amount to decrement the value by when clicking the decrement button |
 | `decrement-enabled` | `true`  | `boolean` <br> Whether the decrement button is enabled                            |
 | `hide-decrement`    | `false` | `boolean` <br> Whether to hide the decrement button                               |
+
+The buttons are disabled automatically at `min` / `max` and while the input is `disabled` or `readonly`.
+
+### Models
+
+| Name         | Type             | Description                          |
+| ------------ | ---------------- | ------------------------------------ |
+| `modelValue` | `number \| null` | The current value, `null` when empty |

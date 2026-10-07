@@ -9,7 +9,7 @@ interface ViewTransitionComposable {
   /**
    * Starts a view transition. The provided `update` function will be called during the transition.
    */
-  startTransition: (update: () => void | Promise<void>) => Promise<void>
+  startTransition: (_update: () => void | Promise<void>) => Promise<void>
 }
 
 /**

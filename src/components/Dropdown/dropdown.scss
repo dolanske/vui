@@ -1,47 +1,51 @@
-.vui-dropdown-trigger-wrap {
-  display: contents;
-}
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-.vui-dropdown {
-  --vui-dropdown-min-width: initial;
-  --vui-dropdown-max-height: initial;
-
-  min-width: var(--vui-dropdown-min-width, 128px);
-  max-height: var(--vui-dropdown-max-height, none);
-  border-radius: var(--border-radius-m);
-  padding: var(--space-xxs);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xxxs);
-
-  .vui-divider {
-    width: auto;
-    margin-inline: calc(var(--space-xxs) * -1);
-    margin-block: var(--space-xxxs);
+@layer vui.components {
+  .vui-dropdown-trigger-wrap {
+    display: contents;
   }
 
-  // This is horrible, but basically allows us to add padding to items if they
-  // have an icon. But not propagate that padding to nested submenus
-  // I will atone for my sins (no)
-  &:has(
-    > .vui-dropdown-item .vui-dropdown-item-icon:not(:empty),
-    > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon:not(:empty)
-  ) {
-    > .vui-dropdown-item,
-    > :not(.vui-dropdown) > .vui-dropdown-item {
-      padding-left: var(--space-xs);
+  .vui-dropdown {
+    --vui-dropdown-min-width: initial;
+    --vui-dropdown-max-height: initial;
+
+    min-width: var(--vui-dropdown-min-width, 128px);
+    max-height: var(--vui-dropdown-max-height, none);
+    border-radius: var(--border-radius-m);
+    padding: var(--space-xxs);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxxs);
+
+    .vui-divider {
+      width: auto;
+      margin-inline: calc(var(--space-xxs) * -1);
+      margin-block: var(--space-xxxs);
     }
 
-    > .vui-dropdown-item .vui-dropdown-item-icon,
-    > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon {
-      display: flex !important;
-      margin-right: calc(var(--space-xs) / 2);
-    }
-  }
+    // This is horrible, but basically allows us to add padding to items if they
+    // have an icon. But not propagate that padding to nested submenus
+    // I will atone for my sins (no)
+    &:has(
+      > .vui-dropdown-item .vui-dropdown-item-icon:not(:empty),
+      > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon:not(:empty)
+    ) {
+      > .vui-dropdown-item,
+      > :not(.vui-dropdown) > .vui-dropdown-item {
+        padding-left: var(--space-xs);
+      }
 
-  &:has(.vui-emoji-picker) {
-    --vui-dropdown-max-height: 600px !important;
-    padding: 0 !important;
+      > .vui-dropdown-item .vui-dropdown-item-icon,
+      > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon {
+        display: flex !important;
+        margin-right: calc(var(--space-xs) / 2);
+      }
+    }
+
+    &:has(.vui-emoji-picker) {
+      --vui-dropdown-max-height: 600px !important;
+      padding: 0 !important;
+    }
   }
 }

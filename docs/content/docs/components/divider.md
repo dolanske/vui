@@ -29,12 +29,14 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name       | Default | Type                                                                                    |
-| ---------- | ------- | --------------------------------------------------------------------------------------- |
-| `size`     | `1`     | `number` `string` <br> Divider line thickness                                           |
-| `type`     | `solid` | `'solid' \| 'dashed' \| 'dotted'` <br> Divider line style                               |
-| `vertical` | `false` | `boolean` <br> Makes the divider vertical instead of horizontal                         |
-| `height`   | `100%`  | `number` `string` <br> Height for a vertical divider. Pass it when `vertical` is `true` |
+| Name       | Default | Type                                                                                                                           |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `size`     | `1`     | `number` `string` <br> Divider line thickness                                                                                  |
+| `type`     | `solid` | `'solid' \| 'dashed' \| 'dotted'` <br> Divider line style                                                                      |
+| `vertical` | `false` | `boolean` <br> Makes the divider vertical instead of horizontal                                                                |
+| `height`   | —       | `number` `string` <br> Height of a vertical divider. Without it, the divider stretches to the height of its flex / grid parent |
+
+The divider is a native `<hr>` separator. Vertical dividers set `aria-orientation="vertical"`.
 
 ### Slots
 
@@ -49,7 +51,7 @@ CSS variable tokens used for global or per-instance manipulation of certain styl
 | Token                              | Default                                      | Description              |
 | ---------------------------------- | -------------------------------------------- | ------------------------ |
 | `--vui-divider-size`               | `1px`                                        | Line thickness           |
-| `--vui-divider-height`             | `100%`                                       | Vertical divider height  |
+| `--vui-divider-height`             | `auto`                                       | Vertical divider height  |
 | `--vui-divider-type`               | `solid`                                      | Border style             |
 | `--vui-divider-color`              | [`var(--color-border)`](/docs/tokens/colors) | Line color               |
 | `--vui-divider-slot-outline-color` | [`var(--color-bg)`](/docs/tokens/colors)     | Slot label outline color |

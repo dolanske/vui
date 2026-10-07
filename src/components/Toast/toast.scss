@@ -1,113 +1,160 @@
-.vui-toast-wrapper {
-  --vui-toast-offset: 32px;
-  --vui-toast-max-width: 392px;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  position: fixed;
-  width: 100%;
-  max-width: var(--vui-toast-max-width);
-  z-index: 9999;
+@layer vui.components {
+  .vui-toast-wrapper {
+    --vui-toast-offset: 32px;
+    --vui-toast-max-width: 392px;
+    // Keeps toasts clear of notches and the home indicator (issue #229)
+    --vui-toast-offset-top: calc(var(--vui-toast-offset) + env(safe-area-inset-top, 0px));
+    --vui-toast-offset-bottom: calc(var(--vui-toast-offset) + env(safe-area-inset-bottom, 0px));
+    --vui-toast-offset-left: calc(var(--vui-toast-offset) + env(safe-area-inset-left, 0px));
+    --vui-toast-offset-right: calc(var(--vui-toast-offset) + env(safe-area-inset-right, 0px));
 
-  // Bottom placements
-  &.bottom {
-    bottom: var(--vui-toast-offset);
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    position: fixed;
+    // Never wider than the screen, minus the offsets on both sides
+    width: calc(100% - 2 * var(--vui-toast-offset));
+    max-width: var(--vui-toast-max-width);
+    z-index: 9999;
 
-  &.bottom-start {
-    bottom: var(--vui-toast-offset);
-    left: var(--vui-toast-offset);
-  }
+    // Bottom placements
+    &.bottom {
+      bottom: var(--vui-toast-offset-bottom);
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-  &.bottom-end {
-    bottom: var(--vui-toast-offset);
-    right: var(--vui-toast-offset);
-  }
+    &.bottom-start {
+      bottom: var(--vui-toast-offset-bottom);
+      left: var(--vui-toast-offset-left);
+    }
 
-  // Top placements
-  &.top {
-    top: var(--vui-toast-offset);
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    &.bottom-end {
+      bottom: var(--vui-toast-offset-bottom);
+      right: var(--vui-toast-offset-right);
+    }
 
-  &.top-start {
-    top: var(--vui-toast-offset);
-    left: var(--vui-toast-offset);
-  }
+    // Top placements
+    &.top {
+      top: var(--vui-toast-offset-top);
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-  &.top-end {
-    top: var(--vui-toast-offset);
-    right: var(--vui-toast-offset);
-  }
+    &.top-start {
+      top: var(--vui-toast-offset-top);
+      left: var(--vui-toast-offset-left);
+    }
 
-  // Right placements
-  &.right {
-    right: var(--vui-toast-offset);
-    top: 50%;
-    transform: translateY(-50%);
-  }
+    &.top-end {
+      top: var(--vui-toast-offset-top);
+      right: var(--vui-toast-offset-right);
+    }
 
-  &.right-start {
-    right: var(--vui-toast-offset);
-    top: var(--vui-toast-offset);
-  }
+    // Right placements
+    &.right {
+      right: var(--vui-toast-offset-right);
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-  &.right-end {
-    right: var(--vui-toast-offset);
-    bottom: var(--vui-toast-offset);
-  }
+    &.right-start {
+      right: var(--vui-toast-offset-right);
+      top: var(--vui-toast-offset-top);
+    }
 
-  // Left placements
-  &.left {
-    left: var(--vui-toast-offset);
-    top: 50%;
-    transform: translateY(-50%);
-  }
+    &.right-end {
+      right: var(--vui-toast-offset-right);
+      bottom: var(--vui-toast-offset-bottom);
+    }
 
-  &.left-start {
-    left: var(--vui-toast-offset);
-    top: var(--vui-toast-offset);
-  }
+    // Left placements
+    &.left {
+      left: var(--vui-toast-offset-left);
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-  &.left-end {
-    left: var(--vui-toast-offset);
-    bottom: var(--vui-toast-offset);
-  }
+    &.left-start {
+      left: var(--vui-toast-offset-left);
+      top: var(--vui-toast-offset-top);
+    }
 
-  .vui-toast-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
+    &.left-end {
+      left: var(--vui-toast-offset-left);
+      bottom: var(--vui-toast-offset-bottom);
+    }
 
-    .vui-toast-item {
+    .vui-toast-list {
       display: flex;
-      border: 1px solid var(--color-border);
-      border-radius: var(--border-radius-m);
-      padding: var(--space-m);
-      background-color: var(--color-bg-lowered);
-      width: 100%;
-      align-items: baseline;
-      gap: var(--space-m);
-      box-shadow: var(--box-shadow);
+      flex-direction: column;
+      gap: var(--space-xs);
 
-      .vui-toast-item-content {
-        flex: 1;
+      .vui-toast-item {
+        display: flex;
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius-m);
+        padding: var(--space-m);
+        background-color: var(--color-bg-lowered);
+        width: 100%;
+        align-items: baseline;
+        gap: var(--space-m);
+        box-shadow: var(--box-shadow);
+        position: relative;
 
-        strong {
-          color: var(--color-text);
-          margin-bottom: var(--space-xs);
-          display: block;
-          font-size: var(--font-size-m);
+        &.vui-toast-custom {
+          padding: 0;
+          border: none;
+          background: none;
+          box-shadow: none;
+        }
 
-          &:only-child {
-            margin: 0;
+        .vui-toast-icon {
+          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
+          align-self: center;
+        }
+
+        .vui-toast-dismiss {
+          flex-shrink: 0;
+          align-self: flex-start;
+        }
+
+        &.vui-toast-variant-info .vui-toast-icon {
+          color: var(--color-text-blue);
+        }
+        &.vui-toast-variant-success .vui-toast-icon {
+          color: var(--color-text-green);
+        }
+        &.vui-toast-variant-warning .vui-toast-icon {
+          color: var(--color-text-yellow);
+        }
+        &.vui-toast-variant-danger {
+          border-color: var(--color-text-red);
+
+          .vui-toast-icon {
+            color: var(--color-text-red);
           }
         }
 
-        p {
-          color: var(--color-text-lighter);
-          font-size: var(--font-size-s);
+        .vui-toast-item-content {
+          flex: 1;
+
+          strong {
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+            display: block;
+            font-size: var(--font-size-m);
+
+            &:only-child {
+              margin: 0;
+            }
+          }
+
+          p {
+            color: var(--color-text-lighter);
+            font-size: var(--font-size-s);
+          }
         }
       }
     }

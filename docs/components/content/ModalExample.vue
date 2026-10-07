@@ -24,7 +24,7 @@ const isNonDismissableOpen = ref(false)
               <Button @click="close">
                 Close
               </Button>
-            </flex>
+            </Flex>
           </template>
         </Modal>
         <Button plain @click="isScrollableOpen = true">
@@ -86,7 +86,7 @@ const isNonDismissableOpen = ref(false)
                 </template>
                 Close
               </Button>
-            </flex>
+            </Flex>
           </template>
         </Modal>
       </Flex>

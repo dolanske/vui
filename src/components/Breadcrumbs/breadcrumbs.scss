@@ -1,34 +1,60 @@
-.vui-breadcrumbs {
-  display: flex;
-  gap: var(--space-s);
-  align-items: center;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  .vui-breadcrumb-custom-separator {
-    color: var(--color-text-lighter);
-    font-size: var(--font-size-m);
-  }
+@layer vui.components {
+  .vui-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-  li {
-    font-size: var(--font-size-m);
-    color: var(--color-text-lighter);
+    .vui-breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-s);
 
-    .vui-breadcrumb-text-simple {
-      color: var(--color-text-lighter);
+      // Separators are rendered by every item, the last one hides its own
+      &:last-child .vui-breadcrumb-separator {
+        display: none;
+      }
     }
 
-    .vui-breadcrumb-link {
-      color: var(--color-text);
-      background: transparent;
-      text-underline-offset: 4px;
-      text-decoration: none;
-      padding-inline: 0;
+    .vui-breadcrumb-separator {
+      display: flex;
+      align-items: center;
+      color: var(--color-text-lighter);
+      font-size: var(--font-size-m);
+    }
 
-      &:is(a) {
-        cursor: pointer;
+    .vui-breadcrumb-custom-separator {
+      color: var(--color-text-lighter);
+      font-size: var(--font-size-m);
+    }
+
+    li {
+      font-size: var(--font-size-m);
+      color: var(--color-text-lighter);
+
+      .vui-breadcrumb-text-simple {
+        color: var(--color-text-lighter);
       }
 
-      &:hover {
-        text-decoration: underline;
+      .vui-breadcrumb-link {
+        color: var(--color-text);
+        background: transparent;
+        text-underline-offset: 4px;
+        text-decoration: none;
+        padding-inline: 0;
+
+        &:is(a) {
+          cursor: pointer;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

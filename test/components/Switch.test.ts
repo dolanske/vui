@@ -24,5 +24,19 @@ describe('component:Switch', () => {
     expect(input.element.checked).toBeTruthy()
   })
 
-  it('should not work when disabled')
+  it('should not work when disabled', async () => {
+    const wrapper = mount(Switch, {
+      props: {
+        label: 'Hello',
+        modelValue: false,
+        disabled: true,
+      },
+    })
+    const input = wrapper.get('input')
+
+    expect(input.element.disabled).toBeTruthy()
+    await wrapper.get('label').trigger('click')
+    expect(input.element.checked).toBeFalsy()
+    expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+  })
 })

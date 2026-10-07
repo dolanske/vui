@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { useElementBounding, useEventListener, useStorage } from '@vueuse/core'
-import { computed, ref, useTemplateRef, watch } from 'vue'
+import { useElementBounding, useStorage } from '@vueuse/core'
+import { computed, onMounted, onUnmounted, ref, useId, useTemplateRef, watch } from 'vue'
 import { clamp } from '../../lib/helpers'
 import { useTopLevelSlots } from '../../lib/slots'
 import './resizable.scss'
 
-// TODO / REVIEW
-// Support for `Panel.vue` and prop handling (maybe not needed?)
-
-// Need to be able to get current resizable sizes etc via v-model so that components like ResizableView can handle/persist them
+export interface ResizablePanelOptions {
+  /**
+   * Minimum size in pixels, overrides `minSize` for this panel
+   */
+  minSize?: number
+  /**
+   * Maximum size in pixels
+   */
+  maxSize?: number
+}
 
 interface Props {
   /**
@@ -29,145 +35,184 @@ interface Props {
    * horizontal layouts, height for vertical ones).
    */
   minSize?: number
+  /**
+   * Per panel limits, in the same order as the panels
+   */
+  panels?: ResizablePanelOptions[]
+  /**
+   * Accessible label of the resize handles
+   */
+  handleLabel?: string
 }
 
-interface PanelProps {
-  minWidth: number
-  maxWidth: number
-}
+const props = withDefaults(defineProps<Props>(), {
+  handleLabel: 'Resize',
+})
 
-const props = defineProps<Props>()
 const slots = defineSlots<{
-  default: (props: PanelProps) => any
+  default: () => any
 }>()
 
+/**
+ * Panel sizes in percent, in the same order as the panels
+ */
+const sizesModel = defineModel<number[]>('sizes')
+
 const root = useTemplateRef('resizableRef')
-const panels = useTopLevelSlots(slots.default)
+const panels = useTopLevelSlots(slots)
+const id = useId()
 
 interface PanelState {
   size: number
   isResizing: boolean
 }
 
-const focusedPanelIndex = ref(-1)
-
 const panelState = props.storageKey
   ? useStorage<PanelState[]>(props.storageKey, [])
   : ref<PanelState[]>([])
 
-const { left, right, width, height, top, bottom } = useElementBounding(root)
+const { width, height } = useElementBounding(root)
 
 // The axis the panels are laid out along. Deltas are converted to a
 // percentage of this size, so vertical layouts must use height.
 const axisSize = computed(() => (props.vertical ? height.value : width.value))
 
-// Convert the pixel `minSize` into a percentage of the current axis so it
-// can be compared against the percentage-based panel sizes.
-const minSizePercent = computed(() => {
-  if (!props.minSize || !axisSize.value)
-    return 0
+function toPercent(px: number | undefined): number | undefined {
+  if (px === undefined || !axisSize.value)
+    return undefined
+  return (px / axisSize.value) * 100
+}
 
-  return (props.minSize / axisSize.value) * 100
+function minPercent(index: number): number {
+  return toPercent(props.panels?.[index]?.minSize ?? props.minSize) ?? 0
+}
+
+function maxPercent(index: number): number {
+  return toPercent(props.panels?.[index]?.maxSize) ?? 100
+}
+
+function emitSizes() {
+  sizesModel.value = panelState.value.map(panel => panel.size)
+}
+
+// Set initial panel sizes on mount or when panels change. The watcher starts
+// after mount so the slot is first rendered by the template, not in setup.
+// Until then (and during SSR) panels render with equal sizes.
+onMounted(() => {
+  watch(panels, (items) => {
+    // If numbers of panels is the same as the stored state, do nothing (e.g. on remount)
+    if (panelState.value.length === items.length)
+      return
+
+    const fromModel = sizesModel.value?.length === items.length ? sizesModel.value : null
+    panelState.value = items.map((_, index) => ({
+      size: fromModel?.[index] ?? 100 / items.length,
+      isResizing: false,
+    }))
+  }, { immediate: true })
 })
 
-// Set initial panel sizes on mount or when panels change
-watch(panels, (items) => {
-  // If numbers of panels is the same as the stored state, do nothing (e.g. on remount)
-  if (panelState.value.length === items.length)
+// Sizes set from the outside
+watch(sizesModel, (sizes) => {
+  if (!sizes || sizes.length !== panelState.value.length)
     return
-
-  panelState.value = items.map(() => ({
-    size: 100 / items.length,
-    isResizing: false,
-  }))
-}, { immediate: true })
-
-// Returns the index of the currently focused handle
-function getFocusedHandle(event: MouseEvent | KeyboardEvent) {
-  const handle = (event.target as HTMLElement).closest('.vui-resizable-handle')
-  if (!handle)
-    return
-
-  if (handle.closest('.vui-resizable') !== root.value)
-    return
-
-  return Number(handle.getAttributeNode('data-handle-index')?.value)
-}
+  sizes.forEach((size, index) => {
+    panelState.value[index].size = size
+  })
+})
 
 function applyResize(index: number, deltaSize: number, baseSize: number, nextBaseSize: number) {
   // Resizing only ever moves space between a panel and its neighbour, so
   // their combined size is constant. Clamp within that pair while keeping
-  // both panels above the minimum size.
+  // both panels within their limits.
   const pairSize = baseSize + nextBaseSize
-  const min = minSizePercent.value
+  const lower = Math.max(minPercent(index), pairSize - maxPercent(index + 1))
+  const upper = Math.min(maxPercent(index), pairSize - minPercent(index + 1))
 
-  // Not enough room for both panels to honour the minimum: leave as-is.
-  if (min * 2 > pairSize)
+  // Not enough room to honour every limit: leave as-is.
+  if (lower > upper)
     return
 
-  const newSize = clamp(min, pairSize - min, baseSize + deltaSize)
+  const newSize = clamp(lower, upper, baseSize + deltaSize)
   panelState.value[index].size = newSize
   panelState.value[index + 1].size = pairSize - newSize
 }
 
-// Controls via mouse drag
-useEventListener(root, 'mousedown', (event) => {
-  const index = getFocusedHandle(event)
+//
+// Pointer dragging (mouse, touch & pen). The pointer is captured by the
+// handle, so moves are received even outside of it and nothing needs to be
+// attached to the window.
 
-  if (index === undefined)
+const activeHandle = ref<number | null>(null)
+let dragStart: { pos: number, size: number, nextSize: number } | null = null
+
+function onHandlePointerDown(event: PointerEvent, index: number) {
+  if (event.pointerType === 'mouse' && event.button !== 0)
     return
 
+  event.preventDefault()
+  const handle = event.currentTarget as HTMLElement
+  handle.setPointerCapture?.(event.pointerId)
+  handle.focus({ preventScroll: true })
+
+  activeHandle.value = index
   panelState.value[index].isResizing = true
-
-  const startPos = clamp(
-    props.vertical ? top.value : left.value,
-    props.vertical ? bottom.value : right.value,
-    props.vertical ? event.clientY : event.clientX,
-  )
-
-  const startSize = panelState.value[index].size
-  const nextStartSize = panelState.value[index + 1].size
-
-  const onMouseMove = (event: MouseEvent) => {
-    const clampedClientPos = clamp(
-      props.vertical ? top.value : left.value,
-      props.vertical ? bottom.value : right.value,
-      props.vertical ? event.clientY : event.clientX,
-    )
-
-    const delta = clampedClientPos - startPos
-
-    if (!axisSize.value)
-      return
-
-    applyResize(index, (delta / axisSize.value) * 100, startSize, nextStartSize)
+  dragStart = {
+    pos: props.vertical ? event.clientY : event.clientX,
+    size: panelState.value[index].size,
+    nextSize: panelState.value[index + 1].size,
   }
+}
 
-  const onMouseUp = () => {
-    panelState.value[index].isResizing = false
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseup', onMouseUp)
-  }
+function onHandlePointerMove(event: PointerEvent, index: number) {
+  if (activeHandle.value !== index || !dragStart || !axisSize.value)
+    return
 
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('mouseup', onMouseUp)
-})
+  const delta = (props.vertical ? event.clientY : event.clientX) - dragStart.pos
+  applyResize(index, (delta / axisSize.value) * 100, dragStart.size, dragStart.nextSize)
+}
+
+function endDrag(event?: PointerEvent) {
+  if (activeHandle.value === null)
+    return
+
+  if (event)
+    (event.currentTarget as HTMLElement).releasePointerCapture?.(event.pointerId)
+
+  if (panelState.value[activeHandle.value])
+    panelState.value[activeHandle.value].isResizing = false
+  activeHandle.value = null
+  dragStart = null
+  emitSizes()
+}
+
+onUnmounted(() => endDrag())
 
 // Controls via keyboard when handle is focused
-useEventListener(root, 'keydown', (event) => {
-  const index = getFocusedHandle(event)
+function onHandleKeydown(event: KeyboardEvent, index: number) {
+  const decrease = props.vertical ? 'ArrowUp' : 'ArrowLeft'
+  const increase = props.vertical ? 'ArrowDown' : 'ArrowRight'
+  const RESIZE_STEP = 5
+  const current = panelState.value[index].size
+  const next = panelState.value[index + 1].size
 
-  if (index === undefined)
+  let delta: number | null = null
+  if (event.key === decrease)
+    delta = -RESIZE_STEP
+  else if (event.key === increase)
+    delta = RESIZE_STEP
+  else if (event.key === 'Home')
+    delta = -current
+  else if (event.key === 'End')
+    delta = next
+
+  if (delta === null)
     return
 
-  // Control with arrow keys: left/right for horizontal, up/down for vertical but not at once
-  if (((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !props.vertical) || ((event.key === 'ArrowUp' || event.key === 'ArrowDown') && props.vertical)) {
-    event.preventDefault()
-    const RESIZE_STEP = 5
-    const delta = (event.key === 'ArrowLeft' || event.key === 'ArrowUp') ? -RESIZE_STEP : RESIZE_STEP
-    applyResize(index, delta, panelState.value[index].size, panelState.value[index + 1].size)
-  }
-})
+  event.preventDefault()
+  applyResize(index, delta, current, next)
+  emitSizes()
+}
 
 // Reset to default size on double click
 function resetSize(index: number) {
@@ -179,7 +224,10 @@ function resetSize(index: number) {
   const newSize = (current.size + next.size) / 2
   panelState.value[index].size = newSize
   panelState.value[index + 1].size = newSize
+  emitSizes()
 }
+
+const panelId = (index: number) => `${id}-panel-${index}`
 </script>
 
 <template>
@@ -189,25 +237,37 @@ function resetSize(index: number) {
     :class="{
       'vertical': props.vertical,
       'hide-handles': props.hideHandles,
+      'is-resizing': activeHandle !== null,
     }"
   >
-    <template v-for="(panel, index) in panels" :key="panel.key">
+    <template v-for="(panel, index) in panels" :key="panel.key ?? index">
       <div
+        :id="panelId(index)"
         class="vui-resizable-panel"
         :style="{
-          flex: `${panelState[index].size} 1 0px`,
-          pointerEvents: panelState[index].isResizing ? 'none' : 'auto',
+          flex: `${panelState[index]?.size ?? 100 / panels.length} 1 0px`,
         }"
       >
         <Component :is="panel" />
       </div>
-      <button
+      <!-- A focusable separator is the ARIA pattern for splitters -->
+      <div
         v-if="index < panels.length - 1"
-        :data-handle-index="index"
         class="vui-resizable-handle"
+        role="separator"
+        tabindex="0"
+        :aria-orientation="props.vertical ? 'horizontal' : 'vertical'"
+        :aria-label="props.handleLabel"
+        :aria-controls="panelId(index)"
+        :aria-valuenow="Math.round(panelState[index]?.size ?? 100 / panels.length)"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        @pointerdown="onHandlePointerDown($event, index)"
+        @pointermove="onHandlePointerMove($event, index)"
+        @pointerup="endDrag($event)"
+        @pointercancel="endDrag($event)"
+        @keydown="onHandleKeydown($event, index)"
         @dblclick="resetSize(index)"
-        @focus="focusedPanelIndex = index"
-        @blur="focusedPanelIndex = -1"
       />
     </template>
   </div>

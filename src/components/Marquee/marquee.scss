@@ -1,39 +1,53 @@
-.marquee-wrap {
-  --vui-marquee-gap: initial;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  display: block;
-  width: 100%;
-  overflow: hidden;
-}
+@layer vui.components {
+  .marquee-wrap {
+    --vui-marquee-gap: initial;
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-  animation: marquee-scroll linear infinite;
-}
+    display: block;
+    width: 100%;
+    overflow: hidden;
 
-.marquee-content {
-  display: flex;
-  flex-shrink: 0;
-  gap: var(--vui-marquee-gap, 0);
-
-  * {
-    white-space: nowrap;
+    // Hovering pauses the animation (optional) and keyboard focus inside the
+    // marquee always does, so its content can be read and operated
+    &.pause-on-hover:hover .marquee-track,
+    &:focus-within .marquee-track {
+      animation-play-state: paused;
+    }
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation: none;
-  }
-}
+    --vui-marquee-distance: -50%;
 
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-scroll linear infinite;
   }
-  to {
-    transform: translateX(-50%);
+
+  .marquee-content {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--vui-marquee-gap, 0);
+
+    * {
+      white-space: nowrap;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+
+  // Moves the track by exactly one copy of the content, then loops
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(var(--vui-marquee-distance));
+    }
   }
 }

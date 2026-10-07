@@ -1,3 +1,5 @@
+@use './theme-mode' as mode;
+
 /*
 This is a trick in which you can add simply tooltips to an element without any additional html.
 Simple add data-title-_position_="Hello world" and hover the element.
@@ -50,7 +52,7 @@ Available tooltip positions:
   }
 }
 
-:root.light {
+@include mode.light {
   [data-title-left],
   [data-title-right],
   [data-title-bottom],

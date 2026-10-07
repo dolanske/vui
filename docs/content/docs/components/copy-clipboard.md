@@ -1,6 +1,8 @@
 # Copy Clipboard
 
-A component that provides a simple way to copy text to the clipboard with a confirmation tooltip. It uses the Clipboard API and provides a flexible way to customize the copy confirmation UI.
+A component that provides a simple way to copy text to the clipboard with a confirmation tooltip. It uses the Clipboard API, with a legacy fallback for browsers or pages (plain HTTP) where it is not available. Successful copies are announced to screen readers.
+
+When the slot contains an interactive element (like a Button), that element triggers the copy. Plain content is turned into a keyboard accessible button automatically.
 
 ::copy-clipboard-example{sourcePath="CopyClipboard/CopyClipboard.vue"}
 
@@ -22,15 +24,23 @@ import { Button, CopyClipboard } from '@dolanske/vui'
 
 ### Props
 
-| Name                | Default | Type                                                                                                                                                                                    |
-| ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `text`              | -       | `string` <br> The text to copy to the clipboard                                                                                                                                         |
-| `confirm`           | `false` | `string` `boolean` <br> Whether to show a confirmation tooltip. If set to string, uses it as the confirmation message                                                                   |
-| `confirm-time`      | `1500`  | `number` <br> How long the confirmation tooltip should be visible in milliseconds                                                                                                       |
-| `confirm-placement` | `top`   | `Placement` <br> Position of the confirmation tooltip (from `@floating-ui/vue` library)                                                                                                 |
-| `transition-name`   | `fade`  | `string` `none` <br> Allows you to change or disable the vue transition for the confirmation tooltip. By default, a `fade` animation with direction depending on the placement is used. |
+| Name                | Default               | Type                                                                                                                                                                                    |
+| ------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`              | -                     | `string` <br> The text to copy to the clipboard                                                                                                                                         |
+| `confirm`           | `false`               | `string` `boolean` <br> Whether to show a confirmation tooltip. If set to string, uses it as the confirmation message                                                                   |
+| `confirm-time`      | `1500`                | `number` <br> How long the confirmation tooltip should be visible in milliseconds                                                                                                       |
+| `confirm-placement` | `top`                 | `Placement` <br> Position of the confirmation tooltip                                                                                                                                   |
+| `transition-name`   | —                     | `string` `none` <br> Allows you to change or disable the vue transition for the confirmation tooltip. By default, a `fade` animation with direction depending on the placement is used. |
+| `announcement`      | `Copied to clipboard` | `string` <br> Message announced to screen readers after copying                                                                                                                         |
 
-## Slots
+### Events
+
+| Name     | Payload   | Description                       |
+| -------- | --------- | --------------------------------- |
+| `copied` | `string`  | Emitted after the text was copied |
+| `error`  | `unknown` | Emitted when copying failed       |
+
+### Slots
 
 | Name      | Accepts | Props              | Description                         |
 | --------- | ------- | ------------------ | ----------------------------------- |
@@ -40,10 +50,9 @@ import { Button, CopyClipboard } from '@dolanske/vui'
 ```ts
 interface DefaultSlotProps {
   // Manually call the copying function
-  copy: () => void
-  // Tracks whether the text has been copied
-  // for the set amount of duration by confirm-time
-  copied: Ref<boolean>
+  copy: () => Promise<void>
+  // Whether the text has been copied within the last `confirm-time`
+  copied: boolean
 }
 ```
 
@@ -56,8 +65,6 @@ Here's a heavily customized copy-clipboard using all the props
 ```vue
 <script setup>
 import { Badge, Button, Card, CopyClipboard } from '@dolanske/vui'
-
-const textToCopy = 'Hello, World!'
 </script>
 
 <template>

@@ -1,0 +1,28 @@
+// Theme specific overrides. Applies when the theme class is set on :root, or
+// when no class is set at all and the system preference matches. This keeps
+// styling correct before JavaScript runs, during SSR and in apps which never
+// initialise the theme API.
+
+@mixin light {
+  :root.light {
+    @content;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not(.light, .dark) {
+      @content;
+    }
+  }
+}
+
+@mixin dark {
+  :root.dark {
+    @content;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light, .dark) {
+      @content;
+    }
+  }
+}

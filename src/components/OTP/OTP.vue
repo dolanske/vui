@@ -1,24 +1,44 @@
 <script setup lang='ts'>
-import type { ModelRef, Ref } from 'vue'
-import { computed, provide, ref, toRef, useTemplateRef, watch } from 'vue'
+import { computed, provide, reactive, ref, toRef, useTemplateRef, watch } from 'vue'
 import { setCharAt } from '../../lib/helpers'
+import { OTP_KEY } from './otp'
+import OTPItem from './OTPItem.vue'
 import './otp.scss'
 
-export interface OtpContext {
-  otpValue: ModelRef<string>
-  cursorIndex: Ref<number>
-  redacted: Ref<boolean>
-  register: () => void
-}
+export type { OtpContext } from './otp'
 
 interface Props {
   mode?: 'num' | 'char' | 'both'
   redacted?: boolean
+  /**
+   * Amount of characters. When set and no items are passed into the default
+   * slot, items are rendered automatically. Otherwise the length is derived
+   * from the rendered `OTPItem` components.
+   */
+  length?: number
+  /**
+   * Accessible label of the hidden input
+   */
+  label?: string
+  disabled?: boolean
+  /**
+   * Marks the code as invalid, e.g. after a failed verification
+   */
+  invalid?: boolean
+  /**
+   * Native `name` for form submission
+   */
+  name?: string
 }
 
 const {
   mode = 'both',
   redacted = false,
+  length,
+  label = 'One-time code',
+  disabled,
+  invalid,
+  name,
 } = defineProps<Props>()
 
 const emits = defineEmits<{
@@ -39,22 +59,39 @@ const PATTERNS = {
 const pattern = computed(() => PATTERNS[mode].single)
 const stripPattern = computed(() => PATTERNS[mode].strip)
 
-const maxLen = ref(0)
+// Indices of the currently mounted items. Using a set (instead of a counter)
+// keeps the length correct when items unmount or re-mount.
+const registered = reactive(new Set<number>())
+const maxLen = computed(() => length ?? (registered.size > 0 ? Math.max(...registered) + 1 : 0))
+
 const input = useTemplateRef('inputRef')
 
-provide('otp-context', {
+provide(OTP_KEY, {
   otpValue,
   cursorIndex,
   redacted: toRef(() => redacted),
-  register: () => maxLen.value++,
+  register: (index: number) => {
+    registered.add(index)
+    return () => registered.delete(index)
+  },
 })
 
-watch(otpValue, value => emits('change', value))
+watch(otpValue, (value, previous) => {
+  emits('change', value)
+
+  if (maxLen.value > 0 && value.length === maxLen.value && previous?.length !== maxLen.value)
+    emits('complete', value)
+})
 
 function setOtpValue(value: string) {
   otpValue.value = value
-  if (input.value)
-    input.value.value = value
+  syncInput()
+}
+
+// The hidden input always mirrors the model, whatever the browser inserted
+function syncInput() {
+  if (input.value && input.value.value !== otpValue.value)
+    input.value.value = otpValue.value
 }
 
 const WHITESPACE_RE = /\s/g
@@ -72,6 +109,25 @@ function applyValue(raw: string) {
   cursorIndex.value = Math.min(cleaned.length, maxLen.value - 1)
 }
 
+function typeChar(char: string) {
+  if (!pattern.value.test(char))
+    return
+
+  const index = Math.max(0, cursorIndex.value)
+  const newValue = setCharAt(otpValue.value, char, index)
+  if (newValue.length <= maxLen.value) {
+    setOtpValue(newValue)
+    if (cursorIndex.value < maxLen.value - 1)
+      cursorIndex.value = index + 1
+  }
+}
+
+function backspace() {
+  if (otpValue.value.charAt(cursorIndex.value) === '' && cursorIndex.value > 0)
+    cursorIndex.value--
+  setOtpValue(setCharAt(otpValue.value, '', cursorIndex.value))
+}
+
 function onKeyDown(e: KeyboardEvent) {
   // Let the browser handle all modifier combos (Ctrl+V, Cmd+C, Ctrl+A, etc.)
   if (e.ctrlKey || e.metaKey)
@@ -79,20 +135,15 @@ function onKeyDown(e: KeyboardEvent) {
 
   const { key } = e
 
+  // Virtual keyboards (e.g. Android Gboard) often report "Unidentified" here.
+  // Those are not prevented and get handled by the `input` event instead.
   if (key.length === 1 && pattern.value.test(key)) {
     e.preventDefault()
-    const newValue = setCharAt(otpValue.value, key, cursorIndex.value)
-    if (newValue.length <= maxLen.value) {
-      setOtpValue(newValue)
-      if (cursorIndex.value < maxLen.value - 1)
-        cursorIndex.value++
-    }
+    typeChar(key)
   }
   else if (key === 'Backspace') {
     e.preventDefault()
-    if (otpValue.value.charAt(cursorIndex.value) === '' && cursorIndex.value > 0)
-      cursorIndex.value--
-    setOtpValue(setCharAt(otpValue.value, '', cursorIndex.value))
+    backspace()
   }
   else if (key === 'Delete') {
     e.preventDefault()
@@ -105,7 +156,7 @@ function onKeyDown(e: KeyboardEvent) {
   }
   else if (key === 'ArrowRight') {
     e.preventDefault()
-    if (cursorIndex.value < otpValue.value.length)
+    if (cursorIndex.value < Math.min(otpValue.value.length, maxLen.value - 1))
       cursorIndex.value++
   }
   else if (key === 'Home') {
@@ -127,27 +178,56 @@ function onPaste(e: ClipboardEvent) {
   applyValue(text)
 }
 
+// Reaching this handler means keydown did not prevent the default action.
+// That happens with virtual keyboards, IMEs, SMS / password manager autofill.
 function onInput(e: Event) {
   const ie = e as InputEvent
-  // insertText is handled by onKeyDown; delete variants are too — skip both
-  if (ie.inputType === 'insertText' || ie.inputType?.startsWith('delete'))
+
+  // Composition is handled once it ends
+  if (ie.isComposing)
     return
-  // Everything else (insertReplacementText, insertFromYank, undefined) is
-  // SMS autofill, password manager injection, or Android autofill
-  const value = (e.target as HTMLInputElement).value
-  if (!value)
-    return
-  applyValue(value)
+
+  switch (ie.inputType) {
+    case 'insertText':
+      for (const char of ie.data ?? '')
+        typeChar(char)
+      break
+    case 'deleteContentBackward':
+      backspace()
+      break
+    case 'deleteContentForward':
+      setOtpValue(setCharAt(otpValue.value, '', cursorIndex.value))
+      break
+    default: {
+      // insertReplacementText, insertFromPaste, autofill (undefined), ...
+      const value = (e.target as HTMLInputElement).value
+      if (value)
+        applyValue(value)
+    }
+  }
+
+  syncInput()
+}
+
+function onCompositionEnd(e: CompositionEvent) {
+  for (const char of e.data ?? '')
+    typeChar(char)
+  syncInput()
 }
 </script>
 
 <template>
-  <div class="vui-otp">
+  <div class="vui-otp" :class="{ disabled, invalid }">
     <input
       ref="inputRef"
       type="text"
+      :value="otpValue"
+      :name
       :inputmode="mode === 'num' ? 'numeric' : 'text'"
       :maxlength="maxLen"
+      :disabled
+      :aria-label="label"
+      :aria-invalid="invalid ? true : undefined"
       autocomplete="one-time-code"
       autocapitalize="none"
       autocorrect="off"
@@ -155,13 +235,19 @@ function onInput(e: Event) {
       class="vui-otp-input"
       @keydown="onKeyDown"
       @input="onInput"
+      @compositionend="onCompositionEnd"
       @paste="onPaste"
       @blur="cursorIndex = -1"
       @focus="cursorIndex = Math.min(otpValue.length, maxLen - 1)"
     >
 
-    <div class="vui-otp-items">
-      <slot />
+    <div class="vui-otp-items" aria-hidden="true">
+      <slot>
+        <!-- Fallback only renders when no items are passed in -->
+        <template v-if="length">
+          <OTPItem v-for="index in length" :key="index" :i="index - 1" />
+        </template>
+      </slot>
     </div>
   </div>
 </template>

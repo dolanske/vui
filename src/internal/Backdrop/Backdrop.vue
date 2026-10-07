@@ -1,13 +1,38 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-import { isTopLayer, useLayer } from '../../lib/layerManager'
+import { ref } from 'vue'
+import { useLayer } from '../../lib/layerManager'
+import { useScrollLock } from '../../lib/scrollLock'
 import './backdrop.scss'
 
-const emits = defineEmits<{
-  (e: 'close'): void
+const { leaving = false } = defineProps<{
+  /**
+   * Fades the backdrop out while the content plays its leave transition
+   */
+  leaving?: boolean
 }>()
 
-const { layerIndex, layerPostition, openLayer, closeLayer } = useLayer()
+const emits = defineEmits<{
+  close: []
+}>()
+
+const { layerIndex, layerPostition, openLayer } = useLayer({
+  // Only reached when this is the top-most dismissable layer. While the
+  // content is leaving, Escape belongs to whatever is underneath.
+  onEscape: () => {
+    if (leaving)
+      return false
+    emits('close')
+  },
+})
+
+// Claimed during setup (instead of on mount), so that children mounting
+// before the backdrop, such as an initially open popout, end up above it
+openLayer()
+useScrollLock(true)
+
+defineExpose({
+  layerIndex,
+})
 
 // Track whether the mousedown originated on the backdrop itself,
 // so that dragging from inside content onto the backdrop doesn't
@@ -25,32 +50,17 @@ function handleClick(e: MouseEvent) {
 
   mouseDownOnBackdrop.value = false
 }
-
-function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape' && isTopLayer(layerIndex.value)) {
-    emits('close')
-  }
-}
-
-onMounted(() => {
-  openLayer()
-  window.addEventListener('keydown', onKeydown)
-})
-
-onUnmounted(() => {
-  closeLayer()
-  window.removeEventListener('keydown', onKeydown)
-})
 </script>
 
 <template>
   <div
     class="vui-backdrop"
-    :class="{ child: layerPostition > 0 }"
+    :class="{ child: layerPostition > 0, leaving }"
     :style="{
       '--layer-z': layerIndex,
       '--layer-position': layerPostition,
     }"
+    :data-vui-layer="layerIndex"
     @mousedown="handleMouseDown"
     @click="handleClick"
   >

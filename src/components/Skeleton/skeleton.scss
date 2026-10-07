@@ -1,16 +1,24 @@
-.vui-skeleton {
-  --vui-skeleton-color: var(--color-border);
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  background-color: var(--vui-skeleton-color);
+@layer vui.components {
+  .vui-skeleton {
+    --vui-skeleton-color: var(--color-border);
 
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 1;
+    animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background-color: var(--vui-skeleton-color);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
     }
-    50% {
-      opacity: 0.5;
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
     }
   }
 }

@@ -1,96 +1,110 @@
-.vui-resizable {
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  align-items: stretch;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  &.hide-handles {
+@layer vui.components {
+  .vui-resizable {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: stretch;
+
+    // While dragging, no panel content (e.g. iframes) may swallow pointer
+    // events or get its text selected
+    &.is-resizing > .vui-resizable-panel {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    &.hide-handles {
+      & > .vui-resizable-handle {
+        opacity: 0;
+
+        &:focus-within,
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &.vertical {
+      flex-direction: column;
+
+      & > .vui-resizable-handle {
+        cursor: ns-resize;
+        height: 1px;
+        width: 100%;
+
+        &:after {
+          left: 50%;
+          top: -2px;
+          transform: translateX(-50%);
+          width: 32px;
+          height: unset;
+          bottom: -2px;
+        }
+
+        &:before {
+          inset: -6px 0;
+        }
+      }
+    }
+
+    & > .vui-resizable-panel {
+      display: flex;
+      z-index: 1;
+      overflow: hidden;
+
+      // Let the panel's content fill the resolved panel size in both
+      // orientations: flex:1 fills the main axis, the default
+      // align-items:stretch fills the cross axis, and the min-* resets
+      // remove the min-content floor so overflow:hidden can take effect.
+      & > * {
+        flex: 1;
+        min-width: 0;
+        min-height: 0;
+      }
+    }
+
     & > .vui-resizable-handle {
-      opacity: 0;
+      width: 1px;
+      position: relative;
+      background-color: var(--color-border);
+      align-self: stretch;
+      z-index: 2;
+      cursor: ew-resize;
+      // Touch dragging must not scroll the page
+      touch-action: none;
+      outline-offset: 2px;
+      transition: opacity var(--transition-fast);
 
       &:focus-within,
       &:hover {
-        opacity: 1;
-      }
-    }
-  }
-
-  &.vertical {
-    flex-direction: column;
-
-    & > .vui-resizable-handle {
-      cursor: ns-resize;
-      height: 1px;
-      width: 100%;
-
-      &:after {
-        left: 50%;
-        top: -2px;
-        transform: translateX(-50%);
-        width: 32px;
-        height: unset;
-        bottom: -2px;
-      }
-
-      &:before {
-        inset: -6px 0;
-      }
-    }
-  }
-
-  & > .vui-resizable-panel {
-    display: flex;
-    z-index: 1;
-    overflow: hidden;
-
-    // Let the panel's content fill the resolved panel size in both
-    // orientations: flex:1 fills the main axis, the default
-    // align-items:stretch fills the cross axis, and the min-* resets
-    // remove the min-content floor so overflow:hidden can take effect.
-    & > * {
-      flex: 1;
-      min-width: 0;
-      min-height: 0;
-    }
-  }
-
-  & > .vui-resizable-handle {
-    width: 1px;
-    position: relative;
-    background-color: var(--color-border);
-    align-self: stretch;
-    z-index: 2;
-    cursor: ew-resize;
-    transition: opacity var(--transition-fast);
-
-    &:focus-within,
-    &:hover {
-      background-color: var(--color-border-strong);
-
-      &:after {
         background-color: var(--color-border-strong);
+
+        &:after {
+          background-color: var(--color-border-strong);
+        }
       }
-    }
 
-    // Hover area
-    &:before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      inset: 0 -6px;
-    }
+      // Hover area
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        inset: 0 -6px;
+      }
 
-    // Handle
-    &:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -2px;
-      right: -2px;
-      height: 32px;
-      border-radius: var(--border-radius-pill);
-      background-color: var(--color-border);
+      // Handle
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -2px;
+        right: -2px;
+        height: 32px;
+        border-radius: var(--border-radius-pill);
+        background-color: var(--color-border);
+      }
     }
   }
 }

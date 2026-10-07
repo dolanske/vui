@@ -1,6 +1,8 @@
 # Popout Hover
 
-A convenience wrapper around `Popout` that automatically shows and hides the popout based on hover and focus events. Unlike `Tooltip`, the content inside `PopoutHover` is fully interactive - users can move their mouse into the popout and interact with its contents.
+A convenience wrapper around `Popout` that automatically shows and hides the popout based on hover and focus events. Unlike `Tooltip`, the content inside `PopoutHover` is fully interactive - users can move their mouse or keyboard focus into the popout and interact with its contents. `Esc` closes it and returns focus to the trigger.
+
+The trigger gets `aria-expanded` and `aria-controls`. A trigger which can not receive focus on its own is made focusable. Inside a [Dropdown](/docs/components/dropdown), PopoutHover works as a submenu: `→` opens it and `←` closes it.
 
 > Please note: `PopoutHover` (and the underlying `Popout`) cannot be styled using `scoped` CSS in Vue SFC. Define a separate non-scoped `<style>` block to style the popout container.
 
@@ -8,7 +10,7 @@ A convenience wrapper around `Popout` that automatically shows and hides the pop
 
 ```vue
 <script setup>
-import { Avatar, Badge, Button, PopoutHover } from '@dolanske/vui'
+import { Avatar, Badge, Flex, PopoutHover } from '@dolanske/vui'
 </script>
 
 <template>

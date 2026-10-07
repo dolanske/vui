@@ -30,3 +30,11 @@ Since VUI supports custom themes, you can use VueUse's `useColorMode` to define 
   --color-accent: rgb(255, 0, 0);
 }
 ```
+
+### Switching themes
+
+Use [`setColorTheme`](/docs/library/theme) to switch between `light`, `dark` and `auto`. When no theme class is set on `<html>`, the page follows the system preference automatically, including before JavaScript runs and during server rendering.
+
+### Overriding component styles
+
+VUI styles live in cascade layers, so any rule of your app which is not in a layer wins. See [Installation](/docs/installation#styles-and-your-app).

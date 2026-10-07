@@ -36,6 +36,7 @@ Assign a `view-transition-name` to the elements you want to animate, then define
 ::view-transition-new(my-element) {
   animation: 200ms ease-in fade-in;
 }
+
 ```
 
 At minimum you should set `animation-duration` on both selectors. The transition name must be unique per page at the time the transition runs.

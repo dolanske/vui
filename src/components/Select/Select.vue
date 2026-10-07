@@ -4,6 +4,7 @@ import type { Sizes } from '../../lib/types.ts'
 import { IconCaretDown, IconCaretUp, IconMagnifyingGlass, IconX } from '@iconify-prerendered/vue-ph'
 import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 import { searchString } from '../../lib/helpers.ts'
+import { getInputSizeStyle, joinIds } from '../../lib/input.ts'
 import { viewport } from '../../lib/viewport.ts'
 import Button from '../Button/Button.vue'
 import Dropdown from '../Dropdown/Dropdown.vue'
@@ -16,6 +17,14 @@ import './select.scss'
 export type SelectOption = {
   value: any
   label: string
+  /**
+   * The option is shown but can not be selected
+   */
+  disabled?: boolean
+  /**
+   * Options sharing a group name are rendered together under a heading
+   */
+  group?: string
 }
 
 type Props = {
@@ -32,6 +41,11 @@ type Props = {
   disabled?: boolean
   errors?: string[]
   size?: Sizes
+  /**
+   * Native `name`. When set, hidden inputs with the selected values are
+   * rendered so the Select participates in native form submission.
+   */
+  name?: string
   /**
    * Set he max height of the dropdown element before it starts scrolling
    */
@@ -64,46 +78,37 @@ const {
   noMobileDrawer = false,
   transitionName,
   maxHeight,
+  name,
 } = defineProps<Props>()
-
-const sizeStyle = computed(() => {
-  switch (size) {
-    case 's': return { '--vui-input-height': '28px', '--vui-input-padding': '4px' }
-    case 'l': return { '--vui-input-height': '44px', '--vui-input-padding': '16px' }
-    default: return {}
-  }
-})
 
 const selected = defineModel<SelectOption[] | undefined>()
 const triggerRef = useTemplateRef('trigger')
 
-//
+function isSelected(option: SelectOption) {
+  return !!selected.value?.some(o => o.value === option.value)
+}
+
+// The model is always replaced instead of mutated, so that parent watchers
+// fire and readonly / store backed arrays work
 function setValue(option: SelectOption) {
+  const current = selected.value ?? []
+
   if (single) {
-    // Single
-    if (selected.value?.some(o => o.value === option.value) && !required) {
+    if (isSelected(option) && !required)
       selected.value = undefined
-    }
-    else {
+    else
       selected.value = [option]
-    }
+    return
   }
-  else {
-    if (selected.value && selected.value?.some(o => o.value === option.value)) {
-      const values = selected.value.filter(o => o.value !== option.value)
-      // Cant remove the last value if it's required
-      if ((required && values.length > 0) || !required) {
-        selected.value = values.length > 0 ? values : undefined
-      }
-    }
-    else {
-      if (!selected.value) {
-        selected.value = [option]
-      }
-      else if (!maxActiveOptions || (selected.value.length < maxActiveOptions)) {
-        selected.value?.push(option)
-      }
-    }
+
+  if (isSelected(option)) {
+    const values = current.filter(o => o.value !== option.value)
+    // Cant remove the last value if it's required
+    if (!required || values.length > 0)
+      selected.value = values.length > 0 ? values : undefined
+  }
+  else if (!maxActiveOptions || current.length < maxActiveOptions) {
+    selected.value = [...current, option]
   }
 }
 
@@ -117,6 +122,30 @@ const filteredOptions = computed(() => {
     return searchString(option.label, searchStr.value)
   })
 })
+
+// Options grouped by their `group` while keeping the original order
+const groupedOptions = computed(() => {
+  const groups: Array<{ name?: string, options: SelectOption[] }> = []
+  for (const option of filteredOptions.value) {
+    let group = groups.find(g => g.name === option.group)
+    if (!group) {
+      group = { name: option.group, options: [] }
+      groups.push(group)
+    }
+    group.options.push(option)
+  }
+  return groups
+})
+
+function selectOption(option: SelectOption, close: () => void) {
+  if (readonly || option.disabled)
+    return
+
+  setValue(option)
+  // In single mode, close the dropdown after picking (focus returns to the trigger)
+  if (single && !(required && selected.value && selected.value[0].value === option.value))
+    close()
+}
 
 // Render text inside the button
 const renderPlaceholder = computed(() => {
@@ -133,13 +162,16 @@ const renderPlaceholder = computed(() => {
     return `${selected.value.length} selected`
   }
 
-  // Just list ALL selected optionsx
+  // Just list ALL selected options
   return selected.value.map(o => o.label).join(', ')
 })
 
+const hasValue = computed(() => !!selected.value && selected.value.length > 0)
+const canClear = computed(() => showClear && !required && !readonly && !disabled && hasValue.value)
+
 onMounted(() => {
   if (readonly && showClear) {
-    console.warn('[Select] readonly and showClear are mutually exclusive props. The clear button will not show up if required is present.')
+    console.warn('[Select] readonly and showClear are mutually exclusive props. The clear button will not show up while readonly is set.')
   }
 })
 
@@ -148,52 +180,82 @@ const dropdownRef = useTemplateRef('dropdown')
 function clearValue() {
   selected.value = undefined
   dropdownRef.value?.close()
+  triggerRef.value?.focus({ preventScroll: true })
 }
 
 const id = useId()
+const hintId = `${id}-hint`
+const errorsId = `${id}-errors`
+const limitId = `${id}-limit`
+
+const describedBy = computed(() => joinIds(
+  hint && hintId,
+  errors.length > 0 && errorsId,
+  !!maxActiveOptions && !single && limitId,
+))
+
+// Hidden form values. Objects are serialized, primitives submitted as-is.
+const nativeValues = computed(() => (selected.value ?? []).map(option =>
+  typeof option.value === 'object' && option.value !== null ? JSON.stringify(option.value) : String(option.value),
+))
 </script>
 
 <template>
-  <div class="vui-input-container vui-select" :class="{ required, readonly, disabled, 'has-errors': errors.length > 0 }" :style="sizeStyle">
+  <div
+    class="vui-input-container vui-select"
+    :class="{ required, readonly, disabled, 'has-errors': errors.length > 0 }"
+    :style="getInputSizeStyle(size)"
+  >
     <Dropdown
       ref="dropdown"
       :max-height
       :transition-name
       :no-mobile-drawer="noMobileDrawer"
-      @close="triggerRef?.focus({ preventScroll: true })"
+      role="listbox"
+      match-width
+      :aria-multiselectable="!single || undefined"
+      @close="searchStr = ''"
     >
       <template #trigger="{ toggle, isOpen }">
         <div class="vui-input vui-select-trigger-content">
           <label v-if="label" :for="id">{{ label }}</label>
-          <p v-if="hint" class="vui-input-hint">
+          <p v-if="hint" :id="hintId" class="vui-input-hint">
             {{ hint }}
           </p>
 
-          <button
-            :id
-            ref="trigger"
-            class="vui-input-style vui-select-trigger-container"
-            :class="{ 'has-value': selected && selected.length > 0 }"
-            :disabled
-            @click="toggle"
-          >
-            <span>
-              {{ renderPlaceholder }}
-            </span>
-            <template v-if="showClear && !required && (selected && selected.length > 0)">
-              <div class="flex-1" />
-              <Button
-                plain
-                square
-                size="s"
-                @click.stop="clearValue"
-              >
-                <IconX />
-              </Button>
-            </template>
-            <IconCaretUp v-if="isOpen" />
-            <IconCaretDown v-else />
-          </button>
+          <div class="vui-select-trigger-wrap">
+            <button
+              :id
+              ref="trigger"
+              type="button"
+              class="vui-input-style vui-select-trigger-container"
+              :class="{ 'has-value': hasValue, 'has-clear': canClear }"
+              :disabled
+              :aria-describedby="describedBy"
+              :aria-invalid="errors.length > 0 ? true : undefined"
+              @click="toggle"
+            >
+              <span class="vui-select-value">
+                {{ renderPlaceholder }}
+              </span>
+              <!-- Reserves space for the absolutely positioned clear button -->
+              <span v-if="canClear" class="vui-select-clear-spacer" aria-hidden="true" />
+              <IconCaretUp v-if="isOpen" />
+              <IconCaretDown v-else />
+            </button>
+            <!-- Sibling of the trigger, interactive elements cannot be nested inside a button -->
+            <Button
+              v-if="canClear"
+              class="vui-select-clear"
+              plain
+              square
+              size="s"
+              aria-label="Clear selection"
+              @click.stop="clearValue"
+            >
+              <IconX />
+            </Button>
+          </div>
         </div>
       </template>
 
@@ -211,34 +273,54 @@ const id = useId()
           </Input>
         </DropdownTitle>
 
-        <p v-if="filteredOptions.length === 0" class="vue-select-no-results">
+        <p v-if="filteredOptions.length === 0" class="vui-select-no-results">
           No results...
         </p>
 
-        <DropdownItem
-          v-for="option in filteredOptions"
-          :key="option.value"
-          :class="{ selected: selected?.find(v => v.value === option.value) }"
-          @click="() => {
-            if (readonly) return
-
-            setValue(option)
-            // In single mode, close modal after clicking
-            if (single && !(required && selected && selected[0].value === option.value)) {
-              close()
-            }
-          }"
+        <div
+          v-for="(group, groupIndex) in groupedOptions"
+          :key="group.name ?? '__ungrouped'"
+          :role="group.name ? 'group' : 'presentation'"
+          :aria-labelledby="group.name ? `${id}-group-${groupIndex}` : undefined"
+          class="vui-select-group"
         >
-          {{ option.label }}
-        </DropdownItem>
+          <DropdownTitle v-if="group.name" :id="`${id}-group-${groupIndex}`">
+            {{ group.name }}
+          </DropdownTitle>
+
+          <DropdownItem
+            v-for="option in group.options"
+            :key="option.value"
+            role="option"
+            keep-open
+            :aria-selected="isSelected(option)"
+            :disabled="option.disabled"
+            :class="{ selected: isSelected(option) }"
+            @click="selectOption(option, close)"
+          >
+            <slot name="option" :option :selected="isSelected(option)">
+              {{ option.label }}
+            </slot>
+          </DropdownItem>
+        </div>
       </template>
     </Dropdown>
 
-    <p v-if="maxActiveOptions && !single" class="vui-input-limit">
+    <template v-if="name">
+      <input
+        v-for="(nativeValue, index) in nativeValues"
+        :key="index"
+        type="hidden"
+        :name
+        :value="nativeValue"
+      >
+    </template>
+
+    <p v-if="maxActiveOptions && !single" :id="limitId" class="vui-input-limit">
       {{ `${selected ? selected.length : 0}/${maxActiveOptions}` }}
     </p>
-    <ul v-if="errors.length > 0" class="vui-input-errors">
-      <li v-for="err in errors" :key="err">
+    <ul v-if="errors.length > 0" :id="errorsId" class="vui-input-errors">
+      <li v-for="(err, index) in errors" :key="index">
         {{ err }}
       </li>
     </ul>

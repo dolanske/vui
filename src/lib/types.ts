@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars -- enum members are part of the public API */
 import type { ComponentPublicInstance } from 'vue'
 
 export enum Size {
@@ -20,6 +21,7 @@ export type Placement = 'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top
 export type Spaces = 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'
 
 export enum SpaceSize {
+  xxxs = 'xxxs',
   xxs = 'xxs',
   xs = 'xs',
   s = 's',

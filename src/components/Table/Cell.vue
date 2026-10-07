@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { computed, useSlots, useTemplateRef } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
+import { computed, ref, useSlots, useTemplateRef } from 'vue'
 
 const slots = useSlots()
-const contextRef = useTemplateRef<HTMLTableCellElement>('context')
+const contextRef = useTemplateRef<HTMLDivElement>('context')
+
+// Width of the context slot, re-measured whenever it changes size
+const contextWidth = ref(0)
+useResizeObserver(contextRef, ([entry]) => {
+  contextWidth.value = entry?.borderBoxSize?.[0]?.inlineSize ?? entry?.contentRect.width ?? 0
+})
+
 const computedStyle = computed(() => {
-  if (!slots.context || !window)
+  if (!slots.context || contextWidth.value === 0)
     return {}
-  const width = contextRef.value?.getBoundingClientRect().width ?? 0
   return {
-    paddingRight: `${width}px`,
+    paddingRight: `${contextWidth.value}px`,
   }
 })
 </script>

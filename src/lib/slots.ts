@@ -1,8 +1,21 @@
-import type { ShallowRef, VNode } from 'vue'
-import { computed, Fragment, watchPostEffect } from 'vue'
+import type { ComputedRef, VNode } from 'vue'
+import { Comment, computed, Fragment, Text } from 'vue'
 
 type VNodesProps<T extends object> = Array<VNode & { props: T }>
-type SlotFn = (props?: any) => VNode[] | VNode | undefined
+type SlotFn = (_props?: any) => VNode[] | VNode | undefined
+
+/**
+ * Whether a vnode actually renders something. `v-if="false"` leaves a comment
+ * vnode behind and template formatting can leave whitespace-only text nodes,
+ * neither of which should count as a child.
+ */
+function isRenderable(vnode: VNode): boolean {
+  if (vnode.type === Comment)
+    return false
+  if (vnode.type === Text)
+    return typeof vnode.children === 'string' && vnode.children.trim().length > 0
+  return true
+}
 
 function getTopLevelSlotNodes(slotFn?: SlotFn): VNode[] {
   const nodes = slotFn?.()
@@ -13,12 +26,14 @@ function getTopLevelSlotNodes(slotFn?: SlotFn): VNode[] {
   const topLevelNodes = Array.isArray(nodes) ? nodes : [nodes]
   const result: VNode[] = []
 
+  // Only fragments (v-for, <template>) are unwrapped. Elements and components
+  // are kept intact, so wrappers are never stripped away.
   const unwrapTopLevelFragments = (vnodes: VNode[]): void => {
     vnodes.forEach((vnode) => {
       if (vnode.type === Fragment && Array.isArray(vnode.children)) {
         unwrapTopLevelFragments(vnode.children as VNode[])
       }
-      else {
+      else if (isRenderable(vnode)) {
         result.push(vnode)
       }
     })
@@ -29,59 +44,17 @@ function getTopLevelSlotNodes(slotFn?: SlotFn): VNode[] {
 }
 
 /**
- * Flattens slot children and keeps them in sync reactively.
+ * Returns a computed array of renderable top-level VNodes from the provided
+ * slot function. Make sure it is first read during render (template), not
+ * during setup, otherwise Vue warns about slots invoked outside of render.
  *
- * @param slotFn The slot function (e.g., slots.default)
- */
-export function useFlattenedSlot<T extends object>(slotFn?: SlotFn): ShallowRef<VNodesProps<T>> {
-  // Flatten VNodes recursively (handles Fragments)
-  function flatten(vnodes: VNode[]): VNodesProps<T> {
-    const result: VNode[] = []
-
-    const walk = (nodes: VNode[] | VNode | undefined): void => {
-      if (!nodes)
-        return
-
-      if (Array.isArray(nodes)) {
-        nodes.forEach(walk)
-      }
-      else if (nodes.type === Fragment || Array.isArray(nodes.children)) {
-        walk(nodes.children as VNode[])
-      }
-      else {
-        result.push(nodes)
-      }
-    }
-
-    walk(vnodes)
-    return result as VNodesProps<T>
-  }
-
-  return computed(() => flatten(getTopLevelSlotNodes(slotFn)))
-}
-
-/**
- * Returns a computed array of top-level VNodes from the provided slot function
+ * Components which need to coordinate with their children should prefer
+ * provide / inject registration over inspecting vnodes.
  *
- * @param slotFn The slot function (e.g., slots.default)
+ * @param slots The component slots object (from `useSlots` / `defineSlots`)
+ * @param name Slot name, defaults to `default`
  */
-export function useTopLevelSlots(slotFn?: SlotFn): ShallowRef<VNodesProps<any>> {
-  return computed(() => getTopLevelSlotNodes(slotFn) as VNodesProps<any>)
-}
-
-/**
- * Checks whether all of the provided VNodes are of the same type. Throws an
- * error if not. This function should be used in components that only allow a
- * single type of component
- *
- * @param vnodes Array of VNodes to check
- * @param name Expected name of the components
- */
-export function enforceSlotType(vnodes: ShallowRef<VNodesProps<any>>, name: string): void {
-  watchPostEffect(() => {
-    // @ts-expect-error Accessing internals
-    if (vnodes.value.some(item => item.type.__name !== name)) {
-      throw new TypeError(`You can only pass \`<${name} />\` components as children.`)
-    }
-  })
+export function useTopLevelSlots(slots: Record<string, SlotFn | undefined>, name = 'default'): ComputedRef<VNodesProps<any>> {
+  // The slot is read lazily, parents can replace slot functions on re-render
+  return computed(() => getTopLevelSlotNodes(slots[name]) as VNodesProps<any>)
 }

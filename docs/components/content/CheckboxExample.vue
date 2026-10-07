@@ -10,13 +10,13 @@ const prechecked = ref(true)
       <Flex column gap="m">
         <Checkbox label="Basic checkbox" />
         <Checkbox label="Disabled checkbox" disabled />
-        <Checkbox v-model="prechecked" label="Checked checkbox" checked />
+        <Checkbox v-model="prechecked" label="Checked checkbox" />
         <Checkbox accent>
           <template #icon-on>
-            <Icon name="ph:toggle-left" />
+            <Icon name="ph:toggle-right-fill" />
           </template>
           <template #icon-off>
-            <Icon name="ph:toggle-right-fill" />
+            <Icon name="ph:toggle-left" />
           </template>
           <template #default>
             Custom icons with <code>accent</code> color

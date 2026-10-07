@@ -6,7 +6,7 @@ import { Button, Dropdown, EmojiPicker, Flex } from '@dolanske/vui'
   <DocsExample>
     <template #component>
       <Flex x-center>
-        <Dropdown>
+        <Dropdown role="dialog">
           <template #trigger="{ toggle }">
             <Button size="s" @click="toggle">
               Choose emoji

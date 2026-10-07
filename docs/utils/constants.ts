@@ -34,15 +34,15 @@ export const interactiveElementHeightTokens = [
 ]
 
 export const fontSizeTokens = [
-  { name: 'XXS size', token: '--font-size-xxs', size: '1.1rem' },
-  { name: 'XS size', token: '--font-size-xs', size: '1.175rem' },
-  { name: 'S size', token: '--font-size-s', size: '1.3rem' },
-  { name: 'M size', token: '--font-size-m', size: '1.5rem' },
-  { name: 'L size', token: '--font-size-l', size: '1.8rem' },
-  { name: 'XL size', token: '--font-size-xl', size: '2rem' },
-  { name: 'XXL size', token: '--font-size-xxl', size: '2.6rem' },
-  { name: 'XXXL size', token: '--font-size-xxxl', size: '3.4rem' },
-  { name: 'XXXXL size', token: '--font-size-xxxxl', size: '4.8rem' },
+  { name: 'XXS size', token: '--font-size-xxs', size: '1.1 × --vui-font-unit' },
+  { name: 'XS size', token: '--font-size-xs', size: '1.175 × --vui-font-unit' },
+  { name: 'S size', token: '--font-size-s', size: '1.3 × --vui-font-unit' },
+  { name: 'M size', token: '--font-size-m', size: '1.5 × --vui-font-unit' },
+  { name: 'L size', token: '--font-size-l', size: '1.8 × --vui-font-unit' },
+  { name: 'XL size', token: '--font-size-xl', size: '2 × --vui-font-unit' },
+  { name: 'XXL size', token: '--font-size-xxl', size: '2.6 × --vui-font-unit' },
+  { name: 'XXXL size', token: '--font-size-xxxl', size: '3.4 × --vui-font-unit' },
+  { name: 'XXXXL size', token: '--font-size-xxxxl', size: '4.8 × --vui-font-unit' },
 ]
 
 export const darkThemeTokens = [
@@ -132,6 +132,7 @@ export const componentList = [
   { name: 'Button', path: '/docs/components/button', keywords: ['click', 'action', 'submit', 'trigger'], description: 'Interactive element for triggering actions or events' },
   { name: 'Button Group', path: '/docs/components/button-group', keywords: ['button', 'group', 'toolbar', 'cluster'], description: 'Groups multiple buttons together with joined borders for a unified appearance' },
   { name: 'Calendar', path: '/docs/components/calendar', tags: ['date', 'picker'], keywords: ['date', 'picker', 'month', 'schedule'], description: 'Date selection and display component with month view' },
+  { name: 'Confirm', path: '/docs/components/confirm', keywords: ['dialog', 'confirm', 'alert', 'prompt'], description: 'Dialog asking the user to confirm or cancel an action', status: 'new' },
   { name: 'Card', path: '/docs/components/card', keywords: ['container', 'panel', 'content', 'box'], description: 'Container component for grouping related content' },
   { name: 'Carousel', path: '/docs/components/carousel', keywords: ['gallery', 'scroll', 'slideshow'], description: 'Scrollable container for displaying multiple items horizontally' },
   { name: 'Charts', path: '/docs/components/charts', keywords: ['histogram', 'bar', 'data', 'visualization'], description: 'Collection of chart components for visualizing data' },
@@ -163,6 +164,7 @@ export const componentList = [
   { name: 'Popout Hover', path: '/docs/components/popout-hover', keywords: ['popup', 'hover', 'floating', 'interactive', 'tooltip'], description: 'Floating interactive popout triggered by hover or focus events' },
   { name: 'Progress', path: '/docs/components/progress', keywords: ['loading', 'bar', 'percentage', 'status'], description: 'Visual indicator for task completion or loading state' },
   { name: 'Radio', path: '/docs/components/radio', tags: ['group'], keywords: ['option', 'single', 'select', 'form'], description: 'Input control for selecting a single option' },
+  { name: 'Resizable View', path: '/docs/components/resizable-view', keywords: ['editor', 'panels', 'tabs', 'split', 'layout'], description: 'Editor-like layout of resizable panels with draggable tabs', status: 'new' },
   { name: 'Resizable', path: '/docs/components/resizable', keywords: ['split', 'panel', 'drag', 'layout'], description: 'Layout container that splits content into resizable panels', status: 'update' },
   { name: 'Select', path: '/docs/components/select', keywords: ['dropdown', 'options', 'choice', 'form'], description: 'Dropdown for selecting from a list of options' },
   { name: 'Sheet', path: '/docs/components/sheet', keywords: ['bottom', 'panel', 'mobile', 'overlay'], description: 'Bottom sheet that slides up from screen bottom' },
@@ -248,15 +250,15 @@ export const darkTextClasses = darkThemeTokens
   }))
 
 export const fontSizeClasses = [
-  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1.1rem' },
-  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.175rem' },
-  { name: 'S size', className: 'text-s', token: '--font-size-s', size: '1.3rem' },
-  { name: 'M size', className: 'text-m', token: '--font-size-m', size: '1.5rem' },
-  { name: 'L size', className: 'text-l', token: '--font-size-l', size: '1.8rem' },
-  { name: 'XL size', className: 'text-xl', token: '--font-size-xl', size: '2rem' },
-  { name: 'XXL size', className: 'text-xxl', token: '--font-size-xxl', size: '2.6rem' },
-  { name: 'XXXL size', className: 'text-xxxl', token: '--font-size-xxxl', size: '3.4rem' },
-  { name: 'XXXXL size', className: 'text-xxxxl', token: '--font-size-xxxxl', size: '4.8rem' },
+  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1.1 × --vui-font-unit' },
+  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.175 × --vui-font-unit' },
+  { name: 'S size', className: 'text-s', token: '--font-size-s', size: '1.3 × --vui-font-unit' },
+  { name: 'M size', className: 'text-m', token: '--font-size-m', size: '1.5 × --vui-font-unit' },
+  { name: 'L size', className: 'text-l', token: '--font-size-l', size: '1.8 × --vui-font-unit' },
+  { name: 'XL size', className: 'text-xl', token: '--font-size-xl', size: '2 × --vui-font-unit' },
+  { name: 'XXL size', className: 'text-xxl', token: '--font-size-xxl', size: '2.6 × --vui-font-unit' },
+  { name: 'XXXL size', className: 'text-xxxl', token: '--font-size-xxxl', size: '3.4 × --vui-font-unit' },
+  { name: 'XXXXL size', className: 'text-xxxxl', token: '--font-size-xxxxl', size: '4.8 × --vui-font-unit' },
 ]
 
 export const lineHeightClasses = [
@@ -430,6 +432,7 @@ export const libraryPages = [
   { label: 'searchString', path: '/docs/library/search-string', keywords: ['text', 'search', 'iteration'] },
   { label: 'viewport', path: '/docs/library/viewport', keywords: ['responsive', 'breakpoints', 'mobile', 'viewport'] },
   { label: 'paginate', path: '/docs/library/paginate', keywords: ['pagination', 'array', 'chunk', 'tables'] },
+  { label: 'theme', path: '/docs/library/theme', keywords: ['theme', 'dark', 'light', 'color mode', 'isDark'] },
 ]
 
 export const componentPages = [

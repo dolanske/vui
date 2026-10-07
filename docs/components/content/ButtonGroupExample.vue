@@ -16,7 +16,7 @@ import { Button, ButtonGroup, Flex } from '@dolanske/vui'
         </ButtonGroup>
 
         <ButtonGroup>
-          <Button outline square active>
+          <Button outline square>
             <Icon name="ph:text-b-bold" />
           </Button>
           <Button outline square>

@@ -25,7 +25,7 @@ const filled = ref(false)
         </template>
       </Tabs>
 
-      <div class="mt-md">
+      <div class="mt-m">
         <div v-if="activeTab === 'tab1'">
           Content for Tab 1
         </div>

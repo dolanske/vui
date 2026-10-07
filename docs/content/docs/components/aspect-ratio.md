@@ -1,6 +1,6 @@
 # Aspect Ratio
 
-A layout component that constrains its content to a given aspect ratio. It automatically fills the available width and adjusts height to maintain the ratio. Images and videos inside will be automatically sized to cover the container.
+A layout component that constrains its content to a given aspect ratio. It automatically fills the available width and adjusts height to maintain the ratio, using the native CSS `aspect-ratio` property. Images and videos inside will be automatically sized to cover the container.
 
 ::aspect-ratio-example{sourcePath="AspectRatio/AspectRatio.vue"}
 
@@ -11,7 +11,7 @@ import { AspectRatio } from '@dolanske/vui'
 
 <template>
   <AspectRatio :ratio="16 / 9">
-    <img src="..." alt="Image loading...">
+    <img src="..." alt="Mountain lake at sunrise">
   </AspectRatio>
 </template>
 ```
@@ -20,9 +20,9 @@ import { AspectRatio } from '@dolanske/vui'
 
 ### Props
 
-| Name    | Default | Type                                                                                   |
-| ------- | ------- | -------------------------------------------------------------------------------------- |
-| `ratio` | —       | `number` <br> The aspect ratio as a single number (e.g. `16/9`, `1`, `4/3`). Required. |
+| Name    | Default | Type                                                                                                                                            |
+| ------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ratio` | —       | `number` <br> Width divided by height (e.g. `16 / 9`, `1`, `4 / 3`). Required. Zero, negative or invalid values fall back to `1` with a warning |
 
 ### Slots
 
@@ -34,9 +34,9 @@ import { AspectRatio } from '@dolanske/vui'
 
 CSS variable tokens used for global or per-instance manipulation of certain styling.
 
-| Token                         | Default                                                | Description                     |
-| ----------------------------- | ------------------------------------------------------ | ------------------------------- |
-| `--vui-aspect-ratio-value`    | `0%`                                                   | Aspect ratio as padding-bottom  |
-| `--vui-aspect-ratio-radius`   | [`var(--border-radius-m)`](/docs/tokens/border-radius) | Border radius of the container  |
-| `--vui-aspect-ratio-fit`      | `cover`                                                | Object-fit for inner media      |
-| `--vui-aspect-ratio-position` | `center`                                               | Object-position for inner media |
+| Token                         | Default                                                | Description                      |
+| ----------------------------- | ------------------------------------------------------ | -------------------------------- |
+| `--vui-aspect-ratio`          | `1`                                                    | Ratio, set from the `ratio` prop |
+| `--vui-aspect-ratio-radius`   | [`var(--border-radius-m)`](/docs/tokens/border-radius) | Border radius of the container   |
+| `--vui-aspect-ratio-fit`      | `cover`                                                | Object-fit for inner media       |
+| `--vui-aspect-ratio-position` | `center`                                               | Object-position for inner media  |

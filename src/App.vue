@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
+import Marquee from './components/Marquee/Marquee.vue'
 import Switch from './components/Switch/Switch.vue'
-
-import ExampleContextMenus from './examples/ExampleContextMenus.vue'
 import { setColorTheme } from './lib/theme.ts'
 
 const isLight = ref(false)
@@ -24,18 +23,22 @@ watchEffect(() => {
 <template>
   <main vaul-drawer-wrapper class="container-l py-xxxl">
     <Switch v-model="isLight" class="mb-xxl" label="Light theme" />
-    <!--
-    <ResizableView v-model="views">
-      <template #tab="{ tab }">
-        <span>Hihih {{ tab.path }}</span>
-      </template>
-    </ResizableView>
+    <Marquee direction="left" :speed="70">
+      <span style="font-size: 65px; line-height: 65px; font-weight: 700; white-space: nowrap; padding-right: 2rem;">
+        Scrolling Left - Fast and Seamless -
+      </span>
+    </Marquee>
 
-    <pre class="mt-l">
-      {{ views }}
-    </pre> -->
-    <!-- <ExampleEmojis /> -->
-    <!-- <ExampleSidebars /> -->
-    <ExampleContextMenus />
+    <Marquee direction="right" :speed="40">
+      <span style="font-size: 65px; line-height: 65px; font-weight: 700; white-space: nowrap; padding-right: 2rem;">
+        Scrolling Right - Smooth and Infinite -
+      </span>
+    </Marquee>
+
+    <Marquee direction="left" :speed="30" stagger>
+      <span style="font-size: 65px; line-height: 65px; font-weight: 700; white-space: nowrap; padding-right: 2rem;">
+        Slow Left Scroll - Staggered -
+      </span>
+    </Marquee>
   </main>
 </template>

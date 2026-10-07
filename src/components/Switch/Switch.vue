@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useId } from 'vue'
+import { useAttrs, useId } from 'vue'
+import { splitAttrs } from '../../lib/input.ts'
 import './switch.scss'
 
 interface Props {
@@ -8,31 +9,51 @@ interface Props {
   accent?: boolean
   reversed?: boolean
   hint?: string
+  name?: string
 }
 
-const { label, disabled, accent, reversed, hint } = defineProps<Props>()
+defineOptions({
+  inheritAttrs: false,
+})
+
+const { label, disabled, accent, reversed, hint, name } = defineProps<Props>()
 const slots = defineSlots()
 const checked = defineModel<boolean>()
+const attrs = useAttrs()
 const id = useId()
+const hintId = `${id}-hint`
 </script>
 
 <template>
-  <div class="vui-switch" :class="{ disabled, checked, accent, reversed }">
-    <input :id v-model="checked" type="checkbox" :disabled>
+  <div
+    class="vui-switch"
+    :class="[splitAttrs(attrs).root.class, { disabled, checked, accent, reversed }]"
+    :style="splitAttrs(attrs).root.style as any"
+  >
+    <!-- role="switch" makes assistive technology announce on / off instead of checked -->
+    <input
+      v-bind="splitAttrs(attrs).control"
+      :id
+      v-model="checked"
+      type="checkbox"
+      role="switch"
+      :name
+      :disabled
+      :aria-describedby="hint ? hintId : undefined"
+    >
     <label :for="id">
-      <div class="vui-switch-icon">
+      <span class="vui-switch-icon">
         <span class="vui-switch-indicator" />
-      </div>
+      </span>
 
-      <div class="w-100">
-        <p v-if="!slots.default && label" class="vui-switch-content">{{ label }}</p>
-        <div v-else class="vui-switch-content">
+      <span class="w-100">
+        <span v-if="!slots.default && label" class="vui-switch-content is-text">{{ label }}</span>
+        <span v-else class="vui-switch-content">
           <slot />
-        </div>
+        </span>
 
-        <p v-if="hint" class="vui-hint mt-xxs block">{{ hint }}</p>
-      </div>
-
+        <span v-if="hint" :id="hintId" class="vui-hint mt-xxs block">{{ hint }}</span>
+      </span>
     </label>
   </div>
 </template>

@@ -1,82 +1,89 @@
-.vui-radio {
-  --vui-radio-size: 24px;
+@use '../../style/theme-mode' as mode;
 
-  &.checked {
-    .vui-radio-icon svg,
-    .vui-radio-icon .iconify {
-      color: var(--color-text);
+@layer vui.reset, vui.base, vui.components, vui.utilities;
+
+@layer vui.components {
+  .vui-radio {
+    --vui-radio-size: 24px;
+
+    &.checked {
+      .vui-radio-icon svg,
+      .vui-radio-icon .iconify {
+        color: var(--color-text);
+      }
+
+      &.accent .vui-radio-icon svg,
+      &.accent .vui-radio-icon .iconify {
+        color: var(--color-accent);
+      }
     }
 
-    &.accent .vui-radio-icon svg,
-    &.accent .vui-radio-icon .iconify {
-      color: var(--color-accent);
-    }
-  }
+    &.disabled {
+      .vui-radio-icon {
+        opacity: 0.25;
+        cursor: not-allowed;
+      }
 
-  &.disabled {
+      input + label .vui-radio-content {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
     .vui-radio-icon {
-      opacity: 0.25;
-      cursor: not-allowed;
+      cursor: pointer;
+      width: var(--vui-radio-size);
+      height: var(--vui-radio-size);
+
+      svg,
+      .iconify {
+        width: 100%;
+        height: 100%;
+        color: var(--color-text);
+      }
     }
 
-    input + label .vui-radio-content {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-  }
+    input {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      overflow: hidden;
+      outline: none !important;
+      opacity: 0;
 
-  .vui-radio-icon {
-    cursor: pointer;
-    width: var(--vui-radio-size);
-    height: var(--vui-radio-size);
+      &:focus-visible + label .vui-radio-icon {
+        outline: var(--outline);
+        border-radius: var(--border-radius-pill);
+      }
 
-    svg,
-    .iconify {
-      width: 100%;
-      height: 100%;
-      color: var(--color-text);
-    }
-  }
+      & + label {
+        display: grid;
+        grid-template-columns: var(--vui-radio-size) 1fr;
+        gap: 10px;
+        font-size: var(--font-size-s);
+        color: var(--color-text);
+        user-select: none;
 
-  input {
-    width: 1px;
-    height: 1px;
-    position: absolute;
-    overflow: hidden;
-    outline: none !important;
-    opacity: 0;
+        .vui-radio-content {
+          display: block;
 
-    &:focus-visible + label .vui-radio-icon {
-      outline: var(--outline);
-      border-radius: var(--border-radius-pill);
-    }
-
-    & + label {
-      display: grid;
-      grid-template-columns: var(--vui-radio-size) 1fr;
-      gap: 10px;
-      font-size: var(--font-size-s);
-      color: var(--color-text);
-      user-select: none;
-
-      .vui-radio-content {
-        display: block;
-
-        &:is(p) {
-          display: flex;
-          align-items: center;
-          min-height: var(--vui-radio-size);
-          font-size: var(--font-size-m);
-          // line-height: var(--vui-radio-size);
+          &.is-text,
+          &:is(p) {
+            display: flex;
+            align-items: center;
+            min-height: var(--vui-radio-size);
+            font-size: var(--font-size-m);
+            // line-height: var(--vui-radio-size);
+          }
         }
       }
     }
   }
-}
 
-:root.light {
-  .vui-radio.checked.accent .vui-radio-icon svg,
-  .vui-radio.checked.accent .vui-radio-icon .iconify {
-    color: var(--color-accent);
+  @include mode.light {
+    .vui-radio.checked.accent .vui-radio-icon svg,
+    .vui-radio.checked.accent .vui-radio-icon .iconify {
+      color: var(--color-accent);
+    }
   }
 }

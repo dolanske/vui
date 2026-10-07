@@ -1,35 +1,38 @@
 # Tabs
 
-A tabs component that allows users to switch between different views or sections of content. It supports two styl
+A tabs component that allows users to switch between different views or sections of content. It supports two styles, `default` and `filled`, and optional `TabPanel` components for the content.
+
+The list is a `role="tablist"` with a single Tab stop. `←` / `→` (or `↑` / `↓`), `Home` and `End` move between tabs and select them, skipping disabled ones. Tabs can be nested inside other elements or behind `v-if`.
 
 ::tabs-example{sourcePath="Tabs/Tabs.vue"}
 
 ```vue
 <script setup>
-import { Tab, Tabs } from '@dolanske/vui'
+import { Tab, TabPanel, Tabs } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const activeTab = ref('tab1')
 </script>
 
 <template>
-  <Tabs v-model="activeTab">
-    <Tab value="tab1" label="Tab 1" />
-    <Tab value="tab2" label="Tab 2" />
-    <Tab value="tab3" label="Tab 3" />
+  <Tabs id="settings-tabs" v-model="activeTab">
+    <Tab value="tab1">
+      Tab 1
+    </Tab>
+    <Tab value="tab2">
+      Tab 2
+    </Tab>
+    <Tab value="tab3" disabled>
+      Tab 3
+    </Tab>
   </Tabs>
 
-  <div class="mt-md">
-    <div v-if="activeTab === 'tab1'">
-      Content for Tab 1
-    </div>
-    <div v-if="activeTab === 'tab2'">
-      Content for Tab 2
-    </div>
-    <div v-if="activeTab === 'tab3'">
-      Content for Tab 3
-    </div>
-  </div>
+  <TabPanel tabs="settings-tabs" value="tab1" :active="activeTab">
+    Content for Tab 1
+  </TabPanel>
+  <TabPanel tabs="settings-tabs" value="tab2" :active="activeTab">
+    Content for Tab 2
+  </TabPanel>
 </template>
 ```
 
@@ -39,19 +42,31 @@ const activeTab = ref('tab1')
 
 #### Tabs Component
 
-| Name       | Default   | Type                                                        |
-| ---------- | --------- | ----------------------------------------------------------- |
-| `variant`  | `default` | `default` `filled` <br> The visual style of the tabs        |
-| `expand`   | `false`   | `boolean` <br> Whether the tabs should expand to full width |
-| `disabled` | `false`   | `boolean` <br> Whether all tabs are disabled                |
+| Name              | Default   | Type                                                                                                   |
+| ----------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| `variant`         | `default` | `default` `filled` <br> The visual style of the tabs                                                   |
+| `expand`          | `false`   | `boolean` <br> Whether the tabs should expand to full width                                            |
+| `disabled`        | `false`   | `boolean` <br> Whether all tabs are disabled                                                           |
+| `id`              | —         | `string` <br> Id of the tab list. Setting it links every Tab with its TabPanel through `aria-controls` |
+| `transition-name` | `fade`    | `string` `none` <br> Transition of the active tab underline. `none` disables it                        |
+
+When the active value matches no tab (or none is set), the first enabled tab is selected.
 
 #### Tab Component
 
-| Name       | Default | Type                                               |
-| ---------- | ------- | -------------------------------------------------- |
-| `disabled` | `false` | `boolean` <br> Whether the tab is disabled         |
-| `value`    | —       | `string` <br> The value of the tab                 |
-| `label`    | —       | `string` <br> The label text to display in the tab |
+| Name       | Default | Type                                                               |
+| ---------- | ------- | ------------------------------------------------------------------ |
+| `value`    | —       | `string` <br> The value of the tab, also shown when no slot is set |
+| `disabled` | `false` | `boolean` <br> Whether the tab is disabled and can not be selected |
+
+#### TabPanel Component
+
+| Name          | Default | Type                                                                                    |
+| ------------- | ------- | --------------------------------------------------------------------------------------- |
+| `tabs`        | —       | `string` <br> The `id` of the Tabs component this panel belongs to                      |
+| `value`       | —       | `string` <br> Value of the Tab which shows this panel                                   |
+| `active`      | —       | `string` <br> The currently active value, usually the ref bound to the Tabs `v-model`   |
+| `keepMounted` | `false` | `boolean` <br> Keeps the panel rendered but hidden while inactive, preserving its state |
 
 ### Events
 
@@ -74,6 +89,12 @@ const activeTab = ref('tab1')
 | Name      | Accepts | Description                |
 | --------- | ------- | -------------------------- |
 | `default` | `any`   | Custom content for the tab |
+
+#### TabPanel Component
+
+| Name      | Accepts | Description          |
+| --------- | ------- | -------------------- |
+| `default` | `any`   | Content of the panel |
 
 ### Tokens
 

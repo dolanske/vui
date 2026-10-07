@@ -30,17 +30,21 @@ const data = [4, 9, 6, 2, 8, 5, 7, 3, 10, 1]
 
 ### Props
 
-| Name      | Default | Type                                                                        |
-| --------- | ------- | --------------------------------------------------------------------------- |
-| `data`    | —       | `number[]` <br> Array of numeric values to render as bars                   |
-| `height`  | `32`    | `number` <br> Height of each bar cell in pixels                             |
-| `gap`     | `'xs'`  | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Spacing between bars |
-| `expand`  | `false` | `boolean` <br> Stretches bars to fill the full width of the container       |
-| `compact` | `false` | `boolean` <br> Reduces the width of each bar for a denser appearance        |
+| Name          | Default                                        | Type                                                                                 |
+| ------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `data`        | —                                              | `number[]` <br> Array of numeric values to render as bars                            |
+| `height`      | `32`                                           | `number` <br> Height of each bar cell in pixels                                      |
+| `gap`         | `'xs'`                                         | `xxxs` `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Spacing between bars   |
+| `expand`      | `false`                                        | `boolean` <br> Stretches bars to fill the full width of the container                |
+| `compact`     | `false`                                        | `boolean` <br> Reduces the width of each bar for a denser appearance                 |
+| `label`       | —                                              | `string` <br> Accessible description of the chart. Defaults to a summary of the data |
+| `formatValue` | `(value, index) => \`${index + 1}: ${value}\`` | `function` <br> Accessible label of each bar when bars are clickable                 |
+
+Negative or invalid values are drawn as empty bars. The chart is exposed to screen readers as a single image with a text summary. When bars are clickable, they become buttons inside a labelled group.
 
 ### Events
 
-If you attach any of these listeners, the component automatically adds hover interactions.
+If you attach any of these listeners, the component automatically adds hover interactions and makes the bars keyboard accessible buttons.
 
 | Name        | Payload         | Description                                        |
 | ----------- | --------------- | -------------------------------------------------- |

@@ -17,11 +17,11 @@ export function searchString(match: MaybeArray<string | number | null | undefine
   if (!input)
     return true
 
-  if (!match)
+  if (match === null || match === undefined || match === '')
     return false
 
   const joint: string = Array.isArray(match)
-    ? match.filter(Boolean).join(' ')
+    ? match.filter(item => item !== null && item !== undefined && item !== '').join(' ')
     : match.toString()
 
   const split = input.trim().split(whitespaceRegex)
@@ -77,27 +77,21 @@ export function setCharAt(str: string, char: string | number, index: number): st
   return str.substring(0, index) + char + str.substring(index + 1)
 }
 
-const unitRegex = /^(?:\d+(?:\.\d+)?|\.\d+)(?:px|em|rem|vh|vw|vmin|vmax|ch|ex|cm|mm|in|pt|pc|%)$/
-const variableRegex = /^(?:--[\w-]+|var\(--[\w-]+(?:\s*,[^)]+)?\))$/
-
-// Checks whether string is a valid CSS value unit or a CSS variable
-export function isCssValue(value: string): boolean {
-  return unitRegex.test(value) || variableRegex.test(value)
-}
+// A plain number, optionally negative or fractional, e.g. '12', '-4', '.5'
+const numericRegex = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
 
 /**
- * Takes in a value and if it is a number, appends "px" to it, otherwise returns
- * the original value.
- *
+ * Takes in a value and if it is a number (or a numeric string), appends the
+ * unit to it. Any other string is a CSS value already (`12px`, `50%`, `1fr`,
+ * `auto`, `calc(...)`, `var(...)`, ...) and is returned unchanged.
  */
 export function formatUnitValue(value: string | number, unit: string = 'px'): string {
-  if (typeof value === 'number') {
+  if (typeof value === 'number')
     return `${value}${unit}`
-  }
 
   const trimmedValue = value.trim()
 
-  return isCssValue(trimmedValue) ? trimmedValue : `${trimmedValue}${unit}`
+  return numericRegex.test(trimmedValue) ? `${trimmedValue}${unit}` : trimmedValue
 }
 
 export function clamp(min: number, max: number, value: number): number {

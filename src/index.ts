@@ -1,6 +1,9 @@
 import type { Command } from './components/Commands/Commands.vue'
+import type { Panel, ViewNode, ViewTab } from './components/ResizableView/resizableView'
 import type { SelectOption } from './components/Select/Select.vue'
-import type { Size, Sizes, Spaces, SpaceSize } from './lib/types.ts'
+import type { Toast, ToastOptions, ToastVariant } from './components/Toast/toast'
+import type { VuiTheme } from './lib/theme.ts'
+import type { Sizes, Spaces } from './lib/types.ts'
 import type { Breakpoints } from './lib/viewport.ts'
 import Accordion from './components/Accordion/Accordion.vue'
 import AccordionGroup from './components/Accordion/AccordionGroup.vue'
@@ -67,13 +70,15 @@ import Switch from './components/Switch/Switch.vue'
 import * as Table from './components/Table'
 import { defineTable } from './components/Table/table'
 import Tab from './components/Tabs/Tab.vue'
+import TabPanel from './components/Tabs/TabPanel.vue'
 import Tabs from './components/Tabs/Tabs.vue'
-import { pushToast, removeToast } from './components/Toast/toast'
+import { pushToast, removeToast, updateToast } from './components/Toast/toast'
 import Toasts from './components/Toast/Toasts.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import Backdrop from './internal/Backdrop/Backdrop.vue'
 import { searchString } from './lib/helpers.ts'
-import { setColorTheme, theme } from './lib/theme.ts'
+import { isDark, resolvedTheme, setColorTheme, theme } from './lib/theme.ts'
+import { Size, SpaceSize } from './lib/types.ts'
 import { breakpoints, viewport } from './lib/viewport.ts'
 import { useViewTransition } from './lib/viewTransition.ts'
 import './style.scss'
@@ -119,6 +124,7 @@ export {
   Histogram,
   Indicator,
   Input,
+  isDark,
   Kbd,
   KbdGroup,
   Marquee,
@@ -130,6 +136,7 @@ export {
   Overflow,
   paginate,
   Pagination,
+  type Panel,
   Password,
   Popout,
   PopoutHover,
@@ -140,27 +147,36 @@ export {
   removeToast,
   Resizable,
   ResizableView,
+  resolvedTheme,
   searchString,
   Select,
   type SelectOption,
   setColorTheme,
   Sheet,
   Sidebar,
-  type Size,
+  Size,
   type Sizes,
   Skeleton,
   Slider,
   type Spaces,
-  type SpaceSize,
+  SpaceSize,
   Spinner,
   Switch,
   Tab,
   Table,
+  TabPanel,
   Tabs,
   Textarea,
   theme,
+  type Toast,
+  type ToastOptions,
   Toasts,
+  type ToastVariant,
   Tooltip,
+  updateToast,
   useViewTransition,
+  type ViewNode,
   viewport,
+  type ViewTab,
+  type VuiTheme,
 }

@@ -1,36 +1,54 @@
 <script setup lang='ts'>
 import type { FlexProps } from '../Flex/Flex.vue'
-import { enforceSlotType, useFlattenedSlot } from '../../lib/slots.ts'
+import { computed, provide, useId } from 'vue'
 import Flex from '../Flex/Flex.vue'
+import { RADIO_GROUP_KEY } from './radio'
 
 interface Props extends FlexProps {
+  /**
+   * Disables every radio inside the group
+   */
   disabled?: boolean
+  /**
+   * Accessible group label, rendered as the fieldset legend
+   */
+  label?: string
+  /**
+   * Native `name` shared by all radios. Generated automatically if omitted.
+   */
+  name?: string
+  required?: boolean
 }
 
 const {
   disabled,
+  label,
+  name,
+  required,
   ...flexProps
 } = defineProps<Props>()
 
-const slots = defineSlots()
+const checked = defineModel<any>()
+const fallbackName = useId()
 
-const checked = defineModel()
+provide(RADIO_GROUP_KEY, {
+  model: checked,
+  name: computed(() => name ?? fallbackName),
+  disabled: computed(() => !!disabled),
+  required: computed(() => !!required),
+})
 
-const flattened = useFlattenedSlot(slots.default)
-enforceSlotType(flattened, 'Radio')
+// Template note:
+// A disabled fieldset natively disables every control inside of it
 </script>
 
 <template>
-  <fieldset>
+  <fieldset class="vui-radio-group" :disabled="disabled" :class="{ disabled }">
+    <legend v-if="label" class="vui-label vui-radio-group-legend">
+      {{ label }}
+    </legend>
     <Flex v-bind="flexProps">
-      <Component
-        :is="vnode"
-        v-for="vnode of flattened"
-        :key="vnode.props.value"
-        v-bind="vnode.props"
-        v-model="checked"
-        :class="{ disabled: disabled || vnode.props.disabled }"
-      />
+      <slot />
     </Flex>
   </fieldset>
 </template>

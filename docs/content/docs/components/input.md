@@ -1,6 +1,8 @@
 # Input
 
-A versatile input component that supports various input types, validation, and customization options. It includes features like character limits, error messages, and custom slots for additional content.
+A versatile input component that supports various input types, validation, and customization options. It includes features like character limits, error messages, a clear button and custom slots for additional content.
+
+Attributes such as `autocomplete`, `inputmode`, `pattern`, `aria-*` and listeners like `@blur` or `@keydown` are forwarded to the native `<input>`. `class` and `style` stay on the wrapper. The `hint`, `errors` and `limit` texts are linked to the input with `aria-describedby`, and the input is marked `aria-invalid` while there are errors.
 
 ::input-example{sourcePath="Input/Input.vue"}
 
@@ -9,13 +11,16 @@ A versatile input component that supports various input types, validation, and c
 import { Input } from '@dolanske/vui'
 import { ref } from 'vue'
 
-const email = ref()
+const email = ref('')
 </script>
 
 <template>
   <Input
     v-model="email"
     expand
+    type="email"
+    name="email"
+    autocomplete="email"
     label="Email"
     placeholder="example@email.com"
     :limit="32"
@@ -28,30 +33,37 @@ const email = ref()
 
 ### Props
 
-| Name          | Default | Type                                                                                                                  |
-| ------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
-| `type`        | `text`  | `text` `password` `color` `date` `email` `number` `range` `search` `tel` `time` `url` `file` <br> Type of input field |
-| `label`       | —       | `string` <br> Label text for the input                                                                                |
-| `hint`        | —       | `string` <br> Helper text displayed below the input                                                                   |
-| `limit`       | —       | `number` `string` <br> Maximum number of characters allowed                                                           |
-| `expand`      | `false` | `boolean` <br> Makes the input expand to full width                                                                   |
-| `placeholder` | —       | `string` <br> Placeholder text when input is empty                                                                    |
-| `required`    | `false` | `boolean` <br> Makes the input required                                                                               |
-| `modelValue`  | `''`    | `string` `number` <br> Value of the input (for v-model)                                                               |
-| `readonly`    | `false` | `boolean` <br> Makes the input readonly                                                                               |
-| `focus`       | `false` | `boolean` <br> Focuses the input when mounted                                                                         |
-| `errors`      | `[]`    | `string[]` <br> Array of error messages to display                                                                    |
-| `accept`      | —       | `string` <br> File types to accept (for file inputs)                                                                  |
-| `multiple`    | `false` | `boolean` <br> Allows multiple file selection (for file inputs)                                                       |
-| `min`         | —       | `number` <br> Minimum value (for number inputs)                                                                       |
-| `max`         | —       | `number` <br> Maximum value (for number inputs)                                                                       |
-| `disabled`    | `false` | `boolean` <br> Disables the input                                                                                     |
+| Name          | Default | Type                                                                                                                                                                            |
+| ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`        | `text`  | `text` `password` `color` `date` `email` `number` `range` `search` `tel` `time` `url` `file` <br> Type of input field                                                           |
+| `name`        | —       | `string` <br> Native `name`, used for form submission and autofill                                                                                                              |
+| `label`       | —       | `string` <br> Label text for the input                                                                                                                                          |
+| `hint`        | —       | `string` <br> Helper text displayed between the label and the input                                                                                                             |
+| `limit`       | —       | `number` `string` <br> Maximum number of characters. Enforced natively with `maxlength`, or by truncation for types without it (e.g. `number`). Use `max` for a numeric maximum |
+| `expand`      | `false` | `boolean` <br> Makes the input expand to full width                                                                                                                             |
+| `size`        | `m`     | `s` `m` `l` <br> Controls the input height and padding                                                                                                                          |
+| `placeholder` | —       | `string` <br> Placeholder text when input is empty                                                                                                                              |
+| `required`    | `false` | `boolean` <br> Makes the input required                                                                                                                                         |
+| `modelValue`  | `''`    | `string` `number` <br> Value of the input (for v-model)                                                                                                                         |
+| `readonly`    | `false` | `boolean` <br> Makes the input readonly                                                                                                                                         |
+| `focus`       | `false` | `boolean` <br> Focuses the input whenever it becomes `true`                                                                                                                     |
+| `clearable`   | `false` | `boolean` <br> Shows a button which clears the value                                                                                                                            |
+| `errors`      | `[]`    | `string[]` <br> Array of error messages to display                                                                                                                              |
+| `accept`      | —       | `string` <br> File types to accept (for file inputs)                                                                                                                            |
+| `multiple`    | `false` | `boolean` <br> Allows multiple file selection (for file inputs)                                                                                                                 |
+| `min`         | —       | `number` <br> Minimum value (for number inputs)                                                                                                                                 |
+| `max`         | —       | `number` <br> Maximum value (for number inputs)                                                                                                                                 |
+| `step`        | —       | `number` `'any'` <br> Step for `number`, `range`, `date` and `time` inputs                                                                                                      |
+| `disabled`    | `false` | `boolean` <br> Disables the input                                                                                                                                               |
 
 ### Events
 
-| Name                | Payload           | Description                          |
-| ------------------- | ----------------- | ------------------------------------ |
-| `update:modelValue` | `string` `number` | Emitted when the input value changes |
+| Name                | Payload           | Description                              |
+| ------------------- | ----------------- | ---------------------------------------- |
+| `update:modelValue` | `string` `number` | Emitted when the input value changes     |
+| `clear`             | —                 | Emitted when the clear button is clicked |
+
+Native events (`input`, `change`, `blur`, ...) are emitted by the `<input>` itself and can be listened to directly.
 
 ### Slots
 
@@ -60,7 +72,7 @@ const email = ref()
 | `before` | `any`   | Content to be displayed before any of the input content |
 | `start`  | `any`   | Content to be displayed at the start of the input       |
 | `end`    | `any`   | Content to be displayed at the end of the input         |
-| `after`  | `any`   | Content to be displayed after the all the input content |
+| `after`  | `any`   | Content to be displayed after all the input content     |
 
 ### Exposes
 

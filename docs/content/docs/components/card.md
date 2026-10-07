@@ -40,13 +40,17 @@ import { Button, Card, Flex } from '@dolanske/vui'
 
 ### Props
 
-| Name              | Default    | Type                                                                                                      |
-| ----------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
-| `separators`      | `false`    | `boolean` <br> Adds separators between all sections (header, content, footer)                             |
-| `headerSeparator` | `false`    | `boolean` <br> Adds a separator only after the header section                                             |
-| `footerSeparator` | `false`    | `boolean` <br> Adds a separator only before the footer section                                            |
-| `padding`         | `true`     | `boolean` <br> Controls whether the card content has padding                                              |
-| `headerAlign`     | `baseline` | `'start' \| 'center' \| 'end' \| 'baseline'` <br> Controls vertical alignment of items in the card header |
+| Name              | Default  | Type                                                                                                      |
+| ----------------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| `separators`      | `false`  | `boolean` <br> Adds separators between all sections (header, content, footer)                             |
+| `headerSeparator` | `false`  | `boolean` <br> Adds a separator only after the header section                                             |
+| `footerSeparator` | `false`  | `boolean` <br> Adds a separator only before the footer section                                            |
+| `padding`         | `true`   | `boolean` <br> Controls whether the card content has padding                                              |
+| `headerAlign`     | `center` | `'start' \| 'center' \| 'end' \| 'baseline'` <br> Controls vertical alignment of items in the card header |
+| `centered`        | `false`  | `boolean` <br> Centers the content, e.g. for empty or error states                                        |
+| `borderStyle`     | `solid`  | `'solid' \| 'dashed' \| 'dotted'` <br> Style of the border and separators                                 |
+| `inline`          | `false`  | `boolean` <br> Makes the card only as wide as its content                                                 |
+| `as`              | `div`    | `string` <br> Element to render, e.g. `section` or `article`                                              |
 
 ### Slots
 

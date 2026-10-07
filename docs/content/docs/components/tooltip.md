@@ -1,8 +1,10 @@
 # Tooltip
 
-The Tooltip component displays additional information when hovering over an element. It's commonly used to provide context or explanations for UI elements.
+The Tooltip component displays additional information when hovering over or keyboard-focusing an element. It's commonly used to provide context or explanations for UI elements.
 
-> Plese note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
+The tooltip is a `role="tooltip"` referenced by the trigger through `aria-describedby`. `Esc` hides it (a second `Esc` reaches the layer below, e.g. a modal). On touch devices hover tooltips are not shown, so never put essential information only into a tooltip. The trigger must be focusable for keyboard users.
+
+> Please note: components using popout ([Tooltip](/docs/components/tooltip), [Dropdown](/docs/components/dropdown) & [Popout](/docs/components/popout)) cannot be styled using `scoped` CSS in Vue SFC. However, you can just define a new `<style>` tag, style the popout inside and keep rest of your CSS scoped in a separate `<style scoped>`.
 
 ::tooltip-example{sourcePath="Tooltip/Tooltip.vue"}
 
@@ -64,7 +66,7 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
       <strong class="text-m mb-s block text-semibold">
         With Enter Delay
       </strong>
-      <Tooltip enter-delay="500">
+      <Tooltip :enter-delay="500">
         <Button>Hover me (500ms delay)</Button>
         <template #tooltip>
           <p>This tooltip appears after 500ms</p>
@@ -76,7 +78,7 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
       <strong class="text-m mb-s block text-semibold">
         With Leave Delay
       </strong>
-      <Tooltip leave-delay="500">
+      <Tooltip :leave-delay="500">
         <Button>Hover me (closes after 500ms)</Button>
         <template #tooltip>
           <p>This tooltip stays for 500ms after you stop hovering</p>
@@ -89,7 +91,9 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
         With Icon
       </strong>
       <Tooltip>
-        <IconInfo :size="24" />
+        <Button plain square aria-label="More information">
+          <IconInfo :size="24" />
+        </Button>
         <template #tooltip>
           <p>Additional information</p>
         </template>
@@ -120,12 +124,13 @@ import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 
 ### Props
 
-| Name          | Default | Type                                                                                                                                                                                    |
-| ------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `placement`   | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the dropdown relative to the trigger |
-| `enter-delay` | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                      |
-| `leave-delay` | `0`     | `number` <br> The delay in milliseconds before hiding the tooltip after the cursor leaves                                                                                               |
-| `disabled`    | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                  |
+| Name          | Default | Type                                                                                                                                                                                   |
+| ------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `placement`   | `top`   | `top` `right` `bottom` `left` `top-start` `top-end` `right-start` `right-end` `bottom-start` `bottom-end` `left-start` `left-end` <br> Position of the tooltip relative to the trigger |
+| `enter-delay` | `0`     | `number` <br> The delay in milliseconds before showing the tooltip                                                                                                                     |
+| `leave-delay` | `0`     | `number` <br> The delay in milliseconds before hiding the tooltip after the cursor leaves                                                                                              |
+| `disabled`    | `false` | `boolean` <br> Controls whether the tooltip can render                                                                                                                                 |
+| `arrow`       | `false` | `boolean` <br> Renders an arrow pointing at the trigger                                                                                                                                |
 
 ### Slots
 

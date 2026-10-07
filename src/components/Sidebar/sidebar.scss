@@ -1,152 +1,156 @@
-.vui-sidebar-layout {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0;
-  height: 100vh;
-  position: relative;
+@layer vui.reset, vui.base, vui.components, vui.utilities;
 
-  main {
-    flex: 1;
-  }
-
-  .vui-sidebar-outer {
-    transition: width var(--transition-slow);
-
-    &:not(.open) {
-      width: 0px !important;
-    }
-  }
-}
-
-.vui-sidebar {
-  --vui-sidebar-offset: var(--space-xs);
-  --vui-sidebar-width-full: 224px;
-  --vui-sidebar-width-mini: 68px;
-
-  --vs-real-width: var(--vui-sidebar-width-full);
-
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  gap: var(--space-sm);
-  width: var(--vui-sidebar-width-full);
-  position: absolute;
-  top: 0;
-  z-index: var(--z-nav);
-  background-color: var(--color-bg);
-  transition:
-    transform var(--transition-slow),
-    width var(--transition-slow);
-  transform: translateX(-100%);
-  will-change: transform;
-
-  &.mini {
-    width: var(--vui-sidebar-width-mini);
-    --vs-real-width: var(--vui-sidebar-width-mini);
-  }
-
-  &.open {
-    transform: translateX(0) !important;
-  }
-
-  // Variantions give it different style
-  &.vui-sidebar-variant-default {
-    border-right: 1px solid var(--color-border);
-  }
-
-  &.vui-sidebar-variant-card {
-    border-radius: var(--border-radius-m);
-    border: 1px solid var(--color-border);
-    margin: var(--vui-sidebar-offset);
-    width: var(--vs-real-width);
-    height: calc(100% - calc(var(--vui-sidebar-offset) * 2));
-    transform: translateX(calc(-100% + calc(var(--vui-sidebar-offset) * -1)));
-  }
-
-  &.float {
-    inset: 0;
-    right: unset;
-
-    &.open:not(.vui-sidebar-variant-plain) {
-      box-shadow: var(--box-shadow);
-    }
-  }
-
-  .vui-sidebar-header,
-  .vui-sidebar-footer,
-  .vui-sidebar-content .vui-sidebar-content-wrap {
-    padding: var(--space-s);
-  }
-
-  .vui-sidebar-header:not(:only-child) {
-    padding-bottom: 0;
-  }
-
-  .vui-sidebar-footer:not(:only-child) {
-    padding-top: 0;
-  }
-
-  .vui-sidebar-content {
-    flex: 1;
+@layer vui.components {
+  .vui-sidebar-layout {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    height: 100dvh;
     position: relative;
 
-    .vui-sidebar-content-wrap {
-      position: absolute;
-      inset: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
+    main {
+      flex: 1;
+    }
+
+    .vui-sidebar-outer {
+      transition: width var(--transition-slow);
+
+      &:not(.open) {
+        width: 0px !important;
+      }
     }
   }
 
-  // Note: elements in sidebar (& mini) should have a slight modification
-  &:not(.no-auto-transform) {
-    // Accordion
-    // Does not have a border under content
-    .vui-accordion {
-      border-bottom: 0;
-    }
+  .vui-sidebar {
+    --vui-sidebar-offset: var(--space-xs);
+    --vui-sidebar-width-full: 224px;
+    --vui-sidebar-width-mini: 68px;
 
-    // DropdownItems (sidebar items
-    // Should have a bit less spacing between slots
-    .vui-dropdown-item {
-      padding-inline: var(--space-xs);
-    }
+    --vs-real-width: var(--vui-sidebar-width-full);
+
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: var(--vui-sidebar-width-full);
+    position: absolute;
+    top: 0;
+    z-index: var(--z-nav);
+    background-color: var(--color-bg);
+    transition:
+      transform var(--transition-slow),
+      width var(--transition-slow);
+    transform: translateX(-100%);
+    will-change: transform;
 
     &.mini {
-      .vui-dropdown-item .vui-dropdown-item-icon {
-        width: 20px;
-        height: 20px;
+      width: var(--vui-sidebar-width-mini);
+      --vs-real-width: var(--vui-sidebar-width-mini);
+    }
+
+    &.open {
+      transform: translateX(0) !important;
+    }
+
+    // Variantions give it different style
+    &.vui-sidebar-variant-default {
+      border-right: 1px solid var(--color-border);
+    }
+
+    &.vui-sidebar-variant-card {
+      border-radius: var(--border-radius-m);
+      border: 1px solid var(--color-border);
+      margin: var(--vui-sidebar-offset);
+      width: var(--vs-real-width);
+      height: calc(100% - calc(var(--vui-sidebar-offset) * 2));
+      transform: translateX(calc(-100% + calc(var(--vui-sidebar-offset) * -1)));
+    }
+
+    &.float {
+      inset: 0;
+      right: unset;
+
+      &.open:not(.vui-sidebar-variant-plain) {
+        box-shadow: var(--box-shadow);
+      }
+    }
+
+    .vui-sidebar-header,
+    .vui-sidebar-footer,
+    .vui-sidebar-content .vui-sidebar-content-wrap {
+      padding: var(--space-s);
+    }
+
+    .vui-sidebar-header:not(:only-child) {
+      padding-bottom: 0;
+    }
+
+    .vui-sidebar-footer:not(:only-child) {
+      padding-top: 0;
+    }
+
+    .vui-sidebar-content {
+      flex: 1;
+      position: relative;
+
+      .vui-sidebar-content-wrap {
+        position: absolute;
+        inset: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+
+    // Note: elements in sidebar (& mini) should have a slight modification
+    &:not(.no-auto-transform) {
+      // Accordion
+      // Does not have a border under content
+      .vui-accordion {
+        border-bottom: 0;
       }
 
-      .vui-button {
-        padding-inline: 0;
-
-        .vui-button-slot {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+      // DropdownItems (sidebar items
+      // Should have a bit less spacing between slots
+      .vui-dropdown-item {
+        padding-inline: var(--space-xs);
       }
 
-      .vui-dropdown-item,
-      .vui-button {
-        --vui-button-height: 40px;
-        width: var(--vui-button-height) !important;
-        height: var(--vui-button-height) !important;
-        justify-content: center;
-        align-items: center;
-
-        svg {
+      &.mini {
+        .vui-dropdown-item .vui-dropdown-item-icon {
           width: 20px;
           height: 20px;
         }
 
-        .vui-dropdown-item-slot,
-        .vui-dropdown-item-hint,
-        .vui-button-slot-end,
-        .vui-button-slot-start {
-          display: none;
+        .vui-button {
+          padding-inline: 0;
+
+          .vui-button-slot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        .vui-dropdown-item,
+        .vui-button {
+          --vui-button-height: 40px;
+          width: var(--vui-button-height) !important;
+          height: var(--vui-button-height) !important;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+
+          .vui-dropdown-item-slot,
+          .vui-dropdown-item-hint,
+          .vui-button-slot-end,
+          .vui-button-slot-start {
+            display: none;
+          }
         }
       }
     }
