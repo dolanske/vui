@@ -51,7 +51,7 @@ const filled = ref(false)
     background-color: var(--color-bg);
 
     .vui-switch .vui-switch-icon {
-      background-color: var(--color-bg-raised) !important;
+      background-color: var(--color-bg-raised);
     }
   }
 }

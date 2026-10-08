@@ -1,16 +1,20 @@
 @use 'sass:meta';
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
-
-// To overwrite any of these styles, simply create a style file and import it
-// after this one
 @use './reset.scss';
 @use './theme.scss';
 
 // Every stylesheet of the library lives in one of these cascade layers.
 // Styles of the host app which are not in a layer always take precedence, so
 // overriding the library never requires extra specificity (issue #123).
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+//
+// - vui.modifiers holds the few component rules which must win over every
+//   variant of a component (disabled states, `no-padding`, ...). It replaces
+//   `!important`, which would also win over the styles of the host app.
+// - Do not use `!important` in the library. Layered `!important` declarations
+//   beat unlayered ones, so host apps could no longer override them. The only
+//   exception is forced-colors.scss.
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.base {
   :root {
@@ -168,8 +172,6 @@
   }
 }
 
-// Global partials, each in the layer matching its purpose. Utilities come
-// last so utility classes always win over component styles.
 @layer vui.base {
   @include meta.load-css('typography.scss');
   @include meta.load-css('animation.scss');
@@ -180,12 +182,15 @@
   @include meta.load-css('tooltip.scss');
 }
 
+// Utils always win over component styles
 @layer vui.utilities {
   @include meta.load-css('layout.scss');
   @include meta.load-css('utils.scss');
   @include meta.load-css('text.scss');
+
   // Responsive overrides, including some for components
   @include meta.load-css('media-query.scss');
+
   // High contrast support has to win over every component style
   @include meta.load-css('forced-colors.scss');
 }

@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-dropdown-item {
@@ -33,7 +33,7 @@
       .vui-dropdown-item-icon-end {
         svg path,
         .iconify {
-          color: var(--color-text-lighter) !important;
+          color: var(--color-text-lighter);
         }
       }
 

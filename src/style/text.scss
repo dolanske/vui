@@ -9,20 +9,20 @@ $sizes: 'xxs', 'xs', 's', 'ms', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl';
 $colors: 'light', 'lighter', 'lightest', 'red', 'green', 'yellow', 'blue', 'purple';
 
 .text-color {
-  color: var(--color-text) !important;
+  color: var(--color-text);
 }
 
 .text-color-accent {
-  color: var(--color-accent) !important;
+  color: var(--color-accent);
 }
 
 .text-color-invert {
-  color: var(--color-text-invert) !important;
+  color: var(--color-text-invert);
 }
 
 @each $color in $colors {
   .text-color-#{$color} {
-    color: var(--color-text-#{$color}) !important;
+    color: var(--color-text-#{$color});
   }
 }
 

@@ -339,7 +339,7 @@ function handleTabChange(tab: AvailableTabs) {
 
     &.active {
       .vui-dropdown-item-slot {
-        color: var(--color-accent) !important;
+        color: var(--color-accent);
       }
     }
   }
@@ -429,13 +429,12 @@ article {
     width: auto;
     right: var(--space-xs);
     border-radius: var(--border-radius-m);
-    background-color: var(--color-bg-lowered) !important;
-    /* border: 1px solid var(--color-border) !important; */
+    background-color: var(--color-bg-lowered);
     box-shadow: var(--box-shadow-strong);
-    z-index: var(--z-sticky) !important;
+    z-index: var(--z-sticky);
 
     .vui-tab-underline {
-      background-color: var(--color-bg-medium) !important;
+      background-color: var(--color-bg-medium);
     }
 
     .vui-tab {

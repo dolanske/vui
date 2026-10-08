@@ -28,6 +28,6 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 <style scoped>
 p {
-  margin: 0 !important;
+  margin: 0;
 }
 </style>

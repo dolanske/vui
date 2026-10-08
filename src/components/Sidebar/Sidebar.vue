@@ -183,7 +183,7 @@ function onFocusOut(event: FocusEvent) {
   <div
     ref="outer"
     class="vui-sidebar-outer"
-    :style="{ width: props.float ? 0 : formatUnitValue(openWidth) }"
+    :style="{ width: props.float || !open ? 0 : formatUnitValue(openWidth) }"
     :class="{ open }"
   >
     <aside

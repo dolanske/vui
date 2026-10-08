@@ -156,15 +156,19 @@ const items = computed<PageItem[]>(() => {
 </template>
 
 <style scoped>
-.vui-pagination-nav {
-  display: inline-block;
-}
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-.vui-pagination-ellipsis {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--interactive-el-height);
-  color: var(--color-text-lighter);
+@layer vui.components {
+  .vui-pagination-nav {
+    display: inline-block;
+  }
+
+  .vui-pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--interactive-el-height);
+    color: var(--color-text-lighter);
+  }
 }
 </style>

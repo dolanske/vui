@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-switch {
@@ -78,7 +78,7 @@
       height: 1px;
       position: absolute;
       overflow: hidden;
-      outline: none !important;
+      outline: none;
       opacity: 0;
 
       &:focus-visible + label .vui-switch-icon {

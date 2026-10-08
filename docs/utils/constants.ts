@@ -132,7 +132,6 @@ export const componentList = [
   { name: 'Button', path: '/docs/components/button', keywords: ['click', 'action', 'submit', 'trigger'], description: 'Interactive element for triggering actions or events' },
   { name: 'Button Group', path: '/docs/components/button-group', keywords: ['button', 'group', 'toolbar', 'cluster'], description: 'Groups multiple buttons together with joined borders for a unified appearance' },
   { name: 'Calendar', path: '/docs/components/calendar', tags: ['date', 'picker'], keywords: ['date', 'picker', 'month', 'schedule'], description: 'Date selection and display component with month view' },
-  { name: 'Confirm', path: '/docs/components/confirm', keywords: ['dialog', 'confirm', 'alert', 'prompt'], description: 'Dialog asking the user to confirm or cancel an action', status: 'new' },
   { name: 'Card', path: '/docs/components/card', keywords: ['container', 'panel', 'content', 'box'], description: 'Container component for grouping related content' },
   { name: 'Carousel', path: '/docs/components/carousel', keywords: ['gallery', 'scroll', 'slideshow'], description: 'Scrollable container for displaying multiple items horizontally' },
   { name: 'Charts', path: '/docs/components/charts', keywords: ['histogram', 'bar', 'data', 'visualization'], description: 'Collection of chart components for visualizing data' },

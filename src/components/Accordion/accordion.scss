@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-accordion {
@@ -26,7 +26,7 @@
       border-radius: var(--border-radius-m);
 
       &.open {
-        padding-bottom: 0 !important;
+        padding-bottom: 0;
 
         .vui-accordion-header {
           border-block-width: 1px;

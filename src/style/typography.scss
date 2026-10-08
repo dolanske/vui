@@ -129,10 +129,10 @@ blockquote {
   line-height: var(--line-height-base);
 
   & > * {
-    margin-top: var(--space-s) !important;
+    margin-top: var(--space-s);
 
     &:first-child {
-      margin-top: 0 !important;
+      margin-top: 0;
     }
   }
 }
@@ -281,7 +281,7 @@ table {
     }
 
     tbody th {
-      border-right: 1px solid var(--color-border) !important;
+      border-right: 1px solid var(--color-border);
     }
 
     tbody tr:not(:last-child) th {
@@ -329,15 +329,19 @@ article {
 article,
 .typeset {
   & > :first-child {
-    margin-top: 0 !important;
+    margin-top: 0;
   }
 
   ol,
   ul {
     ol,
     ul {
-      margin-top: var(--space-s) !important;
       margin-bottom: var(--space-m);
+
+      // :nth-child(n) outranks the :only-child and :first-child resets below
+      &:nth-child(n) {
+        margin-top: var(--space-s);
+      }
     }
 
     li {
@@ -392,7 +396,7 @@ article,
     & + h4,
     & + h5,
     & + h6 {
-      margin-top: var(--space-m) !important;
+      margin-top: var(--space-m);
     }
 
     a {
@@ -429,6 +433,11 @@ article,
     &:only-child {
       margin-top: 0;
     }
+  }
+
+  // Tighter spacing inside quotes, declared after the rule above to win over it
+  blockquote > * {
+    margin-top: var(--space-s);
   }
 
   li > :first-child,

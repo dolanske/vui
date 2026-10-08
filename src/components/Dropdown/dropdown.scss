@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-dropdown-trigger-wrap {
@@ -43,14 +43,15 @@
 
       > .vui-dropdown-item .vui-dropdown-item-icon,
       > :not(.vui-dropdown) > .vui-dropdown-item .vui-dropdown-item-icon {
-        display: flex !important;
+        display: flex;
         margin-right: calc(var(--space-xs) / 2);
       }
     }
 
     &:has(.vui-emoji-picker) {
-      --vui-dropdown-max-height: 600px !important;
-      padding: 0 !important;
+      // Ignores the max height set by the component prop
+      max-height: 600px;
+      padding: 0;
     }
   }
 }

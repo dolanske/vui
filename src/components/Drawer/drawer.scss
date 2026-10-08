@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-drawer-content {
@@ -95,8 +95,8 @@
       }
 
       &.sticky {
-        border: none !important;
-        margin-top: 2px !important;
+        border: none;
+        margin-top: 2px;
         top: 2px;
       }
     }

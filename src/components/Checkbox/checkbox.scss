@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-checkbox {
@@ -15,7 +15,7 @@
 
       &.accent .vui-checkbox-icon svg,
       &.accent .vui-checkbox-icon .iconify {
-        color: var(--color-accent) !important;
+        color: var(--color-accent);
       }
     }
 
@@ -64,7 +64,7 @@
       height: 1px;
       position: absolute;
       overflow: hidden;
-      outline: none !important;
+      outline: none;
       opacity: 0;
 
       &:focus-visible + label .vui-checkbox-icon {
@@ -102,7 +102,7 @@
   @include mode.light {
     .vui-checkbox.checked.accent .vui-checkbox-icon svg,
     .vui-checkbox.checked.accent .vui-checkbox-icon .iconify {
-      color: var(--color-accent) !important;
+      color: var(--color-accent);
     }
   }
 }

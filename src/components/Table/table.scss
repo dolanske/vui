@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-table-overflow {
@@ -105,14 +105,7 @@
         border: none;
 
         &:first-child td {
-          border-top: 0 !important;
-        }
-
-        &:has(.vui-table-interactive-cell.selected) {
-          td {
-            // !important to override sticky columns
-            background-color: var(--color-bg-raised) !important;
-          }
+          border-top: 0;
         }
 
         &:last-child td {
@@ -121,14 +114,14 @@
       }
 
       th {
-        border-top: 0 !important;
+        border-top: 0;
         vertical-align: middle;
       }
 
       th,
       td {
         border: none;
-        border-left: none !important;
+        border-left: none;
         transition: background-color var(--transition-fast);
         position: relative;
         z-index: var(--z-default);
@@ -151,7 +144,7 @@
 
           &.selected .vui-button.icon .vui-button-slot svg path,
           &.selected .vui-button.icon .vui-button-slot .iconify {
-            color: var(--color-text) !important;
+            color: var(--color-text);
           }
 
           .vui-button {
@@ -160,8 +153,8 @@
 
             .vui-button-slot svg,
             .vui-button-slot .iconify {
-              width: 24px !important;
-              height: 24px !important;
+              width: 24px;
+              height: 24px;
               color: var(--color-text-light);
 
               path {
@@ -218,5 +211,12 @@
     .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
       background-color: var(--color-bg-medium);
     }
+  }
+}
+
+// Selected rows win over the background of pinned columns
+@layer vui.modifiers {
+  .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
+    background-color: var(--color-bg-raised);
   }
 }

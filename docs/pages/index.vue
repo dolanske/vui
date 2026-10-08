@@ -279,8 +279,8 @@ const hoveredBadge = ref<string | null>(null)
 .floater-components {
   position: absolute;
   top: -154px;
-  left: -176px !important;
-  width: fit-content !important;
+  left: -176px;
+  width: fit-content;
 }
 
 .floater-docs {
@@ -327,7 +327,7 @@ const hoveredBadge = ref<string | null>(null)
   position: absolute;
   left: 183px;
   bottom: -80px;
-  width: auto !important;
+  width: auto;
 }
 
 .floater-form {

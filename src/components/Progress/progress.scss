@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-progress {
@@ -20,7 +20,7 @@
       inset: 0;
       bottom: unset;
       height: 0;
-      border-radius: none !important;
+      border-radius: 0;
       z-index: 9999999;
 
       &.fixed-active {
@@ -28,8 +28,8 @@
       }
 
       .vui-progress-indicator {
-        border-top-left-radius: unset !important;
-        border-bottom-left-radius: unset !important;
+        border-top-left-radius: unset;
+        border-bottom-left-radius: unset;
       }
     }
 

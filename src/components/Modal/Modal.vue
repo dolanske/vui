@@ -178,14 +178,18 @@ const labelledBy = computed(() => (slots.header && !attrs['aria-label'] && !attr
 </template>
 
 <style scoped>
-.modal-enter-active,
-.modal-leave-active {
-  transition: var(--transition);
-}
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-  transform: scale(1.025);
+@layer vui.components {
+  .modal-enter-active,
+  .modal-leave-active {
+    transition: var(--transition);
+  }
+
+  .modal-enter-from,
+  .modal-leave-to {
+    opacity: 0;
+    transform: scale(1.025);
+  }
 }
 </style>

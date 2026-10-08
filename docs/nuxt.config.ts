@@ -130,9 +130,19 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         lang: 'en',
+        // Keeps the 63.5% root font size the docs were designed around
+        class: 'vui-root',
       },
       title: 'VUI Documentation',
       titleTemplate: '%s | VUI',
+      style: [
+        {
+          // Orders the docs layer below VUI. It has to come before any VUI
+          // stylesheet, which the bundle order does not guarantee.
+          innerHTML: '@layer docs, vui;',
+          tagPriority: 'critical',
+        },
+      ],
       script: [
         {
           // Blocking script to apply the color mode class before first paint,

@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-commands {
@@ -49,7 +49,6 @@
     .vui-card .vui-card-content {
       max-height: var(--vui-commands-max-height, 612px);
       overflow-y: auto;
-      padding-block: var(--space-s) !important;
     }
 
     .vui-commands-input {
@@ -82,7 +81,7 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         caret-color: var(--color-accent);
-        outline: none !important;
+        outline: none;
 
         &:focus-visible {
           background-color: var(--color-bg-raised);
@@ -194,7 +193,7 @@
             color: var(--color-text-light);
 
             .iconify {
-              color: inherit !important;
+              color: inherit;
             }
           }
 
@@ -213,5 +212,12 @@
         }
       }
     }
+  }
+}
+
+// Commands renders a card without padding, but its content keeps some
+@layer vui.modifiers {
+  .vui-commands .vui-card.no-padding .vui-card-content {
+    padding-block: var(--space-s);
   }
 }

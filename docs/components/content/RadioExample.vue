@@ -22,6 +22,6 @@ const selected = ref('option1')
 
 <style scoped>
 :deep(p) {
-  margin: 0 !important;
+  margin: 0;
 }
 </style>

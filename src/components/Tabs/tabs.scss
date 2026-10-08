@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-tabs {
@@ -39,10 +39,6 @@
     .vui-tab.disabled {
       pointer-events: none;
       color: var(--color-text-lighter);
-
-      &.active {
-        color: var(--color-text-lighter) !important;
-      }
     }
 
     &.disabled {
@@ -103,5 +99,13 @@
         border-color: var(--color-border-weak);
       }
     }
+  }
+}
+
+// Disabled tabs stay muted, even when active
+@layer vui.modifiers {
+  .vui-tabs.disabled .vui-tab.active,
+  .vui-tabs .vui-tab.disabled.active {
+    color: var(--color-text-lighter);
   }
 }

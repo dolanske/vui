@@ -128,19 +128,25 @@ function onChange(event: Event) {
 </template>
 
 <style scoped lang="scss">
-:deep(.vui-button) {
-  padding-inline: 2px !important;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
+
+@layer vui.modifiers {
+  :deep(.vui-button) {
+    padding-inline: 2px;
+  }
 }
 
-:deep(input) {
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+@layer vui.components {
+  :deep(input) {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
-  /* Firefox */
-  -moz-appearance: textfield;
-  appearance: textfield;
+    /* Firefox */
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
 }
 </style>

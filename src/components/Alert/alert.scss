@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-alert {
@@ -55,7 +55,7 @@
 
     &.filled-strong,
     &.filled {
-      border: none !important;
+      border: none;
     }
 
     &.vui-alert-variant-neutral {

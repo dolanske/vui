@@ -129,8 +129,12 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="scss">
-.popout-anchor {
-  display: contents;
-  width: fit-content;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
+
+@layer vui.components {
+  .popout-anchor {
+    display: contents;
+    width: fit-content;
+  }
 }
 </style>

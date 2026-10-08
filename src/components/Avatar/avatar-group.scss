@@ -1,11 +1,11 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-avatar-group {
     --vui-avatar-group-border: var(--color-bg);
 
     &.cluster {
-      gap: 0 !important;
+      gap: 0;
 
       &.column > *:not(:first-child) {
         display: flex;
@@ -26,7 +26,7 @@
 
         &:is(.vui-avatar),
         .vui-avatar {
-          border: 3px solid var(--vui-avatar-group-border) !important;
+          border: 3px solid var(--vui-avatar-group-border);
         }
       }
     }

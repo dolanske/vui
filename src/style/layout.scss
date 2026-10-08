@@ -21,21 +21,12 @@ $containers: 'xs', 's', 'm', 'l', 'xl', 'xxl';
 $sizes: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
 
 @each $size in $sizes {
-  $extra: '%';
-  $width-value: #{$size + $extra};
-  $height-value: #{$size + $extra};
-
-  @if $size == 0 {
-    $width-value: #{$size + $extra} !important;
-    $height-value: #{$size + $extra} !important;
-  }
-
   .w-#{$size} {
-    width: $width-value;
+    width: #{$size + '%'};
   }
 
   .h-#{$size} {
-    height: $height-value;
+    height: #{$size + '%'};
   }
 }
 
@@ -123,68 +114,63 @@ $sizes: 0, 'xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl';
 
 @each $size in $sizes {
   $space-value: var(--space-#{$size});
-  $space-value-important: $space-value;
-
-  @if $size == 0 {
-    $space-value-important: $space-value !important;
-  }
 
   // Margin
   .mb-#{$size} {
-    margin-bottom: $space-value-important;
+    margin-bottom: $space-value;
   }
 
   .mr-#{$size} {
-    margin-right: $space-value-important;
+    margin-right: $space-value;
   }
 
   .ml-#{$size} {
-    margin-left: $space-value-important;
+    margin-left: $space-value;
   }
 
   .mt-#{$size} {
-    margin-top: $space-value-important;
+    margin-top: $space-value;
   }
 
   .mx-#{$size} {
-    margin-inline: $space-value-important;
+    margin-inline: $space-value;
   }
 
   .my-#{$size} {
-    margin-block: $space-value-important;
+    margin-block: $space-value;
   }
 
   .m-#{$size} {
-    margin: $space-value-important;
+    margin: $space-value;
   }
 
   // Padding
   .pb-#{$size} {
-    padding-bottom: $space-value-important;
+    padding-bottom: $space-value;
   }
 
   .pr-#{$size} {
-    padding-right: $space-value-important;
+    padding-right: $space-value;
   }
 
   .pl-#{$size} {
-    padding-left: $space-value-important;
+    padding-left: $space-value;
   }
 
   .pt-#{$size} {
-    padding-top: $space-value-important;
+    padding-top: $space-value;
   }
 
   .px-#{$size} {
-    padding-inline: $space-value-important;
+    padding-inline: $space-value;
   }
 
   .py-#{$size} {
-    padding-block: $space-value-important;
+    padding-block: $space-value;
   }
 
   .p-#{$size} {
-    padding: $space-value-important;
+    padding: $space-value;
   }
 }
 

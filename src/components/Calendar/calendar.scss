@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 // vue-datepicker v14 uses `dp--kebab-case` class names. Its own styles live in
 // the `vui.base` layer (see datepicker.css), so everything here wins.

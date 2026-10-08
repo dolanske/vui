@@ -52,7 +52,7 @@ Mount `<Toasts />` once if you use toast notifications, and read `theme` once on
 All VUI styles are placed in [cascade layers](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer):
 
 ```css
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 ```
 
 Styles of your app which are not in a layer always take precedence over layered styles, regardless of specificity. Overriding a component never requires `!important` or longer selectors:
@@ -73,3 +73,64 @@ Older versions set `font-size: 63.5%` and `overflow-x: hidden` on `<html>`. Add 
 ```
 
 High contrast mode (`forced-colors`) is supported, and focus rings meet the WCAG contrast requirements.
+
+---
+
+## Migrating to 2.0
+
+Cascade layers change which styles win, so overrides written for 1.x may behave differently. Go through these steps after upgrading.
+
+### Root font size
+
+If your app was designed around the old root font size, add `vui-root` to `<html>`. Remove any `font-size` you set on `html` yourself, otherwise it now wins over VUI and changes the whole rem scale.
+
+```css
+/* Remove this, use the vui-root class instead */
+html {
+  font-size: 63.5%;
+}
+```
+
+### Remove `!important` from overrides
+
+Your unlayered styles already win over VUI, so `!important` is no longer needed. It also works the other way around for layers: an `!important` declaration in a layer beats an `!important` declaration outside of one. VUI does not use `!important`, apart from the high contrast styles.
+
+```css
+/* 1.x */
+.vui-card .vui-card-header {
+  padding: 0 !important;
+}
+
+/* 2.0 */
+.vui-card-header {
+  padding: 0;
+}
+```
+
+### Global element styles
+
+Element selectors such as `a`, `p` or `table td` used to lose to the more specific selectors of components. Unlayered, they now win over every component, so a global `a { color: red; }` also colors a `Button` rendered as a link.
+
+Either scope them to your own content (`.content p`), or put them in a layer ordered below VUI. The order statement has to come before the VUI stylesheet:
+
+```css
+@layer app, vui;
+@import url(@dolanske/vui/style);
+
+@layer app {
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+}
+```
+
+If your bundler might load the VUI styles first, put the order statement in the `<head>` instead, before any stylesheet:
+
+```html
+<style>
+  @layer app, vui;
+</style>
+```
+
+Overrides of VUI itself, such as `.vui-button` or `:root` tokens, should stay outside of any layer.

@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-sidebar-layout {
@@ -14,10 +14,6 @@
 
     .vui-sidebar-outer {
       transition: width var(--transition-slow);
-
-      &:not(.open) {
-        width: 0px !important;
-      }
     }
   }
 
@@ -47,10 +43,6 @@
     &.mini {
       width: var(--vui-sidebar-width-mini);
       --vs-real-width: var(--vui-sidebar-width-mini);
-    }
-
-    &.open {
-      transform: translateX(0) !important;
     }
 
     // Variantions give it different style
@@ -135,8 +127,8 @@
         .vui-dropdown-item,
         .vui-button {
           --vui-button-height: 40px;
-          width: var(--vui-button-height) !important;
-          height: var(--vui-button-height) !important;
+          width: var(--vui-button-height);
+          height: var(--vui-button-height);
           justify-content: center;
           align-items: center;
 
@@ -154,5 +146,12 @@
         }
       }
     }
+  }
+}
+
+// Wins over the offset transform of every variant
+@layer vui.modifiers {
+  .vui-sidebar.open {
+    transform: translateX(0);
   }
 }

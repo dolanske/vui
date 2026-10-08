@@ -42,7 +42,7 @@
   }
 }
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-button {
@@ -52,13 +52,7 @@
     --vui-button-font-size-l: var(--font-size-l);
 
     &.disabled {
-      cursor: not-allowed !important;
       filter: saturate(75%) opacity(50%);
-
-      svg path,
-      .iconify {
-        color: var(--color-text-light) !important;
-      }
     }
 
     &.expand {
@@ -107,7 +101,7 @@
     }
 
     &.dashed {
-      border-style: dashed !important;
+      border-style: dashed;
     }
 
     &.vui-button-size-l {
@@ -212,11 +206,6 @@
     .vui-button-spinner-enter-active,
     .vui-button-spinner-leave-active {
       transition: opacity var(--transition-fast);
-    }
-
-    .vui-button-spinner-enter-from,
-    .vui-button-spinner-leave-to {
-      opacity: 0 !important;
     }
 
     // Variants
@@ -486,6 +475,25 @@
           }
         }
       }
+    }
+  }
+}
+
+// Win over every variant and size, regardless of specificity
+@layer vui.modifiers {
+  .vui-button {
+    &.disabled {
+      cursor: not-allowed;
+
+      svg path,
+      .iconify {
+        color: var(--color-text-light);
+      }
+    }
+
+    .vui-button-spinner-enter-from,
+    .vui-button-spinner-leave-to {
+      opacity: 0;
     }
   }
 }

@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-avatar {
@@ -33,7 +33,7 @@
     background-color: var(--vui-avatar-background-color, var(--color-bg-raised));
     font-weight: var(--font-weight-medium);
     flex-shrink: 0;
-    font-size: var(--vui-avatar-font-size, var(--font-size-s)) !important;
+    font-size: var(--vui-avatar-font-size, var(--font-size-s));
     color: var(--vui-avatar-color, var(--color-text-light));
 
     svg,

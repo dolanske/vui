@@ -119,23 +119,27 @@ onUnmounted(resumeToasts)
 </template>
 
 <style scoped>
-.toast-move,
-.toast-enter-active,
-.toast-leave-active {
-  transition: var(--transition);
-}
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-.toast-enter-from {
-  opacity: 0;
-  transform: translateY(24px) scale(0.95);
-}
+@layer vui.components {
+  .toast-move,
+  .toast-enter-active,
+  .toast-leave-active {
+    transition: var(--transition);
+  }
 
-.toast-leave-to {
-  opacity: 0;
-  transform: translateY(-24px) scale(0.95);
-}
+  .toast-enter-from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
 
-.toast-leave-active {
-  position: absolute;
+  .toast-leave-to {
+    opacity: 0;
+    transform: translateY(-24px) scale(0.95);
+  }
+
+  .toast-leave-active {
+    position: absolute;
+  }
 }
 </style>

@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-divider {
@@ -40,7 +40,7 @@
       width: 100%;
       height: var(--vui-divider-size, 1px);
       border: none;
-      margin: 0 !important;
+      margin: 0;
       border-bottom-color: var(--vui-divider-color, var(--color-border));
       border-bottom-style: var(--vui-divider-type, solid);
       border-bottom-width: var(--vui-divider-size, 1px);

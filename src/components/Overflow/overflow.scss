@@ -1,6 +1,6 @@
 @use '../../style/theme-mode' as mode;
 
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-overflow {
@@ -21,7 +21,7 @@
     }
 
     &.hide-shadows .overflow-shadow {
-      display: none !important;
+      display: none;
     }
 
     .overflow-track {

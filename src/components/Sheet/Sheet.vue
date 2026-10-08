@@ -174,30 +174,34 @@ const labelledBy = computed(() => (slots.header && !attrs['aria-label'] && !attr
 </template>
 
 <style scoped lang="scss">
-.vui-backdrop {
-  padding: 0;
-}
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-.vui-sheet-shell {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
+@layer vui.components {
+  .vui-backdrop {
+    padding: 0;
+  }
 
-.sheet-enter-active,
-.sheet-leave-active {
-  transition: var(--transition);
-}
+  .vui-sheet-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
 
-.sheet-enter-to,
-.sheet-leave-from {
-  transform: translate(0, 0);
-}
+  .sheet-enter-active,
+  .sheet-leave-active {
+    transition: var(--transition);
+  }
 
-.sheet-enter-from,
-.sheet-leave-to {
-  opacity: 0;
-  transform: v-bind(baseTransform);
+  .sheet-enter-to,
+  .sheet-leave-from {
+    transform: translate(0, 0);
+  }
+
+  .sheet-enter-from,
+  .sheet-leave-to {
+    opacity: 0;
+    transform: v-bind(baseTransform);
+  }
 }
 </style>

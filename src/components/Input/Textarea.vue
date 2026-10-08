@@ -61,6 +61,8 @@ const describedBy = computed(() => joinIds(
 
 // When auto-resizing, vertical manual resizing would immediately be overridden
 const r = computed(() => {
+  if (disabled || readonly)
+    return 'none'
   const value = resize === true ? 'both' : (resize || 'none')
   if (!autoResize)
     return value

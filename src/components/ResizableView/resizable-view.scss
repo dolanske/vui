@@ -1,4 +1,4 @@
-@layer vui.reset, vui.base, vui.components, vui.utilities;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
 @layer vui.components {
   .vui-resizable-view {
@@ -31,7 +31,7 @@
           overflow-y: auto;
 
           & > .flex-1 > .vui-tabs {
-            gap: 0 !important;
+            gap: 0;
 
             .vui-tab {
               &.drop-before::before,
