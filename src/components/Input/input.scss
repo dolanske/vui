@@ -160,8 +160,8 @@
       }
 
       input[type='file']::file-selector-button {
-        background-color: var(--color-bg);
-        color: var(--color-text);
+        background-color: transparent;
+        color: var(--color-text-light);
         border: none;
       }
 

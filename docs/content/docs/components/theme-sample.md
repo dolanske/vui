@@ -15,11 +15,3 @@ import { ThemeSample } from '@dolanske/vui'
 ```
 
 ::
-
-Hover a color swatch to see the full name of its CSS variable. The sample only reads tokens, so overriding them anywhere above it in the page, for example on `:root`, is reflected immediately.
-
-### Props
-
-| Name    | Default          | Type                                     |
-| ------- | ---------------- | ---------------------------------------- |
-| `title` | `'Theme sample'` | `string` <br> Heading and accessible name |

@@ -34,10 +34,6 @@ const isOpen = ref(false)
 
 ::
 
-## Accessibility
-
-The modal is a `role="dialog"` with `aria-modal`. The `header` slot labels the dialog, otherwise pass an `aria-label`. When it opens, focus moves inside (to an element with `autofocus`, or the first focusable element). `Tab` stays within the dialog and focus returns to the previously focused element when it closes. The page behind does not scroll and does not shift when the scrollbar disappears. `Esc` only closes the top-most layer.
-
 ## Props
 
 | Name              | Default | Type                                                                                                                                                                             |

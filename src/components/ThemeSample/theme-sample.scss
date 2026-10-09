@@ -1,17 +1,19 @@
 @layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
+@layer vui.modifiers {
+  .vui-theme-sample.no-padding > .vui-card-header {
+    padding: var(--space-m);
+  }
+
+  .vui-theme-sample {
+    .vui-breadcrumb-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
 @layer vui.components {
   .vui-theme-sample {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-    padding: var(--space-l);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-l);
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font);
-
     h4 {
       margin: 0;
       font-size: var(--font-size-xs);
@@ -36,39 +38,11 @@
     }
   }
 
-  .vui-theme-sample-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-xs) var(--space-s);
-
-    strong {
-      font-size: var(--font-size-l);
-      font-weight: var(--font-weight-semibold);
-    }
-
-    span {
-      font-size: var(--font-size-s);
-      color: var(--color-text-light);
-    }
-  }
-
-  .vui-theme-sample-columns {
+  .vui-theme-sample-list {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(0, 1.4fr);
-    gap: var(--space-l);
-
-    @media (max-width: 1024px) {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-
-      > :last-child {
-        grid-column: 1 / -1;
-      }
-    }
-
-    @media (max-width: 640px) {
-      grid-template-columns: minmax(0, 1fr);
-    }
+    grid-template-areas:
+      'text components'
+      'colors colors';
   }
 
   .vui-theme-sample-column {
@@ -76,6 +50,21 @@
     flex-direction: column;
     gap: var(--space-s);
     min-width: 0;
+    padding: var(--space-m);
+
+    &:first-child {
+      grid-area: text;
+      border-right: 1px solid var(--color-border-weak);
+    }
+
+    &:nth-child(2) {
+      grid-area: components;
+    }
+
+    &:last-child {
+      border-top: 1px solid var(--color-border-weak);
+      grid-area: colors;
+    }
   }
 
   .vui-theme-sample-label {
@@ -201,6 +190,16 @@
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-xs);
+  }
+
+  .vui-theme-sample-between {
+    justify-content: space-between;
+  }
+
+  .vui-theme-sample-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxs);
   }
 
   .vui-theme-sample-grow {

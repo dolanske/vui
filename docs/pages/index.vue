@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Avatar, AvatarGroup, Badge, Card, Checkbox, Divider, Dropdown, DropdownItem, Indicator, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
+import { Avatar, AvatarGroup, Badge, BadgeGroup, Button, ButtonGroup, Card, Checkbox, Divider, Dropdown, DropdownItem, Flex, Indicator, Input, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
 import { nextTick, onMounted } from 'vue'
 
 const avatars = [

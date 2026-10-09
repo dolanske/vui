@@ -51,25 +51,6 @@ import { IconCaretRight, IconCommand, IconX } from '@iconify-prerendered/vue-ph'
 
 ::
 
-### Accessibility
-
-The popup is a `role="menu"` and every `DropdownItem` a `menuitem`. The trigger gets `aria-haspopup`, `aria-expanded` and `aria-controls` automatically.
-
-| Key                  | Action                                                                           |
-| -------------------- | -------------------------------------------------------------------------------- |
-| `↓` / `↑` on trigger | Opens the menu and focuses the first / last item                                 |
-| `↓` / `↑`            | Moves between items, skipping disabled ones                                      |
-| `Home` / `End`       | First / last item                                                                |
-| Letters              | Typeahead, focuses the next item starting with the typed text                    |
-| `→`                  | Opens a submenu built with [PopoutHover](/docs/components/popout-hover)          |
-| `←`                  | Closes a submenu and returns to its item                                         |
-| `Esc`                | Closes the menu and returns focus to the trigger. Only the top-most layer closes |
-| `Tab`                | Leaves and closes the menu                                                       |
-
-Activating an item closes the menu and returns focus to the trigger. Clicking elsewhere closes the menu without moving focus.
-
-On small touch screens the menu opens in a [Drawer](/docs/components/drawer) instead, unless `noMobileDrawer` is set. Narrow desktop windows keep the floating menu.
-
 ### Props
 
 | Name              | Default        | Type                                                                                                                                                                                                                                                                                                                                                 |

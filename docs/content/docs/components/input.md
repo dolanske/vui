@@ -2,8 +2,6 @@
 
 A versatile input component that supports various input types, validation, and customization options. It includes features like character limits, error messages, a clear button and custom slots for additional content.
 
-Attributes such as `autocomplete`, `inputmode`, `pattern`, `aria-*` and listeners like `@blur` or `@keydown` are forwarded to the native `<input>`. `class` and `style` stay on the wrapper. The `hint`, `errors` and `limit` texts are linked to the input with `aria-describedby`, and the input is marked `aria-invalid` while there are errors.
-
 ::input-example{sourcePath="Input/Input.vue"}
 
 ```vue

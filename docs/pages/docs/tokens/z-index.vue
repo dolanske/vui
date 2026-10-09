@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { Badge, Button, CopyClipboard } from '@dolanske/vui'
 </script>
 
 <template>

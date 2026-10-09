@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
-import { Badge, Card } from '@dolanske/vui'
+import { Badge, Button, Card, Flex } from '@dolanske/vui'
 
 const props = defineProps<{ error: NuxtError }>()
 </script>

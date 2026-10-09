@@ -176,6 +176,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  build: {
+    transpile: ['@dolanske/vui'],
+  },
   vite: {
     optimizeDeps: {
       include: [
@@ -233,6 +236,5 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/fonts',
     '@nuxt/image',
-    './modules/vui-global-register',
   ],
 })

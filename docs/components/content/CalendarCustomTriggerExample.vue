@@ -1,5 +1,5 @@
 <script setup>
-import { Calendar } from '@dolanske/vui'
+import { Calendar, Flex } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const date = ref(new Date())

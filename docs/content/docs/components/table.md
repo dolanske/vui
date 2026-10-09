@@ -56,10 +56,6 @@ const { headers, rows, pagination, setPage } = defineTable(data, {
 
 ::
 
-### Accessibility
-
-Sortable headers expose `aria-sort` and a labelled sort button. Selection buttons are checkboxes (`role="checkbox"`) with `aria-checked`, and "select all" shows a mixed state while only some rows are selected.
-
 ### Props
 
 #### Table.Root Props

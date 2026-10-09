@@ -2,8 +2,6 @@
 
 A checkbox component that supports custom icons, labels, an indeterminate state and array models. It can be used with `v-model` or with the `checked` prop alone.
 
-Attributes such as `name`, `aria-*` or `@focus` are forwarded to the native `<input>`, while `class` and `style` stay on the wrapper.
-
 ::checkbox-example{sourcePath="Checkbox/Checkbox.vue"}
 
 ```vue

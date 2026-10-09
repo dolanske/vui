@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
 import { darkTextClasses, lightTextClasses } from '~/utils/constants'
 

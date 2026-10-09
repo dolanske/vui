@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LinkItem } from '~/types/shared'
-import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs } from '@dolanske/vui'
+import { Badge, BreadcrumbItem, Breadcrumbs, Button, Divider, DropdownItem, Flex, Grid, Sidebar, Tab, Tabs, Tooltip } from '@dolanske/vui'
 import { useColorMode, useMediaQuery } from '@vueuse/core'
 import { capitalize } from 'vue'
 import { libraryPages } from '~/utils/constants'
@@ -154,7 +154,8 @@ function pushPage(page: string) {
   router.push(page)
 }
 
-function handleTabChange(tab: AvailableTabs) {
+function handleTabChange(_tab: any) {
+  const tab = _tab as AvailableTabs
   lastTabSelection.value = tab
 
   const defaultPage = subPages[tab][0]?.path
@@ -221,6 +222,9 @@ function handleTabChange(tab: AvailableTabs) {
           <template #hint>
             <Badge v-if="subPage?.status === 'new'" size="s" outline variant="accent">
               New
+            </Badge>
+            <Badge v-else-if="subPage?.status === 'wip'" size="s" outline variant="info">
+              wip
             </Badge>
             <Tooltip v-else-if="subPage?.status === 'update'">
               <Badge size="s" circle>
@@ -386,6 +390,12 @@ article {
   margin-bottom: 72px;
   background-color: var(--color-bg);
   z-index: 100;
+
+  .vui-tab-underline {
+    border-bottom-width: 1px;
+    bottom: -1px;
+    z-index: 2;
+  }
 
   .vui-tab {
     height: var(--docs-tab-height);

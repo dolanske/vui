@@ -2,8 +2,6 @@
 
 A multi-line text input component that shares its features with the base Input component. It supports resizing, auto-resizing, and character limits.
 
-Attributes and listeners are forwarded to the native `<textarea>`, while `class` and `style` stay on the wrapper. `hint`, `errors` and `limit` are linked with `aria-describedby`.
-
 ::textarea-example{sourcePath="Input/Textarea.vue"}
 
 ```vue

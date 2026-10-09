@@ -2,8 +2,6 @@
 
 A specialized input component for numeric values that includes increment and decrement buttons. It extends the base Input component with counter-specific functionality.
 
-The model is always a number, or `null` while the field is empty. Steps respect `min` and `max` and avoid floating point drift (`0.1 + 0.2` gives `0.3`). Typed values are clamped to `min` / `max` once the field loses focus.
-
 ::counter-example{sourcePath="Input/Counter.vue"}
 
 ```vue

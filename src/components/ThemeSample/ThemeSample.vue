@@ -1,30 +1,31 @@
 <script setup lang="ts">
 import { IconBell, IconGear, IconMagnifyingGlass } from '@iconify-prerendered/vue-ph'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import Accordion from '../Accordion/Accordion.vue'
 import Alert from '../Alert/Alert.vue'
 import Avatar from '../Avatar/Avatar.vue'
 import Badge from '../Badge/Badge.vue'
+import BreadcrumbItem from '../Breadcrumbs/BreadcrumbItem.vue'
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs.vue'
 import Button from '../Button/Button.vue'
+import Card from '../Card/Card.vue'
 import Checkbox from '../Checkbox/Checkbox.vue'
 import Input from '../Input/Input.vue'
 import Kbd from '../Kbd/Kbd.vue'
+import { paginate } from '../Pagination/pagination'
+import Pagination from '../Pagination/Pagination.vue'
 import Progress from '../Progress/Progress.vue'
 import Radio from '../Radio/Radio.vue'
 import RadioGroup from '../Radio/RadioGroup.vue'
 import Select from '../Select/Select.vue'
+import Skeleton from '../Skeleton/Skeleton.vue'
 import Slider from '../Slider/Slider.vue'
+import Spinner from '../Spinner/Spinner.vue'
 import Switch from '../Switch/Switch.vue'
 import Tab from '../Tabs/Tab.vue'
 import Tabs from '../Tabs/Tabs.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import './theme-sample.scss'
-
-const { title = 'Theme sample' } = defineProps<{
-  /**
-   * Heading of the sample. Defaults to "Theme sample"
-   */
-  title?: string
-}>()
 
 interface ColorGroup {
   name: string
@@ -65,6 +66,8 @@ const switched = ref(true)
 const radio = ref('a')
 const slider = ref(60)
 const progress = ref(60)
+const page = ref(2)
+const pagination = computed(() => paginate(50, page.value, 10, 3))
 
 function weightVar(weight: string) {
   return weight === 'regular' ? 'var(--font-weight)' : `var(--font-weight-${weight})`
@@ -72,27 +75,8 @@ function weightVar(weight: string) {
 </script>
 
 <template>
-  <section class="vui-theme-sample" :aria-label="title">
-    <header class="vui-theme-sample-header">
-      <strong>{{ title }}</strong>
-      <span>Every color, type, spacing token and the most common components.</span>
-    </header>
-
-    <div class="vui-theme-sample-columns">
-      <!-- Colors -->
-      <div class="vui-theme-sample-column">
-        <h4>Colors</h4>
-        <div v-for="group in colorGroups" :key="group.name" class="vui-theme-sample-color-group">
-          <span class="vui-theme-sample-label">{{ group.name }}</span>
-          <div class="vui-theme-sample-swatches">
-            <div v-for="token in group.tokens" :key="token" class="vui-theme-sample-swatch" :title="`--color-${token}`">
-              <span class="vui-theme-sample-swatch-color" :style="{ backgroundColor: `var(--color-${token})` }" />
-              <code>{{ token }}</code>
-            </div>
-          </div>
-        </div>
-      </div>
-
+  <Card class="vui-theme-sample" header-separator :padding="false">
+    <div class="vui-theme-sample-list">
       <!-- Typography, spacing, shapes -->
       <div class="vui-theme-sample-column">
         <h4>Type</h4>
@@ -210,7 +194,43 @@ function weightVar(weight: string) {
             <IconGear />
           </Button>
         </div>
+
+        <div class="vui-theme-sample-row vui-theme-sample-between">
+          <Breadcrumbs>
+            <BreadcrumbItem href="#" label="Docs" @click.prevent />
+            <BreadcrumbItem href="#" label="Theme" @click.prevent />
+            <BreadcrumbItem label="Sample" />
+          </Breadcrumbs>
+          <Pagination :pagination :first-last="false" @change="page = $event" />
+        </div>
+
+        <Accordion label="Accordion" card open>
+          <p>Collapsible content uses the surface and border tokens.</p>
+        </Accordion>
+
+        <div class="vui-theme-sample-card">
+          <Skeleton circle :width="36" />
+          <div class="vui-theme-sample-grow vui-theme-sample-skeleton">
+            <Skeleton :height="12" width="40%" />
+            <Skeleton :height="10" width="70%" />
+          </div>
+          <Spinner size="m" />
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div class="vui-theme-sample-column">
+        <h4>Colors</h4>
+        <div v-for="group in colorGroups" :key="group.name" class="vui-theme-sample-color-group">
+          <span class="vui-theme-sample-label">{{ group.name }}</span>
+          <div class="vui-theme-sample-swatches">
+            <div v-for="token in group.tokens" :key="token" class="vui-theme-sample-swatch" :title="`--color-${token}`">
+              <span class="vui-theme-sample-swatch-color" :style="{ backgroundColor: `var(--color-${token})` }" />
+              <code>{{ token }}</code>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </Card>
 </template>

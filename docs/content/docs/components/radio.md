@@ -2,8 +2,6 @@
 
 The Radio component is a form control that allows users to select a single option from a list of choices. It can be used individually or as part of a `RadioGroup` for managing multiple related options.
 
-Radios inside a group share a `name`, so the browser treats them as one control: a single Tab stop with arrow keys moving between options. Radios can be nested in other elements inside the group. Attributes are forwarded to the native `<input>`.
-
 ::radio-example{sourcePath="Radio/Radio.vue"}
 
 ```vue

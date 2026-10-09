@@ -157,7 +157,7 @@ const labelledBy = computed(() => (slots.header && !attrs['aria-label'] && !attr
                 <slot name="header" :close />
               </div>
             </template>
-            <template v-if="!hideCloseButton" #header-end>
+            <template v-if="!hideCloseButton && canDismiss" #header-end>
               <Button class="vui-modal-close" plain square size="s" :aria-label="closeLabel" @click="close">
                 <IconX />
               </Button>

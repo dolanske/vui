@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Badge, Button, CopyClipboard } from '@dolanske/vui'
 import TokenItem from '~/components/docs/TokenItem.vue'
 import { borderRadiusTokens } from '~/utils/constants'
 </script>

@@ -1,3 +1,5 @@
+**WORK IN PROGRESS - NOT READY**
+
 # Resizable View
 
 An editor-like layout of resizable panels with tabs, similar to VS Code. Tabs can be dragged between panels, reordered, or dropped onto a panel's content to split it. It is built on top of [Resizable](/docs/components/resizable) and [Tabs](/docs/components/tabs).
@@ -26,20 +28,6 @@ const views = ref<ViewNode[]>([
 </template>
 ```
 
-### Layout model
-
-The model is a tree. Objects with `tabs` are panels, arrays are groups which alternate direction with their depth: the root is horizontal, its groups are vertical, their groups horizontal again, and so on. There is no depth limit.
-
-```ts
-const views = [
-  panelA, // full height panel
-  [panelB, panelC], // vertical split: B above C
-  [[panelD, panelE], panelF], // vertical: (D | E) above F
-]
-```
-
-The model is never mutated. Every change (moving, splitting, assigning panel ids) produces a new tree which is emitted through `update:modelValue`. Groups with a single child are unwrapped and empty panels are removed automatically.
-
 ### Moving tabs
 
 | Interaction                                   | Result                                                          |
@@ -61,23 +49,6 @@ The model is never mutated. Every change (moving, splitting, assigning panel ids
 | Name  | Props                            | Description                              |
 | ----- | -------------------------------- | ---------------------------------------- |
 | `tab` | `{ tab: ViewTab, panel: Panel }` | Content of the active tab of every panel |
-
-### Types
-
-```ts
-interface ViewTab {
-  path: string
-  label?: string
-}
-
-interface Panel {
-  // Assigned automatically when missing
-  id?: string
-  tabs: ViewTab[]
-}
-
-type ViewNode = Panel | ViewNode[]
-```
 
 ### Tokens
 

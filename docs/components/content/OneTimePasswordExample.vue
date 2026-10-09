@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { OTP, OTPItem } from '@dolanske/vui'
+import { Flex, OTP, OTPItem } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const otpValue = ref('')

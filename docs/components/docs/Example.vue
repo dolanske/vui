@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tab, Tabs } from '@dolanske/vui'
+import { Button, Tab, Tabs } from '@dolanske/vui'
 
 const props = defineProps<{
   full?: boolean

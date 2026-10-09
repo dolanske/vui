@@ -1,6 +1,8 @@
 # Marquee
 
-A continuously scrolling ticker that loops its content infinitely. It duplicates the slot content behind the scenes to create a seamless loop, and exposes controls for direction, speed, and a stepped/stagger mode. The animation is disabled when the `prefers-reduced-motion` setting is on. It pauses while hovered (configurable) and whenever keyboard focus is inside, so its content can be read and operated (WCAG 2.2.2). Enough copies are rendered to cover the container, so short content never leaves a gap. The copies are `inert` and hidden from screen readers.
+A continuously scrolling ticker that loops its content infinitely. It duplicates the slot content behind the scenes to create a seamless loop, and exposes controls for direction, speed, and a stepped/stagger mode. The animation is disabled when the `prefers-reduced-motion` setting is on.
+
+It pauses while hovered (configurable) and whenever keyboard focus is inside, so its content can be read and operated (WCAG 2.2.2). Enough copies are rendered to cover the container, so short content never leaves a gap. The copies are `inert` and hidden from screen readers.
 
 ::marquee-example{sourcePath="Marquee/Marquee.vue"}
 

@@ -1,5 +1,5 @@
 <script setup>
-import { Button, Grid, Tooltip } from '@dolanske/vui'
+import { Button, Flex, Grid, Tooltip } from '@dolanske/vui'
 </script>
 
 <template>
@@ -57,7 +57,7 @@ import { Button, Grid, Tooltip } from '@dolanske/vui'
           <strong class="text-m mb-s block text-semibold">
             With Delay
           </strong>
-          <Tooltip delay="500">
+          <Tooltip :enter-delay="500">
             <Button>Hover me (500ms delay)</Button>
             <template #tooltip>
               <p>This tooltip appears after 500ms</p>

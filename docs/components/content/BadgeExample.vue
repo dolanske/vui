@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Badge } from '@dolanske/vui'
+import { Badge, Flex } from '@dolanske/vui'
 
 // const variants = ['neutral', 'danger', 'warning', 'success', 'info', 'accent'] as const
 </script>

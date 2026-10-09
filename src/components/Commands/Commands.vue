@@ -425,7 +425,7 @@ watch(
                       <span>
                         {{ result.title }}
                       </span>
-                      <p v-if="result.description" class="text-overflow-1">
+                      <p v-if="result.description && !props.compact" class="text-overflow-1">
                         {{ result.description }}
                       </p>
                     </div>

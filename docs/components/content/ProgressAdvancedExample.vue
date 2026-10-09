@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Progress } from '@dolanske/vui'
+import { Button, Flex, Progress } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const progress = ref(0)

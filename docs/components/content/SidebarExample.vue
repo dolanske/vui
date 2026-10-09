@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, DropdownItem, Flex, Sidebar } from '@dolanske/vui'
+import { Avatar, Button, DropdownItem, Flex, Sidebar } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const isOpen = ref(true)
