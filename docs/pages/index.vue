@@ -194,7 +194,7 @@ const hoveredBadge = ref<string | null>(null)
 
         <Card border-style="dashed" centered class="example-fade floater-about">
           <strong class="mb-s">About VUI</strong>
-          <p class="text-center mb-m">
+          <p class="text-center text-m mb-m">
             Originally, I built this library just as a starter template for my personal projects, but it's now so much more!
           </p>
 
