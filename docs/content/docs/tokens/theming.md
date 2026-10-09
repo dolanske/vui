@@ -37,4 +37,4 @@ Use [`setColorTheme`](/docs/library/theme) to switch between `light`, `dark` and
 
 ### Overriding component styles
 
-VUI styles live in cascade layers, so any rule of your app which is not in a layer wins. See [Installation](/docs/installation#styles-and-your-app).
+VUI styles live in cascade layers, so any rule of your app which is not in a layer wins. See [Installation](/docs#styles-and-your-app).
