@@ -9,6 +9,7 @@ import DropdownItem from '../../src/components/Dropdown/DropdownItem.vue'
 import Menubar from '../../src/components/Menubar/Menubar.vue'
 import MenuItem from '../../src/components/Menubar/MenuItem.vue'
 import Modal from '../../src/components/Modal/Modal.vue'
+import PopoutHover from '../../src/components/Popout/PopoutHover.vue'
 import Tooltip from '../../src/components/Tooltip/Tooltip.vue'
 import { flush, mockLayout, pressKey, withTransitions } from '../helpers'
 
@@ -255,6 +256,43 @@ describe('commands', () => {
 
     pressKey(document, 'Escape')
     expect(wrapper.emitted('close')).toHaveLength(1)
+    wrapper.unmount()
+  })
+})
+
+describe('popout hover', () => {
+  it('stays open while a context menu inside it is open', async () => {
+    const App = defineComponent({
+      render: () => h(PopoutHover, { enterDelay: 0, leaveDelay: 0 }, {
+        trigger: () => h('button', { class: 'trigger' }, 'Trigger'),
+        default: () => h(ContextMenu, null, {
+          menu: () => h(DropdownItem, { class: 'menu-item' }, () => 'Item'),
+          default: () => h('div', { class: 'target' }, 'target'),
+        }),
+      }),
+    })
+    const wrapper = mount(App, withTransitions)
+    await settle()
+
+    wrapper.get('.trigger').element.parentElement!.dispatchEvent(new MouseEvent('mouseenter'))
+    await settle()
+    const target = document.querySelector('.target')!
+    expect(target).not.toBeNull()
+
+    target.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: 20, clientY: 20, button: 2 }))
+    await settle()
+    // Focus moved into the teleported menu, and the pointer follows it
+    expect(document.activeElement?.textContent?.trim()).toBe('Item')
+    target.closest('.vui-popout')!.dispatchEvent(new MouseEvent('mouseleave'))
+    await settle()
+    expect(document.querySelector('.target')).not.toBeNull()
+    expect(document.querySelector('.menu-item')).not.toBeNull()
+
+    // Closing the menu with the pointer and focus outside closes both
+    pressKey(document.activeElement!, 'Escape')
+    await settle()
+    expect(document.querySelector('.menu-item')).toBeNull()
+    expect(document.querySelector('.target')).toBeNull()
     wrapper.unmount()
   })
 })

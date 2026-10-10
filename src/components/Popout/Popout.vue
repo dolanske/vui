@@ -3,9 +3,10 @@ import type { Middleware } from '@floating-ui/vue'
 import type { Placement, PopoutMaybeElement } from '../../lib/types'
 import { arrow as arrowMiddleware, autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/vue'
 import { onClickOutside } from '@vueuse/core'
-import { computed, onUnmounted, ref, toRef, useAttrs, useTemplateRef, watch } from 'vue'
+import { computed, inject, onUnmounted, provide, ref, toRef, useAttrs, useTemplateRef, watch } from 'vue'
 import { getPlacementAnimationName } from '../../lib/helpers'
 import { useLayer } from '../../lib/layerManager'
+import { POPOUT_KEY } from '../../lib/popout'
 import { getSafeAreaInsets } from '../../lib/safeArea'
 import './popout.scss'
 
@@ -160,6 +161,19 @@ const transition = computed(() => {
 })
 
 const delayedVisible = ref(props.visible)
+
+const openChildren = ref(0)
+const parentPopout = inject(POPOUT_KEY, null)
+provide(POPOUT_KEY, { openChildren })
+let countedInParent = false
+
+function setCountedInParent(counted: boolean) {
+  if (!parentPopout || countedInParent === counted)
+    return
+  countedInParent = counted
+  parentPopout.openChildren.value += counted ? 1 : -1
+}
+
 let enterTimeoutId: ReturnType<typeof setTimeout> | undefined
 let leaveTimeoutId: ReturnType<typeof setTimeout> | undefined
 
@@ -168,11 +182,13 @@ watch(delayedVisible, (isVisible) => {
     openLayer()
   else
     closeLayer()
+  setCountedInParent(isVisible)
 }, { immediate: true })
 
 defineExpose({
   el: () => popoutRef.value,
   layerIndex: () => layerIndex.value,
+  hasOpenChildren: () => openChildren.value > 0,
 })
 
 watch(() => props.visible, (isVisible) => {
@@ -209,6 +225,7 @@ watch(() => props.visible, (isVisible) => {
 onUnmounted(() => {
   clearTimeout(enterTimeoutId)
   clearTimeout(leaveTimeoutId)
+  setCountedInParent(false)
 })
 
 // The arrow sits on the side of the popout facing the anchor

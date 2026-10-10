@@ -46,9 +46,20 @@ function handleFocusOut(event: FocusEvent) {
   setVisibility(false)
 }
 
+// Set when the pointer or focus left while a nested popout (e.g. a context
+// menu) was open. Closing would unmount the nested popout as well.
+let closeDeferred = false
+
 function setVisibility(visibleState: boolean) {
   if (disabled && visibleState)
     return
+
+  if (!visibleState && popout.value?.hasOpenChildren()) {
+    closeDeferred = true
+    return
+  }
+
+  closeDeferred = false
 
   if (!visibleState)
     immediate.value = false
@@ -56,10 +67,22 @@ function setVisibility(visibleState: boolean) {
   visible.value = visibleState
 }
 
+// Once the nested popout closes, stay open only if the pointer or focus is
+// back inside
+watch(() => popout.value?.hasOpenChildren(), (hasOpenChildren) => {
+  if (hasOpenChildren || !closeDeferred)
+    return
+
+  const hovered = anchor.value?.matches(':hover') || popout.value?.el()?.matches(':hover')
+  setVisibility(!!hovered || isInside(document.activeElement))
+})
+
 // Disabling while open closes the popout
 watch(() => disabled, (isDisabled) => {
-  if (isDisabled)
+  if (isDisabled) {
+    closeDeferred = false
     visible.value = false
+  }
 })
 
 // Use the first child element as the actual anchor for Popout positioning so that
