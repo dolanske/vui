@@ -1,24 +1,37 @@
-.carousel {
-  &.no-drag .overflow-content {
-    cursor: default;
-    user-select: auto;
-  }
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  .overflow-content {
-    cursor: grab;
-    user-select: none;
-
-    &.is-dragging {
-      cursor: grabbing;
-      scroll-behavior: auto;
+@layer vui.components {
+  .carousel {
+    &.no-drag .overflow-content {
+      cursor: default;
+      user-select: auto;
     }
-  }
 
-  &.is-snap .overflow-content {
-    scroll-snap-type: x mandatory;
+    .overflow-content {
+      cursor: grab;
+      user-select: none;
 
-    > * {
-      scroll-snap-align: start;
+      &.is-dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+      }
+    }
+
+    &.is-snap .overflow-content {
+      scroll-snap-type: x mandatory;
+
+      > * {
+        scroll-snap-align: start;
+      }
+
+      // Snapping would fight the drag, it resumes once the pointer is released
+      &.is-dragging {
+        scroll-snap-type: none;
+      }
+    }
+
+    .carousel-controls {
+      margin-top: var(--space-xs);
     }
   }
 }

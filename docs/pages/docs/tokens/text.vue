@@ -94,7 +94,7 @@ const isTablet = useMediaQuery('(max-width: 768px)')
     <div class="mb-xl">
       <TokenItem
         v-for="item in fontSizeClasses" :key="item.token" :name="item.name" :size="item.size"
-        :class-name="item.token" prefix=""
+        :class-name="item.token" prefix="" :indicator-style="{ fontSize: `var(${item.token})` }"
       />
     </div>
 

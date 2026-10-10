@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useResizeObserver } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import './marquee.scss'
 
 interface Props {
@@ -16,26 +16,41 @@ interface Props {
    * Stepped/jerky movement instead of smooth scroll
    */
   stagger?: boolean
+  /**
+   * Pauses the animation while hovered. Moving content which can not be
+   * paused fails WCAG 2.2.2, only disable this when another pause mechanism
+   * exists.
+   */
+  pauseOnHover?: boolean
 }
 
 const {
   speed = 50,
   direction = 'right',
   stagger,
+  pauseOnHover = true,
 } = defineProps<Props>()
 
-const trackRef = ref<HTMLElement>()
+const wrapRef = useTemplateRef<HTMLElement>('wrap')
+const contentRef = useTemplateRef<HTMLElement>('content')
 const contentWidth = ref(0)
+const wrapWidth = ref(0)
 
-// On mount, we compute the width of the marquee component and use it to
-// properly calculate the width of the content we'll be rendering. For smooth
-// infinite-like animation, we duplicate the track, so just grabbing width of
-// one of hte copies is enough
-useResizeObserver(trackRef, (entries) => {
-  const entry = entries[0]
-  if (entry) {
-    contentWidth.value = (entry.target as HTMLElement).scrollWidth / 2
-  }
+// One copy of the content is measured. Enough copies are rendered to always
+// cover the visible area, so narrow content never leaves an empty gap.
+useResizeObserver(contentRef, ([entry]) => {
+  contentWidth.value = entry?.target.scrollWidth ?? 0
+})
+
+useResizeObserver(wrapRef, ([entry]) => {
+  wrapWidth.value = entry?.contentRect.width ?? 0
+})
+
+// The track moves by exactly one copy, the extra copies fill the rest
+const copies = computed(() => {
+  if (contentWidth.value === 0)
+    return 1
+  return Math.max(1, Math.ceil(wrapWidth.value / contentWidth.value)) + 1
 })
 
 const duration = computed(() => contentWidth.value > 0 ? contentWidth.value / speed : 0)
@@ -51,21 +66,29 @@ const timingFunction = computed(() => {
 </script>
 
 <template>
-  <div class="marquee-wrap">
+  <div ref="wrap" class="marquee-wrap" :class="{ 'pause-on-hover': pauseOnHover }">
     <div
-      ref="trackRef"
       class="marquee-track"
       :style="{
-        animationDuration: `${duration}s`,
-        animationDirection: direction === 'left' ? 'normal' : 'reverse',
-        animationTimingFunction: timingFunction,
-        visibility: contentWidth > 0 ? 'visible' : 'hidden',
+        '--vui-marquee-distance': `-${contentWidth}px`,
+        'animationDuration': `${duration}s`,
+        'animationDirection': direction === 'left' ? 'normal' : 'reverse',
+        'animationTimingFunction': timingFunction,
+        'visibility': contentWidth > 0 ? 'visible' : 'hidden',
       }"
     >
-      <div class="marquee-content">
+      <div ref="content" class="marquee-content">
         <slot />
       </div>
-      <div class="marquee-content" aria-hidden="true">
+      <!-- Visual copies only. Inert keeps links and buttons inside them out of
+        the Tab order and hidden from assistive technology. -->
+      <div
+        v-for="copy in copies - 1"
+        :key="copy"
+        class="marquee-content"
+        aria-hidden="true"
+        inert
+      >
         <slot />
       </div>
     </div>

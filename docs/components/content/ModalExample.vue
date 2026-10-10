@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { Button, Flex, Modal } from '@dolanske/vui'
+import { Button, Confirm, Flex, Modal } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
 const isScrollableOpen = ref(false)
 const isNonDismissableOpen = ref(false)
+const isConfirmOpen = ref(false)
 </script>
 
 <template>
@@ -24,7 +25,7 @@ const isNonDismissableOpen = ref(false)
               <Button @click="close">
                 Close
               </Button>
-            </flex>
+            </Flex>
           </template>
         </Modal>
         <Button plain @click="isScrollableOpen = true">
@@ -86,9 +87,19 @@ const isNonDismissableOpen = ref(false)
                 </template>
                 Close
               </Button>
-            </flex>
+            </Flex>
           </template>
         </Modal>
+        <Button plain @click="isConfirmOpen = true">
+          Confirm
+        </Button>
+        <Confirm
+          v-model:open="isConfirmOpen"
+          title="Delete project?"
+          content="This permanently removes the project and all of its files."
+          confirm-text="Delete"
+          confirm-variant="danger"
+        />
       </Flex>
     </template>
     <template #code>

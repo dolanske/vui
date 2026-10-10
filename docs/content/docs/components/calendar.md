@@ -6,7 +6,7 @@ A date picker component that allows users to select dates and times. It's built 
 
 ```vue
 <script setup>
-import { Calendar, Flex } from '@dolanske/vui'
+import { Calendar } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const date = ref(new Date())
@@ -21,17 +21,15 @@ const date = ref(new Date())
 
 ### Props
 
-The Calendar component accepts all the props listed in the [official documentation](https://vue3datepicker.com/props/modes/). Vuil builds on top of this and customizes this with a few defaults:
+The Calendar component accepts all the props listed in the [official documentation](https://vue3datepicker.com/props/modes/). VUI changes these defaults:
 
-| Name              | Default              | Type                                                                        |
-| ----------------- | -------------------- | --------------------------------------------------------------------------- |
-| `autoApply`       | `true`               | `boolean` <br> Automatically apply the selected date when clicking on a day |
-| `autoPosition`    | `true`               | `boolean` <br> Automatically position the calendar popup                    |
-| `format`          | `'dd/MM/yyyy HH:mm'` | `string` <br> Format of the displayed date                                  |
-| `monthNameFormat` | `'long'`             | `string` <br> Format of the month name in the header                        |
-| `expand`          | `false`              | `boolean` <br> Makes the calendar input expand to full width                |
-| `inline`          | `false`              | `boolean` <br> Renders the calendar inline instead of as a popup            |
-| `dark`            | Based on theme       | `boolean` <br> Enables dark mode for the calendar                           |
+| Name               | Default                                        | Type                                                                                                                                                 |
+| ------------------ | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoApply`        | `true`                                         | `boolean` <br> Automatically apply the selected date when clicking on a day                                                                          |
+| `formats`          | `{ input: 'dd/MM/yyyy HH:mm', month: 'MMMM' }` | `object` <br> Display formats. The time is left out of `input` when `enable-time-picker` is `false` or a month, year, week or quarter picker is used |
+| `enableTimePicker` | `true`                                         | `boolean` <br> VUI shorthand for `timeConfig.enableTimePicker`, which vue-datepicker v14 moved into `timeConfig`                                     |
+| `expand`           | `false`                                        | `boolean` <br> VUI prop. Makes the calendar expand to full width. Without it, a custom `trigger` keeps its natural width                             |
+| `dark`             | Displayed theme                                | `boolean` <br> Follows the displayed theme (`isDark`), including the system preference in `auto` mode                                                |
 
 ### Slots
 

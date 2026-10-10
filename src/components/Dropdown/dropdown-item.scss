@@ -1,103 +1,108 @@
-.vui-dropdown-item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: fit-content;
-  gap: var(--space-xs);
-  width: 100%;
-  height: var(--interactive-el-height);
-  border-radius: var(--border-radius-m);
-  font-size: var(--font-size-m);
-  cursor: pointer;
-  padding-inline: var(--space-s);
-  white-space: nowrap;
-  position: relative;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+@layer vui.components {
+  .vui-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    gap: var(--space-xs);
+    width: 100%;
+    height: var(--interactive-el-height);
+    min-height: var(--interactive-el-height);
+    border-radius: var(--border-radius-m);
+    font-size: var(--font-size-m);
+    cursor: pointer;
+    padding-inline: var(--space-s);
+    white-space: nowrap;
+    position: relative;
 
-  &.disabled {
-    pointer-events: none;
-
-    &:hover {
-      background-color: transparent;
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .vui-dropdown-item-slot,
+    &.disabled {
+      pointer-events: none;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      .vui-dropdown-item-slot,
+      .vui-dropdown-item-icon,
+      .vui-dropdown-item-icon-end {
+        svg path,
+        .iconify {
+          color: var(--color-text-lighter);
+        }
+      }
+
+      .vui-dropdown-item-hint {
+        visibility: hidden;
+        opacity: 0;
+        z-index: var(--z-behind);
+      }
+    }
+
     .vui-dropdown-item-icon,
     .vui-dropdown-item-icon-end {
-      svg path,
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:empty {
+        display: none;
+      }
+
+      svg,
       .iconify {
-        color: var(--color-text-lighter) !important;
+        width: 16px;
+        height: 16px;
+        color: var(--color-text-light);
+
+        path {
+          color: var(--color-text-light);
+        }
       }
     }
 
     .vui-dropdown-item-hint {
-      visibility: hidden;
-      opacity: 0;
-      z-index: var(--z-behind);
-    }
-  }
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: 8px;
+      font-size: calc(0.9 * var(--vui-font-unit));
+      // white-space: nowrap;
+      color: var(--color-text-lighter);
 
-  .vui-dropdown-item-icon,
-  .vui-dropdown-item-icon-end {
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:empty {
-      display: none;
-    }
-
-    svg,
-    .iconify {
-      width: 16px;
-      height: 16px;
-      color: var(--color-text-light);
-
-      path {
-        color: var(--color-text-light);
+      svg,
+      .iconify {
+        color: var(--color-text-lighter);
       }
     }
-  }
 
-  .vui-dropdown-item-hint {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    margin-left: 8px;
-    font-size: 0.9rem;
-    // white-space: nowrap;
-    color: var(--color-text-lighter);
-
-    svg,
-    .iconify {
-      color: var(--color-text-lighter);
+    .vui-dropdown-item-slot {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: var(--color-text);
+      flex-wrap: nowrap;
     }
-  }
 
-  .vui-dropdown-item-slot {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: var(--color-text);
-    flex-wrap: nowrap;
-  }
+    &:hover {
+      background-color: var(--color-button-gray);
+    }
 
-  &:hover {
-    background-color: var(--color-button-gray);
-  }
+    &.selected {
+      background-color: var(--color-button-gray-hover);
+    }
 
-  &.selected {
-    background-color: var(--color-button-gray-hover);
-  }
-
-  &.vui-dropdown-item-size-s {
-    height: var(--interactive-el-height-s);
-    font-size: var(--font-size-s);
+    &.vui-dropdown-item-size-s {
+      height: var(--interactive-el-height-s);
+      font-size: var(--font-size-s);
+    }
   }
 }

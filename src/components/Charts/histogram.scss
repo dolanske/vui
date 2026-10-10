@@ -1,47 +1,59 @@
-.vui-histogram {
-  --vui-histogram-color: var(--color-accent);
-  --vui-histogram-background-color: var(--color-bg-raised);
-  --vui-histogram-radius: var(--border-radius-pill);
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  &.expand {
-    width: 100%;
-    justify-content: space-between;
+@layer vui.components {
+  .vui-histogram {
+    --vui-histogram-color: var(--color-accent);
+    --vui-histogram-background-color: var(--color-bg-raised);
+    --vui-histogram-radius: var(--border-radius-pill);
 
-    .vui-histogram-cell {
-      flex: 1;
+    &.expand {
+      width: 100%;
+      justify-content: space-between;
+
+      .vui-histogram-cell {
+        flex: 1;
+      }
     }
-  }
 
-  &.clickable {
+    &.clickable {
+      .vui-histogram-cell {
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.55;
+        }
+      }
+    }
+
     .vui-histogram-cell {
-      cursor: pointer;
+      cursor: default;
+      width: 8px;
 
-      &:hover {
-        opacity: 0.55;
+      &.compact {
+        width: 4px;
+      }
+
+      border-radius: var(--vui-histogram-radius);
+      background-color: var(--vui-histogram-background-color);
+      overflow: hidden;
+      position: relative;
+
+      .vui-histogram-datacell {
+        transition: opacity var(--transition-fast);
+        border-radius: var(--vui-histogram-radius);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: var(--vui-histogram-color);
       }
     }
   }
 
-  .vui-histogram-cell {
-    cursor: default;
-    width: 8px;
-
-    &.compact {
-      width: 4px;
-    }
-
-    border-radius: var(--vui-histogram-radius);
-    background-color: var(--vui-histogram-background-color);
-    overflow: hidden;
-    position: relative;
-
-    .vui-histogram-datacell {
-      transition: opacity var(--transition-fast);
-      border-radius: var(--vui-histogram-radius);
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background-color: var(--vui-histogram-color);
-    }
+  // Clickable cells are buttons, reset their native look
+  button.vui-histogram-cell {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
   }
 }

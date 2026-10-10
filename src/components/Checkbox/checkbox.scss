@@ -1,84 +1,108 @@
-.vui-checkbox {
-  --vui-checkbox-size: 24px;
+@use '../../style/theme-mode' as mode;
 
-  &.checked {
-    .vui-checkbox-icon svg,
-    .vui-checkbox-icon .iconify {
-      color: var(--color-text);
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
+
+@layer vui.components {
+  .vui-checkbox {
+    --vui-checkbox-size: 24px;
+
+    &.checked,
+    &.indeterminate {
+      .vui-checkbox-icon svg,
+      .vui-checkbox-icon .iconify {
+        color: var(--color-text);
+      }
+
+      &.accent .vui-checkbox-icon svg,
+      &.accent .vui-checkbox-icon .iconify {
+        color: var(--color-accent);
+      }
     }
 
-    &.accent .vui-checkbox-icon svg,
-    &.accent .vui-checkbox-icon .iconify {
-      color: var(--color-accent) !important;
-    }
-  }
+    &.disabled {
+      .vui-checkbox-icon {
+        opacity: 0.25;
+        cursor: not-allowed;
+      }
 
-  &.disabled {
+      input + label .vui-checkbox-content {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
+    // Align hint & errors with the label text
+    .vui-checkbox-hint,
+    .vui-checkbox-errors {
+      margin-left: calc(var(--vui-checkbox-size) + 10px);
+    }
+
+    .vui-checkbox-hint {
+      margin-top: 2px;
+      margin-bottom: 0;
+    }
+
+    &.has-errors .vui-checkbox-icon svg,
+    &.has-errors .vui-checkbox-icon .iconify {
+      color: var(--color-text-red);
+    }
+
     .vui-checkbox-icon {
-      opacity: 0.25;
-      cursor: not-allowed;
+      width: var(--vui-checkbox-size);
+      height: var(--vui-checkbox-size);
+
+      svg,
+      .iconify {
+        width: 100%;
+        height: 100%;
+        color: var(--color-text);
+      }
     }
 
-    input + label .vui-checkbox-content {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-  }
+    input {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      overflow: hidden;
+      outline: none;
+      opacity: 0;
 
-  .vui-checkbox-icon {
-    width: var(--vui-checkbox-size);
-    height: var(--vui-checkbox-size);
+      &:focus-visible + label .vui-checkbox-icon {
+        outline: var(--outline);
+        border-radius: var(--border-radius-s);
+        cursor: default;
+      }
 
-    svg,
-    .iconify {
-      width: 100%;
-      height: 100%;
-      color: var(--color-text);
-    }
-  }
+      & + label {
+        display: grid;
+        grid-template-columns: var(--vui-checkbox-size) 1fr;
+        gap: 10px;
+        font-size: var(--font-size-m);
+        color: var(--color-text);
+        user-select: none;
+        align-items: baseline;
+        cursor: pointer;
 
-  input {
-    width: 1px;
-    height: 1px;
-    position: absolute;
-    overflow: hidden;
-    outline: none !important;
-    opacity: 0;
+        .vui-checkbox-content {
+          display: block;
 
-    &:focus-visible + label .vui-checkbox-icon {
-      outline: var(--outline);
-      border-radius: var(--border-radius-s);
-      cursor: default;
-    }
-
-    & + label {
-      display: grid;
-      grid-template-columns: var(--vui-checkbox-size) 1fr;
-      gap: 10px;
-      font-size: var(--font-size-m);
-      color: var(--color-text);
-      user-select: none;
-      align-items: baseline;
-      cursor: pointer;
-
-      .vui-checkbox-content {
-        display: block;
-
-        &:is(p) {
-          display: flex;
-          align-items: center;
-          min-height: var(--vui-checkbox-size);
-          font-size: var(--font-size-m);
-          align-self: flex-start;
+          &.is-text,
+          &:is(p) {
+            display: flex;
+            align-items: center;
+            min-height: var(--vui-checkbox-size);
+            font-size: var(--font-size-m);
+            align-self: flex-start;
+          }
         }
       }
     }
   }
-}
 
-:root.light {
-  .vui-checkbox.checked.accent .vui-checkbox-icon svg,
-  .vui-checkbox.checked.accent .vui-checkbox-icon .iconify {
-    color: var(--color-accent) !important;
+  @include mode.light {
+    .vui-checkbox.checked.accent .vui-checkbox-icon svg,
+    .vui-checkbox.checked.accent .vui-checkbox-icon .iconify {
+      color: var(--color-accent);
+    }
   }
 }

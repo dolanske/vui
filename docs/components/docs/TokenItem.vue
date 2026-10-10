@@ -76,6 +76,17 @@ const computedStyle = computed(() => {
 </template>
 
 <style scoped lang="scss">
+// Block-level so line-height applies to the text itself instead of being
+// clamped by the parent's line box. Layered so utility classes such as
+// .text-overflow-# can still override display.
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
+
+@layer vui.base {
+  .text-size-indicator {
+    display: block;
+  }
+}
+
 .indicator-container {
   width: 256px;
 }

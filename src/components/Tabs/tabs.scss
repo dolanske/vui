@@ -1,101 +1,113 @@
-.vui-tabs {
-  --vui-tabs-height: initial;
-  --vui-tabs-item-padding-inline: initial;
-  --vui-tabs-underline-color: initial;
-  --vui-tabs-gap: initial;
-  --vui-tabs-underline-size: initial;
-  --vui-tabs-border-color: initial;
+@use '../../style/theme-mode' as mode;
 
-  display: flex;
-  width: 100%;
-  gap: var(--vui-tabs-gap, 4px);
-  align-items: center;
-  border-bottom: 1px solid var(--vui-tabs-border-color, var(--color-border));
-  position: relative;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  &.vui-tabs-variant-filled {
-    background-color: var(--color-bg-lowered);
-    z-index: var(--z-default);
-    border-radius: var(--border-radius-m);
-    padding-inline: 4px;
-    border-bottom: none;
+@layer vui.components {
+  .vui-tabs {
+    --vui-tabs-height: initial;
+    --vui-tabs-item-padding-inline: initial;
+    --vui-tabs-underline-color: initial;
+    --vui-tabs-gap: initial;
+    --vui-tabs-underline-size: initial;
+    --vui-tabs-border-color: initial;
 
-    .vui-tab-underline {
-      background-color: var(--color-bg-raised);
-      border: 1px solid var(--color-border);
-      top: 4px;
-      bottom: 4px;
-      z-index: var(--z-behind);
-      border-radius: var(--border-radius-m);
-    }
-  }
-
-  &.disabled .vui-tab,
-  .vui-tab.disabled {
-    pointer-events: none;
-    color: var(--color-text-lighter);
-
-    &.active {
-      color: var(--color-text-lighter) !important;
-    }
-  }
-
-  &.disabled {
-    .vui-tab-underline {
-      border-color: var(--color-text-lighter);
-    }
-  }
-
-  &.expand .vui-tab {
-    flex: 1;
-  }
-
-  .vui-tab {
     display: flex;
-    height: var(--vui-tabs-height, 40px);
+    width: 100%;
+    gap: var(--vui-tabs-gap, 4px);
     align-items: center;
-    justify-content: center;
-    padding: 0 var(--vui-tabs-item-padding-inline, 10px);
-    font-size: var(--font-size-m);
+    border-bottom: 1px solid var(--vui-tabs-border-color, var(--color-border));
     position: relative;
-    color: var(--color-text-lighter);
-    font-weight: var(--font-weight-medium);
-    transition: color var(--transition-fast);
-    cursor: pointer;
-    gap: var(--space-xs);
-    border-radius: var(--border-radius-m);
+    z-index: 1;
 
-    svg,
-    .iconify {
-      width: 20px;
-      height: 20px;
-      color: var(--color-text-light);
+    &.vui-tabs-variant-filled {
+      background-color: var(--color-bg-lowered);
+      z-index: var(--z-default);
+      border-radius: var(--border-radius-m);
+      padding-inline: 4px;
+      border-bottom: none;
+
+      .vui-tab-underline {
+        background-color: var(--color-bg-raised);
+        border: 1px solid var(--color-border);
+        top: 4px;
+        bottom: 4px;
+        z-index: var(--z-behind);
+        border-radius: var(--border-radius-m);
+      }
     }
 
-    &:hover,
-    &.active {
-      color: var(--color-text);
+    &.disabled .vui-tab,
+    .vui-tab.disabled {
+      pointer-events: none;
+      color: var(--color-text-lighter);
+    }
+
+    &.disabled {
+      .vui-tab-underline {
+        border-color: var(--color-text-lighter);
+      }
+    }
+
+    &.expand .vui-tab {
+      flex: 1;
+    }
+
+    .vui-tab {
+      display: flex;
+      height: var(--vui-tabs-height, 40px);
+      align-items: center;
+      justify-content: center;
+      padding: 0 var(--vui-tabs-item-padding-inline, 10px);
+      font-size: var(--font-size-m);
+      position: relative;
+      color: var(--color-text-lighter);
+      font-weight: var(--font-weight-medium);
+      transition: color var(--transition-fast);
+      cursor: pointer;
+      gap: var(--space-xs);
+      border-radius: var(--border-radius-m);
+
+      svg,
+      .iconify {
+        width: 20px;
+        height: 20px;
+        color: var(--color-text-light);
+      }
+
+      &:hover,
+      &.active {
+        color: var(--color-text);
+      }
+    }
+
+    .vui-tab-underline {
+      transition:
+        left var(--transition),
+        width var(--transition);
+      display: block;
+      border-bottom: var(--vui-tabs-underline-size, 2px) solid var(--vui-tabs-underline-color, var(--color-text));
+      position: absolute;
+      bottom: 0;
+      z-index: var(--z-behind);
     }
   }
 
-  .vui-tab-underline {
-    transition:
-      left var(--transition),
-      width var(--transition);
-    display: block;
-    border-bottom: var(--vui-tabs-underline-size, 2px) solid var(--vui-tabs-underline-color, var(--color-text));
-    position: absolute;
-    bottom: 0;
+  @include mode.light {
+    .vui-tabs.vui-tabs-variant-filled {
+      background-color: var(--color-bg-raised);
+
+      .vui-tab-underline {
+        background-color: var(--color-bg-lowered);
+        border-color: var(--color-border-weak);
+      }
+    }
   }
 }
 
-:root.light {
-  .vui-tabs.vui-tabs-variant-filled {
-    background-color: var(--color-bg-raised);
-
-    .vui-tab-underline {
-      background-color: var(--color-bg-lowered);
-      border-color: var(--color-border-weak);
-    }
+// Disabled tabs stay muted, even when active
+@layer vui.modifiers {
+  .vui-tabs.disabled .vui-tab.active,
+  .vui-tabs .vui-tab.disabled.active {
+    color: var(--color-text-lighter);
   }
 }

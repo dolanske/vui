@@ -19,15 +19,19 @@ const {
 } = defineProps<Props>()
 
 const show = ref(showPassword)
+
+// Template note:
+// `autocomplete` can be overridden, e.g. `autocomplete="new-password"` on sign-up forms
 </script>
 
 <template>
-  <Input v-bind="inputProps" :type="show ? 'text' : 'password'" autocomplete="off">
+  <Input v-bind="inputProps" :type="show ? 'text' : 'password'" autocomplete="current-password">
     <template #end>
       <Button
         square
         size="s"
-        :aria-label="show ? 'Hide' : 'Reveal'"
+        :aria-label="show ? 'Hide password' : 'Show password'"
+        :aria-pressed="show"
         @click="show = !show"
       >
         <IconEyeSlash v-if="show" width="18" height="18" />

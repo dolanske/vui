@@ -1,39 +1,28 @@
-.vui-badge {
-  --vui-badge-padding-block: 2px;
-  --vui-badge-padding-inline: var(--space-s);
-  --vui-badge-font-size: var(--font-size-s);
-  --vui-badge-height: 24px;
+@use '../../style/theme-mode' as mode;
 
-  display: inline-flex;
-  gap: var(--space-xxs);
-  place-items: center;
-  padding-inline: var(--vui-badge-padding-inline);
-  padding-block: var(--vui-badge-padding-block);
-  border-radius: var(--border-radius-pill);
-  font-size: var(--vui-badge-font-size);
-  color: var(--color-text);
-  border: 1px solid transparent;
-  height: var(--vui-badge-height);
-  line-height: var(--vui-badge-height);
-  flex-shrink: 0;
-  text-box-trim: trim-both;
-  position: relative;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  svg,
-  .iconify,
-  path {
+@layer vui.components {
+  .vui-badge {
+    --vui-badge-padding-block: 2px;
+    --vui-badge-padding-inline: var(--space-s);
+    --vui-badge-font-size: var(--font-size-s);
+    --vui-badge-height: 24px;
+
+    display: inline-flex;
+    gap: var(--space-xxs);
+    place-items: center;
+    padding-inline: var(--vui-badge-padding-inline);
+    padding-block: var(--vui-badge-padding-block);
+    border-radius: var(--border-radius-pill);
+    font-size: var(--vui-badge-font-size);
     color: var(--color-text);
-  }
-
-  font-weight: 500;
-
-  &.circle {
-    justify-content: center;
-    min-width: var(--vui-badge-height);
-  }
-
-  &.vui-badge-variant-neutral {
-    color: var(--color-text);
+    border: 1px solid transparent;
+    height: var(--vui-badge-height);
+    line-height: var(--vui-badge-height);
+    flex-shrink: 0;
+    text-box-trim: trim-both;
+    position: relative;
 
     svg,
     .iconify,
@@ -41,220 +30,259 @@
       color: var(--color-text);
     }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-raised);
+    font-weight: 500;
 
-      &.filled {
-        background-color: var(--color-text);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-text));
-        border-color: transparent;
+    .vui-badge-remove {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: calc(var(--space-xxs) * -1);
+      padding: 0;
+      border: none;
+      border-radius: var(--border-radius-pill);
+      background: transparent;
+      cursor: pointer;
+      opacity: 0.7;
 
-        svg,
-        .iconify,
-        path {
+      &:hover {
+        opacity: 1;
+      }
+
+      svg {
+        width: 0.9em;
+        height: 0.9em;
+      }
+    }
+
+    &.circle {
+      justify-content: center;
+      min-width: var(--vui-badge-height);
+    }
+
+    &.vui-badge-variant-neutral {
+      color: var(--color-text);
+
+      svg,
+      .iconify,
+      path {
+        color: var(--color-text);
+      }
+
+      &:not(.outline) {
+        background-color: var(--color-bg-raised);
+
+        &.filled {
+          background-color: var(--color-text);
           color: var(--color-text-invert);
           color: contrast-color(var(--color-text));
+          border-color: transparent;
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-text));
+          }
         }
+      }
+
+      &.outline {
+        border: 1px solid var(--color-border-strong);
       }
     }
 
-    &.outline {
-      border: 1px solid var(--color-border-strong);
-    }
-  }
-
-  &.vui-badge-variant-info {
-    color: var(--color-text-blue);
-
-    svg,
-    .iconify,
-    path {
+    &.vui-badge-variant-info {
       color: var(--color-text-blue);
-    }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-blue-lowered);
+      svg,
+      .iconify,
+      path {
+        color: var(--color-text-blue);
+      }
 
-      &.filled {
-        background-color: var(--color-bg-blue-raised);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-bg-blue-raised));
+      &:not(.outline) {
+        background-color: var(--color-bg-blue-lowered);
 
-        svg,
-        .iconify,
-        path {
+        &.filled {
+          background-color: var(--color-bg-blue-raised);
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-blue-raised));
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-bg-blue-raised));
+          }
         }
+      }
+
+      &.outline {
+        border-color: var(--color-text-blue);
       }
     }
 
-    &.outline {
-      border-color: var(--color-text-blue);
-    }
-  }
-
-  &.vui-badge-variant-success {
-    color: var(--color-text-green);
-
-    svg,
-    .iconify,
-    path {
+    &.vui-badge-variant-success {
       color: var(--color-text-green);
-    }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-green-lowered);
+      svg,
+      .iconify,
+      path {
+        color: var(--color-text-green);
+      }
 
-      &.filled {
-        background-color: var(--color-bg-green-raised);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-bg-green-raised));
+      &:not(.outline) {
+        background-color: var(--color-bg-green-lowered);
 
-        svg,
-        .iconify,
-        path {
+        &.filled {
+          background-color: var(--color-bg-green-raised);
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-green-raised));
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-bg-green-raised));
+          }
         }
+      }
+
+      &.outline {
+        border-color: var(--color-text-green);
       }
     }
 
-    &.outline {
-      border-color: var(--color-text-green);
-    }
-  }
-
-  &.vui-badge-variant-warning {
-    color: var(--color-text-yellow);
-
-    svg,
-    .iconify,
-    path {
+    &.vui-badge-variant-warning {
       color: var(--color-text-yellow);
-    }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-yellow-lowered);
+      svg,
+      .iconify,
+      path {
+        color: var(--color-text-yellow);
+      }
 
-      &.filled {
-        background-color: var(--color-bg-yellow-raised);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-bg-yellow-raised));
+      &:not(.outline) {
+        background-color: var(--color-bg-yellow-lowered);
 
-        svg,
-        .iconify,
-        path {
+        &.filled {
+          background-color: var(--color-bg-yellow-raised);
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-yellow-raised));
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-bg-yellow-raised));
+          }
         }
+      }
+
+      &.outline {
+        border-color: var(--color-text-yellow);
       }
     }
 
-    &.outline {
-      border-color: var(--color-text-yellow);
-    }
-  }
+    &.vui-badge-variant-danger {
+      color: var(--color-text-red);
 
-  &.vui-badge-variant-danger {
-    color: var(--color-text-red);
+      svg,
+      .iconify,
+      path {
+        color: var(--color-text-red);
+      }
 
-    svg,
-    .iconify,
-    path {
+      &:not(.outline) {
+        background-color: var(--color-bg-red-lowered);
+
+        &.filled {
+          background-color: var(--color-bg-red-raised);
+          color: var(--color-text-invert);
+          color: contrast-color(var(--color-bg-red-raised));
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-bg-red-raised));
+          }
+        }
+      }
+
+      &.outline {
+        border-color: var(--color-text-red);
+      }
+
       color: var(--color-text-red);
     }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-red-lowered);
-
-      &.filled {
-        background-color: var(--color-bg-red-raised);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-bg-red-raised));
-
-        svg,
-        .iconify,
-        path {
-          color: var(--color-text-invert);
-          color: contrast-color(var(--color-bg-red-raised));
-        }
-      }
-    }
-
-    &.outline {
-      border-color: var(--color-text-red);
-    }
-
-    color: var(--color-text-red);
-  }
-
-  &.vui-badge-variant-accent {
-    color: var(--color-accent);
-
-    svg,
-    .iconify,
-    path {
+    &.vui-badge-variant-accent {
       color: var(--color-accent);
-    }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-accent-lowered);
+      svg,
+      .iconify,
+      path {
+        color: var(--color-accent);
+      }
 
-      &.filled {
-        background-color: var(--color-bg-accent-raised);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-bg-accent-raised));
+      &:not(.outline) {
+        background-color: var(--color-bg-accent-lowered);
 
-        svg,
-        .iconify,
-        path {
+        &.filled {
+          background-color: var(--color-bg-accent-raised);
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-accent-raised));
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-bg-accent-raised));
+          }
         }
+      }
+
+      &.outline {
+        border-color: var(--color-accent);
       }
     }
 
-    &.outline {
-      border-color: var(--color-accent);
-    }
-  }
-
-  &.vui-badge-variant-note {
-    color: var(--color-text-purple);
-
-    svg,
-    .iconify,
-    path {
+    &.vui-badge-variant-note {
       color: var(--color-text-purple);
-    }
 
-    &:not(.outline) {
-      background-color: var(--color-bg-purple-lowered);
+      svg,
+      .iconify,
+      path {
+        color: var(--color-text-purple);
+      }
 
-      &.filled {
-        background-color: var(--color-bg-purple-raised);
-        color: var(--color-text-invert);
-        color: contrast-color(var(--color-bg-purple-raised));
+      &:not(.outline) {
+        background-color: var(--color-bg-purple-lowered);
 
-        svg,
-        .iconify,
-        path {
+        &.filled {
+          background-color: var(--color-bg-purple-raised);
           color: var(--color-text-invert);
           color: contrast-color(var(--color-bg-purple-raised));
+
+          svg,
+          .iconify,
+          path {
+            color: var(--color-text-invert);
+            color: contrast-color(var(--color-bg-purple-raised));
+          }
         }
       }
-    }
 
-    &.outline {
-      border-color: var(--color-text-purple);
+      &.outline {
+        border-color: var(--color-text-purple);
+      }
     }
   }
-}
 
-:root.light {
-  .vui-badge:not(.filled) {
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  @include mode.light {
+    .vui-badge:not(.filled) {
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    }
   }
 }

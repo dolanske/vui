@@ -26,7 +26,7 @@ import { Avatar, Badge, Flex, Indicator } from '@dolanske/vui'
 
 <style lang="scss" scoped>
 :deep(img) {
-  margin: 0 !important;
+  margin: 0;
   border-radius: var(--border-radius-pill);
 }
 </style>

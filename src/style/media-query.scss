@@ -11,15 +11,15 @@
 
   // Typography changes
   h1 {
-    font-size: 3.2rem;
+    font-size: calc(3.2 * var(--vui-font-unit));
   }
 
   h2 {
-    font-size: 2.8rem;
+    font-size: calc(2.8 * var(--vui-font-unit));
   }
 
   h3 {
-    font-size: 2.2rem;
+    font-size: calc(2.2 * var(--vui-font-unit));
   }
 
   .vui-tabs .vui-tab {
@@ -28,12 +28,12 @@
   }
 
   .vui-backdrop {
-    --backdrop-offset: 24px !important;
+    --backdrop-offset: 24px;
   }
 
   .vui-commands {
     .vui-card .vui-card-content {
-      max-height: 80dvh !important;
+      max-height: 80dvh;
     }
 
     .vui-card .vui-card-footer {

@@ -1,8 +1,9 @@
 <script setup lang='ts'>
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { computed, ref, useAttrs, watch } from 'vue'
+import { computed, ref, useAttrs, useId, useSlots, useTemplateRef, watch } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
+import { useFocusTrap } from '../../lib/focus.ts'
 import { formatUnitValue } from '../../lib/helpers.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
@@ -14,7 +15,7 @@ defineOptions({
 
 const {
   position = 'right',
-  size = 398,
+  size,
   card = {
     separators: false,
   },
@@ -22,16 +23,22 @@ const {
   transitionName = 'sheet',
   canDismiss = true,
   hideCloseButton = false,
+  closeLabel = 'Close',
 } = defineProps<Props>()
 
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{
+  'close': []
+  'update:open': [value: boolean]
+}>()
 
 const attrs = useAttrs()
+const slots = useSlots()
 const rendered = ref(open)
+const titleId = useId()
 
 interface Props {
   /**
-   * Controls the visibility of the sheet
+   * Controls the visibility of the sheet. Supports `v-model:open`.
    */
   open?: boolean
   /**
@@ -39,7 +46,8 @@ interface Props {
    */
   position?: 'left' | 'right' | 'top' | 'bottom'
   /**
-   * Sets the width of the sheet
+   * Maximum width of left / right sheets (defaults to 398px), or maximum
+   * height of top / bottom sheets (defaults to 35dvh)
    */
   size?: number | string
   /**
@@ -61,11 +69,20 @@ interface Props {
    * Setting the value to `none` will not apply any transition. This is useful when using the View Transitions API to prevent conflicts between the default animation and the view transition.
    */
   transitionName?: string | 'none'
+  /**
+   * Accessible label of the close button
+   */
+  closeLabel?: string
+}
+
+function close() {
+  emit('update:open', false)
+  emit('close')
 }
 
 function tryClose() {
   if (canDismiss) {
-    emit('close')
+    close()
   }
 }
 
@@ -80,13 +97,17 @@ watch(() => open, (isOpen) => {
 })
 
 const TRANSITION_OFFSET = 16
+const DEFAULT_WIDTH = 398
 
 const style = computed(() => {
   if (position === 'left' || position === 'right') {
-    return { maxWidth: formatUnitValue(size) }
+    return { maxWidth: formatUnitValue(size ?? DEFAULT_WIDTH) }
   }
 
-  return undefined
+  // Top & bottom sheets keep the CSS default unless a size is provided
+  return size !== undefined
+    ? { '--vui-sheet-max-height': formatUnitValue(size) }
+    : undefined
 })
 
 // Used to compute base location so that sheet appears to animate form the edge of the screen
@@ -99,11 +120,19 @@ const baseTransform = computed(() => {
     default: return `translate(${TRANSITION_OFFSET}px, 0)`
   }
 })
+
+const sheetRef = useTemplateRef<InstanceType<typeof Card>>('sheet')
+const backdropRef = useTemplateRef<InstanceType<typeof Backdrop>>('backdrop')
+useFocusTrap(() => sheetRef.value?.$el as HTMLElement | undefined, () => open && rendered.value, {
+  layer: () => backdropRef.value?.layerIndex ?? 0,
+})
+
+const labelledBy = computed(() => (slots.header && !attrs['aria-label'] && !attrs['aria-labelledby']) ? titleId : undefined)
 </script>
 
 <template>
   <Teleport to="body">
-    <Backdrop v-if="rendered" @close="tryClose">
+    <Backdrop v-if="rendered" ref="backdrop" :leaving="!open" @close="tryClose">
       <Transition
         appear
         :name="transitionName === 'none' ? undefined : transitionName"
@@ -112,23 +141,30 @@ const baseTransform = computed(() => {
       >
         <div v-if="open" class="vui-sheet-shell">
           <Card
+            ref="sheet"
             class="vui-sheet"
-            :class="[`vui-sheet-position-${position}`]" :style
+            :class="[`vui-sheet-position-${position}`]"
+            :style
+            role="dialog"
+            aria-modal="true"
+            :aria-labelledby="labelledBy"
             v-bind="{ ...card, ...attrs }"
           >
             <template v-if="$slots.header" #header>
-              <slot name="header" :close="() => emit('close')" />
+              <div :id="titleId" class="vui-sheet-title">
+                <slot name="header" :close />
+              </div>
             </template>
             <template v-if="!hideCloseButton" #header-end>
-              <Button plain square size="s" @click="emit('close')">
+              <Button plain square size="s" :aria-label="closeLabel" @click="close">
                 <IconX />
               </Button>
             </template>
             <template #default>
-              <slot :close="() => emit('close')" />
+              <slot :close />
             </template>
             <template v-if="$slots.footer" #footer>
-              <slot name="footer" :close="() => emit('close')" />
+              <slot name="footer" :close />
             </template>
           </Card>
         </div>
@@ -138,30 +174,34 @@ const baseTransform = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.vui-backdrop {
-  padding: 0;
-}
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-.vui-sheet-shell {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
+@layer vui.components {
+  .vui-backdrop {
+    padding: 0;
+  }
 
-.sheet-enter-active,
-.sheet-leave-active {
-  transition: var(--transition);
-}
+  .vui-sheet-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
 
-.sheet-enter-to,
-.sheet-leave-from {
-  transform: translate(0, 0);
-}
+  .sheet-enter-active,
+  .sheet-leave-active {
+    transition: var(--transition);
+  }
 
-.sheet-enter-from,
-.sheet-leave-to {
-  opacity: 0;
-  transform: v-bind(baseTransform);
+  .sheet-enter-to,
+  .sheet-leave-from {
+    transform: translate(0, 0);
+  }
+
+  .sheet-enter-from,
+  .sheet-leave-to {
+    opacity: 0;
+    transform: v-bind(baseTransform);
+  }
 }
 </style>

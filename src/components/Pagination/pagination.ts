@@ -12,41 +12,48 @@ export interface Pagination {
   pages: number[]
 }
 
+/**
+ * Calculates pagination state. `startPage` / `endPage` describe the window of
+ * page numbers to display, they are not the bounds of the data. Use `1` and
+ * `totalPages` to decide whether previous / next pages exist.
+ *
+ * `endIndex` is inclusive, use `items.slice(startIndex, endIndex + 1)`.
+ */
 export function paginate(
   totalItems: number,
   currentPage: number = 1,
   perPage: number = 15,
   maxPages: number = 3,
 ): Pagination {
-  // calculate total pages
-  const totalPages = Math.ceil(totalItems / perPage)
+  // Guard against invalid input which would otherwise produce NaN / Infinity
+  const safeTotal = Math.max(0, Math.floor(totalItems) || 0)
+  const safePerPage = Math.max(1, Math.floor(perPage) || 1)
+  const safeMaxPages = Math.max(1, Math.floor(maxPages) || 1)
+
+  // An empty dataset still has a single (empty) page
+  const totalPages = Math.max(1, Math.ceil(safeTotal / safePerPage))
 
   // ensure current page isn't out of range
-  if (currentPage < 1) {
-    currentPage = 1
-  }
-  else if (currentPage > totalPages) {
-    currentPage = totalPages
-  }
+  currentPage = Math.min(Math.max(1, Math.floor(currentPage) || 1), totalPages)
 
   let startPage: number, endPage: number
-  if (totalPages <= maxPages) {
+  if (totalPages <= safeMaxPages) {
     // total pages less than max so show all pages
     startPage = 1
     endPage = totalPages
   }
   else {
     // total pages more than max so calculate start and end pages
-    const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2)
-    const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1
+    const maxPagesBeforeCurrentPage = Math.floor(safeMaxPages / 2)
+    const maxPagesAfterCurrentPage = Math.ceil(safeMaxPages / 2) - 1
     if (currentPage <= maxPagesBeforeCurrentPage) {
       // current page near the start
       startPage = 1
-      endPage = maxPages
+      endPage = safeMaxPages
     }
     else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
       // current page near the end
-      startPage = totalPages - maxPages + 1
+      startPage = totalPages - safeMaxPages + 1
       endPage = totalPages
     }
     else {
@@ -57,17 +64,15 @@ export function paginate(
   }
 
   // calculate start and end item indexes
-  const startIndex = (currentPage - 1) * perPage
-  const endIndex = Math.min(startIndex + perPage - 1, totalItems - 1)
+  const startIndex = safeTotal === 0 ? 0 : (currentPage - 1) * safePerPage
+  const endIndex = Math.min(startIndex + safePerPage - 1, safeTotal - 1)
 
-  // create an array of pages to ng-repeat in the pager control
   const pages = createArray((endPage + 1) - startPage).map(i => startPage + i)
 
-  // return object with all pager properties required by the view
   return {
-    totalItems,
+    totalItems: safeTotal,
     currentPage,
-    perPage,
+    perPage: safePerPage,
     totalPages,
     startPage,
     endPage,

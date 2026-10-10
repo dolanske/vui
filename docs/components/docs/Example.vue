@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tab, Tabs } from '@dolanske/vui'
+import { Button, Tab, Tabs } from '@dolanske/vui'
 
 const props = defineProps<{
   full?: boolean
@@ -61,7 +61,7 @@ const tab = ref('Preview')
 }
 
 .example-code pre {
-  margin-top: 0 !important;
+  margin-top: 0;
   border: none;
 }
 
@@ -74,7 +74,7 @@ const tab = ref('Preview')
   padding: var(--space-xxl) 128px;
 
   p {
-    margin-top: 0 !important;
+    margin-top: 0;
   }
 }
 

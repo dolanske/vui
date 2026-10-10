@@ -1,216 +1,222 @@
-.vui-table-overflow {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: visible;
-}
+@use '../../style/theme-mode' as mode;
 
-.vui-table-container {
-  --vui-checkbox-cell-width: calc(calc(var(--space-xxs) * 2) + 32px);
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  display: block;
-  width: 100%;
-  border-radius: var(--border-radius-m);
-
-  &.fixed table {
-    table-layout: fixed;
+@layer vui.components {
+  .vui-table-overflow {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
   }
 
-  &.outer-border {
-    border: 1px solid var(--color-border);
-  }
+  .vui-table-container {
+    --vui-checkbox-cell-width: calc(calc(var(--space-xxs) * 2) + 32px);
 
-  &.nowrap table tr {
-    td {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-
-  &.separated-rows table {
-    th,
-    td {
-      border-bottom: 1px solid var(--color-border);
-    }
-  }
-
-  &.separated-cells table {
-    th,
-    td {
-      border-right: 1px solid var(--color-border);
-
-      &:last-of-type {
-        border-right: none;
-      }
-    }
-  }
-
-  &.pin-first {
-    table tr {
-      & > th:first-child,
-      & > td:first-child {
-        position: sticky;
-        left: 0;
-        z-index: 2;
-      }
-
-      & > td:first-child {
-        background-color: var(--color-bg);
-      }
-    }
-
-    // If selection is active, the first column are checkboxes. So we pin 2nd
-    // column as well, which is the first column to contain content
-    &.selecting table tr {
-      & > th:nth-child(2),
-      & > td:nth-child(2) {
-        position: sticky;
-        left: calc(var(--vui-checkbox-cell-width) - 1px);
-        z-index: 2;
-      }
-
-      & > td:nth-child(2) {
-        background-color: var(--color-bg);
-      }
-    }
-  }
-
-  &.pin-last table tr {
-    & > th:last-child,
-    & > td:last-child {
-      position: sticky;
-      right: 0;
-      z-index: 2;
-    }
-
-    & > td:last-child {
-      background-color: var(--color-bg);
-    }
-  }
-
-  table {
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-    text-indent: 0;
-    border: none;
-    overflow: unset;
+    border-radius: var(--border-radius-m);
 
-    tr {
-      border: none;
+    &.fixed table {
+      table-layout: fixed;
+    }
 
-      &:first-child td {
-        border-top: 0 !important;
-      }
+    &.outer-border {
+      border: 1px solid var(--color-border);
+    }
 
-      &:has(.vui-table-interactive-cell.selected) {
-        td {
-          // !important to override sticky columns
-          background-color: var(--color-bg-raised) !important;
-        }
-      }
-
-      &:last-child td {
-        border-bottom: 0;
+    &.nowrap table tr {
+      td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
-    th {
-      border-top: 0 !important;
-      vertical-align: middle;
+    &.separated-rows table {
+      th,
+      td {
+        border-bottom: 1px solid var(--color-border);
+      }
     }
 
-    th,
-    td {
+    &.separated-cells table {
+      th,
+      td {
+        border-right: 1px solid var(--color-border);
+
+        &:last-of-type {
+          border-right: none;
+        }
+      }
+    }
+
+    &.pin-first {
+      table tr {
+        & > th:first-child,
+        & > td:first-child {
+          position: sticky;
+          left: 0;
+          z-index: 2;
+        }
+
+        & > td:first-child {
+          background-color: var(--color-bg);
+        }
+      }
+
+      // If selection is active, the first column are checkboxes. So we pin 2nd
+      // column as well, which is the first column to contain content
+      &.selecting table tr {
+        & > th:nth-child(2),
+        & > td:nth-child(2) {
+          position: sticky;
+          left: calc(var(--vui-checkbox-cell-width) - 1px);
+          z-index: 2;
+        }
+
+        & > td:nth-child(2) {
+          background-color: var(--color-bg);
+        }
+      }
+    }
+
+    &.pin-last table tr {
+      & > th:last-child,
+      & > td:last-child {
+        position: sticky;
+        right: 0;
+        z-index: 2;
+      }
+
+      & > td:last-child {
+        background-color: var(--color-bg);
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-indent: 0;
       border: none;
-      border-left: none !important;
-      transition: background-color var(--transition-fast);
-      position: relative;
-      z-index: var(--z-default);
+      overflow: unset;
 
-      // Fixed width, only houses a checkbox component
-      &.vui-table-interactive-cell {
-        width: var(--vui-checkbox-cell-width);
-        min-width: var(--vui-checkbox-cell-width);
-        max-width: var(--vui-checkbox-cell-width);
-        height: auto;
-        padding-inline: var(--space-xxs);
-        // padding-block: 0;
-        padding-top: var(--space-xs);
+      tr {
+        border: none;
 
-        &:is(td) {
-          padding-top: calc(var(--space-xs) - 2px);
+        &:first-child td {
+          border-top: 0;
         }
 
-        // vertical-align: middle;
-
-        &.selected .vui-button.icon .vui-button-slot svg path,
-        &.selected .vui-button.icon .vui-button-slot .iconify {
-          color: var(--color-text) !important;
+        &:last-child td {
+          border-bottom: 0;
         }
+      }
 
-        .vui-button {
-          vertical-align: middle;
-          display: inline-flex;
+      th {
+        border-top: 0;
+        vertical-align: middle;
+      }
 
-          .vui-button-slot svg,
-          .vui-button-slot .iconify {
-            width: 24px !important;
-            height: 24px !important;
-            color: var(--color-text-light);
+      th,
+      td {
+        border: none;
+        border-left: none;
+        transition: background-color var(--transition-fast);
+        position: relative;
+        z-index: var(--z-default);
 
-            path {
+        // Fixed width, only houses a checkbox component
+        &.vui-table-interactive-cell {
+          width: var(--vui-checkbox-cell-width);
+          min-width: var(--vui-checkbox-cell-width);
+          max-width: var(--vui-checkbox-cell-width);
+          height: auto;
+          padding-inline: var(--space-xxs);
+          // padding-block: 0;
+          padding-top: var(--space-xs);
+
+          &:is(td) {
+            padding-top: calc(var(--space-xs) - 2px);
+          }
+
+          // vertical-align: middle;
+
+          &.selected .vui-button.icon .vui-button-slot svg path,
+          &.selected .vui-button.icon .vui-button-slot .iconify {
+            color: var(--color-text);
+          }
+
+          .vui-button {
+            vertical-align: middle;
+            display: inline-flex;
+
+            .vui-button-slot svg,
+            .vui-button-slot .iconify {
+              width: 24px;
+              height: 24px;
               color: var(--color-text-light);
+
+              path {
+                color: var(--color-text-light);
+              }
             }
           }
         }
+
+        .vui-cell-context {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: var(--z-active);
+          position: absolute;
+          inset: 0;
+          padding: var(--space-xs);
+          left: unset;
+        }
       }
 
-      .vui-cell-context {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: var(--z-active);
-        position: absolute;
-        inset: 0;
-        padding: var(--space-xs);
-        left: unset;
+      th {
+        .vui-table-th-content {
+          color: var(--color-text);
+          font-size: var(--font-size-xs);
+          text-transform: uppercase;
+          font-weight: var(--font-weight-semibold);
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: var(--space-xs);
+
+          .vui-table-sort-button:not(.active) svg path,
+          .vui-table-sort-button:not(.active) .iconify {
+            color: var(--color-text-light);
+          }
+        }
       }
     }
 
-    th {
-      .vui-table-th-content {
-        color: var(--color-text);
-        font-size: var(--font-size-xs);
-        text-transform: uppercase;
-        font-weight: var(--font-weight-semibold);
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: var(--space-xs);
+    .vui-table-pagination-wrap {
+      padding: var(--space-xs) var(--space-m);
+      border-top: 1px solid var(--color-border);
+      position: relative;
 
-        .vui-table-sort-button:not(.active) svg path,
-        .vui-table-sort-button:not(.active) .iconify {
-          color: var(--color-text-light);
-        }
+      .vui-pagination {
+        position: sticky;
+        left: 0;
       }
     }
   }
 
-  .vui-table-pagination-wrap {
-    padding: var(--space-xs) var(--space-m);
-    border-top: 1px solid var(--color-border);
-    position: relative;
-
-    .vui-pagination {
-      position: sticky;
-      left: 0;
+  @include mode.light {
+    .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
+      background-color: var(--color-bg-medium);
     }
   }
 }
 
-:root.light {
+// Selected rows win over the background of pinned columns
+@layer vui.modifiers {
   .vui-table-container table tr:has(.vui-table-interactive-cell.selected) td {
-    background-color: var(--color-bg-medium);
+    background-color: var(--color-bg-raised);
   }
 }

@@ -52,10 +52,14 @@ export interface FlexProps {
 
   /** Expand width to 100%. */
   expand?: boolean
+
+  /** Element to render, e.g. `ul`, `nav` or `section`. */
+  as?: string
 }
 
 const props = withDefaults(defineProps<FlexProps>(), {
   gap: undefined,
+  as: 'div',
 })
 
 // Flex gap
@@ -127,7 +131,8 @@ const aH = computed(() => props.expand
 </script>
 
 <template>
-  <div
+  <component
+    :is="props.as"
     class="vui-flex" :style="{
       '--vui-flex-display': aY,
       '--vui-flex-wrap': aW,
@@ -139,5 +144,5 @@ const aH = computed(() => props.expand
     }"
   >
     <slot />
-  </div>
+  </component>
 </template>

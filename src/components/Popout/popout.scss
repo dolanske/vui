@@ -1,20 +1,59 @@
-.vui-popout {
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-strong);
-  background-color: var(--color-bg-medium);
-  border-radius: var(--border-radius-m);
-  z-index: var(--layer-z, var(--z-popout));
-  position: fixed;
-  border: 1px solid var(--color-border);
-}
+@use '../../style/theme-mode' as mode;
 
-:root.light {
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
+
+@layer vui.components {
   .vui-popout {
-    background-color: var(--color-bg);
-    box-shadow: var(--box-shadow);
-  }
-}
+    --vui-popout-arrow-size: 10px;
 
-.popout-hover-anchor {
-  display: contents;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-strong);
+    background-color: var(--color-bg-medium);
+    border-radius: var(--border-radius-m);
+    z-index: var(--layer-z, var(--z-popout));
+    position: fixed;
+    border: 1px solid var(--color-border);
+
+    .vui-popout-arrow {
+      position: absolute;
+      width: var(--vui-popout-arrow-size);
+      height: var(--vui-popout-arrow-size);
+      background-color: inherit;
+      border: inherit;
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    // Only the two borders facing away from the popout stay visible
+    &[data-placement^='top'] .vui-popout-arrow {
+      border-top-color: transparent;
+      border-left-color: transparent;
+    }
+
+    &[data-placement^='bottom'] .vui-popout-arrow {
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+    }
+
+    &[data-placement^='left'] .vui-popout-arrow {
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+
+    &[data-placement^='right'] .vui-popout-arrow {
+      border-top-color: transparent;
+      border-right-color: transparent;
+    }
+  }
+
+  @include mode.light {
+    .vui-popout {
+      background-color: var(--color-bg);
+      box-shadow: var(--box-shadow);
+    }
+  }
+
+  .popout-hover-anchor {
+    display: contents;
+  }
 }

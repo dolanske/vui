@@ -17,8 +17,8 @@ const count = ref(0)
     v-model="count"
     hint="Choose a number between 0 and 10"
     label="Counter"
-    :increment-enabled="count < 10"
-    :decrement-enabled="count > 0"
+    :min="0"
+    :max="10"
   />
 </template>
 ```
@@ -27,7 +27,7 @@ const count = ref(0)
 
 ### Props
 
-The Counter component accepts all props from the base [Input](/docs/components/input) component, with the following additions:
+The Counter component accepts all props from the base [Input](/docs/components/input) component, except `type`, with the following additions:
 
 | Name                | Default | Type                                                                              |
 | ------------------- | ------- | --------------------------------------------------------------------------------- |
@@ -37,3 +37,11 @@ The Counter component accepts all props from the base [Input](/docs/components/i
 | `decrement-by`      | `1`     | `number` <br> Amount to decrement the value by when clicking the decrement button |
 | `decrement-enabled` | `true`  | `boolean` <br> Whether the decrement button is enabled                            |
 | `hide-decrement`    | `false` | `boolean` <br> Whether to hide the decrement button                               |
+
+The buttons are disabled automatically at `min` / `max` and while the input is `disabled` or `readonly`.
+
+### Models
+
+| Name         | Type             | Description                          |
+| ------------ | ---------------- | ------------------------------------ |
+| `modelValue` | `number \| null` | The current value, `null` when empty |

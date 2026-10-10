@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Badge, Button, CopyClipboard, Tab, Tabs } from '@dolanske/vui'
 import { useColorMode } from '@vueuse/core'
 import TokenItem from '~/components/docs/TokenItem.vue'
 import { darkShadowTokens, lightShadowTokens } from '~/utils/constants'

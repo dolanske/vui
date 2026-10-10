@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Card, Flex, Grid, Input, searchString } from '@dolanske/vui'
+import { Badge, Button, Card, Flex, Grid, Input, searchString } from '@dolanske/vui'
 import NoResults from '~/components/list/NoResults.vue'
 
 const search = ref('')

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Sizes } from '../../lib/types'
+import { IconX } from '@iconify-prerendered/vue-ph'
 import { computed } from 'vue'
 import { Size } from '../../lib/types'
 import './badge.scss'
@@ -10,6 +11,14 @@ interface Props {
   filled?: boolean
   size?: Sizes
   circle?: boolean
+  /**
+   * Shows a remove button which emits `remove`, e.g. for filter chips
+   */
+  removable?: boolean
+  /**
+   * Accessible label of the remove button
+   */
+  removeLabel?: string
 }
 
 const {
@@ -18,7 +27,13 @@ const {
   filled,
   size = 'm',
   circle,
+  removable = false,
+  removeLabel = 'Remove',
 } = defineProps<Props>()
+
+const emit = defineEmits<{
+  remove: []
+}>()
 
 const s = computed(() => {
   switch (size) {
@@ -53,7 +68,7 @@ const pi = computed(() => {
 </script>
 
 <template>
-  <div
+  <span
     class="vui-badge"
     :class="[{ outline, filled, circle }, `vui-badge-variant-${variant}`, `vui-badge-size-${size}`]"
     :style="{
@@ -63,5 +78,14 @@ const pi = computed(() => {
     }"
   >
     <slot />
-  </div>
+    <button
+      v-if="removable"
+      type="button"
+      class="vui-badge-remove"
+      :aria-label="removeLabel"
+      @click="emit('remove')"
+    >
+      <IconX aria-hidden="true" />
+    </button>
+  </span>
 </template>

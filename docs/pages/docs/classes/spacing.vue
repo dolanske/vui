@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Badge, Button, Dropdown, DropdownItem } from '@dolanske/vui'
 import TokenItem from '~/components/docs/TokenItem.vue'
 import { autoMarginClasses, marginClasses, paddingClasses, spaceClasses } from '~/utils/constants'
 

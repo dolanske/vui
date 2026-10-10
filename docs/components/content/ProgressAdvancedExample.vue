@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Progress } from '@dolanske/vui'
+import { Button, Flex, Progress } from '@dolanske/vui'
 import { ref } from 'vue'
 
 const progress = ref(0)
@@ -18,7 +18,7 @@ function increment() {
         <div class="w-100">
           <Flex class="mt-s" gap="s">
             <Button variant="fill" @click="increment">
-              Add 16%
+              Add 25%
             </Button>
             <Button variant="fill" @click="progress = 0">
               Reset

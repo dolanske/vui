@@ -1,151 +1,196 @@
 @use 'sass:meta';
 // Core of the UI library, it should only contain styles which are relevant to
 // the library and each component should import it
-
-// To overwrite any of these styles, simply create a style file and import it
-// after this one
 @use './reset.scss';
 @use './theme.scss';
 
-:root {
-  color-scheme: dark;
+// Every stylesheet of the library lives in one of these cascade layers.
+// Styles of the host app which are not in a layer always take precedence, so
+// overriding the library never requires extra specificity (issue #123).
+//
+// - vui.modifiers holds the few component rules which must win over every
+//   variant of a component (disabled states, `no-padding`, ...). It replaces
+//   `!important`, which would also win over the styles of the host app.
+// - Do not use `!important` in the library. Layered `!important` declarations
+//   beat unlayered ones, so host apps could no longer override them. The only
+//   exception is forced-colors.scss.
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  --container-xs: 360px;
-  --container-s: 498px;
-  --container-m: 856px;
-  --container-l: 1140px;
-  --container-xl: 1540px;
-  --container-xxl: 1920px;
-
-  --border-radius-xs: 3px;
-  --border-radius-s: 5px;
-  --border-radius-m: 8px;
-  --border-radius-l: 12px;
-  // Try to guess the biggest rounded element that we might show in the UI
-  --border-radius-pill: 164px;
-
-  --font-size-xxs: 1.1rem;
-  --font-size-xs: 1.175rem;
-  --font-size-s: 1.3rem;
-  --font-size-m: 1.5rem;
-  --font-size-l: 1.8rem;
-  --font-size-xl: 2rem;
-  --font-size-xxl: 2.6rem;
-  --font-size-xxxl: 3.4rem;
-  --font-size-xxxxl: 4.8rem;
-
-  // Internal value to make m-0 and p-0 work
-  --space-0: 0;
-  --space-xxxs: 2px;
-  --space-xxs: 4px;
-  --space-xs: 8px;
-  --space-s: 12px;
-  --space-m: 18px;
-  --space-l: 24px;
-  --space-xl: 34px;
-  --space-xxl: 48px;
-  --space-xxxl: 64px;
-
-  --transition-fast: 0.05s ease-in-out;
-  --transition: 0.11s cubic-bezier(0.65, 0, 0.35, 1);
-  --transition-slow: 0.25s cubic-bezier(0.65, 0, 0.35, 1);
-
-  --font: 'Inter', sans-serif;
-  --font-mono: 'Geist Mono', 'Courier New', 'Courier', monospace;
-
-  --font-weight-light: 300;
-  --font-weight: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  --font-weight-black: 900;
-
-  --line-height-tight: 1.05em;
-  --line-height-title: 1.25em;
-  --line-height-base: 1.4em;
-  --line-height-loose: 1.65em;
-
-  --z-behind: -1;
-  --z-default: 1;
-  --z-active: 50;
-  --z-mask: 75;
-  --z-sticky: 100;
-  --z-nav: 200;
-  --z-overlay: 300;
-  --z-popout: 400;
-  --z-toast: 9000;
-  --z-modal: 600;
-
-  --outline: 2px solid var(--color-text-lighter);
-
-  --interactive-el-height-s: 26px;
-  --interactive-el-height: 32px;
-  --interactive-el-height-l: 42px;
-}
-
-// Disable motion for users who have requested it
-@media (prefers-reduced-motion: reduce) {
+@layer vui.base {
   :root {
-    --transition-fast: 0s linear;
-    --transition: 0s linear;
-    --transition-slow: 0s linear;
+    color-scheme: dark;
+
+    --container-xs: 360px;
+    --container-s: 498px;
+    --container-m: 856px;
+    --container-l: 1140px;
+    --container-xl: 1540px;
+    --container-xxl: 1920px;
+
+    --border-radius-xs: 3px;
+    --border-radius-s: 5px;
+    --border-radius-m: 8px;
+    --border-radius-l: 12px;
+    // Try to guess the biggest rounded element that we might show in the UI
+    --border-radius-pill: 164px;
+
+    // Base unit of the font size scale. It equals 1rem of the old 63.5% root
+    // font size, without forcing that root font size onto the host app. Being
+    // rem based, it still follows the font size chosen in the browser settings.
+    --vui-font-unit: 0.635rem;
+
+    --font-size-xxs: calc(1.1 * var(--vui-font-unit));
+    --font-size-xs: calc(1.175 * var(--vui-font-unit));
+    --font-size-s: calc(1.3 * var(--vui-font-unit));
+    --font-size-m: calc(1.5 * var(--vui-font-unit));
+    --font-size-l: calc(1.8 * var(--vui-font-unit));
+    --font-size-xl: calc(2 * var(--vui-font-unit));
+    --font-size-xxl: calc(2.6 * var(--vui-font-unit));
+    --font-size-xxxl: calc(3.4 * var(--vui-font-unit));
+    --font-size-xxxxl: calc(4.8 * var(--vui-font-unit));
+
+    // Internal value to make m-0 and p-0 work
+    --space-0: 0;
+    --space-xxxs: 2px;
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-s: 12px;
+    --space-m: 18px;
+    --space-l: 24px;
+    --space-xl: 34px;
+    --space-xxl: 48px;
+    --space-xxxl: 64px;
+
+    --transition-fast: 0.05s ease-in-out;
+    --transition: 0.11s cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-slow: 0.25s cubic-bezier(0.65, 0, 0.35, 1);
+
+    --font: 'Inter', sans-serif;
+    --font-mono: 'Geist Mono', 'Courier New', 'Courier', monospace;
+
+    --font-weight-light: 300;
+    --font-weight: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+
+    --line-height-tight: 1.05em;
+    --line-height-title: 1.25em;
+    --line-height-base: 1.4em;
+    --line-height-loose: 1.65em;
+
+    --z-behind: -1;
+    --z-default: 1;
+    --z-active: 50;
+    --z-mask: 75;
+    --z-sticky: 100;
+    --z-nav: 200;
+    --z-overlay: 300;
+    --z-popout: 400;
+    --z-toast: 9000;
+    --z-modal: 600;
+
+    // Full text color keeps the focus ring above the 3:1 contrast WCAG 2.2
+    // requires for focus indicators, on every background
+    --outline: 2px solid var(--color-text);
+    --outline-offset: 2px;
+
+    --interactive-el-height-s: 26px;
+    --interactive-el-height: 32px;
+    --interactive-el-height-l: 42px;
   }
-}
 
-:root {
-  font-family: var(--font);
-  font-size: 63.5%;
-  line-height: var(--line-height-base);
-  position: relative;
-  background-color: var(--color-bg);
-
-  overflow-x: hidden;
-  width: 100%;
-  font-weight: var(--font-weight);
-
-  font-feature-settings: normal;
-  font-variation-settings: normal;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    outline: none;
-
-    scrollbar-width: thin;
-    scrollbar-color: gray transparent;
-
-    &:focus-visible {
-      outline: var(--outline);
+  // Disable motion for users who have requested it
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --transition-fast: 0s linear;
+      --transition: 0s linear;
+      --transition-slow: 0s linear;
     }
   }
+
+  // Opt-in: the root font size and horizontal overflow used to be set on every
+  // app importing the library. Add the `vui-root` class to <html> to keep them.
+  :root.vui-root {
+    font-size: 63.5%;
+    overflow-x: hidden;
+    // With the 63.5% root, 1rem already equals the font unit
+    --vui-font-unit: 1rem;
+  }
+
+  :root {
+    font-family: var(--font);
+    line-height: var(--line-height-base);
+    position: relative;
+    background-color: var(--color-bg);
+
+    width: 100%;
+    font-weight: var(--font-weight);
+
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+
+      scrollbar-width: thin;
+      scrollbar-color: gray transparent;
+
+      // Only keyboard focus shows the outline, mouse focus does not
+      &:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      &:focus-visible {
+        outline: var(--outline);
+        outline-offset: var(--outline-offset);
+      }
+    }
+  }
+
+  body {
+    color: var(--color-text);
+    min-height: 100dvh;
+  }
+
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  // Set base icon color
+  .iconify {
+    color: var(--color-text-light);
+  }
 }
 
-body {
-  color: var(--color-text);
-  min-height: 100dvh;
+@layer vui.base {
+  @include meta.load-css('typography.scss');
+  @include meta.load-css('animation.scss');
+  @include meta.load-css('elements.scss');
 }
 
-[role='button'] {
-  cursor: pointer;
+@layer vui.components {
+  @include meta.load-css('tooltip.scss');
 }
 
-// Set base icon color
-.iconify {
-  color: var(--color-text-light);
-}
+// Utils always win over component styles
+@layer vui.utilities {
+  @include meta.load-css('layout.scss');
+  @include meta.load-css('utils.scss');
+  @include meta.load-css('text.scss');
 
-@include meta.load-css('typography.scss');
-@include meta.load-css('layout.scss');
-@include meta.load-css('animation.scss');
-@include meta.load-css('tooltip.scss');
-@include meta.load-css('utils.scss');
-@include meta.load-css('text.scss');
-@include meta.load-css('elements.scss');
-@include meta.load-css('media-query.scss');
+  // Responsive overrides, including some for components
+  @include meta.load-css('media-query.scss');
+
+  // High contrast support has to win over every component style
+  @include meta.load-css('forced-colors.scss');
+}

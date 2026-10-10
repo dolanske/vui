@@ -1,9 +1,20 @@
 <script setup lang='ts'>
+import { computed, ref } from 'vue'
 import Checkbox from '../components/Checkbox/Checkbox.vue'
 import Grid from '../components/Grid/Grid.vue'
 import Radio from '../components/Radio/Radio.vue'
 import RadioGroup from '../components/Radio/RadioGroup.vue'
 import Switch from '../components/Switch/Switch.vue'
+
+const fruits = ['Apple', 'Banana', 'Cherry']
+const selectedFruits = ref<string[]>(['Banana'])
+const allFruits = computed(() => selectedFruits.value.length === fruits.length)
+const someFruits = computed(() => selectedFruits.value.length > 0 && !allFruits.value)
+const terms = ref(false)
+
+function toggleAllFruits() {
+  selectedFruits.value = allFruits.value ? [] : [...fruits]
+}
 </script>
 
 <template>
@@ -37,6 +48,52 @@ import Switch from '../components/Switch/Switch.vue'
               <th>Custom icons</th>
               <td>
                 <Checkbox icon-on="ph:check-fat" icon-off="ph:x-bold" label="Just click me" />
+              </td>
+            </tr>
+            <tr>
+              <th>Checked, disabled</th>
+              <td>
+                <Checkbox :model-value="true" disabled label="Locked on" />
+              </td>
+            </tr>
+            <tr>
+              <th>Select all <br> Indeterminate</th>
+              <td>
+                <Checkbox
+                  :model-value="allFruits"
+                  :indeterminate="someFruits"
+                  label="All fruits"
+                  @update:model-value="toggleAllFruits"
+                />
+                <div class="pl-l mt-xs">
+                  <Checkbox v-for="fruit in fruits" :key="fruit" v-model="selectedFruits" :value="fruit" :label="fruit" class="mb-xxs" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Array model</th>
+              <td>
+                <span>{{ selectedFruits.join(', ') || '-' }}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Hint, required, errors</th>
+              <td>
+                <Checkbox
+                  v-model="terms"
+                  required
+                  label="I accept the terms"
+                  hint="You can read them at any time"
+                  :errors="terms ? [] : ['You must accept the terms']"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Custom content</th>
+              <td>
+                <Checkbox v-model="terms">
+                  I agree to the <a href="#">privacy policy</a>
+                </Checkbox>
               </td>
             </tr>
           </tbody>

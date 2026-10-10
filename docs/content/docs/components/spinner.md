@@ -1,6 +1,6 @@
 # Spinner
 
-The Spinner component is a loading indicator that shows an animated circular progress. It's commonly used to indicate that a process is ongoing or that content is being loaded.
+The Spinner component is a loading indicator that shows an animated circular progress. It's commonly used to indicate that a process is ongoing or that content is being loaded. It is announced to screen readers as a `status` with its `label`.
 
 ::spinner-example{sourcePath="Spinner/Spinner.vue"}
 
@@ -22,9 +22,10 @@ import { Flex, Spinner } from '@dolanske/vui'
 
 ## Props
 
-| Name   | Default | Type                                     |
-| ------ | ------- | ---------------------------------------- |
-| `size` | `s`     | `s` `m` `l` <br> The size of the spinner |
+| Name    | Default   | Type                                           |
+| ------- | --------- | ---------------------------------------------- |
+| `size`  | `s`       | `s` `m` `l` <br> The size of the spinner       |
+| `label` | `Loading` | `string` <br> Text announced to screen readers |
 
 ### Tokens
 

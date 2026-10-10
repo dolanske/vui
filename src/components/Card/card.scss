@@ -1,95 +1,102 @@
-.vui-card {
-  --vui-card-header-align: initial;
-  --vui-card-border-style: initial;
-  --vui-card-border-color: inherit;
-  --vui-card-background-color: inherit;
-  --vui-card-padding-block: inherit;
-  --vui-card-padding-inline: inherit;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  display: block;
-  width: 100%;
-  background-color: var(--vui-card-background-color, var(--color-bg));
-  border-radius: var(--border-radius-m);
-  border-width: 1px;
-  border-style: var(--vui-card-border-style, 'solid');
-  border-color: var(--vui-card-border-color, var(--color-border));
+@layer vui.components {
+  .vui-card {
+    --vui-card-header-align: initial;
+    --vui-card-border-style: initial;
+    --vui-card-border-color: inherit;
+    --vui-card-background-color: inherit;
+    --vui-card-padding-block: inherit;
+    --vui-card-padding-inline: inherit;
 
-  // & > .vui-divider {
-  // }
+    display: block;
+    width: 100%;
+    background-color: var(--vui-card-background-color, var(--color-bg));
+    border-radius: var(--border-radius-m);
+    border-width: 1px;
+    border-style: var(--vui-card-border-style, 'solid');
+    border-color: var(--vui-card-border-color, var(--color-border));
 
-  &.inline {
-    display: inline-block;
-    width: auto;
-  }
+    // & > .vui-divider {
+    // }
 
-  &.centered {
-    & > .vui-card-header,
-    & > .vui-card-content,
-    & > .vui-card-footer {
+    &.inline {
+      display: inline-block;
+      width: auto;
+    }
+
+    &.centered {
+      & > .vui-card-header,
+      & > .vui-card-content,
+      & > .vui-card-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+
+    &.header-separator {
+      & > .vui-card-content:not(:first-child) {
+        padding-top: var(--vui-card-padding-block, var(--space-m));
+      }
+    }
+
+    &.footer-separator {
+      & > .vui-card-content {
+        padding-bottom: var(--vui-card-padding-block, var(--space-m));
+      }
+    }
+
+    &:not(&.header-separator) {
+      & > .vui-card-header + .vui-card-content {
+        padding-top: 0;
+      }
+    }
+
+    &:not(&.footer-separator) {
+      & > .vui-card-content:has(+ .vui-card-footer) {
+        padding-bottom: 0;
+      }
+    }
+
+    & > .vui-card-header {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      align-items: var(--vui-card-header-align, center);
+      justify-content: space-between;
+      padding-block: var(--vui-card-padding-block, var(--space-s));
+      padding-inline: var(--vui-card-padding-inline, var(--space-m));
+      background-color: var(--vui-card-background-color, var(--color-bg));
+      border-top-left-radius: var(--border-radius-m);
+      border-top-right-radius: var(--border-radius-m);
+      position: relative;
+      gap: var(--space-s);
+    }
+
+    & > .vui-card-content {
+      padding-block: var(--vui-card-padding-block, var(--space-m));
+      padding-inline: var(--vui-card-padding-inline, var(--space-m));
+      position: relative;
+    }
+
+    & > .vui-card-footer {
+      position: relative;
+      padding-block: var(--vui-card-padding-block, var(--space-s));
+      padding-inline: var(--vui-card-padding-inline, var(--space-m));
+      background-color: var(--vui-card-background-color, var(--color-bg));
+      border-bottom-left-radius: var(--border-radius-m);
+      border-bottom-right-radius: var(--border-radius-m);
     }
   }
+}
 
-  &.no-padding {
+// Wins over the padding of every other card option
+@layer vui.modifiers {
+  .vui-card.no-padding {
     & > .vui-card-header,
     & > .vui-card-content,
     & > .vui-card-footer {
-      padding: 0 !important;
+      padding: 0;
     }
-  }
-
-  &.header-separator {
-    & > .vui-card-content:not(:first-child) {
-      padding-top: var(--vui-card-padding-block, var(--space-m));
-    }
-  }
-
-  &.footer-separator {
-    & > .vui-card-content {
-      padding-bottom: var(--vui-card-padding-block, var(--space-m));
-    }
-  }
-
-  &:not(&.header-separator) {
-    & > .vui-card-header + .vui-card-content {
-      padding-top: 0;
-    }
-  }
-
-  &:not(&.footer-separator) {
-    & > .vui-card-content:has(+ .vui-card-footer) {
-      padding-bottom: 0;
-    }
-  }
-
-  & > .vui-card-header {
-    display: flex;
-    align-items: var(--vui-card-header-align, center);
-    justify-content: space-between;
-    padding-block: var(--vui-card-padding-block, var(--space-s));
-    padding-inline: var(--vui-card-padding-inline, var(--space-m));
-    background-color: var(--vui-card-background-color, var(--color-bg));
-    border-top-left-radius: var(--border-radius-m);
-    border-top-right-radius: var(--border-radius-m);
-    position: relative;
-    gap: var(--space-s);
-  }
-
-  & > .vui-card-content {
-    padding-block: var(--vui-card-padding-block, var(--space-m));
-    padding-inline: var(--vui-card-padding-inline, var(--space-m));
-    position: relative;
-  }
-
-  & > .vui-card-footer {
-    position: relative;
-    padding-block: var(--vui-card-padding-block, var(--space-s));
-    padding-inline: var(--vui-card-padding-inline, var(--space-m));
-    background-color: var(--vui-card-background-color, var(--color-bg));
-    border-bottom-left-radius: var(--border-radius-m);
-    border-bottom-right-radius: var(--border-radius-m);
   }
 }

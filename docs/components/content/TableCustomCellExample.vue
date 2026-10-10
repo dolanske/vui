@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, defineTable, DropdownItem, Table } from '@dolanske/vui'
+import { Button, defineTable, Dropdown, DropdownItem, Table } from '@dolanske/vui'
 
 const data = [
   { id: 1, name: 'John', status: 'Active' },

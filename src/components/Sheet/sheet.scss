@@ -1,59 +1,81 @@
-.vui-sheet {
-  --vui-sheet-inline-offset: 24px;
-  --vui-sheet-max-height: 35dvh;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  display: flex;
-  flex-direction: column;
-  inline-size: calc(100% - var(--vui-sheet-inline-offset));
-  max-height: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  border-radius: 0;
-  border: none;
-  view-transition-name: none;
-  pointer-events: auto;
+@layer vui.components {
+  .vui-sheet {
+    --vui-sheet-inline-offset: 24px;
+    --vui-sheet-max-height: 35dvh;
 
-  & > .vui-card-content {
-    flex: 1 1 0%;
-    overflow-y: auto;
-  }
+    display: flex;
+    flex-direction: column;
+    inline-size: calc(100% - var(--vui-sheet-inline-offset));
+    max-height: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 0;
+    border: none;
+    view-transition-name: none;
+    pointer-events: auto;
 
-  &.vui-sheet-position-top {
-    top: 0;
-    border-bottom: 1px solid var(--color-border);
-    height: auto;
-    border-bottom-right-radius: var(--border-radius-l);
-    border-bottom-left-radius: var(--border-radius-l);
-  }
+    & > .vui-card-content {
+      flex: 1 1 0%;
+      overflow-y: auto;
+    }
 
-  &.vui-sheet-position-bottom {
-    bottom: 0;
-    border-top: 1px solid var(--color-border);
-    height: auto;
-    border-top-right-radius: var(--border-radius-l);
-    border-top-left-radius: var(--border-radius-l);
-  }
+    &.vui-sheet-position-top {
+      top: 0;
+      border-bottom: 1px solid var(--color-border);
+      height: auto;
+      border-bottom-right-radius: var(--border-radius-l);
+      border-bottom-left-radius: var(--border-radius-l);
+    }
 
-  &.vui-sheet-position-right {
-    right: 0;
-    top: 0;
-    border-left: 1px solid var(--color-border);
-    border-top-left-radius: var(--border-radius-l);
-    border-bottom-left-radius: var(--border-radius-l);
-  }
+    &.vui-sheet-position-bottom {
+      bottom: 0;
+      border-top: 1px solid var(--color-border);
+      height: auto;
+      border-top-right-radius: var(--border-radius-l);
+      border-top-left-radius: var(--border-radius-l);
+    }
 
-  &.vui-sheet-position-left {
-    left: 0;
-    top: 0;
-    border-right: 1px solid var(--color-border);
-    border-top-right-radius: var(--border-radius-l);
-    border-bottom-right-radius: var(--border-radius-l);
-  }
+    &.vui-sheet-position-right {
+      right: 0;
+      top: 0;
+      border-left: 1px solid var(--color-border);
+      border-top-left-radius: var(--border-radius-l);
+      border-bottom-left-radius: var(--border-radius-l);
+    }
 
-  &.vui-sheet-position-top,
-  &.vui-sheet-position-bottom {
-    max-height: var(--vui-sheet-max-height);
-    width: 100%;
+    &.vui-sheet-position-left {
+      left: 0;
+      top: 0;
+      border-right: 1px solid var(--color-border);
+      border-top-right-radius: var(--border-radius-l);
+      border-bottom-right-radius: var(--border-radius-l);
+    }
+
+    &.vui-sheet-position-top,
+    &.vui-sheet-position-bottom {
+      max-height: var(--vui-sheet-max-height);
+      width: 100%;
+    }
+
+    // Content stays clear of notches and the home indicator on the edges the
+    // sheet touches (issue #229)
+    &.vui-sheet-position-right {
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) 0;
+    }
+
+    &.vui-sheet-position-left {
+      padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
+
+    &.vui-sheet-position-top {
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) 0 env(safe-area-inset-left, 0px);
+    }
+
+    &.vui-sheet-position-bottom {
+      padding: 0 env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
   }
 }

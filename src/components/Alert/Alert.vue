@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { IconChatTeardrop, IconCheckCircle, IconInfo, IconNoteBlank, IconSparkle, IconWarning, IconWarningDiamond } from '@iconify-prerendered/vue-ph'
+import { IconChatTeardrop, IconCheckCircle, IconInfo, IconNoteBlank, IconSparkle, IconWarning, IconWarningDiamond, IconX } from '@iconify-prerendered/vue-ph'
+import { computed } from 'vue'
+import Button from '../Button/Button.vue'
 import './alert.scss'
 
 interface Props {
@@ -31,6 +33,20 @@ interface Props {
    * color-coding.
    */
   hideIcon?: boolean
+  /**
+   * Shows a close button which emits `dismiss`
+   */
+  dismissible?: boolean
+  /**
+   * Accessible label of the close button
+   */
+  dismissLabel?: string
+  /**
+   * How assistive technology announces the alert when it appears. Defaults to
+   * `alert` (interrupting) for warnings and errors and `status` (polite)
+   * otherwise. Use `none` for static content that is part of the page.
+   */
+  live?: 'alert' | 'status' | 'none'
 }
 
 const {
@@ -41,7 +57,19 @@ const {
   filledStrong,
   iconAlign = 'center',
   hideIcon = false,
+  dismissible = false,
+  dismissLabel = 'Dismiss',
+  live,
 } = defineProps<Props>()
+
+const emit = defineEmits<{
+  dismiss: []
+}>()
+
+const role = computed(() => {
+  const value = live ?? (variant === 'danger' || variant === 'warning' ? 'alert' : 'status')
+  return value === 'none' ? undefined : value
+})
 </script>
 
 <template>
@@ -49,9 +77,11 @@ const {
     class="vui-alert"
     :class="[{ filled, 'filled-strong': filledStrong }, `vui-alert-variant-${variant}`]"
     :style="{ alignItems: iconAlign }"
+    :role
   >
-    <slot name="icon">
-      <template v-if="!hideIcon">
+    <!-- Icons are decorative, the meaning is conveyed by the content -->
+    <span v-if="$slots.icon || !hideIcon" class="vui-alert-icon-wrap" aria-hidden="true">
+      <slot name="icon">
         <IconInfo v-if="variant === 'info'" class="vui-alert-icon" />
         <IconCheckCircle v-else-if="variant === 'success'" class="vui-alert-icon" />
         <IconWarning v-else-if="variant === 'warning'" class="vui-alert-icon" />
@@ -59,18 +89,30 @@ const {
         <IconSparkle v-else-if="variant === 'accent'" class="vui-alert-icon" />
         <IconNoteBlank v-else-if="variant === 'note'" class="vui-alert-icon" />
         <IconChatTeardrop v-else class="vui-alert-icon" />
-      </template>
-    </slot>
-    <div v-if="$slots.default && !title" class="vui-alert-content">
+      </slot>
+    </span>
+    <div v-if="$slots.default && !title && !description" class="vui-alert-content">
       <slot />
     </div>
+    <!-- Title, description and slot content can all be combined -->
     <div v-else class="vui-alert-default-content">
       <strong v-if="title">{{ title }}</strong>
       <p v-if="description">
         {{ description }}
       </p>
-      <slot v-else-if="$slots.default" />
+      <slot />
     </div>
     <slot name="end" />
+    <Button
+      v-if="dismissible"
+      class="vui-alert-dismiss"
+      plain
+      square
+      size="s"
+      :aria-label="dismissLabel"
+      @click="emit('dismiss')"
+    >
+      <IconX />
+    </Button>
   </div>
 </template>

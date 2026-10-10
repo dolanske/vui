@@ -38,10 +38,21 @@ const sortStateBind = computed(() => {
     }
   }
 })
+
+// Announces the current sort direction of the column
+const ariaSort = computed(() => {
+  if (!props.sort || !props.header)
+    return undefined
+  switch (props.header.sortKey) {
+    case 'asc': return 'ascending'
+    case 'desc': return 'descending'
+    default: return 'none'
+  }
+})
 </script>
 
 <template>
-  <th>
+  <th :aria-sort="ariaSort">
     <div v-if="props.header || $slots.default" class="vui-table-th-content">
       <slot>
         {{ props.header?.label }}
@@ -51,9 +62,10 @@ const sortStateBind = computed(() => {
           <Button
             class="vui-table-sort-button"
             size="s"
-            :plain="!!!props.header.sortKey"
+            :plain="!props.header.sortKey"
             square
             variant="gray"
+            :aria-label="`Sort by ${props.header.label}`"
             @click="props.header.sortToggle"
           >
             <component :is="sortStateBind?.icon" />

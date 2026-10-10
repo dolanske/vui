@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tooltip } from '@dolanske/vui'
+import { Badge, Button, CopyClipboard, Flex, Tooltip } from '@dolanske/vui'
 import TokenItem from '~/components/docs/TokenItem.vue'
 import { containerTokens, interactiveElementHeightTokens } from '~/utils/constants'
 import { getContainerPercent } from '~/utils/format'

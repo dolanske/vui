@@ -8,11 +8,11 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
       <Flex x-center y-center column gap="m">
         <Divider class="w-100" />
         <Divider class="w-100" :size="2" type="dashed" />
-        <Flex y-center x-between>
+        <Flex y-center x-between expand>
           <span>One</span>
-          <Divider class="w-100" vertical height="16px" />
+          <Divider class="" vertical height="16px" />
           <span>Two</span>
-          <Divider class="w-100" vertical height="24px" :size="4" />
+          <Divider class="" vertical height="24px" :size="4" />
           <span>Three</span>
         </Flex>
         <Divider class="w-100">
@@ -28,6 +28,6 @@ import { Avatar, Divider, Flex } from '@dolanske/vui'
 
 <style scoped>
 p {
-  margin: 0 !important;
+  margin: 0;
 }
 </style>

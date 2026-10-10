@@ -1,6 +1,8 @@
 # Resizable
 
-A layout container that splits content into resizable panels separated by draggable handles. Supports horizontal and vertical layouts, keyboard navigation, and optional persistence of panel sizes.
+A layout container that splits content into resizable panels separated by draggable handles. Supports horizontal and vertical layouts, mouse, touch and pen dragging, keyboard navigation, per panel limits, `v-model` sizes and optional persistence of panel sizes.
+
+Handles are focusable `role="separator"` elements announcing the size of the panel before them. With a handle focused, the arrow keys resize in steps of 5%, `Home` / `End` collapse or expand the panel as far as its limits allow. Double click a handle to split the space equally. While dragging, panel content (like iframes) can not swallow pointer events.
 
 ::resizable-example{sourcePath="Resizable/Resizable.vue"}
 
@@ -28,12 +30,20 @@ import { Flex, Resizable } from '@dolanske/vui'
 
 ### Props
 
-| Name          | Default | Type                                                                                      |
-| ------------- | ------- | ----------------------------------------------------------------------------------------- |
-| `vertical`    | —       | `boolean` <br> Stacks panels vertically with horizontal handles                           |
-| `storageKey`  | —       | `string` <br> When provided, panel sizes are persisted to `localStorage` under this key   |
-| `hideHandles` | —       | `boolean` <br> Hides the resize handles until a handle is hovered or focused              |
-| `minSize`     | —       | `number` <br> Minimum size, in pixels, each panel can be resized to along the active axis |
+| Name          | Default  | Type                                                                                                            |
+| ------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `vertical`    | —        | `boolean` <br> Stacks panels vertically with horizontal handles                                                 |
+| `storageKey`  | —        | `string` <br> When provided, panel sizes are persisted to `localStorage` under this key                         |
+| `hideHandles` | —        | `boolean` <br> Hides the resize handles until a handle is hovered or focused                                    |
+| `minSize`     | —        | `number` <br> Minimum size, in pixels, each panel can be resized to along the active axis                       |
+| `panels`      | —        | `{ minSize?: number, maxSize?: number }[]` <br> Per panel limits in pixels, in panel order. Overrides `minSize` |
+| `handleLabel` | `Resize` | `string` <br> Accessible label of the resize handles                                                            |
+
+### Models
+
+| Name    | Type       | Description                                                              |
+| ------- | ---------- | ------------------------------------------------------------------------ |
+| `sizes` | `number[]` | Panel sizes in percent (`v-model:sizes`). Updated when a resize finishes |
 
 ### Slots
 

@@ -9,15 +9,16 @@
 table {
   td,
   th {
-    border-radius: 0 !important;
-    background-color: var(--color-bg);
+    border-radius: 0;
   }
 }
 
-.vui-tabs .vui-tab-underline {
-  border-bottom-width: 1px;
-  bottom: -1px;
-  z-index: 2;
+// The Table component handles its own cell backgrounds
+table:not(.vui-table-container table) {
+  td,
+  th {
+    background-color: var(--color-bg);
+  }
 }
 
 .vui-dropdown-item.disabled {
@@ -36,21 +37,17 @@ pre {
   }
 }
 
-p {
-  color: var(--color-text-light);
-}
-
 // Inline code should be always in line
 td code {
   white-space: nowrap;
 
   &:only-child {
-    margin: 0 !important;
+    margin: 0;
   }
 }
 
 td:first-child code {
-  margin: 0 !important;
+  margin: 0;
 }
 
 article {
@@ -66,7 +63,7 @@ article {
     a {
       cursor: default;
       &:before {
-        display: none !important;
+        display: none;
       }
     }
   }
@@ -78,14 +75,14 @@ article {
 
 .typeset {
   h1 {
-    margin-top: 0 !important;
+    margin-top: 0;
   }
 
   h1,
   h2,
   h3 {
     & + :is(h4, h5, h6) {
-      margin-top: var(--space-m) !important;
+      margin-top: var(--space-m);
     }
   }
 
@@ -98,12 +95,12 @@ article {
 
     td,
     th {
-      border-right: none !important;
-      border-left: none !important;
+      border-right: none;
+      border-left: none;
     }
 
     th {
-      color: var(--color-text-lighter) !important;
+      color: var(--color-text-lighter);
       font-weight: var(--font-weight-semibold);
     }
 
@@ -152,7 +149,7 @@ article {
             width: 100%;
 
             &:nth-of-type(2) {
-              display: none !important;
+              display: none;
             }
           }
         }

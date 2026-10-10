@@ -1,6 +1,8 @@
 # Pagination
 
-The Pagination component provides a user interface for navigating through paginated content. It supports page numbers, previous/next buttons, and first/last page navigation.
+The Pagination component provides a user interface for navigating through paginated content. It supports page numbers, previous/next buttons, first/last page navigation and an optional ellipsis layout.
+
+It renders a `<nav>` landmark. Every button has an accessible label and the current page is marked with `aria-current="page"`.
 
 ::pagination-example{sourcePath="Pagination/Pagination.vue"}
 
@@ -32,30 +34,38 @@ function handlePageChange(page) {
 
 ### Props
 
-| Name         | Default  | Type                                                                             |
-| ------------ | -------- | -------------------------------------------------------------------------------- |
-| `pagination` | required | `Pagination` <br> The pagination state object containing page information        |
-| `numbers`    | `true`   | `boolean` <br> Whether to show page numbers                                      |
-| `prevNext`   | `true`   | `boolean` <br> Whether to show previous/next buttons                             |
-| `firstLast`  | `true`   | `boolean` <br> Whether to show first/last page buttons                           |
-| `variant`    | `'gray'` | `fill` `danger` `success` `link` `accent` `gray` <br> The variant of the buttons |
+| Name         | Default      | Type                                                                                                                    |
+| ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `pagination` | required     | `Pagination` <br> The pagination state object containing page information                                               |
+| `numbers`    | `true`       | `boolean` <br> Whether to show page numbers                                                                             |
+| `prevNext`   | `true`       | `boolean` <br> Whether to show previous/next buttons                                                                    |
+| `firstLast`  | `true`       | `boolean` <br> Whether to show first/last page buttons                                                                  |
+| `variant`    | `'gray'`     | `fill` `danger` `success` `warning` `info` `link` `accent` `note` `gray` <br> Variant of the button of the current page |
+| `ellipsis`   | `false`      | `boolean` <br> Always shows the first and last page, with `…` for skipped pages (`1 … 4 5 6 … 20`)                      |
+| `label`      | `Pagination` | `string` <br> Accessible name of the navigation landmark                                                                |
+
+Previous / next pages are available based on the data (`1` and `totalPages`), not on the window of visible page numbers.
 
 ### Slots
 
-| Name   | Accepts | Description                            |
-| ------ | ------- | -------------------------------------- |
-| `prev` | `any`   | Custom content for the previous button |
-| `next` | `any`   | Custom content for the next button     |
+Every slot replaces one of the default buttons and receives `disabled` (whether the action is unavailable) and `setPage` (performs the action).
+
+| Name    | Props                                        | Description                       |
+| ------- | -------------------------------------------- | --------------------------------- |
+| `start` | `{ disabled: boolean, setPage: () => void }` | Replaces the first page button    |
+| `prev`  | `{ disabled: boolean, setPage: () => void }` | Replaces the previous page button |
+| `next`  | `{ disabled: boolean, setPage: () => void }` | Replaces the next page button     |
+| `end`   | `{ disabled: boolean, setPage: () => void }` | Replaces the last page button     |
 
 ### Events
 
-| Event    | Type                     | Description                      |
-| -------- | ------------------------ | -------------------------------- |
-| `change` | `(page: number) => void` | Emitted when the page is changed |
+| Event    | Type                     | Description                                                   |
+| -------- | ------------------------ | ------------------------------------------------------------- |
+| `change` | `(page: number) => void` | Emitted with the new page. Never emitted for the current page |
 
 ### Paginate
 
-The library exports a `paginate` composable which allows users to define their own pagination context without having to use the provided component.
+The library exports a `paginate` function which allows you to calculate pagination state without the provided component. See the [paginate](/docs/library/paginate) page for details.
 
 ```ts
 const ctx = paginate(
@@ -66,25 +76,9 @@ const ctx = paginate(
 )
 ```
 
-The function returns a `Pagination` interface with the following properties:
-
-```ts
-export interface Pagination {
-  totalItems: number
-  currentPage: number
-  perPage: number
-  totalPages: number
-  startPage: number
-  endPage: number
-  startIndex: number
-  endIndex: number
-  pages: number[]
-}
-```
-
 If you use this inside Vue's `computed`, you will have an auto-updating pagination object that you can use in your template to manually control active pages and displayed data.
 
-Here's an example of a custom pagination without using any VUI components.
+Here's an example of a custom pagination without using any VUI components. Note that `endIndex` is inclusive.
 
 ```vue
 <script setup>
@@ -109,10 +103,10 @@ const pagination = computed(() =>
   paginate(items.value.length, currentPage.value, perPage, 3)
 )
 
-// Get current page items
+// Get current page items, endIndex is inclusive
 const currentItems = computed(() => {
   const { startIndex, endIndex } = pagination.value
-  return items.value.slice(startIndex, endIndex)
+  return items.value.slice(startIndex, endIndex + 1)
 })
 
 function goToNext() {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Alert, Card, Flex, viewport } from '@dolanske/vui'
+import { Alert, Badge, Button, Card, Flex, Grid, viewport } from '@dolanske/vui'
 
 const projects = [
   {

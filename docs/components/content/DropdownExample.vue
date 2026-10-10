@@ -28,13 +28,13 @@ import { Button, Dropdown, DropdownItem, DropdownTitle, Flex } from '@dolanske/v
           </DropdownItem>
           <DropdownItem>
             Update
-            <template #icon-end>
+            <template #iconEnd>
               <Icon name="ph:arrow-up-right" />
             </template>
           </DropdownItem>
           <DropdownItem disabled>
             Delete
-            <template #icon-end>
+            <template #iconEnd>
               <Icon name="ph:trash" />
             </template>
           </DropdownItem>

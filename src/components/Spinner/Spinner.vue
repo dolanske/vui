@@ -6,10 +6,15 @@ import './spinner.scss'
 
 interface Props {
   size?: Sizes
+  /**
+   * Text announced to screen readers
+   */
+  label?: string
 }
 
 const {
   size = 's',
+  label = 'Loading',
 } = defineProps<Props>()
 
 const w = computed(() => {
@@ -33,7 +38,7 @@ const bW = computed(() => {
 
 <template>
   <div
-    :class="{ size }" class="vui-spinner" :style="{
+    :class="`vui-spinner-size-${size}`" class="vui-spinner" role="status" :aria-label="label" :style="{
       width: w,
       height: w,
       borderWidth: bW,

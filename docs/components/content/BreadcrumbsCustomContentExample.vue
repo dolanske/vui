@@ -41,7 +41,7 @@ import { BreadcrumbItem, Breadcrumbs, Flex } from '@dolanske/vui'
   margin: 0;
 
   li {
-    margin: 0 !important;
+    margin: 0;
     padding: 0;
     &:before {
       display: none;

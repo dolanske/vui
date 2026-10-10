@@ -1,6 +1,6 @@
 # Button Group
 
-A wrapper component that groups multiple buttons together, joining their borders for a cohesive, unified appearance. Commonly used for toolbars, split buttons, or any set of related actions.
+A wrapper component that groups multiple buttons together, joining their borders for a cohesive, unified appearance. Commonly used for toolbars, split buttons, or any set of related actions. The wrapper has `role="group"`, pass an `aria-label` to name the group.
 
 ::button-group-example{sourcePath="Button/ButtonGroup.vue"}
 
@@ -10,8 +10,8 @@ import { Button, ButtonGroup } from '@dolanske/vui'
 </script>
 
 <template>
-  <ButtonGroup>
-    <Button outline :gap="2">
+  <ButtonGroup :gap="2">
+    <Button outline>
       Hello
     </Button>
     <Button outline>
@@ -20,16 +20,13 @@ import { Button, ButtonGroup } from '@dolanske/vui'
   </ButtonGroup>
 
   <ButtonGroup>
-    <Button square active>
-      <IconTextBBold />
-    </Button>
-    <Button square>
+    <Button square aria-label="Bold">
       <IconTextBold />
     </Button>
-    <Button square>
+    <Button square aria-label="Italic">
       <IconTextItalic />
     </Button>
-    <Button square>
+    <Button square aria-label="Underline">
       <IconTextAUnderline />
     </Button>
   </ButtonGroup>
@@ -40,10 +37,10 @@ import { Button, ButtonGroup } from '@dolanske/vui'
 
 ### Props
 
-| Name       | Default | Type                                                                                                                                      |
-| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `vertical` | `false` | `boolean` <br> Stacks the buttons vertically instead of horizontally                                                                      |
-| `gap`      | `0`     | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between buttons in the group. When `0`, borders are merged for a seamless look |
+| Name       | Default | Type                                                                                                                                             |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `vertical` | `false` | `boolean` <br> Stacks the buttons vertically instead of horizontally                                                                             |
+| `gap`      | `0`     | `xxxs` `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between buttons in the group. When `0`, borders are merged for a seamless look |
 
 ### Slots
 

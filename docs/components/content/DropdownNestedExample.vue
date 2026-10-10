@@ -23,7 +23,7 @@ import { Button, Divider, Dropdown, DropdownItem, DropdownTitle, Flex, PopoutHov
             </template>
           </DropdownItem>
 
-          <PopoutHover placement="right-start">
+          <PopoutHover placement="right-start" role="menu">
             <template #trigger>
               <DropdownItem>
                 <template #icon>
@@ -41,7 +41,7 @@ import { Button, Divider, Dropdown, DropdownItem, DropdownTitle, Flex, PopoutHov
               <DropdownItem>settings.vue</DropdownItem>
               <DropdownItem>index.vue</DropdownItem>
               <Divider />
-              <PopoutHover placement="right-start">
+              <PopoutHover placement="right-start" role="menu">
                 <template #trigger>
                   <DropdownItem>
                     More files

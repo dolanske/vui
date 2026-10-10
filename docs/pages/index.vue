@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Avatar, AvatarGroup, Badge, Card, Checkbox, Divider, Dropdown, DropdownItem, Indicator, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
+import { Avatar, AvatarGroup, Badge, BadgeGroup, Button, ButtonGroup, Card, Checkbox, Divider, Dropdown, DropdownItem, Flex, Indicator, Input, Marquee, PopoutHover, pushToast, setColorTheme, Slider, Switch, Textarea, theme, Tooltip } from '@dolanske/vui'
 import { nextTick, onMounted } from 'vue'
 
 const avatars = [
@@ -194,7 +194,7 @@ const hoveredBadge = ref<string | null>(null)
 
         <Card border-style="dashed" centered class="example-fade floater-about">
           <strong class="mb-s">About VUI</strong>
-          <p class="text-center mb-m">
+          <p class="text-center text-m mb-m">
             Originally, I built this library just as a starter template for my personal projects, but it's now so much more!
           </p>
 
@@ -279,8 +279,8 @@ const hoveredBadge = ref<string | null>(null)
 .floater-components {
   position: absolute;
   top: -154px;
-  left: -176px !important;
-  width: fit-content !important;
+  left: -176px;
+  width: fit-content;
 }
 
 .floater-docs {
@@ -327,7 +327,7 @@ const hoveredBadge = ref<string | null>(null)
   position: absolute;
   left: 183px;
   bottom: -80px;
-  width: auto !important;
+  width: auto;
 }
 
 .floater-form {

@@ -15,8 +15,8 @@ const {
   // @ts-expect-error I can't get ESLint to STOP moving DEFAULT_RADIUS below
   // this props declaration wtf
   radius = DEFAULT_RADIUS,
-  width = '100%',
-  height = '32px',
+  width,
+  height,
   circle,
 } = defineProps<Props>()
 
@@ -28,13 +28,17 @@ const bR = computed(() => formatUnitValue(circle && radius === DEFAULT_RADIUS ? 
 // When using `circle` prop, we want to use the same
 // value for both height and width, but we can't
 // know which one will be defined
-const w = computed(() => formatUnitValue(circle ? (width || height) : width))
-const h = computed(() => formatUnitValue(circle ? (width || height) : height))
+// A circle uses whichever dimension was provided for both
+const circleSize = computed(() => width ?? height ?? '32px')
+const w = computed(() => formatUnitValue(circle ? circleSize.value : (width ?? '100%')))
+const h = computed(() => formatUnitValue(circle ? circleSize.value : (height ?? '32px')))
 </script>
 
 <template>
   <div
-    class="vui-skeleton" :style="{
+    class="vui-skeleton"
+    aria-hidden="true"
+    :style="{
       borderRadius: bR,
       width: w,
       height: h,

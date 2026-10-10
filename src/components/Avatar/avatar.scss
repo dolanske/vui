@@ -1,76 +1,80 @@
-.vui-avatar {
-  --vui-avatar-size: var(--interactive-el-height);
-  --vui-avatar-font-size: var(--font-size-s);
-  --vui-avatar-border-radius: 100%;
-  --vui-avatar-background-color: initial;
-  --vui-avatar-color: initial;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-  &.vui-avatar-size-s {
-    --vui-avatar-size: 28px;
-    --vui-avatar-font-size: var(--font-size-xs);
-  }
-
-  &.vui-avatar-size-m {
+@layer vui.components {
+  .vui-avatar {
     --vui-avatar-size: var(--interactive-el-height);
     --vui-avatar-font-size: var(--font-size-s);
-  }
+    --vui-avatar-border-radius: 100%;
+    --vui-avatar-background-color: initial;
+    --vui-avatar-color: initial;
 
-  &.vui-avatar-size-l {
-    --vui-avatar-size: 48px;
-    --vui-avatar-font-size: var(--font-size-m);
-  }
+    &.vui-avatar-size-s {
+      --vui-avatar-size: 28px;
+      --vui-avatar-font-size: var(--font-size-xs);
+    }
 
-  width: var(--vui-avatar-size, var(--interactive-el-height));
-  height: var(--vui-avatar-size, var(--interactive-el-height));
-  border-radius: var(--vui-avatar-border-radius, 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-color: var(--vui-avatar-background-color, var(--color-bg-raised));
-  font-weight: var(--font-weight-medium);
-  flex-shrink: 0;
-  font-size: var(--vui-avatar-font-size, var(--font-size-s)) !important;
-  color: var(--vui-avatar-color, var(--color-text-light));
+    &.vui-avatar-size-m {
+      --vui-avatar-size: var(--interactive-el-height);
+      --vui-avatar-font-size: var(--font-size-s);
+    }
 
-  svg,
-  .iconify {
-    color: var(--vui-avatar-color, var(--color-text-light));
-    font-size: inherit;
-  }
+    &.vui-avatar-size-l {
+      --vui-avatar-size: 48px;
+      --vui-avatar-font-size: var(--font-size-m);
+    }
 
-  & > * {
-    font-size: inherit;
-    line-height: 1;
-    color: inherit;
-  }
-
-  img {
-    position: relative;
-    z-index: 1;
-    display: block;
-    height: 100%;
-    width: 100%;
-    object-position: center;
-    object-fit: cover;
+    width: var(--vui-avatar-size, var(--interactive-el-height));
+    height: var(--vui-avatar-size, var(--interactive-el-height));
     border-radius: var(--vui-avatar-border-radius, 100%);
-  }
-
-  strong {
-    position: relative;
-    z-index: 1;
-  }
-
-  .vui-avatar-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+    position: relative;
+    background-color: var(--vui-avatar-background-color, var(--color-bg-raised));
+    font-weight: var(--font-weight-medium);
+    flex-shrink: 0;
+    font-size: var(--vui-avatar-font-size, var(--font-size-s));
+    color: var(--vui-avatar-color, var(--color-text-light));
 
-  img[src=''] {
-    display: none;
+    svg,
+    .iconify {
+      color: var(--vui-avatar-color, var(--color-text-light));
+      font-size: inherit;
+    }
+
+    & > * {
+      font-size: inherit;
+      line-height: 1;
+      color: inherit;
+    }
+
+    img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-position: center;
+      object-fit: cover;
+      border-radius: var(--vui-avatar-border-radius, 100%);
+    }
+
+    strong {
+      position: relative;
+      z-index: 1;
+    }
+
+    .vui-avatar-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img[src=''] {
+      display: none;
+    }
   }
 }

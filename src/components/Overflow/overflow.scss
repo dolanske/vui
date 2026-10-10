@@ -1,137 +1,162 @@
-.vui-overflow {
-  --vui-overflow-gutter-size: 8px;
-  --vui-overflow-shadow-size: 32px;
-  --vui-overflow-shadow-color: var(--color-bg);
+@use '../../style/theme-mode' as mode;
 
-  &.hide-scrollbar {
-    --vui-overflow-gutter-size: 0px;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
+
+@layer vui.components {
+  .vui-overflow {
+    --vui-overflow-gutter-size: 8px;
+    --vui-overflow-shadow-size: 32px;
+    --vui-overflow-shadow-color: var(--color-bg);
+
+    &.hide-scrollbar {
+      --vui-overflow-gutter-size: 0px;
+
+      .overflow-content {
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+
+    &.hide-shadows .overflow-shadow {
+      display: none;
+    }
+
+    .overflow-track {
+      position: relative;
+    }
+
+    .overflow-shadow {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition);
+
+      &.visible {
+        opacity: 1;
+      }
+
+      &.overflow-shadow-left,
+      &.overflow-shadow-right {
+        top: 0;
+        width: var(--vui-overflow-shadow-size);
+        height: calc(100% - var(--vui-overflow-gutter-size));
+      }
+
+      &.overflow-shadow-top,
+      &.overflow-shadow-bottom {
+        left: 0;
+        right: 0;
+        height: var(--vui-overflow-shadow-size);
+      }
+
+      &.overflow-shadow-left {
+        left: 0;
+        background: linear-gradient(to right, var(--vui-overflow-shadow-color), transparent);
+      }
+
+      &.overflow-shadow-right {
+        right: 0;
+        background: linear-gradient(to left, var(--vui-overflow-shadow-color), transparent);
+      }
+
+      &.overflow-shadow-top {
+        top: 0;
+        background: linear-gradient(to bottom, var(--vui-overflow-shadow-color), transparent);
+      }
+
+      &.overflow-shadow-bottom {
+        bottom: 0;
+        background: linear-gradient(to top, var(--vui-overflow-shadow-color), transparent);
+      }
+    }
 
     .overflow-content {
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-  }
-
-  &.hide-shadows .overflow-shadow {
-    display: none !important;
-  }
-
-  .overflow-track {
-    position: relative;
-  }
-
-  .overflow-shadow {
-    position: absolute;
-    z-index: 5;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity var(--transition);
-
-    &.visible {
-      opacity: 1;
+      scrollbar-width: thin;
     }
 
-    &.overflow-shadow-left,
-    &.overflow-shadow-right {
-      top: 0;
-      width: var(--vui-overflow-shadow-size);
-      height: calc(100% - var(--vui-overflow-gutter-size));
+    &.is-horizontal {
+      // Prevent the carousel from growing beyond its flex/grid cell.
+      // Without this, flex items default to min-width: auto and never shrink,
+      // so overflow-x on the inner content never triggers.
+      min-width: 0;
     }
 
-    &.overflow-shadow-top,
-    &.overflow-shadow-bottom {
-      left: 0;
-      right: 0;
-      height: var(--vui-overflow-shadow-size);
-    }
-
-    &.overflow-shadow-left {
-      left: 0;
-      background: linear-gradient(to right, var(--vui-overflow-shadow-color), transparent);
-    }
-
-    &.overflow-shadow-right {
-      right: 0;
-      background: linear-gradient(to left, var(--vui-overflow-shadow-color), transparent);
-    }
-
-    &.overflow-shadow-top {
-      top: 0;
-      background: linear-gradient(to bottom, var(--vui-overflow-shadow-color), transparent);
-    }
-
-    &.overflow-shadow-bottom {
-      bottom: 0;
-      background: linear-gradient(to top, var(--vui-overflow-shadow-color), transparent);
-    }
-  }
-
-  .overflow-content {
-    scrollbar-width: thin;
-  }
-
-  &.is-horizontal {
-    // Prevent the carousel from growing beyond its flex/grid cell.
-    // Without this, flex items default to min-width: auto and never shrink,
-    // so overflow-x on the inner content never triggers.
-    min-width: 0;
-  }
-
-  &.is-horizontal .overflow-content {
-    max-width: 100%;
-    overflow-x: auto;
-    padding-bottom: var(--vui-overflow-gutter-size);
-    overscroll-behavior-x: contain;
-  }
-
-  &.is-horizontal .overflow-content > * {
-    min-width: max-content;
-  }
-
-  &.is-vertical .overflow-content {
-    overflow-y: auto;
-  }
-
-  &.is-horizontal.is-vertical .overflow-content {
-    overflow: auto;
-  }
-
-  &.is-snap {
     &.is-horizontal .overflow-content {
-      scroll-snap-type: x mandatory;
+      max-width: 100%;
+      overflow-x: auto;
+      padding-bottom: var(--vui-overflow-gutter-size);
+      overscroll-behavior-x: contain;
+    }
 
-      > * {
-        scroll-snap-align: start;
+    &.is-horizontal .overflow-content > * {
+      min-width: max-content;
+    }
+
+    // Height (or max-height) is usually set on the root element, but scrolling
+    // happens on the inner content. Pass the constraint down through the track
+    // so the content can actually overflow.
+    &.is-vertical {
+      display: flex;
+      flex-direction: column;
+
+      .overflow-track {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+
+      .overflow-content {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
       }
     }
 
-    &.is-vertical .overflow-content {
-      scroll-snap-type: y mandatory;
+    &.is-horizontal.is-vertical .overflow-content {
+      overflow: auto;
+    }
 
-      > * {
-        scroll-snap-align: start;
+    &.is-snap {
+      &.is-horizontal .overflow-content {
+        scroll-snap-type: x mandatory;
+
+        > * {
+          scroll-snap-align: start;
+        }
+      }
+
+      &.is-vertical .overflow-content {
+        scroll-snap-type: y mandatory;
+
+        > * {
+          scroll-snap-align: start;
+        }
       }
     }
   }
-}
 
-:root.light .vui-overflow {
-  .overflow-shadow-left {
-    background: linear-gradient(to right, var(--vui-overflow-shadow-color), transparent);
-  }
+  @include mode.light {
+    .vui-overflow {
+      .overflow-shadow-left {
+        background: linear-gradient(to right, var(--vui-overflow-shadow-color), transparent);
+      }
 
-  .overflow-shadow-right {
-    background: linear-gradient(to left, var(--vui-overflow-shadow-color), transparent);
-  }
+      .overflow-shadow-right {
+        background: linear-gradient(to left, var(--vui-overflow-shadow-color), transparent);
+      }
 
-  .overflow-shadow-top {
-    background: linear-gradient(to bottom, var(--vui-overflow-shadow-color), transparent);
-  }
+      .overflow-shadow-top {
+        background: linear-gradient(to bottom, var(--vui-overflow-shadow-color), transparent);
+      }
 
-  .overflow-shadow-bottom {
-    background: linear-gradient(to top, var(--vui-overflow-shadow-color), transparent);
+      .overflow-shadow-bottom {
+        background: linear-gradient(to top, var(--vui-overflow-shadow-color), transparent);
+      }
+    }
   }
 }

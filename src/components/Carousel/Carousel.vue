@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { Spaces } from '../../lib/types.ts'
-import { useEventListener, useScroll } from '@vueuse/core'
-import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { IconCaretLeft, IconCaretRight } from '@iconify-prerendered/vue-ph'
+import { useEventListener } from '@vueuse/core'
+import { computed, ref, useTemplateRef } from 'vue'
+import { useScrollEdges } from '../../lib/scroll.ts'
+import Button from '../Button/Button.vue'
 import Flex from '../Flex/Flex.vue'
 import '../Overflow/overflow.scss'
 import './carousel.scss'
@@ -12,6 +15,8 @@ const {
   hideShadows,
   snap,
   disableDrag,
+  controls = false,
+  label = 'Carousel',
 } = defineProps<Props>()
 
 /**
@@ -43,12 +48,20 @@ interface Props {
    * like buttons or links that would conflict with dragging.
    */
   disableDrag?: boolean
+  /**
+   * Renders previous / next buttons below the carousel
+   */
+  controls?: boolean
+  /**
+   * Accessible name of the carousel region
+   */
+  label?: string
 }
 
 const carouselRef = useTemplateRef<InstanceType<typeof Flex>>('carouselWrap')
 const carouselEl = computed(() => carouselRef.value?.$el as HTMLElement | undefined)
 
-const { x } = useScroll(carouselEl)
+const { canScrollLeft, canScrollRight, overflowsX } = useScrollEdges(carouselEl)
 
 // Drag-to-scroll state
 const isDragging = ref(false)
@@ -63,8 +76,8 @@ useEventListener(carouselEl, 'pointerdown', (e: PointerEvent) => {
   if (disableDrag)
     return
 
-  // Only handle left mouse button (or touch/pen)
-  if (e.button !== 0 && e.pointerType === 'mouse')
+  // Only the mouse drags, touch and pen already scroll natively
+  if (e.pointerType !== 'mouse' || e.button !== 0)
     return
 
   const el = carouselEl.value
@@ -75,7 +88,6 @@ useEventListener(carouselEl, 'pointerdown', (e: PointerEvent) => {
   hasDragged.value = false
   isDragging.value = true
   dragStartX.value = e.clientX
-  // Read scrollLeft directly - more reliable than the reactive x ref
   scrollStartX.value = el.scrollLeft
   // Note: do NOT call setPointerCapture here - that would swallow the click
   // event for plain taps. We capture only once a real drag is confirmed.
@@ -94,23 +106,24 @@ useEventListener(carouselEl, 'pointermove', (e: PointerEvent) => {
   // First frame past the threshold: capture the pointer so we keep receiving
   // events even when the cursor leaves the element, then start scrolling.
   if (!hasDragged.value) {
-    const el = carouselEl.value
-    el?.setPointerCapture(e.pointerId)
+    carouselEl.value?.setPointerCapture(e.pointerId)
   }
 
   hasDragged.value = true
-  // Write directly to scrollLeft for immediate, lag-free response
+  // Write directly to scrollLeft for immediate, lag-free response. Scroll
+  // snapping is suspended while dragging (see .is-dragging styles).
   const el = carouselEl.value
   if (el)
     el.scrollLeft = scrollStartX.value + delta
 })
 
-useEventListener(carouselEl, 'pointerup', () => {
+function endDrag() {
   isDragging.value = false
-})
+}
 
+useEventListener(carouselEl, 'pointerup', endDrag)
 useEventListener(carouselEl, 'pointercancel', () => {
-  isDragging.value = false
+  endDrag()
   hasDragged.value = false
 })
 
@@ -123,24 +136,48 @@ useEventListener(carouselEl, 'click', (e: MouseEvent) => {
   }
 }, { capture: true })
 
-// Wheel listener must be attached in onMounted so we can pass the resolved DOM
-// element directly - guaranteeing { passive: false } is respected, which is
-// required for e.preventDefault() to suppress vertical page scroll.
-onMounted(() => {
-  useEventListener(carouselEl.value, 'wheel', (e: WheelEvent) => {
-    // If already scrolling horizontally (shift+wheel or trackpad swipe), let it pass
-    if (e.deltaX !== 0)
-      return
+// Vertical wheel scrolling is turned into horizontal scrolling, but only while
+// the carousel can actually scroll that way. At either end (or without any
+// overflow) the page scrolls normally instead of being trapped.
+useEventListener(carouselEl, 'wheel', (e: WheelEvent) => {
+  const el = carouselEl.value
+  // Already scrolling horizontally (shift+wheel or trackpad swipe), let it pass
+  if (!el || e.deltaX !== 0 || e.deltaY === 0 || !overflowsX.value)
+    return
 
-    e.preventDefault()
-    carouselEl.value!.scrollLeft += e.deltaY
-  }, { passive: false })
-})
+  const canScroll = e.deltaY > 0 ? canScrollRight.value : canScrollLeft.value
+  if (!canScroll)
+    return
+
+  e.preventDefault()
+  el.scrollLeft += e.deltaY
+}, { passive: false })
+
+function scrollByPage(direction: 1 | -1) {
+  const el = carouselEl.value
+  if (!el)
+    return
+  el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' })
+}
+
+// The focused carousel can be scrolled with the arrow keys
+function onKeydown(event: KeyboardEvent) {
+  if (event.target !== carouselEl.value)
+    return
+
+  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+    event.preventDefault()
+    scrollByPage(event.key === 'ArrowRight' ? 1 : -1)
+  }
+}
 </script>
 
 <template>
   <div
     class="vui-overflow is-horizontal carousel"
+    role="region"
+    aria-roledescription="carousel"
+    :aria-label="label"
     :class="{
       'hide-scrollbar': hideScrollbar,
       'hide-shadows': hideShadows,
@@ -149,19 +186,26 @@ onMounted(() => {
     }"
   >
     <div class="overflow-track">
-      <div class="overflow-shadow overflow-shadow-left" :class="{ visible: x > 0 }" />
-      <div
-        class="overflow-shadow overflow-shadow-right"
-        :class="{ visible: carouselEl && x < carouselEl.scrollWidth - carouselEl.clientWidth }"
-      />
+      <div class="overflow-shadow overflow-shadow-left" :class="{ visible: canScrollLeft }" />
+      <div class="overflow-shadow overflow-shadow-right" :class="{ visible: canScrollRight }" />
       <Flex
         ref="carouselWrap"
         class="overflow-content"
-        :class="{ 'is-dragging': isDragging }"
+        :class="{ 'is-dragging': isDragging && hasDragged }"
         :gap
+        :tabindex="overflowsX ? 0 : undefined"
+        @keydown="onKeydown"
       >
         <slot />
       </Flex>
     </div>
+    <Flex v-if="controls" class="carousel-controls" x-end gap="xxs">
+      <Button size="s" square plain :disabled="!canScrollLeft" aria-label="Previous" @click="scrollByPage(-1)">
+        <IconCaretLeft />
+      </Button>
+      <Button size="s" square plain :disabled="!canScrollRight" aria-label="Next" @click="scrollByPage(1)">
+        <IconCaretRight />
+      </Button>
+    </Flex>
   </div>
 </template>

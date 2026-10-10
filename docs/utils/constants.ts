@@ -34,15 +34,15 @@ export const interactiveElementHeightTokens = [
 ]
 
 export const fontSizeTokens = [
-  { name: 'XXS size', token: '--font-size-xxs', size: '1.1rem' },
-  { name: 'XS size', token: '--font-size-xs', size: '1.175rem' },
-  { name: 'S size', token: '--font-size-s', size: '1.3rem' },
-  { name: 'M size', token: '--font-size-m', size: '1.5rem' },
-  { name: 'L size', token: '--font-size-l', size: '1.8rem' },
-  { name: 'XL size', token: '--font-size-xl', size: '2rem' },
-  { name: 'XXL size', token: '--font-size-xxl', size: '2.6rem' },
-  { name: 'XXXL size', token: '--font-size-xxxl', size: '3.4rem' },
-  { name: 'XXXXL size', token: '--font-size-xxxxl', size: '4.8rem' },
+  { name: 'XXS size', token: '--font-size-xxs', size: '1.1 × --vui-font-unit' },
+  { name: 'XS size', token: '--font-size-xs', size: '1.175 × --vui-font-unit' },
+  { name: 'S size', token: '--font-size-s', size: '1.3 × --vui-font-unit' },
+  { name: 'M size', token: '--font-size-m', size: '1.5 × --vui-font-unit' },
+  { name: 'L size', token: '--font-size-l', size: '1.8 × --vui-font-unit' },
+  { name: 'XL size', token: '--font-size-xl', size: '2 × --vui-font-unit' },
+  { name: 'XXL size', token: '--font-size-xxl', size: '2.6 × --vui-font-unit' },
+  { name: 'XXXL size', token: '--font-size-xxxl', size: '3.4 × --vui-font-unit' },
+  { name: 'XXXXL size', token: '--font-size-xxxxl', size: '4.8 × --vui-font-unit' },
 ]
 
 export const darkThemeTokens = [
@@ -137,7 +137,7 @@ export const componentList = [
   { name: 'Charts', path: '/docs/components/charts', keywords: ['histogram', 'bar', 'data', 'visualization'], description: 'Collection of chart components for visualizing data' },
   { name: 'Checkbox', path: '/docs/components/checkbox', keywords: ['check', 'select', 'form', 'boolean'], description: 'Binary input control for selecting multiple options' },
   { name: 'Color', path: '/docs/components/color', keywords: ['picker', 'hex', 'rgb', 'hue'], description: 'Color picker input for selecting colors' },
-  { name: 'Commands', path: '/docs/components/commands', keywords: ['search', 'palette', 'keyboard', 'shortcuts'], description: 'Searchable command palette with keyboard navigation and grouping', status: 'update' },
+  { name: 'Commands', path: '/docs/components/commands', keywords: ['search', 'palette', 'keyboard', 'shortcuts'], description: 'Searchable command palette with keyboard navigation and grouping' },
   { name: 'Context Menu', path: '/docs/components/context-menu', keywords: ['right-click', 'menu', 'context', 'popup'], description: 'Floating menu that appears on right-click at the cursor position' },
   { name: 'Copy Clipboard', path: '/docs/components/copy-clipboard', keywords: ['copy', 'paste', 'clipboard', 'text'], description: 'Button that copies text to clipboard with feedback' },
   { name: 'Counter', path: '/docs/components/counter', keywords: ['character', 'limit', 'count', 'input'], description: 'Input field with character count and limit functionality' },
@@ -145,7 +145,7 @@ export const componentList = [
   { name: 'Drawer', path: '/docs/components/drawer', keywords: ['panel', 'sidebar', 'overlay', 'slide'], description: 'Sliding panel that appears from screen edges' },
   { name: 'Dropdown', path: '/docs/components/dropdown', tags: ['item', 'title'], keywords: ['menu', 'options', 'list', 'popup'], description: 'Menu that appears when clicking a trigger element' },
   { name: 'Dropzone', path: '/docs/components/dropzone', keywords: ['upload', 'drag', 'drop', 'file'], description: 'Drag and drop area for file uploads' },
-  { name: 'Emoji Picker', path: '/docs/components/emoji-picker', keywords: ['emoji', 'picker', 'search', 'reaction', 'unicode'], description: 'Searchable emoji picker with grouped tabs and hover previews', status: 'new' },
+  { name: 'Emoji Picker', path: '/docs/components/emoji-picker', keywords: ['emoji', 'picker', 'search', 'reaction', 'unicode'], description: 'Searchable emoji picker with grouped tabs and hover previews' },
   { name: 'File', path: '/docs/components/file', keywords: ['upload', 'attachment', 'document', 'input'], description: 'File upload input with preview and management' },
   { name: 'Flex', path: '/docs/components/flex', keywords: ['flexbox', 'layout', 'row', 'column'], description: 'Flexbox-based layout component for one-dimensional layouts' },
   { name: 'Grid', path: '/docs/components/grid', keywords: ['columns', 'layout', 'rows', 'responsive'], description: 'Grid-based layout component for two-dimensional layouts' },
@@ -163,7 +163,8 @@ export const componentList = [
   { name: 'Popout Hover', path: '/docs/components/popout-hover', keywords: ['popup', 'hover', 'floating', 'interactive', 'tooltip'], description: 'Floating interactive popout triggered by hover or focus events' },
   { name: 'Progress', path: '/docs/components/progress', keywords: ['loading', 'bar', 'percentage', 'status'], description: 'Visual indicator for task completion or loading state' },
   { name: 'Radio', path: '/docs/components/radio', tags: ['group'], keywords: ['option', 'single', 'select', 'form'], description: 'Input control for selecting a single option' },
-  { name: 'Resizable', path: '/docs/components/resizable', keywords: ['split', 'panel', 'drag', 'layout'], description: 'Layout container that splits content into resizable panels', status: 'update' },
+  { name: 'Resizable View', path: '/docs/components/resizable-view', keywords: ['editor', 'panels', 'tabs', 'split', 'layout'], description: 'Editor-like layout of resizable panels with draggable tabs', status: 'wip' },
+  { name: 'Resizable', path: '/docs/components/resizable', keywords: ['split', 'panel', 'drag', 'layout'], description: 'Layout container that splits content into resizable panels' },
   { name: 'Select', path: '/docs/components/select', keywords: ['dropdown', 'options', 'choice', 'form'], description: 'Dropdown for selecting from a list of options' },
   { name: 'Sheet', path: '/docs/components/sheet', keywords: ['bottom', 'panel', 'mobile', 'overlay'], description: 'Bottom sheet that slides up from screen bottom' },
   { name: 'Sidebar', path: '/docs/components/sidebar', keywords: ['navigation', 'panel', 'menu', 'nav'], description: 'Vertical navigation panel typically on screen edges' },
@@ -171,9 +172,10 @@ export const componentList = [
   { name: 'Slider', path: '/docs/components/slider', keywords: ['range', 'input', 'drag', 'value', 'step'], description: 'Draggable input for selecting a numeric value or range' },
   { name: 'Spinner', path: '/docs/components/spinner', keywords: ['loading', 'busy', 'indicator', 'animated'], description: 'Animated loading indicator' },
   { name: 'Switch', path: '/docs/components/switch', keywords: ['toggle', 'on', 'off', 'boolean'], description: 'Toggle switch for binary options' },
-  { name: 'Table', path: '/docs/components/table', tags: ['cell', 'head', 'header', 'row', 'select'], keywords: ['data', 'rows', 'columns', 'grid'], description: 'Data display component with rows and columns', status: 'update' },
+  { name: 'Table', path: '/docs/components/table', tags: ['cell', 'head', 'header', 'row', 'select'], keywords: ['data', 'rows', 'columns', 'grid'], description: 'Data display component with rows and columns' },
   { name: 'Tabs', path: '/docs/components/tabs', tags: ['group'], keywords: ['navigation', 'sections', 'panel', 'tabbed'], description: 'Container for organizing content into tabbed sections' },
   { name: 'Textarea', path: '/docs/components/textarea', keywords: ['multiline', 'text', 'form', 'input'], description: 'Multi-line text input for longer content' },
+  { name: 'Theme Sample', path: '/docs/components/theme-sample', keywords: ['theme', 'tokens', 'colors', 'preview', 'palette'], description: 'Overview of every theme token and common components for theming', status: 'new' },
   { name: 'Toast', path: '/docs/components/toast', keywords: ['notification', 'message', 'alert', 'snackbar'], description: 'Temporary notification message that appears and disappears' },
   { name: 'Tooltip', path: '/docs/components/tooltip', keywords: ['hint', 'hover', 'info', 'popup'], description: 'Small popup that appears when hovering over an element' },
 ] as const
@@ -248,15 +250,15 @@ export const darkTextClasses = darkThemeTokens
   }))
 
 export const fontSizeClasses = [
-  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1.1rem' },
-  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.175rem' },
-  { name: 'S size', className: 'text-s', token: '--font-size-s', size: '1.3rem' },
-  { name: 'M size', className: 'text-m', token: '--font-size-m', size: '1.5rem' },
-  { name: 'L size', className: 'text-l', token: '--font-size-l', size: '1.8rem' },
-  { name: 'XL size', className: 'text-xl', token: '--font-size-xl', size: '2rem' },
-  { name: 'XXL size', className: 'text-xxl', token: '--font-size-xxl', size: '2.6rem' },
-  { name: 'XXXL size', className: 'text-xxxl', token: '--font-size-xxxl', size: '3.4rem' },
-  { name: 'XXXXL size', className: 'text-xxxxl', token: '--font-size-xxxxl', size: '4.8rem' },
+  { name: 'XXS size', className: 'text-xxs', token: '--font-size-xxs', size: '1.1 × --vui-font-unit' },
+  { name: 'XS size', className: 'text-xs', token: '--font-size-xs', size: '1.175 × --vui-font-unit' },
+  { name: 'S size', className: 'text-s', token: '--font-size-s', size: '1.3 × --vui-font-unit' },
+  { name: 'M size', className: 'text-m', token: '--font-size-m', size: '1.5 × --vui-font-unit' },
+  { name: 'L size', className: 'text-l', token: '--font-size-l', size: '1.8 × --vui-font-unit' },
+  { name: 'XL size', className: 'text-xl', token: '--font-size-xl', size: '2 × --vui-font-unit' },
+  { name: 'XXL size', className: 'text-xxl', token: '--font-size-xxl', size: '2.6 × --vui-font-unit' },
+  { name: 'XXXL size', className: 'text-xxxl', token: '--font-size-xxxl', size: '3.4 × --vui-font-unit' },
+  { name: 'XXXXL size', className: 'text-xxxxl', token: '--font-size-xxxxl', size: '4.8 × --vui-font-unit' },
 ]
 
 export const lineHeightClasses = [
@@ -430,6 +432,7 @@ export const libraryPages = [
   { label: 'searchString', path: '/docs/library/search-string', keywords: ['text', 'search', 'iteration'] },
   { label: 'viewport', path: '/docs/library/viewport', keywords: ['responsive', 'breakpoints', 'mobile', 'viewport'] },
   { label: 'paginate', path: '/docs/library/paginate', keywords: ['pagination', 'array', 'chunk', 'tables'] },
+  { label: 'theme', path: '/docs/library/theme', keywords: ['theme', 'dark', 'light', 'color mode', 'isDark'] },
 ]
 
 export const componentPages = [

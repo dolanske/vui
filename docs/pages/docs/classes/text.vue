@@ -38,6 +38,7 @@ const textAlignmentClasses = [
       v-for="item in fontSizeClasses"
       v-bind="{ ...item }"
       :key="item.token"
+      :indicator-style="{ fontSize: `var(${item.token})` }"
     />
 
     <h2 class="mb-xl">

@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import type { DrawerPortalProps, DrawerRootProps } from 'vaul-vue'
 import type { Sizes, VueClass } from '../../lib/types'
+import { useEventListener } from '@vueuse/core'
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerRootNested, DrawerTitle } from 'vaul-vue'
-import { computed, onMounted, onUnmounted, ref, useAttrs, useId, watch, watchEffect } from 'vue'
+import { computed, onMounted, onUnmounted, ref, useAttrs, watch, watchEffect } from 'vue'
 import { useLayer } from '../../lib/layerManager'
 import './drawer.scss'
 
 interface Props {
   /**
-   * Controls the visibility of the drawer
+   * Controls the visibility of the drawer. Supports `v-model:open`.
    */
   open?: boolean
   /**
-   * Title for accessibility.
+   * Accessible name of the drawer. It is visually hidden, use the `header`
+   * slot for a visible title.
    */
   title?: string
   /**
@@ -59,7 +61,7 @@ defineOptions({
 })
 
 const {
-  title,
+  title = 'Drawer',
   containerClass,
   containerSize = 'm',
   rootProps,
@@ -73,11 +75,16 @@ const {
 
 const emit = defineEmits<{
   'close': []
+  'update:open': [value: boolean]
   'update:activeSnapPoint': [value: number | string | null]
 }>()
 
 const attrs = useAttrs()
-const id = useId()
+
+function close() {
+  emit('update:open', false)
+  emit('close')
+}
 const hasSnapPoints = computed(() => !!(rootProps?.snapPoints?.length))
 
 // Track active snap point so the container max-height can match the currently
@@ -207,7 +214,26 @@ onMounted(() => {
   }
 })
 
-const { layerIndex, openLayer, closeLayer } = useLayer()
+// Vaul handles Escape itself. The no-op handler makes sure Escape is not also
+// passed on to a layer underneath the drawer, e.g. a modal.
+const { layerIndex, openLayer, closeLayer } = useLayer({ onEscape: () => {} })
+
+// On mobile, the on-screen keyboard does not shrink the layout viewport, so a
+// drawer anchored to the bottom would end up underneath it (issue #196). The
+// visual viewport tells us how much of the screen the keyboard covers.
+const keyboardInset = ref(0)
+
+function updateKeyboardInset() {
+  const vv = window.visualViewport
+  if (!vv)
+    return
+  keyboardInset.value = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop))
+}
+
+if (typeof window !== 'undefined' && window.visualViewport) {
+  useEventListener(window.visualViewport, 'resize', updateKeyboardInset)
+  useEventListener(window.visualViewport, 'scroll', updateKeyboardInset)
+}
 
 watchEffect(() => {
   if (open) {
@@ -224,18 +250,20 @@ watchEffect(() => {
     :is="nested ? DrawerRootNested : DrawerRoot"
     :open
     v-bind="mergedRootProps"
-    :aria-describedby="id"
-    @close="emit('close')"
-    @update:open="(state) => state === false && emit('close')"
+    @update:open="(state) => state === false && close()"
     @update:active-snap-point="handleSnapPointUpdate"
   >
     <DrawerPortal v-bind="portalProps">
-      <DrawerOverlay v-if="overlay" class="vui-drawer-overlay" />
+      <DrawerOverlay v-if="overlay" class="vui-drawer-overlay" :style="{ zIndex: layerIndex }" />
       <DrawerContent
         class="vui-drawer-content"
         :class="{ 'hide-handle': handle === false, 'has-snap-points': hasSnapPoints }"
         v-bind="attrs"
-        :style="{ zIndex: layerIndex }"
+        :style="{
+          zIndex: layerIndex,
+          ...(keyboardInset > 0 ? { bottom: `${keyboardInset}px` } : {}),
+        }"
+        :data-vui-layer="layerIndex"
         :aria-describedby="undefined"
       >
         <div
@@ -245,7 +273,7 @@ watchEffect(() => {
           :style="[{ 'max-height': containerMaxHeight }]"
           data-vaul-no-drag
         >
-          <DrawerTitle class="visually-hidden" :name="id">
+          <DrawerTitle class="visually-hidden">
             {{ title }}
           </DrawerTitle>
           <div v-if="$slots.header" class="vui-drawer-header">

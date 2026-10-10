@@ -3,8 +3,12 @@ import type { Sizes } from '../lib/types.ts'
 import { ref } from 'vue'
 import Button from '../components/Button/Button.vue'
 import Flex from '../components/Flex/Flex.vue'
+import Confirm from '../components/Modal/Confirm.vue'
 import Modal from '../components/Modal/Modal.vue'
 
+const openConfirm = ref(false)
+const openInfo = ref(false)
+const confirmResult = ref('-')
 const open = ref(false)
 const openBreakpoints = ref(false)
 const open2 = ref(false)
@@ -192,6 +196,36 @@ function setSize(s: any) {
                 </Button>
               </template>
             </Modal>
+          </td>
+        </tr>
+        <tr>
+          <th>Confirm <br> Focuses cancel, Escape cancels</th>
+          <td>
+            <Flex gap="s" y-center>
+              <Button variant="danger" @click="openConfirm = true">
+                Delete project
+              </Button>
+              <Button @click="openInfo = true">
+                Info without cancel
+              </Button>
+              <span>Last result: {{ confirmResult }}</span>
+            </Flex>
+            <Confirm
+              v-model:open="openConfirm"
+              title="Delete project?"
+              content="This permanently deletes the project and all of its files. This can not be undone."
+              confirm-text="Delete"
+              confirm-variant="danger"
+              @confirm="confirmResult = 'confirmed'"
+              @cancel="confirmResult = 'cancelled'"
+            />
+            <Confirm
+              v-model:open="openInfo"
+              title="Saved"
+              content="Your changes were saved."
+              confirm-text="Okay"
+              :show-cancel="false"
+            />
           </td>
         </tr>
       </tbody>

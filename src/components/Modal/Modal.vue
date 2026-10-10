@@ -2,8 +2,9 @@
 import type { Sizes } from '../../lib/types.ts'
 import type { Props as CardProps } from '../Card/Card.vue'
 import { IconX } from '@iconify-prerendered/vue-ph'
-import { computed, ref, useAttrs, watch } from 'vue'
+import { computed, ref, useAttrs, useId, useSlots, useTemplateRef, watch } from 'vue'
 import Backdrop from '../../internal/Backdrop/Backdrop.vue'
+import { useFocusTrap } from '../../lib/focus.ts'
 import { viewport } from '../../lib/viewport.ts'
 import Button from '../Button/Button.vue'
 import Card from '../Card/Card.vue'
@@ -11,7 +12,7 @@ import './modal.scss'
 
 export interface ModalProps {
   /**
-   * Controls the visibility of the modal
+   * Controls the visibility of the modal. Supports `v-model:open`.
    */
   open?: boolean
   /**
@@ -47,10 +48,14 @@ export interface ModalProps {
   transitionName?: string | 'none'
   /**
    * On mobile, the modal automatically becomes fullscreen. You can configure this
-   * breakpoint by setting a custom `vuiBreakpoints` mobile variable. This
-   * setting disables the default behavior.
+   * breakpoint through the exported `breakpoints` object. This setting disables
+   * the default behavior.
    */
   disableMobileFs?: boolean
+  /**
+   * Accessible label of the close button
+   */
+  closeLabel?: string
 }
 
 defineOptions({
@@ -67,17 +72,28 @@ const {
   open = false,
   transitionName = 'modal',
   disableMobileFs = false,
+  closeLabel = 'Close',
 } = defineProps<ModalProps>()
 
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{
+  'close': []
+  'update:open': [value: boolean]
+}>()
 
 const attrs = useAttrs()
+const slots = useSlots()
 const rendered = ref(open)
+const titleId = useId()
 
+function close() {
+  emit('update:open', false)
+  emit('close')
+}
+
+// Escape and backdrop clicks respect `canDismiss`, the close button does not
 function tryClose() {
-  if (canDismiss) {
-    emit('close')
-  }
+  if (canDismiss)
+    close()
 }
 
 function handleAfterLeave() {
@@ -97,11 +113,28 @@ const realSize = computed(() => {
 
   return size
 })
+
+// Focus is moved into the dialog when it opens, kept inside while it is open
+// and returned to the previously focused element once it closes
+const dialogRef = useTemplateRef<HTMLElement>('dialog')
+const backdropRef = useTemplateRef<InstanceType<typeof Backdrop>>('backdrop')
+useFocusTrap(dialogRef, () => open && rendered.value, {
+  layer: () => backdropRef.value?.layerIndex ?? 0,
+})
+
+// The header slot labels the dialog, unless an explicit label was provided
+const labelledBy = computed(() => (slots.header && !attrs['aria-label'] && !attrs['aria-labelledby']) ? titleId : undefined)
 </script>
 
 <template>
   <Teleport to="body">
-    <Backdrop v-if="rendered" :class="{ 'p-0': realSize === 'screen' }" @close="tryClose">
+    <Backdrop
+      v-if="rendered"
+      ref="backdrop"
+      :class="{ 'p-0': realSize === 'screen' }"
+      :leaving="!open"
+      @close="tryClose"
+    >
       <Transition
         appear
         :name="transitionName === 'none' ? undefined : transitionName"
@@ -110,26 +143,32 @@ const realSize = computed(() => {
       >
         <div
           v-if="open"
+          ref="dialog"
           class="vui-modal"
           :class="[`vui-modal-size-${realSize}`, { scrollable: scrollable || realSize === 'screen', centered }]"
+          role="dialog"
+          aria-modal="true"
+          :aria-labelledby="labelledBy"
           v-bind="attrs"
         >
           <Card v-bind="card">
             <template v-if="$slots.header" #header>
-              <slot name="header" :close="() => emit('close')" />
+              <div :id="titleId" class="vui-modal-title">
+                <slot name="header" :close />
+              </div>
             </template>
-            <template v-if="!hideCloseButton" #header-end>
-              <Button class="vui-modal-close" plain square size="s" @click="emit('close')">
+            <template v-if="!hideCloseButton && canDismiss" #header-end>
+              <Button class="vui-modal-close" plain square size="s" :aria-label="closeLabel" @click="close">
                 <IconX />
               </Button>
             </template>
             <template v-if="$slots.default" #default>
               <div>
-                <slot name="default" :close="() => emit('close')" />
+                <slot name="default" :close />
               </div>
             </template>
             <template v-if="$slots.footer" #footer>
-              <slot name="footer" :close="() => emit('close')" />
+              <slot name="footer" :close />
             </template>
           </Card>
         </div>
@@ -139,14 +178,18 @@ const realSize = computed(() => {
 </template>
 
 <style scoped>
-.modal-enter-active,
-.modal-leave-active {
-  transition: var(--transition);
-}
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-  transform: scale(1.025);
+@layer vui.components {
+  .modal-enter-active,
+  .modal-leave-active {
+    transition: var(--transition);
+  }
+
+  .modal-enter-from,
+  .modal-leave-to {
+    opacity: 0;
+    transform: scale(1.025);
+  }
 }
 </style>

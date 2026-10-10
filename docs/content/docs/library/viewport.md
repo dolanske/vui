@@ -1,6 +1,6 @@
 # viewport
 
-The `viewport` object provides a simple, reactive way to check if the current screen width matches a given breakpoint.
+The `viewport` object provides a simple, reactive way to check if the current screen width matches a given breakpoint. The media queries are created the first time a breakpoint is read in the browser. During server rendering every breakpoint reads as `false`.
 
 > **Tip:** For most layout changes, prefer using CSS media queries. Use the `viewport` object only when you need to react to breakpoints in your JavaScript or Vue logic.
 

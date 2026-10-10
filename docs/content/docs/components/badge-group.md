@@ -43,9 +43,9 @@ import { Badge, BadgeGroup } from '@dolanske/vui'
 
 ### Props
 
-| Name  | Default | Type                                                                                                                        |
-| ----- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `gap` | `0`     | `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between badges. When `0`, borders are merged for a seamless look |
+| Name  | Default | Type                                                                                                                               |
+| ----- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `gap` | `0`     | `xxxs` `xxs` `xs` `s` `m` `l` `xl` `xxl` `xxxl` `number` <br> Gap between badges. When `0`, borders are merged for a seamless look |
 
 ### Slots
 

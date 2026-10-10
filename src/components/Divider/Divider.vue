@@ -11,7 +11,10 @@ interface BaseProps {
 type Props = BaseProps & (
   | {
     vertical: true
-    height: number | string
+    /**
+     * Height of a vertical divider. Stretches to the parent when omitted.
+     */
+    height?: number | string
   }
   | {
     vertical?: false
@@ -40,7 +43,7 @@ const h = computed(() => height === undefined ? undefined : formatUnitValue(heig
       '--vui-divider-type': type,
     }"
   >
-    <hr>
+    <hr :aria-orientation="vertical ? 'vertical' : undefined">
     <div v-if="$slots.default" class="vui-divider-slot">
       <slot />
     </div>

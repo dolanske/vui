@@ -22,7 +22,7 @@ function paginate(
 | `perPage`     | `number` | `15`    | The number of items to show per page.                                  |
 | `maxPages`    | `number` | `3`     | The maximum number of page links to display in the pagination control. |
 
-Returns a `Pagination` object with all the calculated properties needed for rendering pagination controls and slicing data.
+Returns a `Pagination` object with all the calculated properties needed for rendering pagination controls and slicing data. Invalid input is clamped: an empty dataset has a single empty page, `currentPage` stays within `1` and `totalPages`, and `perPage` / `maxPages` are at least `1`.
 
 ### Return value
 
@@ -40,17 +40,17 @@ interface Pagination {
 }
 ```
 
-| Property      | Type       | Description                                                             |
-| ------------- | ---------- | ----------------------------------------------------------------------- |
-| `totalItems`  | `number`   | The total number of items in the dataset.                               |
-| `currentPage` | `number`   | The current page number (after clamping to valid range).                |
-| `perPage`     | `number`   | The number of items per page.                                           |
-| `totalPages`  | `number`   | The total number of pages.                                              |
-| `startPage`   | `number`   | The first page number to show in the pagination control.                |
-| `endPage`     | `number`   | The last page number to show in the pagination control.                 |
-| `startIndex`  | `number`   | The index of the first item on the current page (0-based).              |
-| `endIndex`    | `number`   | The index of the last item on the current page (0-based).               |
-| `pages`       | `number[]` | An array of page numbers to display (for rendering page buttons/links). |
+| Property      | Type       | Description                                                                                                      |
+| ------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| `totalItems`  | `number`   | The total number of items in the dataset.                                                                        |
+| `currentPage` | `number`   | The current page number (after clamping to valid range).                                                         |
+| `perPage`     | `number`   | The number of items per page.                                                                                    |
+| `totalPages`  | `number`   | The total number of pages.                                                                                       |
+| `startPage`   | `number`   | First page number of the visible window. Not the first page of the data, use `1` for that                        |
+| `endPage`     | `number`   | Last page number of the visible window. Use `totalPages` for the last page of the data                           |
+| `startIndex`  | `number`   | The index of the first item on the current page (0-based).                                                       |
+| `endIndex`    | `number`   | The index of the last item on the current page (0-based, inclusive). Use `items.slice(startIndex, endIndex + 1)` |
+| `pages`       | `number[]` | An array of page numbers to display (for rendering page buttons/links).                                          |
 
 ## Usage
 

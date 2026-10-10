@@ -45,7 +45,7 @@ const commands = [
           </template>
 
           <template #command="{ command }">
-            <button style="display: flex; align-items: center; gap: var(--space-s); width: 100%; padding: var(--space-xs) var(--space-xxs); border-radius: 0;">
+            <div style="display: flex; align-items: center; gap: var(--space-s); width: 100%; padding: var(--space-xs) var(--space-xxs); border-radius: 0;">
               <span style="font-size: 1.1em;">
                 {{ command.group === 'File' ? '📄' : command.group === 'Navigation' ? '🧭' : '🎨' }}
               </span>
@@ -58,7 +58,7 @@ const commands = [
               <span v-if="command.group" style="font-size: var(--font-size-xs); opacity: 0.4; font-style: italic;">
                 {{ command.group }}
               </span>
-            </button>
+            </div>
           </template>
         </Commands>
       </Flex>

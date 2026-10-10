@@ -1,6 +1,6 @@
 # Switch
 
-The Switch component is a form control that allows users to toggle between two states. It provides a visual representation of a boolean value and can be customized with labels and different styles.
+The Switch component is a form control that allows users to toggle between two states. It provides a visual representation of a boolean value and can be customized with labels and different styles. It is announced as a switch (on / off), and the hint is linked with `aria-describedby`.
 
 ::switch-example{sourcePath="Switch/Switch.vue"}
 
@@ -29,6 +29,7 @@ const enabled = ref(false)
 | `accent`     | `false` | `boolean` <br> Whether to use the accent color         |
 | `reversed`   | `false` | `boolean` <br> Reverses the switch and label positions |
 | `hint`       | —       | `string` <br> Helper text displayed below the switch   |
+| `name`       | —       | `string` <br> Native `name` for form submission        |
 
 ### Events
 

@@ -4,8 +4,6 @@
 
 html,
 body {
-  font-size: 63.5%;
-  font-size: 1.4rem;
   background-color: var(--color-bg);
 }
 
@@ -15,12 +13,19 @@ body {
 }
 
 body {
+  font-size: 1.4rem;
   min-height: unset;
 }
 
-a {
-  color: var(--color-text);
-  text-decoration: none;
+@layer docs {
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  p {
+    color: var(--color-text-light);
+  }
 }
 
 main {
@@ -105,7 +110,7 @@ main {
     width: 100%;
     @include indicator;
     border-style: dashed;
-    padding-inline: 0 !important;
+    padding-inline: 0;
 
     &.left {
       .size-indicator {

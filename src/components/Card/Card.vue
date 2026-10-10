@@ -11,6 +11,10 @@ export interface Props {
   centered?: boolean
   borderStyle?: 'solid' | 'dashed' | 'dotted' | (string & {})
   inline?: boolean
+  /**
+   * Element to render, e.g. `section` or `article`
+   */
+  as?: string
 }
 
 const {
@@ -22,11 +26,13 @@ const {
   headerAlign,
   centered,
   borderStyle = 'solid',
+  as = 'div',
 } = defineProps<Props>()
 </script>
 
 <template>
-  <div
+  <component
+    :is="as"
     class="vui-card" :class="{
       separators,
       'header-separator': separators || headerSeparator,
@@ -59,5 +65,5 @@ const {
     <div v-if="$slots.footer" class="vui-card-footer">
       <slot name="footer" />
     </div>
-  </div>
+  </component>
 </template>

@@ -1,48 +1,57 @@
-.vui-input-container {
-  &.vui-select {
-    width: auto;
-    min-width: 96px;
+@layer vui.reset, vui.base, vui.components, vui.modifiers, vui.utilities;
 
-    &.disabled {
-      .vui-input-style {
-        cursor: not-allowed;
+@layer vui.components {
+  .vui-input-container {
+    &.vui-select {
+      width: auto;
+      min-width: 96px;
 
-        &:hover {
-          border-color: var(--color-border);
+      &.disabled {
+        .vui-input-style {
+          cursor: not-allowed;
+
+          &:hover {
+            border-color: var(--color-border);
+          }
         }
       }
-    }
 
-    .vui-select-trigger-container {
-      &.has-value span {
-        color: var(--color-text);
-        font-weight: var(--font-weight-medium);
+      .vui-select-trigger-container {
+        &.has-value span {
+          color: var(--color-text);
+          font-weight: var(--font-weight-medium);
+        }
+
+        span {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow-x: hidden;
+        }
       }
 
-      .vui-button {
-        border: none !important;
+      .vui-select-trigger-wrap {
+        position: relative;
       }
 
-      span {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
+      .vui-select-value {
+        flex: 1;
+        text-align: left;
       }
-    }
 
-    .vue-select-no-results {
-      text-align: center;
-      padding-block: var(--space-xs);
-    }
+      // Together with the flex gap before the caret, reserves exactly the
+      // width of the clear button
+      .vui-select-clear-spacer {
+        width: calc(var(--interactive-el-height-s) - var(--space-s));
+        flex-shrink: 0;
+      }
 
-    .vui-input-style {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-s);
-
-      & > button {
-        margin-right: -6px;
+      .vui-button.vui-select-clear {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        // Sits right against the caret icon. The button's own padding is
+        // enough visual separation.
+        right: calc(var(--vui-input-padding) + 16px);
 
         .vui-button-slot svg,
         .vui-button-slot .iconify {
@@ -50,27 +59,65 @@
         }
       }
 
-      &:hover {
-        border-color: var(--color-border-strong);
+      .vui-input-style {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-s);
+
+        & > button {
+          margin-right: -6px;
+
+          .vui-button-slot svg,
+          .vui-button-slot .iconify {
+            color: var(--color-text-light);
+          }
+        }
+
+        &:hover {
+          border-color: var(--color-border-strong);
+        }
       }
+    }
+  }
+
+  // Dropdown content is teleported, so these can not be nested under the Select
+  .vui-select-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxxs);
+  }
+
+  .vui-select-no-results {
+    text-align: center;
+    padding-block: var(--space-xs);
+  }
+
+  select {
+    display: block;
+    height: var(--interactive-el-height);
+    line-height: var(--interactive-el-height);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-s);
+    padding-inline: var(--space-xs);
+    transition: border-color var(--transition-fast);
+    z-index: var(--z-default);
+    font-size: var(--font-size-m);
+    color: var(--color-text);
+
+    &:hover {
+      border-color: var(--color-border-strong);
     }
   }
 }
 
-select {
-  display: block;
-  height: var(--interactive-el-height);
-  line-height: var(--interactive-el-height);
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-s);
-  padding-inline: var(--space-xs);
-  transition: border-color var(--transition-fast);
-  z-index: var(--z-default);
-  font-size: var(--font-size-m);
-  color: var(--color-text);
-
-  &:hover {
-    border-color: var(--color-border-strong);
+// Wins over the borders Input gives to buttons placed inside of it
+@layer vui.modifiers {
+  .vui-input-container.vui-select {
+    .vui-select-trigger-container .vui-button,
+    .vui-button.vui-select-clear {
+      border: none;
+    }
   }
 }

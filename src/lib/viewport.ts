@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
-import { reactive, ref, watchEffect } from 'vue'
+import { effectScope, reactive, ref, watchEffect } from 'vue'
 
 export interface Breakpoints {
   /**
@@ -36,24 +36,47 @@ const mediaQueries = new Map<string, Ref<boolean>>()
 // Source of truth for consumers. Keys mirror `breakpoints` and stay reactive.
 const viewportState = reactive<Record<string, boolean>>({})
 
-watchEffect(() => {
-  const currentKeys = new Set(Object.keys(breakpoints.value))
+let initialized = false
 
-  for (const key of currentKeys) {
-    if (!mediaQueries.has(key)) {
-      mediaQueries.set(key, useMediaQuery(() => `(max-width: ${breakpoints.value[key as BreakpointKey]}px)`))
-    }
+/**
+ * Media queries are only created the first time the viewport is read in a
+ * browser. Importing the library has no side effects, and during SSR every
+ * breakpoint simply reads as `false`.
+ */
+function ensureInitialized(): void {
+  if (initialized || typeof window === 'undefined')
+    return
 
-    viewportState[key] = Boolean(mediaQueries.get(key)?.value)
-  }
+  initialized = true
 
-  for (const key of mediaQueries.keys()) {
-    if (!currentKeys.has(key)) {
-      mediaQueries.delete(key)
-      delete viewportState[key]
-    }
-  }
-})
+  // Detached scope, the viewport state is global and outlives components
+  effectScope(true).run(() => {
+    watchEffect(() => {
+      const currentKeys = new Set(Object.keys(breakpoints.value))
 
-// `reactive` unwraps refs on property access, so consumers can use `viewport.s`.
-export const viewport = viewportState as unknown as Breakpoints
+      for (const key of currentKeys) {
+        if (!mediaQueries.has(key)) {
+          mediaQueries.set(key, useMediaQuery(() => `(max-width: ${breakpoints.value[key as BreakpointKey]}px)`))
+        }
+
+        viewportState[key] = Boolean(mediaQueries.get(key)?.value)
+      }
+
+      for (const key of mediaQueries.keys()) {
+        if (!currentKeys.has(key)) {
+          mediaQueries.delete(key)
+          delete viewportState[key]
+        }
+      }
+    })
+  })
+}
+
+// Reads go through the reactive state, so consumers can use `viewport.s` in
+// templates, computed properties and watchers as before.
+export const viewport = new Proxy(viewportState, {
+  get(target, key) {
+    ensureInitialized()
+    return Reflect.get(target, key)
+  },
+}) as unknown as Breakpoints

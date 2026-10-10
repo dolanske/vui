@@ -1,6 +1,6 @@
 # Checkbox
 
-A checkbox component that supports custom icons, labels, and various states. It can be used as a controlled or uncontrolled component.
+A checkbox component that supports custom icons, labels, an indeterminate state and array models. It can be used with `v-model` or with the `checked` prop alone.
 
 ::checkbox-example{sourcePath="Checkbox/Checkbox.vue"}
 
@@ -14,14 +14,14 @@ const checked = ref(true)
 
 <template>
   <Checkbox v-model="checked" label="Basic checkbox" />
-  <Checkbox v-model="checked" label="Disabled checkbox" disabled />
-  <Checkbox v-model="checked" label="Checked checkbox" checked />
+  <Checkbox label="Disabled checkbox" disabled />
+  <Checkbox label="Initially checked, without v-model" checked />
   <Checkbox v-model="checked" accent>
     <template #icon-on>
-      <IconToggleLeft />
+      <IconToggleRightFill />
     </template>
     <template #icon-off>
-      <IconToggleRightFill />
+      <IconToggleLeft />
     </template>
     <template #default>
       Custom icons with <code>accent</code> color
@@ -34,12 +34,24 @@ const checked = ref(true)
 
 ### Props
 
-| Name       | Default | Type                                                             |
-| ---------- | ------- | ---------------------------------------------------------------- |
-| `label`    | —       | `string` <br> Text label for the checkbox                        |
-| `disabled` | `false` | `boolean` <br> Disables the checkbox                             |
-| `checked`  | —       | `boolean` <br> Controls the checked state (for controlled usage) |
-| `accent`   | `false` | `boolean` <br> Uses accent color for the checkbox                |
+| Name            | Default | Type                                                                                                       |
+| --------------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `label`         | —       | `string` <br> Text label for the checkbox                                                                  |
+| `disabled`      | `false` | `boolean` <br> Disables the checkbox                                                                       |
+| `checked`       | —       | `boolean` <br> Checked state when `v-model` is not used                                                    |
+| `indeterminate` | `false` | `boolean` <br> Shows a mixed state, e.g. when only some nested items are selected                          |
+| `value`         | —       | `any` <br> Added to / removed from an array `v-model`. Also used as the native value when submitting forms |
+| `name`          | —       | `string` <br> Native `name` used for form submission                                                       |
+| `required`      | `false` | `boolean` <br> Marks the checkbox as required                                                              |
+| `hint`          | —       | `string` <br> Helper text below the label, linked with `aria-describedby`                                  |
+| `errors`        | `[]`    | `string[]` <br> Error messages. Marks the checkbox as invalid                                              |
+| `accent`        | `false` | `boolean` <br> Uses accent color for the checkbox                                                          |
+
+### Models
+
+| Name         | Type                  | Description                                                                          |
+| ------------ | --------------------- | ------------------------------------------------------------------------------------ |
+| `modelValue` | `boolean` `unknown[]` | A boolean, or an array which gets the checkbox `value` added or removed when toggled |
 
 ### Events
 
@@ -49,11 +61,29 @@ const checked = ref(true)
 
 ### Slots
 
-| Name       | Accepts                  | Description                                                                   |
-| ---------- | ------------------------ | ----------------------------------------------------------------------------- |
-| `default`  | `any`                    | Content to be displayed as the label (overrides the `label` prop if provided) |
-| `icon-on`  | `'ph:check-square-fill'` | Slot which renders when the component is checked                              |
-| `icon-off` | `'ph:square'`            | Slot which renders when the component is not checked                          |
+| Name                 | Accepts | Description                                                                   |
+| -------------------- | ------- | ----------------------------------------------------------------------------- |
+| `default`            | `any`   | Content to be displayed as the label (overrides the `label` prop if provided) |
+| `icon-on`            | `any`   | Icon shown while checked. Defaults to a filled check square                   |
+| `icon-off`           | `any`   | Icon shown while unchecked. Defaults to an empty square                       |
+| `icon-indeterminate` | `any`   | Icon shown while `indeterminate`. Defaults to a filled minus square           |
+
+### Array model
+
+```vue
+<script setup>
+import { Checkbox } from '@dolanske/vui'
+import { ref } from 'vue'
+
+const toppings = ref(['cheese'])
+</script>
+
+<template>
+  <Checkbox v-model="toppings" value="cheese" label="Cheese" />
+  <Checkbox v-model="toppings" value="ham" label="Ham" />
+  <Checkbox v-model="toppings" value="olives" label="Olives" />
+</template>
+```
 
 ### Tokens
 
